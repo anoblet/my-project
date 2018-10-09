@@ -1,0 +1,3 @@
+[submodule "src/BaseElement"]
+	path = src/BaseElement
+	url = https://github.com/anoblet/BaseElement.git
