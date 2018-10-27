@@ -1,0 +1,32 @@
+:host {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+:host toolbar {
+  width: 100%;
+}
+
+div {
+  display: flex;
+  margin-bottom: 32px;
+}
+
+content {
+  display: flex;
+  flex: 1;
+  overflow: auto;
+  padding: 1em;
+}
+
+#content {
+}
+
+my-tab-bar {
+  position: fixed;
+  bottom: 0;
+  right:0;
+  height: 32px;
+}

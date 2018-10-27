@@ -1,3 +1,6 @@
 [submodule "src/BaseElement"]
 	path = src/BaseElement
 	url = https://github.com/anoblet/BaseElement.git
+[submodule "src/DefaultValue"]
+	path = src/DefaultValue
+	url = https://github.com/anoblet/DefaultValue.git
