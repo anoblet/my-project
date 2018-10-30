@@ -1,0 +1,37 @@
+import { html } from '@polymer/lit-element';
+import '@anoblet/my-drawer'
+import '@anoblet/my-tab-bar'
+import '@anoblet/my-toolbar'
+import '@anoblet/my-content-box'
+
+const loremIpsum = require('lorem-ipsum')
+//   , output     = loremIpsum();
+
+import * as style from './MyApp.scss'
+
+export default function (props: any) {
+  return html`
+    <style>
+      ${style}
+    </style>  
+    <my-toolbar>      
+      <button @click="${(e: any) => this._toggleDrawer()}">Menu</button>
+      ${this.title}
+    </my-toolbar>
+    <my-content-box>
+      <my-drawer>
+      ${loremIpsum({ count: 100 })}
+      </my-drawer>
+      <my-content-box style="overflow: auto">${loremIpsum({ count: 100 })}</my-content-box>
+    </my-content-box>
+    <div class="my-tab-bar">
+      <my-tab-bar>
+        <my-tab href="#">Test</my-tab>
+        <my-tab href="#">Test</my-tab>
+        <my-tab href="#">Test</my-tab>
+      </my-tab-bar>
+      </div>
+    `
+}
+
+// export { view as default, view}

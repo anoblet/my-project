@@ -1,9 +1,10 @@
 import { html } from '@polymer/lit-element';
-import '@anoblet/my-drawer'
-import '@anoblet/my-tab-bar'
+import '@anoblet/my-grid'
+import '@anoblet/my-container'
+import '@anoblet/my-flex'
+import '@material/mwc-icon'
 
-const loremIpsum = require('lorem-ipsum')
-//   , output     = loremIpsum();
+const loremIpsum = require('lorem-ipsum');
 
 import * as style from './MyApp.scss'
 
@@ -12,21 +13,22 @@ export default function (props: any) {
     <style>
       ${style}
     </style>
-    <toolbar>
-      <button @click="${(e: any) => this._toggleDrawer()}">Menu</button>
-      ${this.title}
-    </toolbar>   
-    <div id="content">
-      <my-drawer>
-        This is the menu
-      </my-drawer>
-      <content>${loremIpsum({count: 100})}</content>
-    </div>
-    <my-tab-bar>
-      <my-tab href="#">Test</my-tab>
-      <my-tab href="#">Test</my-tab>
-      <my-tab href="#">Test</my-tab>
-    </my-tab-bar>
+    <my-container>
+      <my-container id="top" class="row">
+        <mwc-icon id="menu" @click="${() => this._toggleDrawer()}">menu</mwc-icon>
+        <span id="title">${this.title}</span>
+      </my-container>
+      <my-flex id="middle" class="row grow">
+        <my-grid id="drawer-container">
+          <my-flex id="drawer" class="scroll" hidden>${loremIpsum({count: 10})}</my-flex>
+          <my-flex id="content" grow class="scroll">${loremIpsum({count: 10})}</my-flex>
+        </my-grid>
+      </my-flex>
+      <my-container id="bottom" class="row">
+        Bottom
+        <input type="checkbox" @change="${(e:any) => this._changeTheme()}"></a>
+      </my-container>
+    </my-container>
     `
 }
 
