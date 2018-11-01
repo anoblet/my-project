@@ -2,7 +2,8 @@ import { html, LitElement, property, PropertyDeclaration } from '@polymer/lit-el
 import { Mixin } from '@anoblet/mixin';
 import { BaseMixin } from '@anoblet/base-mixin'
 import Template from './View/MyApp.ts';
-
+import { connect } from 'pwa-helpers/connect-mixin.js';
+import { store } from '../..//store.js';
 
 /**
  * @todo Extend BaseElement
@@ -12,9 +13,10 @@ import Template from './View/MyApp.ts';
  * 
  * class BaseElement2 extends Mixin(LitElement, [DebugMixin]) {}
  */
-export class MyApp extends Mixin(LitElement, [BaseMixin]) {
+export class MyApp extends connect(store)(Mixin(LitElement, [BaseMixin])) {
   @property({type: String}) title = 'Andrew Noblet'
   @property({type: Boolean}) drawerOpened = false;
+  @property({type: String, reflect: true}) theme = 'light';
   // @property({type: Boolean, reflect: true, attribute: 'dark'}) darkTheme = false;
 
   // shadowRoot: any;
@@ -49,6 +51,10 @@ export class MyApp extends Mixin(LitElement, [BaseMixin]) {
   connectedCallback() {
     super.connectedCallback();
     if(this.darkTheme) this.style.background = '#242424';
+  }
+
+  stateChanged(state: any) {
+    this.theme = state.settings.theme;
   }
 
   render() {

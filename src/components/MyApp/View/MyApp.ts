@@ -29,10 +29,7 @@ export default function (props: any) {
       </my-flex>
       <my-container id="bottom" class="row">
         Bottom
-        <input type="checkbox" @change="${(e:any) => this._changeTheme()}"></a>
       </my-container>
     </my-container>
     `
 }
-
-// export { view as default, view}
