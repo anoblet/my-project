@@ -16,7 +16,8 @@ import { store } from '../..//store.js';
 export class MyApp extends connect(store)(Mixin(LitElement, [BaseMixin])) {
   @property({type: String}) title = 'Andrew Noblet'
   @property({type: Boolean}) drawerOpened = false;
-  @property({type: String, reflect: true}) theme = 'light';
+  // @property({type: String, reflect: true}) theme = 'light';
+  // @property({type: Boolean, reflect: true}) debug = false;
   // @property({type: Boolean, reflect: true, attribute: 'dark'}) darkTheme = false;
 
   // shadowRoot: any;
@@ -48,13 +49,21 @@ export class MyApp extends connect(store)(Mixin(LitElement, [BaseMixin])) {
     val == '' ? this.removeAttribute(attribute) : this.setAttribute(attribute, '');
   }
 
+  _toggleBooleanAttribute(attribute: any) {
+    const val = this.getAttribute(attribute);
+    val == '' ? this.removeAttribute(attribute) : this.setAttribute(attribute, '');
+  }
+
   connectedCallback() {
     super.connectedCallback();
     if(this.darkTheme) this.style.background = '#242424';
   }
 
   stateChanged(state: any) {
-    this.theme = state.settings.theme;
+    // this.theme = state.settings.theme;
+    this.setAttribute('theme', state.settings.theme);
+    // this.debug = state.settings.debug;
+    state.settings.debug ? this.setAttribute('debug', '') : this.removeAttribute('debug');
   }
 
   render() {

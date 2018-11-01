@@ -1,9 +1,10 @@
 import { html } from '@polymer/lit-element';
 import '../../AppSettings/AppSettings';
 import '@anoblet/my-grid'
-import '@anoblet/my-container'
+// import '@anoblet/my-container'
 import '@anoblet/my-flex'
 import '@material/mwc-icon'
+import '@material/mwc-fab'
 
 const loremIpsum = require('lorem-ipsum');
 
@@ -14,10 +15,11 @@ export default function (props: any) {
     <style>
       ${style}
     </style>
-    <my-container>
+    <my-grid id="container">
       <my-container id="top" class="row">
         <mwc-icon id="menu" @click="${() => this._toggleDrawer()}">menu</mwc-icon>
         <span id="title">${this.title}</span>
+        <mwc-fab id="userProfile" mini @click="${() => this._toggleProfile()}">menu</mwc-fab>
       </my-container>
       <my-flex id="middle" class="row grow">
         <my-grid id="drawer-container">
@@ -30,6 +32,6 @@ export default function (props: any) {
       <my-container id="bottom" class="row">
         Bottom
       </my-container>
-    </my-container>
+    </my-grid>
     `
 }

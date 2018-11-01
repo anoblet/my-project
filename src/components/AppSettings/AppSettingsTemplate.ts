@@ -9,16 +9,14 @@ const loremIpsum = require('lorem-ipsum');
 import * as style from './AppSettings.scss'
 
 import { store } from '../../store.js';
-import { changeTheme } from '../../actions/Settings.js';
+import { changeTheme, toggleDebug } from '../../actions/Settings.js';
 
 export default function (props: any) {
   return html`
     <style>
       ${style}
     </style>
-    ${this.theme}
-    <input type="checkbox" @change="${(e: any) => store.dispatch(changeTheme(this.theme == 'light' ? 'dark' : 'light'))}"></a>
+    Debug: <input type="checkbox" @change="${(e: any) => store.dispatch(toggleDebug())}"></a>
+    Dark Theme: <input type="checkbox" @change="${(e: any) => store.dispatch(changeTheme())}"></a>
     `
 }
-
-// export { view as default, view}

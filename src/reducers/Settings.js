@@ -9,15 +9,20 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 */
 
 import {
-  CHANGE_THEME
+  CHANGE_THEME, TOGGLE_DEBUG
 } from '../actions/Settings.js';
 
-const settings = (state = { theme: 'light' }, action) => {
+const settings = (state = { theme: 'light', debug: false }, action) => {
   switch (action.type) {
     case CHANGE_THEME:
       return {
         ...state,
         theme: action.theme
+      };
+      case TOGGLE_DEBUG:
+      return {
+        ...state,
+        debug: action.status
       };
     default:
       return state;
