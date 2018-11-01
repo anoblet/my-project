@@ -16,12 +16,12 @@ export default function (props: any) {
       ${style}
     </style>
     <my-grid id="container">
-      <my-container id="top" class="row">
+      <my-flex id="top">
         <mwc-icon id="menu" @click="${() => this._toggleDrawer()}">menu</mwc-icon>
         <span id="title">${this.title}</span>
         <mwc-fab id="userProfile" mini @click="${() => this._toggleProfile()}">menu</mwc-fab>
-      </my-container>
-      <my-flex id="middle" class="row grow">
+      </my-flex>
+      <my-flex id="middle">
         <my-grid id="drawer-container">
           <my-flex id="drawer" class="scroll" hidden>${loremIpsum({count: 10})}</my-flex>
           <my-flex id="content" grow class="scroll">
@@ -29,9 +29,9 @@ export default function (props: any) {
           </my-flex>
         </my-grid>
       </my-flex>
-      <my-container id="bottom" class="row">
+      <my-flex id="bottom">
         Bottom
-      </my-container>
+      </my-flex>
     </my-grid>
     `
 }

@@ -67,6 +67,7 @@ export class MyApp extends connect(store)(Mixin(LitElement, [BaseMixin])) {
   }
 
   render() {
+    console.log(this.getAttribute('debug') == '')
     return Template.bind(this)();
   }
 }

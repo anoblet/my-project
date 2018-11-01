@@ -16,7 +16,7 @@ export default function (props: any) {
     <style>
       ${style}
     </style>
-    Debug: <input type="checkbox" @change="${(e: any) => store.dispatch(toggleDebug())}"></a>
+    Debug: <input type="checkbox" checked=${this.getAttribute('debug') == ''} @change="${(e: any) => store.dispatch(toggleDebug())}"></a>
     Dark Theme: <input type="checkbox" @change="${(e: any) => store.dispatch(changeTheme())}"></a>
     `
 }
