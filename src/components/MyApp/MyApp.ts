@@ -4,7 +4,7 @@ import { BaseMixin } from '@anoblet/base-mixin'
 import { connect } from 'pwa-helpers/connect-mixin.js';
 import { store } from '../..//store.js';
 
-import Template from './View/MyApp.ts';
+import Template from './MyAppTemplate';
 
 /**
  * @todo Extend BaseElement
@@ -16,32 +16,24 @@ import Template from './View/MyApp.ts';
  */
 export class MyApp extends connect(store)(Mixin(LitElement, [BaseMixin])) {
   @property({type: String}) title = 'Andrew Noblet'
-  // @property({type: Boolean}) drawerOpened = false;
-    // @property({type: Boolean, reflect: true}) debug = false;
-  // @property({type: String, reflect: true}) theme = 'light';
-  // @property({type: Boolean, reflect: true, attribute: 'dark'}) darkTheme = false;
-  
+
   _toggleDrawer() {
+    const drawerContainer = this.shadowRoot.querySelector('#drawer-container')
     const drawer = this.shadowRoot.querySelector('#drawer');
-    const style = this.shadowRoot.querySelector('#drawer-container').style;
-    drawer.hidden = !drawer.hidden;   
-    style.gridTemplateColumns = !drawer.hidden ? '2fr 8fr' : 'auto';
-  }
+    drawer._toggleAttribute('hidden');
+    drawerContainer._toggleAttribute('opened');
+    // this._toggleAttribute('hidden', drawer);
 
-  _changeTheme() {
-    // this._toggleBooleanAttribute('dark');
-  }
-
-  _toggleBooleanAttribute(attribute: any) {
-    const val = this.getAttribute(attribute);
-    val == '' ? this.removeAttribute(attribute) : this.setAttribute(attribute, '');
-  }
+    // drawer.getAttribute('hidden') == '' ? drawer.removeAttribute('hidden') : drawer.setAttribute('hidden', '');
+    // drawerContainer.getAttribute('opened') == '' ? drawerContainer.removeAttribute('opened') : drawerContainer.setAttribute('opened', '');
+}
 
   stateChanged(state: any) {
     // this.theme = state.settings.theme;
     // this.debug = state.settings.debug;
     this.setAttribute('theme', state.settings.theme);
     state.settings.debug ? this.setAttribute('debug', '') : this.removeAttribute('debug');
+    state.settings.theme == 'light' ? this.getAttribute('dark') ? this.removeAttribute('dark') : false : this.setAttribute('dark', '');
   }
 
   render() {

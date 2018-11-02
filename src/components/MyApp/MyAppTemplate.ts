@@ -1,5 +1,5 @@
 import { html } from '@polymer/lit-element';
-import '../../AppSettings/AppSettings';
+import '../AppSettings/AppSettings';
 import '@anoblet/my-grid'
 // import '@anoblet/my-container'
 import '@anoblet/my-flex'
@@ -19,7 +19,7 @@ export default function (props: any) {
       <my-flex id="top">
         <mwc-icon id="menu" @click="${() => this._toggleDrawer()}">menu</mwc-icon>
         <span id="title">${this.title}</span>
-        <mwc-fab id="userProfile" mini @click="${() => this._toggleProfile()}">Profile</mwc-fab>
+        <mwc-fab id="userProfile" mini label="Account" @click="${() => this._toggleProfile()}">Profile</mwc-fab>
       </my-flex>
       <my-flex id="center">
         <my-grid id="drawer-container">

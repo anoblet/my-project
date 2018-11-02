@@ -57,6 +57,10 @@
   flex: 1;
 }
 
+#drawer-container[opened] {
+  grid-template-columns: minmax(128px,1fr) 4fr;
+}
+
 #container {
   grid-template-rows: min-content 1fr min-content;
 }
