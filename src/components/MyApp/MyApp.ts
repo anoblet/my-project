@@ -1,4 +1,4 @@
-import { html, LitElement, property } from '@polymer/lit-element';
+import { LitElement, property } from '@polymer/lit-element';
 import { Mixin } from '@anoblet/mixin';
 import { BaseMixin } from '@anoblet/base-mixin'
 import { connect } from 'pwa-helpers/connect-mixin.js';
@@ -18,22 +18,15 @@ export class MyApp extends connect(store)(Mixin(LitElement, [BaseMixin])) {
   @property({type: String}) title = 'Andrew Noblet'
 
   _toggleDrawer() {
-    const drawerContainer = this.shadowRoot.querySelector('#drawer-container')
     const drawer = this.shadowRoot.querySelector('#drawer');
+    const drawerContainer = this.shadowRoot.querySelector('#drawer-container')
     drawer._toggleAttribute('hidden');
     drawerContainer._toggleAttribute('opened');
-    // this._toggleAttribute('hidden', drawer);
-
-    // drawer.getAttribute('hidden') == '' ? drawer.removeAttribute('hidden') : drawer.setAttribute('hidden', '');
-    // drawerContainer.getAttribute('opened') == '' ? drawerContainer.removeAttribute('opened') : drawerContainer.setAttribute('opened', '');
 }
 
   stateChanged(state: any) {
-    // this.theme = state.settings.theme;
-    // this.debug = state.settings.debug;
-    this.setAttribute('theme', state.settings.theme);
     state.settings.debug ? this.setAttribute('debug', '') : this.removeAttribute('debug');
-    state.settings.theme == 'light' ? this.getAttribute('dark') ? this.removeAttribute('dark') : false : this.setAttribute('dark', '');
+    state.settings.theme == 'light' ? this.getAttribute('dark') == '' ? this.removeAttribute('dark') :false : this.setAttribute('dark', '');
   }
 
   render() {
