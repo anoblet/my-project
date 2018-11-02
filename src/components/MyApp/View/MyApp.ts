@@ -19,13 +19,13 @@ export default function (props: any) {
       <my-flex id="top">
         <mwc-icon id="menu" @click="${() => this._toggleDrawer()}">menu</mwc-icon>
         <span id="title">${this.title}</span>
-        <mwc-fab id="userProfile" mini @click="${() => this._toggleProfile()}">menu</mwc-fab>
+        <mwc-fab id="userProfile" mini @click="${() => this._toggleProfile()}">Profile</mwc-fab>
       </my-flex>
-      <my-flex id="middle">
+      <my-flex id="center">
         <my-grid id="drawer-container">
           <my-flex id="drawer" class="scroll" hidden>${loremIpsum({count: 10})}</my-flex>
-          <my-flex id="content" grow class="scroll">
-            <app-settings></app-settings>
+          <my-flex id="content" grow>
+            <app-settings class="scroll"></app-settings>
           </my-flex>
         </my-grid>
       </my-flex>

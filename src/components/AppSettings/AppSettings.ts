@@ -6,14 +6,12 @@ import { connect } from 'pwa-helpers/connect-mixin.js';
 import { store } from '../../store.js';
 
 export class AppSettings extends connect(store)(Mixin(LitElement, [BaseMixin])) {
-  @property({type: String}) theme = 'light';
 
   render() {
     return Template.bind(this)();
   }
 
   stateChanged(state: any) {
-    this.theme = state.settings.theme;
   }
 }
 
