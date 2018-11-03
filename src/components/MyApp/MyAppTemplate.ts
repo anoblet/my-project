@@ -9,11 +9,15 @@ import '@material/mwc-fab'
 const loremIpsum = require('lorem-ipsum');
 
 import * as style from './MyApp.scss'
+import * as firebaseStyle from './FirebaseStyle.scss';
 
 export default function (props: any) {
   return html`
     <style>
       ${style}
+    </style>
+    <style>
+      ${firebaseStyle}
     </style>
     <my-grid id="container">
       <my-flex id="top">
@@ -33,5 +37,6 @@ export default function (props: any) {
         Bottom
       </my-flex>
     </my-grid>
+    <my-firebase .config=${this.firebaseConfig}
     `
 }
