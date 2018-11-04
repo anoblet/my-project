@@ -2,7 +2,7 @@ import { LitElement, property } from '@polymer/lit-element';
 import { Mixin } from '@anoblet/mixin';
 import { BaseMixin } from '@anoblet/base-mixin'
 import { connect } from 'pwa-helpers/connect-mixin.js';
-import { store } from '../..//store.js';
+import { store } from '../../store.js';
 
 import Template from './MyAppTemplate';
 
@@ -11,7 +11,7 @@ import '@anoblet/my-firebase';
 import * as firebase from "firebase";
 // import * as firebaseui from 'firebaseui'
 const firebaseui = require('firebaseui');
-// import * as auth from "firebase/auth";
+import * as auth from "firebase/auth";
 
 const config = {
   apiKey: "AIzaSyA1sarBCzD7i_UBEMcE5321POKcAX48YYs",
@@ -21,8 +21,14 @@ const config = {
   storageBucket: "",
   messagingSenderId: "552770278955"
 };
+// var firebase;
 
-const app = firebase.initializeApp(config);
+// async () => await import('firebase').then((module) => {
+//   var firebase = module.initializeApp(config);
+// })
+
+
+
 
 // FirebaseUI config.
 var uiConfig = {

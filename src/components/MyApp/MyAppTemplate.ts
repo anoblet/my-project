@@ -37,6 +37,5 @@ export default function (props: any) {
         Bottom
       </my-flex>
     </my-grid>
-    <my-firebase .config=${this.firebaseConfig}
     `
 }
