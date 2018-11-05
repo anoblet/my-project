@@ -8,10 +8,8 @@ import Template from './MyAppTemplate';
 
 import '@anoblet/my-firebase';
 
-import * as firebase from "firebase";
-// import * as firebaseui from 'firebaseui'
-const firebaseui = require('firebaseui');
-import * as auth from "firebase/auth";
+
+const globalAny: any = global;
 
 const config = {
   apiKey: "AIzaSyA1sarBCzD7i_UBEMcE5321POKcAX48YYs",
@@ -21,41 +19,6 @@ const config = {
   storageBucket: "",
   messagingSenderId: "552770278955"
 };
-// var firebase;
-
-// async () => await import('firebase').then((module) => {
-//   var firebase = module.initializeApp(config);
-// })
-
-
-
-
-// FirebaseUI config.
-var uiConfig = {
-  signInSuccessUrl: 'https://localhost:8081',
-  signInOptions: [
-    // Leave the lines as is for the providers you want to offer your users.
-    firebase.auth.GoogleAuthProvider.PROVIDER_ID,
-    firebase.auth.FacebookAuthProvider.PROVIDER_ID,
-    firebase.auth.TwitterAuthProvider.PROVIDER_ID,
-    firebase.auth.GithubAuthProvider.PROVIDER_ID,
-    firebase.auth.EmailAuthProvider.PROVIDER_ID,
-    firebase.auth.PhoneAuthProvider.PROVIDER_ID,
-    firebaseui.auth.AnonymousAuthProvider.PROVIDER_ID
-  ],
-  // tosUrl and privacyPolicyUrl accept either url string or a callback
-  // function.
-  // Terms of service url/callback.
-  tosUrl: '<your-tos-url>',
-  // Privacy policy url/callback.
-  privacyPolicyUrl: function () {
-    window.location.assign('<your-privacy-policy-url>');
-  }
-};
-
-// Initialize the FirebaseUI Widget using Firebase.
-var ui = new firebaseui.auth.AuthUI(firebase.auth());
-// The start method will wait until the DOM is loaded.
 
 /**
  * @todo Extend BaseElement
@@ -67,6 +30,7 @@ var ui = new firebaseui.auth.AuthUI(firebase.auth());
  */
 export class MyApp extends connect(store)(Mixin(LitElement, [BaseMixin])) {
   @property({ type: String }) title = 'Andrew Noblet'
+  firebase = {};
   firebaseConfig = {
     apiKey: "AIzaSyA1sarBCzD7i_UBEMcE5321POKcAX48YYs",
     authDomain: "my-project-75792.firebaseapp.com",
@@ -88,10 +52,57 @@ export class MyApp extends connect(store)(Mixin(LitElement, [BaseMixin])) {
     state.settings.theme == 'light' ? this.getAttribute('dark') == '' ? this.removeAttribute('dark') : false : this.setAttribute('dark', '');
   }
 
+  async _loadFirebase() {
+     await Promise.all([
+      import(/* webpackChunkName: "firebaseApp" */ 'firebase/app'),
+      import(/* webpackChunkName: "firebaseAuth" */ 'firebase/auth'),
+      import(/* webpackChunkName: "firebaseui" */ 'firebaseui'),
+    ]).then(([firebase, auth, firebaseui]) => {
+      firebase.initializeApp(config)
+
+      if (globalAny.firebase) {
+        return globalAny.firebase
+      } else if (!firebase) {
+        return Promise.reject(new Error('loading error'))
+      } else {
+        globalAny.firebase = firebase
+
+        const googleAuthProvider = new firebase.auth.GoogleAuthProvider()
+        googleAuthProvider.addScope('https://www.googleapis.com/auth/userinfo.email')
+
+        globalAny.firebase.googleAuthProvider = googleAuthProvider
+
+        return [globalAny.firebase ? globalAny.firebase : firebase, firebaseui]
+      }
+    }).then(([firebase, firebaseui]) => {
+      const uiConfig = {
+        signInSuccessUrl: 'https://localhost:8081',
+        signInOptions: [
+          firebase.auth.GoogleAuthProvider.PROVIDER_ID,
+          firebase.auth.FacebookAuthProvider.PROVIDER_ID,
+          firebase.auth.TwitterAuthProvider.PROVIDER_ID,
+          firebase.auth.GithubAuthProvider.PROVIDER_ID,
+          firebase.auth.EmailAuthProvider.PROVIDER_ID,
+          firebase.auth.PhoneAuthProvider.PROVIDER_ID,
+          firebaseui.auth.AnonymousAuthProvider.PROVIDER_ID
+        ],
+
+        tosUrl: '<your-tos-url>',
+        privacyPolicyUrl: function () {
+          window.location.assign('<your-privacy-policy-url>');
+        }
+      };
+      const ui = new firebaseui.auth.AuthUI(firebase.auth());
+      ui.start(this.shadowRoot.querySelector('#content'), uiConfig);
+    })
+      .catch(err => {
+        throw new Error(err)
+      })
+  }
+
   firstUpdated() {
     super.firstUpdated();
-    console.log(this.shadowRoot.querySelector('#content'));
-    ui.start(this.shadowRoot.querySelector('#content'), uiConfig);
+    this._loadFirebase();
   }
 
   render() {
