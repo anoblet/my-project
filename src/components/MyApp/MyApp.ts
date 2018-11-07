@@ -6,10 +6,8 @@ import { store } from '../../store.js';
 
 import Template from './MyAppTemplate';
 
-import '@anoblet/my-firebase';
-
-
-const globalAny: any = global;
+import(/* webpackChunkName: "AppLogin" */ '../AppLogin/AppLogin');
+import(/* webpackChunkName: "MyRouter" */ '@anoblet/my-router');
 
 const config = {
   apiKey: "AIzaSyA1sarBCzD7i_UBEMcE5321POKcAX48YYs",
@@ -50,59 +48,6 @@ export class MyApp extends connect(store)(Mixin(LitElement, [BaseMixin])) {
   stateChanged(state: any) {
     state.settings.debug ? this.setAttribute('debug', '') : this.removeAttribute('debug');
     state.settings.theme == 'light' ? this.getAttribute('dark') == '' ? this.removeAttribute('dark') : false : this.setAttribute('dark', '');
-  }
-
-  async _loadFirebase() {
-     await Promise.all([
-      import(/* webpackChunkName: "firebaseApp" */ 'firebase/app'),
-      import(/* webpackChunkName: "firebaseAuth" */ 'firebase/auth'),
-      import(/* webpackChunkName: "firebaseui" */ 'firebaseui'),
-    ]).then(([firebase, auth, firebaseui]) => {
-      firebase.initializeApp(config)
-
-      if (globalAny.firebase) {
-        return globalAny.firebase
-      } else if (!firebase) {
-        return Promise.reject(new Error('loading error'))
-      } else {
-        globalAny.firebase = firebase
-
-        const googleAuthProvider = new firebase.auth.GoogleAuthProvider()
-        googleAuthProvider.addScope('https://www.googleapis.com/auth/userinfo.email')
-
-        globalAny.firebase.googleAuthProvider = googleAuthProvider
-
-        return [globalAny.firebase ? globalAny.firebase : firebase, firebaseui]
-      }
-    }).then(([firebase, firebaseui]) => {
-      const uiConfig = {
-        signInSuccessUrl: 'https://localhost:8081',
-        signInOptions: [
-          firebase.auth.GoogleAuthProvider.PROVIDER_ID,
-          firebase.auth.FacebookAuthProvider.PROVIDER_ID,
-          firebase.auth.TwitterAuthProvider.PROVIDER_ID,
-          firebase.auth.GithubAuthProvider.PROVIDER_ID,
-          firebase.auth.EmailAuthProvider.PROVIDER_ID,
-          firebase.auth.PhoneAuthProvider.PROVIDER_ID,
-          firebaseui.auth.AnonymousAuthProvider.PROVIDER_ID
-        ],
-
-        tosUrl: '<your-tos-url>',
-        privacyPolicyUrl: function () {
-          window.location.assign('<your-privacy-policy-url>');
-        }
-      };
-      const ui = new firebaseui.auth.AuthUI(firebase.auth());
-      ui.start(this.shadowRoot.querySelector('#content'), uiConfig);
-    })
-      .catch(err => {
-        throw new Error(err)
-      })
-  }
-
-  firstUpdated() {
-    super.firstUpdated();
-    this._loadFirebase();
   }
 
   render() {

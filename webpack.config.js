@@ -34,7 +34,10 @@ module.exports = {
   },
   devServer: {
     https: true,
-    compress: true
+    compress: true,
+    contentBase: path.resolve(__dirname, 'dist'),
+    watchContentBase: true,
+    open: true
   },
   optimization: {
     splitChunks: {
@@ -57,6 +60,8 @@ module.exports = {
           reuseExistingChunk: true
         }
       }
-    }
+    },
+    namedModules: true,
+    namedChunks: true
   }
 };

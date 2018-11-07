@@ -1,23 +1,18 @@
 import { html } from '@polymer/lit-element';
-import '../AppSettings/AppSettings';
-import '@anoblet/my-grid'
-import '@anoblet/my-flex'
-// import '@anoblet/my-container'
-import '@material/mwc-icon'
-import '@material/mwc-fab'
+import(/* webpackChunkName: "AppSettings" */ '../AppSettings/AppSettings');
+import(/* webpackChunkName: "MyGrid" */ '@anoblet/my-grid')
+import(/* webpackChunkName: "MyFlex" */'@anoblet/my-flex')
+import(/* webpackChunkName: "MWC-Icon" */'@material/mwc-icon')
+import(/* webpackChunkName: "MWC-Fab" */'@material/mwc-fab')
 
 const loremIpsum = require('lorem-ipsum');
 
 import * as style from './MyApp.scss'
-import * as firebaseStyle from './FirebaseStyle.scss';
 
 export default function (props: any) {
   return html`
     <style>
       ${style}
-    </style>
-    <style>
-      ${firebaseStyle}
     </style>
     <my-grid id="container">
       <my-flex id="top">
@@ -30,6 +25,7 @@ export default function (props: any) {
           <my-flex id="drawer" class="scroll" hidden>${loremIpsum({count: 10})}</my-flex>
           <my-flex id="content" grow>
             <app-settings class="scroll"></app-settings>
+            <app-login></app-login>
           </my-flex>
         </my-grid>
       </my-flex>
