@@ -1,7 +1,8 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-var WebpackPwaManifest = require('webpack-pwa-manifest');
 const WorkboxPlugin = require('workbox-webpack-plugin');
+const WebpackPwaManifest = require('webpack-pwa-manifest');
+const CopyWebpackPlugin = require('copy-webpack-plugin')
 
 module.exports = {
   entry: './src/components/MyApp/MyApp.ts',
@@ -96,6 +97,9 @@ module.exports = {
     new WorkboxPlugin.GenerateSW({
       clientsClaim: true,
       skipWaiting: true
-    })
+    }),
+    new CopyWebpackPlugin([
+      { from: 'node_modules/@webcomponents/webcomponentsjs/*.js', to: 'webcomponentsjs', context: './', flatten: true },
+    ])
   ]
 };
