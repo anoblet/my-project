@@ -1,11 +1,13 @@
 const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+var WebpackPwaManifest = require('webpack-pwa-manifest');
 
 module.exports = {
   entry: './src/components/MyApp/MyApp.ts',
   output: {
+    path: path.resolve(__dirname, 'dist/js'),
     filename: '[name].bundle.js',
-    chunkFilename: '[name].bundle.js',
-    path: path.resolve(__dirname, 'dist')
+    chunkFilename: '[name].bundle.js'
   },
   module: {
     rules: [
@@ -63,5 +65,28 @@ module.exports = {
     },
     namedModules: true,
     namedChunks: true
-  }
+  },
+  plugins: [
+    new HtmlWebpackPlugin({
+      template: './index.html',
+      filename: '../index.html'
+    }),
+    new WebpackPwaManifest({
+      name: 'My Progressive Web App',
+      short_name: 'MyPWA',
+      description: 'My awesome Progressive Web App!',
+      background_color: '#ffffff',
+      crossorigin: 'use-credentials', //can be null, use-credentials or anonymous
+      icons: [
+        {
+          src: path.resolve('src/assets/icon.png'),
+          sizes: [96, 128, 192, 256, 384, 512] // multiple sizes
+        },
+        {
+          src: path.resolve('src/assets/large-icon.png'),
+          size: '1024x1024' // you can also use the specifications pattern
+        }
+      ]
+    })
+  ]
 };
