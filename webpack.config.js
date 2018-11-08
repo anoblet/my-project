@@ -1,6 +1,7 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-var WebpackPwaManifest = require('webpack-pwa-manifest');
+const WebpackPwaManifest = require('webpack-pwa-manifest');
+const CopyWebpackPlugin = require('copy-webpack-plugin')
 
 module.exports = {
   entry: './src/components/MyApp/MyApp.ts',
@@ -91,6 +92,9 @@ module.exports = {
         }
       ],
       theme_color: '#fff'
-    })
+    }),
+    new CopyWebpackPlugin([
+      { from: 'node_modules/@webcomponents/webcomponentsjs/*.js', to: 'webcomponentsjs', context: './', flatten: true },
+    ])
   ]
 };
