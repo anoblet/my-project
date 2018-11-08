@@ -27,7 +27,7 @@ const config = {
  * class BaseElement2 extends Mixin(LitElement, [DebugMixin]) {}
  */
 export class MyApp extends connect(store)(Mixin(LitElement, [BaseMixin])) {
-  @property({ type: String }) title = 'Andrew Noblet'
+  @property({ type: String }) title = 'Andrew Noblet2'
   firebase = {};
   firebaseConfig = {
     apiKey: "AIzaSyA1sarBCzD7i_UBEMcE5321POKcAX48YYs",
