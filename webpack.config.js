@@ -101,7 +101,7 @@ module.exports = {
       skipWaiting: true
     }),
     new CopyWebpackPlugin([
-      { from: 'node_modules/@webcomponents/webcomponentsjs/*.js', to: 'webcomponentsjs', context: './', flatten: true },
+      { from: 'node_modules/@webcomponents/webcomponentsjs/*.js', to: 'js/webcomponentsjs', flatten: true },
     ]),
     new RobotstxtPlugin(),
     new CleanWebpackPlugin(['dist']),
