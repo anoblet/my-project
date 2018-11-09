@@ -3,6 +3,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const WorkboxPlugin = require('workbox-webpack-plugin');
 const WebpackPwaManifest = require('webpack-pwa-manifest');
 const CopyWebpackPlugin = require('copy-webpack-plugin')
+const RobotstxtPlugin = require("robotstxt-webpack-plugin").default;
 
 module.exports = {
   entry: './src/components/MyApp/MyApp.ts',
@@ -100,6 +101,7 @@ module.exports = {
     }),
     new CopyWebpackPlugin([
       { from: 'node_modules/@webcomponents/webcomponentsjs/*.js', to: 'webcomponentsjs', context: './', flatten: true },
-    ])
+    ]),
+    new RobotstxtPlugin()
   ]
 };
