@@ -12,7 +12,7 @@ import {
   CHANGE_THEME, TOGGLE_DEBUG
 } from '../actions/Settings.js';
 
-const settings = (state = { theme: 'light', debug: true }, action) => {
+const settings = (state = { theme: 'light', debug: false }, action) => {
   switch (action.type) {
     case CHANGE_THEME:
       return {

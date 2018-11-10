@@ -1,9 +1,4 @@
 import { html } from '@polymer/lit-element';
-import(/* webpackChunkName: "AppSettings" */ '../AppSettings/AppSettings');
-import(/* webpackChunkName: "MyGrid" */ '@anoblet/my-grid')
-import(/* webpackChunkName: "MyFlex" */'@anoblet/my-flex')
-import(/* webpackChunkName: "MWC-Icon" */'@material/mwc-icon')
-import(/* webpackChunkName: "MWC-Fab" */'@material/mwc-fab')
 
 const loremIpsum = require('lorem-ipsum');
 

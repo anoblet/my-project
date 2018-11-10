@@ -45,6 +45,21 @@ export class MyApp extends connect(store)(Mixin(LitElement, [BaseMixin])) {
     drawerContainer._toggleAttribute('opened');
   }
 
+  firstUpdated() {
+    super.firstUpdated();
+    Promise.all([
+      import('firebase/app'),
+    ]).then(([firebase, auth, firestore]) => {
+      if (firebase.apps.length === 0) firebase.initializeApp(config);
+    });
+
+    import(/* webpackChunkName: "AppSettings" */ '../AppSettings/AppSettings');
+    import(/* webpackChunkName: "MyGrid" */ '@anoblet/my-grid')
+    import(/* webpackChunkName: "MyFlex" */'@anoblet/my-flex')
+    import(/* webpackChunkName: "MWC-Icon" */'@material/mwc-icon')
+    import(/* webpackChunkName: "MWC-Fab" */'@material/mwc-fab')
+  }
+
   stateChanged(state: any) {
     state.settings.debug ? this.setAttribute('debug', '') : this.removeAttribute('debug');
     state.settings.theme == 'light' ? this.getAttribute('dark') == '' ? this.removeAttribute('dark') : false : this.setAttribute('dark', '');
