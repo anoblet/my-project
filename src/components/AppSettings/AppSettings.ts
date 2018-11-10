@@ -23,6 +23,7 @@ export class AppSettings extends connect(store)(Mixin(LitElement, [BaseMixin])) 
   @property({type: Boolean}) debug = false;
   @property({type: String}) theme = 'light';
   @property({type: String}) finished = false;
+  template = './AppSettingsTemplate';
 
   async _firebaseDown() {
     return await Promise.all([
@@ -37,6 +38,7 @@ export class AppSettings extends connect(store)(Mixin(LitElement, [BaseMixin])) 
         const settings = firestore.collection("users").doc(user.uid).collection('settings');
         await settings.get().then(async (querySnapshot: any) => {
           await querySnapshot.forEach(async (doc: any) => {
+            console.log('Here');
             const data = doc.data();
             await store.dispatch(setDebug(data.debug));
             await store.dispatch(setTheme(data.theme));
@@ -86,23 +88,18 @@ export class AppSettings extends connect(store)(Mixin(LitElement, [BaseMixin])) 
     });
   }
 
-  async _getTemplate() {
-    return await import('./AppSettingsTemplate');
-  }
-
   render() {
-    return html`
-    ${until(
-      this._firebaseDown().then(() => this._getTemplate().then((template) => {
-        return template.default.bind(this)();
-        })
+    return html`${until(
+      this._firebaseDown().then(
+        async () => await import(`${this.template}`).then(
+          async (template) =>await template.default.bind(this)())
       ), html`Loading`
     )}`;
   }
 
   stateChanged(state: any) {
-    this.debug = state.settings.debug;
-    this.theme = state.settings.theme;
+    // this.debug = state.settings.debug;
+    // this.theme = state.settings.theme;
   }
 }
 
