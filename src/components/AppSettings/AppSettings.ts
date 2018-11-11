@@ -8,7 +8,7 @@ import { connect } from 'pwa-helpers/connect-mixin.js';
 import { store } from '../../store.js';
 import { setDebug, setTheme } from '../../actions/Settings.js';
 
-// import Template from './AppSettingsTemplate';
+import Template from './AppSettingsTemplate'
 
 const config = {
   apiKey: "AIzaSyA1sarBCzD7i_UBEMcE5321POKcAX48YYs",
@@ -22,8 +22,13 @@ const config = {
 export class AppSettings extends connect(store)(Mixin(LitElement, [BaseMixin])) {
   @property({type: Boolean}) debug = false;
   @property({type: String}) theme = 'light';
-  @property({type: String}) finished = false;
+  // @property({type: String}) finished = false;
   template = './AppSettingsTemplate';
+
+  connectedCallback() {
+    super.connectedCallback();
+    this._firebaseDown();
+  }
 
   async _firebaseDown() {
     return await Promise.all([
@@ -38,10 +43,10 @@ export class AppSettings extends connect(store)(Mixin(LitElement, [BaseMixin])) 
         const settings = firestore.collection("users").doc(user.uid).collection('settings');
         await settings.get().then(async (querySnapshot: any) => {
           await querySnapshot.forEach(async (doc: any) => {
-            console.log('Here');
             const data = doc.data();
             await store.dispatch(setDebug(data.debug));
             await store.dispatch(setTheme(data.theme));
+            // this.finished = true;
           });
           return;
         });
@@ -51,6 +56,8 @@ export class AppSettings extends connect(store)(Mixin(LitElement, [BaseMixin])) 
     });
   }
 
+
+
   _firebaseUp(data: any) {
     Promise.all([
       import('firebase/app'),
@@ -59,12 +66,11 @@ export class AppSettings extends connect(store)(Mixin(LitElement, [BaseMixin])) 
     ]).then(([firebase, auth, firestore]) => {
       firebase.auth().onAuthStateChanged((user: any) => {
         const firestore = firebase.firestore();
-        const firebaseSettings = { timestampsInSnapshots: true };
-        firestore.settings(firebaseSettings);
-        const settings = firestore.collection("users").doc(user.uid).collection('settings');
-        settings.get().then((querySnapshot: any) => {
-          querySnapshot.forEach((doc: any) => {
-            doc.ref.set(data, { merge: true })
+        firestore.settings({ timestampsInSnapshots: true });
+        const settingsCollection = firestore.collection("users").doc(user.uid).collection('settings');
+        settingsCollection.get().then((querySnapshot: any) => {
+          querySnapshot.forEach((document: any) => {
+            document.ref.set(data, { merge: true })
           });
         });
       });
@@ -98,8 +104,8 @@ export class AppSettings extends connect(store)(Mixin(LitElement, [BaseMixin])) 
   }
 
   stateChanged(state: any) {
-    // this.debug = state.settings.debug;
-    // this.theme = state.settings.theme;
+    this.debug = state.settings.debug;
+    this.theme = state.settings.theme;
   }
 }
 
