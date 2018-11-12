@@ -1,5 +1,5 @@
 import { html, LitElement, property } from '@polymer/lit-element';
-import {until} from 'lit-html/directives/until';
+import { until } from 'lit-html/directives/until';
 
 import { Mixin } from '@anoblet/mixin';
 import { BaseMixin } from '@anoblet/base-mixin'
@@ -20,14 +20,14 @@ const config = {
 };
 
 export class AppSettings extends connect(store)(Mixin(LitElement, [BaseMixin])) {
-  @property({type: Boolean}) debug = false;
-  @property({type: String}) theme = 'light';
-  // @property({type: String}) finished = false;
+  // @property({type: Boolean}) debug = false;
+  // @property({type: String}) theme = 'light';
+  @property({type: Boolean}) finished = false;
   template = './AppSettingsTemplate';
 
   connectedCallback() {
     super.connectedCallback();
-    this._firebaseDown();
+    // this._firebaseDown();
   }
 
   async _firebaseDown() {
@@ -36,23 +36,21 @@ export class AppSettings extends connect(store)(Mixin(LitElement, [BaseMixin])) 
       import('firebase/auth'),
       import('firebase/firestore'),
     ]).then(async ([firebase, auth, firestore]) => {
-      await firebase.auth().onAuthStateChanged(async (user: any) => {
+      return await firebase.auth().onAuthStateChanged(async (user: any) => {
         const firestore = firebase.firestore();
         const firebaseSettings = { timestampsInSnapshots: true };
         firestore.settings(firebaseSettings);
         const settings = firestore.collection("users").doc(user.uid).collection('settings');
-        await settings.get().then(async (querySnapshot: any) => {
-          await querySnapshot.forEach(async (doc: any) => {
+        return await settings.get().then(async (querySnapshot: any) => {
+          return await querySnapshot.forEach(async (doc: any) => {
             const data = doc.data();
             await store.dispatch(setDebug(data.debug));
             await store.dispatch(setTheme(data.theme));
-            // this.finished = true;
+            this.finished = true;
+            return Promise.resolve('Finished');
           });
-          return;
         });
-        return;
       });
-      return;
     });
   }
 
@@ -94,12 +92,57 @@ export class AppSettings extends connect(store)(Mixin(LitElement, [BaseMixin])) 
     });
   }
 
+   _asyncAction() {
+    return new Promise(async (resolve, reject) => {
+      await Promise.all([
+        import('firebase/app'),
+        import('firebase/auth'),
+        import('firebase/firestore'),
+      ]).then(async ([firebase, auth, firestore]) => {
+        return new Promise(async (resolve, reject) => {
+          return await firebase.auth().onAuthStateChanged(async (user: any) => {
+            if(user) {
+              resolve(new Promise(async (resolve, reject) => {
+                const firestore = firebase.firestore();
+                firestore.settings({ timestampsInSnapshots: true });
+                const settings = firestore.collection("users").doc(user.uid).collection('settings');
+                resolve(settings.get().then( (querySnapshot: any) => {
+                  return new Promise( (resolve, reject) => {
+                    querySnapshot.forEach( (doc: any) => {
+                      resolve(this._updateStore(doc.data()));
+                    });
+                  });
+                }));
+              }));
+            } else {
+              resolve();
+            }
+          });
+        });
+      });
+      resolve();
+    });
+  }
+
+  _updateStore(data: any) {
+    return new Promise(async (resolve, reject) => {
+      await store.dispatch(setDebug(data.debug));
+      await store.dispatch(setTheme(data.theme));
+      resolve();
+    });
+  }
+
+  importTemplate() {
+    return import(`${this.template}`).then(async (template) => {
+      return await template.default.bind(this)()
+    });
+  }
+
   render() {
     return html`${until(
-      this._firebaseDown().then(
-        async () => await import(`${this.template}`).then(
-          async (template) =>await template.default.bind(this)())
-      ), html`Loading`
+      this.finished ? new Promise((resolve,reject) => resolve(this.importTemplate())) : this._asyncAction().then(() => {
+        return this.importTemplate();
+      }), html`<div class="loader">Loading</div>`
     )}`;
   }
 

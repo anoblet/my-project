@@ -10,16 +10,30 @@ export const TOGGLE_DEBUG = 'TOGGLE_DEBUG';
 //   });
 // };
 
-export const setDebug = (status) => {
-  return {
+export const setDebug = (status) => (dispatch) => {
+  dispatch({
     type: TOGGLE_DEBUG,
     status
-  };
-};
+  });
+}
 
-export const setTheme = (theme) => {
-  return {
+// export const setDebug = (status) => {
+//   return {
+//     type: TOGGLE_DEBUG,
+//     status
+//   };
+// };
+
+export const setTheme = (theme) => (dispatch) => {
+  dispatch({
     type: CHANGE_THEME,
     theme
-  };
-};
+  });
+}
+
+// export const setTheme = (theme) => {
+//   return {
+//     type: CHANGE_THEME,
+//     theme
+//   };
+// };

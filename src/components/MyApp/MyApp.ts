@@ -1,10 +1,14 @@
-import { LitElement, property } from '@polymer/lit-element';
+import { html, LitElement, property } from '@polymer/lit-element';
+import { until } from 'lit-html/directives/until';
+
 import { Mixin } from '@anoblet/mixin';
 import { BaseMixin } from '@anoblet/base-mixin'
 import { connect } from 'pwa-helpers/connect-mixin.js';
 import { store } from '../../store.js';
 
-import Template from './MyAppTemplate';
+import * as style from './MyApp.scss';
+import { AppSettings } from '../AppSettings/AppSettings';
+const AppSettingsI = new AppSettings;
 
 import(/* webpackChunkName: "AppLogin" */ '../AppLogin/AppLogin');
 import(/* webpackChunkName: "MyRouter" */ '@anoblet/my-router');
@@ -28,7 +32,11 @@ const config = {
  */
 export class MyApp extends connect(store)(Mixin(LitElement, [BaseMixin])) {
   @property({ type: String }) title = 'Andrew Noblet'
-  firebase = {};
+  // @property({ type: String, reflect: true }) debug = false;
+  // @property({ type: String }) theme  = 'light';
+  @property({ type: Boolean }) synced  = false;
+
+  // firebase = {};
   firebaseConfig = {
     apiKey: "AIzaSyA1sarBCzD7i_UBEMcE5321POKcAX48YYs",
     authDomain: "my-project-75792.firebaseapp.com",
@@ -36,6 +44,17 @@ export class MyApp extends connect(store)(Mixin(LitElement, [BaseMixin])) {
     projectId: "my-project-75792",
     storageBucket: "",
     messagingSenderId: "552770278955"
+  }
+  template = './MyAppTemplate'
+
+  constructor() {
+    super();
+    import(/* webpackChunkName: "AppSettings" */ '../AppSettings/AppSettings');
+    import(/* webpackChunkName: "MyGrid" */ '@anoblet/my-grid')
+    import(/* webpackChunkName: "MyFlex" */'@anoblet/my-flex')
+    import(/* webpackChunkName: "MyLoader" */'@anoblet/my-loader')
+    import(/* webpackChunkName: "MWC-Icon" */'@material/mwc-icon')
+    import(/* webpackChunkName: "MWC-Fab" */'@material/mwc-fab')
   }
 
   _toggleDrawer() {
@@ -45,28 +64,37 @@ export class MyApp extends connect(store)(Mixin(LitElement, [BaseMixin])) {
     drawerContainer._toggleAttribute('opened');
   }
 
-  firstUpdated() {
-    super.firstUpdated();
+  connectedCallback() {
+    super.connectedCallback();
     Promise.all([
       import('firebase/app'),
     ]).then(([firebase, auth, firestore]) => {
       if (firebase.apps.length === 0) firebase.initializeApp(config);
     });
-
-    import(/* webpackChunkName: "AppSettings" */ '../AppSettings/AppSettings');
-    import(/* webpackChunkName: "MyGrid" */ '@anoblet/my-grid')
-    import(/* webpackChunkName: "MyFlex" */'@anoblet/my-flex')
-    import(/* webpackChunkName: "MWC-Icon" */'@material/mwc-icon')
-    import(/* webpackChunkName: "MWC-Fab" */'@material/mwc-fab')
   }
 
   stateChanged(state: any) {
-    state.settings.debug ? this.setAttribute('debug', '') : this.removeAttribute('debug');
-    state.settings.theme == 'light' ? this.getAttribute('dark') == '' ? this.removeAttribute('dark') : false : this.setAttribute('dark', '');
+    if(state.settings.debug != null) {
+      // this.debug = state.settings.debug;
+      state.settings.debug ? this.setAttribute('debug', '') : this.removeAttribute('debug');
+    }
+    if(state.settings.theme != null) {
+      state.settings.theme == 'light' ? this.getAttribute('dark') == '' ? this.removeAttribute('dark') : false : this.setAttribute('dark', '');
+    }
+  }
+
+  importTemplate() {
+    return import(`${this.template}`).then(async (template) => {
+      return await template.default.bind(this)()
+    });
   }
 
   render() {
-    return Template.bind(this)();
+    return html`${until(AppSettingsI._asyncAction().then(() => {
+      return this.importTemplate()
+    })
+    , html`<style>${style}</style><my-loader>Loading</my-loader>`
+    )}`;
   }
 }
 
