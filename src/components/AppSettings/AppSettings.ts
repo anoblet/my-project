@@ -93,34 +93,36 @@ export class AppSettings extends connect(store)(Mixin(LitElement, [BaseMixin])) 
   }
 
    _asyncAction() {
-    return new Promise(async (resolve, reject) => {
-      await Promise.all([
-        import('firebase/app'),
-        import('firebase/auth'),
-        import('firebase/firestore'),
-      ]).then(async ([firebase, auth, firestore]) => {
-        return new Promise(async (resolve, reject) => {
-          return await firebase.auth().onAuthStateChanged(async (user: any) => {
-            if(user) {
-              resolve(new Promise(async (resolve, reject) => {
-                const firestore = firebase.firestore();
-                firestore.settings({ timestampsInSnapshots: true });
-                const settings = firestore.collection("users").doc(user.uid).collection('settings');
-                resolve(settings.get().then( (querySnapshot: any) => {
-                  return new Promise( (resolve, reject) => {
-                    querySnapshot.forEach( (doc: any) => {
-                      resolve(this._updateStore(doc.data()));
-                    });
-                  });
-                }));
-              }));
-            } else {
+    return Promise.all([
+      import('firebase/app'),
+      import('firebase/auth'),
+      import('firebase/firestore'),
+    ]).then(async ([firebase]) => {
+      return new Promise(async (resolve, reject) => {
+        return await firebase.auth().onAuthStateChanged(async (user: any) => {
+          if(user) {
+            resolve(new Promise(async (resolve, reject) => {
+              const firestore = firebase.firestore();
+              firestore.settings({ timestampsInSnapshots: true });
+              const userSettings = firestore.collection("users").doc(user.uid).collection('settings').doc('default');
+              await userSettings.get().then((doc: any) => {
+                if(!doc.exists) {
+                  userSettings.set({
+                    debug: false,
+                    theme: 'light'
+                  })
+                }
+              });
+              await userSettings.get().then((doc: any) => {
+                this._updateStore(doc.data());
+              });
               resolve();
-            }
-          });
+            }));
+          } else {
+            resolve();
+          }
         });
       });
-      resolve();
     });
   }
 
