@@ -90,7 +90,7 @@ export class MyApp extends connect(store)(Mixin(LitElement, [BaseMixin])) {
   }
 
   render() {
-    return html`${until(AppSettingsI._asyncAction().then(() => {
+    return html`${until(AppSettingsI._firebaseDown().then(() => {
       return this.importTemplate()
     })
     , html`<style>${style}</style><my-loader>Loading</my-loader>`

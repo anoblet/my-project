@@ -25,37 +25,6 @@ export class AppSettings extends connect(store)(Mixin(LitElement, [BaseMixin])) 
   @property({type: Boolean}) finished = false;
   template = './AppSettingsTemplate';
 
-  connectedCallback() {
-    super.connectedCallback();
-    // this._firebaseDown();
-  }
-
-  async _firebaseDown() {
-    return await Promise.all([
-      import('firebase/app'),
-      import('firebase/auth'),
-      import('firebase/firestore'),
-    ]).then(async ([firebase, auth, firestore]) => {
-      return await firebase.auth().onAuthStateChanged(async (user: any) => {
-        const firestore = firebase.firestore();
-        const firebaseSettings = { timestampsInSnapshots: true };
-        firestore.settings(firebaseSettings);
-        const settings = firestore.collection("users").doc(user.uid).collection('settings');
-        return await settings.get().then(async (querySnapshot: any) => {
-          return await querySnapshot.forEach(async (doc: any) => {
-            const data = doc.data();
-            await store.dispatch(setDebug(data.debug));
-            await store.dispatch(setTheme(data.theme));
-            this.finished = true;
-            return Promise.resolve('Finished');
-          });
-        });
-      });
-    });
-  }
-
-
-
   _firebaseUp(data: any) {
     Promise.all([
       import('firebase/app'),
@@ -94,7 +63,7 @@ export class AppSettings extends connect(store)(Mixin(LitElement, [BaseMixin])) 
     });
   }
 
-   _asyncAction() {
+   _firebaseDown() {
     return Promise.all([
       import('firebase/app'),
       import('firebase/auth'),
@@ -144,7 +113,7 @@ export class AppSettings extends connect(store)(Mixin(LitElement, [BaseMixin])) 
 
   render() {
     return html`${until(
-      this.finished ? new Promise((resolve,reject) => resolve(this.importTemplate())) : this._asyncAction().then(() => {
+      this.finished ? new Promise((resolve,reject) => resolve(this.importTemplate())) : this._firebaseDown().then(() => {
         return this.importTemplate();
       }), html`<div class="loader">Loading</div>`
     )}`;
