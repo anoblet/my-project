@@ -63,14 +63,16 @@ export class AppSettings extends connect(store)(Mixin(LitElement, [BaseMixin])) 
       import('firebase/firestore'),
     ]).then(([firebase, auth, firestore]) => {
       firebase.auth().onAuthStateChanged((user: any) => {
-        const firestore = firebase.firestore();
-        firestore.settings({ timestampsInSnapshots: true });
-        const settingsCollection = firestore.collection("users").doc(user.uid).collection('settings');
-        settingsCollection.get().then((querySnapshot: any) => {
-          querySnapshot.forEach((document: any) => {
-            document.ref.set(data, { merge: true })
+        if(user) {
+          const firestore = firebase.firestore();
+          firestore.settings({ timestampsInSnapshots: true });
+          const settingsCollection = firestore.collection("users").doc(user.uid).collection('settings');
+          settingsCollection.get().then((querySnapshot: any) => {
+            querySnapshot.forEach((document: any) => {
+              document.ref.set(data, { merge: true })
+            });
           });
-        });
+        }
       });
     });
   }
