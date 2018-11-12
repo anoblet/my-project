@@ -99,7 +99,7 @@ export class AppSettings extends connect(store)(Mixin(LitElement, [BaseMixin])) 
       import('firebase/firestore'),
     ]).then(async ([firebase]) => {
       return new Promise(async (resolve, reject) => {
-        return await firebase.auth().onAuthStateChanged(async (user: any) => {
+        return await firebase.auth().onAuthStateChanged((user: any) => {
           if(user) {
             resolve(new Promise(async (resolve, reject) => {
               const firestore = firebase.firestore();

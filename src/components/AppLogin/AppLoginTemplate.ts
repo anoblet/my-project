@@ -13,7 +13,7 @@ const config = {
 };
 
 const uiConfig = {
-  signInSuccessUrl: 'https://localhost:8081',
+  signInSuccessUrl: '/',
   tosUrl: '<your-tos-url>',
   privacyPolicyUrl: function () {
     window.location.assign('<your-privacy-policy-url>');
