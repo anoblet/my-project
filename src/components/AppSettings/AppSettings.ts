@@ -20,8 +20,6 @@ const config = {
 };
 
 export class AppSettings extends connect(store)(Mixin(LitElement, [BaseMixin])) {
-  // @property({type: Boolean}) debug = false;
-  // @property({type: String}) theme = 'light';
   @property({type: Boolean}) finished = false;
   template = './AppSettingsTemplate';
 
@@ -56,10 +54,11 @@ export class AppSettings extends connect(store)(Mixin(LitElement, [BaseMixin])) 
 
   _toggleThemeHandler() {
     const state = store.getState();
-    const theme = state.settings.theme == 'light' ? 'dark' : 'light';
-    store.dispatch(setTheme(theme));
+    const theme = state.settings.theme || 'light';
+    const newTheme = theme == 'light' ? 'dark' : 'light';
+    store.dispatch(setTheme(newTheme));
     this._firebaseUp({
-      theme: theme
+      theme: newTheme
     });
   }
 
@@ -112,11 +111,13 @@ export class AppSettings extends connect(store)(Mixin(LitElement, [BaseMixin])) 
   }
 
   render() {
-    return html`${until(
-      this.finished ? new Promise((resolve,reject) => resolve(this.importTemplate())) : this._firebaseDown().then(() => {
-        return this.importTemplate();
-      }), html`<div class="loader">Loading</div>`
-    )}`;
+    return html`
+      ${until(
+        this.importTemplate().then(
+          (template) => template
+        ), html`Loading`
+      )}
+    `
   }
 
   stateChanged(state: any) {

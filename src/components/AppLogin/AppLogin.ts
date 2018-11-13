@@ -3,10 +3,14 @@ import { until } from 'lit-html/directives/until';
 import { Mixin } from '@anoblet/mixin';
 import { BaseMixin } from '@anoblet/base-mixin'
 
+import { connect } from 'pwa-helpers/connect-mixin.js';
+import { store } from '../../store.js';
+import { setDebug, setTheme } from '../../actions/Settings.js';
+
 import Template from './AppLoginTemplate';
 
 import(/* webpackChunkName: "MyFirebaseLogin" */ '@anoblet/my-firebase/MyFirebaseLogin')
-export class AppLogin extends Mixin(LitElement, [BaseMixin]) {
+export class AppLogin extends connect(store)(Mixin(LitElement, [BaseMixin])) {
   @property({type: Boolean}) isSignedIn = false;
 
   _isSignedIn() {
@@ -19,6 +23,23 @@ export class AppLogin extends Mixin(LitElement, [BaseMixin]) {
         if(user) this.isSignedIn = true;
       });
     })
+  }
+
+  _resetSettings() {
+    this._updateStore({
+      debug: false,
+      theme: 'light'
+    })
+  }
+
+  _updateStore(data: any) {
+    const state = store.getState();
+    const mergedState = Object.assign(state, data)
+    return new Promise(async (resolve, reject) => {
+      await store.dispatch(setDebug(mergedState.debug));
+      await store.dispatch(setTheme(mergedState.theme));
+      resolve();
+    });
   }
 
   _loadUi() {
@@ -50,13 +71,14 @@ export class AppLogin extends Mixin(LitElement, [BaseMixin]) {
   }
 
   _logoutHandler() {
+    this.isSignedIn = false;
     Promise.all([
       import(/* webpackChunkName: "firebaseApp" */ 'firebase/app'),
       import(/* webpackChunkName: "firebaseAuth" */ 'firebase/auth')
     ]).then(([firebase]) => {
       firebase.auth().signOut();
     });
-    this.isSignedIn = false;
+    this._resetSettings();
   }
 
   _preRender(dependencies: any) {
