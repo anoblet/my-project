@@ -2,6 +2,7 @@ import { html } from '@polymer/lit-element';
 import(/* webpackChunkName: "MyFlex" */ '@anoblet/my-flex');
 
 import * as style from './AppLogin.scss'
+import * as firebaseStyle from './FirebaseUI.scss'
 
 const config = {
   apiKey: "AIzaSyA1sarBCzD7i_UBEMcE5321POKcAX48YYs",
@@ -24,9 +25,14 @@ export default function (props: any) {
   return html`
     <style>
       ${style}
+      ${firebaseStyle}
     </style>
     <my-flex direction="column">
-      <my-firebase-login .config=${config} .uiConfig=${uiConfig}></my-firebase-login>
+      ${this.isSignedIn ? 
+        html`<button @click="${() => this._logoutHandler()}">Sign out</button>`
+        :
+        html`<div id="firebaseui-auth-container"></div>`
+      }
     </my-flex>
   `
 }
