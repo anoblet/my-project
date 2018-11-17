@@ -1,5 +1,4 @@
 import { html, LitElement, property } from '@polymer/lit-element';
-import { until } from 'lit-html/directives/until';
 import { Mixin } from '@anoblet/mixin';
 import { BaseMixin } from '@anoblet/base-mixin'
 
@@ -9,20 +8,78 @@ import { setDebug, setTheme } from '../../actions/Settings.js';
 
 import Template from './AppLoginTemplate';
 
-import(/* webpackChunkName: "MyFirebaseLogin" */ '@anoblet/my-firebase/MyFirebaseLogin')
 export class AppLogin extends connect(store)(Mixin(LitElement, [BaseMixin])) {
-  @property({type: Boolean}) isSignedIn = false;
+  @property({ type: Boolean }) isSignedIn = false;
+  constructor() {
+    super();
+    this._isSignedIn();
+  }
 
-  _isSignedIn() {
-    return Promise.all([
-      import('firebase/app'),
-      import('firebase/auth'),
-      import('firebase/firestore'),
-    ]).then(([firebase]) => {
-      firebase.auth().onAuthStateChanged((user: any) => {
-        if(user) this.isSignedIn = true;
+  connectedCallback() {
+    super.connectedCallback();
+    this._upgrade();
+  }
+
+  // _isSignedIn() {
+  //   // return await new Promise((resolve, reject) => {
+  //     return Promise.all([
+  //       import('firebase/app'),
+  //       import('firebase/auth'),
+  //     ]).then(([firebase]) => {
+  //       return firebase.auth().onAuthStateChanged((user: any) => {
+  //         if(user) this.isSignedIn = true;
+  //         return user ? true : false;
+  //       });
+  //     });
+  //   // });
+
+  // }
+
+  async _isSignedIn() {
+    return await new Promise((resolve, reject) => {
+      Promise.all([
+        import('firebase/app'),
+        import('firebase/auth'),
+      ]).then(([firebase]) => {
+        firebase.auth().onAuthStateChanged((user: any) => {
+          if(user) this.isSignedIn = true;
+          // user ? resolve(true) : resolve(false);
+        });
       });
-    })
+    });
+
+  }
+
+  _getConfig(firebase: any, firebaseui: any ) {
+    return {
+      signInSuccessUrl: '/',
+      signInOptions: [
+        firebase.auth.GoogleAuthProvider.PROVIDER_ID,
+        firebase.auth.FacebookAuthProvider.PROVIDER_ID,
+        firebase.auth.TwitterAuthProvider.PROVIDER_ID,
+        firebase.auth.GithubAuthProvider.PROVIDER_ID,
+        firebase.auth.EmailAuthProvider.PROVIDER_ID,
+        firebase.auth.PhoneAuthProvider.PROVIDER_ID,
+        firebaseui.auth.AnonymousAuthProvider.PROVIDER_ID
+      ],
+      tosUrl: '<your-tos-url>',
+      privacyPolicyUrl: function() {
+        window.location.assign('<your-privacy-policy-url>');
+      }
+    };
+  }
+
+  _upgrade() {
+    return new Promise(async (resolve, reject) => {
+      await Promise.all([
+        import('firebase/app'),
+        import('firebaseui')
+      ]).then(([firebase, firebaseui]) => {
+        let instance = firebaseui.auth.AuthUI.getInstance();
+        instance = firebaseui.auth.AuthUI.getInstance() || new firebaseui.auth.AuthUI(firebase.auth());
+        if(!this.isSignedIn) instance.start(this.shadowRoot.querySelector('#firebaseui-auth-container'), this._getConfig(firebase, firebaseui));
+      })
+    });
   }
 
   _resetSettings() {
@@ -42,64 +99,19 @@ export class AppLogin extends connect(store)(Mixin(LitElement, [BaseMixin])) {
     });
   }
 
-  _loadUi() {
-    Promise.all([
-      import(/* webpackChunkName: "firebaseApp" */ 'firebase/app'),
-      import(/* webpackChunkName: "FirebaseAuth" */ 'firebase/auth'),
-      import(/* webpackChunkName: "firebaseui" */ 'firebaseui'),
-    ]).then(([firebase, auth, firebaseui]) => {
-      const uiConfig = {
-        ...this.uiConfig,
-        signInOptions: [
-          firebase.auth.GoogleAuthProvider.PROVIDER_ID,
-          firebase.auth.FacebookAuthProvider.PROVIDER_ID,
-          firebase.auth.TwitterAuthProvider.PROVIDER_ID,
-          firebase.auth.GithubAuthProvider.PROVIDER_ID,
-          firebase.auth.EmailAuthProvider.PROVIDER_ID,
-          firebase.auth.PhoneAuthProvider.PROVIDER_ID,
-          firebaseui.auth.AnonymousAuthProvider.PROVIDER_ID
-        ]
-      };
-      let ui = firebaseui.auth.AuthUI.getInstance();
-      if (!ui) {
-        ui = new firebaseui.auth.AuthUI(firebase.auth());
-      }
-      // if (ui.isPendingRedirect()) {
-        ui.start(this.shadowRoot.querySelector('#firebaseui-auth-container'), uiConfig);
-      // }
-    });
-  }
-
   _logoutHandler() {
     this.isSignedIn = false;
     Promise.all([
       import(/* webpackChunkName: "firebaseApp" */ 'firebase/app'),
-      import(/* webpackChunkName: "firebaseAuth" */ 'firebase/auth')
+      // import(/* webpackChunkName: "firebaseAuth" */ 'firebase/auth')
     ]).then(([firebase]) => {
       firebase.auth().signOut();
+      this._upgrade();
     });
     this._resetSettings();
   }
 
-  _preRender(dependencies: any) {
-    return new Promise(async (resolve) => {
-      await Promise.all(dependencies).then(() => {
-        if(!this.isSignedIn) this._loadUi();
-        resolve();
-      })
-    });
-  }
-  
   render() {
-    return html`
-      ${until(
-        this._preRender(
-          [this._isSignedIn()]
-        ).then(() => {
-          return Template.bind(this)();
-        })
-      )}
-    `;
     return Template.bind(this)();
   }
 }

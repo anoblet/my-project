@@ -20,7 +20,9 @@ const config = {
 };
 
 export class AppSettings extends connect(store)(Mixin(LitElement, [BaseMixin])) {
-  @property({type: Boolean}) finished = false;
+  @property({ type: Boolean }) debug = false;
+  @property({ type: String }) theme = 'light';
+  // @property({type: Boolean}) finished = false;
   template = './AppSettingsTemplate';
 
   _firebaseUp(data: any) {

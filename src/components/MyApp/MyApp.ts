@@ -8,10 +8,12 @@ import { store } from '../../store.js';
 
 import * as style from './MyApp.scss';
 import { AppSettings } from '../AppSettings/AppSettings';
+import { AppLogin } from '../AppLogin/AppLogin';
 const AppSettingsI = new AppSettings;
+const AppLoginI = new AppLogin;
 
 import(/* webpackChunkName: "AppLogin" */ '../AppLogin/AppLogin');
-import(/* webpackChunkName: "MyRouter" */ '@anoblet/my-router');
+// import(/* webpackChunkName: "MyRouter" */ '@anoblet/my-router');
 
 const config = {
   apiKey: "AIzaSyA1sarBCzD7i_UBEMcE5321POKcAX48YYs",
@@ -75,7 +77,6 @@ export class MyApp extends connect(store)(Mixin(LitElement, [BaseMixin])) {
 
   stateChanged(state: any) {
     if(state.settings.debug != null) {
-      // this.debug = state.settings.debug;
       state.settings.debug ? this.setAttribute('debug', '') : this.removeAttribute('debug');
     }
     if(state.settings.theme != null) {
@@ -89,11 +90,33 @@ export class MyApp extends connect(store)(Mixin(LitElement, [BaseMixin])) {
     });
   }
 
+  async _preRender(dependencies: any) {
+    return await new Promise(async (resolve, reject) => {
+      return await Promise.all(dependencies).then (() => {
+        resolve();
+      })
+    });
+  }
+
+  _loadingTemplate() {
+    return html`<my-loader></my-loader>`
+  }
+
   render() {
-    return html`${until(AppSettingsI._firebaseDown().then(() => {
-      return this.importTemplate()
-    })
-    , html`<style>${style}</style><my-loader>Loading</my-loader>`
+    return html`
+      ${until(
+        this._preRender([
+          import('@anoblet/my-loader'),
+          // AppLoginI._isSignedIn(),
+          AppSettingsI._firebaseDown()
+        ])
+        .then(() => {
+          return this.importTemplate()
+        }), 
+        html`
+          <style>${style}</style>
+          ${this._loadingTemplate()}
+        `
     )}`;
   }
 }
