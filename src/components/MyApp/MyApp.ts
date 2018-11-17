@@ -8,9 +8,7 @@ import { store } from '../../store.js';
 
 import * as style from './MyApp.scss';
 import { AppSettings } from '../AppSettings/AppSettings';
-import { AppLogin } from '../AppLogin/AppLogin';
 const AppSettingsI = new AppSettings;
-const AppLoginI = new AppLogin;
 
 import(/* webpackChunkName: "AppLogin" */ '../AppLogin/AppLogin');
 // import(/* webpackChunkName: "MyRouter" */ '@anoblet/my-router');

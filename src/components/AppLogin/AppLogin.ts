@@ -12,7 +12,9 @@ export class AppLogin extends connect(store)(Mixin(LitElement, [BaseMixin])) {
   @property({ type: Boolean }) isSignedIn = false;
   constructor() {
     super();
+    // this._getIsSignedIn();
     this._isSignedIn();
+    // this.isSignedIn = this._isSignedIn();
   }
 
   connectedCallback() {
@@ -20,37 +22,23 @@ export class AppLogin extends connect(store)(Mixin(LitElement, [BaseMixin])) {
     this._upgrade();
   }
 
-  // _isSignedIn() {
-  //   // return await new Promise((resolve, reject) => {
-  //     return Promise.all([
-  //       import('firebase/app'),
-  //       import('firebase/auth'),
-  //     ]).then(([firebase]) => {
-  //       return firebase.auth().onAuthStateChanged((user: any) => {
-  //         if(user) this.isSignedIn = true;
-  //         return user ? true : false;
-  //       });
-  //     });
-  //   // });
-
-  // }
-
-  async _isSignedIn() {
-    return await new Promise((resolve, reject) => {
-      Promise.all([
-        import('firebase/app'),
-        import('firebase/auth'),
-      ]).then(([firebase]) => {
-        firebase.auth().onAuthStateChanged((user: any) => {
-          if(user) this.isSignedIn = true;
-          // user ? resolve(true) : resolve(false);
-        });
-      });
-    });
-
+  async _getIsSignedIn() {
+    // this.isSignedIn = await this._isSignedIn();
   }
 
-  _getConfig(firebase: any, firebaseui: any ) {
+  _isSignedIn() {
+    Promise.all([
+      import(/* webpackChunkName: "FirebaseApp" */ 'firebase/app'),
+      import(/* webpackChunkName: "FirebaseAuth" */'firebase/auth'),
+    ]).then(([firebase]) => {
+      firebase.auth().onAuthStateChanged((user: any) => {
+        alert(`Auth state changed: ${user}`);
+        this.isSignedIn = user ? true : false;
+      });
+    });
+  }
+
+  _getConfig(firebase: any, firebaseui: any) {
     return {
       signInSuccessUrl: '/',
       signInOptions: [
@@ -63,7 +51,7 @@ export class AppLogin extends connect(store)(Mixin(LitElement, [BaseMixin])) {
         firebaseui.auth.AnonymousAuthProvider.PROVIDER_ID
       ],
       tosUrl: '<your-tos-url>',
-      privacyPolicyUrl: function() {
+      privacyPolicyUrl: function () {
         window.location.assign('<your-privacy-policy-url>');
       }
     };
@@ -72,12 +60,12 @@ export class AppLogin extends connect(store)(Mixin(LitElement, [BaseMixin])) {
   _upgrade() {
     return new Promise(async (resolve, reject) => {
       await Promise.all([
-        import('firebase/app'),
-        import('firebaseui')
+        import(/* webpackChunkName: "FirebaseApp" */'firebase/app'),
+        import(/* webpackChunkName: "FirebaseUI" */'firebaseui')
       ]).then(([firebase, firebaseui]) => {
         let instance = firebaseui.auth.AuthUI.getInstance();
         instance = firebaseui.auth.AuthUI.getInstance() || new firebaseui.auth.AuthUI(firebase.auth());
-        if(!this.isSignedIn) instance.start(this.shadowRoot.querySelector('#firebaseui-auth-container'), this._getConfig(firebase, firebaseui));
+        if (!this.isSignedIn) instance.start(this.shadowRoot.querySelector('#firebaseui-auth-container'), this._getConfig(firebase, firebaseui));
       })
     });
   }
@@ -102,7 +90,7 @@ export class AppLogin extends connect(store)(Mixin(LitElement, [BaseMixin])) {
   _logoutHandler() {
     this.isSignedIn = false;
     Promise.all([
-      import(/* webpackChunkName: "firebaseApp" */ 'firebase/app'),
+      import(/* webpackChunkName: "FirebaseApp" */ 'firebase/app'),
       // import(/* webpackChunkName: "firebaseAuth" */ 'firebase/auth')
     ]).then(([firebase]) => {
       firebase.auth().signOut();

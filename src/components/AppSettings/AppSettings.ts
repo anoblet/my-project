@@ -27,9 +27,9 @@ export class AppSettings extends connect(store)(Mixin(LitElement, [BaseMixin])) 
 
   _firebaseUp(data: any) {
     Promise.all([
-      import('firebase/app'),
-      import('firebase/auth'),
-      import('firebase/firestore'),
+      import(/* webpackChunkName: "FirebaseApp" */ 'firebase/app'),
+      import(/* webpackChunkName: "FirebaseAuth" */ 'firebase/auth'),
+      import(/* webpackChunkName: "FirebaseFirestore" */ 'firebase/firestore'),
     ]).then(([firebase, auth, firestore]) => {
       firebase.auth().onAuthStateChanged((user: any) => {
         if(user) {
@@ -66,9 +66,9 @@ export class AppSettings extends connect(store)(Mixin(LitElement, [BaseMixin])) 
 
    _firebaseDown() {
     return Promise.all([
-      import('firebase/app'),
-      import('firebase/auth'),
-      import('firebase/firestore'),
+      import(/* webpackChunkName: "FirebaseApp" */ 'firebase/app'),
+      import(/* webpackChunkName: "FirebaseAuth" */ 'firebase/auth'),
+      import(/* webpackChunkName: "FirebaseFirestore" */ 'firebase/firestore'),
     ]).then(async ([firebase]) => {
       return new Promise(async (resolve, reject) => {
         return await firebase.auth().onAuthStateChanged((user: any) => {
