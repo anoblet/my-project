@@ -121,10 +121,7 @@ export class MyApp extends connect(store)(Mixin(LitElement, [BaseMixin])) {
         if (instance.isPendingRedirect()) {
           const e = document.createElement('div');
           instance.start(e, {});
-          console.log('Pending');
           app.auth().onAuthStateChanged((user: any) => {
-            console.log('State changed');
-            console.log(user);
             if (user) resolve();
           });
         } else {
