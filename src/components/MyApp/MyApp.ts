@@ -36,7 +36,7 @@ export class MyApp extends connect(store)(Mixin(LitElement, [BaseMixin])) {
   @property({ type: String }) title = 'Andrew Noblet'
   // @property({ type: String, reflect: true }) debug = false;
   // @property({ type: String }) theme  = 'light';
-  @property({ type: Boolean }) synced  = false;
+  @property({ type: Boolean }) synced = false;
 
   // firebase = {};
   firebaseConfig = {
@@ -73,18 +73,21 @@ export class MyApp extends connect(store)(Mixin(LitElement, [BaseMixin])) {
     ]).then(([firebase, auth, firestore]) => {
       if (firebase.apps.length === 0) firebase.initializeApp(config);
     });
-    // this.runTask(this.checkRedirect());
-    this.runTasks([
+    // this.runTasks([
+    //   this.checkRedirect(),
+    //   AppSettingsI._firebaseDown()
+    // ]);
+    this.promiseChain([
       this.checkRedirect(),
       AppSettingsI._firebaseDown()
     ]);
   }
 
   stateChanged(state: any) {
-    if(state.settings.debug != null) {
+    if (state.settings.debug != null) {
       state.settings.debug ? this.setAttribute('debug', '') : this.removeAttribute('debug');
     }
-    if(state.settings.theme != null) {
+    if (state.settings.theme != null) {
       state.settings.theme == 'light' ? this.getAttribute('dark') == '' ? this.removeAttribute('dark') : false : this.setAttribute('dark', '');
     }
   }
@@ -97,7 +100,7 @@ export class MyApp extends connect(store)(Mixin(LitElement, [BaseMixin])) {
 
   async _preRender(dependencies: any) {
     return await new Promise(async (resolve, reject) => {
-      return await Promise.all(dependencies).then (() => {
+      return await Promise.all(dependencies).then(() => {
         resolve();
       })
     });
@@ -115,14 +118,14 @@ export class MyApp extends connect(store)(Mixin(LitElement, [BaseMixin])) {
         import('firebaseui'),
       ]).then(([app, auth, ui]) => {
         let instance = ui.auth.AuthUI.getInstance() || new ui.auth.AuthUI(app.auth());
-        if(instance.isPendingRedirect()) {
+        if (instance.isPendingRedirect()) {
           const e = document.createElement('div');
           instance.start(e, {});
           console.log('Pending');
           app.auth().onAuthStateChanged((user: any) => {
             console.log('State changed');
             console.log(user);
-            if(user) resolve();
+            if (user) resolve();
           });
         } else {
           resolve();
@@ -135,17 +138,31 @@ export class MyApp extends connect(store)(Mixin(LitElement, [BaseMixin])) {
     this.taskPending = true;
     this.requestUpdate();
     await Promise.all([task]).then(() => {
-      console.log('Here');
       this.taskPending = false;
       this.requestUpdate();
     });
   }
-  
+
 
   async runTasks(tasks: any) {
     this.taskPending = true;
     this.requestUpdate();
     await Promise.all(tasks).then(() => {
+      this.taskPending = false;
+      this.requestUpdate();
+    });
+  }
+
+  promiseChain(tasks: any) {
+    this.taskPending = true;
+    this.requestUpdate();
+    return tasks.reduce((promiseChain: any, currentTask: any) => {
+      return promiseChain.then((chainResults: any) =>
+        currentTask.then((currentResult: any) =>
+          [...chainResults, currentResult]
+        )
+      );
+    }, Promise.resolve([])).then((arrayOfResults: any) => {
       this.taskPending = false;
       this.requestUpdate();
     });
