@@ -17,8 +17,7 @@ export class AppLogin extends connect(store)(Mixin(LitElement, [BaseMixin])) {
     // this.isSignedIn = this._isSignedIn();
   }
 
-  connectedCallback() {
-    super.connectedCallback();
+  firstUpdated() {
     this._upgrade();
   }
 
@@ -27,14 +26,18 @@ export class AppLogin extends connect(store)(Mixin(LitElement, [BaseMixin])) {
   }
 
   _isSignedIn() {
-    Promise.all([
-      import(/* webpackChunkName: "FirebaseApp" */ 'firebase/app'),
-      import(/* webpackChunkName: "FirebaseAuth" */'firebase/auth'),
-    ]).then(([firebase]) => {
-      firebase.auth().onAuthStateChanged((user: any) => {
-        this.isSignedIn = user ? true : false;
+    return new Promise((resolve, reject) => {
+      Promise.all([
+        import(/* webpackChunkName: "FirebaseApp" */ 'firebase/app'),
+        import(/* webpackChunkName: "FirebaseAuth" */'firebase/auth'),
+      ]).then(([firebase]) => {
+        firebase.auth().onAuthStateChanged((user: any) => {
+          this.isSignedIn = user ? true : false;
+          resolve(user ? true : false);
+        });
       });
     });
+
   }
 
   _getConfig(firebase: any, firebaseui: any) {
@@ -61,9 +64,10 @@ export class AppLogin extends connect(store)(Mixin(LitElement, [BaseMixin])) {
       await Promise.all([
         import(/* webpackChunkName: "FirebaseApp" */'firebase/app'),
         import(/* webpackChunkName: "FirebaseUI" */'firebaseui')
-      ]).then(([firebase, firebaseui]) => {
+      ]).then(async ([firebase, firebaseui]) => {
         let instance = firebaseui.auth.AuthUI.getInstance();
         instance = firebaseui.auth.AuthUI.getInstance() || new firebaseui.auth.AuthUI(firebase.auth());
+        await this._isSignedIn();
         if (!this.isSignedIn) instance.start(this.shadowRoot.querySelector('#firebaseui-auth-container'), this._getConfig(firebase, firebaseui));
       })
     });

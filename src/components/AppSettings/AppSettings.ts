@@ -65,37 +65,37 @@ export class AppSettings extends connect(store)(Mixin(LitElement, [BaseMixin])) 
   }
 
    _firebaseDown() {
-    return Promise.all([
-      import(/* webpackChunkName: "FirebaseApp" */ 'firebase/app'),
-      import(/* webpackChunkName: "FirebaseAuth" */ 'firebase/auth'),
-      import(/* webpackChunkName: "FirebaseFirestore" */ 'firebase/firestore'),
-    ]).then(async ([firebase]) => {
-      return new Promise(async (resolve, reject) => {
-        return await firebase.auth().onAuthStateChanged((user: any) => {
-          if(user) {
-            resolve(new Promise(async (resolve, reject) => {
-              const firestore = firebase.firestore();
-              firestore.settings({ timestampsInSnapshots: true });
-              const userSettings = firestore.collection("users").doc(user.uid).collection('settings').doc('default');
-              await userSettings.get().then((doc: any) => {
-                if(!doc.exists) {
-                  userSettings.set({
-                    debug: false,
-                    theme: 'light'
-                  })
-                }
-              });
-              await userSettings.get().then((doc: any) => {
-                this._updateStore(doc.data());
-              });
+    return new Promise(async (resolve, reject) => {
+      await Promise.all([
+        import(/* webpackChunkName: "FirebaseApp" */ 'firebase/app'),
+        import(/* webpackChunkName: "FirebaseAuth" */ 'firebase/auth'),
+        import(/* webpackChunkName: "FirebaseFirestore" */ 'firebase/firestore'),
+      ]).then(async ([firebase]) => {
+          return await firebase.auth().onAuthStateChanged(async (user: any) => {
+            if(user) {
+                const firestore = firebase.firestore();
+                firestore.settings({ timestampsInSnapshots: true });
+                const userSettings = firestore.collection("users").doc(user.uid).collection('settings').doc('default');
+                await userSettings.get().then((doc: any) => {
+                  if(!doc.exists) {
+                    userSettings.set({
+                      debug: false,
+                      theme: 'light'
+                    })
+                  }
+                });
+                await userSettings.get().then(async (doc: any) => {
+                  await this._updateStore(doc.data());
+                  resolve();
+                });
+            } else {
               resolve();
-            }));
-          } else {
-            resolve();
-          }
-        });
+            }
+          });
       });
+      resolve();
     });
+
   }
 
   _updateStore(data: any) {

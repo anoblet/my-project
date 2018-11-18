@@ -10,6 +10,8 @@ import * as style from './MyApp.scss';
 import { AppSettings } from '../AppSettings/AppSettings';
 const AppSettingsI = new AppSettings;
 
+import Template from './MyAppTemplate';
+
 import(/* webpackChunkName: "AppLogin" */ '../AppLogin/AppLogin');
 // import(/* webpackChunkName: "MyRouter" */ '@anoblet/my-router');
 
@@ -46,7 +48,7 @@ export class MyApp extends connect(store)(Mixin(LitElement, [BaseMixin])) {
     messagingSenderId: "552770278955"
   }
   template = './MyAppTemplate'
-
+  taskPending = false;
   constructor() {
     super();
     import(/* webpackChunkName: "AppSettings" */ '../AppSettings/AppSettings');
@@ -71,6 +73,11 @@ export class MyApp extends connect(store)(Mixin(LitElement, [BaseMixin])) {
     ]).then(([firebase, auth, firestore]) => {
       if (firebase.apps.length === 0) firebase.initializeApp(config);
     });
+    // this.runTask(this.checkRedirect());
+    this.runTasks([
+      this.checkRedirect(),
+      AppSettingsI._firebaseDown()
+    ]);
   }
 
   stateChanged(state: any) {
@@ -100,22 +107,54 @@ export class MyApp extends connect(store)(Mixin(LitElement, [BaseMixin])) {
     return html`<my-loader></my-loader>`
   }
 
+  checkRedirect() {
+    return new Promise((resolve, reject) => {
+      Promise.all([
+        import('firebase/app'),
+        import('firebase/auth'),
+        import('firebaseui'),
+      ]).then(([app, auth, ui]) => {
+        let instance = ui.auth.AuthUI.getInstance() || new ui.auth.AuthUI(app.auth());
+        if(instance.isPendingRedirect()) {
+          const e = document.createElement('div');
+          instance.start(e, {});
+          console.log('Pending');
+          app.auth().onAuthStateChanged((user: any) => {
+            console.log('State changed');
+            console.log(user);
+            if(user) resolve();
+          });
+        } else {
+          resolve();
+        }
+      })
+    });
+  }
+
+  async runTask(task: Promise<any>) {
+    this.taskPending = true;
+    this.requestUpdate();
+    await Promise.all([task]).then(() => {
+      console.log('Here');
+      this.taskPending = false;
+      this.requestUpdate();
+    });
+  }
+  
+
+  async runTasks(tasks: any) {
+    this.taskPending = true;
+    this.requestUpdate();
+    await Promise.all(tasks).then(() => {
+      this.taskPending = false;
+      this.requestUpdate();
+    });
+  }
+
   render() {
-    return html`
-      ${until(
-        this._preRender([
-          import('@anoblet/my-loader'),
-          // AppLoginI._isSignedIn(),
-          AppSettingsI._firebaseDown()
-        ])
-        .then(() => {
-          return this.importTemplate()
-        }), 
-        html`
-          <style>${style}</style>
-          ${this._loadingTemplate()}
-        `
-    )}`;
+    return this.taskPending ?
+      html`<style>${style}</style><my-loader></my-loader>` :
+      Template.bind(this)();
   }
 }
 
