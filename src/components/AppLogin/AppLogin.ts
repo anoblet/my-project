@@ -32,7 +32,6 @@ export class AppLogin extends connect(store)(Mixin(LitElement, [BaseMixin])) {
       import(/* webpackChunkName: "FirebaseAuth" */'firebase/auth'),
     ]).then(([firebase]) => {
       firebase.auth().onAuthStateChanged((user: any) => {
-        alert(`Auth state changed: ${user}`);
         this.isSignedIn = user ? true : false;
       });
     });
