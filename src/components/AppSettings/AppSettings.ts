@@ -89,11 +89,11 @@ export class AppSettings extends connect(store)(Mixin(LitElement, [BaseMixin])) 
                   resolve();
                 });
             } else {
-              resolve();
+              // resolve();
             }
           });
       });
-      resolve();
+      // resolve();
     });
 
   }

@@ -137,7 +137,7 @@ export class MyApp extends connect(store)(Mixin(LitElement, [BaseMixin])) {
   async runTask(task: Promise<any>) {
     this.taskPending = true;
     this.requestUpdate();
-    await Promise.all([task]).then(() => {
+    await task.then(() => {
       this.taskPending = false;
       this.requestUpdate();
     });
