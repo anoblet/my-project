@@ -12,7 +12,7 @@ const AppSettingsI = new AppSettings;
 
 import Template from './MyAppTemplate';
 
-import(/* webpackChunkName: "AppLogin" */ '../AppLogin/AppLogin');
+// import(/* webpackChunkName: "AppLogin" */ '../AppLogin/AppLogin');
 // import(/* webpackChunkName: "MyRouter" */ '@anoblet/my-router');
 
 const config = {
@@ -34,11 +34,6 @@ const config = {
  */
 export class MyApp extends connect(store)(Mixin(LitElement, [BaseMixin])) {
   @property({ type: String }) title = 'Andrew Noblet'
-  // @property({ type: String, reflect: true }) debug = false;
-  // @property({ type: String }) theme  = 'light';
-  @property({ type: Boolean }) synced = false;
-
-  // firebase = {};
   firebaseConfig = {
     apiKey: "AIzaSyA1sarBCzD7i_UBEMcE5321POKcAX48YYs",
     authDomain: "my-project-75792.firebaseapp.com",
@@ -47,16 +42,29 @@ export class MyApp extends connect(store)(Mixin(LitElement, [BaseMixin])) {
     storageBucket: "",
     messagingSenderId: "552770278955"
   }
-  template = './MyAppTemplate'
   taskPending = false;
-  constructor() {
-    super();
-    import(/* webpackChunkName: "AppSettings" */ '../AppSettings/AppSettings');
-    import(/* webpackChunkName: "MyGrid" */ '@anoblet/my-grid')
-    import(/* webpackChunkName: "MyFlex" */'@anoblet/my-flex')
-    import(/* webpackChunkName: "MyLoader" */'@anoblet/my-loader')
-    import(/* webpackChunkName: "MWC-Icon" */'@material/mwc-icon')
-    import(/* webpackChunkName: "MWC-Fab" */'@material/mwc-fab')
+  template = './MyAppTemplate'
+
+  connectedCallback() {
+    super.connectedCallback();
+    this.startFirebase();
+    this.runTasks([
+      import(/* webpackChunkName: "AppLogin" */ '../AppLogin/AppLogin'),
+      import(/* webpackChunkName: "AppSettings" */ '../AppSettings/AppSettings'),
+      import(/* webpackChunkName: "MyGrid" */ '@anoblet/my-grid'),
+      import(/* webpackChunkName: "MyFlex" */'@anoblet/my-flex'),
+      import(/* webpackChunkName: "MyLoader" */'@anoblet/my-loader'),
+      import(/* webpackChunkName: "MWC-Icon" */'@material/mwc-icon'),
+      import(/* webpackChunkName: "MWC-Fab" */'@material/mwc-fab'),
+      this.checkRedirect(),
+      AppSettingsI._firebaseDown()
+    ]);
+  }
+
+  startFirebase() {
+    import('firebase/app').then((app) => {
+      if (app.apps.length === 0) app.initializeApp(config);
+    });
   }
 
   _toggleDrawer() {
@@ -64,34 +72,6 @@ export class MyApp extends connect(store)(Mixin(LitElement, [BaseMixin])) {
     const drawerContainer = this.shadowRoot.querySelector('#drawer-container')
     drawer._toggleAttribute('hidden');
     drawerContainer._toggleAttribute('opened');
-  }
-
-  connectedCallback() {
-    super.connectedCallback();
-    Promise.all([
-      import('firebase/app'),
-    ]).then(([firebase, auth, firestore]) => {
-      if (firebase.apps.length === 0) firebase.initializeApp(config);
-    });
-    this.runTasks([
-      this.checkRedirect(),
-      AppSettingsI._firebaseDown()
-    ]);
-    // this.promiseChain([
-    //   this.checkRedirect(),
-    //   AppSettingsI._firebaseDown()
-    // ]);
-    // this.runTask(AppSettingsI._firebaseDown());
-  }
-
-  startTask() {
-    this.taskPending = true;
-    this.requestUpdate();
-  }
-
-  stopTask() {
-    this.taskPending = false;
-    this.requestUpdate();
   }
 
   stateChanged(state: any) {
@@ -103,23 +83,11 @@ export class MyApp extends connect(store)(Mixin(LitElement, [BaseMixin])) {
     }
   }
 
-  importTemplate() {
-    return import(`${this.template}`).then(async (template) => {
-      return await template.default.bind(this)()
-    });
-  }
-
-  async _preRender(dependencies: any) {
-    return await new Promise(async (resolve, reject) => {
-      return await Promise.all(dependencies).then(() => {
-        resolve();
-      })
-    });
-  }
-
-  _loadingTemplate() {
-    return html`<my-loader></my-loader>`
-  }
+  // importTemplate() {
+  //   return import(`${this.template}`).then(async (template) => {
+  //     return await template.default.bind(this)()
+  //   });
+  // }
 
   checkRedirect() {
     return new Promise((resolve, reject) => {
@@ -142,30 +110,35 @@ export class MyApp extends connect(store)(Mixin(LitElement, [BaseMixin])) {
     });
   }
 
-  runTask(task: Promise<any>) {
-    return new Promise((resolve, reject) => {
-      this.startTask();
-      task.then(() => this.stopTask());
-    });
-    // this.taskPending = true;
-    // this.requestUpdate();
-    // await task.then(() => {
-    //   this.taskPending = false;
-    //   this.requestUpdate();
-    // });
-  }
-
-
-  runTasks(tasks: any) {
-    return new Promise((resolve, reject) => {
-      this.startTask();
-      Promise.all(tasks).then(() => this.stopTask());
-    });
-  }
-
-  promiseChain(tasks: any) {
+  startTask() {
     this.taskPending = true;
     this.requestUpdate();
+  }
+
+  stopTask() {
+    this.taskPending = false;
+    this.requestUpdate();
+  }
+
+  // runTask(task: Promise<any>) {
+  //   this.startTask();
+  //   return new Promise((resolve, reject) => {
+  //     task.then(() => this.stopTask());
+  //   });
+  // }
+
+  runTasks(tasks: any) {
+    this.startTask();
+    return new Promise((resolve, reject) => {
+      return Promise.all(tasks).then((results: any) => {
+        this.stopTask();
+        return results;
+      });
+    });
+  }
+
+  taskChain(tasks: any) {
+    this.startTask();
     return tasks.reduce((promiseChain: any, currentTask: any) => {
       return promiseChain.then((chainResults: any) =>
         currentTask.then((currentResult: any) =>
@@ -173,8 +146,7 @@ export class MyApp extends connect(store)(Mixin(LitElement, [BaseMixin])) {
         )
       );
     }, Promise.resolve([])).then((arrayOfResults: any) => {
-      this.taskPending = false;
-      this.requestUpdate();
+      this.stopTask();
     });
   }
 

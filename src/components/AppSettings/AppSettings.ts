@@ -72,10 +72,11 @@ export class AppSettings extends connect(store)(Mixin(LitElement, [BaseMixin])) 
         import(/* webpackChunkName: "FirebaseFirestore" */ 'firebase/firestore'),
         import(/* webpackChunkName: "FirebaseUI" */ 'firebaseui'),
       ]).then(async ([firebase, auth, store, ui]) => {
-          let instance = ui.auth.AuthUI.getInstance() || new ui.auth.AuthUI(firebase.auth());
-          let pendingRedirect = instance.isPendingRedirect();
-          return await firebase.auth().onAuthStateChanged(async (user: any) => {
-            if(!user && !pendingRedirect) resolve();
+        let instance = ui.auth.AuthUI.getInstance() || new ui.auth.AuthUI(firebase.auth());
+        let pendingRedirect = instance.isPendingRedirect();
+        return await firebase.auth().onAuthStateChanged(async (user: any) => {
+          if(!user && !pendingRedirect) resolve();
+          if(user) {
             const firestore = firebase.firestore();
             firestore.settings({ timestampsInSnapshots: true });
             const userSettings = firestore.collection("users").doc(user.uid).collection('settings').doc('default');
@@ -91,7 +92,8 @@ export class AppSettings extends connect(store)(Mixin(LitElement, [BaseMixin])) 
               await this._updateStore(doc.data());
               resolve();
             });
-          });
+          }
+        });
       });
       // resolve();
     });
