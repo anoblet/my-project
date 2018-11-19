@@ -73,14 +73,25 @@ export class MyApp extends connect(store)(Mixin(LitElement, [BaseMixin])) {
     ]).then(([firebase, auth, firestore]) => {
       if (firebase.apps.length === 0) firebase.initializeApp(config);
     });
-    // this.runTasks([
-    //   this.checkRedirect(),
-    //   AppSettingsI._firebaseDown()
-    // ]);
-    this.promiseChain([
+    this.runTasks([
       this.checkRedirect(),
       AppSettingsI._firebaseDown()
     ]);
+    // this.promiseChain([
+    //   this.checkRedirect(),
+    //   AppSettingsI._firebaseDown()
+    // ]);
+    // this.runTask(AppSettingsI._firebaseDown());
+  }
+
+  startTask() {
+    this.taskPending = true;
+    this.requestUpdate();
+  }
+
+  stopTask() {
+    this.taskPending = false;
+    this.requestUpdate();
   }
 
   stateChanged(state: any) {
@@ -131,22 +142,24 @@ export class MyApp extends connect(store)(Mixin(LitElement, [BaseMixin])) {
     });
   }
 
-  async runTask(task: Promise<any>) {
-    this.taskPending = true;
-    this.requestUpdate();
-    await task.then(() => {
-      this.taskPending = false;
-      this.requestUpdate();
+  runTask(task: Promise<any>) {
+    return new Promise((resolve, reject) => {
+      this.startTask();
+      task.then(() => this.stopTask());
     });
+    // this.taskPending = true;
+    // this.requestUpdate();
+    // await task.then(() => {
+    //   this.taskPending = false;
+    //   this.requestUpdate();
+    // });
   }
 
 
-  async runTasks(tasks: any) {
-    this.taskPending = true;
-    this.requestUpdate();
-    await Promise.all(tasks).then(() => {
-      this.taskPending = false;
-      this.requestUpdate();
+  runTasks(tasks: any) {
+    return new Promise((resolve, reject) => {
+      this.startTask();
+      Promise.all(tasks).then(() => this.stopTask());
     });
   }
 
