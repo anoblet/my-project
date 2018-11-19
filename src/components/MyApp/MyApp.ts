@@ -74,21 +74,6 @@ export class MyApp extends connect(store)(Mixin(LitElement, [BaseMixin])) {
     drawerContainer._toggleAttribute('opened');
   }
 
-  stateChanged(state: any) {
-    if (state.settings.debug != null) {
-      state.settings.debug ? this.setAttribute('debug', '') : this.removeAttribute('debug');
-    }
-    if (state.settings.theme != null) {
-      state.settings.theme == 'light' ? this.getAttribute('dark') == '' ? this.removeAttribute('dark') : false : this.setAttribute('dark', '');
-    }
-  }
-
-  // importTemplate() {
-  //   return import(`${this.template}`).then(async (template) => {
-  //     return await template.default.bind(this)()
-  //   });
-  // }
-
   checkRedirect() {
     return new Promise((resolve, reject) => {
       Promise.all([
@@ -120,13 +105,6 @@ export class MyApp extends connect(store)(Mixin(LitElement, [BaseMixin])) {
     this.requestUpdate();
   }
 
-  // runTask(task: Promise<any>) {
-  //   this.startTask();
-  //   return new Promise((resolve, reject) => {
-  //     task.then(() => this.stopTask());
-  //   });
-  // }
-
   runTasks(tasks: any) {
     this.startTask();
     return new Promise((resolve, reject) => {
@@ -148,6 +126,15 @@ export class MyApp extends connect(store)(Mixin(LitElement, [BaseMixin])) {
     }, Promise.resolve([])).then((arrayOfResults: any) => {
       this.stopTask();
     });
+  }
+
+  stateChanged(state: any) {
+    if (state.settings.debug != null) {
+      state.settings.debug ? this.setAttribute('debug', '') : this.removeAttribute('debug');
+    }
+    if (state.settings.theme != null) {
+      state.settings.theme == 'light' ? this.getAttribute('dark') == '' ? this.removeAttribute('dark') : false : this.setAttribute('dark', '');
+    }
   }
 
   render() {

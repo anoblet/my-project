@@ -32,7 +32,7 @@ export class AppSettings extends connect(store)(Mixin(LitElement, [BaseMixin])) 
       import(/* webpackChunkName: "FirebaseFirestore" */ 'firebase/firestore'),
     ]).then(([firebase, auth, firestore]) => {
       firebase.auth().onAuthStateChanged((user: any) => {
-        if(user) {
+        if (user) {
           const firestore = firebase.firestore();
           firestore.settings({ timestampsInSnapshots: true });
           const settingsCollection = firestore.collection("users").doc(user.uid).collection('settings');
@@ -64,7 +64,7 @@ export class AppSettings extends connect(store)(Mixin(LitElement, [BaseMixin])) 
     });
   }
 
-   _firebaseDown() {
+  _firebaseDown() {
     return new Promise(async (resolve, reject) => {
       await Promise.all([
         import(/* webpackChunkName: "FirebaseApp" */ 'firebase/app'),
@@ -75,8 +75,8 @@ export class AppSettings extends connect(store)(Mixin(LitElement, [BaseMixin])) 
         let instance = ui.auth.AuthUI.getInstance() || new ui.auth.AuthUI(firebase.auth());
         let pendingRedirect = instance.isPendingRedirect();
         return await firebase.auth().onAuthStateChanged(async (user: any) => {
-          if(!user && !pendingRedirect) resolve();
-          if(user) {
+          if (!user && !pendingRedirect) resolve();
+          if (user) {
             const firestore = firebase.firestore();
             firestore.settings({ timestampsInSnapshots: true });
             const userSettings = firestore.collection("users").doc(user.uid).collection('settings').doc('default');
@@ -88,14 +88,14 @@ export class AppSettings extends connect(store)(Mixin(LitElement, [BaseMixin])) 
                 })
               }
             });
-            await userSettings.get().then(async (doc: any) => {
-              await this._updateStore(doc.data());
+            await userSettings.onSnapshot((doc: any) => {
+              console.log('Snapshot');
+              this._updateStore(doc.data());
               resolve();
             });
           }
         });
       });
-      // resolve();
     });
 
   }
@@ -117,9 +117,9 @@ export class AppSettings extends connect(store)(Mixin(LitElement, [BaseMixin])) 
   render() {
     return html`
       ${until(
-        this.importTemplate().then(
-          (template) => template
-        ), html`Loading`
+      this.importTemplate().then(
+      (template) => template
+      ), html`Loading`
       )}
     `
   }
