@@ -8,6 +8,8 @@ import { setDebug, setTheme } from '../../actions/Settings.js';
 
 import Template from './AppLoginTemplate';
 
+import { config } from '../../../config';
+
 export class AppLogin extends connect(store)(Mixin(LitElement, [BaseMixin])) {
   @property({ type: Boolean }) isSignedIn = false;
   constructor() {
@@ -40,24 +42,24 @@ export class AppLogin extends connect(store)(Mixin(LitElement, [BaseMixin])) {
 
   }
 
-  _getConfig(firebase: any, firebaseui: any) {
-    return {
-      signInSuccessUrl: '/',
-      signInOptions: [
-        firebase.auth.GoogleAuthProvider.PROVIDER_ID,
-        firebase.auth.FacebookAuthProvider.PROVIDER_ID,
-        firebase.auth.TwitterAuthProvider.PROVIDER_ID,
-        firebase.auth.GithubAuthProvider.PROVIDER_ID,
-        firebase.auth.EmailAuthProvider.PROVIDER_ID,
-        firebase.auth.PhoneAuthProvider.PROVIDER_ID,
-        firebaseui.auth.AnonymousAuthProvider.PROVIDER_ID
-      ],
-      tosUrl: '<your-tos-url>',
-      privacyPolicyUrl: function () {
-        window.location.assign('<your-privacy-policy-url>');
-      }
-    };
-  }
+  // _getConfig(firebase: any, firebaseui: any) {
+  //   return {
+  //     signInSuccessUrl: '/',
+  //     signInOptions: [
+  //       firebase.auth.GoogleAuthProvider.PROVIDER_ID,
+  //       firebase.auth.FacebookAuthProvider.PROVIDER_ID,
+  //       firebase.auth.TwitterAuthProvider.PROVIDER_ID,
+  //       firebase.auth.GithubAuthProvider.PROVIDER_ID,
+  //       firebase.auth.EmailAuthProvider.PROVIDER_ID,
+  //       firebase.auth.PhoneAuthProvider.PROVIDER_ID,
+  //       firebaseui.auth.AnonymousAuthProvider.PROVIDER_ID
+  //     ],
+  //     tosUrl: '<your-tos-url>',
+  //     privacyPolicyUrl: function () {
+  //       window.location.assign('<your-privacy-policy-url>');
+  //     }
+  //   };
+  // }
 
   _upgrade() {
     return new Promise(async (resolve, reject) => {
@@ -68,7 +70,7 @@ export class AppLogin extends connect(store)(Mixin(LitElement, [BaseMixin])) {
         let instance = firebaseui.auth.AuthUI.getInstance();
         instance = firebaseui.auth.AuthUI.getInstance() || new firebaseui.auth.AuthUI(firebase.auth());
         await this._isSignedIn();
-        if (!this.isSignedIn) instance.start(this.shadowRoot.querySelector('#firebaseui-auth-container'), this._getConfig(firebase, firebaseui));
+        if (!this.isSignedIn) instance.start(this.shadowRoot.querySelector('#firebaseui-auth-container'), config.firebaseui);
       })
     });
   }
