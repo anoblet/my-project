@@ -35,12 +35,8 @@ export class AppSettings extends connect(store)(Mixin(LitElement, [BaseMixin])) 
         if (user) {
           const firestore = firebase.firestore();
           firestore.settings({ timestampsInSnapshots: true });
-          const settingsCollection = firestore.collection("users").doc(user.uid).collection('settings');
-          settingsCollection.get().then((querySnapshot: any) => {
-            querySnapshot.forEach((document: any) => {
-              document.ref.set(data, { merge: true })
-            });
-          });
+          const userSettings = firestore.doc(`users/${user.uid}/settings/default`);
+          userSettings.set(data, { merge: true })
         }
       });
     });
@@ -66,7 +62,7 @@ export class AppSettings extends connect(store)(Mixin(LitElement, [BaseMixin])) 
 
   checkDefaults(document: any) {
     document.get().then((doc: any) => {
-      if(!doc.exists) {
+      if (!doc.exists) {
         document.set({
           debug: false,
           theme: 'light'
