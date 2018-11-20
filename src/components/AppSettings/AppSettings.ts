@@ -10,15 +10,6 @@ import { setDebug, setTheme } from '../../actions/Settings.js';
 
 import Template from './AppSettingsTemplate'
 
-const config = {
-  apiKey: "AIzaSyA1sarBCzD7i_UBEMcE5321POKcAX48YYs",
-  authDomain: "my-project-75792.firebaseapp.com",
-  databaseURL: "https://my-project-75792.firebaseio.com",
-  projectId: "my-project-75792",
-  storageBucket: "",
-  messagingSenderId: "552770278955"
-};
-
 export class AppSettings extends connect(store)(Mixin(LitElement, [BaseMixin])) {
   @property({ type: Boolean }) debug = false;
   @property({ type: String }) theme = 'light';
@@ -78,7 +69,7 @@ export class AppSettings extends connect(store)(Mixin(LitElement, [BaseMixin])) 
         import(/* webpackChunkName: "FirebaseAuth" */ 'firebase/auth'),
         import(/* webpackChunkName: "FirebaseFirestore" */ 'firebase/firestore'),
         import(/* webpackChunkName: "FirebaseUI" */ 'firebaseui'),
-      ]).then(([firebase, auth, store, ui]) => {
+      ]).then(([firebase, auth, firestore, ui]) => {
         let instance = ui.auth.AuthUI.getInstance() || new ui.auth.AuthUI(firebase.auth());
         let pendingRedirect = instance.isPendingRedirect();
         firebase.auth().onAuthStateChanged(async (user: any) => {
@@ -89,7 +80,8 @@ export class AppSettings extends connect(store)(Mixin(LitElement, [BaseMixin])) 
             const userSettings = firestore.doc(`users/${user.uid}/settings/default`);
             this.checkDefaults(userSettings);
             userSettings.onSnapshot((doc: any) => {
-              this._updateStore(doc.data());
+              const source = doc.metadata.hasPendingWrites ? "local" : "remote";
+              if(source !== 'local') this._updateStore(doc.data());
               resolve();
             });
           }

@@ -12,17 +12,7 @@ const AppSettingsI = new AppSettings;
 
 import Template from './MyAppTemplate';
 
-// import(/* webpackChunkName: "AppLogin" */ '../AppLogin/AppLogin');
-// import(/* webpackChunkName: "MyRouter" */ '@anoblet/my-router');
-
-const config = {
-  apiKey: "AIzaSyA1sarBCzD7i_UBEMcE5321POKcAX48YYs",
-  authDomain: "my-project-75792.firebaseapp.com",
-  databaseURL: "https://my-project-75792.firebaseio.com",
-  projectId: "my-project-75792",
-  storageBucket: "",
-  messagingSenderId: "552770278955"
-};
+import { config } from '../../../config';
 
 /**
  * @todo Extend BaseElement
@@ -34,37 +24,32 @@ const config = {
  */
 export class MyApp extends connect(store)(Mixin(LitElement, [BaseMixin])) {
   @property({ type: String }) title = 'Andrew Noblet'
-  firebaseConfig = {
-    apiKey: "AIzaSyA1sarBCzD7i_UBEMcE5321POKcAX48YYs",
-    authDomain: "my-project-75792.firebaseapp.com",
-    databaseURL: "https://my-project-75792.firebaseio.com",
-    projectId: "my-project-75792",
-    storageBucket: "",
-    messagingSenderId: "552770278955"
-  }
   taskPending = false;
   template = './MyAppTemplate'
 
   connectedCallback() {
     super.connectedCallback();
-    this.startFirebase();
     this.runTasks([
-      import(/* webpackChunkName: "AppLogin" */ '../AppLogin/AppLogin'),
-      import(/* webpackChunkName: "AppSettings" */ '../AppSettings/AppSettings'),
-      import(/* webpackChunkName: "MyGrid" */ '@anoblet/my-grid'),
       import(/* webpackChunkName: "MyFlex" */'@anoblet/my-flex'),
+      import(/* webpackChunkName: "MyGrid" */ '@anoblet/my-grid'),
       import(/* webpackChunkName: "MyLoader" */'@anoblet/my-loader'),
       import(/* webpackChunkName: "MWC-Icon" */'@material/mwc-icon'),
       import(/* webpackChunkName: "MWC-Fab" */'@material/mwc-fab'),
+      import(/* webpackChunkName: "AppLogin" */ '../AppLogin/AppLogin'),
+      import(/* webpackChunkName: "AppSettings" */ '../AppSettings/AppSettings'),
+      this.startFirebase(),
       this.checkRedirect(),
       AppSettingsI._firebaseDown()
     ]);
   }
 
   startFirebase() {
-    import('firebase/app').then((app) => {
-      if (app.apps.length === 0) app.initializeApp(config);
-    });
+    return new Promise((resolve, reject) => {
+      import('firebase/app').then((app) => {
+        if (app.apps.length === 0) app.initializeApp(config.firebase);
+        resolve();
+      });
+    })
   }
 
   _toggleDrawer() {
