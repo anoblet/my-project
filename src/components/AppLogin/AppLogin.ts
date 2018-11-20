@@ -1,6 +1,7 @@
 import { html, LitElement, property } from '@polymer/lit-element';
 import { Mixin } from '@anoblet/mixin';
 import { BaseMixin } from '@anoblet/base-mixin'
+import { TaskMixin } from '../../TaskMixin';
 
 import { connect } from 'pwa-helpers/connect-mixin.js';
 import { store } from '../../store.js';
@@ -8,23 +9,28 @@ import { setDebug, setTheme } from '../../actions/Settings.js';
 
 import Template from './AppLoginTemplate';
 
+import * as style from './AppLogin.scss';
+
 import { config } from '../../../config';
 
-export class AppLogin extends connect(store)(Mixin(LitElement, [BaseMixin])) {
+export class AppLogin extends connect(store)(Mixin(LitElement, [BaseMixin, TaskMixin])) {
   @property({ type: Boolean }) isSignedIn = false;
+  taskPending = false;
+
   constructor() {
     super();
-    // this._getIsSignedIn();
-    this._isSignedIn();
-    // this.isSignedIn = this._isSignedIn();
+    // this._isSignedIn();
+  }
+
+  connectedCallback() {
+    super.connectedCallback();
+    this.runTasks([
+      this._isSignedIn(),
+    ])
   }
 
   firstUpdated() {
     this._upgrade();
-  }
-
-  async _getIsSignedIn() {
-    // this.isSignedIn = await this._isSignedIn();
   }
 
   _isSignedIn() {
@@ -42,25 +48,6 @@ export class AppLogin extends connect(store)(Mixin(LitElement, [BaseMixin])) {
 
   }
 
-  // _getConfig(firebase: any, firebaseui: any) {
-  //   return {
-  //     signInSuccessUrl: '/',
-  //     signInOptions: [
-  //       firebase.auth.GoogleAuthProvider.PROVIDER_ID,
-  //       firebase.auth.FacebookAuthProvider.PROVIDER_ID,
-  //       firebase.auth.TwitterAuthProvider.PROVIDER_ID,
-  //       firebase.auth.GithubAuthProvider.PROVIDER_ID,
-  //       firebase.auth.EmailAuthProvider.PROVIDER_ID,
-  //       firebase.auth.PhoneAuthProvider.PROVIDER_ID,
-  //       firebaseui.auth.AnonymousAuthProvider.PROVIDER_ID
-  //     ],
-  //     tosUrl: '<your-tos-url>',
-  //     privacyPolicyUrl: function () {
-  //       window.location.assign('<your-privacy-policy-url>');
-  //     }
-  //   };
-  // }
-
   _upgrade() {
     return new Promise(async (resolve, reject) => {
       await Promise.all([
@@ -69,8 +56,8 @@ export class AppLogin extends connect(store)(Mixin(LitElement, [BaseMixin])) {
       ]).then(async ([firebase, firebaseui]) => {
         let instance = firebaseui.auth.AuthUI.getInstance();
         instance = firebaseui.auth.AuthUI.getInstance() || new firebaseui.auth.AuthUI(firebase.auth());
-        await this._isSignedIn();
         if (!this.isSignedIn) instance.start(this.shadowRoot.querySelector('#firebaseui-auth-container'), config.firebaseui);
+        resolve();
       })
     });
   }

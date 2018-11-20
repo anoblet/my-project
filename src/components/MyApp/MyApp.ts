@@ -1,5 +1,4 @@
 import { html, LitElement, property } from '@polymer/lit-element';
-import { until } from 'lit-html/directives/until';
 
 import { Mixin } from '@anoblet/mixin';
 import { BaseMixin } from '@anoblet/base-mixin'
@@ -12,6 +11,8 @@ const AppSettingsI = new AppSettings;
 
 import Template from './MyAppTemplate';
 
+import { TaskMixin } from '../../TaskMixin';
+
 import { config } from '../../../config';
 
 /**
@@ -22,7 +23,7 @@ import { config } from '../../../config';
  * 
  * class BaseElement2 extends Mixin(LitElement, [DebugMixin]) {}
  */
-export class MyApp extends connect(store)(Mixin(LitElement, [BaseMixin])) {
+export class MyApp extends connect(store)(Mixin(LitElement, [BaseMixin, TaskMixin])) {
   @property({ type: String }) title = 'Andrew Noblet'
   taskPending = false;
   template = './MyAppTemplate'
@@ -77,39 +78,6 @@ export class MyApp extends connect(store)(Mixin(LitElement, [BaseMixin])) {
           resolve();
         }
       })
-    });
-  }
-
-  startTask() {
-    this.taskPending = true;
-    this.requestUpdate();
-  }
-
-  stopTask() {
-    this.taskPending = false;
-    this.requestUpdate();
-  }
-
-  runTasks(tasks: any) {
-    this.startTask();
-    return new Promise((resolve, reject) => {
-      return Promise.all(tasks).then((results: any) => {
-        this.stopTask();
-        return results;
-      });
-    });
-  }
-
-  taskChain(tasks: any) {
-    this.startTask();
-    return tasks.reduce((promiseChain: any, currentTask: any) => {
-      return promiseChain.then((chainResults: any) =>
-        currentTask.then((currentResult: any) =>
-          [...chainResults, currentResult]
-        )
-      );
-    }, Promise.resolve([])).then((arrayOfResults: any) => {
-      this.stopTask();
     });
   }
 
