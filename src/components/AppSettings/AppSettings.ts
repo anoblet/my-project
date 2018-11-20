@@ -64,32 +64,35 @@ export class AppSettings extends connect(store)(Mixin(LitElement, [BaseMixin])) 
     });
   }
 
+  checkDefaults(document: any) {
+    document.get().then((doc: any) => {
+      if(!doc.exists) {
+        document.set({
+          debug: false,
+          theme: 'light'
+        })
+      }
+    });
+  }
+
   _firebaseDown() {
-    return new Promise(async (resolve, reject) => {
-      await Promise.all([
+    return new Promise((resolve, reject) => {
+      Promise.all([
         import(/* webpackChunkName: "FirebaseApp" */ 'firebase/app'),
         import(/* webpackChunkName: "FirebaseAuth" */ 'firebase/auth'),
         import(/* webpackChunkName: "FirebaseFirestore" */ 'firebase/firestore'),
         import(/* webpackChunkName: "FirebaseUI" */ 'firebaseui'),
-      ]).then(async ([firebase, auth, store, ui]) => {
+      ]).then(([firebase, auth, store, ui]) => {
         let instance = ui.auth.AuthUI.getInstance() || new ui.auth.AuthUI(firebase.auth());
         let pendingRedirect = instance.isPendingRedirect();
-        return await firebase.auth().onAuthStateChanged(async (user: any) => {
+        return firebase.auth().onAuthStateChanged(async (user: any) => {
           if (!user && !pendingRedirect) resolve();
           if (user) {
             const firestore = firebase.firestore();
             firestore.settings({ timestampsInSnapshots: true });
-            const userSettings = firestore.collection("users").doc(user.uid).collection('settings').doc('default');
-            await userSettings.get().then((doc: any) => {
-              if(!doc.exists) {
-                userSettings.set({
-                  debug: false,
-                  theme: 'light'
-                })
-              }
-            });
-            await userSettings.onSnapshot((doc: any) => {
-              console.log('Snapshot');
+            const userSettings = firestore.doc(`users/${user.uid}/settings/default`);
+            this.checkDefaults(userSettings);
+            userSettings.onSnapshot((doc: any) => {
               this._updateStore(doc.data());
               resolve();
             });
@@ -97,6 +100,9 @@ export class AppSettings extends connect(store)(Mixin(LitElement, [BaseMixin])) 
         });
       });
     });
+  }
+
+  watchDocument(document: any, callback: any) {
 
   }
 
