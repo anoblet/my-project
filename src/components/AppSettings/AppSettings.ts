@@ -81,7 +81,7 @@ export class AppSettings extends connect(store)(Mixin(LitElement, [BaseMixin])) 
       ]).then(([firebase, auth, store, ui]) => {
         let instance = ui.auth.AuthUI.getInstance() || new ui.auth.AuthUI(firebase.auth());
         let pendingRedirect = instance.isPendingRedirect();
-        return firebase.auth().onAuthStateChanged(async (user: any) => {
+        firebase.auth().onAuthStateChanged(async (user: any) => {
           if (!user && !pendingRedirect) resolve();
           if (user) {
             const firestore = firebase.firestore();
