@@ -32,6 +32,7 @@ export class MyApp extends connect(store)(Mixin(LitElement, [BaseMixin, TaskMixi
       import(/* webpackChunkName: "MyLoader" */'../../../packages/my-loader'),
       import(/* webpackChunkName: "MWC-Icon" */'@material/mwc-icon'),
       import(/* webpackChunkName: "MWC-Fab" */'@material/mwc-fab'),
+      import(/* webpackChunkName: "AppFooter" */ '../AppFooter/AppFooter'),
       import(/* webpackChunkName: "AppLogin" */ '../AppLogin/AppLogin'),
       import(/* webpackChunkName: "AppSettings" */ '../AppSettings/AppSettings'),
       this.startFirebase(),

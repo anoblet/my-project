@@ -25,7 +25,7 @@ export default function (props: any) {
         </my-grid>
       </my-flex>
       <my-flex id="bottom">
-        Bottom
+        <app-footer></app-footer>
       </my-flex>
     </my-grid>
     `
