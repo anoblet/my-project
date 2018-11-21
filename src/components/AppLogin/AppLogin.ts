@@ -1,17 +1,12 @@
-import { html, LitElement, property } from '@polymer/lit-element';
-import { Mixin } from '../../../packages/Mixin';
-import { BaseMixin } from '../../../packages/BaseMixin'
-import { TaskMixin } from '../../TaskMixin';
-
+import { LitElement, property } from '@polymer/lit-element';
 import { connect } from 'pwa-helpers/connect-mixin.js';
-import { store } from '../../store.js';
-import { setDebug, setTheme } from '../../actions/Settings.js';
-
-import Template from './AppLoginTemplate';
-
-import * as style from './AppLogin.scss';
-
 import { config } from '../../../config';
+import { BaseMixin } from '../../../packages/BaseMixin';
+import { Mixin } from '../../../packages/Mixin';
+import { setDebug, setTheme } from '../../actions/Settings.js';
+import { store } from '../../store.js';
+import { TaskMixin } from '../../TaskMixin';
+import Template from './AppLoginTemplate';
 
 export class AppLogin extends connect(store)(Mixin(LitElement, [BaseMixin, TaskMixin])) {
   @property({ type: Boolean }) isSignedIn = false;

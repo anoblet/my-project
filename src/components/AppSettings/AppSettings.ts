@@ -1,14 +1,10 @@
 import { html, LitElement, property } from '@polymer/lit-element';
 import { until } from 'lit-html/directives/until';
-
-import { Mixin } from '../../../packages/Mixin';
-import { BaseMixin } from '../../../packages/BaseMixin'
-
 import { connect } from 'pwa-helpers/connect-mixin.js';
-import { store } from '../../store.js';
+import { BaseMixin } from '../../../packages/BaseMixin';
+import { Mixin } from '../../../packages/Mixin';
 import { setDebug, setTheme } from '../../actions/Settings.js';
-
-import Template from './AppSettingsTemplate'
+import { store } from '../../store.js';
 
 export class AppSettings extends connect(store)(Mixin(LitElement, [BaseMixin])) {
   @property({ type: Boolean }) debug = false;

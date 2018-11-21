@@ -1,19 +1,15 @@
 import { html, LitElement, property } from '@polymer/lit-element';
-
-import { Mixin } from '../../../packages/Mixin';
-import { BaseMixin } from '../../../packages/BaseMixin'
 import { connect } from 'pwa-helpers/connect-mixin.js';
+import { config } from '../../../config';
+import { BaseMixin } from '../../../packages/BaseMixin';
+import { Mixin } from '../../../packages/Mixin';
 import { store } from '../../store.js';
-
-import * as style from './MyApp.scss';
+import { TaskMixin } from '../../TaskMixin';
 import { AppSettings } from '../AppSettings/AppSettings';
-const AppSettingsI = new AppSettings;
-
+import * as style from './MyApp.scss';
 import Template from './MyAppTemplate';
 
-import { TaskMixin } from '../../TaskMixin';
-
-import { config } from '../../../config';
+const AppSettingsI = new AppSettings;
 
 /**
  * @todo Extend BaseElement
