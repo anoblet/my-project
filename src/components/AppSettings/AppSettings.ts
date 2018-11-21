@@ -1,8 +1,8 @@
 import { html, LitElement, property } from '@polymer/lit-element';
 import { until } from 'lit-html/directives/until';
 
-import { Mixin } from '@anoblet/mixin';
-import { BaseMixin } from '@anoblet/base-mixin'
+import { Mixin } from '../../../packages/Mixin';
+import { BaseMixin } from '../../../packages/BaseMixin'
 
 import { connect } from 'pwa-helpers/connect-mixin.js';
 import { store } from '../../store.js';

@@ -1,9 +1,12 @@
 import { html } from '@polymer/lit-element';
-
-import('../../../packages/my-loader');
+import style from './MyGrid.scss';
 
 export default function (props: any) {
   return html`
-      <my-loader></my-loader>
-    `
+    <style>
+      ${style}
+    </style>
+    <slot></slot>
+  `
 }
+

@@ -1,7 +1,7 @@
 import { html } from '@polymer/lit-element';
 import { when } from 'lit-html/directives/when';
 
-import(/* webpackChunkName: "MyFlex" */ '@anoblet/my-flex');
+import(/* webpackChunkName: "MyFlex" */ '../../../packages/my-flex');
 
 import * as style from './AppLogin.scss'
 import * as firebaseStyle from './FirebaseUI.scss'

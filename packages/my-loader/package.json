@@ -1,0 +1,16 @@
+{
+  "name": "@anoblet/my-loader",
+  "version": "1.0.0",
+  "description": "",
+  "main": "MyLoader.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Andrew Noblet",
+  "license": "MIT",
+  "dependencies": {
+    "@polymer/lit-element": "^0.6.3",
+    "@anoblet/mixin": "1.0.0",
+    "@anoblet/base-mixin": "1.0.0"
+  }
+}
