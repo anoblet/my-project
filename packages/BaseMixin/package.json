@@ -1,0 +1,19 @@
+{
+  "name": "@anoblet/base-mixin",
+  "version": "1.0.0",
+  "description": "",
+  "main": "BaseMixin.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "@anoblet/defaultvalue": "git+https://github.com/anoblet/DefaultValue.git",
+    "@anoblet/mixin": "1.0.0",
+    "@anoblet/debug-mixin": "1.0.0",
+    "@anoblet/helper-mixin": "1.0.0",
+    "@anoblet/rendertemplate": "git+https://github.com/anoblet/RenderTemplate.git",
+    "@polymer/lit-element": "^0.6.2"
+  }
+}

@@ -1,6 +1,6 @@
 import { html, LitElement, property } from '@polymer/lit-element';
-import { Mixin } from '@anoblet/mixin';
-import { BaseMixin } from '@anoblet/base-mixin'
+import { Mixin } from '../../../packages/Mixin';
+import { BaseMixin } from '../../../packages/BaseMixin'
 import { TaskMixin } from '../../TaskMixin';
 
 import { connect } from 'pwa-helpers/connect-mixin.js';

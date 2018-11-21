@@ -1,0 +1,15 @@
+{
+  "name": "@anoblet/my-grid",
+  "version": "1.0.0",
+  "description": "",
+  "main": "MyGrid.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "@polymer/lit-element": "^0.6.2",
+    "@anoblet/base-mixin": "1.0.0"
+  }
+}

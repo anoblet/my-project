@@ -1,9 +1,9 @@
 import { html } from '@polymer/lit-element';
 import {until} from 'lit-html/directives/until';
 
-import('@anoblet/my-grid');
-import('@anoblet/my-container');
-import('@anoblet/my-flex');
+import('../../../packages/my-grid');
+// import('../../../packages/my-container');
+import('../../../packages/my-flex');
 import('@material/mwc-icon');
 import('@material/mwc-checkbox');
 import('@material/mwc-formfield');

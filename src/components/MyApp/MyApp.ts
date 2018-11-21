@@ -1,7 +1,7 @@
 import { html, LitElement, property } from '@polymer/lit-element';
 
-import { Mixin } from '@anoblet/mixin';
-import { BaseMixin } from '@anoblet/base-mixin'
+import { Mixin } from '../../../packages/Mixin';
+import { BaseMixin } from '../../../packages/BaseMixin'
 import { connect } from 'pwa-helpers/connect-mixin.js';
 import { store } from '../../store.js';
 
@@ -31,9 +31,9 @@ export class MyApp extends connect(store)(Mixin(LitElement, [BaseMixin, TaskMixi
   connectedCallback() {
     super.connectedCallback();
     this.runTasks([
-      import(/* webpackChunkName: "MyFlex" */'@anoblet/my-flex'),
-      import(/* webpackChunkName: "MyGrid" */ '@anoblet/my-grid'),
-      import(/* webpackChunkName: "MyLoader" */'@anoblet/my-loader'),
+      import(/* webpackChunkName: "MyFlex" */'../../../packages/my-flex'),
+      import(/* webpackChunkName: "MyGrid" */ '../../../packages/my-grid'),
+      import(/* webpackChunkName: "MyLoader" */'../../../packages/my-loader'),
       import(/* webpackChunkName: "MWC-Icon" */'@material/mwc-icon'),
       import(/* webpackChunkName: "MWC-Fab" */'@material/mwc-fab'),
       import(/* webpackChunkName: "AppLogin" */ '../AppLogin/AppLogin'),

@@ -1,0 +1,15 @@
+{
+  "name": "@anoblet/debug-mixin",
+  "version": "1.0.0",
+  "description": "",
+  "main": "DebugMixin.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "@anoblet/mixin": "1.0.0",
+    "@anoblet/border-debug": "1.0.0"
+  }
+}
