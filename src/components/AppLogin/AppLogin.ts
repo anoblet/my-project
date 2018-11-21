@@ -16,6 +16,7 @@ import { config } from '../../../config';
 export class AppLogin extends connect(store)(Mixin(LitElement, [BaseMixin, TaskMixin])) {
   @property({ type: Boolean }) isSignedIn = false;
   taskPending = false;
+  ui: any;
 
   constructor() {
     super();
@@ -26,11 +27,8 @@ export class AppLogin extends connect(store)(Mixin(LitElement, [BaseMixin, TaskM
     super.connectedCallback();
     this.runTasks([
       this._isSignedIn(),
+      this._upgrade()
     ])
-  }
-
-  firstUpdated() {
-    this._upgrade();
   }
 
   _isSignedIn() {
@@ -40,6 +38,7 @@ export class AppLogin extends connect(store)(Mixin(LitElement, [BaseMixin, TaskM
         import(/* webpackChunkName: "FirebaseAuth" */'firebase/auth'),
       ]).then(([firebase]) => {
         firebase.auth().onAuthStateChanged((user: any) => {
+          if(this.isSignedIn && !user) this._logoutHandler(); 
           this.isSignedIn = user ? true : false;
           resolve(user ? true : false);
         });
@@ -54,9 +53,10 @@ export class AppLogin extends connect(store)(Mixin(LitElement, [BaseMixin, TaskM
         import(/* webpackChunkName: "FirebaseApp" */'firebase/app'),
         import(/* webpackChunkName: "FirebaseUI" */'firebaseui')
       ]).then(async ([firebase, firebaseui]) => {
-        let instance = firebaseui.auth.AuthUI.getInstance();
-        instance = firebaseui.auth.AuthUI.getInstance() || new firebaseui.auth.AuthUI(firebase.auth());
-        if (!this.isSignedIn) instance.start(this.shadowRoot.querySelector('#firebaseui-auth-container'), config.firebaseui);
+        const instance = firebaseui.auth.AuthUI.getInstance() || new firebaseui.auth.AuthUI(firebase.auth());
+        const e = document.createElement('div');
+        instance.start(e, config.firebaseui);
+        this.ui = e;
         resolve();
       })
     });
@@ -71,7 +71,8 @@ export class AppLogin extends connect(store)(Mixin(LitElement, [BaseMixin, TaskM
 
   _updateStore(data: any) {
     const state = store.getState();
-    const mergedState = Object.assign(state, data)
+    const settings = state.settings;
+    const mergedState = Object.assign(settings, data)
     return new Promise(async (resolve, reject) => {
       await store.dispatch(setDebug(mergedState.debug));
       await store.dispatch(setTheme(mergedState.theme));
@@ -80,15 +81,20 @@ export class AppLogin extends connect(store)(Mixin(LitElement, [BaseMixin, TaskM
   }
 
   _logoutHandler() {
-    this.isSignedIn = false;
+    this.logout();
+  }
+
+  logout() {
     Promise.all([
       import(/* webpackChunkName: "FirebaseApp" */ 'firebase/app'),
       // import(/* webpackChunkName: "firebaseAuth" */ 'firebase/auth')
     ]).then(([firebase]) => {
       firebase.auth().signOut();
-      this._upgrade();
+      this.runTasks([
+        this._resetSettings(),
+        this._isSignedIn(),
+      ])
     });
-    this._resetSettings();
   }
 
   render() {
