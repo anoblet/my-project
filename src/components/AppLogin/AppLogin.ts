@@ -13,11 +13,6 @@ export class AppLogin extends connect(store)(Mixin(LitElement, [BaseMixin, TaskM
   taskPending = false;
   ui: any;
 
-  constructor() {
-    super();
-    // this._isSignedIn();
-  }
-
   connectedCallback() {
     super.connectedCallback();
     this.runTasks([
