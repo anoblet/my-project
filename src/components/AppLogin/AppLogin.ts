@@ -7,17 +7,19 @@ import { setDebug, setTheme } from '../../actions/Settings.js';
 import { store } from '../../store.js';
 import { TaskMixin } from '../../../packages/TaskMixin';
 import Template from './AppLoginTemplate';
+import * as firebase from 'firebase/app';
+const firebaseui = require('firebaseui');
 
 export class AppLogin extends connect(store)(Mixin(LitElement, [BaseMixin, TaskMixin])) {
   @property({ type: Boolean }) isSignedIn = false;
-  taskPending = false;
-  ui: any;
+  form: any;
 
   connectedCallback() {
     super.connectedCallback();
     this.runTasks([
-      this._isSignedIn(),
-      this._upgrade()
+      // this._isSignedIn(),
+      this.registerAuthStateChanged(),
+      // this._upgrade()
     ])
   }
 
@@ -28,13 +30,42 @@ export class AppLogin extends connect(store)(Mixin(LitElement, [BaseMixin, TaskM
         import(/* webpackChunkName: "FirebaseAuth" */'firebase/auth'),
       ]).then(([firebase]) => {
         firebase.auth().onAuthStateChanged((user: any) => {
-          if(this.isSignedIn && !user) this._logoutHandler(); 
+          if (this.isSignedIn && !user) this._logoutHandler();
           this.isSignedIn = user ? true : false;
           resolve(user ? true : false);
         });
       });
     });
+  }
 
+  registerAuthStateChanged() {
+    Promise.all([
+      import(/* webpackChunkName: "FirebaseApp" */ 'firebase/app'),
+      import(/* webpackChunkName: "FirebaseAuth" */'firebase/auth'),
+    ]).then(([firebase]) => {
+      firebase.auth().onAuthStateChanged((user: any) => {
+        this.authStateChanged(user);
+      });
+    });
+  }
+
+  signedIn(user: any) {
+    return user ? true : false;
+  }
+
+  authStateChanged(user: any) {
+    console.log(user);
+    const userModel:any = {};
+    this.isSignedIn = this.signedIn(user);
+    if(this.isSignedIn) {
+      userModel.name = user.displayName;
+      userModel.email = user.email;
+      userModel.photo = this.getPhotoUrl(user);
+    }
+  }
+
+  getPhotoUrl(user: any) {
+    return user.photoURL;
   }
 
   _upgrade() {
@@ -46,7 +77,7 @@ export class AppLogin extends connect(store)(Mixin(LitElement, [BaseMixin, TaskM
         const instance = firebaseui.auth.AuthUI.getInstance() || new firebaseui.auth.AuthUI(firebase.auth());
         const e = document.createElement('div');
         instance.start(e, config.firebaseui);
-        this.ui = e;
+        this.form = e;
         resolve();
       })
     });
@@ -92,10 +123,9 @@ export class AppLogin extends connect(store)(Mixin(LitElement, [BaseMixin, TaskM
       import(/* webpackChunkName: "FirebaseApp" */'firebase/app'),
       import(/* webpackChunkName: "FirebaseUI" */'firebaseui')
     ]).then(async ([firebase, firebaseui]) => {
-      const instance = firebaseui.auth.AuthUI.getInstance() || new firebaseui.auth.AuthUI(firebase.auth());
       const form = document.createElement('div');
-      instance.start(form, config.firebaseui);
-      // this.ui = e;
+      const ui = firebaseui.auth.AuthUI.getInstance() || new firebaseui.auth.AuthUI(firebase.auth());
+      ui.start(form, config.firebaseui);
       return form;
     })
   }
