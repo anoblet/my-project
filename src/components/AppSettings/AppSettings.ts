@@ -6,12 +6,20 @@ import { Mixin } from '../../../packages/Mixin';
 import { setDebug, setTheme } from '../../actions/Settings.js';
 import { store } from '../../store.js';
 import { AuthChangedMixin } from './AuthChangedMixin';
+import { OnSnapshotMixin } from './OnSnapshotMixin';
 
-export class AppSettings extends connect(store)(Mixin(LitElement, [BaseMixin, AuthChangedMixin])) {
-  @property({ type: Boolean }) debug = false;
-  @property({ type: String }) theme = 'light';
-  // @property({type: Boolean}) finished = false;
+export class AppSettings extends connect(store)(Mixin(LitElement, [BaseMixin, AuthChangedMixin, OnSnapshotMixin])) {
   template = './AppSettingsTemplate';
+
+  connectedCallback() {
+    super.connectedCallback();
+    this.registerAuthChangedCallback();
+  }
+
+  authChangedCallback(user: any) {
+    console.log('Auth changed!', user);
+    alert('Auth changed!');
+  }
 
   _firebaseUp(data: any) {
     Promise.all([
@@ -76,34 +84,20 @@ export class AppSettings extends connect(store)(Mixin(LitElement, [BaseMixin, Au
             firestore.settings({ timestampsInSnapshots: true });
             const userSettings = firestore.doc(`users/${user.uid}/settings/default`);
             this.checkDefaults(userSettings);
-            userSettings.onSnapshot((doc: any) => {
-              const source = doc.metadata.hasPendingWrites ? "local" : "remote";
-              if(source !== 'local') this._updateStore(doc.data());
-              resolve();
-            });
+            this.registerOnSnapshot(userSettings);
+            resolve();
+            // userSettings.onSnapshot((doc: any) => {
+            //   this.onSnapshotCallback(doc);
+            //   resolve();
+            //   // const source = doc.metadata.hasPendingWrites ? "local" : "remote";
+            //   // if(source !== 'local') this._updateStore(doc.data());
+            //   // resolve();
+            // });
           }
         });
       });
     });
   }
-
-  // signedIn: any;
-  // No side effects
-  // registerAuthChangedCallback() {
-  //   Promise.all([
-  //     import(/* webpackChunkName: "FirebaseApp" */ 'firebase/app'),
-  //     import(/* webpackChunkName: "FirebaseAuth" */ 'firebase/auth'),
-  //   ]).then (([app]) => {
-  //       app.auth().onAuthStateChanged((user: any) => {
-  //         this.authChangedCallback(user);
-  //     });      
-  //   });
-  // }
-
-
-  // authChangedCallback(user: any) {
-  //   this.signedIn = user ? true : false;
-  // }
 
   watchDocument(document: any, callback: any) {
 

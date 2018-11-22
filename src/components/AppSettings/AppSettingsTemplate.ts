@@ -1,8 +1,6 @@
 import { html } from '@polymer/lit-element';
-import {until} from 'lit-html/directives/until';
 
 import('../../../packages/my-grid');
-// import('../../../packages/my-container');
 import('../../../packages/my-flex');
 import('@material/mwc-icon');
 import('@material/mwc-checkbox');
@@ -12,8 +10,8 @@ import * as style from './AppSettings.scss'
 
 const loremIpsum = require('lorem-ipsum');
 
-export default async function (props: any) {
-  return await html`
+export default function (props: any) {
+  return html`
     <style>
       ${style}
     </style>
