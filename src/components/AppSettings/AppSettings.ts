@@ -18,7 +18,7 @@ export class AppSettings extends connect(store)(Mixin(LitElement, [BaseMixin, Au
 
   authChangedCallback(user: any) {
     console.log('Auth changed!', user);
-    alert('Auth changed!');
+    // alert('Auth changed!');
   }
 
   _firebaseUp(data: any) {
@@ -74,7 +74,7 @@ export class AppSettings extends connect(store)(Mixin(LitElement, [BaseMixin, Au
         import(/* webpackChunkName: "FirebaseAuth" */ 'firebase/auth'),
         import(/* webpackChunkName: "FirebaseFirestore" */ 'firebase/firestore'),
         import(/* webpackChunkName: "FirebaseUI" */ 'firebaseui'),
-      ]).then(([firebase, auth, firestore, ui]) => {
+      ]).then(async ([firebase, auth, firestore, ui]) => {
         let instance = ui.auth.AuthUI.getInstance() || new ui.auth.AuthUI(firebase.auth());
         let pendingRedirect = instance.isPendingRedirect();
         firebase.auth().onAuthStateChanged(async (user: any) => {
@@ -84,23 +84,13 @@ export class AppSettings extends connect(store)(Mixin(LitElement, [BaseMixin, Au
             firestore.settings({ timestampsInSnapshots: true });
             const userSettings = firestore.doc(`users/${user.uid}/settings/default`);
             this.checkDefaults(userSettings);
-            this.registerOnSnapshot(userSettings);
-            resolve();
-            // userSettings.onSnapshot((doc: any) => {
-            //   this.onSnapshotCallback(doc);
-            //   resolve();
-            //   // const source = doc.metadata.hasPendingWrites ? "local" : "remote";
-            //   // if(source !== 'local') this._updateStore(doc.data());
-            //   // resolve();
-            // });
+            this.registerOnSnapshot(userSettings).then(() => {
+              resolve();
+            });
           }
         });
       });
     });
-  }
-
-  watchDocument(document: any, callback: any) {
-
   }
 
   async _updateStore(data: any) {
