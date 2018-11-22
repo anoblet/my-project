@@ -5,8 +5,9 @@ import { BaseMixin } from '../../../packages/BaseMixin';
 import { Mixin } from '../../../packages/Mixin';
 import { setDebug, setTheme } from '../../actions/Settings.js';
 import { store } from '../../store.js';
+import { AuthChangedMixin } from './AuthChangedMixin';
 
-export class AppSettings extends connect(store)(Mixin(LitElement, [BaseMixin])) {
+export class AppSettings extends connect(store)(Mixin(LitElement, [BaseMixin, AuthChangedMixin])) {
   @property({ type: Boolean }) debug = false;
   @property({ type: String }) theme = 'light';
   // @property({type: Boolean}) finished = false;
@@ -85,6 +86,24 @@ export class AppSettings extends connect(store)(Mixin(LitElement, [BaseMixin])) 
       });
     });
   }
+
+  // signedIn: any;
+  // No side effects
+  // registerAuthChangedCallback() {
+  //   Promise.all([
+  //     import(/* webpackChunkName: "FirebaseApp" */ 'firebase/app'),
+  //     import(/* webpackChunkName: "FirebaseAuth" */ 'firebase/auth'),
+  //   ]).then (([app]) => {
+  //       app.auth().onAuthStateChanged((user: any) => {
+  //         this.authChangedCallback(user);
+  //     });      
+  //   });
+  // }
+
+
+  // authChangedCallback(user: any) {
+  //   this.signedIn = user ? true : false;
+  // }
 
   watchDocument(document: any, callback: any) {
 
