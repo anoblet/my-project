@@ -8,6 +8,7 @@ import('@material/mwc-formfield');
 
 import * as style from './AppSettings.scss'
 
+// import * as loremIpsum from 'lorem-ipsum';
 const loremIpsum = require('lorem-ipsum');
 
 export default function (props: any) {

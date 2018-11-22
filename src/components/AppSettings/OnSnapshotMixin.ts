@@ -1,6 +1,6 @@
 export const OnSnapshotMixin = function (superClass: any) {
   return class extends superClass {
-    registerOnSnapshot(document: any) {
+    async registerOnSnapshot(document: any) {
       return new Promise((resolve, reject) => {
         document.onSnapshot((doc: any) => {
           this.onSnapshotCallback(doc);

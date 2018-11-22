@@ -1,5 +1,7 @@
 export const TaskMixin = function (superClass: any) {
   return class extends superClass {
+    taskPending = false;
+    
     startTask() {
       this.taskPending = true;
       this.requestUpdate();

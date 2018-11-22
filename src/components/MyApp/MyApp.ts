@@ -24,6 +24,7 @@ export class MyApp extends connect(store)(Mixin(LitElement, [BaseMixin, TaskMixi
   taskPending = false;
   template = './MyAppTemplate'
 
+  // Lifecycle
   connectedCallback() {
     super.connectedCallback();
     this.runTasks([
@@ -35,30 +36,25 @@ export class MyApp extends connect(store)(Mixin(LitElement, [BaseMixin, TaskMixi
       import(/* webpackChunkName: "AppFooter" */ '../AppFooter/AppFooter'),
       import(/* webpackChunkName: "AppLogin" */ '../AppLogin/AppLogin'),
       import(/* webpackChunkName: "AppSettings" */ '../AppSettings/AppSettings'),
-      this.startFirebase(),
+      this.initFirebase(),
       this.checkRedirect(),
       AppSettingsI._firebaseDown()
     ]);
   }
 
-  startFirebase() {
+  // Helpers
+  initFirebase() {
     return new Promise((resolve, reject) => {
       import('firebase/app').then((app) => {
         if (app.apps.length === 0) app.initializeApp(config.firebase);
         resolve();
       });
-    })
-  }
-
-  _toggleDrawer() {
-    const drawer = this.shadowRoot.querySelector('#drawer');
-    const drawerContainer = this.shadowRoot.querySelector('#drawer-container')
-    drawer._toggleAttribute('hidden');
-    drawerContainer._toggleAttribute('opened');
+    });
   }
 
   checkRedirect() {
     return new Promise((resolve, reject) => {
+      resolve();
       Promise.all([
         import('firebase/app'),
         import('firebase/auth'),
@@ -76,6 +72,14 @@ export class MyApp extends connect(store)(Mixin(LitElement, [BaseMixin, TaskMixi
         }
       })
     });
+  }
+  
+  // Events
+  _toggleDrawer() {
+    const drawer = this.shadowRoot.querySelector('#drawer');
+    const drawerContainer = this.shadowRoot.querySelector('#drawer-container')
+    drawer._toggleAttribute('hidden');
+    drawerContainer._toggleAttribute('opened');
   }
 
   stateChanged(state: any) {
