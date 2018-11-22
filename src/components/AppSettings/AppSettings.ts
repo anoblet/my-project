@@ -7,6 +7,7 @@ import { setDebug, setTheme } from '../../actions/Settings.js';
 import { store } from '../../store.js';
 import { AuthChangedMixin } from './AuthChangedMixin';
 import { OnSnapshotMixin } from './OnSnapshotMixin';
+import Template from './AppSettingsTemplate';
 
 export class AppSettings extends connect(store)(Mixin(LitElement, [BaseMixin, AuthChangedMixin, OnSnapshotMixin])) {
   template = './AppSettingsTemplate';
@@ -77,7 +78,7 @@ export class AppSettings extends connect(store)(Mixin(LitElement, [BaseMixin, Au
       ]).then(async ([firebase, auth, firestore, ui]) => {
         let instance = ui.auth.AuthUI.getInstance() || new ui.auth.AuthUI(firebase.auth());
         let pendingRedirect = instance.isPendingRedirect();
-        firebase.auth().onAuthStateChanged(async (user: any) => {
+        firebase.auth().onAuthStateChanged((user: any) => {
           if (!user && !pendingRedirect) resolve();
           if (user) {
             const firestore = firebase.firestore();
@@ -108,6 +109,7 @@ export class AppSettings extends connect(store)(Mixin(LitElement, [BaseMixin, Au
   }
 
   render() {
+    return Template.bind(this)();
     return html`
       ${until(
       this.importTemplate().then(

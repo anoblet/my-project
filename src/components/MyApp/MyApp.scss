@@ -11,8 +11,8 @@
   --debug-padding: 0;
   --debug-border: 0;
 
-  --mdc-theme-primary: #242424;
-  --mdc-theme-secondary: #242424;
+  --mdc-theme-primary: #AA3939;
+  --mdc-theme-secondary: #D46A6A;
 
   display: flex;
   flex: 1;
@@ -42,6 +42,7 @@
 #top {
   align-items: center;
   justify-content: space-between;
+  padding: .25em .5em !important;
 }
 
 #menu:hover {

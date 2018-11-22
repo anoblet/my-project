@@ -45,7 +45,7 @@ export class MyApp extends connect(store)(Mixin(LitElement, [BaseMixin, TaskMixi
   // Helpers
   initFirebase() {
     return new Promise((resolve, reject) => {
-      import('firebase/app').then((app) => {
+      import(/* webpackChunkName: "FirebaseApp" */ 'firebase/app').then((app) => {
         if (app.apps.length === 0) app.initializeApp(config.firebase);
         resolve();
       });
@@ -56,9 +56,9 @@ export class MyApp extends connect(store)(Mixin(LitElement, [BaseMixin, TaskMixi
     return new Promise((resolve, reject) => {
       resolve();
       Promise.all([
-        import('firebase/app'),
-        import('firebase/auth'),
-        import('firebaseui'),
+        import(/* webpackChunkName: "FirebaseApp" */'firebase/app'),
+        import(/* webpackChunkName: "FirebaseAuth" */'firebase/auth'),
+        import(/* webpackChunkName: "FirebaseUI" */'firebaseui'),
       ]).then(([app, auth, ui]) => {
         let instance = ui.auth.AuthUI.getInstance() || new ui.auth.AuthUI(app.auth());
         if (instance.isPendingRedirect()) {
@@ -73,7 +73,7 @@ export class MyApp extends connect(store)(Mixin(LitElement, [BaseMixin, TaskMixi
       })
     });
   }
-  
+
   // Events
   _toggleDrawer() {
     const drawer = this.shadowRoot.querySelector('#drawer');
