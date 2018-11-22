@@ -39,7 +39,7 @@ export class AppLogin extends connect(store)(Mixin(LitElement, [BaseMixin, TaskM
 
   _upgrade() {
     return new Promise(async (resolve, reject) => {
-      await Promise.all([
+      Promise.all([
         import(/* webpackChunkName: "FirebaseApp" */'firebase/app'),
         import(/* webpackChunkName: "FirebaseUI" */'firebaseui')
       ]).then(async ([firebase, firebaseui]) => {
@@ -85,6 +85,19 @@ export class AppLogin extends connect(store)(Mixin(LitElement, [BaseMixin, TaskM
         this._isSignedIn(),
       ])
     });
+  }
+
+  getForm() {
+    return Promise.all([
+      import(/* webpackChunkName: "FirebaseApp" */'firebase/app'),
+      import(/* webpackChunkName: "FirebaseUI" */'firebaseui')
+    ]).then(async ([firebase, firebaseui]) => {
+      const instance = firebaseui.auth.AuthUI.getInstance() || new firebaseui.auth.AuthUI(firebase.auth());
+      const form = document.createElement('div');
+      instance.start(form, config.firebaseui);
+      // this.ui = e;
+      return form;
+    })
   }
 
   render() {

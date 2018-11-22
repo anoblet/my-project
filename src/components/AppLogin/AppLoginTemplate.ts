@@ -1,5 +1,7 @@
 import { html } from '@polymer/lit-element';
+import { until } from 'lit-html/directives/until';
 import { when } from 'lit-html/directives/when';
+import '@material/mwc-button';
 
 import(/* webpackChunkName: "MyFlex" */ '../../../packages/my-flex');
 
@@ -13,9 +15,8 @@ export default function (props: any) {
       ${firebaseStyle}
     </style>
     <my-flex direction="column">
-      <div id="firebaseui-auth-container" ?hidden=${this.isSignedIn}></div>
       ${this.isSignedIn ?
-        html`<button @click="${() => this._logoutHandler()}">Sign out</button>` : html `${this.ui}`
+        html`<mwc-button raised @click="${() => this._logoutHandler()}">Sign out</mwc-button>` : html`${until(this.getForm(), html`Loading`)}`
       }
     </my-flex>
   `

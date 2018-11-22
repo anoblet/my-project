@@ -1,4 +1,6 @@
 # my-app
+Init tasks:
+  npm i && lerna bootstrap
 
 Scaffolding includes:
   * Installable as an app

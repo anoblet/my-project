@@ -7,7 +7,7 @@ const RobotstxtPlugin = require("robotstxt-webpack-plugin").default;
 const CleanWebpackPlugin = require('clean-webpack-plugin')
 
 module.exports = {
-  mode: 'development',
+  mode: 'production',
   entry: './src/components/MyApp/MyApp.ts',
   output: {
     path: path.resolve(__dirname, 'dist'),
