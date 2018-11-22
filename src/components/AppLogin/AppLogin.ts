@@ -5,7 +5,7 @@ import { BaseMixin } from '../../../packages/BaseMixin';
 import { Mixin } from '../../../packages/Mixin';
 import { setDebug, setTheme } from '../../actions/Settings.js';
 import { store } from '../../store.js';
-import { TaskMixin } from '../../TaskMixin';
+import { TaskMixin } from '../../../packages/TaskMixin';
 import Template from './AppLoginTemplate';
 
 export class AppLogin extends connect(store)(Mixin(LitElement, [BaseMixin, TaskMixin])) {

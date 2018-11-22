@@ -14,7 +14,6 @@ export const OnSnapshotMixin = function (superClass: any) {
       // alert(message);
 
       if (document.metadata.hasPendingWrites !== 'local') this._updateStore(document.data());
-      Promise.resolve();
     }
   }
 }
