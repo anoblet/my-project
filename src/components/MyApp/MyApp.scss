@@ -42,7 +42,14 @@
 #top, #bottom {
   align-items: center;
   justify-content: space-between;
-  padding: .5em 1em !important;
+}
+
+#top {
+  padding: .5em 1em 0 1em !important;
+}
+
+#bottom {
+  padding: 0 1em .5em 1em !important;
 }
 
 #menu:hover {
