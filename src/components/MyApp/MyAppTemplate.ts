@@ -1,10 +1,8 @@
 import { html } from '@polymer/lit-element';
+import '../../../packages/lorem-ipsum';
+import * as style from './MyApp.scss';
 
-const loremIpsum = require('lorem-ipsum');
-
-import * as style from './MyApp.scss'
-
-export default function ({user}: any) {
+export default function ({ user }: any) {
   return html`
     <style>
       ${style}
@@ -17,13 +15,27 @@ export default function ({user}: any) {
       </my-flex>
       <my-flex id="center" style="word-wrap: break-word;">
         <my-grid id="drawer-container">
-          <my-flex id="drawer" class="scroll" hidden>${loremIpsum({count: 10})}</my-flex>
+          <my-flex id="drawer" class="scroll" hidden><lorem-ipsum></lorem-ipsum></my-flex>
           <my-flex direction="column" id="content" class="scroll" grow>
-          <my-card>
-              <app-login></app-login>
-          </my-card>  
-          <my-card>
-              <app-settings></app-settings>
+            <my-card>  
+              <my-grid style="grid-template-columns: 1fr 1fr;"> 
+                <my-card>
+                  <div slot="title">Settings</div>
+                  <app-settings></app-settings>
+                </my-card>
+                <my-card>
+                  <div slot="title">User</div>
+                  <app-login></app-login>
+                </my-card>  
+              </my-grid> 
+            </my-card>
+            <my-card>
+              <div slot="title">State</div>
+              <pre style="overflow: hidden;">${JSON.stringify(this.state, null, 2)};</pre>
+            </my-card>
+            <my-card>
+              <div slot="title">Lorem Ipsum</div>
+              <lorem-ipsum count="100"></lorem-ipsum>
             </my-card>
           </my-flex>
         </my-grid>
