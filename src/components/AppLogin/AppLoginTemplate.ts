@@ -15,11 +15,9 @@ export default function ({ signedIn }: any) {
       ${firebaseStyle}
     </style>
     <my-flex direction="column">
-      ${signedIn}
-      ${this.state.signedIn ?
+      ${signedIn ?
         html`<mwc-button raised @click="${() => this._logoutHandler()}">Sign out</mwc-button>` : html`${until(this.getForm(), html`Loading`)}`
       }
-      ${this.state.test}
     </my-flex>
   `
 }

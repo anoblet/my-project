@@ -57,11 +57,10 @@ export class AppLogin extends connect(store)(Mixin(LitElement, [BaseMixin, TaskM
   }
 
   authStateChanged(user: any) {
-    const signedIn = user ? true : false;
-    this.setState({signedIn: signedIn});
     const userModel:any = {};
-    this.isSignedIn = this.signedIn(user);
-    if(this.isSignedIn) {
+    const signedIn = user ? true: false;
+    userModel.signedIn = signedIn;
+    if(signedIn) {
       userModel.name = user.displayName;
       userModel.email = user.email;
       userModel.photo = this.getPhotoUrl(user);
@@ -116,6 +115,11 @@ export class AppLogin extends connect(store)(Mixin(LitElement, [BaseMixin, TaskM
       // import(/* webpackChunkName: "firebaseAuth" */ 'firebase/auth')
     ]).then(([firebase]) => {
       firebase.auth().signOut();
+      this.setState({
+        name: false,
+        email: false,
+        photo: false
+      })
       this.runTasks([
         this._resetSettings(),
       ])
