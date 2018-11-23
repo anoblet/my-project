@@ -45,16 +45,18 @@
 }
 
 #top {
-  padding: .75em 1.25em .75em 1.25em !important;
+  padding: 1em 1.25em 1em 1.25em !important;
 }
 
 #bottom {
   position: fixed;
   bottom: 0;
   padding: 0 1em .5em 1em !important;
+  /* Weird hack */
   left: 50%;
   -webkit-transform: translateX(-50%);
   transform: translateX(-50%)
+  /**/
 }
 
 #menu:hover {
