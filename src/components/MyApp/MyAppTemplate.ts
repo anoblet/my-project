@@ -15,24 +15,28 @@ export default function ({ user }: any) {
       </my-flex>
       <my-flex id="center" style="word-wrap: break-word;">
         <my-grid id="drawer-container">
-          <my-flex id="drawer" class="scroll" hidden><lorem-ipsum></lorem-ipsum></my-flex>
+          <my-flex id="drawer" class="scroll" hidden>
+            <my-card>
+              <lorem-ipsum></lorem-ipsum>
+            </my-card>
+          </my-flex>
           <my-flex direction="column" id="content" class="scroll" grow>
-            <my-card>  
+            <my-card>
+              <div slot="title">State</div>
+              <pre style="overflow: hidden;">${JSON.stringify(this.state, null, 2)};</pre>
+            </my-card>  
+            <div>
               <my-grid style="grid-template-columns: 1fr 1fr;"> 
+                <my-card>
+                  <div slot="title">User</div>
+                  <app-login></app-login>
+                </my-card>    
                 <my-card>
                   <div slot="title">Settings</div>
                   <app-settings></app-settings>
                 </my-card>
-                <my-card>
-                  <div slot="title">User</div>
-                  <app-login></app-login>
-                </my-card>  
               </my-grid> 
-            </my-card>
-            <my-card>
-              <div slot="title">State</div>
-              <pre style="overflow: hidden;">${JSON.stringify(this.state, null, 2)};</pre>
-            </my-card>
+            </div>
             <my-card>
               <div slot="title">Lorem Ipsum</div>
               <lorem-ipsum count="100"></lorem-ipsum>
@@ -40,7 +44,7 @@ export default function ({ user }: any) {
           </my-flex>
         </my-grid>
       </my-flex>
-      <my-flex id="bottom" style="position: fixed; right: 0; bottom: 0; left: 0;">
+      <my-flex id="bottom">
         <app-footer></app-footer>
       </my-flex>
     </my-grid>

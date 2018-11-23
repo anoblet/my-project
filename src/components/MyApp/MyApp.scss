@@ -45,15 +45,16 @@
 }
 
 #top {
-  padding: .5em 1em .75em 1em !important;
+  padding: .75em 1.25em .75em 1.25em !important;
 }
 
 #bottom {
   position: fixed;
   bottom: 0;
-  left: 0;
-  right:0;
   padding: 0 1em .5em 1em !important;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+  transform: translateX(-50%)
 }
 
 #menu:hover {

@@ -19,13 +19,20 @@ export default function ({ settings }: any) {
     </style>
     <my-flex direction="column">
       <div>
+        Dark: <input type="checkbox" aria-label="Theme" ?checked=${this.theme == 'dark'} @change="${(e: any) => this._toggleThemeHandler()}">
+      </div>
+      <div>
         Debug: <input type="checkbox" aria-label="Debug" ?checked=${this.debug} @change="${(e: any) => this._toggleDebugHandler()}">
       </div>
       <div>
-        Dark Theme: <input type="checkbox" aria-label="Theme" ?checked=${this.theme == 'dark'} @change="${(e: any) => this._toggleThemeHandler()}">
+        Primary color: <input type="text" value="${settings.primaryColor}" />
       </div>
       <div>
-        Primary color: <input type="text" value="${settings.primaryColor}" />
+        Theme: 
+        <select>
+          <option>Light</option>
+          <option>Dark</option>
+        </select>
       </div>
     </my-flex>
   `
