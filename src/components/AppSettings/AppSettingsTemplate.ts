@@ -2,6 +2,7 @@ import { html } from '@polymer/lit-element';
 
 import('../../../packages/my-grid');
 import('../../../packages/my-flex');
+import('../../../packages/lorem-ipsum');
 import('@material/mwc-icon');
 import('@material/mwc-checkbox');
 import('@material/mwc-formfield');
@@ -23,7 +24,7 @@ export default function (props: any) {
       <div>
         Dark Theme: <input type="checkbox" aria-label="Theme" ?checked=${this.theme == 'dark'} @change="${(e: any) => this._toggleThemeHandler()}">
       </div>
-      ${loremIpsum({count: 100})}
+      <lorem-ipsum count="100"></lorem-ipsum>
     </my-flex>
   `
 }
