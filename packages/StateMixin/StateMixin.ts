@@ -7,10 +7,6 @@ export const StateMixin = function (superClass: any) {
       this.setStore(store);
     }
 
-    getState() {
-      return this.state;
-    }
-
     setStore(store: any) {
       this.store = store;
     }

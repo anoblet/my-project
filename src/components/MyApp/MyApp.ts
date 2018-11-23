@@ -24,7 +24,7 @@ export class MyApp extends connect(store)(Mixin(LitElement, [BaseMixin, TaskMixi
   @property({ type: String }) title = 'Andrew Noblet'
   taskPending = false;
   template = './MyAppTemplate'
-  @property({ type: Object }) state = {};
+  @property({ type: Object }) state: any;
 
   // Lifecycle
   connectedCallback() {
@@ -42,6 +42,20 @@ export class MyApp extends connect(store)(Mixin(LitElement, [BaseMixin, TaskMixi
       this.checkRedirect(),
       AppSettingsI._firebaseDown()
     ]);
+  }
+
+  updated(changedProperties: any) {
+    super.updated(changedProperties);
+    if(!this.taskPending) this.setButtonBackground();
+  }
+
+  setButtonBackground() {
+    const fab = this.shadowRoot.querySelector('mwc-fab');
+    const button = fab.shadowRoot.querySelector('button')
+    if(button) {
+      button.style.background = `url('${this.state.user.photo}')`;
+      button.style.backgroundSize = "contain";
+    }
   }
 
   // Helpers
