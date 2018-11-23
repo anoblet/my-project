@@ -7,8 +7,10 @@ export default function ({ }: any) {
     <style>
       ${style}
     </style>
+    <mwc-fab mini></mwc-fab>
     <a href="/">
       <mwc-fab icon="home"></mwc-fab>
     </a>
+    <mwc-fab mini></mwc-fab>
   `
 }
