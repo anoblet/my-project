@@ -1,9 +1,10 @@
+import { property } from '@polymer/lit-element';
 import { store } from '../../store.js';
-import { setState } from './actions/User';
+import { setState } from './redux/actions/User';
 
 export const StateMixin = function (superClass: any) {
   return class extends superClass {
-    state: any = {};
+    // state: any = {};
 
     getState() {
       return this.state;
@@ -11,11 +12,11 @@ export const StateMixin = function (superClass: any) {
 
     setState(data: any) {
       const state = store.getState();
-        store.dispatch(setState({...state, data}));
+      store.dispatch(setState({...data}));
     }
 
     stateChanged(state: any) {
-      this.state = state;
+      console.log('Here');
     }
   }
 }

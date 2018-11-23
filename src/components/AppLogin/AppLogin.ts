@@ -9,18 +9,33 @@ import { TaskMixin } from '../../../packages/TaskMixin';
 import Template from './AppLoginTemplate';
 import * as firebase from 'firebase/app';
 const firebaseui = require('firebaseui');
+import { StateMixin } from './StateMixin';
 
-export class AppLogin extends connect(store)(Mixin(LitElement, [BaseMixin, TaskMixin])) {
+import { user } from './redux/reducers/User';
+store.addReducers({
+  user
+});
+
+export class AppLogin extends connect(store)(Mixin(LitElement, [BaseMixin, TaskMixin, StateMixin])) {
   @property({ type: Boolean }) isSignedIn = false;
+  @property({ type: Object }) state = {};
   form: any;
 
   connectedCallback() {
     super.connectedCallback();
     this.runTasks([
-      // this._isSignedIn(),
       this.registerAuthStateChanged(),
-      // this._upgrade()
     ])
+  }
+
+  firstUpdated() {
+    this.setState({
+      test: 'Test',
+      test2: 'Test2'
+    })
+    this.setState({
+      test: 'Test3'
+    })
   }
 
   _isSignedIn() {
@@ -54,6 +69,8 @@ export class AppLogin extends connect(store)(Mixin(LitElement, [BaseMixin, TaskM
   }
 
   authStateChanged(user: any) {
+    const signedIn = user ? true : false;
+    this.setState({signedIn: signedIn});
     console.log(user);
     const userModel:any = {};
     this.isSignedIn = this.signedIn(user);
@@ -102,6 +119,7 @@ export class AppLogin extends connect(store)(Mixin(LitElement, [BaseMixin, TaskM
   }
 
   _logoutHandler() {
+    this.setState({signedIn: false});
     this.logout();
   }
 
@@ -130,8 +148,12 @@ export class AppLogin extends connect(store)(Mixin(LitElement, [BaseMixin, TaskM
     })
   }
 
+  stateChanged(state: any) {
+    this.state = state.user;
+  }
+
   render() {
-    return Template.bind(this)();
+    return Template.bind(this)(this.state);
   }
 }
 

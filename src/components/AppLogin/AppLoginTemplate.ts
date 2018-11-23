@@ -8,16 +8,18 @@ import(/* webpackChunkName: "MyFlex" */ '../../../packages/my-flex');
 import * as style from './AppLogin.scss'
 import * as firebaseStyle from './FirebaseUI.scss'
 
-export default function (props: any) {
+export default function ({ signedIn }: any) {
   return html`
     <style>
       ${style}
       ${firebaseStyle}
     </style>
     <my-flex direction="column">
-      ${this.isSignedIn ?
+      ${signedIn}
+      ${this.state.signedIn ?
         html`<mwc-button raised @click="${() => this._logoutHandler()}">Sign out</mwc-button>` : html`${until(this.getForm(), html`Loading`)}`
       }
+      ${this.state.test}
     </my-flex>
   `
 }

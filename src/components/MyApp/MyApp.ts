@@ -83,6 +83,7 @@ export class MyApp extends connect(store)(Mixin(LitElement, [BaseMixin, TaskMixi
   }
 
   stateChanged(state: any) {
+    console.log('State changed');
     if (state.settings.debug != null) {
       state.settings.debug ? this.setAttribute('debug', '') : this.removeAttribute('debug');
     }
