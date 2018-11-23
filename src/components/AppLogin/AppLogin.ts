@@ -3,12 +3,13 @@ import { connect } from 'pwa-helpers/connect-mixin.js';
 import { config } from '../../../config';
 import { BaseMixin } from '../../../packages/BaseMixin';
 import { Mixin } from '../../../packages/Mixin';
+import { StateMixin } from '../../../packages/StateMixin';
+// import { StateMixin } from './StateMixin';
 import { TaskMixin } from '../../../packages/TaskMixin';
 import { setDebug, setTheme } from '../../actions/Settings.js';
 import { store } from '../../store.js';
 import Template from './AppLoginTemplate';
 import { user } from './redux/reducers/User';
-import { StateMixin } from './StateMixin';
 
 store.addReducers({
   user

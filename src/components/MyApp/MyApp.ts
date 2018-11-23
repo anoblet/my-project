@@ -2,6 +2,7 @@ import { html, LitElement, property } from '@polymer/lit-element';
 import { connect } from 'pwa-helpers/connect-mixin.js';
 import { config } from '../../../config';
 import { BaseMixin } from '../../../packages/BaseMixin';
+import { StateMixin } from '../../../packages/StateMixin';
 import { Mixin } from '../../../packages/Mixin';
 import { store } from '../../store.js';
 import { TaskMixin } from '../../../packages/TaskMixin';
@@ -19,10 +20,11 @@ const AppSettingsI = new AppSettings;
  * 
  * class BaseElement2 extends Mixin(LitElement, [DebugMixin]) {}
  */
-export class MyApp extends connect(store)(Mixin(LitElement, [BaseMixin, TaskMixin])) {
+export class MyApp extends connect(store)(Mixin(LitElement, [BaseMixin, TaskMixin, StateMixin])) {
   @property({ type: String }) title = 'Andrew Noblet'
   taskPending = false;
   template = './MyAppTemplate'
+  @property({ type: Object }) state = {};
 
   // Lifecycle
   connectedCallback() {
@@ -84,6 +86,8 @@ export class MyApp extends connect(store)(Mixin(LitElement, [BaseMixin, TaskMixi
 
   stateChanged(state: any) {
     console.log('State changed');
+    console.log(state);
+    this.state = state;
     if (state.settings.debug != null) {
       state.settings.debug ? this.setAttribute('debug', '') : this.removeAttribute('debug');
     }
@@ -95,7 +99,7 @@ export class MyApp extends connect(store)(Mixin(LitElement, [BaseMixin, TaskMixi
   render() {
     return this.taskPending ?
       html`<style>${style}</style><my-loader></my-loader>` :
-      Template.bind(this)();
+      Template.bind(this)(this.state);
   }
 }
 

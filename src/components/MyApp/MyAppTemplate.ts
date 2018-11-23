@@ -4,7 +4,7 @@ const loremIpsum = require('lorem-ipsum');
 
 import * as style from './MyApp.scss'
 
-export default function (props: any) {
+export default function ({user}: any) {
   return html`
     <style>
       ${style}
