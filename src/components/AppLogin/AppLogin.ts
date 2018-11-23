@@ -3,15 +3,13 @@ import { connect } from 'pwa-helpers/connect-mixin.js';
 import { config } from '../../../config';
 import { BaseMixin } from '../../../packages/BaseMixin';
 import { Mixin } from '../../../packages/Mixin';
+import { TaskMixin } from '../../../packages/TaskMixin';
 import { setDebug, setTheme } from '../../actions/Settings.js';
 import { store } from '../../store.js';
-import { TaskMixin } from '../../../packages/TaskMixin';
 import Template from './AppLoginTemplate';
-import * as firebase from 'firebase/app';
-const firebaseui = require('firebaseui');
+import { user } from './redux/reducers/User';
 import { StateMixin } from './StateMixin';
 
-import { user } from './redux/reducers/User';
 store.addReducers({
   user
 });
@@ -28,30 +26,20 @@ export class AppLogin extends connect(store)(Mixin(LitElement, [BaseMixin, TaskM
     ])
   }
 
-  firstUpdated() {
-    this.setState({
-      test: 'Test',
-      test2: 'Test2'
-    })
-    this.setState({
-      test: 'Test3'
-    })
-  }
-
-  _isSignedIn() {
-    return new Promise((resolve, reject) => {
-      Promise.all([
-        import(/* webpackChunkName: "FirebaseApp" */ 'firebase/app'),
-        import(/* webpackChunkName: "FirebaseAuth" */'firebase/auth'),
-      ]).then(([firebase]) => {
-        firebase.auth().onAuthStateChanged((user: any) => {
-          if (this.isSignedIn && !user) this._logoutHandler();
-          this.isSignedIn = user ? true : false;
-          resolve(user ? true : false);
-        });
-      });
-    });
-  }
+  // _isSignedIn() {
+  //   return new Promise((resolve, reject) => {
+  //     Promise.all([
+  //       import(/* webpackChunkName: "FirebaseApp" */ 'firebase/app'),
+  //       import(/* webpackChunkName: "FirebaseAuth" */'firebase/auth'),
+  //     ]).then(([firebase]) => {
+  //       firebase.auth().onAuthStateChanged((user: any) => {
+  //         if (this.isSignedIn && !user) this._logoutHandler();
+  //         this.isSignedIn = user ? true : false;
+  //         resolve(user ? true : false);
+  //       });
+  //     });
+  //   });
+  // }
 
   registerAuthStateChanged() {
     Promise.all([
@@ -71,7 +59,6 @@ export class AppLogin extends connect(store)(Mixin(LitElement, [BaseMixin, TaskM
   authStateChanged(user: any) {
     const signedIn = user ? true : false;
     this.setState({signedIn: signedIn});
-    console.log(user);
     const userModel:any = {};
     this.isSignedIn = this.signedIn(user);
     if(this.isSignedIn) {
@@ -79,6 +66,7 @@ export class AppLogin extends connect(store)(Mixin(LitElement, [BaseMixin, TaskM
       userModel.email = user.email;
       userModel.photo = this.getPhotoUrl(user);
     }
+    this.setState(userModel);
   }
 
   getPhotoUrl(user: any) {
@@ -108,9 +96,8 @@ export class AppLogin extends connect(store)(Mixin(LitElement, [BaseMixin, TaskM
   }
 
   _updateStore(data: any) {
-    const state = store.getState();
-    const settings = state.settings;
-    const mergedState = Object.assign(settings, data)
+    const settings= store.getState().settings;
+    const mergedState = {...settings, ...data}
     return new Promise(async (resolve, reject) => {
       await store.dispatch(setDebug(mergedState.debug));
       await store.dispatch(setTheme(mergedState.theme));
@@ -131,7 +118,6 @@ export class AppLogin extends connect(store)(Mixin(LitElement, [BaseMixin, TaskM
       firebase.auth().signOut();
       this.runTasks([
         this._resetSettings(),
-        this._isSignedIn(),
       ])
     });
   }
