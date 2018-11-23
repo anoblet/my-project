@@ -45,10 +45,14 @@
 }
 
 #top {
-  padding: .5em 1em 0 1em !important;
+  padding: .5em 1em .5em 1em !important;
 }
 
 #bottom {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right:0;
   padding: 0 1em .5em 1em !important;
 }
 

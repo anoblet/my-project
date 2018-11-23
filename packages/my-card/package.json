@@ -1,0 +1,16 @@
+{
+  "name": "my-card",
+  "version": "1.0.0",
+  "description": "",
+  "main": "MyCard.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Andrew Noblet",
+  "license": "ISC",
+    "dependencies": {
+      "@polymer/lit-element": "^0.6.2",
+      "@anoblet/base-mixin": "1.0.0",
+      "@anoblet/debug-mixin": "1.0.0"
+    }
+}

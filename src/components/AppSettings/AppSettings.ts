@@ -2,15 +2,22 @@ import { html, LitElement, property } from '@polymer/lit-element';
 import { until } from 'lit-html/directives/until';
 import { connect } from 'pwa-helpers/connect-mixin.js';
 import { BaseMixin } from '../../../packages/BaseMixin';
+import { StateMixin } from '../../../packages/StateMixin';
 import { Mixin } from '../../../packages/Mixin';
 import { setDebug, setTheme } from '../../actions/Settings.js';
 import { store } from '../../store.js';
 import { AuthChangedMixin } from './AuthChangedMixin';
 import { OnSnapshotMixin } from './OnSnapshotMixin';
 import Template from './AppSettingsTemplate';
+import { settings } from './redux/reducers/Settings';
 
-export class AppSettings extends connect(store)(Mixin(LitElement, [BaseMixin, AuthChangedMixin, OnSnapshotMixin])) {
+// store.addReducers({
+//   settings
+// });
+
+export class AppSettings extends connect(store)(Mixin(LitElement, [BaseMixin, AuthChangedMixin, OnSnapshotMixin, StateMixin])) {
   template = './AppSettingsTemplate';
+  @property({ type: Object }) state = {};
 
   connectedCallback() {
     super.connectedCallback();
@@ -109,7 +116,7 @@ export class AppSettings extends connect(store)(Mixin(LitElement, [BaseMixin, Au
   }
 
   render() {
-    return Template.bind(this)();
+    return Template.bind(this)(this.state);
     return html`
       ${until(
       this.importTemplate().then(
@@ -120,6 +127,7 @@ export class AppSettings extends connect(store)(Mixin(LitElement, [BaseMixin, Au
   }
 
   stateChanged(state: any) {
+    this.state = state;
     this.debug = state.settings.debug;
     this.theme = state.settings.theme;
   }
