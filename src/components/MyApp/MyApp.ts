@@ -29,6 +29,10 @@ export class MyApp extends connect(store)(Mixin(LitElement, [BaseMixin, TaskMixi
   // Lifecycle
   connectedCallback() {
     super.connectedCallback();
+    this.setState({
+      primaryColor: 'blue',
+      secondaryColor: 'red'
+    })
     this.runTasks([
       import(/* webpackChunkName: "MyFlex" */'../../../packages/my-flex'),
       import(/* webpackChunkName: "MyGrid" */ '../../../packages/my-grid'),
@@ -99,9 +103,11 @@ export class MyApp extends connect(store)(Mixin(LitElement, [BaseMixin, TaskMixi
   }
 
   stateChanged(state: any) {
-    console.log('State changed');
-    console.log(state);
     this.state = state;
+    if(state.user) {
+      this.style.setProperty('--mdc-theme-primary', this.state.user.primaryColor);
+      this.style.setProperty('--mdc-theme-secondary', this.state.user.secondaryColor);
+    }
     if (state.settings.debug != null) {
       state.settings.debug ? this.setAttribute('debug', '') : this.removeAttribute('debug');
     }

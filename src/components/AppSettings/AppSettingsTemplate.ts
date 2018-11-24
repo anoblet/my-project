@@ -12,7 +12,7 @@ import('@material/mwc-formfield');
 // import * as loremIpsum from 'lorem-ipsum';
 const loremIpsum = require('lorem-ipsum');
 
-export default function ({ settings }: any) {
+export default function ({ settings, user }: any) {
   return html`
     <style>
       ${style}
@@ -22,13 +22,16 @@ export default function ({ settings }: any) {
         Dark: <input type="checkbox" aria-label="Theme" ?checked=${this.theme == 'dark'} @change="${(e: any) => this._toggleThemeHandler()}">
       </div>
       <div>
-        Debug: <input type="checkbox" aria-label="Debug" ?checked=${this.debug} @change="${(e: any) => this._toggleDebugHandler()}">
+        Debug (Works, but looks weird): <input type="checkbox" aria-label="Debug" ?checked=${this.debug} @change="${(e: any) => this._toggleDebugHandler()}">
       </div>
       <div>
-        Primary color: <input type="text" value="${settings.primaryColor}" />
+        Primary color (Working #fff/white format): <input @input="${(e: any) => this.primaryColorChanged(e)}" type="text" value="${user.primaryColor}" />
       </div>
       <div>
-        Theme: 
+        Secondary color (Working #fff/white format): <input @input="${(e: any) => this.secondaryColorChanged(e)}" type="text" value="${user.primaryColor}" />
+      </div>
+      <div>
+        Theme (Not working): 
         <select>
           <option>Light</option>
           <option>Dark</option>

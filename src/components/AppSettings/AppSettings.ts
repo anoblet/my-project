@@ -17,8 +17,9 @@ import { settings } from './redux/reducers/Settings';
 
 export class AppSettings extends connect(store)(Mixin(LitElement, [BaseMixin, AuthChangedMixin, OnSnapshotMixin, StateMixin])) {
   template = './AppSettingsTemplate';
-  @property({ type: Object }) state = {};
+  @property({ type: Object }) state: any;
 
+  // Lifecycle
   connectedCallback() {
     super.connectedCallback();
     this.registerAuthChangedCallback();
@@ -29,23 +30,34 @@ export class AppSettings extends connect(store)(Mixin(LitElement, [BaseMixin, Au
     // alert('Auth changed!');
   }
 
-  _firebaseUp(data: any) {
-    Promise.all([
-      import(/* webpackChunkName: "FirebaseApp" */ 'firebase/app'),
-      import(/* webpackChunkName: "FirebaseAuth" */ 'firebase/auth'),
-      import(/* webpackChunkName: "FirebaseFirestore" */ 'firebase/firestore'),
-    ]).then(([firebase, auth, firestore]) => {
-      firebase.auth().onAuthStateChanged((user: any) => {
-        if (user) {
-          const firestore = firebase.firestore();
-          firestore.settings({ timestampsInSnapshots: true });
-          const userSettings = firestore.doc(`users/${user.uid}/settings/default`);
-          userSettings.set(data, { merge: true })
-        }
-      });
+  // Helpers
+  checkDefaults(document: any) {
+    document.get().then((doc: any) => {
+      if (!doc.exists) {
+        document.set({
+          debug: false,
+          theme: 'light'
+        })
+      }
     });
   }
 
+  // async _updateStore(data: any) {
+  //   return await new Promise(async (resolve, reject) => {
+  //     await store.dispatch(setDebug(data.debug));
+  //     await store.dispatch(setTheme(data.theme));
+  //     resolve();
+  //   });
+  // }
+
+  // importTemplate() {
+  //   return import(`${this.template}`).then(async (template) => {
+  //     return await template.default.bind(this)()
+  //   });
+  // }
+
+
+  // Handlers 
   _toggleDebugHandler() {
     const state = store.getState();
     store.dispatch(setDebug(!state.settings.debug));
@@ -64,14 +76,33 @@ export class AppSettings extends connect(store)(Mixin(LitElement, [BaseMixin, Au
     });
   }
 
-  checkDefaults(document: any) {
-    document.get().then((doc: any) => {
-      if (!doc.exists) {
-        document.set({
-          debug: false,
-          theme: 'light'
-        })
-      }
+  primaryColorChanged(e: any) {
+    this.setState({
+      primaryColor: e.target.value
+    });
+  }
+
+  secondaryColorChanged(e: any) {
+    this.setState({
+      secondaryColor: e.target.value
+    });
+  }
+
+  // Events
+  _firebaseUp(data: any) {
+    Promise.all([
+      import(/* webpackChunkName: "FirebaseApp" */ 'firebase/app'),
+      import(/* webpackChunkName: "FirebaseAuth" */ 'firebase/auth'),
+      import(/* webpackChunkName: "FirebaseFirestore" */ 'firebase/firestore'),
+    ]).then(([firebase, auth, firestore]) => {
+      firebase.auth().onAuthStateChanged((user: any) => {
+        if (user) {
+          const firestore = firebase.firestore();
+          firestore.settings({ timestampsInSnapshots: true });
+          const userSettings = firestore.doc(`users/${user.uid}/settings/default`);
+          userSettings.set(data, { merge: true })
+        }
+      });
     });
   }
 
@@ -101,33 +132,14 @@ export class AppSettings extends connect(store)(Mixin(LitElement, [BaseMixin, Au
     });
   }
 
-  async _updateStore(data: any) {
-    return await new Promise(async (resolve, reject) => {
-      await store.dispatch(setDebug(data.debug));
-      await store.dispatch(setTheme(data.theme));
-      resolve();
-    });
-  }
-
-  importTemplate() {
-    return import(`${this.template}`).then(async (template) => {
-      return await template.default.bind(this)()
-    });
-  }
-
+  // Render
   render() {
     return Template.bind(this)(this.state);
-    return html`
-      ${until(
-      this.importTemplate().then(
-      (template) => template
-      ), html`Loading`
-      )}
-    `
   }
 
   stateChanged(state: any) {
     this.state = state;
+    this._firebaseUp(this.state.user);
     this.debug = state.settings.debug;
     this.theme = state.settings.theme;
   }
