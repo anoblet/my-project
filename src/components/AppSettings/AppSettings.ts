@@ -22,8 +22,10 @@ export class AppSettings extends connect(store)(Mixin(LitElement, [BaseMixin, Au
   // Lifecycle
   constructor() {
     super();
+    // Always set an app level store
     this.setStore(store);
   }
+
   connectedCallback() {
     super.connectedCallback();
     this.registerAuthChangedCallback();

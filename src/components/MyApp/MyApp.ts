@@ -31,7 +31,7 @@ export class MyApp extends connect(store)(Mixin(LitElement, [BaseMixin, TaskMixi
     super.connectedCallback();
     this.setState({
       primaryColor: 'blue',
-      secondaryColor: 'red'
+      secondaryColor: 'black'
     })
     this.runTasks([
       import(/* webpackChunkName: "MyFlex" */'../../../packages/my-flex'),
