@@ -111,6 +111,18 @@ export class AppSettings extends connect(store)(Mixin(LitElement, [BaseMixin, Au
     this.setState({
       secondaryColor: e.target.value
     }, 'settings');
+    this._firebaseUp({
+      secondaryColor: e.target.value
+    })
+  }
+
+  setTheme(theme: any) {
+    this.setState({
+      theme: theme
+    }, 'settings');
+    this._firebaseUp({
+      theme: theme
+    });
   }
 
   // Events
