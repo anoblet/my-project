@@ -26,21 +26,6 @@ export class AppLogin extends connect(store)(Mixin(LitElement, [BaseMixin, TaskM
     ])
   }
 
-  // _isSignedIn() {
-  //   return new Promise((resolve, reject) => {
-  //     Promise.all([
-  //       import(/* webpackChunkName: "FirebaseApp" */ 'firebase/app'),
-  //       import(/* webpackChunkName: "FirebaseAuth" */'firebase/auth'),
-  //     ]).then(([firebase]) => {
-  //       firebase.auth().onAuthStateChanged((user: any) => {
-  //         if (this.isSignedIn && !user) this._logoutHandler();
-  //         this.isSignedIn = user ? true : false;
-  //         resolve(user ? true : false);
-  //       });
-  //     });
-  //   });
-  // }
-
   registerAuthStateChanged() {
     Promise.all([
       import(/* webpackChunkName: "FirebaseApp" */ 'firebase/app'),
@@ -90,7 +75,7 @@ export class AppLogin extends connect(store)(Mixin(LitElement, [BaseMixin, TaskM
   _resetSettings() {
     this.setState({
       debug: false,
-      dark: false
+      theme: 'light'
     }, 'settings');
   }
 
@@ -105,7 +90,6 @@ export class AppLogin extends connect(store)(Mixin(LitElement, [BaseMixin, TaskM
   }
 
   _logoutHandler() {
-    this.setState({signedIn: false}, 'user');
     this.logout();
   }
 
@@ -116,6 +100,7 @@ export class AppLogin extends connect(store)(Mixin(LitElement, [BaseMixin, TaskM
     ]).then(([firebase]) => {
       firebase.auth().signOut();
       this.setState({
+        signedIn: false,
         name: false,
         email: false,
         photo: false

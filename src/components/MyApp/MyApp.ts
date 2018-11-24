@@ -10,29 +10,24 @@ import { AppSettings } from '../AppSettings/AppSettings';
 import * as style from './MyApp.scss';
 import Template from './MyAppTemplate';
 
-const AppSettingsI = new AppSettings;
+const settings = new AppSettings;
 
 /**
  * @todo Extend BaseElement
- * 
- * import { BaseElement } from '@anoblet/base-element';
- * class BaseElement2 extends Mixin(LitElement, [BaseMixin]) {}
- * 
- * class BaseElement2 extends Mixin(LitElement, [DebugMixin]) {}
  */
+
 export class MyApp extends connect(store)(Mixin(LitElement, [BaseMixin, TaskMixin, StateMixin])) {
   @property({ type: String }) title = 'Andrew Noblet'
-  taskPending = false;
-  template = './MyAppTemplate'
   @property({ type: Object }) state: any;
+  taskPending = false;
 
   // Lifecycle
   connectedCallback() {
     super.connectedCallback();
-    this.setState({
-      primaryColor: 'blue',
-      secondaryColor: 'black'
-    }, 'settings')
+    // this.setState({
+    //   primaryColor: '#CCCCCC',
+    //   secondaryColor: '#000000'
+    // }, 'settings');
     this.runTasks([
       import(/* webpackChunkName: "MyFlex" */'../../../packages/my-flex'),
       import(/* webpackChunkName: "MyGrid" */ '../../../packages/my-grid'),
@@ -44,7 +39,7 @@ export class MyApp extends connect(store)(Mixin(LitElement, [BaseMixin, TaskMixi
       import(/* webpackChunkName: "AppSettings" */ '../AppSettings/AppSettings'),
       this.initFirebase(),
       this.checkRedirect(),
-      AppSettingsI._firebaseDown()
+      settings._firebaseDown()
     ]);
   }
 

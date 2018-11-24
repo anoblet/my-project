@@ -14,7 +14,7 @@ export default function ({ signedIn }: any) {
       ${style}
       ${firebaseStyle}
     </style>
-    <my-flex direction="column">
+    <my-flex direction="column" grow>
       ${signedIn ?
         html`<mwc-button raised @click="${() => this._logoutHandler()}">Sign out</mwc-button>` : html`${until(this.getForm(), html`Loading`)}`
       }

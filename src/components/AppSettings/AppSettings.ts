@@ -28,7 +28,24 @@ export class AppSettings extends connect(store)(Mixin(LitElement, [BaseMixin, Au
 
   connectedCallback() {
     super.connectedCallback();
+    console.log(this.state.settings);
+    if(this.isEmpty(this.state.settings)) {
+      this.setState({
+        debug: false,
+        theme: 'light',
+        primaryColor: '#ff8000',
+        secondaryColor: '#000000'
+      }, 'settings');
+    }
     this.registerAuthChangedCallback();
+  }
+
+  isEmpty(obj: any) {
+    for(var key in obj) {
+        if(obj.hasOwnProperty(key))
+            return false;
+    }
+    return true;
   }
 
   authChangedCallback(user: any) {
