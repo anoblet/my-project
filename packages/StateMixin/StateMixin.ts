@@ -11,9 +11,9 @@ export const StateMixin = function (superClass: any) {
       this.store = store;
     }
 
-    setState(data: any) {
+    setState(action: any, data: any) {
       this.store.dispatch({
-        type: 'SET_STATE',
+        type: action,
         state: data
       });
     }

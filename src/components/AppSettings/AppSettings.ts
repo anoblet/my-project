@@ -11,9 +11,9 @@ import { OnSnapshotMixin } from './OnSnapshotMixin';
 import Template from './AppSettingsTemplate';
 import { settings } from './redux/reducers/Settings';
 
-// store.addReducers({
-//   settings
-// });
+store.addReducers({
+  settings
+});
 
 export class AppSettings extends connect(store)(Mixin(LitElement, [BaseMixin, AuthChangedMixin, StateMixin, OnSnapshotMixin])) {
   template = './AppSettingsTemplate';
@@ -59,8 +59,8 @@ export class AppSettings extends connect(store)(Mixin(LitElement, [BaseMixin, Au
   // Handlers 
   _toggleDebugHandler() 
   {
-    const val = !this.state.user.debug;
-    this.setState({
+    const val = !this.state.settings.debug;
+    this.setState('settings', {
       debug: val
     });
     this._firebaseUp({
@@ -70,9 +70,10 @@ export class AppSettings extends connect(store)(Mixin(LitElement, [BaseMixin, Au
 
   _toggleThemeHandler() {
     const state = store.getState();
-    const theme = state.user.theme || 'light';
+    const theme = state.settings.theme || 'light';
     const newTheme = theme == 'light' ? 'dark' : 'light';
-    this.setState({
+    this.setState('settings',
+    {
       theme: newTheme
     });
     this._firebaseUp({
@@ -81,7 +82,7 @@ export class AppSettings extends connect(store)(Mixin(LitElement, [BaseMixin, Au
   }
 
   primaryColorChanged(e: any) {
-    this.setState({
+    this.setState('settings', {
       primaryColor: e.target.value
     });
     this._firebaseUp({
@@ -90,7 +91,7 @@ export class AppSettings extends connect(store)(Mixin(LitElement, [BaseMixin, Au
   }
 
   secondaryColorChanged(e: any) {
-    this.setState({
+    this.setState('settings', {
       secondaryColor: e.target.value
     });
   }

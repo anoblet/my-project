@@ -4,7 +4,6 @@ import { config } from '../../../config';
 import { BaseMixin } from '../../../packages/BaseMixin';
 import { Mixin } from '../../../packages/Mixin';
 import { StateMixin } from '../../../packages/StateMixin';
-// import { StateMixin } from './StateMixin';
 import { TaskMixin } from '../../../packages/TaskMixin';
 import { setDebug, setTheme } from '../../actions/Settings.js';
 import { store } from '../../store.js';
@@ -66,7 +65,7 @@ export class AppLogin extends connect(store)(Mixin(LitElement, [BaseMixin, TaskM
       userModel.email = user.email;
       userModel.photo = this.getPhotoUrl(user);
     }
-    this.setState(userModel);
+    this.setState('USER', userModel);
   }
 
   getPhotoUrl(user: any) {

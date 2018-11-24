@@ -10,7 +10,7 @@ export const OnSnapshotMixin = function (superClass: any) {
     }
     onSnapshotCallback(document: any) {
       // If request was not local, update state with the firebase document
-      if (document.metadata.hasPendingWrites !== 'local') this.setState(document.data());
+      if (document.metadata.hasPendingWrites !== 'local') this.setState('settings', document.data());
     }
   }
 }

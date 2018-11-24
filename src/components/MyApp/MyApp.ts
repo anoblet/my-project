@@ -104,14 +104,14 @@ export class MyApp extends connect(store)(Mixin(LitElement, [BaseMixin, TaskMixi
 
   stateChanged(state: any) {
     this.state = state;
-    if(this.state.user) {
-      this.style.setProperty('--mdc-theme-primary', this.state.user.primaryColor);
-      this.style.setProperty('--mdc-theme-secondary', this.state.user.secondaryColor);
-      if (this.state.user.debug != null) {
-        this.state.user.debug ? this.setAttribute('debug', '') : this.removeAttribute('debug');
+    if(this.state.settings) {
+      this.style.setProperty('--mdc-theme-primary', this.state.settings.primaryColor);
+      this.style.setProperty('--mdc-theme-secondary', this.state.settings.secondaryColor);
+      if (this.state.settings.debug != null) {
+        this.state.settings.debug ? this.setAttribute('debug', '') : this.removeAttribute('debug');
       }
-      if (this.state.user.theme != null) {
-        this.state.user.theme == 'light' ? this.getAttribute('dark') == '' ? this.removeAttribute('dark') : false : this.setAttribute('dark', '');
+      if (this.state.settings.theme != null) {
+        this.state.settings.theme == 'light' ? this.getAttribute('dark') == '' ? this.removeAttribute('dark') : false : this.setAttribute('dark', '');
       }
     }
   }
