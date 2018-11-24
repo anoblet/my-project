@@ -15,11 +15,15 @@ import { settings } from './redux/reducers/Settings';
 //   settings
 // });
 
-export class AppSettings extends connect(store)(Mixin(LitElement, [BaseMixin, AuthChangedMixin, OnSnapshotMixin, StateMixin])) {
+export class AppSettings extends connect(store)(Mixin(LitElement, [BaseMixin, AuthChangedMixin, StateMixin, OnSnapshotMixin])) {
   template = './AppSettingsTemplate';
   @property({ type: Object }) state: any;
 
   // Lifecycle
+  constructor() {
+    super();
+    this.setStore(store);
+  }
   connectedCallback() {
     super.connectedCallback();
     this.registerAuthChangedCallback();

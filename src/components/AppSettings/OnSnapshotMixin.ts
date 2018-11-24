@@ -9,9 +9,12 @@ export const OnSnapshotMixin = function (superClass: any) {
       });
     }
     onSnapshotCallback(document: any) {
-      const message = 'On snapshot callback'
-      console.log(message);
+      // const message = 'On snapshot callback'
+      // console.log(message);
       // alert(message);
+      const data = document.data();
+      console.log(document.data());
+      this.setState(document.data());
 
       if (document.metadata.hasPendingWrites !== 'local') this._updateStore(document.data());
     }
