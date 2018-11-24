@@ -57,7 +57,16 @@ export class AppSettings extends connect(store)(Mixin(LitElement, [BaseMixin, Au
   }
 
   // Handlers 
-  _toggleDebugHandler() {
+  _toggleDebugHandler() 
+  {
+    const val = !this.state.user.debug;
+    this.setState({
+      debug: val
+    });
+    this._firebaseUp({
+      debug: val
+    })
+    return;
     const state = store.getState();
     store.dispatch(setDebug(!state.settings.debug));
     this._firebaseUp({
@@ -69,6 +78,13 @@ export class AppSettings extends connect(store)(Mixin(LitElement, [BaseMixin, Au
     const state = store.getState();
     const theme = state.settings.theme || 'light';
     const newTheme = theme == 'light' ? 'dark' : 'light';
+    this.setState({
+      theme: newTheme
+    });
+    this._firebaseUp({
+      theme: newTheme
+    })
+    return;
     store.dispatch(setTheme(newTheme));
     this._firebaseUp({
       theme: newTheme
@@ -141,7 +157,7 @@ export class AppSettings extends connect(store)(Mixin(LitElement, [BaseMixin, Au
 
   stateChanged(state: any) {
     this.state = state;
-    this._firebaseUp(this.state.user);
+    // this._firebaseUp(this.state.user);
     this.debug = state.settings.debug;
     this.theme = state.settings.theme;
   }
