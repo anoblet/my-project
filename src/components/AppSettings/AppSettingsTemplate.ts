@@ -25,14 +25,14 @@ export default function ({ settings, user }: any) {
         Debug (Works, but looks weird): <input type="checkbox" aria-label="Debug" ?checked=${this.state.settings.debug} @change="${(e: any) => this._toggleDebugHandler()}">
       </div>
       <div>
-        Primary color (Working #fff/white format): <input @input="${(e: any) => this.primaryColorChanged(e)}" type="color" value="${settings.primaryColor}" />
+        Primary color (Working): <input @input="${(e: any) => this.primaryColorChanged(e)}" aria-label="Primary color" type="color" value="${settings.primaryColor}" />
       </div>
       <div>
-        Secondary color (Working #fff/white format): <input @input="${(e: any) => this.secondaryColorChanged(e)}" type="color" value="${settings.secondaryColor}" />
+        Secondary color (Working): <input @input="${(e: any) => this.secondaryColorChanged(e)}" aria-label="Secondary color" type="color" value="${settings.secondaryColor}" />
       </div>
       <div>
         Theme (Not working): 
-        <select>
+        <select aria-label="Select your theme">
           <option>Light</option>
           <option>Dark</option>
         </select>
