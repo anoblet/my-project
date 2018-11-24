@@ -73,6 +73,9 @@ export class AppSettings extends connect(store)(Mixin(LitElement, [BaseMixin, Au
     this.setState({
       primaryColor: e.target.value
     });
+    this._firebaseUp({
+      primaryColor: e.target.value
+    })
   }
 
   secondaryColorChanged(e: any) {
