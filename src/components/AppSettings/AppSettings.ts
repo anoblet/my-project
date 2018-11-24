@@ -48,13 +48,13 @@ export class AppSettings extends connect(store)(Mixin(LitElement, [BaseMixin, Au
     });
   }
 
-  async _updateStore(data: any) {
-    return await new Promise(async (resolve, reject) => {
-      await store.dispatch(setDebug(data.debug));
-      await store.dispatch(setTheme(data.theme));
-      resolve();
-    });
-  }
+  // async _updateStore(data: any) {
+  //   return await new Promise(async (resolve, reject) => {
+  //     await store.dispatch(setDebug(data.debug));
+  //     await store.dispatch(setTheme(data.theme));
+  //     resolve();
+  //   });
+  // }
 
   // Handlers 
   _toggleDebugHandler() 
@@ -66,17 +66,11 @@ export class AppSettings extends connect(store)(Mixin(LitElement, [BaseMixin, Au
     this._firebaseUp({
       debug: val
     })
-    return;
-    const state = store.getState();
-    store.dispatch(setDebug(!state.settings.debug));
-    this._firebaseUp({
-      debug: !state.settings.debug
-    });
   }
 
   _toggleThemeHandler() {
     const state = store.getState();
-    const theme = state.settings.theme || 'light';
+    const theme = state.user.theme || 'light';
     const newTheme = theme == 'light' ? 'dark' : 'light';
     this.setState({
       theme: newTheme
@@ -84,11 +78,6 @@ export class AppSettings extends connect(store)(Mixin(LitElement, [BaseMixin, Au
     this._firebaseUp({
       theme: newTheme
     })
-    return;
-    store.dispatch(setTheme(newTheme));
-    this._firebaseUp({
-      theme: newTheme
-    });
   }
 
   primaryColorChanged(e: any) {
