@@ -42,20 +42,13 @@ export class AppSettings extends connect(store)(Mixin(LitElement, [BaseMixin, Au
     });
   }
 
-  // async _updateStore(data: any) {
-  //   return await new Promise(async (resolve, reject) => {
-  //     await store.dispatch(setDebug(data.debug));
-  //     await store.dispatch(setTheme(data.theme));
-  //     resolve();
-  //   });
-  // }
-
-  // importTemplate() {
-  //   return import(`${this.template}`).then(async (template) => {
-  //     return await template.default.bind(this)()
-  //   });
-  // }
-
+  async _updateStore(data: any) {
+    return await new Promise(async (resolve, reject) => {
+      await store.dispatch(setDebug(data.debug));
+      await store.dispatch(setTheme(data.theme));
+      resolve();
+    });
+  }
 
   // Handlers 
   _toggleDebugHandler() {
