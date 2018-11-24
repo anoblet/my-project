@@ -60,9 +60,9 @@ export class AppSettings extends connect(store)(Mixin(LitElement, [BaseMixin, Au
   _toggleDebugHandler() 
   {
     const val = !this.state.settings.debug;
-    this.setState('settings', {
+    this.setState({
       debug: val
-    });
+    }, 'settings');
     this._firebaseUp({
       debug: val
     })
@@ -72,28 +72,28 @@ export class AppSettings extends connect(store)(Mixin(LitElement, [BaseMixin, Au
     const state = store.getState();
     const theme = state.settings.theme || 'light';
     const newTheme = theme == 'light' ? 'dark' : 'light';
-    this.setState('settings',
+    this.setState(
     {
       theme: newTheme
-    });
+    }, 'settings');
     this._firebaseUp({
       theme: newTheme
-    })
+    }, )
   }
 
   primaryColorChanged(e: any) {
-    this.setState('settings', {
+    this.setState({
       primaryColor: e.target.value
-    });
+    }, 'settings');
     this._firebaseUp({
       primaryColor: e.target.value
     })
   }
 
   secondaryColorChanged(e: any) {
-    this.setState('settings', {
+    this.setState({
       secondaryColor: e.target.value
-    });
+    }, 'settings');
   }
 
   // Events
@@ -148,8 +148,8 @@ export class AppSettings extends connect(store)(Mixin(LitElement, [BaseMixin, Au
   stateChanged(state: any) {
     this.state = state;
     // this._firebaseUp(this.state.user);
-    this.debug = state.settings.debug;
-    this.theme = state.settings.theme;
+    // this.debug = state.settings.debug;
+    // this.theme = state.settings.theme;
   }
 }
 

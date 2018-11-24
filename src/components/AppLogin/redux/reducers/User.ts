@@ -5,6 +5,9 @@ export const user = (state = {}, action: any) => {
     case 'USER':
       return {
         ...state, ...action.state};
+    case 'user':
+      return {
+        ...state, ...action.state};
     default:
       return state;
   }

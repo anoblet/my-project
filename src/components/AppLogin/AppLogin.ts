@@ -65,7 +65,7 @@ export class AppLogin extends connect(store)(Mixin(LitElement, [BaseMixin, TaskM
       userModel.email = user.email;
       userModel.photo = this.getPhotoUrl(user);
     }
-    this.setState('USER', userModel);
+    this.setState(userModel, 'user');
   }
 
   getPhotoUrl(user: any) {
@@ -88,10 +88,10 @@ export class AppLogin extends connect(store)(Mixin(LitElement, [BaseMixin, TaskM
   }
 
   _resetSettings() {
-    this._updateStore({
+    this.setState({
       debug: false,
-      theme: 'light'
-    })
+      dark: false
+    }, 'settings');
   }
 
   _updateStore(data: any) {
@@ -105,7 +105,7 @@ export class AppLogin extends connect(store)(Mixin(LitElement, [BaseMixin, TaskM
   }
 
   _logoutHandler() {
-    this.setState({signedIn: false});
+    this.setState({signedIn: false}, 'user');
     this.logout();
   }
 
@@ -119,7 +119,7 @@ export class AppLogin extends connect(store)(Mixin(LitElement, [BaseMixin, TaskM
         name: false,
         email: false,
         photo: false
-      })
+      }, 'user');
       this.runTasks([
         this._resetSettings(),
       ])

@@ -32,7 +32,7 @@ export class MyApp extends connect(store)(Mixin(LitElement, [BaseMixin, TaskMixi
     this.setState({
       primaryColor: 'blue',
       secondaryColor: 'black'
-    })
+    }, 'settings')
     this.runTasks([
       import(/* webpackChunkName: "MyFlex" */'../../../packages/my-flex'),
       import(/* webpackChunkName: "MyGrid" */ '../../../packages/my-grid'),
