@@ -7,10 +7,10 @@ export default function ({ }: any) {
     <style>
       ${style}
     </style>
-      <mwc-fab mini></mwc-fab>
+      <mwc-fab aria-label="placeholder" mini></mwc-fab>
       <a href="/">
-        <mwc-fab icon="home"></mwc-fab>
+        <mwc-fab aria-label="Home" icon="home"></mwc-fab>
       </a>
-      <mwc-fab mini></mwc-fab>
+      <mwc-fab aria-label="placeholder" mini></mwc-fab>
   `
 }
