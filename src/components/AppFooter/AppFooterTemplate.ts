@@ -7,10 +7,15 @@ export default function ({ }: any) {
     <style>
       ${style}
     </style>
-      <mwc-fab label="placeholder" mini></mwc-fab>
-      <a href="/">
-        <mwc-fab label="Home" icon="home"></mwc-fab>
-      </a>
-      <mwc-fab label="placeholder" mini></mwc-fab>
+    <a href="https://github.com/anoblet/my-app" target="_blank">
+        <mwc-fab id="github" icon="code" label="placeholder" mini></mwc-fab>
+    </a>
+    <a href="/">
+      <mwc-fab icon="home" label="Home" mini></mwc-fab>
+    </a>
+    <a href="mailto: andrewbnoblet@gmail.com">
+      <mwc-fab icon="mail_outline" label="placeholder" mini></mwc-fab>
+    </a>
+
   `
 }

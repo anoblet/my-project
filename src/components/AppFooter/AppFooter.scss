@@ -7,4 +7,10 @@
 
 mwc-fab {
   margin: .5em;
+  opacity: 0.33;
+}
+
+mwc-fab:hover {
+  margin: .5em;
+  opacity: 1;
 }
