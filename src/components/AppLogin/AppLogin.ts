@@ -57,20 +57,20 @@ export class AppLogin extends connect(store)(Mixin(LitElement, [BaseMixin, TaskM
     return user.photoURL;
   }
 
-  _upgrade() {
-    return new Promise(async (resolve, reject) => {
-      Promise.all([
-        import(/* webpackChunkName: "FirebaseApp" */'firebase/app'),
-        import(/* webpackChunkName: "FirebaseUI" */'firebaseui')
-      ]).then(async ([firebase, firebaseui]) => {
-        const instance = firebaseui.auth.AuthUI.getInstance() || new firebaseui.auth.AuthUI(firebase.auth());
-        const e = document.createElement('div');
-        instance.start(e, config.firebaseui);
-        this.form = e;
-        resolve();
-      })
-    });
-  }
+  // _upgrade() {
+  //   return new Promise(async (resolve, reject) => {
+  //     Promise.all([
+  //       import(/* webpackChunkName: "FirebaseApp" */'firebase/app'),
+  //       import(/* webpackChunkName: "FirebaseUI" */'firebaseui')
+  //     ]).then(async ([firebase, firebaseui]) => {
+  //       const instance = firebaseui.auth.AuthUI.getInstance() || new firebaseui.auth.AuthUI(firebase.auth());
+  //       const e = document.createElement('div');
+  //       instance.start(e, config.firebaseui);
+  //       this.form = e;
+  //       resolve();
+  //     })
+  //   });
+  // }
 
   _resetSettings() {
     this.setState({
@@ -112,19 +112,21 @@ export class AppLogin extends connect(store)(Mixin(LitElement, [BaseMixin, TaskM
   }
 
   getForm() {
-    return Promise.all([
-      import(/* webpackChunkName: "FirebaseApp" */'firebase/app'),
-      import(/* webpackChunkName: "FirebaseUI" */'firebaseui')
-    ]).then(async ([firebase, firebaseui]) => {
-      const form = document.createElement('div');
-      const ui = firebaseui.auth.AuthUI.getInstance() || new firebaseui.auth.AuthUI(firebase.auth());
-      ui.start(form, config.firebaseui);
-      return form;
-    })
+    return new Promise((resolve, reject) => {
+      Promise.all([
+        import(/* webpackChunkName: "FirebaseApp" */'firebase/app'),
+        import(/* webpackChunkName: "FirebaseUI" */'firebaseui')
+      ]).then(async ([firebase, firebaseui]) => {
+        const form = document.createElement('div');
+        const ui = firebaseui.auth.AuthUI.getInstance() || new firebaseui.auth.AuthUI(firebase.auth());
+        ui.start(form, config.firebaseui);
+        resolve(form);
+      })
+    });
   }
 
   stateChanged(state: any) {
-    this.state = state.user;
+    this.state = state;
   }
 
   render() {

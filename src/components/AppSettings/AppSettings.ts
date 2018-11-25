@@ -32,9 +32,9 @@ export class AppSettings extends connect(store)(Mixin(LitElement, [BaseMixin, Au
     if(this.isEmpty(this.state.settings)) {
       this.setState({
         debug: false,
-        theme: 'light',
-        primaryColor: '#ff8000',
-        secondaryColor: '#000000'
+        theme: 'dark',
+        primaryColor: '#00ffff',
+        secondaryColor: '#ff0080'
       }, 'settings');
     }
     this.registerAuthChangedCallback();

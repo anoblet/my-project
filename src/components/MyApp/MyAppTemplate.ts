@@ -1,4 +1,5 @@
 import { html } from '@polymer/lit-element';
+import { ifDefined } from 'lit-html/directives/if-defined';
 import '../../../packages/lorem-ipsum';
 import * as style from './MyApp.scss';
 
@@ -22,19 +23,25 @@ export default function ({ user }: any) {
           </my-flex>
           <my-flex direction="column" id="content" class="scroll" grow>
             <my-card>
+              <div slot="title">Welcome</div>
+              Welcome ${user.name ? user.name : 'guest'}
+            </my-card>
+            <my-card>
               <div slot="title">State</div>
               <pre style="overflow: hidden;">${JSON.stringify(this.state, null, 2)};</pre>
-            </my-card>  
+            </my-card>
             <div>
               <my-grid style="grid-template-columns: 1fr 1fr;"> 
                 <my-card>
                   <div slot="title">User</div>
                   <app-login></app-login>
-                </my-card>    
-                <my-card>
-                  <div slot="title">Settings</div>
-                  <app-settings></app-settings>
                 </my-card>
+                ${(user ? html`
+                  <my-card>
+                    <div slot="title">Settings</div>
+                    <app-settings></app-settings>
+                  </my-card>
+                ` : html``)}    
               </my-grid> 
             </div>
             <my-card>
