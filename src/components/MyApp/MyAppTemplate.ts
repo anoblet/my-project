@@ -24,7 +24,7 @@ export default function ({ user }: any) {
           <my-flex direction="column" id="content" class="scroll" grow>
             <my-card>
               <div slot="title">Welcome</div>
-              Welcome ${user.name ? user.name : 'guest'} Sign in to save settings
+              Welcome ${user.name ? user.name : 'guest'} ${!user.signedInSign ? html`Sign in to save settings` : html``}
             </my-card>
             <my-card>
               <div slot="title">State</div>

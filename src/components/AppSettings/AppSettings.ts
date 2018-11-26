@@ -28,7 +28,6 @@ export class AppSettings extends connect(store)(Mixin(LitElement, [BaseMixin, Au
 
   connectedCallback() {
     super.connectedCallback();
-    console.log(this.state.settings);
     if(this.isEmpty(this.state.settings)) {
       this.setState({
         debug: false,
@@ -42,14 +41,13 @@ export class AppSettings extends connect(store)(Mixin(LitElement, [BaseMixin, Au
 
   isEmpty(obj: any) {
     for(var key in obj) {
-        if(obj.hasOwnProperty(key))
-            return false;
+      if(obj.hasOwnProperty(key))
+        return false;
     }
     return true;
   }
 
   authChangedCallback(user: any) {
-    console.log('Auth changed!', user);
     // alert('Auth changed!');
   }
 
@@ -64,14 +62,6 @@ export class AppSettings extends connect(store)(Mixin(LitElement, [BaseMixin, Au
       }
     });
   }
-
-  // async _updateStore(data: any) {
-  //   return await new Promise(async (resolve, reject) => {
-  //     await store.dispatch(setDebug(data.debug));
-  //     await store.dispatch(setTheme(data.theme));
-  //     resolve();
-  //   });
-  // }
 
   // Handlers 
   _toggleDebugHandler() 

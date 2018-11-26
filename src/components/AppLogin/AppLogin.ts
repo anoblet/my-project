@@ -57,21 +57,6 @@ export class AppLogin extends connect(store)(Mixin(LitElement, [BaseMixin, TaskM
     return user.photoURL;
   }
 
-  // _upgrade() {
-  //   return new Promise(async (resolve, reject) => {
-  //     Promise.all([
-  //       import(/* webpackChunkName: "FirebaseApp" */'firebase/app'),
-  //       import(/* webpackChunkName: "FirebaseUI" */'firebaseui')
-  //     ]).then(async ([firebase, firebaseui]) => {
-  //       const instance = firebaseui.auth.AuthUI.getInstance() || new firebaseui.auth.AuthUI(firebase.auth());
-  //       const e = document.createElement('div');
-  //       instance.start(e, config.firebaseui);
-  //       this.form = e;
-  //       resolve();
-  //     })
-  //   });
-  // }
-
   _resetSettings() {
     this.setState({
       debug: false,

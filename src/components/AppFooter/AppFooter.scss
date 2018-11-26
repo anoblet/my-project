@@ -5,12 +5,12 @@
   align-items: center;
 }
 
-mwc-fab {
+mwc-fab:not(#home) {
   margin: .5em;
   opacity: 0.33;
 }
 
-mwc-fab:hover {
+mwc-fab:not(#home):hover {
   margin: .5em;
   opacity: 1;
 }

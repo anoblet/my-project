@@ -11,7 +11,7 @@ export default function ({ }: any) {
         <mwc-fab id="github" icon="code" label="placeholder" mini></mwc-fab>
     </a>
     <a href="/">
-      <mwc-fab icon="home" label="Home" mini></mwc-fab>
+      <mwc-fab id="home" icon="home" label="Home"></mwc-fab>
     </a>
     <a href="mailto: andrewbnoblet@gmail.com">
       <mwc-fab icon="mail_outline" label="placeholder" mini></mwc-fab>
