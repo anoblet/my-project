@@ -19,15 +19,15 @@ export default function ({ settings, user }: any) {
     </style>
     <my-flex direction="column" grow>
       <my-grid style="grid-template-columns: 1fr 1fr;">
-        <label>Dark</label>
-        <input type="checkbox" aria-label="Theme" ?checked=${this.state.settings.theme == 'dark'} @change="${(e: any) => this._toggleThemeHandler()}">
         <label>Debug</label>
         <input type="checkbox" aria-label="Debug" ?checked=${this.state.settings.debug} @change="${(e: any) => this._toggleDebugHandler()}">
         <label>Primary color</label>
         <input @input="${(e: any) => this.primaryColorChanged(e)}" aria-label="Primary color" type="color" value="${settings.primaryColor}" />
         <label>Secondary color</label>
         <input @input="${(e: any) => this.secondaryColorChanged(e)}" aria-label="Secondary color" type="color" value="${settings.secondaryColor}" />
-        <label>Theme</label>
+        <label>Dark (Boolean)</label>
+        <input type="checkbox" aria-label="Theme" ?checked=${this.state.settings.theme == 'dark'} @change="${(e: any) => this._toggleThemeHandler()}">
+        <label>Theme (String)</label>
         <select @input="${(e: any) => this.setTheme(e.target.value)}" aria-label="Select your theme">
           <option ?selected=${settings.theme == 'light'} value="light">Light</option>
           <option ?selected=${settings.theme == 'dark'} value="dark">Dark</option>
