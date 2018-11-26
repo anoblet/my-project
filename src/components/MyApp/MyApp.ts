@@ -24,10 +24,6 @@ export class MyApp extends connect(store)(Mixin(LitElement, [BaseMixin, TaskMixi
   // Lifecycle
   connectedCallback() {
     super.connectedCallback();
-    // this.setState({
-    //   primaryColor: '#CCCCCC',
-    //   secondaryColor: '#000000'
-    // }, 'settings');
     this.runTasks([
       import(/* webpackChunkName: "MyFlex" */'../../../packages/my-flex'),
       import(/* webpackChunkName: "MyGrid" */ '../../../packages/my-grid'),
@@ -45,7 +41,7 @@ export class MyApp extends connect(store)(Mixin(LitElement, [BaseMixin, TaskMixi
 
   updated(changedProperties: any) {
     super.updated(changedProperties);
-    if(!this.taskPending) this.setButtonBackground();
+    if(!this.taskPending) this.setButtonBackground(); // Runs on too many cycle. Fab's shadowRoot is not accesible after firstUpdated
   }
 
   setButtonBackground() {
