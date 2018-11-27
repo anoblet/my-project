@@ -12,26 +12,25 @@ import('@material/mwc-formfield');
 // import * as loremIpsum from 'lorem-ipsum';
 const loremIpsum = require('lorem-ipsum');
 
-export default function ({ settings, user }: any) {
+export default function ({ app, settings, user }: any) {
   return html`
     <style>
       ${style}
     </style>
     <my-flex direction="column" grow>
       <my-grid style="grid-template-columns: 1fr 1fr;">
-        <label>Debug</label>
-        <input type="checkbox" aria-label="Debug" ?checked=${this.state.settings.debug} @change="${(e: any) => this._toggleDebugHandler()}">
+        <label>Background color</label>
+        <input @input="${(e: any) => this.setState({backgroundColor: e.target.value}, 'app')}" aria-label="Background color" type="color" value="${app.backgroundColor}" />
+        <label>Text color</label>
+        <input @input="${(e: any) => this.setState({textColor: e.target.value}, 'app')}" aria-label="Text color" type="color" value="${app.textColor}" />
         <label>Primary color</label>
-        <input @input="${(e: any) => this.primaryColorChanged(e)}" aria-label="Primary color" type="color" value="${settings.primaryColor}" />
+        <input @input="${(e: any) => this.primaryColorChanged(e)}" aria-label="Primary color" type="color" value="${app.primaryColor}" />
         <label>Secondary color</label>
-        <input @input="${(e: any) => this.secondaryColorChanged(e)}" aria-label="Secondary color" type="color" value="${settings.secondaryColor}" />
+        <input @input="${(e: any) => this.secondaryColorChanged(e)}" aria-label="Secondary color" type="color" value="${app.secondaryColor}" />
         <label>Dark (Boolean)</label>
         <input type="checkbox" aria-label="Theme" ?checked=${this.state.settings.theme == 'dark'} @change="${(e: any) => this._toggleThemeHandler()}">
-        <label>Theme (String)</label>
-        <select @input="${(e: any) => this.setTheme(e.target.value)}" aria-label="Select your theme">
-          <option ?selected=${settings.theme == 'light'} value="light">Light</option>
-          <option ?selected=${settings.theme == 'dark'} value="dark">Dark</option>
-        </select>
+        <label>Sync theme (Boolean)</label>
+        <input type="checkbox" aria-label="Sync" ?checked=${this.state.app.sync} @change="${(e: any) => this._toggleSync(e.target.value)}">
       </my-grid>
     </my-flex>
   `

@@ -9,33 +9,22 @@ import { store } from '../../store.js';
 import { AuthChangedMixin } from './AuthChangedMixin';
 import { OnSnapshotMixin } from './OnSnapshotMixin';
 import Template from './AppSettingsTemplate';
-import { settings } from './redux/reducers/Settings';
-
-store.addReducers({
-  settings
-});
 
 export class AppSettings extends connect(store)(Mixin(LitElement, [BaseMixin, AuthChangedMixin, StateMixin, OnSnapshotMixin])) {
   template = './AppSettingsTemplate';
   @property({ type: Object }) state: any;
 
   // Lifecycle
-  constructor() {
-    super();
-    // Always set an app level store
-    this.setStore(store);
-  }
-
   connectedCallback() {
     super.connectedCallback();
-    if(this.isEmpty(this.state.settings)) {
-      this.setState({
-        debug: false,
-        theme: 'dark',
-        primaryColor: '#00ffff',
-        secondaryColor: '#ff0080'
-      }, 'settings');
-    }
+    // if(this.isEmpty(this.state.settings)) {
+    //   this.setState({
+    //     debug: false,
+    //     theme: 'dark',
+    //     primaryColor: '#00ffff',
+    //     secondaryColor: '#ff0080'
+    //   }, 'settings');
+    // }
     this.registerAuthChangedCallback();
   }
 
@@ -63,8 +52,8 @@ export class AppSettings extends connect(store)(Mixin(LitElement, [BaseMixin, Au
     });
   }
 
-  // Handlers 
-  _toggleDebugHandler() 
+  // Handlers
+  _toggleDebugHandler()
   {
     const val = !this.state.settings.debug;
     this.setState({
@@ -88,10 +77,17 @@ export class AppSettings extends connect(store)(Mixin(LitElement, [BaseMixin, Au
     }, )
   }
 
+  _toggleSync(value: any) {
+    const state = store.getState();
+    this.setState({
+      sync: !state.app.sync
+    }, 'app');
+  }
+
   primaryColorChanged(e: any) {
     this.setState({
       primaryColor: e.target.value
-    }, 'settings');
+    }, 'app');
     this._firebaseUp({
       primaryColor: e.target.value
     })
@@ -100,7 +96,7 @@ export class AppSettings extends connect(store)(Mixin(LitElement, [BaseMixin, Au
   secondaryColorChanged(e: any) {
     this.setState({
       secondaryColor: e.target.value
-    }, 'settings');
+    }, 'app');
     this._firebaseUp({
       secondaryColor: e.target.value
     })
@@ -147,7 +143,7 @@ export class AppSettings extends connect(store)(Mixin(LitElement, [BaseMixin, Au
           if (!user && !pendingRedirect) resolve();
           if (user) {
             const firestore = firebase.firestore();
-            firestore.settings({ timestampsInSnapshots: true });
+            // firestore.settings({ timestampsInSnapshots: true });
             const userSettings = firestore.doc(`users/${user.uid}/settings/default`);
             this.checkDefaults(userSettings);
             this.registerOnSnapshot(userSettings).then(() => {

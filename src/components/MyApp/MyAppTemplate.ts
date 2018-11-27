@@ -1,5 +1,5 @@
 import { html } from '@polymer/lit-element';
-import { ifDefined } from 'lit-html/directives/if-defined';
+import { until } from 'lit-html/directives/until';
 import '../../../packages/lorem-ipsum';
 import * as style from './MyApp.scss';
 
@@ -24,7 +24,7 @@ export default function ({ user }: any) {
           <my-flex direction="column" id="content" class="scroll" grow>
             <my-card>
               <div slot="title">Welcome</div>
-              Welcome ${user.name ? user.name : 'guest'} ${!user.signedInSign ? html`Sign in to save settings` : html``}
+              Welcome ${user.name ? user.name : 'guest'} ${!user.signedIn ? html`Sign in to save settings` : html`You are currently signed in: Your settings will now be saved`}.
             </my-card>
             <my-card>
               <div slot="title">State</div>
@@ -44,6 +44,19 @@ export default function ({ user }: any) {
                 ` : html``)}    
               </my-grid> 
             </div>
+            <my-card>
+              <div slot="title">Firebase</div>
+                ${until(
+                  this.getDocument().then((document: any) => {
+                    return html`
+                      <pre>
+                        ${JSON.stringify(document)}
+                      </pre>
+                    `
+                  }),
+                  html`Loading...`
+                )}
+            </my-card>
             <my-card>
               <div slot="title">Lorem Ipsum</div>
               <lorem-ipsum count="100"></lorem-ipsum>

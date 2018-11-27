@@ -9,21 +9,45 @@ import { TaskMixin } from '../../../packages/TaskMixin';
 import { AppSettings } from '../AppSettings/AppSettings';
 import * as style from './MyApp.scss';
 import Template from './MyAppTemplate';
+import { FirebaseMixin } from '../../../packages/FirebaseMixin';
 
-const settings = new AppSettings;
+const app = (state = {}, action: any) => {
+  switch (action.type) {
+    case 'app':
+      return {
+        ...state, ...action.state};
+    default:
+      return state;
+  }
+};
+
+store.addReducers({
+  app
+});
 
 /**
  * @todo Extend BaseElement
  */
 
-export class MyApp extends connect(store)(Mixin(LitElement, [BaseMixin, TaskMixin, StateMixin])) {
+export class MyApp extends connect(store)(Mixin(LitElement, [BaseMixin, TaskMixin, StateMixin, FirebaseMixin])) {
   @property({ type: String }) title = 'Andrew Noblet'
   @property({ type: Object }) state: any;
   taskPending = false;
+  defaultDocument = {
+    primaryColor: "#00ff00",
+    secondaryColor: "#ff0080"
+  };
 
   // Lifecycle
+  constructor() {
+    super();
+    // Always set an app level store
+    this.setStore(store);
+  }
   connectedCallback() {
     super.connectedCallback();
+    this.firebaseConfig = config.firebase;
+    this.firebaseDocumentPath = 'state/app';
     this.runTasks([
       import(/* webpackChunkName: "MyFlex" */'../../../packages/my-flex'),
       import(/* webpackChunkName: "MyGrid" */ '../../../packages/my-grid'),
@@ -35,13 +59,18 @@ export class MyApp extends connect(store)(Mixin(LitElement, [BaseMixin, TaskMixi
       import(/* webpackChunkName: "AppSettings" */ '../AppSettings/AppSettings'),
       this.initFirebase(),
       this.checkRedirect(),
-      settings._firebaseDown()
+      this.getUser().then((user: any) => {
+        const userModel: any = {};
+        userModel.name = user.displayName;
+        userModel.email = user.email;
+        userModel.photo = user.photoUrl;
+        this.setState(userModel, 'user');
+        // this.setButtonBackground();
+      }),
+      this.getDocument().then(
+        (document: any) => this.setState(document, 'app')
+      )
     ]);
-  }
-
-  updated(changedProperties: any) {
-    super.updated(changedProperties);
-    if(!this.taskPending) this.setButtonBackground(); // Runs on too many cycle. Fab's shadowRoot is not accesible after firstUpdated
   }
 
   setButtonBackground() {
@@ -54,15 +83,6 @@ export class MyApp extends connect(store)(Mixin(LitElement, [BaseMixin, TaskMixi
   }
 
   // Helpers
-  initFirebase() {
-    return new Promise((resolve, reject) => {
-      import(/* webpackChunkName: "FirebaseApp" */ 'firebase/app').then((app) => {
-        if (app.apps.length === 0) app.initializeApp(config.firebase);
-        resolve();
-      });
-    });
-  }
-
   checkRedirect() {
     return new Promise((resolve, reject) => {
       resolve();
@@ -73,14 +93,9 @@ export class MyApp extends connect(store)(Mixin(LitElement, [BaseMixin, TaskMixi
       ]).then(([app, auth, ui]) => {
         let instance = ui.auth.AuthUI.getInstance() || new ui.auth.AuthUI(app.auth());
         if (instance.isPendingRedirect()) {
-          const e = document.createElement('div');
-          instance.start(e, {});
-          app.auth().onAuthStateChanged((user: any) => {
-            if (user) resolve();
-          });
-        } else {
-          resolve();
+          instance.start(document.createElement('div'), {});
         }
+        resolve();
       })
     });
   }
@@ -93,11 +108,18 @@ export class MyApp extends connect(store)(Mixin(LitElement, [BaseMixin, TaskMixi
     drawerContainer._toggleAttribute('opened');
   }
 
+  updateStyles(state: any) {
+    this.style.setProperty('background-color', state.app.backgroundColor);
+    this.style.setProperty('color', state.app.textColor);
+    this.style.setProperty('--mdc-theme-primary', state.app.primaryColor);
+    this.style.setProperty('--mdc-theme-secondary', state.app.secondaryColor);
+  }
+
   stateChanged(state: any) {
     this.state = state;
+    this.updateStyles(state);
+    this.setDocument(this.state.app);
     if(this.state.settings) {
-      this.style.setProperty('--mdc-theme-primary', this.state.settings.primaryColor);
-      this.style.setProperty('--mdc-theme-secondary', this.state.settings.secondaryColor);
       if (this.state.settings.debug != null) {
         this.state.settings.debug ? this.setAttribute('debug', '') : this.removeAttribute('debug');
       }

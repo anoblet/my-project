@@ -1,0 +1,11 @@
+{
+  "name": "firebasemixin",
+  "version": "1.0.0",
+  "description": "",
+  "main": "FirebaseMixin.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Andrew Noblet",
+  "license": "MIT"
+}

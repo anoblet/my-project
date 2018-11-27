@@ -18,13 +18,6 @@ export const StateMixin = function (superClass: any) {
       });
     }
 
-    // setStateAction(state: any) {
-    //   return {
-    //     type: 'SET_STATE',
-    //     state: state
-    //   }
-    // }
-
     stateChanged(state: any) {
       console.log('Here');
     }
