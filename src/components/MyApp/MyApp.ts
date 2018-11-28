@@ -11,26 +11,6 @@ import * as style from './MyApp.scss';
 import Template from './MyAppTemplate';
 import { FirebaseMixin } from '../../../packages/FirebaseMixin';
 
-// const type = 'app';
-//
-// const reducer = (state = {}, action: any) => {
-//   switch (action.type) {
-//     case `${type}`:
-//       return {
-//         ...state, ...action.state};
-//     default:
-//       return state;
-//   }
-// };
-//
-// const reducerObject: any = {};
-// // reducerObject[type] = app;
-// console.log(reducerObject);
-//
-// store.addReducers({
-//   [type]: reducer
-// });
-
 /**
  * @todo Extend BaseElement
  */
@@ -40,19 +20,18 @@ export class MyApp extends connect(store)(Mixin(LitElement, [BaseMixin, TaskMixi
   @property({ type: Object }) state: any;
   taskPending = false;
   defaultDocument = {
-    backgroundColor: "#242424",
-    textColor: "#ffffff",
     primaryColor: "#00ff00",
     secondaryColor: "#ff0080"
   };
-  stateStore: store,
   stateType: 'app'
 
   // Lifecycle
   constructor() {
     super();
+    this.setStore(store);
     this.addType('app');
   }
+
   connectedCallback() {
     super.connectedCallback();
     this.firebaseConfig = config.firebase;
@@ -122,7 +101,7 @@ export class MyApp extends connect(store)(Mixin(LitElement, [BaseMixin, TaskMixi
 
   stateChanged(state: any) {
     this.state = state;
-    if(state.app) this.updateStyles(state);
+    this.updateStyles(state);
     this.setDocument(state.app);
     if(this.state.settings) {
       if (this.state.settings.debug != null) {

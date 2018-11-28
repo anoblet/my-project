@@ -4,7 +4,7 @@ export const StateMixin = function (superClass: any) {
   return class extends superClass {
     connectedCallback() {
       super.connectedCallback();
-      this.setStore(this.stateStore);
+      this.setStore(store);
     }
 
     addType(type: any) {
