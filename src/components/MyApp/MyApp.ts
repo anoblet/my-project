@@ -106,10 +106,10 @@ export class MyApp extends connect(store)(Mixin(LitElement, [BaseMixin, TaskMixi
   }
 
   updateStyles(state: any) {
-    this.style.setProperty('background-color', state.app.backgroundColor);
-    this.style.setProperty('color', state.app.textColor);
-    this.style.setProperty('--mdc-theme-primary', state.app.primaryColor);
-    this.style.setProperty('--mdc-theme-secondary', state.app.secondaryColor);
+    this.style.setProperty('--background-color', state.app.backgroundColor);
+    this.style.setProperty('--text-color', state.app.textColor);
+    this.style.setProperty('--primary-color', state.app.primaryColor);
+    this.style.setProperty('--secondary-color', state.app.secondaryColor);
   }
 
   stateChanged(state: any) {

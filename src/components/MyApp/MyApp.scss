@@ -6,13 +6,13 @@
   --background-color: #fff;
   --text-color: #242424;
   --border-color: #9e9e9e;
-  --primary-color: #242424;
-  --secondary-color: #000;
+  --primary-color: #00ff00;
+  --secondary-color: #ff0080;
   --debug-padding: 0;
   --debug-border: 0;
 
-  --mdc-theme-primary: #AA3939;
-  --mdc-theme-secondary: #D46A6A;
+  --mdc-theme-primary: var(--primary-color);
+  --mdc-theme-secondary: var(--secondary-color);
 
   display: flex;
   flex: 1;
@@ -69,7 +69,7 @@
 
 #title {
   margin-left: 1em;
-  color: var(--mdc-theme-primary);
+  color: var(--secondary-color);
 }
 
 #drawer-container {
