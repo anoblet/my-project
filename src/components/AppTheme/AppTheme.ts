@@ -17,8 +17,6 @@ import { FirebaseMixin } from '../../../packages/FirebaseMixin';
 
 export class MyApp extends connect(store)(Mixin(LitElement, [BaseMixin, TaskMixin, StateMixin, FirebaseMixin])) {
   @property({ type: String }) title = 'Andrew Noblet'
-  @property({ type: Object }) state: any;
-  taskPending = false;
   defaultDocument = {
   };
   stateType: 'theme'
@@ -26,7 +24,6 @@ export class MyApp extends connect(store)(Mixin(LitElement, [BaseMixin, TaskMixi
   // Lifecycle
   constructor() {
     super();
-    // Always set an app level store
     this.setStore(store);
     this.addType('app');
   }
@@ -47,7 +44,6 @@ export class MyApp extends connect(store)(Mixin(LitElement, [BaseMixin, TaskMixi
       this.checkRedirect(),
       this.getUser().then((user: any) => {
         this.setState(user, 'user');
-        // this.setButtonBackground();
       }),
       this.getDocument().then(
         (document: any) => this.setState(document, 'app')
