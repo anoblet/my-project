@@ -29,8 +29,10 @@ export default function ({ app, settings, user }: any) {
         <input @input="${(e: any) => this.secondaryColorChanged(e)}" aria-label="Secondary color" type="color" value="${app.secondaryColor}" />
         <label>Dark (Boolean)</label>
         <input type="checkbox" aria-label="Theme" ?checked=${this.state.settings.theme == 'dark'} @change="${(e: any) => this._toggleThemeHandler()}">
-        <label>Sync theme (Boolean)</label>
+        <label>Sync (Boolean)</label>
         <input type="checkbox" aria-label="Sync" ?checked=${this.state.app.sync} @change="${(e: any) => this._toggleSync(e.target.value)}">
+        <mwc-button outlined @click="${() => this.setTheme("light")}">Light theme</mwc-button>
+        <mwc-button outlined @click="${() => this.setTheme("dark")}">Dark theme</mwc-button>
       </my-grid>
     </my-flex>
   `

@@ -67,7 +67,12 @@ export const FirebaseMixin = function (superClass: any) {
           firebase.auth().onAuthStateChanged((user: any) => {
             if (!user && !pendingRedirect) resolve(false);
             if (user) {
-              resolve(user);
+              const userModel: any = {};
+              userModel.uid = user.uid;
+              userModel.name = user.displayName;
+              userModel.email = user.email;
+              userModel.photo = user.photoUrl;
+              resolve(userModel);
             }
           });
         });

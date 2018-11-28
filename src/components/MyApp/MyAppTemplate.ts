@@ -1,13 +1,9 @@
 import { html } from '@polymer/lit-element';
 import { until } from 'lit-html/directives/until';
 import '../../../packages/lorem-ipsum';
-import * as style from './MyApp.scss';
 
 export default function ({ user }: any) {
   return html`
-    <style>
-      ${style}
-    </style>
     <my-grid id="container" style="grid-gap: 0;">
       <my-flex id="top">
         <mwc-icon id="menu" @click="${() => this._toggleDrawer()}">menu</mwc-icon>
@@ -31,7 +27,7 @@ export default function ({ user }: any) {
               <pre style="overflow: hidden;">${JSON.stringify(this.state, null, 2)};</pre>
             </my-card>
             <div>
-              <my-grid style="grid-template-columns: 1fr 1fr;"> 
+              <my-grid style="grid-template-columns: 1fr 1fr;">
                 <my-card>
                   <div slot="title">User</div>
                   <app-login></app-login>
@@ -41,8 +37,8 @@ export default function ({ user }: any) {
                     <div slot="title">Settings</div>
                     <app-settings></app-settings>
                   </my-card>
-                ` : html``)}    
-              </my-grid> 
+                ` : html``)}
+              </my-grid>
             </div>
             <my-card>
               <div slot="title">Firebase</div>

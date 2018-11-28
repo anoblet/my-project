@@ -37,6 +37,7 @@ export class MyApp extends connect(store)(Mixin(LitElement, [BaseMixin, TaskMixi
     primaryColor: "#00ff00",
     secondaryColor: "#ff0080"
   };
+  stateType: 'app'
 
   // Lifecycle
   constructor() {
@@ -60,11 +61,7 @@ export class MyApp extends connect(store)(Mixin(LitElement, [BaseMixin, TaskMixi
       this.initFirebase(),
       this.checkRedirect(),
       this.getUser().then((user: any) => {
-        const userModel: any = {};
-        userModel.name = user.displayName;
-        userModel.email = user.email;
-        userModel.photo = user.photoUrl;
-        this.setState(userModel, 'user');
+        this.setState(user, 'user');
         // this.setButtonBackground();
       }),
       this.getDocument().then(
@@ -118,7 +115,7 @@ export class MyApp extends connect(store)(Mixin(LitElement, [BaseMixin, TaskMixi
   stateChanged(state: any) {
     this.state = state;
     this.updateStyles(state);
-    this.setDocument(this.state.app);
+    this.setDocument(state.app);
     if(this.state.settings) {
       if (this.state.settings.debug != null) {
         this.state.settings.debug ? this.setAttribute('debug', '') : this.removeAttribute('debug');
@@ -130,9 +127,10 @@ export class MyApp extends connect(store)(Mixin(LitElement, [BaseMixin, TaskMixi
   }
 
   render() {
-    return this.taskPending ?
-      html`<style>${style}</style><my-loader></my-loader>` :
-      Template.bind(this)(this.state);
+    return html`
+      <style>${style}</style>
+      ${!this.taskPending ? Template.bind(this)(this.state) : html`<my-loader></my-loader>`}
+    `;
   }
 }
 

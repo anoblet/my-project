@@ -102,13 +102,24 @@ export class AppSettings extends connect(store)(Mixin(LitElement, [BaseMixin, Au
     })
   }
 
+  // setTheme(theme: any) {
+  //   this.setState({
+  //     theme: theme
+  //   }, 'settings');
+  //   this._firebaseUp({
+  //     theme: theme
+  //   });
+  // }
+
   setTheme(theme: any) {
-    this.setState({
-      theme: theme
-    }, 'settings');
-    this._firebaseUp({
-      theme: theme
-    });
+    const settings = theme == 'light' ? {
+      backgroundColor: '#fff',
+      textColor: '#000'
+    } : {
+      backgroundColor: '#242424',
+      textColor: '#fff'
+    }
+    this.setState(settings, 'app');
   }
 
   // Events

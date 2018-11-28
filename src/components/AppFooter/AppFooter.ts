@@ -5,13 +5,13 @@ import Template from './AppFooterTemplate';
 import '@material/mwc-fab';
 
 export class AppFooter extends Mixin(LitElement, [BaseMixin]) {
-  firstUpdated() {
-    const fabs = this.shadowRoot.querySelectorAll('mwc-fab:not(#home)');
-    fabs.forEach((fab: any) => {
-      fab.setAttribute('onmouseover', 'this.mini = false');
-      fab.setAttribute('onmouseout', 'this.mini = true');
-    })
-  }
+  // firstUpdated() {
+  //   const fabs = this.shadowRoot.querySelectorAll('mwc-fab:not(#home)');
+  //   fabs.forEach((fab: any) => {
+  //     fab.setAttribute('onmouseover', 'this.mini = false');
+  //     fab.setAttribute('onmouseout', 'this.mini = true');
+  //   })
+  // }
 
   render() {
     return Template.bind(this)({})
