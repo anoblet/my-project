@@ -11,26 +11,6 @@ import * as style from './MyApp.scss';
 import Template from './MyAppTemplate';
 import { FirebaseMixin } from '../../../packages/FirebaseMixin';
 
-// const type = 'app';
-//
-// const reducer = (state = {}, action: any) => {
-//   switch (action.type) {
-//     case `${type}`:
-//       return {
-//         ...state, ...action.state};
-//     default:
-//       return state;
-//   }
-// };
-//
-// const reducerObject: any = {};
-// // reducerObject[type] = app;
-// console.log(reducerObject);
-//
-// store.addReducers({
-//   [type]: reducer
-// });
-
 /**
  * @todo Extend BaseElement
  */
