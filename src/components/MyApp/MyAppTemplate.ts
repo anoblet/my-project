@@ -45,9 +45,7 @@ export default function ({ user }: any) {
                 ${until(
                   this.getDocument().then((document: any) => {
                     return html`
-                      <pre>
-                        ${JSON.stringify(document)}
-                      </pre>
+                      <pre>${JSON.stringify(document, null, 2)}</pre>
                     `
                   }),
                   html`Loading...`

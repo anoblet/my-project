@@ -40,17 +40,14 @@ export class MyApp extends connect(store)(Mixin(LitElement, [BaseMixin, TaskMixi
   @property({ type: Object }) state: any;
   taskPending = false;
   defaultDocument = {
-    backgroundColor: "#242424",
-    textColor: "#ffffff",
-    primaryColor: "#00ff00",
-    secondaryColor: "#ff0080"
   };
-  stateStore: store,
-  stateType: 'app'
+  stateType: 'theme'
 
   // Lifecycle
   constructor() {
     super();
+    // Always set an app level store
+    this.setStore(store);
     this.addType('app');
   }
   connectedCallback() {
