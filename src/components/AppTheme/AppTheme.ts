@@ -8,7 +8,7 @@ import { store } from '../../store.js';
 import { TaskMixin } from '../../../packages/TaskMixin';
 import { AppSettings } from '../AppSettings/AppSettings';
 import * as style from './MyApp.scss';
-import Template from './MyAppTemplate';
+import Template from './AppThemeTemplate'; 
 import { FirebaseMixin } from '../../../packages/FirebaseMixin';
 
 /**

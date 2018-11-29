@@ -12,7 +12,7 @@ import('@material/mwc-formfield');
 // import * as loremIpsum from 'lorem-ipsum';
 const loremIpsum = require('lorem-ipsum');
 
-export default function ({ app, settings, user }: any) {
+export default function ({ app, user }: any) {
   return html`
     <style>
       ${style}
@@ -27,10 +27,6 @@ export default function ({ app, settings, user }: any) {
         <input @input="${(e: any) => this.primaryColorChanged(e)}" aria-label="Primary color" type="color" value="${app.primaryColor}" />
         <label>Secondary color</label>
         <input @input="${(e: any) => this.secondaryColorChanged(e)}" aria-label="Secondary color" type="color" value="${app.secondaryColor}" />
-        <label>Dark (Boolean)</label>
-        <input type="checkbox" aria-label="Theme" ?checked=${this.state.settings.theme == 'dark'} @change="${(e: any) => this._toggleThemeHandler()}">
-        <label>Sync (Boolean)</label>
-        <input type="checkbox" aria-label="Sync" ?checked=${this.state.app.sync} @change="${(e: any) => this._toggleSync(e.target.value)}">
         <mwc-button outlined @click="${() => this.setTheme("light")}">Light theme</mwc-button>
         <mwc-button outlined @click="${() => this.setTheme("dark")}">Dark theme</mwc-button>
       </my-grid>

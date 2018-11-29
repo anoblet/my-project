@@ -20,12 +20,27 @@ export default function ({ user }: any) {
           <my-flex direction="column" id="content" class="scroll" grow>
             <my-card>
               <div slot="title">Welcome</div>
-              Welcome ${user.name ? user.name : 'guest'} ${!user.signedIn ? html`Sign in to save settings` : html`You are currently signed in: Your settings will now be saved`}.
+              Welcome ${user.name ? user.name : 'guest'}! ${!user.signedIn ? html`Sign in to save settings` : html`You are currently signed in: Your settings will now be saved`}.
             </my-card>
-            <my-card>
-              <div slot="title">State</div>
-              <pre style="overflow: hidden;">${JSON.stringify(this.state, null, 2)};</pre>
-            </my-card>
+            <div>
+              <my-grid style="grid-template-columns: 1fr 1fr;">
+              <my-card>
+                <div slot="title">State</div>
+                <pre style="overflow: hidden;">${JSON.stringify(this.state, null, 2)};</pre>
+              </my-card>
+              <my-card>
+                <div slot="title">Firebase</div>
+                  ${until(
+                    this.getDocument().then((document: any) => {
+                      return html`
+                        <pre>${JSON.stringify(document, null, 2)}</pre>
+                      `
+                    }),
+                    html`Loading...`
+                  )}
+              </my-card>
+              </my-grid>
+            </div>
             <div>
               <my-grid style="grid-template-columns: 1fr 1fr;">
                 <my-card>
@@ -40,17 +55,6 @@ export default function ({ user }: any) {
                 ` : html``)}
               </my-grid>
             </div>
-            <my-card>
-              <div slot="title">Firebase</div>
-                ${until(
-                  this.getDocument().then((document: any) => {
-                    return html`
-                      <pre>${JSON.stringify(document, null, 2)}</pre>
-                    `
-                  }),
-                  html`Loading...`
-                )}
-            </my-card>
             <my-card>
               <div slot="title">Lorem Ipsum</div>
               <lorem-ipsum count="100"></lorem-ipsum>

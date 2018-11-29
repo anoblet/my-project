@@ -33,6 +33,6 @@ export const store = createStore(
 );
 
 // Initially loaded reducers.
-store.addReducers({
-  settings
-});
+// store.addReducers({
+//   settings
+// });
