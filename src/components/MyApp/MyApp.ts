@@ -30,12 +30,13 @@ export class MyApp extends connect(store)(Mixin(LitElement, [BaseMixin, TaskMixi
     super();
     this.setStore(store);
     this.addType('app');
+    this.addEventListener('theme-changed', this._updateStyles);
   }
 
   connectedCallback() {
     super.connectedCallback();
     this.firebaseConfig = config.firebase;
-    this.firebaseDocumentPath = 'state/app';
+    this.firebaseDocumentPath = 'app';
     this.runTasks([
       import(/* webpackChunkName: "MyFlex" */'../../../packages/my-flex'),
       import(/* webpackChunkName: "MyGrid" */ '../../../packages/my-grid'),
@@ -45,14 +46,17 @@ export class MyApp extends connect(store)(Mixin(LitElement, [BaseMixin, TaskMixi
       import(/* webpackChunkName: "AppFooter" */ '../AppFooter/AppFooter'),
       import(/* webpackChunkName: "AppLogin" */ '../AppLogin/AppLogin'),
       import(/* webpackChunkName: "AppSettings" */ '../AppSettings/AppSettings'),
-      this.initFirebase(),
+      import(/* webpackChunkName: "AppTheme" */ '../AppTheme/AppTheme'),
+      this.firebaseInit(),
       this.checkRedirect(),
       this.getUser().then((user: any) => {
         this.setState(user, 'user');
-        // this.setButtonBackground();
       }),
       this.getDocument().then(
         (document: any) => this.setState(document, 'app')
+      ),
+      this.getDocument('theme').then(
+        (document: any) => this.setState(document, 'theme')
       )
     ]);
   }
@@ -92,16 +96,16 @@ export class MyApp extends connect(store)(Mixin(LitElement, [BaseMixin, TaskMixi
     drawerContainer._toggleAttribute('opened');
   }
 
-  updateStyles(state: any) {
-    this.style.setProperty('--background-color', state.app.backgroundColor);
-    this.style.setProperty('--text-color', state.app.textColor);
-    this.style.setProperty('--primary-color', state.app.primaryColor);
-    this.style.setProperty('--secondary-color', state.app.secondaryColor);
+  updateStyles(theme: any) {
+    this.style.setProperty('--background-color', theme.backgroundColor);
+    this.style.setProperty('--text-color', theme.textColor);
+    this.style.setProperty('--primary-color', theme.primaryColor);
+    this.style.setProperty('--secondary-color', theme.secondaryColor);
   }
 
   stateChanged(state: any) {
     this.state = state;
-    this.updateStyles(state);
+    if(state.theme) this.updateStyles(state.theme);
     this.setDocument(state.app);
     if(this.state.settings) {
       if (this.state.settings.debug != null) {

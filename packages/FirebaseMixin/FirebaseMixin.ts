@@ -1,19 +1,18 @@
 import * as firebase from 'firebase/app';
 import * as firestore from 'firebase/firestore';
 import * as auth from 'firebase/auth';
-import { resolve } from 'dns';
 
 export const FirebaseMixin = function (superClass: any) {
   return class extends superClass {
     firebaseConfig: any;
     firebaseDocumentPath: any
-    initFirebase() {
+    firebaseInit() {
       import(/* webpackChunkName: "FirebaseApp" */ 'firebase/app').then((app) => {
         if (app.apps.length === 0) app.initializeApp(this.firebaseConfig);
       });
     }
 
-    getDocument(config: any = {
+    getDocument(path: any = '', config: any = {
       watch: true
     }) {
       return new Promise((resolve, reject) => {
@@ -26,7 +25,8 @@ export const FirebaseMixin = function (superClass: any) {
           const user: any = await this.getUser();
           if(!user) resolve();
           if(user) {
-            const document = firestore.doc(`users/${user.uid}/${this.firebaseDocumentPath}`);
+            if(!path) path = this.firebaseDocumentPath;
+            const document = firestore.doc(`users/${user.uid}/state/${path}`);
             if(config.watch)
             document.get().then((doc: any) => {
               if(!doc.exists) document.set(this.defaultDocument);
@@ -47,7 +47,7 @@ export const FirebaseMixin = function (superClass: any) {
           firestore.settings({ timestampsInSnapshots: true });
           const user: any = await this.getUser();
           if(user) {
-            const document = firestore.doc(`users/${user.uid}/${this.firebaseDocumentPath}`);
+            const document = firestore.doc(`users/${user.uid}/state/${this.firebaseDocumentPath}`);
             document.set(data, {merge: true});
           }
         });

@@ -4,6 +4,10 @@
   padding: 1em;
 }
 
+:host([grow]) {
+  flex: 1;
+}
+
 h2 {
   margin-block-start: 0;
 }

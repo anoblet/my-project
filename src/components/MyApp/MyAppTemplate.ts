@@ -12,9 +12,9 @@ export default function ({ user }: any) {
       </my-flex>
       <my-flex id="center" style="word-wrap: break-word;">
         <my-grid id="drawer-container">
-          <my-flex id="drawer" class="scroll" hidden>
-            <my-card>
-              <lorem-ipsum></lorem-ipsum>
+          <my-flex id="drawer" class="scroll" grow hidden>
+            <my-card grow>
+              <a href="/settings">Settings</a>
             </my-card>
           </my-flex>
           <my-flex direction="column" id="content" class="scroll" grow>
@@ -23,22 +23,26 @@ export default function ({ user }: any) {
               Welcome ${user.name ? user.name : 'guest'}! ${!user.signedIn ? html`Sign in to save settings` : html`You are currently signed in: Your settings will now be saved`}.
             </my-card>
             <div>
-              <my-grid style="grid-template-columns: 1fr 1fr;">
-              <my-card>
-                <div slot="title">State</div>
-                <pre style="overflow: hidden;">${JSON.stringify(this.state, null, 2)};</pre>
-              </my-card>
-              <my-card>
-                <div slot="title">Firebase</div>
-                  ${until(
-                    this.getDocument().then((document: any) => {
-                      return html`
-                        <pre>${JSON.stringify(document, null, 2)}</pre>
-                      `
-                    }),
-                    html`Loading...`
-                  )}
-              </my-card>
+              <my-grid style="grid-template-columns: 1fr 1fr; grid-gap: 0;">
+                <my-card class="scroll">
+                  <div slot="title">State</div>
+                  <pre style="overflow: hidden;">${JSON.stringify(this.state, null, 2)};</pre>
+                </my-card>
+                <my-card>
+                  <div slot="title">Firebase</div>
+                    ${until(
+                      this.getDocument().then((document: any) => {
+                        return html`
+                          <pre>${JSON.stringify(document, null, 2)}</pre>
+                        `
+                      }),
+                      html`Loading...`
+                    )}
+                </my-card>
+                <my-card>
+                  <div slot="title">Theme</div>
+                  <app-theme></app-theme>
+                </my-card>
               </my-grid>
             </div>
             <div>

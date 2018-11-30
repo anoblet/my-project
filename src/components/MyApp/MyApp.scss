@@ -97,6 +97,10 @@ mwc-icon {
   color: var(--mdc-theme-primary);
 }
 
+a {
+  color: var(--secondary-color);
+}
+
 .scroll {
   overflow: auto;
 }
