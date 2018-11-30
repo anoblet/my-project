@@ -35,6 +35,7 @@ export const StateMixin = function (superClass: any) {
 
     stateChanged(state: any) {
       this.state = state;
+      this.requestUpdate();
     }
   }
 }

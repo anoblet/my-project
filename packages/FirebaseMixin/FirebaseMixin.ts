@@ -68,6 +68,7 @@ export const FirebaseMixin = function (superClass: any) {
             if (!user && !pendingRedirect) resolve(false);
             if (user) {
               const userModel: any = {};
+              userModel.signedIn = true;
               userModel.uid = user.uid;
               userModel.name = user.displayName;
               userModel.email = user.email;

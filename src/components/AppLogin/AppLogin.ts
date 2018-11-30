@@ -104,7 +104,7 @@ export class AppLogin extends connect(store)(Mixin(LitElement, [BaseMixin, TaskM
       ]).then(async ([firebase, firebaseui]) => {
         const form = document.createElement('div');
         const ui = firebaseui.auth.AuthUI.getInstance() || new firebaseui.auth.AuthUI(firebase.auth());
-        ui.start(form, config.firebaseui);
+        ui.start(form, {...config.firebaseui, ...{'credentialHelper': firebaseui.auth.CredentialHelper.NONE}});
         resolve(form);
       })
     });
