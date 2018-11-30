@@ -34,7 +34,7 @@ export const StateMixin = function (superClass: any) {
     }
 
     stateChanged(state: any) {
-      console.log('Here');
+      this.state = state;
     }
   }
 }

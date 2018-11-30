@@ -10,20 +10,20 @@ export default function ({ user }: any) {
         <span id="title">${this.title}</span>
         <mwc-fab id="userProfile" mini label="Account" @click="${() => this._toggleProfile()}">Profile</mwc-fab>
       </my-flex>
-      <my-flex id="center" style="word-wrap: break-word;">
+      <my-flex id="center" class="pad scroll" style="word-wrap: break-word;">
         <my-grid id="drawer-container">
           <my-flex id="drawer" class="scroll" grow hidden>
             <my-card grow>
               <a href="/settings">Settings</a>
             </my-card>
           </my-flex>
-          <my-flex direction="column" id="content" class="scroll" grow>
-            <my-card>
-              <div slot="title">Welcome</div>
-              Welcome ${user.name ? user.name : 'guest'}! ${!user.signedIn ? html`Sign in to save settings` : html`You are currently signed in: Your settings will now be saved`}.
-            </my-card>
+          <my-flex direction="column" id="content" grow scroll>
             <div>
-              <my-grid style="grid-template-columns: 1fr 1fr; grid-gap: 0;">
+              <my-grid style="grid-template-columns: repeat(auto-fit, minmax(40vw, 1fr) ); padding: 1em;">
+                <my-card style="grid-column: 1/-1">
+                  <div slot="title">Welcome</div>
+                  Welcome ${user.name ? user.name : 'guest'}! ${!user.signedIn ? html`Sign in to save settings` : html`You are currently signed in: Your settings will now be saved`}.
+                </my-card>
                 <my-card class="scroll">
                   <div slot="title">State</div>
                   <pre style="overflow: hidden;">${JSON.stringify(this.state, null, 2)};</pre>

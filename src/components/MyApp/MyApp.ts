@@ -15,14 +15,15 @@ import { FirebaseMixin } from '../../../packages/FirebaseMixin';
  * @todo Extend BaseElement
  */
 
-export class MyApp extends connect(store)(Mixin(LitElement, [BaseMixin, TaskMixin, StateMixin, FirebaseMixin])) {
+export class MyApp extends Mixin(connect(store)(LitElement), [/* BaseMixin,*/ TaskMixin, StateMixin, FirebaseMixin]) {
   @property({ type: String }) title = 'Andrew Noblet'
-  @property({ type: Object }) state: any;
+  // @property({ type: Object }) state: any;
   taskPending = false;
   defaultDocument = {
     primaryColor: "#00ff00",
     secondaryColor: "#ff0080"
   };
+  state: any;
   stateType: 'app'
 
   // Lifecycle
@@ -104,15 +105,15 @@ export class MyApp extends connect(store)(Mixin(LitElement, [BaseMixin, TaskMixi
   }
 
   stateChanged(state: any) {
-    this.state = state;
+    super.stateChanged(state);
     if(state.theme) this.updateStyles(state.theme);
     this.setDocument(state.app);
-    if(this.state.settings) {
-      if (this.state.settings.debug != null) {
-        this.state.settings.debug ? this.setAttribute('debug', '') : this.removeAttribute('debug');
+    if(state.settings) {
+      if (state.settings.debug != null) {
+        state.settings.debug ? this.setAttribute('debug', '') : this.removeAttribute('debug');
       }
-      if (this.state.settings.theme != null) {
-        this.state.settings.theme == 'light' ? this.getAttribute('dark') == '' ? this.removeAttribute('dark') : false : this.setAttribute('dark', '');
+      if (state.settings.theme != null) {
+        state.settings.theme == 'light' ? this.getAttribute('dark') == '' ? this.removeAttribute('dark') : false : this.setAttribute('dark', '');
       }
     }
   }
