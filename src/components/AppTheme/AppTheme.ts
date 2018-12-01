@@ -16,7 +16,7 @@ const style = html``;
  * @todo Extend BaseElement
  */
 
-export class AppTheme extends connect(store)(Mixin(LitElement, [BaseMixin, TaskMixin, StateMixin, FirebaseMixin])) {
+export class AppTheme extends Mixin(connect(store)(LitElement), [BaseMixin, TaskMixin, StateMixin, FirebaseMixin]) {
   darkTheme: any = {
     backgroundColor: "#242424",
     textColor: "#ffffff",
@@ -73,10 +73,8 @@ export class AppTheme extends connect(store)(Mixin(LitElement, [BaseMixin, TaskM
   }
 
   stateChanged(state: any) {
-    super.stateChanged();
-    this.state = state;
-    this.setDocument(state[this.stateType]);
-    this.requestUpdate();
+    super.stateChanged(state);
+    this.setDocument(state.theme);
   }
 
   render() {

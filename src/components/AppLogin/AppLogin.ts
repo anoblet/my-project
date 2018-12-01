@@ -5,7 +5,7 @@ import { BaseMixin } from '../../../packages/BaseMixin';
 import { Mixin } from '../../../packages/Mixin';
 import { StateMixin } from '../../../packages/StateMixin';
 import { TaskMixin } from '../../../packages/TaskMixin';
-import { setDebug, setTheme } from '../../actions/Settings.js';
+// import { setDebug, setTheme } from '../../actions/Settings.js';
 import { store } from '../../store.js';
 import Template from './AppLoginTemplate';
 import { user } from './redux/reducers/User';
@@ -68,8 +68,8 @@ export class AppLogin extends connect(store)(Mixin(LitElement, [BaseMixin, TaskM
     const settings= store.getState().settings;
     const mergedState = {...settings, ...data}
     return new Promise(async (resolve, reject) => {
-      await store.dispatch(setDebug(mergedState.debug));
-      await store.dispatch(setTheme(mergedState.theme));
+      // await store.dispatch(setDebug(mergedState.debug));
+      // await store.dispatch(setTheme(mergedState.theme));
       resolve();
     });
   }
