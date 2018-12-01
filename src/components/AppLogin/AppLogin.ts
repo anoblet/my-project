@@ -5,19 +5,18 @@ import { BaseMixin } from '../../../packages/BaseMixin';
 import { Mixin } from '../../../packages/Mixin';
 import { StateMixin } from '../../../packages/StateMixin';
 import { TaskMixin } from '../../../packages/TaskMixin';
-// import { setDebug, setTheme } from '../../actions/Settings.js';
 import { store } from '../../store.js';
 import Template from './AppLoginTemplate';
-import { user } from './redux/reducers/User';
 
-store.addReducers({
-  user
-});
-
-export class AppLogin extends connect(store)(Mixin(LitElement, [BaseMixin, TaskMixin, StateMixin])) {
+export class AppLogin extends Mixin(connect(store)(LitElement), [BaseMixin, TaskMixin, StateMixin]) {
   @property({ type: Boolean }) isSignedIn = false;
-  @property({ type: Object }) state = {};
   form: any;
+
+  constructor() {
+    super();
+    this.setStore(store);
+    this.addType('user');
+  }
 
   connectedCallback() {
     super.connectedCallback();

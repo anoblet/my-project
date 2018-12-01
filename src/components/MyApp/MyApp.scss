@@ -98,7 +98,13 @@ mwc-icon {
 }
 
 a {
-  color: var(--secondary-color);
+  color: var(--primary-color);
+  text-decoration: none;
+}
+
+ul {
+  list-style-type: none;
+  padding-inline-start: 0;
 }
 
 .pad {

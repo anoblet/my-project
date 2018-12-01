@@ -14,7 +14,12 @@ export default function ({ user }: any) {
         <my-grid id="drawer-container">
           <my-flex id="drawer" class="scroll" grow hidden>
             <my-card grow>
-              <a href="/settings">Settings</a>
+              <span slot="title">Menu</span>
+              <ul>
+                <li>
+                  <a href="#" rel="noopener">Settings</a>
+                </li>
+              </ul>
             </my-card>
           </my-flex>
           <my-flex direction="column" id="content" grow scroll>

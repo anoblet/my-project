@@ -53,6 +53,7 @@ export class MyApp extends Mixin(connect(store)(LitElement), [/* BaseMixin,*/ Ta
       this.firebaseInit(),
       this.checkRedirect(),
       this.getUser().then((user: any) => {
+        this.addType('user');
         this.setState(user, 'user');
       }),
       this.getDocument('theme').then(
