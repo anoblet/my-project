@@ -19,6 +19,7 @@ export class MyApp extends Mixin(connect(store)(LitElement), [/* BaseMixin,*/ Ta
   @property({ type: String }) title = 'Andrew Noblet'
   defaultDocument = {
     backgroundColor: "#242424",
+    borderColor: "#CCC",
     textColor: "#CCC",
     primaryColor: "#00ff00",
     secondaryColor: "#ff0080"
@@ -33,7 +34,7 @@ export class MyApp extends Mixin(connect(store)(LitElement), [/* BaseMixin,*/ Ta
   constructor() {
     super();
     this.setStore(store);
-    // this.addType('app');
+    this.addType('app');
     this.addType('theme');
     this.setState(this.defaultDocument, 'theme');
   }
@@ -44,6 +45,7 @@ export class MyApp extends Mixin(connect(store)(LitElement), [/* BaseMixin,*/ Ta
       import(/* webpackChunkName: "MyFlex" */'../../../packages/my-flex'),
       import(/* webpackChunkName: "MyGrid" */ '../../../packages/my-grid'),
       import(/* webpackChunkName: "MyLoader" */'../../../packages/my-loader'),
+      import(/* webpackChunkName: "MyLoader" */'../../../packages/my-card'),
       import(/* webpackChunkName: "MWC-Icon" */'@material/mwc-icon'),
       import(/* webpackChunkName: "MWC-Fab" */'@material/mwc-fab'),
       import(/* webpackChunkName: "AppFooter" */ '../AppFooter/AppFooter'),
