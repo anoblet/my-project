@@ -10,7 +10,7 @@ export default function ({ user }: any) {
         <span id="title">${this.title}</span>
         <mwc-fab id="userProfile" mini label="Account" @click="${() => this._toggleProfile()}">Profile</mwc-fab>
       </my-flex>
-      <my-flex id="center" class="scroll" style="padding: 0 1em 1em 1em; word-wrap: break-word;">
+      <my-flex id="center" class="scroll" style="word-wrap: break-word;">
         <my-grid id="drawer-container">
           <my-flex id="drawer" class="scroll" grow hidden>
             <my-card grow>
@@ -22,8 +22,8 @@ export default function ({ user }: any) {
               </ul>
             </my-card>
           </my-flex>
-          <my-flex direction="column" id="content" grow scroll>
-            <my-grid class="scroll" style="grid-template-columns: repeat(auto-fit, minmax(350px, 1fr) ); padding: 1em;">
+          <my-flex id="content" grow scroll>
+            <my-grid class="scroll" style="grid-template-columns: repeat(auto-fit, minmax(350px, 1fr) );">
               <my-card style="grid-column: 1/-1">
                 <div slot="title">Welcome</div>
                 Welcome ${user.name ? user.name : 'Guest'}! ${!user.signedIn ? html`Sign in to save settings` : html`You are currently signed in: Your settings will now be saved`}.
