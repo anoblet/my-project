@@ -17,27 +17,29 @@ import { FirebaseMixin } from '../../../packages/FirebaseMixin';
 
 export class MyApp extends Mixin(connect(store)(LitElement), [/* BaseMixin,*/ TaskMixin, StateMixin, FirebaseMixin]) {
   @property({ type: String }) title = 'Andrew Noblet'
-  // @property({ type: Object }) state: any;
-  taskPending = false;
   defaultDocument = {
+    backgroundColor: "#242424",
+    textColor: "#CCC",
     primaryColor: "#00ff00",
     secondaryColor: "#ff0080"
   };
+  firebaseConfig = config.firebase;
+  firebaseDocumentPath = 'app';
   state: any;
   stateType: 'app'
+  taskPending = false;
 
   // Lifecycle
   constructor() {
     super();
     this.setStore(store);
-    this.addType('app');
-    this.addEventListener('theme-changed', this._updateStyles);
+    // this.addType('app');
+    this.addType('theme');
+    this.setState(this.defaultDocument, 'theme');
   }
 
   connectedCallback() {
     super.connectedCallback();
-    this.firebaseConfig = config.firebase;
-    this.firebaseDocumentPath = 'app';
     this.runTasks([
       import(/* webpackChunkName: "MyFlex" */'../../../packages/my-flex'),
       import(/* webpackChunkName: "MyGrid" */ '../../../packages/my-grid'),
@@ -46,7 +48,6 @@ export class MyApp extends Mixin(connect(store)(LitElement), [/* BaseMixin,*/ Ta
       import(/* webpackChunkName: "MWC-Fab" */'@material/mwc-fab'),
       import(/* webpackChunkName: "AppFooter" */ '../AppFooter/AppFooter'),
       import(/* webpackChunkName: "AppLogin" */ '../AppLogin/AppLogin'),
-      import(/* webpackChunkName: "AppSettings" */ '../AppSettings/AppSettings'),
       import(/* webpackChunkName: "AppTheme" */ '../AppTheme/AppTheme'),
       this.firebaseInit(),
       this.checkRedirect(),

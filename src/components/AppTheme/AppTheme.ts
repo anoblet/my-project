@@ -17,12 +17,6 @@ const style = html``;
  */
 
 export class AppTheme extends connect(store)(Mixin(LitElement, [BaseMixin, TaskMixin, StateMixin, FirebaseMixin])) {
-  defaultDocument: any = {
-    backgroundColor: "#242424",
-    textColor: "#ffffff",
-    primaryColor: "#00ff00",
-    secondaryColor: "#ff0080"
-  };
   darkTheme: any = {
     backgroundColor: "#242424",
     textColor: "#ffffff",

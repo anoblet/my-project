@@ -18,17 +18,22 @@ export default function ({ user }: any) {
             </my-card>
           </my-flex>
           <my-flex direction="column" id="content" grow scroll>
-            <my-grid class="scroll" style="grid-template-columns: repeat(auto-fit, minmax(40vw, 1fr) ); padding: 1em;">
+            <my-grid class="scroll" style="grid-template-columns: repeat(auto-fit, minmax(350px, 1fr) ); padding: 1em;">
               <my-card style="grid-column: 1/-1">
                 <div slot="title">Welcome</div>
-                Welcome ${user.name ? user.name : 'guest'}! ${!user.signedIn ? html`Sign in to save settings` : html`You are currently signed in: Your settings will now be saved`}.
+                Welcome ${user.name ? user.name : 'Guest'}! ${!user.signedIn ? html`Sign in to save settings` : html`You are currently signed in: Your settings will now be saved`}.
+              </my-card>
+              <my-card>
+                <div slot="title">User</div>
+                <app-login></app-login>
               </my-card>
               <my-card class="scroll">
                 <div slot="title">State</div>
-                <pre style="overflow: hidden;">${JSON.stringify(this.state, null, 2)};</pre>
+                  <pre style="overflow: hidden;">${JSON.stringify(this.state, null, 2)};</pre>
               </my-card>
               <my-card>
                 <div slot="title">Firebase</div>
+                ${user.signedIn ? html`
                   ${until(
                     this.getDocument('theme').then((document: any) => {
                       return html`
@@ -37,14 +42,11 @@ export default function ({ user }: any) {
                     }),
                     html`Loading...`
                   )}
+                ` : html`Sign in to see a Firebase document`}
               </my-card>
               <my-card>
                 <div slot="title">Theme</div>
                 <app-theme></app-theme>
-              </my-card>
-              <my-card>
-                <div slot="title">User</div>
-                <app-login></app-login>
               </my-card>
               <my-card style="grid-column: 1/-1">
                 <div slot="title">Lorem Ipsum</div>
