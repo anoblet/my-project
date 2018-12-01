@@ -34,7 +34,6 @@ export class MyApp extends Mixin(connect(store)(LitElement), [/* BaseMixin,*/ Ta
   constructor() {
     super();
     this.setStore(store);
-    this.addType('app');
     this.addType('theme');
     this.setState(this.defaultDocument, 'theme');
   }
@@ -56,9 +55,6 @@ export class MyApp extends Mixin(connect(store)(LitElement), [/* BaseMixin,*/ Ta
       this.getUser().then((user: any) => {
         this.setState(user, 'user');
       }),
-      this.getDocument().then(
-        (document: any) => this.setState(document, 'app')
-      ),
       this.getDocument('theme').then(
         (document: any) => this.setState(document, 'theme')
       )
@@ -110,7 +106,6 @@ export class MyApp extends Mixin(connect(store)(LitElement), [/* BaseMixin,*/ Ta
   stateChanged(state: any) {
     super.stateChanged(state);
     if(state.theme) this.updateStyles(state.theme);
-    this.setDocument(state.app);
     if(state.settings) {
       if (state.settings.debug != null) {
         state.settings.debug ? this.setAttribute('debug', '') : this.removeAttribute('debug');
