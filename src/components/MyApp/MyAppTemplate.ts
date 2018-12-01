@@ -10,7 +10,7 @@ export default function ({ user }: any) {
         <span id="title">${this.title}</span>
         <mwc-fab id="userProfile" mini label="Account" @click="${() => this._toggleProfile()}">Profile</mwc-fab>
       </my-flex>
-      <my-flex id="center" class="pad scroll" style="word-wrap: break-word;">
+      <my-flex id="center" class="scroll" style="padding: 0 1em 1em 1em; word-wrap: break-word;">
         <my-grid id="drawer-container">
           <my-flex id="drawer" class="scroll" grow hidden>
             <my-card grow>
