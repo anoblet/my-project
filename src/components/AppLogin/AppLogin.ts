@@ -8,9 +8,13 @@ import { TaskMixin } from '../../../packages/TaskMixin';
 import { store } from '../../store.js';
 import Template from './AppLoginTemplate';
 
+import * as firebase from 'firebase/app'
+const firebaseui = require('firebaseui');
+
 export class AppLogin extends Mixin(connect(store)(LitElement), [BaseMixin, TaskMixin, StateMixin]) {
   @property({ type: Boolean }) isSignedIn = false;
-  form: any;
+  @property({ type: Object }) form: any;
+  // form: any;
 
   constructor() {
     super();
@@ -20,6 +24,8 @@ export class AppLogin extends Mixin(connect(store)(LitElement), [BaseMixin, Task
 
   connectedCallback() {
     super.connectedCallback();
+    const div = document.createElement('div');
+    this.form = this.createForm(div);
     this.runTasks([
       this.registerAuthStateChanged(),
     ])
@@ -95,16 +101,20 @@ export class AppLogin extends Mixin(connect(store)(LitElement), [BaseMixin, Task
     });
   }
 
+  createForm(el: any) {
+    const ui = firebaseui.auth.AuthUI.getInstance() || new firebaseui.auth.AuthUI(firebase.auth());
+    ui.start(el, {...config.firebaseui, ...{'credentialHelper': firebaseui.auth.CredentialHelper.NONE}});
+    return el;
+  }
+
   getForm() {
     return new Promise((resolve, reject) => {
       Promise.all([
         import(/* webpackChunkName: "FirebaseApp" */'firebase/app'),
         import(/* webpackChunkName: "FirebaseUI" */'firebaseui')
       ]).then(async ([firebase, firebaseui]) => {
-        console.log('Me');
         const form = document.createElement('div');
         const ui = firebaseui.auth.AuthUI.getInstance() || new firebaseui.auth.AuthUI(firebase.auth());
-        ui.start(form, {...config.firebaseui, ...{'credentialHelper': firebaseui.auth.CredentialHelper.NONE}});
         resolve(form);
       })
     });
