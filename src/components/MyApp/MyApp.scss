@@ -35,6 +35,10 @@
   --debug-border: 1px solid var(--border-color);
 }
 
+#drawer-container {
+  padding: 1em;
+}
+
 #container {
   flex: 1;
 }

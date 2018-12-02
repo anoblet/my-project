@@ -68,6 +68,25 @@ export class AppTheme extends Mixin(connect(store)(LitElement), [BaseMixin, Task
     this.setState(this.defaultDocument, 'theme');
   }
 
+  randomColor() {
+    var letters = '0123456789ABCDEF';
+    var color = '#';
+    for (var i = 0; i < 6; i++) {
+      color += letters[Math.floor(Math.random() * 16)];
+    }
+    return color;
+  }
+
+  randomizeColors() {
+    const colors = {
+      backgroundColor: this.randomColor(),
+      textColor: this.randomColor(),
+      primaryColor: this.randomColor(),
+      secondaryColor: this.randomColor()
+    }
+    this.setState(colors, 'theme');
+  }
+
   updateStyles(theme: any) {
     this.dispatchEvent(new CustomEvent('theme-changed', { bubbles: true, composed: true, detail: theme,}));
   }

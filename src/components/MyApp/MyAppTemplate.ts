@@ -22,7 +22,7 @@ export default function ({ user }: any) {
               </ul>
             </my-card>
           </my-flex>
-          <my-flex id="content" grow scroll>
+          <my-flex id="content" grow>
             <my-grid class="scroll" style="grid-template-columns: repeat(auto-fit, minmax(350px, 1fr) );">
               <my-card style="grid-column: 1/-1">
                 <div slot="title">Welcome</div>

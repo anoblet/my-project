@@ -1,6 +1,6 @@
-import * as firebase from 'firebase/app';
-import * as firestore from 'firebase/firestore';
-import * as auth from 'firebase/auth';
+// import * as firebase from 'firebase/app';
+// import * as firestore from 'firebase/firestore';
+// import * as auth from 'firebase/auth';
 
 export const FirebaseMixin = function (superClass: any) {
   return class extends superClass {
