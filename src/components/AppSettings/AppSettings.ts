@@ -4,7 +4,7 @@ import { connect } from 'pwa-helpers/connect-mixin.js';
 import { BaseMixin } from '../../../packages/BaseMixin';
 import { StateMixin } from '../../../packages/StateMixin';
 import { Mixin } from '../../../packages/Mixin';
-import { setDebug, setTheme } from '../../actions/Settings.js';
+// import { setDebug, setTheme } from '../../actions/Settings.js';
 import { store } from '../../store.js';
 import { AuthChangedMixin } from './AuthChangedMixin';
 import { OnSnapshotMixin } from './OnSnapshotMixin';

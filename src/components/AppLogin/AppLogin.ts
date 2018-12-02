@@ -101,6 +101,7 @@ export class AppLogin extends Mixin(connect(store)(LitElement), [BaseMixin, Task
         import(/* webpackChunkName: "FirebaseApp" */'firebase/app'),
         import(/* webpackChunkName: "FirebaseUI" */'firebaseui')
       ]).then(async ([firebase, firebaseui]) => {
+        console.log('Me');
         const form = document.createElement('div');
         const ui = firebaseui.auth.AuthUI.getInstance() || new firebaseui.auth.AuthUI(firebase.auth());
         ui.start(form, {...config.firebaseui, ...{'credentialHelper': firebaseui.auth.CredentialHelper.NONE}});
