@@ -8,8 +8,8 @@ import { TaskMixin } from '../../../packages/TaskMixin';
 import { store } from '../../store.js';
 import Template from './AppLoginTemplate';
 
-import * as firebase from 'firebase/app'
-const firebaseui = require('firebaseui');
+// import * as firebase from 'firebase/app'
+// const firebaseui = require('firebaseui');
 
 export class AppLogin extends Mixin(connect(store)(LitElement), [BaseMixin, TaskMixin, StateMixin]) {
   @property({ type: Boolean }) isSignedIn = false;
@@ -25,7 +25,7 @@ export class AppLogin extends Mixin(connect(store)(LitElement), [BaseMixin, Task
   connectedCallback() {
     super.connectedCallback();
     const div = document.createElement('div');
-    this.form = this.createForm(div);
+    // this.form = this.createForm(div);
     this.runTasks([
       this.registerAuthStateChanged(),
     ])
@@ -105,9 +105,9 @@ export class AppLogin extends Mixin(connect(store)(LitElement), [BaseMixin, Task
   }
 
   createForm(el: any) {
-    const ui = firebaseui.auth.AuthUI.getInstance() || new firebaseui.auth.AuthUI(firebase.auth());
-    ui.start(el, {...config.firebaseui, ...{'credentialHelper': firebaseui.auth.CredentialHelper.NONE}});
-    return el;
+    // const ui = firebaseui.auth.AuthUI.getInstance() || new firebaseui.auth.AuthUI(firebase.auth());
+    // ui.start(el, {...config.firebaseui, ...{'credentialHelper': firebaseui.auth.CredentialHelper.NONE}});
+    // return el;
   }
 
   getForm() {
@@ -116,9 +116,10 @@ export class AppLogin extends Mixin(connect(store)(LitElement), [BaseMixin, Task
         import(/* webpackChunkName: "FirebaseApp" */'firebase/app'),
         import(/* webpackChunkName: "FirebaseUI" */'firebaseui')
       ]).then(async ([firebase, firebaseui]) => {
-        const form = document.createElement('div');
+        const el = document.createElement('div');
         const ui = firebaseui.auth.AuthUI.getInstance() || new firebaseui.auth.AuthUI(firebase.auth());
-        resolve(form);
+        ui.start(el, {...config.firebaseui, ...{'credentialHelper': firebaseui.auth.CredentialHelper.NONE}});
+        resolve(el);
       })
     });
   }

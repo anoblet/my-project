@@ -16,7 +16,7 @@ export default function ({ user }: any) {
     </style>
     <my-flex direction="column" grow>
       ${user.signedIn ?
-        html`<mwc-button raised @click="${() => this._logoutHandler()}">Sign out</mwc-button>` : html`${this.form}`
+        html`<mwc-button raised @click="${() => this._logoutHandler()}">Sign out</mwc-button>` : html`${until(this.getForm(), html`<my-loader></my-loader>`)}`
       }
     </my-flex>
   `
