@@ -14,18 +14,14 @@ import Template from './AppLoginTemplate';
 export class AppLogin extends Mixin(connect(store)(LitElement), [BaseMixin, TaskMixin, StateMixin]) {
   @property({ type: Boolean }) isSignedIn = false;
   @property({ type: Object }) form: any;
-  // form: any;
 
   constructor() {
     super();
-    this.setStore(store);
-    this.addType('user');
+    this.setStore(store).addType('user');
   }
 
   connectedCallback() {
     super.connectedCallback();
-    const div = document.createElement('div');
-    // this.form = this.createForm(div);
     this.runTasks([
       this.registerAuthStateChanged(),
     ])
