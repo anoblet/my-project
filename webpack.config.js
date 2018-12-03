@@ -85,14 +85,9 @@ module.exports = {
       crossorigin: 'use-credentials', //can be null, use-credentials or anonymous
       icons: [
         {
-          src: path.resolve('src/assets/icon.png'),
+          src: path.resolve('src/assets/baseline_star_white_18dp.png'),
           sizes: [96, 128, 192, 256, 384, 512], // multiple sizes
           destination: 'icons'
-        },
-        {
-          src: path.resolve('src/assets/large-icon.png'),
-          size: '1024x1024', // you can also use the specifications pattern
-          destination: 'icons'        
         }
       ],
       theme_color: '#fff'
