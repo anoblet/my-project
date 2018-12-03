@@ -4,13 +4,13 @@ import '../../../packages/lorem-ipsum';
 
 export default function ({ user }: any) {
   return html`
-    <my-grid id="container" style="grid-gap: 0;">
+    <my-flex direction="column" id="container" style="grid-gap: 0;">
       <my-flex id="top">
         <mwc-icon id="menu" @click="${() => this._toggleDrawer()}">menu</mwc-icon>
         <span id="title">${this.title}</span>
         <mwc-fab id="userProfile" mini label="Account" @click="${() => this._toggleProfile()}">Profile</mwc-fab>
       </my-flex>
-      <my-flex id="center" class="scroll" style="word-wrap: break-word;">
+      <my-flex id="center" style="word-wrap: break-word;">
         <my-grid id="drawer-container">
           <my-flex id="drawer" class="scroll" grow hidden>
             <my-card grow>
@@ -22,7 +22,7 @@ export default function ({ user }: any) {
               </ul>
             </my-card>
           </my-flex>
-          <my-flex id="content" grow>
+          <my-flex id="content" grow scroll>
             <my-grid class="scroll" style="grid-template-columns: repeat(auto-fit, minmax(350px, 1fr) );">
               <my-card style="grid-column: 1/-1">
                 <div slot="title">Welcome</div>
@@ -32,7 +32,7 @@ export default function ({ user }: any) {
                 <div slot="title">User</div>
                 <app-login></app-login>
               </my-card>
-              <my-card class="scroll">
+              <my-card>
                 <div slot="title">State</div>
                   <pre style="overflow: hidden;">${JSON.stringify(this.state, null, 2)};</pre>
               </my-card>
@@ -64,6 +64,6 @@ export default function ({ user }: any) {
       <my-flex id="bottom">
         <app-footer></app-footer>
       </my-flex>
-    </my-grid>
+    </my-flex>
     `
 }
