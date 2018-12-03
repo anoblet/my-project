@@ -36,7 +36,7 @@
 }
 
 #drawer-container {
-  padding: 0 1em;
+  padding: 0 0 1em 1em;
 }
 
 #container {
@@ -61,6 +61,10 @@
   -webkit-transform: translateX(-50%);
   transform: translateX(-50%)
   /**/
+}
+
+#content-grid {
+  padding-right: 1em;
 }
 
 #menu:hover {

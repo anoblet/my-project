@@ -23,7 +23,7 @@ export default function ({ user }: any) {
             </my-card>
           </my-flex>
           <my-flex id="content" grow scroll>
-            <my-grid class="scroll" style="grid-template-columns: repeat(auto-fit, minmax(350px, 1fr) );">
+            <my-grid id="content-grid" style="grid-template-columns: repeat(auto-fit, minmax(350px, 1fr) );">
               <my-card style="grid-column: 1/-1">
                 <div slot="title">Welcome</div>
                 Welcome ${user.name ? user.name : 'Guest'}! ${!user.signedIn ? html`Sign in to save settings` : html`You are currently signed in: Your settings will now be saved`}.
@@ -45,7 +45,7 @@ export default function ({ user }: any) {
                         <pre>${JSON.stringify(document, null, 2)}</pre>
                       `
                     }),
-                    html`Loading...`
+                    html`<my-loader></my-loader>`
                   )}
                 ` : html`Sign in to see a Firebase document`}
               </my-card>
