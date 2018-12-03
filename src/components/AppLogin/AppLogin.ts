@@ -64,9 +64,12 @@ export class AppLogin extends Mixin(connect(store)(LitElement), [BaseMixin, Task
 
   _resetSettings() {
     this.setState({
-      debug: false,
-      theme: 'light'
-    }, 'settings');
+      "backgroundColor": "#242424",
+      "borderColor": "#CCC",
+      "textColor": "#CCC",
+      "primaryColor": "#00ff00",
+      "secondaryColor": "#ff0080"
+    }, 'theme');
   }
 
   _updateStore(data: any) {

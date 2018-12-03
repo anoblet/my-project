@@ -11,8 +11,9 @@ export const StateMixin = function (superClass: any) {
       const reducer = (state = {}, action: any) => {
         switch (action.type) {
           case `${type}`:
-            return {
-              ...state, ...action.state};
+            return action.merge ? {
+              ...state, ...action.state
+            } : action.state
           default:
             return state;
         }
@@ -26,10 +27,11 @@ export const StateMixin = function (superClass: any) {
       this.store = store;
     }
 
-    setState(data: any, action: any) {
+    setState(data: any, action: any, config: any = {merge: true}) {
       this.store.dispatch({
         type: action,
-        state: data
+        state: data,
+        merge: config.merge
       });
     }
 
