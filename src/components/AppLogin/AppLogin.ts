@@ -92,12 +92,7 @@ export class AppLogin extends Mixin(connect(store)(LitElement), [BaseMixin, Task
       // import(/* webpackChunkName: "firebaseAuth" */ 'firebase/auth')
     ]).then(([firebase]) => {
       firebase.auth().signOut();
-      this.setState({
-        signedIn: false,
-        name: false,
-        email: false,
-        photo: false
-      }, 'user');
+      this.setState({}, 'user', {merge: false});
       this.runTasks([
         this._resetSettings(),
       ])
