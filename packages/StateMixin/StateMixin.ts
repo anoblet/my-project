@@ -25,6 +25,7 @@ export const StateMixin = function (superClass: any) {
 
     setStore(store: any) {
       this.store = store;
+      return this;
     }
 
     setState(data: any, action: any, config: any = {merge: true}) {
