@@ -84,5 +84,21 @@ export const FirebaseMixin = function (superClass: any) {
         });
       });
     }
+
+    firebaseCheckRedirect() {
+      return new Promise((resolve, reject) => {
+        Promise.all([
+          import(/* webpackChunkName: "FirebaseApp" */'firebase/app'),
+          import(/* webpackChunkName: "FirebaseAuth" */'firebase/auth'),
+          import(/* webpackChunkName: "FirebaseUI" */'firebaseui'),
+        ]).then(([app, auth, ui]) => {
+          let instance = ui.auth.AuthUI.getInstance() || new ui.auth.AuthUI(app.auth());
+          if (instance.isPendingRedirect()) {
+            instance.start(document.createElement('div'), {});
+          }
+          resolve();
+        })
+      });
+    }
   }
 }

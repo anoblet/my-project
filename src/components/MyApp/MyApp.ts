@@ -50,8 +50,7 @@ export class MyApp extends Mixin(connect(store)(LitElement), [/* BaseMixin,*/ Ta
       import(/* webpackChunkName: "AppUser" */ '../AppUser/AppUser'),
       import(/* webpackChunkName: "AppTheme" */ '../AppTheme/AppTheme'),
       this.firebaseInit(),
-      // Does nothing but resolve?
-      this.checkRedirect(),
+      this.firebaseCheckRedirect(),
       this.getUser().then((user: any) => {
         this.addType('user');
         this.setState(user, 'user');
@@ -70,23 +69,6 @@ export class MyApp extends Mixin(connect(store)(LitElement), [/* BaseMixin,*/ Ta
       button.style.background = `url('${this.state.user.photo}')`;
       button.style.backgroundSize = "contain";
     }
-  }
-
-  // Helpers (Needed at tuntime to complete the login)
-  checkRedirect() {
-    return new Promise((resolve, reject) => {
-      Promise.all([
-        import(/* webpackChunkName: "FirebaseApp" */'firebase/app'),
-        import(/* webpackChunkName: "FirebaseAuth" */'firebase/auth'),
-        import(/* webpackChunkName: "FirebaseUI" */'firebaseui'),
-      ]).then(([app, auth, ui]) => {
-        let instance = ui.auth.AuthUI.getInstance() || new ui.auth.AuthUI(app.auth());
-        if (instance.isPendingRedirect()) {
-          instance.start(document.createElement('div'), {});
-        }
-        resolve();
-      })
-    });
   }
 
   // Events
