@@ -7,7 +7,23 @@ export const StateMixin = function (superClass: any) {
       this.setStore(store);
     }
 
-    addType(type: any) {
+    addReducer(type: any, customFunction: any = false) {
+      const defaultFunction = (state = {}, action: any) => {
+        switch (action.type) {
+          case `${type}`:
+            return action.merge ? {
+              ...state, ...action.state
+            } : action.state
+          default:
+            return state;
+        }
+      };
+      this.store.addReducers({
+        [type]: customFunction ? customFunction : defaultFunction
+      });
+    }
+
+    addType(type: any, customFunction: any = false) {
       const reducer = (state = {}, action: any) => {
         switch (action.type) {
           case `${type}`:
