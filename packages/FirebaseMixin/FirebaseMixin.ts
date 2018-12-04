@@ -28,6 +28,11 @@ export const FirebaseMixin = function (superClass: any) {
             if(!path) path = this.firebaseDocumentPath;
             const document = firestore.doc(`users/${user.uid}/state/${path}`);
             if(config.watch)
+            document.onSnapshot((doc: any) => {
+              const source = doc.metadata.hasPendingWrites ? "local" : "remote";
+              resolve(doc.data());
+            });
+            else
             document.get().then((doc: any) => {
               if(!doc.exists) document.set(this.defaultDocument);
               resolve(doc.data());
