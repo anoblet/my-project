@@ -47,10 +47,10 @@ export class MyApp extends Mixin(connect(store)(LitElement), [/* BaseMixin,*/ Ta
       import(/* webpackChunkName: "MWC-Icon" */'@material/mwc-icon'),
       import(/* webpackChunkName: "MWC-Fab" */'@material/mwc-fab'),
       import(/* webpackChunkName: "AppFooter" */ '../AppFooter/AppFooter'),
-      // import(/* webpackChunkName: "AppLogin" */ '../AppLogin/AppLogin'),
-      import(/* webpackChunkName: "AppLogin" */ '../AppUser/AppUser'),
+      import(/* webpackChunkName: "AppUser" */ '../AppUser/AppUser'),
       import(/* webpackChunkName: "AppTheme" */ '../AppTheme/AppTheme'),
       this.firebaseInit(),
+      // Does nothing but resolve?
       this.checkRedirect(),
       this.getUser().then((user: any) => {
         this.addType('user');
@@ -62,6 +62,7 @@ export class MyApp extends Mixin(connect(store)(LitElement), [/* BaseMixin,*/ Ta
     ]);
   }
 
+  // Hooks
   setButtonBackground() {
     const fab = this.shadowRoot.querySelector('mwc-fab');
     const button = fab.shadowRoot.querySelector('button')
@@ -71,10 +72,9 @@ export class MyApp extends Mixin(connect(store)(LitElement), [/* BaseMixin,*/ Ta
     }
   }
 
-  // Helpers
+  // Helpers (Needed at tuntime to complete the login)
   checkRedirect() {
     return new Promise((resolve, reject) => {
-      resolve();
       Promise.all([
         import(/* webpackChunkName: "FirebaseApp" */'firebase/app'),
         import(/* webpackChunkName: "FirebaseAuth" */'firebase/auth'),
@@ -104,19 +104,13 @@ export class MyApp extends Mixin(connect(store)(LitElement), [/* BaseMixin,*/ Ta
     this.style.setProperty('--secondary-color', theme.secondaryColor);
   }
 
+  // State
   stateChanged(state: any) {
     super.stateChanged(state);
     if(state.theme) this.updateStyles(state.theme);
-    if(state.settings) {
-      if (state.settings.debug != null) {
-        state.settings.debug ? this.setAttribute('debug', '') : this.removeAttribute('debug');
-      }
-      if (state.settings.theme != null) {
-        state.settings.theme == 'light' ? this.getAttribute('dark') == '' ? this.removeAttribute('dark') : false : this.setAttribute('dark', '');
-      }
-    }
   }
 
+  // Template
   render() {
     return html`
       <style>${style}</style>
