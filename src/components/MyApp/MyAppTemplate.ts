@@ -1,6 +1,5 @@
 import { html } from '@polymer/lit-element';
 import { until } from 'lit-html/directives/until';
-import '../../../packages/lorem-ipsum';
 
 export default function ({ user }: any) {
   return html`
@@ -16,6 +15,9 @@ export default function ({ user }: any) {
             <my-card grow>
               <span slot="title">Menu</span>
               <ul>
+                <li>
+                  <a href="/">Home</a>
+                </li>
                 <li>
                   <a href="/user">User</a>
                 </li>

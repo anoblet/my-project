@@ -8,6 +8,7 @@ import { StateMixin } from '../../../packages/StateMixin';
 import { FirebaseMixin } from '../../../packages/FirebaseMixin';
 import Template from './PageHomeTemplate';
 import * as Style from './PageHome.scss';
+import '../../../packages/lorem-ipsum';
 
 export class PageHome extends Mixin(connect(store)(LitElement), [TaskMixin, StateMixin, FirebaseMixin]) {
   render() {
