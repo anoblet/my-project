@@ -33,6 +33,7 @@ export class MyApp extends Mixin(connect(store)(LitElement), [/* BaseMixin,*/ Ta
   constructor() {
     super();
     this.setStore(store);
+    this.addReducer('app'),
     this.addReducer('user'),
     this.addReducer('theme');
     this.setState(this.defaultDocument, 'theme');
