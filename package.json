@@ -23,6 +23,7 @@
     "@webcomponents/webcomponentsjs": "^2.2.1",
     "firebase": "^5.6.0",
     "firebaseui": "^3.4.1",
+    "lit-redux-router": "^0.3.3",
     "lorem-ipsum": "^1.0.6",
     "npm": "^6.4.1",
     "pwa-helpers": "^0.9.0",

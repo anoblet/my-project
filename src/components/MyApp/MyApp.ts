@@ -9,6 +9,8 @@ import { TaskMixin } from '../../../packages/TaskMixin';
 import * as style from './MyApp.scss';
 import Template from './MyAppTemplate';
 import { FirebaseMixin } from '../../../packages/FirebaseMixin';
+import { connectRouter } from 'lit-redux-router';
+connectRouter(store);
 
 /**
  * @todo Extend BaseElement
@@ -48,9 +50,12 @@ export class MyApp extends Mixin(connect(store)(LitElement), [/* BaseMixin,*/ Ta
       import(/* webpackChunkName: "MyLoader" */'../../../packages/my-card'),
       import(/* webpackChunkName: "MWC-Icon" */'@material/mwc-icon'),
       import(/* webpackChunkName: "MWC-Fab" */'@material/mwc-fab'),
+      import(/* webpackChunkName: "AppHeader" */ '../AppHeader/AppHeader'),
       import(/* webpackChunkName: "AppFooter" */ '../AppFooter/AppFooter'),
       import(/* webpackChunkName: "AppUser" */ '../AppUser/AppUser'),
       import(/* webpackChunkName: "AppTheme" */ '../AppTheme/AppTheme'),
+      import(/* webpackChunkName: "PageHome" */ '../PageHome/PageHome'),
+      import(/* webpackChunkName: "PageUser" */ '../PageUser/PageUser'),
       this.firebaseInit(),
       this.firebaseCheckRedirect(),
       this.getUser().then((user: any) =>

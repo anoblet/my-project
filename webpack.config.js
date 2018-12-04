@@ -44,7 +44,10 @@ module.exports = {
     compress: true,
     contentBase: path.resolve(__dirname, 'dist'),
     watchContentBase: true,
-    open: true
+    open: true,
+    historyApiFallback: {
+      index: 'index.html'
+    }
   },
   optimization: {
     splitChunks: {
