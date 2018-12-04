@@ -33,7 +33,8 @@ export class MyApp extends Mixin(connect(store)(LitElement), [/* BaseMixin,*/ Ta
   constructor() {
     super();
     this.setStore(store);
-    this.addType('theme');
+    this.addReducer('user'),
+    this.addReducer('theme');
     this.setState(this.defaultDocument, 'theme');
   }
 
@@ -51,12 +52,11 @@ export class MyApp extends Mixin(connect(store)(LitElement), [/* BaseMixin,*/ Ta
       import(/* webpackChunkName: "AppTheme" */ '../AppTheme/AppTheme'),
       this.firebaseInit(),
       this.firebaseCheckRedirect(),
-      this.getUser().then((user: any) => {
-        this.addType('user');
-        this.setState(user, 'user');
-      }),
-      this.getDocument('theme').then(
-        (document: any) => this.setState(document, 'theme')
+      this.getUser().then((user: any) =>
+        this.setState(user, 'user')
+      ),
+      this.getDocument('theme').then((document: any) =>
+        this.setState(document, 'theme')
       )
     ]);
   }
