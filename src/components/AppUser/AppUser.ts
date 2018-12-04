@@ -6,12 +6,10 @@ import { Mixin } from '../../../packages/Mixin';
 import { StateMixin } from '../../../packages/StateMixin';
 import { TaskMixin } from '../../../packages/TaskMixin';
 import { store } from '../../store.js';
-import Template from './AppLoginTemplate';
 
-// import * as firebase from 'firebase/app'
-// const firebaseui = require('firebaseui');
+import Template from './AppUserTemplate';
 
-export class AppLogin extends Mixin(connect(store)(LitElement), [BaseMixin, TaskMixin, StateMixin]) {
+export class AppUser extends Mixin(connect(store)(LitElement), [BaseMixin, TaskMixin, StateMixin]) {
   @property({ type: Boolean }) isSignedIn = false;
   @property({ type: Object }) form: any;
 
@@ -114,4 +112,4 @@ export class AppLogin extends Mixin(connect(store)(LitElement), [BaseMixin, Task
   }
 }
 
-window.customElements.define('app-login', AppLogin);
+window.customElements.define('app-user', AppUser);

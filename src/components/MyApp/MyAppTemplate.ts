@@ -31,6 +31,7 @@ export default function ({ user }: any) {
               <my-card>
                 <div slot="title">User</div>
                 <app-login></app-login>
+                <app-user></app-user>
               </my-card>
               <my-card>
                 <div slot="title">State</div>

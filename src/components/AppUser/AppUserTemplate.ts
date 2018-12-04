@@ -5,7 +5,7 @@ import '@material/mwc-button';
 
 import(/* webpackChunkName: "MyFlex" */ '../../../packages/my-flex');
 
-import * as style from './AppLogin.scss'
+import * as style from './AppUser.scss'
 import * as firebaseStyle from './FirebaseUI.scss'
 
 export default function ({ user }: any) {
