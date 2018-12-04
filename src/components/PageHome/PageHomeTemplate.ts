@@ -14,11 +14,6 @@ export default function ({ user }: any) {
         Welcome ${user.name ? user.name : 'Guest'}! ${!user.signedIn ? html`Sign in to save settings` : html`You are currently signed in: Your settings will now be saved`}.
       </my-card>
       <my-card>
-        <div slot="title">User</div>
-        <app-login></app-login>
-        <app-user></app-user>
-      </my-card>
-      <my-card>
         <div slot="title">State</div>
           <pre style="overflow: hidden;">${JSON.stringify(this.state, null, 2)};</pre>
       </my-card>
@@ -34,10 +29,6 @@ export default function ({ user }: any) {
             html`<my-loader></my-loader>`
           )}
         ` : html`Sign in to see a Firebase document`}
-      </my-card>
-      <my-card>
-        <div slot="title">Theme</div>
-        <app-theme></app-theme>
       </my-card>
       <my-card style="grid-column: 1/-1">
         <div slot="title">Lorem Ipsum</div>

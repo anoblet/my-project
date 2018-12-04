@@ -17,15 +17,20 @@ export default function ({ user }: any) {
               <span slot="title">Menu</span>
               <ul>
                 <li>
-                  <a href="#" rel="noopener">Settings</a>
+                  <a href="/user">User</a>
+                </li>
+                <li>
+                  <a href="/theme">Theme</a>
                 </li>
               </ul>
             </my-card>
           </my-flex>
           <my-flex id="content" grow scroll>
-          <lit-route path="/" component="page-home"></lit-route>
-          <lit-route path="/user" component="page-user"></lit-route>
-          <lit-route path="/theme" component="app-theme"></lit-route>
+            <my-flex grow style="padding-right: 1em;">
+              <lit-route path="/" component="page-home"></lit-route>
+              <lit-route path="/user" component="page-user"></lit-route>
+              <lit-route path="/theme" component="app-theme"></lit-route>
+            </my-flex>
           </my-flex>
         </my-grid>
       </my-flex>
