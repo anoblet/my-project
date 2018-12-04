@@ -6,7 +6,6 @@ import { StateMixin } from '../../../packages/StateMixin';
 import { Mixin } from '../../../packages/Mixin';
 import { store } from '../../store.js';
 import { TaskMixin } from '../../../packages/TaskMixin';
-// import { AppSettings } from '../AppSettings/AppSettings';
 import Template from './AppThemeTemplate';
 import { FirebaseMixin } from '../../../packages/FirebaseMixin';
 
