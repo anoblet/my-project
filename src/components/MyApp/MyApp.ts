@@ -67,16 +67,6 @@ export class MyApp extends Mixin(connect(store)(LitElement), [/* BaseMixin,*/ Ta
     ]);
   }
 
-  // Hooks
-  setButtonBackground() {
-    const fab = this.shadowRoot.querySelector('mwc-fab');
-    const button = fab.shadowRoot.querySelector('button')
-    if(button) {
-      button.style.background = `url('${this.state.user.photo}')`;
-      button.style.backgroundSize = "contain";
-    }
-  }
-
   // Events
   _toggleDrawer() {
     const drawer = this.shadowRoot.querySelector('#drawer');

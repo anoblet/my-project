@@ -28,9 +28,18 @@ export class AppTheme extends Mixin(connect(store)(LitElement), [BaseMixin, Task
     primaryColor: "#00ff00",
     secondaryColor: "#ff0080"
   }
+  miscTheme: any = {
+    "backgroundColor": "#534A71",
+    "borderColor": "#CCC",
+    "primaryColor": "#4EE8EA",
+    "secondaryColor": "#5ECBC1",
+    "textColor": "#C2FB7C"
+  }
   firebaseConfig = config.firebase;
   firebaseDocumentPath = 'theme';
   stateType: any = 'theme';
+
+  savedThemes: any = [];
 
   // Lifecycle
   constructor() {
@@ -84,6 +93,35 @@ export class AppTheme extends Mixin(connect(store)(LitElement), [BaseMixin, Task
       secondaryColor: this.randomColor()
     }
     this.setState(colors, 'theme');
+  }
+
+  saveTheme() {
+    const theme = this.state.theme;
+    let savedThemes = this.state.theme.savedThemes;
+    if(!savedThemes) savedThemes = [];
+    savedThemes.push({
+      backgroundColor: theme.backgroundColor,
+      textColor: theme.textColor,
+      primaryColor: theme.primaryColor,
+      secondaryColor: theme.secondaryColor,
+    });
+    this.setState({ savedThemes }, "theme");
+  }
+
+  setSavedTheme(index: any) {
+    let savedThemes = this.state.theme.savedThemes;
+    this.setState(savedThemes[index], 'theme');
+  }
+
+  listThemes(){
+    const savedThemes = this.state.theme.savedThemes
+    return html`
+      <ul>
+        ${savedThemes.map((theme: any, index: any) =>
+          html`<li @click="${() => this.setSavedTheme(index)}">Theme ${index}</li>`
+        )}
+      </ul>
+    `
   }
 
   updateStyles(theme: any) {

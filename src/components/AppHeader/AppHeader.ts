@@ -9,6 +9,20 @@ import Template from './AppHeaderTemplate';
 import * as Style from './AppHeader.scss';
 
 export class AppHeader extends Mixin(connect(store)(LitElement), [TaskMixin, StateMixin]) {
+  firstUpdated() {
+    super.firstUpdated();
+    this.setButtonBackground();
+  }
+
+  setButtonBackground() {
+    const fab = this.querySelector('mwc-fab');
+    const button = fab.shadowRoot.querySelector('button')
+    if(button) {
+      button.style.background = `url('${this.state.user.photo}')`;
+      button.style.backgroundSize = "contain";
+    }
+  }
+
   render() {
     return html`
       <style>${Style}</style>

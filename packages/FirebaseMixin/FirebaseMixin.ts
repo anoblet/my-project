@@ -77,7 +77,7 @@ export const FirebaseMixin = function (superClass: any) {
               userModel.uid = user.uid;
               userModel.name = user.displayName;
               userModel.email = user.email;
-              userModel.photo = user.photoUrl;
+              userModel.photo = user.photoURL;
               resolve(userModel);
             }
           });

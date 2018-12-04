@@ -7,7 +7,7 @@ export default function ({ user }: any) {
       <app-header>
         <mwc-icon id="menu" @click="${() => this._toggleDrawer()}">menu</mwc-icon>
         <span id="title">${this.title}</span>
-        <mwc-fab id="userProfile" mini label="Account" @click="${() => this._toggleProfile()}">Profile</mwc-fab>
+        <a href="/user"><mwc-fab id="userProfile" mini label="Account" @click="${() => this._toggleProfile()}">Profile</mwc-fab></a>
       </app-header>
       <my-flex id="center" style="word-wrap: break-word;">
         <my-grid id="drawer-container">
