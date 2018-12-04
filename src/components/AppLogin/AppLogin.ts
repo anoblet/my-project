@@ -68,21 +68,11 @@ export class AppLogin extends Mixin(connect(store)(LitElement), [BaseMixin, Task
     }, 'theme');
   }
 
-  _updateStore(data: any) {
-    const settings= store.getState().settings;
-    const mergedState = {...settings, ...data}
-    return new Promise(async (resolve, reject) => {
-      // await store.dispatch(setDebug(mergedState.debug));
-      // await store.dispatch(setTheme(mergedState.theme));
-      resolve();
-    });
+  _signoutHandler() {
+    this.signout();
   }
 
-  _logoutHandler() {
-    this.logout();
-  }
-
-  logout() {
+  signout() {
     Promise.all([
       import(/* webpackChunkName: "FirebaseApp" */ 'firebase/app'),
       // import(/* webpackChunkName: "firebaseAuth" */ 'firebase/auth')
