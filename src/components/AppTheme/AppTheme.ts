@@ -45,7 +45,10 @@ export class AppTheme extends Mixin(connect(store)(LitElement), [BaseMixin, Task
   constructor() {
     super();
     this.setStore(store);
-    this.addType(this.stateType);
+    this.addReducer(this.stateType);
+    this.watchDocument('theme', (document: any) => {
+      this.setState(document, 'theme')
+    });
   }
   connectedCallback() {
     super.connectedCallback();

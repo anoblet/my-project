@@ -14,7 +14,7 @@ export const FirebaseMixin = function (superClass: any) {
 
     getDocument(path: any = '', config: any = {
       watch: true
-    }) {
+    }, callback: any) {
       return new Promise((resolve, reject) => {
         Promise.all([
           import(/* webpackChunkName: "FirebaseApp" */ 'firebase/app'),
@@ -28,8 +28,10 @@ export const FirebaseMixin = function (superClass: any) {
             if(!path) path = this.firebaseDocumentPath;
             const document = firestore.doc(`users/${user.uid}/state/${path}`);
             if(config.watch)
-            document.onSnapshot((doc: any) => {
+            return document.onSnapshot((doc: any) => {
+              console.log('Here');
               const source = doc.metadata.hasPendingWrites ? "local" : "remote";
+              if(callback) callback(doc.data());
               resolve(doc.data());
             });
             else
@@ -85,6 +87,25 @@ export const FirebaseMixin = function (superClass: any) {
       });
     }
 
+    watchDocument(document: any, callback: any) {
+      return Promise.all([
+        import(/* webpackChunkName: "FirebaseApp" */ 'firebase/app'),
+        import(/* webpackChunkName: "FirebaseFirestore" */ 'firebase/firestore'),
+      ]).then(async ([firebase]) => {
+        const firestore = firebase.firestore();
+        firestore.settings({ timestampsInSnapshots: true });
+        const user: any = await this.getUser();
+        if(!user) return;
+        else {
+          if(!document) document = this.firebaseDocumentPath;
+          const firestoreDocument = firestore.doc(`users/${user.uid}/state/${document}`);
+          return firestoreDocument.onSnapshot((doc: any) => {
+            const source = doc.metadata.hasPendingWrites ? "local" : "remote";
+            if(callback) callback(doc.data);
+          });
+        }
+      });
+    }
     firebaseCheckRedirect() {
       return new Promise((resolve, reject) => {
         Promise.all([
