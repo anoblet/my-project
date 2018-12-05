@@ -66,7 +66,7 @@ export class MyApp extends Mixin(connect(store)(LitElement), [/* BaseMixin,*/ Ta
       ),
       new Promise((resolve, reject) => {
         this.watchDocument('theme', (document: any) => {
-          this.setState(document, 'theme')
+          if(document) this.setState(document, 'theme')
           resolve();
         })
       })
