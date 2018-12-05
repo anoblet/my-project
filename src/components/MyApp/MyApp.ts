@@ -62,11 +62,14 @@ export class MyApp extends Mixin(connect(store)(LitElement), [/* BaseMixin,*/ Ta
       this.getUser().then((user: any) =>
         this.setState(user, 'user')
       ),
-      this.getDocument('theme').then((document: any) => {
-        console.log('Document changed')
-        this.setState(document, 'theme')
+      new Promise((resolve, reject) => {
+        this.watchDocument('theme', (document: any) => {
+          this.setState(document, 'theme')
+          resolve();
         })
+      })
     ]);
+    ;
   }
 
   // Events
