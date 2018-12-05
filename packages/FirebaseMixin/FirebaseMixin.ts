@@ -101,7 +101,7 @@ export const FirebaseMixin = function (superClass: any) {
           const firestoreDocument = firestore.doc(`users/${user.uid}/state/${document}`);
           return firestoreDocument.onSnapshot((doc: any) => {
             const source = doc.metadata.hasPendingWrites ? "local" : "remote";
-            if(callback) callback(doc.data);
+            if(callback) callback(doc.data());
           });
         }
       });
