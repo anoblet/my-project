@@ -1,7 +1,7 @@
 import { html } from '@polymer/lit-element';
 import { until } from 'lit-html/directives/until';
 
-export default function ({ user }: any) {
+export default function ({ router, user }: any) {
   return html`
     <my-flex direction="column" id="container" style="grid-gap: 0;">
       <app-header>
@@ -14,20 +14,22 @@ export default function ({ user }: any) {
           <my-flex id="drawer" class="scroll" grow hidden>
             <my-card grow>
               <span slot="title">Menu</span>
-              <ul>
-                <li>
-                  <a href="/">Home</a>
-                </li>
-                <li>
-                  <a href="/user">User</a>
-                </li>
-                <li>
-                  <a href="/theme">Theme</a>
-                </li>
-                <li>
-                  <a href="/info">Info</a>
-                </li>
-              </ul>
+              <div slot="content">
+                <ul>
+                  <li>
+                    <a href="/">Home</a>
+                  </li>
+                  <li>
+                    <a href="/user">User</a>
+                  </li>
+                  <li>
+                    <a href="/theme">Theme</a>
+                  </li>
+                  <li>
+                    <a href="/info">Info</a>
+                  </li>
+                </ul>
+              </div>
             </my-card>
           </my-flex>
           <my-flex id="content" grow scroll>
