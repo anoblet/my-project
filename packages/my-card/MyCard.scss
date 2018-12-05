@@ -1,10 +1,16 @@
 :host {
+  display: flex;
+  flex-direction: column;
   border: 1px solid var(--border-color) !important;
   padding: 1em;
 }
 
 :host([grow]) {
   flex: 1;
+}
+
+:host([scroll]) {
+  overflow: auto;
 }
 
 h2 {
