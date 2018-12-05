@@ -95,7 +95,10 @@ export const FirebaseMixin = function (superClass: any) {
         const firestore = firebase.firestore();
         firestore.settings({ timestampsInSnapshots: true });
         const user: any = await this.getUser();
-        if(!user) return;
+        if(!user) {
+          callback();
+          return;
+        }
         else {
           if(!document) document = this.firebaseDocumentPath;
           const firestoreDocument = firestore.doc(`users/${user.uid}/state/${document}`);
