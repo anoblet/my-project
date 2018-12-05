@@ -9,31 +9,10 @@ export default function ({ user }: any) {
       ${style}
     </style>
     <my-grid id="content-grid" style="grid-template-columns: repeat(auto-fit, minmax(350px, 1fr) );">
-      <my-card style="grid-column: 1/-1">
+      <my-card collapsible style="grid-column: 1/-1">
         <div slot="title">Welcome</div>
         <div slot="content">
           Welcome ${user.name ? user.name : 'Guest'}! ${!user.signedIn ? html`Sign in to save settings` : html`You are currently signed in: Your settings will now be saved`}.
-        </div>
-      </my-card>
-      <my-card>
-        <div slot="title">State</div>
-        <div slot="content">
-          <pre style="overflow: hidden;">${JSON.stringify(this.state, null, 2)};</pre>
-        </div>
-      </my-card>
-      <my-card>
-        <div slot="title">Firebase</div>
-        <div slot="content">
-          ${user.signedIn ? html`
-            ${until(
-              this.getDocument('theme').then((document: any) => {
-                return html`
-                  <pre>${JSON.stringify(document, null, 2)}</pre>
-                `
-              }),
-              html`<my-loader></my-loader>`
-            )}
-          ` : html`Sign in to see a Firebase document`}
         </div>
       </my-card>
       <my-card style="grid-column: 1/-1">

@@ -7,13 +7,13 @@ export default function ({ user }: any) {
     <my-grid id="content-grid">
       <my-card>
         <div slot="title">State</div>
-        <div slot="content" class="border padding scroll">
+        <div slot="content">
           <pre>${JSON.stringify(this.state, null, 2)};</pre>
         </div>
       </my-card>
       <my-card>
         <div slot="title">Firebase</div>
-        <div slot="content" class="border padding scroll">
+        <div slot="content">
           ${user.signedIn ? html`
             ${until(
               this.getDocument('theme').then((document: any) => {
