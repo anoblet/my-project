@@ -30,6 +30,8 @@ export class MyApp extends Mixin(connect(store)(LitElement), [/* BaseMixin,*/ Ta
   state: any;
   stateType: 'app'
   taskPending = false;
+  template: any;
+  templatePath = './MyAppTemplate'
 
   // Lifecycle
   constructor() {
@@ -69,7 +71,9 @@ export class MyApp extends Mixin(connect(store)(LitElement), [/* BaseMixin,*/ Ta
         })
       })
     ]);
-    ;
+    import(`${this.templatePath}`).then((module: any) => {
+      this.template = module.default.bind(this);
+    });
   }
 
   // Events
@@ -97,7 +101,7 @@ export class MyApp extends Mixin(connect(store)(LitElement), [/* BaseMixin,*/ Ta
   render() {
     return html`
       <style>${style}</style>
-      ${!this.taskPending ? Template.bind(this)(this.state) : html`<my-loader></my-loader>`}
+      ${!this.taskPending ? this.template(this.state) : html`<my-loader></my-loader>`}
     `;
   }
 }
