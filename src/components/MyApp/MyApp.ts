@@ -55,6 +55,7 @@ export class MyApp extends Mixin(connect(store)(LitElement), [/* BaseMixin,*/ Ta
       import(/* webpackChunkName: "AppUser" */ '../AppUser/AppUser'),
       import(/* webpackChunkName: "AppTheme" */ '../AppTheme/AppTheme'),
       import(/* webpackChunkName: "PageHome" */ '../PageHome/PageHome'),
+      import(/* webpackChunkName: "PageInfo" */ '../PageInfo/PageInfo'),
       import(/* webpackChunkName: "PageUser" */ '../PageUser/PageUser'),
       this.firebaseInit(),
       this.firebaseCheckRedirect(),

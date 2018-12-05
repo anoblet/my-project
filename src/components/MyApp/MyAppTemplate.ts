@@ -24,6 +24,9 @@ export default function ({ user }: any) {
                 <li>
                   <a href="/theme">Theme</a>
                 </li>
+                <li>
+                  <a href="/info">Info</a>
+                </li>
               </ul>
             </my-card>
           </my-flex>
@@ -32,6 +35,7 @@ export default function ({ user }: any) {
               <lit-route path="/" component="page-home"></lit-route>
               <lit-route path="/user" component="page-user"></lit-route>
               <lit-route path="/theme" component="app-theme"></lit-route>
+              <lit-route path="/info" component="page-info"></lit-route>
             </my-flex>
           </my-flex>
         </my-grid>
