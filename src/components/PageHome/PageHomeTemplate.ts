@@ -13,6 +13,15 @@ export default function ({ user }: any) {
         <div slot="title">Welcome</div>
         <div slot="content">
           Welcome ${user.name ? user.name : 'Guest'}! ${!user.signedIn ? html`Sign in to save settings` : html`You are currently signed in: Your settings will now be saved`}.
+          <p>
+            This scaffolding uses:
+            <ul>
+              <li>firebase</li>
+              <li>lit-element</li>
+              <li>lit-redux-router</li>
+              <li>redux</li>
+            </ul>
+          </p>
         </div>
       </my-card>
       <my-card style="grid-column: 1/-1">

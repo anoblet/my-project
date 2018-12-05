@@ -6,7 +6,7 @@ export default function ({ router, user }: any) {
     <my-flex direction="column" id="container" style="grid-gap: 0;">
       <app-header>
         <mwc-icon id="menu" @click="${() => this._toggleDrawer()}">menu</mwc-icon>
-        <span id="title">${this.title}</span>
+        <span id="title"><a href="/">${this.title}</a></span>
         <a href="/user"><mwc-fab id="userProfile" mini label="Account" @click="${() => this._toggleProfile()}">Profile</mwc-fab></a>
       </app-header>
       <my-flex id="center" style="word-wrap: break-word;">
