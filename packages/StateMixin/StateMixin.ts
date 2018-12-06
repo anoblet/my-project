@@ -44,9 +44,9 @@ export const StateMixin = function (superClass: any) {
       return this;
     }
 
-    setState(data: any, action: any, config: any = {merge: true}) {
+    setState(data: any, type: any, config: any = {merge: true}) {
       this.store.dispatch({
-        type: action,
+        type: type,
         state: data,
         merge: config.merge
       });
