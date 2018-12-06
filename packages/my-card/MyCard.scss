@@ -17,6 +17,10 @@
   margin-bottom: 0;
 }
 
+:host([collapsible]) #title {
+  cursor: pointer;
+}
+
 ::slotted([slot="title"]) {
   display: flex;
   flex-grow: 1;
@@ -31,9 +35,6 @@
 #content {
   display: flex;
   flex:1;
-  overflow: auto;
-  border: 1px solid var(--border-color);
-  padding: 1em;
 }
 
 #title {
@@ -59,4 +60,21 @@ h2 {
 
 mwc-icon:hover {
   cursor: pointer;
+}
+
+.border{
+  border: 1px solid var(--border-color);
+}
+
+.flex {
+  display: flex;
+  flex: 1;
+}
+
+.padding {
+  padding: 1em
+}
+
+.scroll {
+  overflow: auto;
 }

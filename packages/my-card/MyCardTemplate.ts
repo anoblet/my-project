@@ -6,10 +6,16 @@ export default function (props: any) {
     <style>${style}</style>
     <div id="title">
       <slot name="title"></slot>
-      ${this.collapsible ? html`<mwc-icon @click="${(e: any) => this.toggle()}">${this.collapsed ? 'expand_more' : 'expand_less'}</mwc-icon>` : ''}
+      ${this.collapsible ? html`<mwc-icon>${this.collapsed ? 'expand_more' : 'expand_less'}</mwc-icon>` : ''}
     </div>
     <div id="content">
-      <slot name="content"></slot>
+      <div class="flex scroll">
+        <div class="border flex">
+          <div class="flex padding">
+            <slot name="content"></slot>
+          </div>
+        </div>
+      </div>
     </div
   `;
 }

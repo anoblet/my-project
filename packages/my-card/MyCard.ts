@@ -8,6 +8,14 @@ export class MyCard extends Mixin(LitElement, [BaseMixin]) {
   @property({type: Boolean}) collapsible: any = false;
   @property({type: Boolean, reflect: true}) collapsed: any = false;
 
+  firstUpdated() {
+    super.firstUpdated();
+    if(this.collapsible) {
+      const title = this.shadowRoot.querySelector('#title');
+      title.addEventListener('click', () => this.toggle());
+    }
+  }
+
   toggle() {
     this.collapsed = !this.collapsed;
   }
