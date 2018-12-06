@@ -14,7 +14,20 @@ export default function ({ user }: any) {
         <div slot="content">
           Welcome ${user.name ? user.name : 'Guest'}! ${!user.signedIn ? html`Sign in to save settings` : html`You are currently signed in: Your settings will now be saved`}.
           <p>
-            This scaffolding uses:
+            This package provides:
+            <ul>
+              <li>StateMixin</li>
+                <ul>
+                  <li>setStore(store: any) Sets a store(component specific)</li>
+                  <li>addReducer(type: any, customFunction: any = false): Defines a namespace, assigns a reducer</li>
+                  <li>setState(data: any, type: any, config: any = {merge: true}): Sets the state, merging by default
+                </ul>
+              <li>FirebaseMixin</li>
+              <li>TaskMixin</li>
+            </ul>
+          </p>
+          <p>
+            This package uses:
             <ul>
               <li>firebase</li>
               <li>lit-element</li>
@@ -22,9 +35,10 @@ export default function ({ user }: any) {
               <li>redux</li>
             </ul>
           </p>
+
         </div>
       </my-card>
-      <my-card style="grid-column: 1/-1">
+      <my-card collapsible style="grid-column: 1/-1">
         <div slot="title">Lorem Ipsum</div>
         <div slot="content">
           <lorem-ipsum count="100"></lorem-ipsum>

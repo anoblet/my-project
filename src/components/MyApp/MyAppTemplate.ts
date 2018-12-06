@@ -10,8 +10,8 @@ export default function ({ router, user }: any) {
         <a href="/user"><mwc-fab id="userProfile" mini label="Account" @click="${() => this._toggleProfile()}">Profile</mwc-fab></a>
       </app-header>
       <my-flex id="center" style="word-wrap: break-word;">
-        <my-grid id="drawer-container">
-          <my-flex id="drawer" class="scroll" grow hidden>
+        <my-grid id="drawer-container" opened>
+          <my-flex id="drawer" class="scroll" grow>
             <my-card grow>
               <span slot="title">Menu</span>
               <div slot="content">
