@@ -8,7 +8,7 @@ export default function ({ user }: any) {
     <style>
       ${style}
     </style>
-    <my-grid id="content-grid" style="grid-template-columns: repeat(auto-fit, minmax(350px, 1fr) );">
+    <my-grid id="content-grid">
       <my-card collapsible style="grid-column: 1/-1">
         <div slot="title">Welcome</div>
         <div slot="content">

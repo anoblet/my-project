@@ -14,10 +14,13 @@ export default function ({ user }: any) {
       ${style}
       ${firebaseStyle}
     </style>
-    <my-flex direction="column" grow>
+    <my-card collapsible grow>
+      <h2 slot="title">User</h2>
+      <my-flex direction="column" grow slot="content">
       ${user.signedIn ?
         html`<mwc-button raised @click="${() => this._signoutHandler()}">Sign out</mwc-button>` : html`${until(this.getForm(), html`<my-loader></my-loader>`)}`
       }
-    </my-flex>
+      </my-flex>
+    </my-card>
   `
 }
