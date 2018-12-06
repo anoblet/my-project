@@ -17,7 +17,7 @@ export default function ({ theme, user }: any) {
           <mwc-button outlined @click="${() => this.setTheme("dark")}">Dark theme</mwc-button>
           <mwc-button outlined @click="${() => this.randomizeColors()}">Random</mwc-button>
           <mwc-button outlined @click="${() => this.setState(this.miscTheme, 'theme')}">Misc theme</mwc-button>
-          <mwc-button outlined @click="${() => this.saveTheme()}">Save theme</mwc-button>
+          <input id="themeName" placeholder="Theme name" type="text" /><mwc-button outlined @click="${() => this.saveTheme()}">Save theme</mwc-button>
         </my-grid>
         ${this.listThemes()}
       </my-flex>

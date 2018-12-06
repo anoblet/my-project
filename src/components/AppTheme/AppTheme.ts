@@ -45,11 +45,8 @@ export class AppTheme extends Mixin(connect(store)(LitElement), [BaseMixin, Task
   constructor() {
     super();
     this.setStore(store);
-    this.addReducer(this.stateType);
-    this.watchDocument('theme', (document: any) => {
-      this.setState(document, 'theme')
-    });
   }
+
   connectedCallback() {
     super.connectedCallback();
     this.runTasks([
@@ -100,9 +97,10 @@ export class AppTheme extends Mixin(connect(store)(LitElement), [BaseMixin, Task
 
   saveTheme() {
     const theme = this.state.theme;
-    let savedThemes = this.state.theme.savedThemes;
+    let savedThemes = theme.savedThemes;
     if(!savedThemes) savedThemes = [];
     savedThemes.push({
+      name: this.shadowRoot.querySelector('#themeName').value,
       backgroundColor: theme.backgroundColor,
       textColor: theme.textColor,
       primaryColor: theme.primaryColor,
@@ -118,10 +116,11 @@ export class AppTheme extends Mixin(connect(store)(LitElement), [BaseMixin, Task
 
   listThemes(){
     const savedThemes = this.state.theme.savedThemes
+    if(!savedThemes) return;
     return html`
       <ul>
         ${savedThemes.map((theme: any, index: any) =>
-          html`<li><a @click="${() => this.setSavedTheme(index)}">Theme ${index}</a> <button @click=${(e: any) => this.deleteTheme(index)}${index}>Delete</button></li>`
+          html`<li><a @click="${() => this.setSavedTheme(index)}">${theme.name}</a> <button @click=${(e: any) => this.deleteTheme(index)}${index}>Delete</button></li>`
         )}
       </ul>
     `
