@@ -34,10 +34,10 @@ export default function ({ router, user }: any) {
           </my-flex>
           <my-flex id="content" grow scroll>
             <my-flex grow style="padding-right: 1em;">
-              <lit-route path="/" component="page-home"></lit-route>
-              <lit-route path="/user" component="page-user"></lit-route>
-              <lit-route path="/theme" component="app-theme"></lit-route>
-              <lit-route path="/info" component="page-info"></lit-route>
+              <lit-route ?active=${this.state.router.activeRoute == '/'} path="/" component="page-home"></lit-route>
+              <lit-route ?active=${this.state.router.activeRoute == '/user'} path="/user" component="page-user"></lit-route>
+              <lit-route ?active=${this.state.router.activeRoute == '/theme'} path="/theme" component="app-theme"></lit-route>
+              <lit-route ?active=${this.state.router.activeRoute == '/info'} path="/info" component="page-info"></lit-route>
             </my-flex>
           </my-flex>
         </my-grid>
