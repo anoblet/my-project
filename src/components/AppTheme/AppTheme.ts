@@ -121,10 +121,16 @@ export class AppTheme extends Mixin(connect(store)(LitElement), [BaseMixin, Task
     return html`
       <ul>
         ${savedThemes.map((theme: any, index: any) =>
-          html`<li @click="${() => this.setSavedTheme(index)}">Theme ${index}</li>`
+          html`<li><a @click="${() => this.setSavedTheme(index)}">Theme ${index}</a> <button @click=${(e: any) => this.deleteTheme(index)}${index}>Delete</button></li>`
         )}
       </ul>
     `
+  }
+
+  deleteTheme(index: any) {
+    const savedThemes = this.state.theme.savedThemes;
+    savedThemes.splice(index, 1);
+    this.setState({ savedThemes }, "theme");
   }
 
   updateStyles(theme: any) {
