@@ -5,6 +5,10 @@
   padding: 1em;
 }
 
+:host([collapsed]) {
+  height: min-content;
+}
+
 :host([collapsed]) #content {
   /*
   height: 0;
@@ -21,6 +25,10 @@
   cursor: pointer;
 }
 
+::slotted(h2), ::slotted(h3) {
+  margin-block-start: 0;
+  margin-block-end: 0;
+}
 ::slotted([slot="title"]) {
   display: flex;
   flex-grow: 1;

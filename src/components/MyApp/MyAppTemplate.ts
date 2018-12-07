@@ -16,8 +16,8 @@ export default function ({ router, user }: any) {
           <my-flex id="center" style="word-wrap: break-word;">
             <my-grid id="drawer-container" opened>
               <my-flex id="drawer" class="scroll" grow>
-                <my-card grow>
-                  <span slot="title">Menu</span>
+                <my-card grow full-height>
+                  <h3 slot="title">Menu</h3>
                   <div slot="content">
                     <ul>
                       <li>

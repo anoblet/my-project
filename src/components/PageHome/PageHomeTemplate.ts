@@ -10,7 +10,7 @@ export default function ({ user }: any) {
     </style>
     <my-grid id="content-grid">
       <my-card collapsible style="grid-column: 1/-1">
-        <div slot="title">Welcome</div>
+        <h3 slot="title">Welcome</h3>
         <div slot="content">
           Welcome ${user.name ? user.name : 'Guest'}! ${!user.signedIn ? html`Sign in to save settings` : html`You are currently signed in: Your settings will now be saved`}.
           <p>
@@ -35,11 +35,10 @@ export default function ({ user }: any) {
               <li>redux</li>
             </ul>
           </p>
-
         </div>
       </my-card>
       <my-card collapsible style="grid-column: 1/-1">
-        <div slot="title">Lorem Ipsum</div>
+        <h3 slot="title">Lorem Ipsum</h3>
         <div slot="content">
           <lorem-ipsum count="100"></lorem-ipsum>
         </div>
