@@ -110,6 +110,18 @@ a {
   text-decoration: none;
 }
 
+li {
+  padding: .25em;
+}
+
+li:hover {
+  background-color: var(--primary-color);
+}
+
+li:hover a {
+  color: var(--background-color);
+}
+
 ul {
   list-style-type: none;
   padding-inline-start: 0;

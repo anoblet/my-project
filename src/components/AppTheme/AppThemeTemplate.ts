@@ -20,6 +20,12 @@ export default function ({ theme, user }: any) {
             </my-flex>
           </my-card>
           <my-card grow>
+            <h3 slot="title">Options</h3>
+            <my-flex slot="content">
+              <input type="checkbox" ?checked=${theme.randomOnLoad} @input=${this.randomOnLoadToggle} />
+            </my-flex>
+          </my-card>
+          <my-card grow>
             <h3 slot="title">Saved themes</h3>
             <my-flex slot="content">
               <mwc-button outlined @click="${() => this.setDefaultTheme()}">Defaut</mwc-button>

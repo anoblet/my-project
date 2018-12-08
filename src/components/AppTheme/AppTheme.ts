@@ -55,6 +55,10 @@ export class AppTheme extends Mixin(connect(store)(LitElement), [BaseMixin, Task
     ]);
   }
 
+  firstUpdated() {
+    if(this.state.theme.randomOnLoad) this.randomizeColors();
+  }
+
   primaryColorChanged(e: any) {
     this.setState({
       primaryColor: e.target.value
@@ -92,6 +96,13 @@ export class AppTheme extends Mixin(connect(store)(LitElement), [BaseMixin, Task
       secondaryColor: this.randomColor()
     }
     this.setState(colors, 'theme');
+  }
+
+  randomOnLoadToggle() {
+    const value = !this.state.theme.randomOnLoad;
+    this.setState({
+      randomOnLoad: value
+    }, "theme");
   }
 
   saveTheme() {

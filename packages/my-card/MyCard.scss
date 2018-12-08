@@ -25,6 +25,14 @@
   cursor: pointer;
 }
 
+:host([no-outside-border]) {
+  border: 0 !important;
+  padding: 0;
+  #title {
+    display: none;
+  }
+}
+
 ::slotted(h2), ::slotted(h3) {
   margin-block-start: 0;
   margin-block-end: 0;
