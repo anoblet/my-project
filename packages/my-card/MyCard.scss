@@ -3,6 +3,7 @@
   flex-direction: column;
   border: 1px solid var(--border-color) !important;
   padding: 1em;
+  max-width: 100%;
 }
 
 :host([collapsed]) {
@@ -96,7 +97,8 @@ mwc-icon:hover {
 }
 
 .padding {
-  padding: 1em
+  padding: 1em;
+  max-width: 100%;
 }
 
 .scroll {
