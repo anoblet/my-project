@@ -37,7 +37,7 @@ export default function ({ router, user }: any) {
                 </my-card>
               </my-flex>
               <my-flex id="content" grow scroll>
-                <my-card grow no-outside-border>
+                <my-card grow no-inside-border no-outside-border>
                   <my-flex slot="content">
                     <lit-route ?active=${this.state.router.activeRoute == '/'} path="/" component="page-home"></lit-route>
                     <lit-route ?active=${this.state.router.activeRoute == '/user'} path="/user" component="page-user"></lit-route>

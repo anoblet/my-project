@@ -25,6 +25,14 @@
   cursor: pointer;
 }
 
+:host([no-inside-border]) .border {
+  border: 0 !important;
+}
+
+:host([no-inside-border]) .padding {
+  padding: 0 !important;
+}
+
 :host([no-outside-border]) {
   border: 0 !important;
   padding: 0;
