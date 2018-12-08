@@ -37,12 +37,14 @@ export default function ({ router, user }: any) {
                 </my-card>
               </my-flex>
               <my-flex id="content" grow scroll>
-                <my-flex grow>
-                  <lit-route ?active=${this.state.router.activeRoute == '/'} path="/" component="page-home"></lit-route>
-                  <lit-route ?active=${this.state.router.activeRoute == '/user'} path="/user" component="page-user"></lit-route>
-                  <lit-route ?active=${this.state.router.activeRoute == '/theme'} path="/theme" component="app-theme"></lit-route>
-                  <lit-route ?active=${this.state.router.activeRoute == '/info'} path="/info" component="page-info"></lit-route>
-                </my-flex>
+                <my-card grow>
+                  <my-flex slot="content">
+                    <lit-route ?active=${this.state.router.activeRoute == '/'} path="/" component="page-home"></lit-route>
+                    <lit-route ?active=${this.state.router.activeRoute == '/user'} path="/user" component="page-user"></lit-route>
+                    <lit-route ?active=${this.state.router.activeRoute == '/theme'} path="/theme" component="app-theme"></lit-route>
+                    <lit-route ?active=${this.state.router.activeRoute == '/info'} path="/info" component="page-info"></lit-route>
+                  </my-flex>
+                </my-card>
               </my-flex>
             </my-grid>
           </my-flex>

@@ -8,8 +8,7 @@ import { store } from '../../store.js';
 import { TaskMixin } from '../../../packages/TaskMixin';
 import Template from './AppThemeTemplate';
 import { FirebaseMixin } from '../../../packages/FirebaseMixin';
-
-const style = html``;
+import * as style from './AppTheme.scss';
 
 /**
  * @todo Extend BaseElement
@@ -120,7 +119,7 @@ export class AppTheme extends Mixin(connect(store)(LitElement), [BaseMixin, Task
     return html`
       <ul>
         ${savedThemes.map((theme: any, index: any) =>
-          html`<li><a @click="${() => this.setSavedTheme(index)}">${theme.name}</a> <button @click=${(e: any) => this.deleteTheme(index)}${index}>Delete</button></li>`
+          html`<li><a @click="${() => this.setSavedTheme(index)}">${theme.name}</a> <mwc-button @click=${(e: any) => this.deleteTheme(index)}${index}>Delete</mwc-button></li>`
         )}
       </ul>
     `

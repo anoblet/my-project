@@ -1,24 +1,10 @@
 :host {
   display: flex;
+  flex: 1;
 }
 
 pre {
   margin: 0;
-}
-
-#content-grid {
-  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-  grid-auto-rows: 350px;
-}
-
-.border {
-  border: 1px solid var(--border-color);
-}
-
-.padding {
-  padding: 1em;
-}
-
-.scroll {
-  overflow: auto;
+  white-space: pre-wrap;
+  word-wrap: break-word;
 }
