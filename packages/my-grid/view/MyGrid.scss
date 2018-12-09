@@ -6,3 +6,7 @@
 :host([no-grap]) {
   grid-gap: 0;
 }
+
+::slotted(*) {
+  min-width: 0;
+}
