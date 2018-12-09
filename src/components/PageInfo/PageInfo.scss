@@ -1,10 +1,15 @@
 :host {
   display: flex;
   flex: 1;
+  max-width: 100%;
+}
+
+#content-grid {
+  max-width: 100%;
 }
 
 pre {
   margin: 0;
   white-space: pre-wrap;
-  word-wrap: break-word;
+  word-wrap: break-all;
 }

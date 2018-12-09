@@ -4,7 +4,7 @@ import { until } from 'lit-html/directives/until';
 export default function ({ router, user }: any) {
   return html`
     <my-flex direction="column" id="container" style="grid-gap: 0;">
-      <my-card grow>
+      <my-card grow no-border no-inner-padding>
         <div slot="title">
           <app-header>
             <mwc-icon id="menu" @click="${() => this._toggleDrawer()}">menu</mwc-icon>
@@ -16,7 +16,7 @@ export default function ({ router, user }: any) {
           <my-flex id="center" style="word-wrap: break-word;">
             <my-grid id="drawer-container" opened>
               <my-flex id="drawer" class="scroll" grow>
-                <my-card grow full-height>
+                <my-card collapsible grow full-height>
                   <h3 slot="title">Menu</h3>
                   <div slot="content">
                     <ul>
@@ -37,7 +37,7 @@ export default function ({ router, user }: any) {
                 </my-card>
               </my-flex>
               <my-flex id="content" grow scroll>
-                <my-card grow no-inside-border no-outside-border>
+                <my-card grow no-inside-border no-outside-border no-title>
                   <my-flex slot="content">
                     <lit-route ?active=${this.state.router.activeRoute == '/'} path="/" component="page-home"></lit-route>
                     <lit-route ?active=${this.state.router.activeRoute == '/user'} path="/user" component="page-user"></lit-route>
