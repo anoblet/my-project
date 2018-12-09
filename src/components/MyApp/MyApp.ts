@@ -11,12 +11,13 @@ import Template from './MyAppTemplate';
 import { FirebaseMixin } from '../../../packages/FirebaseMixin';
 import { connectRouter } from 'lit-redux-router';
 connectRouter(store);
+import { TemplateMixin } from '../../../packages/TemplateMixin';
 
 /**
  * @todo Extend BaseElement
  */
 
-export class MyApp extends Mixin(connect(store)(LitElement), [/* BaseMixin,*/ TaskMixin, StateMixin, FirebaseMixin]) {
+export class MyApp extends Mixin(connect(store)(LitElement), [/* BaseMixin,*/ TaskMixin, StateMixin, FirebaseMixin, TemplateMixin]) {
   @property({ type: String }) title = 'Andrew Noblet'
   defaultDocument = {
     backgroundColor: "#242424",
@@ -71,9 +72,7 @@ export class MyApp extends Mixin(connect(store)(LitElement), [/* BaseMixin,*/ Ta
         })
       })
     ]);
-    import(`${this.templatePath}`).then((module: any) => {
-      this.template = module.default.bind(this);
-    });
+    this.importTemplate();
   }
 
   // Events

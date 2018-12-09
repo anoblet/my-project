@@ -4,15 +4,15 @@ import { until } from 'lit-html/directives/until';
 
 export default function ({ user }: any) {
   return html`
-    <my-grid id="content-grid">
-      <my-card>
-        <div slot="title">State</div>
+    <my-grid id="content-grid" style="flex: 1; height: min-content;">
+      <my-card collapsible grow>
+        <h3 slot="title">State</h3>
         <div slot="content">
           <pre>${JSON.stringify(this.state, null, 2)};</pre>
         </div>
       </my-card>
-      <my-card>
-        <div slot="title">Firebase</div>
+      <my-card collapsible grow>
+        <h3 slot="title">Firebase</h3>
         <div slot="content">
           ${user.signedIn ? html`
             ${until(
