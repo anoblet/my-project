@@ -37,6 +37,29 @@
 :host([no-outside-border]) {
   border: 0 !important;
   padding: 0;
+}
+
+:host([no-border]) {
+  border: 0 !important;
+}
+
+:host([no-border]) .border {
+  border: 0 !important;
+}
+
+:host([no-padding]) {
+  padding: 0 !important;
+}
+
+:host([no-padding]) .padding {
+  padding: 0 !important;
+}
+
+:host([no-inner-padding]) .padding {
+  padding: 0 !important;
+}
+
+:host([no-title]) {
   #title {
     display: none;
   }
@@ -55,6 +78,7 @@
   display: flex;
   flex-grow: 1;
   flex-direction: column;
+  max-width: 100%;
 }
 
 #content {
