@@ -26,6 +26,10 @@
   cursor: pointer;
 }
 
+:host(:not([full-height])){
+  height: min-content;
+}
+
 :host([no-inside-border]) .border {
   border: 0 !important;
 }

@@ -1,25 +1,22 @@
 import { html } from '@polymer/lit-element';
 const style = html``;
 
-export const TemplateMixin = function (superClass: any) {
+export const TemplateMixin = function(superClass: any) {
   return class extends superClass {
-    template: Function;
-    templatePath: string;
+    public template: Function;
+    public templatePath: string;
 
-    importTemplate(template: string = '') {
+    public importTemplate(template: string = '') {
       import(this.templatePath).then((module: any) => {
         this.template = module.default.bind(this);
       });
     }
 
-
-    render() {
-      console.log(import.meta);
-
+    public render() {
       return html`
-        <style>${style}</style>
+        <style>${this.componentStyle}</style>
         ${!this.taskPending ? this.template(this.state) : html`<my-loader></my-loader>`}
       `;
     }
-  }
-}
+  };
+};
