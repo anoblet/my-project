@@ -14,6 +14,7 @@ import { store } from '../../store.js';
 import * as style from './MyApp.scss';
 import Template from './MyAppTemplate';
 connectRouter(store);
+import { MediaMixin } from '../../../packages/MediaMixin';
 import '../../../packages/MediaQuery';
 /**
  * @todo Extend BaseElement
@@ -24,7 +25,8 @@ export class MyApp extends Mixin(connect(store)(LitElement), [
   TemplateMixin,
   TaskMixin,
   StateMixin,
-  FirebaseMixin
+  FirebaseMixin,
+  MediaMixin
 ]) {
   @property({ type: String }) public title = 'Andrew Noblet';
   public defaultDocument = {
