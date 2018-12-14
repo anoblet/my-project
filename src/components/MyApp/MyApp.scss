@@ -37,8 +37,13 @@
   --debug-border: 1px solid var(--border-color);
 }
 
+app-drawer-absolute {
+  min-width: 25%;
+}
+
 #drawer-container {
   /* padding: 0 0 1em 1em; */
+  position: relative;
 }
 
 #container {
@@ -84,10 +89,11 @@
 
 #drawer-container {
   flex: 1;
+  grid-gap: 0;
 }
 
 #drawer-container[opened] {
-  grid-template-columns: minmax(128px,1fr) 4fr;
+  /* grid-template-columns: minmax(128px,1fr) 4fr; */
 }
 
 #container {
@@ -119,6 +125,11 @@ lit-route {
 
 lit-route[active] {
   flex: 1;
+}
+
+ul {
+  list-style-type: none;
+  padding-inline-start: 0;
 }
 
 .pad {

@@ -10,11 +10,22 @@ import { store } from '../../store.js';
 import * as Style from './PageHome.scss';
 import Template from './PageHomeTemplate';
 
-export class PageHome extends Mixin(connect(store)(LitElement), [TaskMixin, StateMixin]) {
+export class PageHome extends Mixin(connect(store)(LitElement), [
+  TaskMixin,
+  StateMixin
+]) {
   public render() {
     return html`
-      <style>${Style}</style>
-      ${!this.taskPending ? Template.bind(this)(this.state) : html`<my-loader></my-loader>`}
+      <style>
+        ${Style}
+      </style>
+      ${
+        !this.taskPending
+          ? Template.bind(this)(this.state)
+          : html`
+              <my-loader></my-loader>
+            `
+      }
     `;
   }
 }
