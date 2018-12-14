@@ -21,7 +21,7 @@
   flex-direction: column;
   background: var(--background-color);
   color: var(--text-color);
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
 }
 
 :host([dark]) {
@@ -38,19 +38,26 @@
 }
 
 app-drawer-absolute {
-  min-width: 25%;
+  min-width: 50%;
 }
 
 #drawer-container {
-  /* padding: 0 0 1em 1em; */
+  flex: 1;
+  grid-gap: 0;
   position: relative;
+}
+
+:host([drawer-opened]) #drawer-container:not([small]) {
+  grid-template-columns: minmax(128px, 1fr) 4fr;
+  grid-gap: 1em;
 }
 
 #container {
   flex: 1;
 }
 
-#top, #bottom {
+#top,
+#bottom {
   align-items: center;
   justify-content: space-between;
 }
@@ -62,11 +69,11 @@ app-drawer-absolute {
 #bottom {
   position: fixed;
   bottom: 0;
-  padding: 0 1em .5em 1em !important;
+  padding: 0 1em 0.5em 1em !important;
   /* Weird hack */
   left: 50%;
   -webkit-transform: translateX(-50%);
-  transform: translateX(-50%)
+  transform: translateX(-50%);
   /**/
 }
 
@@ -87,11 +94,6 @@ app-drawer-absolute {
   color: var(--secondary-color);
 }
 
-#drawer-container {
-  flex: 1;
-  grid-gap: 0;
-}
-
 #drawer-container[opened] {
   /* grid-template-columns: minmax(128px,1fr) 4fr; */
 }
@@ -106,7 +108,6 @@ app-drawer-absolute {
 }
 
 #content {
-
 }
 
 mwc-icon {

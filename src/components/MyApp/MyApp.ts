@@ -29,6 +29,7 @@ export class MyApp extends Mixin(connect(store)(LitElement), [
   MediaMixin
 ]) {
   @property({ type: String }) public title = 'Andrew Noblet';
+  @property({ type: Boolean, reflect: true, attribute: 'drawer-opened' }) public drawerOpened = false;
   public defaultDocument = {
     backgroundColor: '#242424',
     borderColor: '#CCC',
@@ -90,12 +91,13 @@ export class MyApp extends Mixin(connect(store)(LitElement), [
 
   // Events
   public _toggleDrawer() {
-    const drawer = this.shadowRoot.querySelector('#drawer');
-    const drawer2 = this.shadowRoot.querySelector('.drawer');
-    const drawerContainer = this.shadowRoot.querySelector('#drawer-container');
-    drawer._toggleAttribute('hidden');
-    this._toggleAttribute('hidden', drawer2);
-    drawerContainer._toggleAttribute('opened');
+    this.drawerOpened = !this.drawerOpened;
+    // const drawer = this.shadowRoot.querySelector('#drawer');
+    // const drawer2 = this.shadowRoot.querySelector('.drawer');
+    // const drawerContainer = this.shadowRoot.querySelector('#drawer-container');
+    // drawer._toggleAttribute('hidden');
+    // this._toggleAttribute('hidden', drawer2);
+    // drawerContainer._toggleAttribute('opened');
   }
 
   public updateStyles(theme: any) {

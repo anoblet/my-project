@@ -1,5 +1,5 @@
-import { html } from '@polymer/lit-element';
-import { until } from 'lit-html/directives/until';
+import { html } from "@polymer/lit-element";
+import { until } from "lit-html/directives/until";
 
 export default function({ router, user }: any) {
   return html`
@@ -27,25 +27,10 @@ export default function({ router, user }: any) {
             id="center"
             style="position: relative; word-wrap: break-word;"
           >
-            <my-grid id="drawer-container" opened ?small="${this.mediaSize}">
-              <media-query query="(max-width: 500px)">
-                <app-drawer-absolute class="drawer">
-                  <my-card collapsible full-height grow no-border>
-                    <h3 slot="title">Menu</h3>
-                    <div slot="content">
-                      <ul>
-                        <a href="/"> <li>Home</li></a
-                        ><a href="/user"> <li>User</li></a
-                        ><a href="/theme"> <li>Theme</li></a
-                        ><a href="/info"> <li>Info</li></a>
-                      </ul>
-                    </div>
-                  </my-card>
-                </app-drawer-absolute>
-              </media-query>
-              <media-query query="(min-width: 500px)">
-                <my-flex id="drawer">
-                  <app-drawer>
+            <my-grid id="drawer-container" ?small="${this.mediaSize}">
+              <div ?hidden="${!this.drawerOpened}">
+                <media-query query="(max-width: 500px)">
+                  <app-drawer-absolute class="drawer">
                     <my-card collapsible full-height grow no-border>
                       <h3 slot="title">Menu</h3>
                       <div slot="content">
@@ -57,29 +42,46 @@ export default function({ router, user }: any) {
                         </ul>
                       </div>
                     </my-card>
-                  </app-drawer>
-                </my-flex>
-              </media-query>
+                  </app-drawer-absolute>
+                </media-query>
+                <media-query query="(min-width: 500px)">
+                  <my-flex id="drawer">
+                    <app-drawer>
+                      <my-card collapsible full-height grow no-border>
+                        <h3 slot="title">Menu</h3>
+                        <div slot="content">
+                          <ul>
+                            <a href="/"> <li>Home</li></a
+                            ><a href="/user"> <li>User</li></a
+                            ><a href="/theme"> <li>Theme</li></a
+                            ><a href="/info"> <li>Info</li></a>
+                          </ul>
+                        </div>
+                      </my-card>
+                    </app-drawer>
+                  </my-flex>
+                </media-query>
+              </div>
               <my-flex id="content" grow scroll>
                 <my-card grow no-inside-border no-outside-border no-title>
                   <my-flex slot="content">
                     <lit-route
-                      ?active="${this.state.router.activeRoute == '/'}"
+                      ?active="${this.state.router.activeRoute == "/"}"
                       path="/"
                       component="page-home"
                     ></lit-route>
                     <lit-route
-                      ?active="${this.state.router.activeRoute == '/user'}"
+                      ?active="${this.state.router.activeRoute == "/user"}"
                       path="/user"
                       component="page-user"
                     ></lit-route>
                     <lit-route
-                      ?active="${this.state.router.activeRoute == '/theme'}"
+                      ?active="${this.state.router.activeRoute == "/theme"}"
                       path="/theme"
                       component="app-theme"
                     ></lit-route>
                     <lit-route
-                      ?active="${this.state.router.activeRoute == '/info'}"
+                      ?active="${this.state.router.activeRoute == "/info"}"
                       path="/info"
                       component="page-info"
                     ></lit-route>
