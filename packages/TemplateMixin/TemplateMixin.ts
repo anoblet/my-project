@@ -1,5 +1,4 @@
 import { html } from '@polymer/lit-element';
-const style = html``;
 
 export const TemplateMixin = function(superClass: any) {
   return class extends superClass {
@@ -14,8 +13,16 @@ export const TemplateMixin = function(superClass: any) {
 
     public render() {
       return html`
-        <style>${this.componentStyle}</style>
-        ${!this.taskPending ? this.template(this.state) : html`<my-loader></my-loader>`}
+        <style>
+          ${this.componentStyle}
+        </style>
+        ${
+          !this.taskPending
+            ? this.template(this.state)
+            : html`
+                <my-loader></my-loader>
+              `
+        }
       `;
     }
   };
