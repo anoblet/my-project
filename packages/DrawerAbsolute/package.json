@@ -2,7 +2,7 @@
   "name": "drawerabsolute",
   "version": "1.0.0",
   "description": "",
-  "main": "DrawerFixed.ts",
+  "main": "DrawerAbsolute.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
