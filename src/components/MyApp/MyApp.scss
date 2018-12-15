@@ -41,10 +41,22 @@ app-drawer-absolute {
   min-width: 50%;
 }
 
+#drawer[media="small"] {
+  position: absolute;
+  background: var(--background-color);
+  min-width: 50%;
+  height: 100%;
+  z-index: 1;
+}
+
 #drawer-container {
   flex: 1;
   grid-gap: 0;
   position: relative;
+}
+
+[full-height] {
+  height: 100%;
 }
 
 :host([drawer-opened]) #drawer-container:not([small]) {

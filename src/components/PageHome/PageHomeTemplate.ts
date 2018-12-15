@@ -1,9 +1,9 @@
-import '@material/mwc-fab';
-import { html } from '@polymer/lit-element';
-import * as style from './PageHome.scss';
-import { until } from 'lit-html/directives/until';
+import "@material/mwc-fab";
+import { html } from "@polymer/lit-element";
+import * as style from "./PageHome.scss";
+import { until } from "lit-html/directives/until";
 
-export default function ({ user }: any) {
+export default function({ user }: any) {
   return html`
     <style>
       ${style}
@@ -12,7 +12,15 @@ export default function ({ user }: any) {
       <my-card collapsible style="grid-column: 1/-1">
         <h3 slot="title">Welcome</h3>
         <div slot="content">
-          Welcome ${user.name ? user.name : 'Guest'}! ${!user.signedIn ? html`Sign in to save settings` : html`You are currently signed in: Your settings will now be saved`}.
+          Welcome ${user.name ? user.name : "Guest"}! ${
+    !user.signedIn
+      ? html`
+          <a href="/user">Sign in</a> to save settings
+        `
+      : html`
+          You are currently signed in: Your settings will now be saved
+        `
+  }.
           <p>
             This package provides:
             <ul>
@@ -44,5 +52,5 @@ export default function ({ user }: any) {
         </div>
       </my-card>
     </my-grid>
-  `
+  `;
 }
