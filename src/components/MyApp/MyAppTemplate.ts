@@ -1,5 +1,4 @@
 import { html } from "@polymer/lit-element";
-import { until } from "lit-html/directives/until";
 
 export default function({ router, user }: any) {
   return html`
@@ -23,15 +22,12 @@ export default function({ router, user }: any) {
           </app-header>
         </div>
         <div slot="content">
-          <my-flex
-            id="center"
-            style="position: relative; word-wrap: break-word;"
-          >
-            <my-grid id="drawer-container" ?small="${this.mediaSize}">
+          <my-flex id="center" style="position: relative;">
+            <my-grid id="drawer-container" media-size="${this.mediaSize}">
               <div
                 id="drawer"
                 ?hidden="${!this.drawerOpened}"
-                media="${this.mediaSize}"
+                media-size="${this.mediaSize}"
               >
                 <my-card
                   collapsible

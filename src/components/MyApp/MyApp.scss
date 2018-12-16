@@ -45,7 +45,7 @@ app-drawer-absolute {
   display: flex;
 }
 
-#drawer[media="small"] {
+#drawer[media-size="small"] {
   position: absolute;
   background: var(--background-color);
   min-width: 50%;
@@ -67,7 +67,7 @@ app-drawer-absolute {
   display: none;
 }
 
-:host([drawer-opened]) #drawer-container:not([small]) {
+:host([drawer-opened]) #drawer-container:not([media-size="small"]) {
   grid-template-columns: minmax(128px, 1fr) 4fr;
   grid-gap: 1em;
 }
