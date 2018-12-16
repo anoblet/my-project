@@ -1,42 +1,47 @@
-import { html, LitElement, property } from '@polymer/lit-element';
-import { connect } from 'pwa-helpers/connect-mixin.js';
-import { config } from '../../../config';
-import { BaseMixin } from '../../../packages/BaseMixin';
-import { StateMixin } from '../../../packages/StateMixin';
-import { Mixin } from '../../../packages/Mixin';
-import { store } from '../../store.js';
-import { TaskMixin } from '../../../packages/TaskMixin';
-import Template from './AppThemeTemplate';
-import { FirebaseMixin } from '../../../packages/FirebaseMixin';
-import * as style from './AppTheme.scss';
+import { html, LitElement, property } from "@polymer/lit-element";
+import { connect } from "pwa-helpers/connect-mixin.js";
+import { config } from "../../../config";
+import { BaseMixin } from "../../../packages/BaseMixin";
+import { StateMixin } from "../../../packages/StateMixin";
+import { Mixin } from "../../../packages/Mixin";
+import { store } from "../../store.js";
+import { TaskMixin } from "../../../packages/TaskMixin";
+import Template from "./AppThemeTemplate";
+import { FirebaseMixin } from "../../../packages/FirebaseMixin";
+import * as style from "./AppTheme.scss";
 
 /**
  * @todo Extend BaseElement
  */
 
-export class AppTheme extends Mixin(connect(store)(LitElement), [BaseMixin, TaskMixin, StateMixin, FirebaseMixin]) {
+export class AppTheme extends Mixin(connect(store)(LitElement), [
+  BaseMixin,
+  TaskMixin,
+  StateMixin,
+  FirebaseMixin
+]) {
   darkTheme: any = {
     backgroundColor: "#242424",
     textColor: "#ffffff",
     primaryColor: "#00ff00",
     secondaryColor: "#ff0080"
-  }
+  };
   lightTheme: any = {
     backgroundColor: "#ffffff",
     textColor: "#000000",
     primaryColor: "#00ff00",
     secondaryColor: "#ff0080"
-  }
+  };
   miscTheme: any = {
-    "backgroundColor": "#534A71",
-    "borderColor": "#CCC",
-    "primaryColor": "#4EE8EA",
-    "secondaryColor": "#5ECBC1",
-    "textColor": "#C2FB7C"
-  }
+    backgroundColor: "#534A71",
+    borderColor: "#CCC",
+    primaryColor: "#4EE8EA",
+    secondaryColor: "#5ECBC1",
+    textColor: "#C2FB7C"
+  };
   firebaseConfig = config.firebase;
-  firebaseDocumentPath = 'theme';
-  stateType: any = 'theme';
+  firebaseDocumentPath = "theme";
+  stateType: any = "theme";
 
   savedThemes: any = [];
 
@@ -49,39 +54,45 @@ export class AppTheme extends Mixin(connect(store)(LitElement), [BaseMixin, Task
   connectedCallback() {
     super.connectedCallback();
     this.runTasks([
-      import(/* webpackChunkName: "MyFlex" */'../../../packages/my-flex'),
-      import(/* webpackChunkName: "MyGrid" */ '../../../packages/my-grid'),
-      import(/* webpackChunkName: "MyLoader" */'../../../packages/my-loader'),
+      import(/* webpackChunkName: "MyFlex" */ "../../../packages/my-flex"),
+      import(/* webpackChunkName: "MyGrid" */ "../../../packages/my-grid"),
+      import(/* webpackChunkName: "MyLoader" */ "../../../packages/my-loader")
     ]);
   }
 
   firstUpdated() {
-    if(this.state.theme.randomOnLoad) this.randomizeColors();
+    if (this.state.theme.randomOnLoad) this.randomizeColors();
   }
 
   primaryColorChanged(e: any) {
-    this.setState({
-      primaryColor: e.target.value
-    }, 'theme');
+    this.setState(
+      {
+        primaryColor: e.target.value
+      },
+      "theme"
+    );
   }
 
   secondaryColorChanged(e: any) {
-    this.setState({
-      secondaryColor: e.target.value
-    }, 'theme');
+    this.setState(
+      {
+        secondaryColor: e.target.value
+      },
+      "theme"
+    );
   }
 
   setTheme(theme: any) {
-    this.setState(this[`${theme}Theme`], 'theme');
+    this.setState(this[`${theme}Theme`], "theme");
   }
 
   setDefaultTheme() {
-    this.setState(this.defaultDocument, 'theme');
+    this.setState(this.defaultDocument, "theme");
   }
 
   randomColor() {
-    var letters = '0123456789ABCDEF';
-    var color = '#';
+    var letters = "0123456789ABCDEF";
+    var color = "#";
     for (var i = 0; i < 6; i++) {
       color += letters[Math.floor(Math.random() * 16)];
     }
@@ -94,46 +105,68 @@ export class AppTheme extends Mixin(connect(store)(LitElement), [BaseMixin, Task
       textColor: this.randomColor(),
       primaryColor: this.randomColor(),
       secondaryColor: this.randomColor()
-    }
-    this.setState(colors, 'theme');
+    };
+    this.setState(colors, "theme");
   }
 
   randomOnLoadToggle() {
     const value = !this.state.theme.randomOnLoad;
-    this.setState({
-      randomOnLoad: value
-    }, "theme");
+    this.setState(
+      {
+        randomOnLoad: value
+      },
+      "theme"
+    );
+  }
+
+  runtime() {
+    if (this.state) {
+      if (this.state.theme.randomOnLoad) this.randomizeColors();
+    }
   }
 
   saveTheme() {
     const theme = this.state.theme;
     let savedThemes = theme.savedThemes;
-    if(!savedThemes) savedThemes = [];
+    if (!savedThemes) savedThemes = [];
     savedThemes.push({
-      name: this.shadowRoot.querySelector('#themeName').value,
+      name: this.shadowRoot.querySelector("#themeName").value,
       backgroundColor: theme.backgroundColor,
       textColor: theme.textColor,
       primaryColor: theme.primaryColor,
-      secondaryColor: theme.secondaryColor,
+      secondaryColor: theme.secondaryColor
     });
     this.setState({ savedThemes }, "theme");
   }
 
   setSavedTheme(index: any) {
     let savedThemes = this.state.theme.savedThemes;
-    this.setState(savedThemes[index], 'theme');
+    this.setState(savedThemes[index], "theme");
   }
 
-  listThemes(){
-    const savedThemes = this.state.theme.savedThemes
-    if(!savedThemes) return;
+  listThemes() {
+    const savedThemes = this.state.theme.savedThemes;
+    if (!savedThemes) return;
     return html`
       <ul>
-        ${savedThemes.map((theme: any, index: any) =>
-          html`<li><a @click="${() => this.setSavedTheme(index)}">${theme.name}</a> <mwc-button @click=${(e: any) => this.deleteTheme(index)}${index}>Delete</mwc-button></li>`
-        )}
+        ${
+          savedThemes.map(
+            (theme: any, index: any) =>
+              html`
+                <li>
+                  <a @click="${() => this.setSavedTheme(index)}"
+                    >${theme.name}</a
+                  >
+                  <mwc-button
+                    @click="${(e: any) => this.deleteTheme(index)}${index}"
+                    >Delete</mwc-button
+                  >
+                </li>
+              `
+          )
+        }
       </ul>
-    `
+    `;
   }
 
   deleteTheme(index: any) {
@@ -143,7 +176,13 @@ export class AppTheme extends Mixin(connect(store)(LitElement), [BaseMixin, Task
   }
 
   updateStyles(theme: any) {
-    this.dispatchEvent(new CustomEvent('theme-changed', { bubbles: true, composed: true, detail: theme,}));
+    this.dispatchEvent(
+      new CustomEvent("theme-changed", {
+        bubbles: true,
+        composed: true,
+        detail: theme
+      })
+    );
   }
 
   stateChanged(state: any) {
@@ -153,10 +192,18 @@ export class AppTheme extends Mixin(connect(store)(LitElement), [BaseMixin, Task
 
   render() {
     return html`
-      <style>${style}</style>
-      ${!this.taskPending ? Template.bind(this)(this.state) : html`<my-loader></my-loader>`}
+      <style>
+        ${style}
+      </style>
+      ${
+        !this.taskPending
+          ? Template.bind(this)(this.state)
+          : html`
+              <my-loader></my-loader>
+            `
+      }
     `;
   }
 }
 
-window.customElements.define('app-theme', AppTheme);
+window.customElements.define("app-theme", AppTheme);

@@ -16,6 +16,7 @@ import Template from "./MyAppTemplate";
 connectRouter(store);
 import { MediaMixin } from "../../../packages/MediaMixin";
 import "../../../packages/MediaQuery";
+import { runtime } from "../../Runtime";
 /**
  * @todo Extend BaseElement
  */
@@ -88,6 +89,7 @@ export class MyApp extends Mixin(connect(store)(LitElement), [
         resolve();
       })
     ]);
+    // this.runTasks(runtime);
   }
 
   // Events
