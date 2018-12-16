@@ -37,6 +37,10 @@
   --debug-border: 1px solid var(--border-color);
 }
 
+a {
+  color: var(--primary-color);
+}
+
 app-drawer-absolute {
   min-width: 50%;
 }
