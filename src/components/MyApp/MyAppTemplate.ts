@@ -10,19 +10,29 @@ export default function({ router, user }: any) {
               >menu</mwc-icon
             >
             <span id="title"><a href="/">${this.title}</a></span>
-            <a href="/user">
-              <mwc-fab
-                id="userProfile"
-                mini
-                label="Account"
-                @click="${() => this._toggleProfile()}"
-                >Profile</mwc-fab
-              >
-            </a>
+            <mwc-fab
+              id="userProfile"
+              mini
+              label="Account"
+              @click="${() => this._toggleProfile()}"
+              >Profile</mwc-fab
+            >
           </app-header>
         </div>
         <div slot="content">
           <my-flex id="center" style="position: relative;">
+            <div hidden id="profile-menu">
+                ${
+                  user.signedIn
+                    ? html`
+                        <a href="/user/signout">Sign out</a>
+                      `
+                    : html`
+                        <a href="/user/signin">Sign in</a>
+                      `
+                }</a
+              >
+            </div>
             <my-grid id="drawer-container" media-size="${this.mediaSize}">
               <div
                 id="drawer"
@@ -38,10 +48,27 @@ export default function({ router, user }: any) {
                   <h3 slot="title">Menu</h3>
                   <div slot="content">
                     <ul>
-                      <a href="/"> <li>Home</li></a
-                      ><a href="/user"> <li>User</li></a
-                      ><a href="/theme"> <li>Theme</li></a
-                      ><a href="/info"> <li>Info</li></a>
+                      <a
+                        @click="${(e: Event) => this._toggleDrawer()}"
+                        href="/"
+                      >
+                        <li>Home</li></a
+                      ><a
+                        @click="${(e: Event) => this._toggleDrawer()}"
+                        href="/user"
+                      >
+                        <li>User</li></a
+                      ><a
+                        @click="${(e: Event) => this._toggleDrawer()}"
+                        href="/theme"
+                      >
+                        <li>Theme</li></a
+                      ><a
+                        @click="${(e: Event) => this._toggleDrawer()}"
+                        href="/info"
+                      >
+                        <li>Info</li></a
+                      >
                     </ul>
                   </div>
                 </my-card>
@@ -51,6 +78,7 @@ export default function({ router, user }: any) {
                   <my-flex slot="content">
                     <lit-route path="/" component="page-home"></lit-route>
                     <lit-route path="/user" component="page-user"></lit-route>
+                    <lit-route path="/user/:action" component="page-user"></lit-route>
                     <lit-route path="/theme" component="app-theme"></lit-route>
                     <lit-route path="/info" component="page-info"></lit-route>
                   </my-flex>

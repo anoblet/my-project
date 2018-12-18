@@ -9,6 +9,7 @@ import { TaskMixin } from "../../../packages/TaskMixin";
 import Template from "./AppThemeTemplate";
 import { FirebaseMixin } from "../../../packages/FirebaseMixin";
 import * as style from "./AppTheme.scss";
+import "../../../packages/my-grid/GridItem";
 
 /**
  * @todo Extend BaseElement
@@ -62,24 +63,6 @@ export class AppTheme extends Mixin(connect(store)(LitElement), [
 
   firstUpdated() {
     if (this.state.theme.randomOnLoad) this.randomizeColors();
-  }
-
-  primaryColorChanged(e: any) {
-    this.setState(
-      {
-        primaryColor: e.target.value
-      },
-      "theme"
-    );
-  }
-
-  secondaryColorChanged(e: any) {
-    this.setState(
-      {
-        secondaryColor: e.target.value
-      },
-      "theme"
-    );
   }
 
   setTheme(theme: any) {

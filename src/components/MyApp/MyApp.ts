@@ -97,6 +97,11 @@ export class MyApp extends Mixin(connect(store)(LitElement), [
     this.drawerOpened = !this.drawerOpened;
   }
 
+  public _toggleProfile() {
+    const menu = this.shadowRoot.querySelector("#profile-menu");
+    this._toggleAttribute("hidden", menu);
+  }
+
   public updateStyles(theme: any) {
     this.style.setProperty("--background-color", theme.backgroundColor);
     this.style.setProperty("--text-color", theme.textColor);

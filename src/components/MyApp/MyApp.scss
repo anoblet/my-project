@@ -1,3 +1,5 @@
+@import "../../GlobalStyles.scss";
+
 * {
   box-sizing: border-box;
 }
@@ -35,10 +37,6 @@
 :host([debug]) {
   --debug-padding: 1em;
   --debug-border: 1px solid var(--border-color);
-}
-
-a {
-  color: var(--primary-color);
 }
 
 app-drawer-absolute {
@@ -139,11 +137,6 @@ mwc-icon {
   color: var(--mdc-theme-primary);
 }
 
-a {
-  color: var(--primary-color);
-  text-decoration: none;
-}
-
 lit-route {
   /* padding-right: 1em; */
   display: flex;
@@ -164,4 +157,11 @@ ul {
 
 .scroll {
   overflow: auto;
+}
+
+#profile-menu {
+  background-color: var(--background-color);
+  position: absolute;
+  right: 0;
+  z-index: 1;
 }
