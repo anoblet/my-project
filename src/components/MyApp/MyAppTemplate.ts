@@ -78,7 +78,7 @@ export default function({ router, user }: any) {
                   <my-flex slot="content">
                     <lit-route path="/" component="page-home"></lit-route>
                     <lit-route path="/user" component="page-user"></lit-route>
-                    <lit-route path="/user/:action" component="page-user"></lit-route>
+                    <lit-route path="/user/:action" component="user-controller"></lit-route>
                     <lit-route path="/theme" component="app-theme"></lit-route>
                     <lit-route path="/info" component="page-info"></lit-route>
                   </my-flex>

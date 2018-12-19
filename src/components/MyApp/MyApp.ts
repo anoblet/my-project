@@ -73,9 +73,13 @@ export class MyApp extends Mixin(connect(store)(LitElement), [
       import(/* webpackChunkName: "PageHome" */ "../PageHome/PageHome"),
       import(/* webpackChunkName: "PageInfo" */ "../PageInfo/PageInfo"),
       import(/* webpackChunkName: "PageUser" */ "../PageUser/PageUser"),
+      import(/* webpackChunkName: "UserController" */ "../../controllers/UserController"),
       this.firebaseInit(),
       this.firebaseCheckRedirect(),
-      this.getUser().then((user: any) => this.setState(user, "user")),
+      this.getUser().then((user: any) => {
+        if (user) this.setState(user, "user");
+        else this.setState({}, "user");
+      }),
       new Promise((resolve, reject) => {
         this.watchDocument("theme", (document: any) => {
           if (document) {
