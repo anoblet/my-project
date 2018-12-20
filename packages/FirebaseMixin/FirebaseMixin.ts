@@ -2,43 +2,125 @@
 // import * as firestore from 'firebase/firestore';
 // import * as auth from 'firebase/auth';
 
-export const FirebaseMixin = function (superClass: any) {
+export const FirebaseMixin = function(superClass: any) {
   return class extends superClass {
     firebaseConfig: any;
-    firebaseDocumentPath: any
+    firebaseDocumentPath: any;
     firebaseInit() {
-      import(/* webpackChunkName: "FirebaseApp" */ 'firebase/app').then((app) => {
+      import(/* webpackChunkName: "FirebaseApp" */ "firebase/app").then(app => {
         if (app.apps.length === 0) app.initializeApp(this.firebaseConfig);
       });
     }
 
-    getDocument(path: any = '', config: any = {
-      watch: true
-    }, callback: any) {
+    addDocument({ path, data }: any) {
+      Promise.all([
+        import(/* webpackChunkName: "FirebaseApp" */ "firebase/app"),
+        import(/* webpackChunkName: "FirebaseFirestore" */ "firebase/firestore")
+      ]).then(async ([firebase]) => {
+        const firestore = firebase.firestore();
+        firestore.settings({ timestampsInSnapshots: true });
+        firestore
+          .collection(path)
+          .doc()
+          .set(data);
+      });
+    }
+
+    getAppDocument(
+      path: any = "",
+      config: any = {
+        watch: true
+      },
+      callback: any
+    ) {
       return new Promise((resolve, reject) => {
         Promise.all([
-          import(/* webpackChunkName: "FirebaseApp" */ 'firebase/app'),
-          import(/* webpackChunkName: "FirebaseFirestore" */ 'firebase/firestore'),
+          import(/* webpackChunkName: "FirebaseApp" */ "firebase/app"),
+          import(/* webpackChunkName: "FirebaseFirestore" */ "firebase/firestore")
         ]).then(async ([firebase]) => {
           const firestore = firebase.firestore();
           firestore.settings({ timestampsInSnapshots: true });
           const user: any = await this.getUser();
-          if(!user) resolve();
-          if(user) {
-            if(!path) path = this.firebaseDocumentPath;
-            const document = firestore.doc(`users/${user.uid}/state/${path}`);
-            if(config.watch)
-            return document.onSnapshot((doc: any) => {
-              console.log('Here');
-              const source = doc.metadata.hasPendingWrites ? "local" : "remote";
-              if(callback) callback(doc.data());
-              resolve(doc.data());
-            });
+          if (!user) resolve();
+          if (user) {
+            if (!path) path = this.firebaseDocumentPath;
+            const document = firestore.doc(path);
+            if (config.watch)
+              return document.onSnapshot((doc: any) => {
+                const source = doc.metadata.hasPendingWrites
+                  ? "local"
+                  : "remote";
+                if (callback) callback(doc.data());
+                resolve(doc.data());
+              });
             else
-            document.get().then((doc: any) => {
-              if(!doc.exists) document.set(this.defaultDocument);
-              resolve(doc.data());
+              document.get().then((doc: any) => {
+                if (!doc.exists) document.set(this.defaultDocument);
+                resolve(doc.data());
+              });
+          }
+        });
+      });
+    }
+
+    getCollection({ callback, path, watch = false }: any) {
+      return new Promise((resolve, reject) => {
+        Promise.all([
+          import(/* webpackChunkName: "FirebaseApp" */ "firebase/app"),
+          import(/* webpackChunkName: "FirebaseFirestore" */ "firebase/firestore")
+        ]).then(async ([firebase]) => {
+          const firestore = firebase.firestore();
+          firestore.settings({ timestampsInSnapshots: true });
+          if (!path) path = this.firebaseDocumentPath;
+          const collection = firestore.collection(path);
+          if (watch) {
+            let result: any = [];
+            await collection.get().then((querySnapshot: any) => {
+              querySnapshot.forEach(function(doc: any) {
+                const newDoc: any = {};
+                newDoc[doc.id] = doc.data();
+                result.push(newDoc);
+              });
             });
+            resolve(result);
+          }
+        });
+      });
+    }
+
+    getDocument(
+      path: any = "",
+      config: any = {
+        watch: true
+      },
+      callback: any
+    ) {
+      return new Promise((resolve, reject) => {
+        Promise.all([
+          import(/* webpackChunkName: "FirebaseApp" */ "firebase/app"),
+          import(/* webpackChunkName: "FirebaseFirestore" */ "firebase/firestore")
+        ]).then(async ([firebase]) => {
+          const firestore = firebase.firestore();
+          firestore.settings({ timestampsInSnapshots: true });
+          const user: any = await this.getUser();
+          if (!user) resolve();
+          if (user) {
+            if (!path) path = this.firebaseDocumentPath;
+            const document = firestore.doc(`users/${user.uid}/state/${path}`);
+            if (config.watch)
+              return document.onSnapshot((doc: any) => {
+                console.log("Here");
+                const source = doc.metadata.hasPendingWrites
+                  ? "local"
+                  : "remote";
+                if (callback) callback(doc.data());
+                resolve(doc.data());
+              });
+            else
+              document.get().then((doc: any) => {
+                if (!doc.exists) document.set(this.defaultDocument);
+                resolve(doc.data());
+              });
           }
         });
       });
@@ -47,15 +129,17 @@ export const FirebaseMixin = function (superClass: any) {
     setDocument(data: any) {
       return new Promise((resolve, reject) => {
         Promise.all([
-          import(/* webpackChunkName: "FirebaseApp" */ 'firebase/app'),
-          import(/* webpackChunkName: "FirebaseFirestore" */ 'firebase/firestore'),
+          import(/* webpackChunkName: "FirebaseApp" */ "firebase/app"),
+          import(/* webpackChunkName: "FirebaseFirestore" */ "firebase/firestore")
         ]).then(async ([firebase]) => {
           const firestore = firebase.firestore();
           firestore.settings({ timestampsInSnapshots: true });
           const user: any = await this.getUser();
-          if(user) {
-            const document = firestore.doc(`users/${user.uid}/state/${this.firebaseDocumentPath}`);
-            document.set(data, {merge: true});
+          if (user) {
+            const document = firestore.doc(
+              `users/${user.uid}/state/${this.firebaseDocumentPath}`
+            );
+            document.set(data, { merge: true });
           }
         });
       });
@@ -64,12 +148,13 @@ export const FirebaseMixin = function (superClass: any) {
     getUser() {
       return new Promise((resolve, reject) => {
         Promise.all([
-          import(/* webpackChunkName: "FirebaseApp" */ 'firebase/app'),
-          import(/* webpackChunkName: "FirebaseAuth" */ 'firebase/auth'),
-          import(/* webpackChunkName: "FirebaseFirestore" */ 'firebase/firestore'),
-          import(/* webpackChunkName: "FirebaseUI" */ 'firebaseui'),
+          import(/* webpackChunkName: "FirebaseApp" */ "firebase/app"),
+          import(/* webpackChunkName: "FirebaseAuth" */ "firebase/auth"),
+          import(/* webpackChunkName: "FirebaseFirestore" */ "firebase/firestore"),
+          import(/* webpackChunkName: "FirebaseUI" */ "firebaseui")
         ]).then(async ([firebase, auth, firestore, ui]) => {
-          let instance = ui.auth.AuthUI.getInstance() || new ui.auth.AuthUI(firebase.auth());
+          let instance =
+            ui.auth.AuthUI.getInstance() || new ui.auth.AuthUI(firebase.auth());
           let pendingRedirect = instance.isPendingRedirect();
           firebase.auth().onAuthStateChanged((user: any) => {
             if (!user && !pendingRedirect) resolve(false);
@@ -89,22 +174,23 @@ export const FirebaseMixin = function (superClass: any) {
 
     watchDocument(document: any, callback: any) {
       return Promise.all([
-        import(/* webpackChunkName: "FirebaseApp" */ 'firebase/app'),
-        import(/* webpackChunkName: "FirebaseFirestore" */ 'firebase/firestore'),
+        import(/* webpackChunkName: "FirebaseApp" */ "firebase/app"),
+        import(/* webpackChunkName: "FirebaseFirestore" */ "firebase/firestore")
       ]).then(async ([firebase]) => {
         const firestore = firebase.firestore();
         firestore.settings({ timestampsInSnapshots: true });
         const user: any = await this.getUser();
-        if(!user) {
+        if (!user) {
           callback();
           return;
-        }
-        else {
-          if(!document) document = this.firebaseDocumentPath;
-          const firestoreDocument = firestore.doc(`users/${user.uid}/state/${document}`);
+        } else {
+          if (!document) document = this.firebaseDocumentPath;
+          const firestoreDocument = firestore.doc(
+            `users/${user.uid}/state/${document}`
+          );
           return firestoreDocument.onSnapshot((doc: any) => {
             const source = doc.metadata.hasPendingWrites ? "local" : "remote";
-            if(callback) callback(doc.data());
+            if (callback) callback(doc.data());
           });
         }
       });
@@ -112,17 +198,18 @@ export const FirebaseMixin = function (superClass: any) {
     firebaseCheckRedirect() {
       return new Promise((resolve, reject) => {
         Promise.all([
-          import(/* webpackChunkName: "FirebaseApp" */'firebase/app'),
-          import(/* webpackChunkName: "FirebaseAuth" */'firebase/auth'),
-          import(/* webpackChunkName: "FirebaseUI" */'firebaseui'),
+          import(/* webpackChunkName: "FirebaseApp" */ "firebase/app"),
+          import(/* webpackChunkName: "FirebaseAuth" */ "firebase/auth"),
+          import(/* webpackChunkName: "FirebaseUI" */ "firebaseui")
         ]).then(([app, auth, ui]) => {
-          let instance = ui.auth.AuthUI.getInstance() || new ui.auth.AuthUI(app.auth());
+          let instance =
+            ui.auth.AuthUI.getInstance() || new ui.auth.AuthUI(app.auth());
           if (instance.isPendingRedirect()) {
-            instance.start(document.createElement('div'), {});
+            instance.start(document.createElement("div"), {});
           }
           resolve();
-        })
+        });
       });
     }
-  }
-}
+  };
+};
