@@ -25,5 +25,6 @@ export default function({ user }: any) {
         <div slot="content"><lorem-ipsum count="100"></lorem-ipsum></div>
       </my-card>
     </my-grid>
+    <my-dialog>Test</my-dialog>
   `;
 }

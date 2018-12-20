@@ -17,6 +17,7 @@ connectRouter(store);
 import { MediaMixin } from "../../../packages/MediaMixin";
 import "../../../packages/MediaQuery";
 import { runtime } from "../../Runtime";
+// import { PostController } from "../../post/PostController";
 /**
  * @todo Extend BaseElement
  */
@@ -74,6 +75,7 @@ export class MyApp extends Mixin(connect(store)(LitElement), [
       import(/* webpackChunkName: "PageInfo" */ "../PageInfo/PageInfo"),
       import(/* webpackChunkName: "PageUser" */ "../PageUser/PageUser"),
       import(/* webpackChunkName: "UserController" */ "../../controllers/UserController"),
+      import(/* webpackChunkName: "PostController" */ "../../post/PostController"),
       this.firebaseInit(),
       this.firebaseCheckRedirect(),
       this.getUser().then((user: any) => {

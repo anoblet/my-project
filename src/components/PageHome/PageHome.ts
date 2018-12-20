@@ -9,6 +9,7 @@ import { TaskMixin } from "../../../packages/TaskMixin";
 import { store } from "../../store.js";
 import * as style from "./PageHome.scss";
 import Template from "./PageHomeTemplate";
+import "../../../packages/Dialog";
 
 export class PageHome extends Mixin(connect(store)(LitElement), [
   TaskMixin,

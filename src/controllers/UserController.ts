@@ -19,10 +19,22 @@ export class UserController extends Mixin(connect(store)(LitElement), [
 
   connectedCallback() {
     super.connectedCallback();
-    this[this.action]();
+    this.setStore(store);
+    if (this[this.action]) this[this.action]();
   }
 
   index() {
+    const signedIn = this.state.user.signedIn;
+    signedIn
+      ? store.dispatch(navigate("/user/account"))
+      : store.dispatch(navigate("/user/signin"));
+    return;
+    this._template = html`
+      <app-user></app-user>
+    `;
+  }
+
+  account() {
     this._template = html`
       <app-user></app-user>
     `;
@@ -38,11 +50,27 @@ export class UserController extends Mixin(connect(store)(LitElement), [
     const user = new User();
     user.signOut();
     this.setState({}, "user", { merge: false });
+    this.setState(
+      {
+        backgroundColor: "#242424",
+        borderColor: "#CCC",
+        textColor: "#CCC",
+        primaryColor: "#00ff00",
+        secondaryColor: "#ff0080"
+      },
+      "theme"
+    );
     store.dispatch(navigate("/"));
   }
 
   render() {
     return html`
+      <style>
+        :host {
+          display: flex;
+          flex: 1;
+        }
+      </style>
       ${until(this._template, "")}
     `;
   }
