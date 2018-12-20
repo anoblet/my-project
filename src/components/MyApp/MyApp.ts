@@ -1,23 +1,27 @@
-import { html, LitElement, property } from "@polymer/lit-element";
-import { connectRouter } from "lit-redux-router";
-import { connect } from "pwa-helpers/connect-mixin.js";
-import { config } from "../../../config";
-import { BaseMixin } from "../../../packages/BaseMixin";
 import "../../../packages/DrawerAbsolute";
+import "../../../packages/MediaQuery";
+
+import * as style from "./MyApp.scss";
+
+import { LitElement, html, property } from "@polymer/lit-element";
+
+import { BaseMixin } from "../../../packages/BaseMixin";
 import { FirebaseMixin } from "../../../packages/FirebaseMixin";
 import { HelperMixin } from "../../../packages/HelperMixin";
+import { MediaMixin } from "../../../packages/MediaMixin";
 import { Mixin } from "../../../packages/Mixin";
 import { StateMixin } from "../../../packages/StateMixin";
 import { TaskMixin } from "../../../packages/TaskMixin";
-import { TemplateMixin } from "../../../packages/TemplateMixin";
-import { store } from "../../store.js";
-import * as style from "./MyApp.scss";
 import Template from "./MyAppTemplate";
-connectRouter(store);
-import { MediaMixin } from "../../../packages/MediaMixin";
-import "../../../packages/MediaQuery";
+import { TemplateMixin } from "../../../packages/TemplateMixin";
+import { config } from "../../../config";
+import { connect } from "pwa-helpers/connect-mixin.js";
+import { connectRouter } from "lit-redux-router";
 import { runtime } from "../../Runtime";
-// import { PostController } from "../../post/PostController";
+import { store } from "../../store.js";
+
+connectRouter(store);
+
 /**
  * @todo Extend BaseElement
  */

@@ -77,11 +77,9 @@ export default function({ router, user }: any) {
                 <my-card full-height grow no-inside-border no-outside-border no-title>
                   <my-flex slot="content">
                     <lit-route path="/" component="page-home"></lit-route>
-                    <lit-route path="/user" component="user-controller"></lit-route>
                     <lit-route path="/user/:action" component="user-controller"></lit-route>
                     <lit-route path="/theme" component="app-theme"></lit-route>
                     <lit-route path="/info" component="page-info"></lit-route>
-                    <lit-route path="/post" component="post-controller"></lit-route>
                     <lit-route path="/post/:action" component="post-controller"></lit-route>
                   </my-flex>
                 </my-card>
