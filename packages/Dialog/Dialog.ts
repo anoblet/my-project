@@ -2,7 +2,7 @@ import { html, LitElement, property } from "@polymer/lit-element";
 import * as style from "./Dialog.scss";
 
 export class Dialog extends LitElement {
-  @property({ type: Boolean, reflect: true }) hidden: any = false;
+  @property({ type: Boolean, reflect: true }) hidden: any = true;
 
   open() {
     this.hidden = false;
