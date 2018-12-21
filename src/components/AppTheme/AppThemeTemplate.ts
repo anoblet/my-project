@@ -132,22 +132,24 @@ export default function({ theme, user }: any) {
                   <my-flex slot="content">
                     <my-grid columns="2">
                       ${
-                        theme.savedThemes.map(
-                          (theme: any, index: any) =>
-                            html`
-                              <a
-                                @click="${() => this.setSavedTheme(index)}"
-                                href="#"
-                                >${theme.name}</a
-                              >
-                              <mwc-button
-                                @click="${(e: any) => this.deleteTheme(index)}${
-                                  index
-                                }"
-                                >Delete</mwc-button
-                              >
-                            `
-                        )
+                        theme.savedThemes
+                          ? theme.savedThemes.map(
+                              (theme: any, index: any) =>
+                                html`
+                                  <a
+                                    @click="${() => this.setSavedTheme(index)}"
+                                    href="#"
+                                    >${theme.name}</a
+                                  >
+                                  <mwc-button
+                                    @click="${
+                                      (e: any) => this.deleteTheme(index)
+                                    }${index}"
+                                    >Delete</mwc-button
+                                  >
+                                `
+                            )
+                          : ""
                       }
                     </my-grid>
                   </my-flex>
