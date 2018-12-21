@@ -22,10 +22,6 @@ import { store } from "../../store.js";
 
 connectRouter(store);
 
-/**
- * @todo Extend BaseElement
- */
-
 export class MyApp extends Mixin(connect(store)(LitElement), [
   HelperMixin,
   TemplateMixin,
@@ -99,7 +95,6 @@ export class MyApp extends Mixin(connect(store)(LitElement), [
         resolve();
       })
     ]);
-    // this.runTasks(runtime);
   }
 
   // Events

@@ -1,18 +1,15 @@
 {
-    "defaultSeverity": "error",
-    "extends": [
-        "tslint:recommended"
-    ],
-    "jsRules": {
-        "quotemark": [false],
-        "trailing-comma": false
-    },
-    "rules": {
-        "quotemark": [
-            true,
-            "single"
-        ],
-        "trailing-comma": false
-    },
-    "rulesDirectory": []
+  "defaultSeverity": "error",
+  "extends": ["tslint:recommended"],
+  "jsRules": {
+    "quotemark": [false],
+    "trailing-comma": false
+  },
+  "rules": {
+    "curly": false,
+    "ordered-imports": false,
+    "quotemark": [true, "double"],
+    "trailing-comma": false
+  },
+  "rulesDirectory": []
 }
