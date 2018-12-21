@@ -161,6 +161,9 @@ ul {
 
 #profile-menu {
   background-color: var(--background-color);
+  border: 1px solid var(--border-color);
+  border-top: 0;
+  padding: 1em;
   position: absolute;
   right: 0;
   z-index: 1;

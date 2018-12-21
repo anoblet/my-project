@@ -22,16 +22,20 @@ export default function({ router, user }: any) {
         <div slot="content">
           <my-flex id="center" style="position: relative;">
             <div hidden id="profile-menu">
-                ${
-                  user.signedIn
-                    ? html`
-                        <a href="/user/signout">Sign out</a>
-                      `
-                    : html`
-                        <a href="/user/signin">Sign in</a>
-                      `
-                }</a
-              >
+              <ul>
+                <li><a href="/theme">Theme</a></li>
+                <li>
+                  ${
+                    user.signedIn
+                      ? html`
+                          <a href="/user/signout">Sign out</a>
+                        `
+                      : html`
+                          <a href="/user/signin">Sign in</a>
+                        `
+                  }
+                </li>
+              </ul>
             </div>
             <my-grid id="drawer-container" media-size="${this.mediaSize}">
               <div
@@ -60,11 +64,6 @@ export default function({ router, user }: any) {
                         <li>User</li></a
                       ><a
                         @click="${(e: Event) => this._toggleDrawer()}"
-                        href="/theme"
-                      >
-                        <li>Theme</li></a
-                      ><a
-                        @click="${(e: Event) => this._toggleDrawer()}"
                         href="/info"
                       >
                         <li>Info</li></a
@@ -74,13 +73,29 @@ export default function({ router, user }: any) {
                 </my-card>
               </div>
               <my-flex id="content" grow scroll>
-                <my-card full-height grow no-inside-border no-outside-border no-title>
+                <my-card
+                  full-height
+                  grow
+                  no-inside-border
+                  no-outside-border
+                  no-title
+                >
                   <my-flex slot="content">
                     <lit-route path="/" component="page-home"></lit-route>
-                    <lit-route path="/user/:action" component="user-controller"></lit-route>
+                    <lit-route
+                      path="/user"
+                      component="user-controller"
+                    ></lit-route>
+                    <lit-route
+                      path="/user/:action"
+                      component="user-controller"
+                    ></lit-route>
                     <lit-route path="/theme" component="app-theme"></lit-route>
                     <lit-route path="/info" component="page-info"></lit-route>
-                    <lit-route path="/post/:action" component="post-controller"></lit-route>
+                    <lit-route
+                      path="/post/:action"
+                      component="post-controller"
+                    ></lit-route>
                   </my-flex>
                 </my-card>
               </my-flex>
