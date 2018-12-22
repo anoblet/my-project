@@ -96,6 +96,10 @@ export default function({ router, user }: any) {
                       path="/post/:action"
                       component="post-controller"
                     ></lit-route>
+                    <lit-route
+                      path="/post/:action/:id"
+                      component="post-controller"
+                    ></lit-route>
                     <lit-route path="/theme" component="app-theme"></lit-route>
                     <lit-route
                       path="/user"

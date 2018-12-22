@@ -20,18 +20,25 @@ export class UserController extends Mixin(connect(store)(LitElement), [
   connectedCallback() {
     super.connectedCallback();
     this.setStore(store);
-    if (this[this.action]) this[this.action]();
+  }
+
+  firstUpdated() {
+    if (super.firstUpdated) {
+      super.firstUpdated();
+    }
+
+    if (this.action == "index") {
+      const signedIn = this.state.user.signedIn;
+      signedIn
+        ? store.dispatch(navigate("/user/account"))
+        : store.dispatch(navigate("/user/signin"));
+    } else {
+      this[this.action]();
+    }
   }
 
   index() {
-    const signedIn = this.state.user.signedIn;
-    signedIn
-      ? store.dispatch(navigate("/user/account"))
-      : store.dispatch(navigate("/user/signin"));
-    return;
-    this._template = html`
-      <app-user></app-user>
-    `;
+    alert("Hi");
   }
 
   account() {
@@ -44,6 +51,7 @@ export class UserController extends Mixin(connect(store)(LitElement), [
     this._template = html`
       <app-user></app-user>
     `;
+    this.requestUpdate();
   }
 
   signout() {
@@ -71,7 +79,7 @@ export class UserController extends Mixin(connect(store)(LitElement), [
           flex: 1;
         }
       </style>
-      ${until(this._template, "")}
+      ${this._template}
     `;
   }
 }

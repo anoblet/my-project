@@ -1,0 +1,10 @@
+@import "../GlobalStyles";
+:host {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+}
+
+#table {
+  grid-template-columns: min-content 1fr !important;
+}

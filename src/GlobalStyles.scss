@@ -6,3 +6,11 @@ a {
 a:hover {
   text-decoration: underline;
 }
+
+[flex] {
+  display: flex;
+}
+
+[grow] {
+  flex-grow: 1;
+}
