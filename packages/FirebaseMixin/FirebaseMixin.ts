@@ -176,6 +176,34 @@ export const FirebaseMixin = function(superClass: any) {
       });
     }
 
+    deleteDocument({ path }: any) {
+      return new Promise((resolve, reject) => {
+        Promise.all([
+          import(/* webpackChunkName: "FirebaseApp" */ "firebase/app"),
+          import(/* webpackChunkName: "FirebaseFirestore" */ "firebase/firestore")
+        ]).then(async ([firebase]) => {
+          const firestore = firebase.firestore();
+          firestore.settings({ timestampsInSnapshots: true });
+          const document = firestore.doc(path);
+          document.delete();
+        });
+      });
+    }
+
+    updateDocument({ path, data }: any) {
+      return new Promise((resolve, reject) => {
+        Promise.all([
+          import(/* webpackChunkName: "FirebaseApp" */ "firebase/app"),
+          import(/* webpackChunkName: "FirebaseFirestore" */ "firebase/firestore")
+        ]).then(async ([firebase]) => {
+          const firestore = firebase.firestore();
+          firestore.settings({ timestampsInSnapshots: true });
+          const document = firestore.doc(path);
+          document.set(data, { merge: true });
+        });
+      });
+    }
+
     watchDocument(document: any, callback: any) {
       return Promise.all([
         import(/* webpackChunkName: "FirebaseApp" */ "firebase/app"),
