@@ -77,9 +77,13 @@ export const FirebaseMixin = function(superClass: any) {
             let result: any = [];
             await collection.get().then((querySnapshot: any) => {
               querySnapshot.forEach(function(doc: any) {
-                const newDoc: any = {};
-                newDoc[doc.id] = doc.data();
-                result.push(newDoc);
+                // const newDoc: any = {};
+                // newDoc[doc.id] = doc.data();
+                // result.push(newDoc);
+
+                const data = doc.data();
+                data.id = doc.id;
+                result.push(data);
               });
             });
             resolve(result);
