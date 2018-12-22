@@ -24,7 +24,7 @@ const serialize = require("form-serialize");
 const navigation = html`
   <a href="/post/create"><mwc-button outlined>Create</mwc-button></a>
   <a href="/post/read"><mwc-button outlined>Read</mwc-button></a>
-  <a href="/post/update"><mwc-button outlined>Update</mwc-button></a>
+  <a href="/post/edit"><mwc-button outlined>Update</mwc-button></a>
   <a href="/post/delete"><mwc-button outlined>Delete</mwc-button></a>
 `;
 
@@ -41,17 +41,24 @@ export class PostController extends Mixin(connect(store)(LitElement), [
 
   connectedCallback() {
     super.connectedCallback();
+    this.addEventListener("item-deleted", (e: any) =>
+      this.itemDeleted(e.detail)
+    );
     this.setStore(store);
     if (this[this.action]) this[this.action](this.id);
   }
 
-  index() {
-    this._template = html`
-      <a href="post/create"><mwc-button outlined>Create</mwc-button></a>
-      <a href="post/read"><mwc-button outlined>Read</mwc-button></a>
-      <a href="post/update"><mwc-button outlined>Update</mwc-button></a>
-      <a href="post/delete"><mwc-button outlined>Delete</mwc-button></a>
-    `;
+  firstUpdated() {
+    if (super.firstUpdated) {
+      super.firstUpdated();
+    }
+
+    if (this.action == "index") {
+      store.dispatch(navigate("/post/read"));
+    } else {
+      if (this.action) this[this.action]();
+      else store.dispatch(navigate("/post"));
+    }
   }
 
   create() {
@@ -89,8 +96,16 @@ export class PostController extends Mixin(connect(store)(LitElement), [
         <button
           @click="${(e: Event) => {
             e.preventDefault();
-            const form = this.shadowRoot.querySelector("form");
-            const data = serialize(form, { hash: true });
+            // const form = this.shadowRoot.querySelector("form");
+            // const data = serialize(form, { hash: true });
+            const data: any = {};
+            data.title = this.shadowRoot.querySelector("[name='title']").value;
+            data.author = this.shadowRoot.querySelector(
+              "[name='author']"
+            ).value;
+            data.content = this.shadowRoot.querySelector(
+              "[name='content']"
+            ).value;
             this.addDocument({ path: "posts", data });
           }}"
         >
@@ -98,6 +113,16 @@ export class PostController extends Mixin(connect(store)(LitElement), [
         </button>
       </form>
     `;
+  }
+
+  edit() {
+    this._template = html`
+      In progress
+    `;
+  }
+
+  itemDeleted(item: any) {
+    this.deleteDocument({ path: `posts/${item.id}` });
   }
 
   read(id: any) {
@@ -133,7 +158,7 @@ export class PostController extends Mixin(connect(store)(LitElement), [
       <style>
         ${style}
       </style>
-      <div>${navigation}</div>
+      <div id="navigation">${navigation}</div>
       ${until(this._template, "")}
     `;
   }
