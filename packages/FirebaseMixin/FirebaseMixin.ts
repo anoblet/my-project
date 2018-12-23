@@ -68,25 +68,21 @@ export const FirebaseMixin = function(superClass: any) {
         Promise.all([
           import(/* webpackChunkName: "FirebaseApp" */ "firebase/app"),
           import(/* webpackChunkName: "FirebaseFirestore" */ "firebase/firestore")
-        ]).then(async ([firebase]) => {
+        ]).then(([firebase]) => {
           const firestore = firebase.firestore();
           firestore.settings({ timestampsInSnapshots: true });
-          if (!path) path = this.firebaseDocumentPath;
           const collection = firestore.collection(path);
           if (watch) {
-            let result: any = [];
-            await collection.get().then((querySnapshot: any) => {
+            collection.onSnapshot((querySnapshot: any) => {
+              let result: any = [];
               querySnapshot.forEach(function(doc: any) {
-                // const newDoc: any = {};
-                // newDoc[doc.id] = doc.data();
-                // result.push(newDoc);
-
                 const data = doc.data();
                 data.id = doc.id;
                 result.push(data);
               });
+              callback(result);
+              resolve(() => alert("Hi"));
             });
-            resolve(result);
           }
         });
       });

@@ -7,6 +7,7 @@ import { until } from "lit-html/directives/until";
 export class PostComponent extends LitElement {
   @property({ type: String }) id: string;
   @property({ type: String }) author: string;
+  @property({ type: String }) title: string;
   @property({ type: String }) content: string;
 
   render() {
