@@ -34,11 +34,11 @@ export class MyApp extends Mixin(connect(store)(LitElement), [
   @property({ type: Boolean, reflect: true, attribute: "drawer-opened" })
   public drawerOpened = false;
   public defaultDocument = {
-    backgroundColor: "#242424",
-    borderColor: "#CCC",
-    primaryColor: "#00ff00",
-    secondaryColor: "#ff0080",
-    textColor: "#CCC"
+    backgroundColor: "#ffffff",
+    borderColor: "#000000",
+    primaryColor: "#000000",
+    secondaryColor: "#000000",
+    textColor: "#000000"
   };
   public firebaseConfig = config.firebase;
   public firebaseDocumentPath = "app";
