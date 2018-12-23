@@ -61,11 +61,11 @@ export class AppUser extends Mixin(connect(store)(LitElement), [
   _resetSettings() {
     this.setState(
       {
-        backgroundColor: "#242424",
-        borderColor: "#CCC",
-        textColor: "#CCC",
-        primaryColor: "#00ff00",
-        secondaryColor: "#ff0080"
+        backgroundColor: "#ffffff",
+        borderColor: "#000000",
+        primaryColor: "#000000",
+        secondaryColor: "#000000",
+        textColor: "#000000"
       },
       "theme"
     );
