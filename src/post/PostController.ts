@@ -96,12 +96,21 @@ export class PostController extends Mixin(LitElement, [
             data.content = this.shadowRoot.querySelector(
               "[name='content']"
             ).value;
-            this.addDocument({ path: "posts", data });
+            this.addDocument({ path: "posts", data }).then((result: any) => {
+              this.shadowRoot.querySelector(
+                "#result"
+              ).innerHTML = `Document created: ${result}`;
+              setTimeout(
+                () => store.dispatch(navigate(`/post/read/${result}`)),
+                3000
+              );
+            });
           }}"
         >
           Submit
         </button>
       </form>
+      <div id="result"></div>
     `;
   }
 

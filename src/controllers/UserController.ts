@@ -45,6 +45,7 @@ export class UserController extends Mixin(connect(store)(LitElement), [
     this._template = html`
       <app-user></app-user>
     `;
+    this.requestUpdate();
   }
 
   signin() {

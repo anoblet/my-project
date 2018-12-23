@@ -13,16 +13,25 @@ export const FirebaseMixin = function(superClass: any) {
     }
 
     addDocument({ path, data }: any) {
-      Promise.all([
-        import(/* webpackChunkName: "FirebaseApp" */ "firebase/app"),
-        import(/* webpackChunkName: "FirebaseFirestore" */ "firebase/firestore")
-      ]).then(async ([firebase]) => {
-        const firestore = firebase.firestore();
-        firestore.settings({ timestampsInSnapshots: true });
-        firestore
-          .collection(path)
-          .doc()
-          .set(data);
+      return new Promise((resolve, reject) => {
+        Promise.all([
+          import(/* webpackChunkName: "FirebaseApp" */ "firebase/app"),
+          import(/* webpackChunkName: "FirebaseFirestore" */ "firebase/firestore")
+        ]).then(async ([firebase]) => {
+          const firestore = firebase.firestore();
+          firestore.settings({ timestampsInSnapshots: true });
+          firestore
+            .collection(path)
+            .add(data)
+            // .doc()
+            // .set(data)
+            .then(function(docRef: any) {
+              resolve(docRef.id);
+            })
+            .catch(function(error: any) {
+              reject(`Error adding document: ${error}`);
+            });
+        });
       });
     }
 

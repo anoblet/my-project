@@ -44,7 +44,6 @@ export default function() {
             render(button, root);
           }
         }"
-        width="min-content"
         flex-grow="0"
       >
       </vaadin-grid-column>
