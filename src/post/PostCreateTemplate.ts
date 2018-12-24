@@ -1,5 +1,6 @@
 import { html } from "@polymer/lit-element";
 import { render } from "lit-html";
+import { navigate } from "lit-redux-router";
 
 export default function(post: any) {
   return html`
