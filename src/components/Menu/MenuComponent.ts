@@ -43,7 +43,6 @@ export class MenuComponent extends Mixin(connect(store)(LitElement), [
   }
 
   stateChanged(state: any) {
-    console.log(state);
     if (state.settings) {
       console.log(state.settings.rightClick ? true : false);
       if (state.settings.rightClick) {
