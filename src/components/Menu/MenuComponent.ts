@@ -32,6 +32,8 @@ export class MenuComponent extends Mixin(LitElement, [BaseMixin]) {
     if (e.shiftKey && e.keyCode == 32) {
       this.hidden = !this.hidden;
     }
+
+    return false;
   }
 
   public render() {
