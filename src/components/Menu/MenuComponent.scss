@@ -43,6 +43,12 @@
   align-items: center;
 }
 
+li {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 #menu {
   @include on-circle($item-count: 8, $circle-size: 20em, $item-size: 6em);
 }
