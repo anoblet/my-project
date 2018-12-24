@@ -5,6 +5,12 @@ export default function() {
   return html`
     <ul id="menu">
       <div><mwc-fab icon="home"></mwc-fab></div>
+      <div><mwc-fab icon="home"></mwc-fab></div>
+      <div><mwc-fab icon="home"></mwc-fab></div>
+      <div><mwc-fab icon="home"></mwc-fab></div>
+      <div><mwc-fab icon="home"></mwc-fab></div>
+      <div><mwc-fab icon="home"></mwc-fab></div>
+      <div><mwc-fab icon="home"></mwc-fab></div>
     </ul>
   `;
 }
