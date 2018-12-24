@@ -4,12 +4,12 @@ import * as style from "./MenuComponent.scss";
 
 import { LitElement, html, property } from "@polymer/lit-element";
 
-import { BaseMixin } from "../../../packages/BaseMixin";
+import { StateMixin } from "../../../packages/StateMixin";
 import { Mixin } from "../../../packages/Mixin";
 import Template from "./MenuTemplate";
 import { until } from "lit-html/directives/until";
 
-export class MenuComponent extends Mixin(LitElement, [BaseMixin]) {
+export class MenuComponent extends Mixin(LitElement, [StateMixin]) {
   @property({ type: Boolean, reflect: true }) hidden = true;
 
   constructor() {
