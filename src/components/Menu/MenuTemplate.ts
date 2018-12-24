@@ -3,6 +3,7 @@ import { html } from "@polymer/lit-element";
 
 export default function() {
   return html`
+    <ul id="menu"></ul>
     <mwc-fab icon="home"></mwc-fab>
   `;
 }
