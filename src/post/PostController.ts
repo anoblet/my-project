@@ -53,7 +53,7 @@ export class PostController extends Mixin(LitElement, [
 
   create() {
     const post = new Post();
-    this._template = import("./PostCreateTemplate").then(module =>
+    this._template = import("./PostCreateTemplate").then((module: any) =>
       module.default.bind(this)(this)
     );
     this.requestUpdate();
