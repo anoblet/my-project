@@ -12,6 +12,10 @@ import { until } from "lit-html/directives/until";
 export class MenuComponent extends Mixin(LitElement, [BaseMixin]) {
   @property({ type: Boolean, reflect: true }) hidden = false;
 
+  constructor() {
+    super();
+  }
+
   public render() {
     return html`
       <style>
