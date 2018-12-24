@@ -37,7 +37,7 @@ export default function() {
       )}
       <vaadin-form-layout>
       <button
-        @click="${(e: Event) => this.submitForm(e)}"
+        @click="${(e: Event) => this.submitForm(e)}" 
       >
         Submit
       </button>
