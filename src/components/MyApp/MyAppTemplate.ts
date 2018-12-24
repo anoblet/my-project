@@ -1,4 +1,5 @@
 import { html } from "@polymer/lit-element";
+import "../Menu/MenuComponent";
 
 export default function({ router, user }: any) {
   return html`
