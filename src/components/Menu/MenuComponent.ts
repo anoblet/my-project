@@ -28,9 +28,6 @@ export class MenuComponent extends Mixin(LitElement, [BaseMixin]) {
     // window.removeEventListener("hashchange", this._boundListener);
   }
   _onContextMenu(e: any) {
-    // if (e.shiftKey && e.keyCode == 32) {
-    //   this.hidden = !this.hidden;
-    // }
     this.hidden = !this.hidden;
     return false;
   }
