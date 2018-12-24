@@ -11,6 +11,7 @@ export default function() {
       <div><mwc-fab icon="home"></mwc-fab></div>
       <div><mwc-fab icon="home"></mwc-fab></div>
       <div><mwc-fab icon="home"></mwc-fab></div>
+      <div><mwc-fab icon="home"></mwc-fab></div>
     </ul>
   `;
 }
