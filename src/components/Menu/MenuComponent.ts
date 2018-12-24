@@ -1,8 +1,10 @@
 import "@material/mwc-fab";
-import { html, LitElement } from "@polymer/lit-element";
+
+import { LitElement, html } from "@polymer/lit-element";
+
 import { BaseMixin } from "../../../packages/BaseMixin";
 import { Mixin } from "../../../packages/Mixin";
-import Template from "./AppFooterTemplate";
+import Template from "./MenuTemplate";
 
 export class MenuComponent extends Mixin(LitElement, [BaseMixin]) {
   public render() {
