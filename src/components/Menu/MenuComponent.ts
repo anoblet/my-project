@@ -27,7 +27,9 @@ export class MenuComponent extends Mixin(LitElement, [BaseMixin]) {
     window.removeEventListener("hashchange", this._boundListener);
   }
 
-  _onKeyUp() {}
+  _onKeyUp() {
+    console.log("Hi");
+  }
 
   public render() {
     return html`
