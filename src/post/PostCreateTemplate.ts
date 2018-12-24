@@ -1,7 +1,5 @@
 import { html } from "@polymer/lit-element";
 import { render } from "lit-html";
-// import { Post } from "./PostModel";
-// const post = new Post();
 
 import { post } from "./PostModel";
 
