@@ -4,7 +4,7 @@ import { Post } from "./PostModel";
 
 const post = new Post();
 
-export default function(post: any) {
+export default function() {
   return html`
     <form>
       <vaadin-form-layout>
