@@ -52,8 +52,6 @@ export class PostController extends Mixin(LitElement, [
   }
 
   create() {
-    console.log("Here");
-    // const post = new Post();
     this._template = import("./PostCreateTemplate").then((module: any) =>
       module.default.bind(this)(this)
     );
