@@ -4,7 +4,7 @@ export default function() {
   return html`
     <my-card>
       <h3 slot="title">${this.title}</h3>
-      <div slot="content">${this.author}${this.content}</div></my-card
+      <div slot="content">${this.form()}</div></my-card
     >
   `;
 }
