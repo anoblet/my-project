@@ -104,6 +104,8 @@ export class PostController extends Mixin(LitElement, [
     });
   }
 
+  submitForm() {}
+
   render() {
     return html`
       <style>
