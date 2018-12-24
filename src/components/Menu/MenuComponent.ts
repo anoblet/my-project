@@ -19,6 +19,13 @@ export class MenuComponent extends Mixin(LitElement, [BaseMixin]) {
 
   connectedCallback() {
     if (super.connectedCallback) super.connectedCallback();
+    document.addEventListener('onkeyup' = (e) => {
+      // e = e || window.event;
+      if (e.shiftKey && e.keyCode == 32) {
+        // showMenu();
+      }
+    };
+
   }
 
   _onKeyUp() {}
