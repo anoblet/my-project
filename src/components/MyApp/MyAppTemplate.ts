@@ -29,7 +29,6 @@ export default function({ router, user }: any) {
                     user.signedIn
                       ? html`
                           <li><a href="/user-settings">Settings</a></li>
-
                           <li><a href="/theme">Theme</a></li>
                         `
                       : ""
