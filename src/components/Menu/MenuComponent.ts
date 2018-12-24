@@ -42,6 +42,8 @@ export class MenuComponent extends Mixin(connect(store)(LitElement), [
     }
   }
 
+  stateChanged(state: any) {}
+
   public render() {
     return html`
       <style>
