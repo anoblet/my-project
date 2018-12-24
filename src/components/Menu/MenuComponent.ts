@@ -48,7 +48,7 @@ export class MenuComponent extends Mixin(connect(store)(LitElement), [
       if (state.settings.rightClick) {
         document.oncontextmenu = (e: any) => this._onContextMenu(e);
       } else {
-        document.oncontextmenu: any = true;
+        document.oncontextmenu = true;
       }
     }
   }
