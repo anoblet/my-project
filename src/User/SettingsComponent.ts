@@ -8,7 +8,19 @@ import { until } from "lit-html/directives/until";
 export class SettingsComponent extends LitElement {
   form() {
     return html`
-      <form>${settings.map((setting: any) => {})}</form>
+      <form>
+        ${
+          settings.map((setting: any) => {
+            switch (setting.type) {
+              case Boolean:
+                return html`
+                  <label>${setting.label}</label
+                  ><input name="${setting.name}" type="checkbox" />
+                `;
+            }
+          })
+        }
+      </form>
     `;
   }
 
