@@ -41,7 +41,7 @@ export default function() {
               )
             }
           </vaadin-form-layout>
-          <div>
+          <div id="bottomButtons">
             <mwc-button @click="${(e: Event) => this.submitForm(e)}"
               >Submit</mwc-button
             >
