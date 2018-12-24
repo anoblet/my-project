@@ -12,7 +12,9 @@ import { connect } from "pwa-helpers/connect-mixin.js";
 import { store } from "../store.js";
 import { until } from "lit-html/directives/until";
 
-export class MenuComponent extends Mixin(LitElement, [StateMixin]) {
+export class MenuComponent extends Mixin(connect(store)(LitElement), [
+  StateMixin
+]) {
   @property({ type: Boolean, reflect: true }) hidden = true;
 
   constructor() {
