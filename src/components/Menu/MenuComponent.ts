@@ -19,7 +19,11 @@ export class MenuComponent extends Mixin(LitElement, [BaseMixin]) {
 
   connectedCallback() {
     if (super.connectedCallback) super.connectedCallback();
-    document.onkeyup = (e: any) => this._onKeyUp(e);
+    // document.onkeyup = (e: any) => this._onKeyUp(e);
+    window.oncontextmenu = function() {
+      showCustomMenu();
+      return false; // cancel default menu
+    };
   }
 
   disconnectedCallback() {
