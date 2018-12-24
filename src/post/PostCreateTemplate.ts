@@ -6,6 +6,7 @@ const post = new Post();
 
 export default function() {
   return html`
+  <my-card>
     <form>
       <vaadin-form-layout>
       ${post.fields.map(
@@ -44,5 +45,6 @@ export default function() {
       </button>
     </form>
     <div id="result"></div>
+    </my-card>
   `;
 }
