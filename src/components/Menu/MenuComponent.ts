@@ -49,7 +49,7 @@ export class MenuComponent extends Mixin(connect(store)(LitElement), [
         this.defaultContextMenu = document.oncontextmenu;
         document.oncontextmenu = (e: any) => this._onContextMenu(e);
       } else {
-        document.oncontextmenu = true;
+        document.oncontextmenu = this.defaultContextMenu;
       }
     }
   }
