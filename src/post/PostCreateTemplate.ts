@@ -7,7 +7,7 @@ const post = new Post();
 export default function() {
   return html`
     <form>
-        <vaadin-form-layout>
+      <vaadin-form-layout>
       ${post.fields.map(
         (field: any) =>
           html`
@@ -36,9 +36,8 @@ export default function() {
       )}
       <vaadin-form-layout>
       <button
-        @click="${(e: Event) => {
-          this.submitForm(e);
-        }}"
+        @click="${(e: Event) =>
+          this.submitForm(e);}"
       >
         Submit
       </button>
