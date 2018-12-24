@@ -44,10 +44,12 @@ export class MenuComponent extends Mixin(connect(store)(LitElement), [
 
   stateChanged(state: any) {
     console.log(state);
-    if (state.settings.rightClick) {
-      document.oncontextmenu = (e: any) => this._onContextMenu(e);
-    } else {
-      document.oncontextmenu = undefined;
+    if (state.settings) {
+      if (state.settings.rightClick) {
+        document.oncontextmenu = (e: any) => this._onContextMenu(e);
+      } else {
+        document.oncontextmenu = undefined;
+      }
     }
   }
 
