@@ -1,6 +1,9 @@
 import { html } from "@polymer/lit-element";
 import { render } from "lit-html";
 import { navigate } from "lit-redux-router";
+import { Post } from "./PostModel";
+
+const post = new Post();
 
 export default function(post: any) {
   return html`
