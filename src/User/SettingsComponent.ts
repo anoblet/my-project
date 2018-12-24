@@ -19,8 +19,9 @@ export class SettingsComponent extends LitElement {
                     name="${setting.name}"
                     type="checkbox"
                     @click="${
-                      const state = {};
                       (e: any) => {
+                        const state = {};
+
                         this.setState();
                       }
                     }"
