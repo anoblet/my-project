@@ -28,19 +28,19 @@ export default function({ router, user }: any) {
                   ${
                     user.signedIn
                       ? html`
+                          <li><a href="/theme">Theme</a></li>
+                          <li><a href="/user-settings">Settings</a></li>
+                        `
+                      : ""
+                  }
+                  ${
+                    user.signedIn
+                      ? html`
                           <a href="/user/signout">Sign out</a>
                         `
                       : html`
                           <a href="/user/signin">Sign in</a>
                         `
-                  }
-                  ${
-                    user.signedIn
-                      ? html`
-                          <li><a href="/theme">Theme</a></li>
-                          <li><a href="/user-settings">Settings</a></li>
-                        `
-                      : ""
                   }
                 </li>
               </ul>
