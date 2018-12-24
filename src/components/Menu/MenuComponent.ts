@@ -16,14 +16,6 @@ export class MenuComponent extends Mixin(connect(store)(LitElement), [
 ]) {
   @property({ type: Boolean, reflect: true }) hidden = true;
 
-  constructor() {
-    super();
-  }
-
-  disconnectedCallback() {
-    super.disconnectedCallback();
-    // window.removeEventListener("hashchange", this._boundListener);
-  }
   _onContextMenu(e: any) {
     this.hidden = !this.hidden;
     return false;
