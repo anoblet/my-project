@@ -23,7 +23,7 @@ export class SettingsComponent extends LitElement {
                         const state = {};
                         state[setting.name] = e.target.checked;
 
-                        this.setState();
+                        this.setState(state, "settings");
                       }
                     }"
                   />
