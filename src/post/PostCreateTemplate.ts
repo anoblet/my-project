@@ -1,6 +1,5 @@
 import { html } from "@polymer/lit-element";
 import { render } from "lit-html";
-import { navigate } from "lit-redux-router";
 import { Post } from "./PostModel";
 
 const post = new Post();
@@ -38,22 +37,7 @@ export default function(post: any) {
       <vaadin-form-layout>
       <button
         @click="${(e: Event) => {
-          e.preventDefault();
-          const data: any = {};
-          data.title = this.shadowRoot.querySelector("[name='title']").value;
-          data.author = this.shadowRoot.querySelector("[name='author']").value;
-          data.content = this.shadowRoot.querySelector(
-            "[name='content']"
-          ).value;
-          this.addDocument({ path: "posts", data }).then((result: any) => {
-            this.shadowRoot.querySelector(
-              "#result"
-            ).innerHTML = `Document created: ${result}. Wait 3 seconds for a redirec to your post.`;
-            setTimeout(
-              () => this.store.dispatch(navigate(`/post/read/${result}`)),
-              3000
-            );
-          });
+          this.submitForm(e);
         }}"
       >
         Submit
