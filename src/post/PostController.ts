@@ -112,10 +112,10 @@ export class PostController extends Mixin(LitElement, [
     this.addDocument({ path: "posts", data }).then((result: any) => {
       this.shadowRoot.querySelector(
         "#result"
-      ).innerHTML = `Document created: ${result}. Waitng 1 seconds for a redirect to your post.`;
+      ).innerHTML = `Document created: ${result}. Waitng 2 seconds for a redirect to your post.`;
       setTimeout(
         () => this.store.dispatch(navigate(`/post/read/${result}`)),
-        1000
+        2000
       );
     });
   }
