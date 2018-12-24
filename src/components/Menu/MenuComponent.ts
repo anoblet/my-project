@@ -19,7 +19,8 @@ export class MenuComponent extends Mixin(LitElement, [BaseMixin]) {
         until(
           import("./MenuTemplate.ts").then(module =>
             module.default.bind(this)()
-          )
+          ),
+          ""
         )
       }
     `;
