@@ -1,6 +1,6 @@
 export const settings = [
-  rightClick: {
-    label: 'Right Click',
+  {
+    label: "Right Click",
     type: Boolean
   }
 ];
