@@ -16,6 +16,7 @@ export class SettingsComponent extends Mixin(connect(store)(LitElement), [
     super();
     this.setStore(store);
   }
+
   form() {
     return html`
       <form>
