@@ -24,7 +24,6 @@ export default function({ router, user }: any) {
           <my-flex id="center" style="position: relative;">
             <div hidden id="profile-menu">
               <ul>
-                <li><a href="/theme">Theme</a></li>
                 <li>
                   ${
                     user.signedIn
@@ -38,6 +37,8 @@ export default function({ router, user }: any) {
                   ${
                     user.signedIn
                       ? html`
+                          <li><a href="/theme">Theme</a></li>
+
                           <li><a href="/user-settings">Settings</a></li>
                         `
                       : ""
