@@ -49,5 +49,5 @@ li {
 }
 
 #menu {
-  @include on-circle($item-count: 8, $circle-size: 20em, $item-size: 6em);
+  @include on-circle($item-count: 8, $circle-size: 10em, $item-size: 6em);
 }
