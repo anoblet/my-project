@@ -104,7 +104,8 @@ export class PostController extends Mixin(LitElement, [
     });
   }
 
-  submitForm() {
+  submitForm(e: any) {
+    e.preventDefault();
     const data: any = {};
     data.title = this.shadowRoot.querySelector("[name='title']").value;
     data.author = this.shadowRoot.querySelector("[name='author']").value;
