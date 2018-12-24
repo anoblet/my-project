@@ -24,7 +24,7 @@ export class MenuComponent extends Mixin(connect(store)(LitElement), [
   connectedCallback() {
     if (super.connectedCallback) super.connectedCallback();
     document.onkeyup = (e: any) => this._onKeyUp(e);
-    // window.oncontextmenu = (e: any) => this._onContextMenu(e);
+    window.oncontextmenu = (e: any) => this._onContextMenu(e);
   }
 
   disconnectedCallback() {
@@ -42,7 +42,9 @@ export class MenuComponent extends Mixin(connect(store)(LitElement), [
     }
   }
 
-  stateChanged(state: any) {}
+  stateChanged(state: any) {
+    if(state.settings.rightClick)
+  }
 
   public render() {
     return html`
