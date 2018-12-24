@@ -46,7 +46,7 @@ export default function(post: any) {
               "#result"
             ).innerHTML = `Document created: ${result}. Wait 3 seconds for a redirec to your post.`;
             setTimeout(
-              () => store.dispatch(navigate(`/post/read/${result}`)),
+              () => this.store.dispatch(navigate(`/post/read/${result}`)),
               3000
             );
           });
