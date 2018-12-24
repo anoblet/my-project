@@ -99,7 +99,7 @@ export class PostController extends Mixin(LitElement, [
             this.addDocument({ path: "posts", data }).then((result: any) => {
               this.shadowRoot.querySelector(
                 "#result"
-              ).innerHTML = `Document created: ${result}`;
+              ).innerHTML = `Document created: ${result}. Wait 3 seconds for a redirec to your post.`;
               setTimeout(
                 () => store.dispatch(navigate(`/post/read/${result}`)),
                 3000
