@@ -1,1 +1,5 @@
-export const settings = {};
+export const settings = {
+  rightClick: {
+    type: Boolean
+  }
+};
