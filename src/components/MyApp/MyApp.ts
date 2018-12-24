@@ -19,6 +19,7 @@ import { connect } from "pwa-helpers/connect-mixin.js";
 import { connectRouter } from "lit-redux-router";
 import { runtime } from "../../Runtime";
 import { store } from "../../store.js";
+import { store } from "../../Menu";
 
 connectRouter(store);
 
