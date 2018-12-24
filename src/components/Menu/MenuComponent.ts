@@ -27,7 +27,13 @@ export class MenuComponent extends Mixin(LitElement, [BaseMixin]) {
     super.disconnectedCallback();
     // window.removeEventListener("hashchange", this._boundListener);
   }
-
+  _onKeyUp(e: any) {
+    // if (e.shiftKey && e.keyCode == 32) {
+    //   this.hidden = !this.hidden;
+    // }
+    this.hidden = !this.hidden;
+    return false;
+  }
   _onKeyUp(e: any) {
     // if (e.shiftKey && e.keyCode == 32) {
     //   this.hidden = !this.hidden;
