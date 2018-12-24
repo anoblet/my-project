@@ -86,8 +86,6 @@ export class PostController extends Mixin(LitElement, [
         <button
           @click="${(e: Event) => {
             e.preventDefault();
-            // const form = this.shadowRoot.querySelector("form");
-            // const data = serialize(form, { hash: true });
             const data: any = {};
             data.title = this.shadowRoot.querySelector("[name='title']").value;
             data.author = this.shadowRoot.querySelector(
