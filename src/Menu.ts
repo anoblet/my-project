@@ -1,4 +1,4 @@
 document.onkeypress = function(e) {
   e = e || window.event;
-  // use e.keyCode
+  if(e.shifted && e.keyCode == 32)
 };
