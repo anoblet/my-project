@@ -44,7 +44,7 @@ export default function() {
         Submit
       </button>
     </form>
-    <div id="result"></div>
-    </my-card>
+      <div id="result"></div>
+    </my-card
   `;
 }
