@@ -15,7 +15,15 @@ export class SettingsComponent extends LitElement {
               case Boolean:
                 return html`
                   <label>${setting.label}</label
-                  ><input name="${setting.name}" type="checkbox" @click="${(e) => {this.setState()}" />
+                  ><input
+                    name="${setting.name}"
+                    type="checkbox"
+                    @click="${
+                      e => {
+                        this.setState();
+                      }
+                    }"
+                  />
                 `;
             }
           })
