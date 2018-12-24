@@ -6,10 +6,7 @@ import { settings } from "./Settings";
 import { until } from "lit-html/directives/until";
 
 export class SettingsComponent extends Mixin(connect(store)(LitElement), [
-  BaseMixin,
-  TaskMixin,
-  StateMixin,
-  FirebaseMixin
+  StateMixin
 ]) {
   form() {
     return html`
