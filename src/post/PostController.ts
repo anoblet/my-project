@@ -13,7 +13,7 @@ import { LitElement, html, property } from "@polymer/lit-element";
 
 import { FirebaseMixin } from "../../packages/FirebaseMixin";
 import { Mixin } from "../../packages/Mixin";
-import { Post } from "./PostModel";
+import { post } from "./PostModel";
 import { StateMixin } from "../../packages/StateMixin";
 import { connect } from "pwa-helpers/connect-mixin.js";
 import { navigate } from "lit-redux-router";
@@ -52,7 +52,8 @@ export class PostController extends Mixin(LitElement, [
   }
 
   create() {
-    const post = new Post();
+    console.log("Here");
+    // const post = new Post();
     this._template = import("./PostCreateTemplate").then((module: any) =>
       module.default.bind(this)(this)
     );

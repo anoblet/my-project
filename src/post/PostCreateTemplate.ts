@@ -1,48 +1,50 @@
 import { html } from "@polymer/lit-element";
 import { render } from "lit-html";
-import { Post } from "./PostModel";
+// import { Post } from "./PostModel";
+// const post = new Post();
 
-const post = new Post();
+import { post } from "./PostModel";
 
 export default function() {
   return html`
-  <my-card>
-    <form>
-      <vaadin-form-layout>
-      ${post.fields.map(
-        (field: any) =>
-          html`
+    <my-card>
+      <h3 slot="title">Create Post</h3>
+      <div slot="content">
+        <form>
+          <vaadin-form-layout>
             ${
-              field.type == "text"
-                ? html`
-                    <vaadin-text-field
-                      name="${field.name}"
-                      label="${field.label}"
-                    ></vaadin-text-field>
+              post.fields.map(
+                (field: any) =>
+                  html`
+                    ${
+                      field.type == "text"
+                        ? html`
+                            <vaadin-text-field
+                              name="${field.name}"
+                              label="${field.label}"
+                            ></vaadin-text-field>
+                          `
+                        : ""
+                    }
+                    ${
+                      field.type == "textarea"
+                        ? html`
+                            <vaadin-text-area
+                              colspan="2"
+                              name="${field.name}"
+                              label="${field.label}"
+                            ></vaadin-text-area>
+                          `
+                        : ""
+                    }
                   `
-                : ""
+              )
             }
-            ${
-              field.type == "textarea"
-                ? html`
-                    <vaadin-text-area
-                      colspan="2"
-                      name="${field.name}"
-                      label="${field.label}"
-                    ></vaadin-text-area>
-                  `
-                : ""
-            }
-          `
-      )}
-      <vaadin-form-layout>
-      <button
-        @click="${(e: Event) => this.submitForm(e)}" 
-      >
-        Submit
-      </button>
-    </form>
-    <div id="result"></div>
+          </vaadin-form-layout>
+          <button @click="${(e: Event) => this.submitForm(e)}">Submit</button>
+        </form>
+        <div id="result"></div>
+      </div>
     </my-card>
   `;
 }

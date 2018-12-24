@@ -1,5 +1,5 @@
-export class Post {
-  fields = [
+export const post = {
+  fields: [
     {
       label: "Title",
       name: "title",
@@ -15,5 +15,5 @@ export class Post {
       name: "content",
       type: "textarea"
     }
-  ];
-}
+  ]
+};
