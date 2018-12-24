@@ -28,7 +28,9 @@ export class MenuComponent extends Mixin(LitElement, [BaseMixin]) {
   }
 
   _onKeyUp(e: any) {
-    console.log("Hi");
+    if (e.shiftKey && e.keyCode == 32) {
+      console.log("Hi");
+    }
   }
 
   public render() {
