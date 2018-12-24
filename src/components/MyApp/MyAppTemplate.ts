@@ -118,5 +118,6 @@ export default function({ router, user }: any) {
         </div>
       </my-card>
     </my-flex>
+    <menu-component></menu-component>
   `;
 }
