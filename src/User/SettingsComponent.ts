@@ -6,7 +6,7 @@ import { Mixin } from "../../packages/Mixin";
 import { StateMixin } from "../../packages/StateMixin";
 import { connect } from "pwa-helpers/connect-mixin.js";
 import { settings } from "./Settings";
-import { store } from "../../store.js";
+import { store } from "../store.js";
 import { until } from "lit-html/directives/until";
 
 export class SettingsComponent extends Mixin(connect(store)(LitElement), [
