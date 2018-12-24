@@ -2,7 +2,7 @@ import "@material/mwc-fab";
 
 import * as style from "./MenuComponent.scss";
 
-import { LitElement, html } from "@polymer/lit-element";
+import { LitElement, html, property } from "@polymer/lit-element";
 
 import { BaseMixin } from "../../../packages/BaseMixin";
 import { Mixin } from "../../../packages/Mixin";
