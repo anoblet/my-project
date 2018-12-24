@@ -10,7 +10,7 @@ import Template from "./MenuTemplate";
 import { until } from "lit-html/directives/until";
 
 export class MenuComponent extends Mixin(LitElement, [BaseMixin]) {
-  @property({ type: Boolean }) isSignedIn = false;
+  @property({ type: Boolean, reflect: true }) hidden = false;
 
   public render() {
     return html`
