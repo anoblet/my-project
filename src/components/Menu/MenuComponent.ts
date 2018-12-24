@@ -19,7 +19,7 @@ export class MenuComponent extends Mixin(LitElement, [BaseMixin]) {
 
   connectedCallback() {
     if (super.connectedCallback) super.connectedCallback();
-    document.onkeyup = () => this._onKeyUp();
+    document.onkeyup = (e: any) => this._onKeyUp(e);
   }
 
   disconnectedCallback() {
