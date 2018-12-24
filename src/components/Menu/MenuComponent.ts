@@ -18,8 +18,6 @@ export class MenuComponent extends Mixin(connect(store)(LitElement), [
 
   constructor() {
     super();
-    this._boundOnKeyUp = this._onKeyUp.bind(this);
-  }indow.oncontextmenu = (e: any) => this._onContextMenu(e);
   }
 
   disconnectedCallback() {
