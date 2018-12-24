@@ -14,6 +14,7 @@ export class MenuComponent extends Mixin(LitElement, [BaseMixin]) {
 
   constructor() {
     super();
+    this._onKeyUp = this._onkeyUp.bind(this);
   }
 
   public render() {
