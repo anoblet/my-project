@@ -23,7 +23,7 @@ export class MenuComponent extends Mixin(LitElement, [BaseMixin]) {
       // e = e || window.event;
       if (e.shiftKey && e.keyCode == 32) {
         // showMenu();
-      }
+      });
     };
 
   }
