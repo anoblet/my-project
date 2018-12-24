@@ -15,6 +15,7 @@ export class SettingsComponent extends Mixin(connect(store)(LitElement), [
   constructor() {
     super();
     this.setStore(store);
+    this.addReducer("settings");
   }
 
   form() {
