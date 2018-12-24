@@ -6,7 +6,7 @@ export default function() {
     <ul id="menu">
       <li><mwc-fab icon="home"></mwc-fab></li>
       <li><mwc-fab icon="subject"></mwc-fab></li>
-      <li><mwc-fab icon="home"></mwc-fab></li>
+      <li><mwc-fab icon="brush"></mwc-fab></li>
       <li><mwc-fab icon="home"></mwc-fab></li>
       <li><mwc-fab icon="home"></mwc-fab></li>
       <li><mwc-fab icon="home"></mwc-fab></li>
