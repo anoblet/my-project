@@ -17,7 +17,7 @@ export class MenuComponent extends Mixin(LitElement, [BaseMixin]) {
       </style>
       ${
         until(
-          import("./PostComponentTemplate.ts").then(module =>
+          import("./MenuTemplate.ts").then(module =>
             module.default.bind(this)()
           )
         )
