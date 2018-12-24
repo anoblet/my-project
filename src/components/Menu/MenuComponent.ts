@@ -46,6 +46,7 @@ export class MenuComponent extends Mixin(connect(store)(LitElement), [
     console.log(state);
     console.log(state.settings.rightClick ? true : false);
     if (state.settings) {
+      console.log(state.settings.rightClick ? true : false);
       if (state.settings.rightClick) {
         this.defaultContextMenu = document.oncontextmenu;
         document.oncontextmenu = (e: any) => this._onContextMenu(e);
