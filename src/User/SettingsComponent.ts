@@ -6,7 +6,9 @@ import { settings } from "./Settings";
 import { until } from "lit-html/directives/until";
 
 export class SettingsComponent extends LitElement {
-  form() {}
+  form() {
+    return html``;
+  }
 
   render() {
     return html`
