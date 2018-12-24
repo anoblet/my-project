@@ -7,7 +7,7 @@ const post = new Post();
 export default function() {
   return html`
     <form>
-      <vaadin-form-layout>
+        <vaadin-form-layout>
       ${post.fields.map(
         (field: any) =>
           html`
