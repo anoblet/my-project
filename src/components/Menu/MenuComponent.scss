@@ -41,5 +41,4 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  @include on-circle($item-count: 8, $circle-size: 20em, $item-size: 6em);
 }
