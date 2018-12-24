@@ -1,7 +1,7 @@
 import { html } from "@polymer/lit-element";
 import { render } from "lit-html";
 
-export default function(post) {
+export default function(post: any) {
   return html`
     <form>
       <vaadin-form-layout>
