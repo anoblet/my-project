@@ -12,6 +12,10 @@ import { until } from "lit-html/directives/until";
 export class SettingsComponent extends Mixin(connect(store)(LitElement), [
   StateMixin
 ]) {
+  constructor() {
+    super();
+    this.setStore(store);
+  }
   form() {
     return html`
       <form>
