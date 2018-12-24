@@ -35,6 +35,7 @@ export default function({ router, user }: any) {
                           <a href="/user/signin">Sign in</a>
                         `
                   }
+                  <li><a href="/user-settings">Settings</a></li>
                 </li>
               </ul>
             </div>
