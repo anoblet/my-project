@@ -10,6 +10,9 @@ import * as style from "./MenuComponent.scss";
 export class MenuComponent extends Mixin(LitElement, [BaseMixin]) {
   public render() {
     return html`
+      <style>
+        ${style}
+      </style>
       ${
         until(
           import("./PostComponentTemplate.ts").then(module =>
