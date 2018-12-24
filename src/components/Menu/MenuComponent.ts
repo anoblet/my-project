@@ -9,13 +9,15 @@ import * as style from "./MenuComponent.scss";
 
 export class MenuComponent extends Mixin(LitElement, [BaseMixin]) {
   public render() {
-    ${
-      until(
-        import("./PostComponentTemplate.ts").then(module =>
-          module.default.bind(this)()
+    return html`
+      ${
+        until(
+          import("./PostComponentTemplate.ts").then(module =>
+            module.default.bind(this)()
+          )
         )
-      )
-    }
+      }
+    `;
   }
 }
 
