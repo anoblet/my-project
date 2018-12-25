@@ -47,6 +47,7 @@ export class SettingsComponent extends Mixin(connect(store)(LitElement), [
                 return html`
                   <label>${setting.label}</label
                   ><input
+                    ?checked="${this.state.settings[setting.name]}"
                     name="${setting.name}"
                     type="checkbox"
                     @click="${
