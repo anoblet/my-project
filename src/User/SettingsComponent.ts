@@ -19,7 +19,7 @@ export class SettingsComponent extends Mixin(connect(store)(LitElement), [
     this.setStore(store);
     this.addReducer("settings");
     if (this.state) {
-      if (state.user.signedIn) {
+      if (this.state.user.signedIn) {
         this.watchDocumentNew({ path: "" }, (document: any) => {
           if (document) {
             this.setState(document, "theme");
