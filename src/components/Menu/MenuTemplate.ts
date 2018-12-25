@@ -7,11 +7,11 @@ export default function() {
       <li><mwc-fab icon="home"></mwc-fab></li>
       <li><mwc-fab icon="subject"></mwc-fab></li>
       <li><mwc-fab icon="brush"></mwc-fab></li>
-      <li><mwc-fab icon="home"></mwc-fab></li>
-      <li><mwc-fab icon="home"></mwc-fab></li>
-      <li><mwc-fab icon="home"></mwc-fab></li>
-      <li><mwc-fab icon="home"></mwc-fab></li>
-      <li><mwc-fab icon="home"></mwc-fab></li>
+      <li><mwc-fab></mwc-fab></li>
+      <li><mwc-fab></mwc-fab></li>
+      <li><mwc-fab></mwc-fab></li>
+      <li><mwc-fab></mwc-fab></li>
+      <li><mwc-fab></mwc-fab></li>
     </ul>
   `;
 }
