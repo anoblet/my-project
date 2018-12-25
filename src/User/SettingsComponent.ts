@@ -51,7 +51,7 @@ export class SettingsComponent extends Mixin(connect(store)(LitElement), [
                     name="${setting.name}"
                     type="checkbox"
                     @click="${
-                      (e: Event) => {
+                      (e: any) => {
                         const state: any = {};
                         state[setting.name] = e.target.checked;
                         this.setState(state, "settings");
