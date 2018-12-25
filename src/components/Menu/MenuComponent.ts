@@ -16,7 +16,8 @@ export class MenuComponent extends Mixin(connect(store)(LitElement), [
 ]) {
   @property({ type: Boolean, reflect: true }) hidden = true;
 
-  _onContextMenu() {
+  _onContextMenu(e: any) {
+    e.preventDefault();
     this.hidden = !this.hidden;
     return false;
   }
@@ -29,10 +30,10 @@ export class MenuComponent extends Mixin(connect(store)(LitElement), [
 
   stateChanged(state: any) {
     if (state.settings) {
-      const listener = () => this._onContextMenu();
+      const listener = (e: any) => this._onContextMenu(e);
       if (state.settings.rightClick) {
         this.defaultContextMenu = document.oncontextmenu;
-        document.addEventListener("contextmenu", () => listener());
+        document.addEventListener("contextmenu", (e: any) => listener());
       } else {
         document.removeEventListener("contextmenu", () => listener());
       }
