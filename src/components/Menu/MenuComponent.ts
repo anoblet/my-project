@@ -17,7 +17,7 @@ export class MenuComponent extends Mixin(connect(store)(LitElement), [
   @property({ type: Boolean, reflect: true }) hidden = true;
 
   _onContextMenu(e: any) {
-    // e.preventDefault();
+    e.preventDefault();
     this.hidden = !this.hidden;
     return false;
   }
