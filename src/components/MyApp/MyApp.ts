@@ -99,7 +99,6 @@ export class MyApp extends Mixin(connect(store)(LitElement), [
         if (document) {
           this.setState(document, "settings");
         }
-        resolve();
       })
       // import('../Menu/MenuComporent')
     ]);
