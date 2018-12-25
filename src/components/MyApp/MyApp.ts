@@ -104,6 +104,23 @@ export class MyApp extends Mixin(connect(store)(LitElement), [
     ]);
   }
 
+  firstUpdated() {
+    super.firstUpdated();
+
+    if (this.state) {
+      if (this.state.user.signedIn) {
+        this.watchDocumentNew({
+          path: `users/${this.state.user.uid}/settings/default`,
+          callback: (document: any) => {
+            if (document) {
+              this.setState(document, "settings");
+            }
+          }
+        });
+      }
+    }
+  }
+
   // Events
   public _toggleDrawer() {
     this.drawerOpened = !this.drawerOpened;
