@@ -19,6 +19,7 @@ export class MenuComponent extends Mixin(connect(store)(LitElement), [
   constructor() {
     super();
     this.boundListener = this._onContextMenu.bind(this);
+    document.addEventListener("keyup", this._onKeyUp;
   }
 
   _onContextMenu(e: any) {
