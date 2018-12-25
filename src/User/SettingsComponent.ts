@@ -18,6 +18,10 @@ export class SettingsComponent extends Mixin(connect(store)(LitElement), [
     super();
     this.setStore(store);
     this.addReducer("settings");
+  }
+
+  firstUpdated() {
+    super.firstUpdated();
     if (this.state) {
       if (this.state.user.signedIn) {
         this.watchDocumentNew(
