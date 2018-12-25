@@ -24,7 +24,6 @@ export class SettingsComponent extends Mixin(connect(store)(LitElement), [
           if (document) {
             this.setState(document, "theme");
           }
-          resolve();
         });
       }
     }
