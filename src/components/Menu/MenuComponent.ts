@@ -19,7 +19,6 @@ export class MenuComponent extends Mixin(connect(store)(LitElement), [
   _onContextMenu(e: any) {
     e.preventDefault();
     this.hidden = !this.hidden;
-    return false;
   }
 
   _onKeyUp(e: any) {
