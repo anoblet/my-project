@@ -95,6 +95,7 @@ export class MyApp extends Mixin(connect(store)(LitElement), [
         // this.importTemplate();
         resolve();
       })
+      // import('../Menu/MenuComporent')
     ]);
   }
 
