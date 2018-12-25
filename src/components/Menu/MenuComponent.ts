@@ -5,6 +5,7 @@ import * as style from "./MenuComponent.scss";
 import { LitElement, html, property } from "@polymer/lit-element";
 
 import { Mixin } from "../../../packages/Mixin";
+import { FirebaseMixin } from "../../../packages/StateMixin";
 import { StateMixin } from "../../../packages/StateMixin";
 import template from "./MenuTemplate";
 import { connect } from "pwa-helpers/connect-mixin.js";
@@ -12,6 +13,7 @@ import { store } from "../../store.js";
 import { until } from "lit-html/directives/until";
 
 export class MenuComponent extends Mixin(connect(store)(LitElement), [
+  Firebase,
   StateMixin
 ]) {
   @property({ type: Boolean, reflect: true }) hidden = true;
