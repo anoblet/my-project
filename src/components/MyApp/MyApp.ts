@@ -94,7 +94,13 @@ export class MyApp extends Mixin(connect(store)(LitElement), [
       new Promise((resolve, reject) => {
         // this.importTemplate();
         resolve();
-      })
+      }),
+      this.watchDocument("settings", (document: any) => {
+        if (document) {
+          this.setState(document, "settings");
+        }
+        resolve();
+      });
       // import('../Menu/MenuComporent')
     ]);
   }
