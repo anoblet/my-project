@@ -27,7 +27,6 @@ export class MenuComponent extends Mixin(connect(store)(LitElement), [
     const links = this.shadowRoot.querySelectorAll("a");
     links.forEach((link: any) => {
       link.addEventListener("click", () => {
-        alert("Hi");
         this.hidden = true;
       });
     });
