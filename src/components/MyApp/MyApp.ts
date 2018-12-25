@@ -112,6 +112,7 @@ export class MyApp extends Mixin(connect(store)(LitElement), [
         this.watchDocumentNew({
           path: `users/${this.state.user.uid}/settings/default`,
           callback: (document: any) => {
+            console.log("hi");
             if (document) {
               this.setState(document, "settings");
             }
