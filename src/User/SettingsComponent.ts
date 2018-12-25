@@ -25,16 +25,16 @@ export class SettingsComponent extends Mixin(connect(store)(LitElement), [
 
     if (this.state) {
       if (this.state.user.signedIn) {
-        this.watchDocumentNew(
-          { path: `users/${this.state.user.uid}/settings/default` },
-          (document: any) => {
+        this.watchDocumentNew({
+          path: `users/${this.state.user.uid}/settings/default`,
+          callback: (document: any) => {
             console.log(document);
 
             if (document) {
               this.setState(document, "settings");
             }
           }
-        );
+        });
       }
     }
   }
