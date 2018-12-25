@@ -22,11 +22,8 @@ export class SettingsComponent extends Mixin(connect(store)(LitElement), [
 
   firstUpdated() {
     super.firstUpdated();
-    console.log("Here");
 
     if (this.state) {
-      console.log("Here");
-
       if (this.state.user.signedIn) {
         this.watchDocumentNew(
           { path: `users/${this.state.user.uid}/settings/default` },
