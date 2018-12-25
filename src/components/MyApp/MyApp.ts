@@ -96,10 +96,12 @@ export class MyApp extends Mixin(connect(store)(LitElement), [
         // this.importTemplate();
         resolve();
       }),
-      this.watchDocument("settings", (document: any) => {
-        if (document) {
-          this.setState(document, "settings");
-        }
+      new Promise((resolve, reject) => {
+        this.watchDocument("settings", (document: any) => {
+          if (document) {
+            this.setState(document, "settings");
+          }
+        });
       })
       // import('../Menu/MenuComporent')
     ]);
