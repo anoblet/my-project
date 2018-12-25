@@ -16,6 +16,11 @@ export class MenuComponent extends Mixin(connect(store)(LitElement), [
 ]) {
   @property({ type: Boolean, reflect: true }) hidden = true;
 
+  constructor() {
+    super();
+    this.boundListener = this._onContextMenu.bind(this);
+  }
+
   _onContextMenu(e: any) {
     e.preventDefault();
     this.hidden = !this.hidden;
@@ -29,7 +34,6 @@ export class MenuComponent extends Mixin(connect(store)(LitElement), [
 
   stateChanged(state: any) {
     if (state.settings) {
-      const boundListener = this._onContextMenu.bind(this);
       if (state.settings.rightClick) {
         this.defaultContextMenu = document.oncontextmenu;
         document.addEventListener("contextmenu", boundListener);
