@@ -64,6 +64,7 @@ export class SettingsComponent extends Mixin(connect(store)(LitElement), [
       if (state.settings) {
         this.setDocumentNew({
           path: `users/${state.user.uid}/settings/default`
+          data: state.settings
         });
       }
     }
