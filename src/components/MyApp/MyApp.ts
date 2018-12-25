@@ -142,6 +142,7 @@ export class MyApp extends Mixin(connect(store)(LitElement), [
   // State
   public stateChanged(state: any) {
     super.stateChanged(state);
+    this.state = state;
     if (state.theme) {
       this.updateStyles(state.theme);
     }
