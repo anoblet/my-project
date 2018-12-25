@@ -11,6 +11,7 @@ import { store } from "../store.js";
 import { until } from "lit-html/directives/until";
 
 export class SettingsComponent extends Mixin(connect(store)(LitElement), [
+  FirebaseMixin,
   StateMixin
 ]) {
   constructor() {
