@@ -22,6 +22,12 @@ export class MenuComponent extends Mixin(connect(store)(LitElement), [
     document.addEventListener("keyup", this._onKeyUp.bind(this));
   }
 
+  firstUpdated() {
+    super.firstUpdated();
+    const links = this.shadowRoot.querySelectorAll("a");
+    links.forEach((link: any) => {});
+  }
+
   _onContextMenu(e: any) {
     e.preventDefault();
     this.hidden = !this.hidden;
