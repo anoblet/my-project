@@ -56,7 +56,6 @@ export class MyApp extends Mixin(connect(store)(LitElement), [
     this.setStore(store);
     this.addReducer("app"), this.addReducer("user"), this.addReducer("theme");
     this.addReducer("settings");
-
     this.setState(this.defaultDocument, "theme");
   }
 
