@@ -50,7 +50,9 @@ export class SettingsComponent extends Mixin(connect(store)(LitElement), [
   }
 
   stateChanged(state: any) {
-    this.setDocumentNew({ path: `users/${state.user.uid}/settings/default` });
+    if (state.user.signedIn) {
+      this.setDocumentNew({ path: `users/${state.user.uid}/settings/default` });
+    }
   }
 
   render() {
