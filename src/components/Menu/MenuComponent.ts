@@ -27,6 +27,7 @@ export class MenuComponent extends Mixin(connect(store)(LitElement), [
   firstUpdated() {
     super.firstUpdated();
     this.watchDocument("settings", (document: any) => {
+      console.log("Here");
       if (document) {
         this.setState(document, "settings");
       }
