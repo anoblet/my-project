@@ -59,7 +59,7 @@ export class MenuComponent extends Mixin(connect(store)(LitElement), [
       <style>
         ${style}
       </style>
-      ${template}
+      ${template()}
     `;
   }
 }
