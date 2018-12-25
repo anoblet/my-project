@@ -34,10 +34,7 @@ export class MenuComponent extends Mixin(connect(store)(LitElement), [
         const boundListener = this._onContextMenu.bind(this);
         document.addEventListener("contextmenu", boundListener);
       } else {
-        document.removeEventListener(
-          "contextmenu",
-          this._onContextMenu.bind(this)
-        );
+        document.removeEventListener("contextmenu", boundListener);
       }
     }
   }
