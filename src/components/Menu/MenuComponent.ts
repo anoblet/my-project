@@ -6,7 +6,7 @@ import { LitElement, html, property } from "@polymer/lit-element";
 
 import { Mixin } from "../../../packages/Mixin";
 import { StateMixin } from "../../../packages/StateMixin";
-import Template from "./MenuTemplate";
+import template from "./MenuTemplate";
 import { connect } from "pwa-helpers/connect-mixin.js";
 import { store } from "../../store.js";
 import { until } from "lit-html/directives/until";
