@@ -13,7 +13,7 @@ import { store } from "../../store.js";
 import { until } from "lit-html/directives/until";
 
 export class MenuComponent extends Mixin(connect(store)(LitElement), [
-  Firebase,
+  FirebaseMixin,
   StateMixin
 ]) {
   @property({ type: Boolean, reflect: true }) hidden = true;
