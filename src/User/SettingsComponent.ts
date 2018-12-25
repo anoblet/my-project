@@ -18,13 +18,15 @@ export class SettingsComponent extends Mixin(connect(store)(LitElement), [
     super();
     this.setStore(store);
     this.addReducer("settings");
-    if (state.user.signedIn) {
-      this.watchDocumentNew({ path: "" }, (document: any) => {
-        if (document) {
-          this.setState(document, "theme");
-        }
-        resolve();
-      });
+    if (this.state) {
+      if (state.user.signedIn) {
+        this.watchDocumentNew({ path: "" }, (document: any) => {
+          if (document) {
+            this.setState(document, "theme");
+          }
+          resolve();
+        });
+      }
     }
   }
 
