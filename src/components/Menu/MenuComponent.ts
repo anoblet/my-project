@@ -59,13 +59,7 @@ export class MenuComponent extends Mixin(connect(store)(LitElement), [
       <style>
         ${style}
       </style>
-      ${
-        until(
-          import("./MenuTemplate.ts").then(module =>
-            module.default.bind(this)()
-          )
-        )
-      }
+      ${template}
     `;
   }
 }
