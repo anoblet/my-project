@@ -28,7 +28,7 @@ export class SettingsComponent extends Mixin(connect(store)(LitElement), [
         this.watchDocumentNew(
           { path: `users/${this.state.user.uid}/settings/default` },
           (document: any) => {
-            console.log("Here");
+            console.log(document.data());
 
             if (document) {
               this.setState(document, "settings");
