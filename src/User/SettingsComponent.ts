@@ -69,6 +69,7 @@ export class SettingsComponent extends Mixin(connect(store)(LitElement), [
 
   stateChanged(state: any) {
     super.stateChanged();
+    this.state = state;
     if (state.user.signedIn) {
       if (state.settings) {
         this.setDocumentNew({
