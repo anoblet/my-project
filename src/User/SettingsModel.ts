@@ -1,5 +1,4 @@
 const model = {
   statePath: "",
-  firebasePath: "",
-  fields: []
+  firebasePath: ""
 };
