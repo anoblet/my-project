@@ -107,6 +107,7 @@ export class MyApp extends Mixin(connect(store)(LitElement), [
   firstUpdated() {
     super.firstUpdated();
 
+    this.addReducer("settings");
     if (this.state) {
       if (this.state.user.signedIn) {
         this.watchDocumentNew({
