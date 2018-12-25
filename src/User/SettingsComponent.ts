@@ -24,7 +24,7 @@ export class SettingsComponent extends Mixin(connect(store)(LitElement), [
           { path: `users/${this.state.user.uid}/settings/default` },
           (document: any) => {
             if (document) {
-              this.setState(document, "theme");
+              this.setState(document, "settings");
             }
           }
         );
