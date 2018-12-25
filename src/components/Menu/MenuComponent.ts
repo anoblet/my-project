@@ -5,7 +5,7 @@ import * as style from "./MenuComponent.scss";
 import { LitElement, html, property } from "@polymer/lit-element";
 
 import { Mixin } from "../../../packages/Mixin";
-import { FirebaseMixin } from "../../../packages/StateMixin";
+import { FirebaseMixin } from "../../../packages/FirebaseMixin";
 import { StateMixin } from "../../../packages/StateMixin";
 import template from "./MenuTemplate";
 import { connect } from "pwa-helpers/connect-mixin.js";
