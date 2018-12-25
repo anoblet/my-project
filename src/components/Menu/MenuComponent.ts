@@ -29,9 +29,9 @@ export class MenuComponent extends Mixin(connect(store)(LitElement), [
 
   stateChanged(state: any) {
     if (state.settings) {
+      const listener = (e: any) => this._onContextMenu(e);
       if (state.settings.rightClick) {
         this.defaultContextMenu = document.oncontextmenu;
-        const listener = (e: any) => this._onContextMenu(e);
         document.addEventListener("contextmenu", listener);
       } else {
         document.removeEventListener("contextmenu", listener);
