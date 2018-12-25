@@ -25,7 +25,9 @@ export class MenuComponent extends Mixin(connect(store)(LitElement), [
   firstUpdated() {
     super.firstUpdated();
     const links = this.shadowRoot.querySelectorAll("a");
-    links.forEach((link: any) => {});
+    links.forEach((link: any) => {
+      link.addEventListener("click", () => (this.hidden = true));
+    });
   }
 
   _onContextMenu(e: any) {
