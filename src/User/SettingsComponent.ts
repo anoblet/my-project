@@ -3,6 +3,7 @@ import * as style from "./SettingsComponent.scss";
 import { LitElement, html, property } from "@polymer/lit-element";
 
 import { Mixin } from "../../packages/Mixin";
+import { FirebaseMixin } from "../../packages/FirebaseMixin";
 import { StateMixin } from "../../packages/StateMixin";
 import { connect } from "pwa-helpers/connect-mixin.js";
 import { settings } from "./Settings";
@@ -45,6 +46,10 @@ export class SettingsComponent extends Mixin(connect(store)(LitElement), [
         }
       </form>
     `;
+  }
+
+  stateChanged(state: any) {
+    this.setDocumentNew({ path: `users/${state.user.uid}/settings` });
   }
 
   render() {
