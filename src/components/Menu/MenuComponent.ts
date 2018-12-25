@@ -29,6 +29,7 @@ export class MenuComponent extends Mixin(connect(store)(LitElement), [
     this.watchDocument("settings", (document: any) => {
       console.log("Here");
       if (document) {
+        console.log(document);
         this.setState(document, "settings");
       }
     });
