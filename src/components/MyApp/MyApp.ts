@@ -55,6 +55,8 @@ export class MyApp extends Mixin(connect(store)(LitElement), [
     super();
     this.setStore(store);
     this.addReducer("app"), this.addReducer("user"), this.addReducer("theme");
+    this.addReducer("settings");
+
     this.setState(this.defaultDocument, "theme");
   }
 
@@ -107,7 +109,6 @@ export class MyApp extends Mixin(connect(store)(LitElement), [
   firstUpdated() {
     super.firstUpdated();
 
-    this.addReducer("settings");
     if (this.state) {
       if (this.state.user.signedIn) {
         this.watchDocumentNew({
