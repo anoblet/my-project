@@ -4,7 +4,7 @@ import { html } from "@polymer/lit-element";
 export default function() {
   return html`
     <div id="home" style="position: absolute;">
-      <mwc-fab icon="home"></mwc-fab>
+      <a href="/post"><mwc-fab icon="home"></mwc-fab></a>
     </div>
     <ul id="menu">
       <li>
