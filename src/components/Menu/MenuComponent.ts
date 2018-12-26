@@ -26,18 +26,7 @@ export class MenuComponent extends Mixin(connect(store)(LitElement), [
 
   firstUpdated() {
     super.firstUpdated();
-    if (this.state) {
-      if (this.state.user.signedIn) {
-        this.watchDocumentNew({
-          path: `users/${this.state.user.uid}/settings/default`,
-          callback: (document: any) => {
-            if (document) {
-              this.setState(document, "settings");
-            }
-          }
-        });
-      }
-    }
+
     const links = this.shadowRoot.querySelectorAll("a");
     links.forEach((link: any) => {
       link.addEventListener("click", () => {

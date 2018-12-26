@@ -81,7 +81,7 @@ export class MyApp extends Mixin(connect(store)(LitElement), [
       this.firebaseInit(),
       this.firebaseCheckRedirect(),
       this.getUser().then((user: any) => {
-        if (user) this.setState(user, "user");
+        if (user) this.userLoggedIn(user);
         else this.setState({}, "user");
       }),
       new Promise((resolve, reject) => {
@@ -91,34 +91,20 @@ export class MyApp extends Mixin(connect(store)(LitElement), [
           }
           resolve();
         });
-      }),
-      new Promise((resolve, reject) => {
-        this.watchDocument("settings", (document: any) => {
-          if (document) {
-            this.setState(document, "settings");
-          }
-          resolve();
-        });
       })
     ]);
   }
 
-  firstUpdated() {
-    super.firstUpdated();
-
-    if (this.state) {
-      if (this.state.user.signedIn) {
-        this.watchDocumentNew({
-          path: `users/${this.state.user.uid}/settings/default`,
-          callback: (document: any) => {
-            console.log("hi");
-            if (document) {
-              this.setState(document, "settings");
-            }
-          }
-        });
+  userLoggedIn(user: any) {
+    this.setState(user, "user");
+    this.watchDocumentNew({
+      path: `users/${this.state.user.uid}/settings/default`,
+      callback: (document: any) => {
+        if (document) {
+          this.setState(document, "settings");
+        }
       }
-    }
+    });
   }
 
   // Events

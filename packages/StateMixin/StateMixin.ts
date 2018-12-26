@@ -27,6 +27,14 @@ export const StateMixin = function(superClass: any) {
       });
     }
 
+    setStateNew({ data, type, config }: any) {
+      this.store.dispatch({
+        type: type,
+        state: data,
+        merge: config.merge
+      });
+    }
+
     setStore(store: any) {
       this.store = store;
       return this;

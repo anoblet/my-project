@@ -7,9 +7,7 @@ export default function({ router, user }: any) {
       <my-card grow no-border no-inner-padding>
         <div slot="title">
           <app-header>
-            <mwc-icon id="menu" @click="${() => this._toggleDrawer()}"
-              >menu</mwc-icon
-            >
+            <mwc-icon id="menu" @click="${this._toggleDrawer}">menu</mwc-icon>
             <span id="title"><a href="/">${this.title}</a></span>
             <mwc-fab
               id="userProfile"

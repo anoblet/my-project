@@ -154,6 +154,20 @@ export const FirebaseMixin = function(superClass: any) {
       });
     }
 
+    setDocumentNew({ path, data }: any) {
+      return new Promise((resolve, reject) => {
+        Promise.all([
+          import(/* webpackChunkName: "FirebaseApp" */ "firebase/app"),
+          import(/* webpackChunkName: "FirebaseFirestore" */ "firebase/firestore")
+        ]).then(async ([firebase]) => {
+          const firestore = firebase.firestore();
+          firestore.settings({ timestampsInSnapshots: true });
+          const document = firestore.doc(path);
+          document.set(data, { merge: true });
+        });
+      });
+    }
+
     getUser() {
       return new Promise((resolve, reject) => {
         Promise.all([
@@ -232,6 +246,22 @@ export const FirebaseMixin = function(superClass: any) {
         }
       });
     }
+
+    watchDocumentNew({ path, callback }: any) {
+      return Promise.all([
+        import(/* webpackChunkName: "FirebaseApp" */ "firebase/app"),
+        import(/* webpackChunkName: "FirebaseFirestore" */ "firebase/firestore")
+      ]).then(async ([firebase]) => {
+        const firestore = firebase.firestore();
+        firestore.settings({ timestampsInSnapshots: true });
+        const document = firestore.doc(path);
+        document.onSnapshot((doc: any) => {
+          const source = doc.metadata.hasPendingWrites ? "local" : "remote";
+          if (callback) callback(doc.data());
+        });
+      });
+    }
+
     firebaseCheckRedirect() {
       return new Promise((resolve, reject) => {
         Promise.all([
