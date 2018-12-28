@@ -1,7 +1,7 @@
 import { html } from "@polymer/lit-element";
 import { render } from "lit-html";
 
-import { post } from "./PostModel";
+import { model } from "./PostModel";
 
 export default function() {
   return html`
@@ -11,7 +11,7 @@ export default function() {
         <form>
           <vaadin-form-layout>
             ${
-              post.fields.map(
+              model.fields.map(
                 (field: any) =>
                   html`
                     ${

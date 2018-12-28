@@ -30,6 +30,7 @@
     "lit-redux-router": "^0.3.3",
     "lorem-ipsum": "^1.0.6",
     "npm": "^6.5.0",
+    "path-to-regexp": "^2.4.0",
     "pwa-helpers": "^0.9.0",
     "randomcolor": "^0.5.3",
     "redux": "^4.0.1",

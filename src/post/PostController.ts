@@ -1,5 +1,5 @@
-import("@vaadin/vaadin-grid/theme/material/vaadin-grid.js");
-import("@vaadin/vaadin-grid/theme/material/vaadin-grid-filter-column.js");
+// import("@vaadin/vaadin-grid/theme/material/vaadin-grid.js");
+// import("@vaadin/vaadin-grid/theme/material/vaadin-grid-filter-column.js");
 import("@vaadin/vaadin-text-field/theme/material/vaadin-text-field.js");
 import("@vaadin/vaadin-text-field/theme/material/vaadin-text-area.js");
 import("@vaadin/vaadin-form-layout/theme/material/vaadin-form-layout.js");
@@ -13,7 +13,7 @@ import { LitElement, html, property } from "@polymer/lit-element";
 
 import { FirebaseMixin } from "../../packages/FirebaseMixin";
 import { Mixin } from "../../packages/Mixin";
-import { post } from "./PostModel";
+import { model } from "./PostModel";
 import { StateMixin } from "../../packages/StateMixin";
 import { connect } from "pwa-helpers/connect-mixin.js";
 import { navigate } from "lit-redux-router";
@@ -73,17 +73,13 @@ export class PostController extends Mixin(LitElement, [
   }
 
   readSingle(id: string) {
+    this._template = html`
+      <post-component id="${id}"></post-component>
+    `;
+    this.requestUpdate();
+    return;
     this._template = this.getAppDocument(`posts/${id}`).then(
-      ({ author, content, title }: any) => {
-        return html`
-          <post-component
-            id="${id}"
-            .author="${author}"
-            .content="${content}"
-            .title="${title}"
-          ></post-component>
-        `;
-      }
+      ({ author, content, title }: any) => {}
     );
     this.requestUpdate();
   }

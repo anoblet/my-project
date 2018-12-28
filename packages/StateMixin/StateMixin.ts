@@ -19,6 +19,25 @@ export const StateMixin = function(superClass: any) {
       });
     }
 
+    addReducerNew({ customFunction, path, type }: any) {
+      const defaultFunction = (state = {}, action: any) => {
+        switch (action.type) {
+          case `${type}`:
+            return action.merge
+              ? {
+                  ...state,
+                  ...action.state
+                }
+              : action.state;
+          default:
+            return state;
+        }
+      };
+      this.store.addReducers({
+        [type]: customFunction ? customFunction : defaultFunction
+      });
+    }
+
     setState(data: any, type: any, config: any = { merge: true }) {
       this.store.dispatch({
         type: type,

@@ -17,9 +17,13 @@ import { TemplateMixin } from "../../../packages/TemplateMixin";
 import { config } from "../../../config";
 import { connect } from "pwa-helpers/connect-mixin.js";
 import { connectRouter } from "lit-redux-router";
+import { installRouter } from "pwa-helpers/router.js";
 import { runtime } from "../../Runtime";
 import { store } from "../../store.js";
-import "../../User/SettingsComponent";
+
+var pathToRegexp = require("path-to-regexp");
+
+import(/* webpackChunkName: "SettingsComponent" */ "../../User/SettingsComponent");
 
 connectRouter(store);
 
@@ -57,6 +61,7 @@ export class MyApp extends Mixin(connect(store)(LitElement), [
     this.addReducer("app"), this.addReducer("user"), this.addReducer("theme");
     this.addReducer("settings");
     this.setState(this.defaultDocument, "theme");
+    // installRouter((location: any) => this.handleNavigation(location));
   }
 
   public connectedCallback() {
@@ -77,7 +82,6 @@ export class MyApp extends Mixin(connect(store)(LitElement), [
       import(/* webpackChunkName: "PageInfo" */ "../PageInfo/PageInfo"),
       import(/* webpackChunkName: "PageUser" */ "../PageUser/PageUser"),
       import(/* webpackChunkName: "UserController" */ "../../controllers/UserController"),
-      import(/* webpackChunkName: "PostController" */ "../../post/PostController"),
       this.firebaseInit(),
       this.firebaseCheckRedirect(),
       this.getUser().then((user: any) => {
@@ -105,6 +109,36 @@ export class MyApp extends Mixin(connect(store)(LitElement), [
         }
       }
     });
+  }
+
+  handleNavigation(location: any) {
+    const routes = [
+      {
+        name: "post",
+        path: "/post/:action",
+        src: "post/PostController"
+      }
+    ];
+
+    let matchedRoute: any;
+    routes.map((route: any) => {
+      const regex = pathToRegexp(route.path);
+      const match = regex.exec(location.pathname);
+      if (match) matchedRoute = route;
+      // if (match) import(`../../${route.src}`);
+    });
+    if (matchedRoute)
+      switch (matchedRoute.name) {
+        case "post": {
+          import("../../post/PostController");
+        }
+      }
+
+    const post = pathToRegexp("/post/:action*");
+    const match = post.exec(location.pathname);
+    if (match) {
+      // import(/* webpackChunkName: "PostController" */ "../../post/PostController");
+    }
   }
 
   // Events

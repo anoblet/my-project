@@ -218,7 +218,14 @@ export const FirebaseMixin = function(superClass: any) {
           const firestore = firebase.firestore();
           firestore.settings({ timestampsInSnapshots: true });
           const document = firestore.doc(path);
-          document.set(data, { merge: true });
+          document
+            .set(data, { merge: true })
+            .then((docRef: any) => {
+              resolve();
+            })
+            .catch((error: any) => {
+              reject(`Error adding document: ${error}`);
+            });
         });
       });
     }

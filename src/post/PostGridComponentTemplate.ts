@@ -3,7 +3,22 @@ import { render } from "lit-html";
 
 export default function() {
   return html`
-    <vaadin-grid .items="${this.items}">
+    <div class="grid">
+      ${
+        this.items.map(
+          (item: any, index: number) => html`
+            <div class="row">
+              <div class="column">${index}</div>
+              <div class="column">
+                <a href="/post/read/${item.id}">${item.title}</a>
+              </div>
+              <div class="column">${item.author}</div>
+            </div>
+          `
+        )
+      }
+    </div>
+    <vaadin-grid .items="${this.items}" style="display: none;">
       <vaadin-grid-column
         path="id"
         header="#"
