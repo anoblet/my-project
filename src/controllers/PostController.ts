@@ -4,20 +4,20 @@ import("@vaadin/vaadin-text-field/theme/material/vaadin-text-field.js");
 import("@vaadin/vaadin-text-field/theme/material/vaadin-text-area.js");
 import("@vaadin/vaadin-form-layout/theme/material/vaadin-form-layout.js");
 
-import "./PostComponent";
-import "./PostGridComponent";
+import "../post/PostComponent";
+import "../post/PostGridComponent";
 
-import * as style from "./PostController.scss";
+import * as style from "../post/PostController.scss";
 
 import { LitElement, html, property } from "@polymer/lit-element";
 
 import { FirebaseMixin } from "../../packages/FirebaseMixin";
 import { Mixin } from "../../packages/Mixin";
-import { model } from "./PostModel";
 import { StateMixin } from "../../packages/StateMixin";
 import { connect } from "pwa-helpers/connect-mixin.js";
+import { model } from "../post/PostModel";
 import { navigate } from "lit-redux-router";
-import navigation from "./NavigationTemplate";
+import navigation from "../post/NavigationTemplate";
 import { store } from "../store.js";
 import { until } from "lit-html/directives/until";
 
@@ -52,7 +52,7 @@ export class PostController extends Mixin(LitElement, [
   }
 
   create() {
-    this._template = import("./PostCreateTemplate").then((module: any) =>
+    this._template = import("../post/PostCreateTemplate").then((module: any) =>
       module.default.bind(this)(this)
     );
     this.requestUpdate();

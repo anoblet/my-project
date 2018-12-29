@@ -21,6 +21,9 @@ import { installRouter } from "pwa-helpers/router.js";
 import { runtime } from "../../Runtime";
 import { store } from "../../store.js";
 
+// import("../../post/PostController");
+// import("../../controllers/PostController");
+
 var pathToRegexp = require("path-to-regexp");
 
 import(/* webpackChunkName: "SettingsComponent" */ "../../User/SettingsComponent");
@@ -61,7 +64,7 @@ export class MyApp extends Mixin(connect(store)(LitElement), [
     this.addReducer("app"), this.addReducer("user"), this.addReducer("theme");
     this.addReducer("settings");
     this.setState(this.defaultDocument, "theme");
-    // installRouter((location: any) => this.handleNavigation(location));
+    installRouter((location: any) => this.handleNavigation(location));
   }
 
   public connectedCallback() {
@@ -116,7 +119,7 @@ export class MyApp extends Mixin(connect(store)(LitElement), [
       {
         name: "post",
         path: "/post/:action",
-        src: "post/PostController"
+        src: "PostController"
       }
     ];
 
@@ -124,13 +127,13 @@ export class MyApp extends Mixin(connect(store)(LitElement), [
     routes.map((route: any) => {
       const regex = pathToRegexp(route.path);
       const match = regex.exec(location.pathname);
-      if (match) matchedRoute = route;
-      // if (match) import(`../../${route.src}`);
+      // if (match) import(`../../controllers/${route.src}`);
+      if (match) if (match) matchedRoute = route;
     });
     if (matchedRoute)
       switch (matchedRoute.name) {
         case "post": {
-          import("../../post/PostController");
+          import("../../controllers/PostController");
         }
       }
 
