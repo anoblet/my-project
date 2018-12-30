@@ -14,24 +14,25 @@ export default function() {
               model.fields.map(
                 (field: any) =>
                   html`
+                    ${field.label}:
                     ${
                       field.type == "text"
                         ? html`
-                            <vaadin-text-field
+                            <input
                               name="${field.name}"
                               label="${field.label}"
-                            ></vaadin-text-field>
+                            ></input>
                           `
                         : ""
                     }
                     ${
                       field.type == "textarea"
                         ? html`
-                            <vaadin-text-area
+                            <textaread
                               colspan="2"
                               name="${field.name}"
                               label="${field.label}"
-                            ></vaadin-text-area>
+                            ></textarea>
                           `
                         : ""
                     }

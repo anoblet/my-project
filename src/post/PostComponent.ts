@@ -41,6 +41,13 @@ export class PostComponent extends Mixin(LitElement, [FirebaseMixin]) {
 
   text({ field, value }: any) {
     return html`
+      <input
+        name="${field.name}"
+        label="${field.label}"
+        value="${value}"
+      ></input>
+    `;
+    return html`
       <vaadin-text-field
         name="${field.name}"
         label="${field.label}"
@@ -51,11 +58,10 @@ export class PostComponent extends Mixin(LitElement, [FirebaseMixin]) {
 
   textarea({ field, value }: any) {
     return html`
-      <vaadin-text-area
-        name="${field.name}"
-        label="${field.label}"
-        value="${value}"
-      ></vaadin-text-area>
+      <textarea name="${field.name}" value="${value}"></textarea>
+    `;
+    return html`
+      <textarea name="${field.name}" value="${value}"></textarea>
     `;
   }
 
