@@ -1,11 +1,14 @@
-import { html, LitElement, property } from "@polymer/lit-element";
-import { until } from "lit-html/directives/until";
-import { navigate } from "lit-redux-router";
-import { store } from "../store.js";
-import { connect } from "pwa-helpers/connect-mixin.js";
+import { LitElement, html, property } from "@polymer/lit-element";
+
 import { Mixin } from "../../packages/Mixin";
 import { StateMixin } from "../../packages/StateMixin";
 import { User } from "../User";
+import { connect } from "pwa-helpers/connect-mixin.js";
+import { navigate } from "lit-redux-router";
+import { store } from "../store.js";
+import { until } from "lit-html/directives/until";
+
+import("../AppUser/AppUser");
 
 export interface UserController {
   [key: string]: any; // Add index signature

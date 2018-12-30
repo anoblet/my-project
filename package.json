@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "start": "npm-run-all -p webpack webpack-dev-server",
+    "dev": "npm-run-all -p webpack-dev webpack-dev-server",
     "webpack": "webpack --watch",
+    "webpack-dev": "webpack --mode development --watch",
     "webpack-dev-server": "webpack-dev-server",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -20,9 +22,6 @@
     "@polymer/lit-element": "^0.6.5",
     "@types/node": "^10.12.11",
     "@types/node-sass": "^3.10.32",
-    "@vaadin/vaadin-form-layout": "^2.1.1",
-    "@vaadin/vaadin-grid": "^5.2.5",
-    "@vaadin/vaadin-text-field": "^2.1.5",
     "@webcomponents/webcomponentsjs": "^2.2.1",
     "firebase": "^5.6.0",
     "firebaseui": "^3.4.1",

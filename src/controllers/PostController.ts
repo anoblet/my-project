@@ -1,11 +1,11 @@
 // import("@vaadin/vaadin-grid/theme/material/vaadin-grid.js");
 // import("@vaadin/vaadin-grid/theme/material/vaadin-grid-filter-column.js");
-import("@vaadin/vaadin-text-field/theme/material/vaadin-text-field.js");
-import("@vaadin/vaadin-text-field/theme/material/vaadin-text-area.js");
-import("@vaadin/vaadin-form-layout/theme/material/vaadin-form-layout.js");
+//import("@vaadin/vaadin-text-field/theme/material/vaadin-text-field.js");
+//import("@vaadin/vaadin-text-field/theme/material/vaadin-text-area.js");
+// import("@vaadin/vaadin-form-layout/theme/material/vaadin-form-layout.js");
 
-import "../post/PostComponent";
-import "../post/PostGridComponent";
+import("../post/PostComponent");
+import("../post/PostGridComponent");
 
 import * as style from "../post/PostController.scss";
 

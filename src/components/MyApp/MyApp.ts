@@ -21,18 +21,16 @@ import { installRouter } from "pwa-helpers/router.js";
 import { runtime } from "../../Runtime";
 import { store } from "../../store.js";
 
-// import("../../post/PostController");
-// import("../../controllers/PostController");
-
 var pathToRegexp = require("path-to-regexp");
-
-import(/* webpackChunkName: "SettingsComponent" */ "../../User/SettingsComponent");
 
 connectRouter(store);
 
+import("../../controllers/PostController");
+import("../../controllers/UserController");
+
 export class MyApp extends Mixin(connect(store)(LitElement), [
   HelperMixin,
-  TemplateMixin,
+  // TemplateMixin,
   TaskMixin,
   StateMixin,
   FirebaseMixin,
@@ -63,12 +61,12 @@ export class MyApp extends Mixin(connect(store)(LitElement), [
     this.setStore(store);
     this.addReducer("app"), this.addReducer("user"), this.addReducer("theme");
     this.addReducer("settings");
-    this.setState(this.defaultDocument, "theme");
-    installRouter((location: any) => this.handleNavigation(location));
+    this.setDefaultTheme();
+    // installRouter((location: any) => this.handleNavigation(location));
   }
 
-  public connectedCallback() {
-    super.connectedCallback();
+  firstUpdated() {
+    super.firstUpdated();
     this.runTasks([
       import(/* webpackChunkName: "MyFlex" */ "../../../packages/my-flex"),
       import(/* webpackChunkName: "MyGrid" */ "../../../packages/my-grid"),
@@ -79,17 +77,12 @@ export class MyApp extends Mixin(connect(store)(LitElement), [
       import(/* webpackChunkName: "AppDrawer" */ "../AppDrawer/AppDrawer"),
       import(/* webpackChunkName: "AppHeader" */ "../AppHeader/AppHeader"),
       import(/* webpackChunkName: "AppFooter" */ "../AppFooter/AppFooter"),
-      import(/* webpackChunkName: "AppUser" */ "../AppUser/AppUser"),
       import(/* webpackChunkName: "AppTheme" */ "../AppTheme/AppTheme"),
       import(/* webpackChunkName: "PageHome" */ "../PageHome/PageHome"),
-      import(/* webpackChunkName: "PageInfo" */ "../PageInfo/PageInfo"),
-      import(/* webpackChunkName: "PageUser" */ "../PageUser/PageUser"),
-      import(/* webpackChunkName: "UserController" */ "../../controllers/UserController"),
       this.firebaseInit(),
       this.firebaseCheckRedirect(),
       this.getUser().then((user: any) => {
-        if (user) this.userLoggedIn(user);
-        else this.setState({}, "user");
+        user ? this.onUserLoggedIn(user) : this.setState({}, "user");
       }),
       new Promise((resolve, reject) => {
         this.watchDocument("theme", (document: any) => {
@@ -102,7 +95,11 @@ export class MyApp extends Mixin(connect(store)(LitElement), [
     ]);
   }
 
-  userLoggedIn(user: any) {
+  setDefaultTheme() {
+    this.setState(this.defaultDocument, "theme");
+  }
+
+  onUserLoggedIn(user: any) {
     this.setState(user, "user");
     this.watchDocumentNew({
       path: `users/${this.state.user.uid}/settings/default`,
@@ -118,6 +115,11 @@ export class MyApp extends Mixin(connect(store)(LitElement), [
     const routes = [
       {
         name: "post",
+        path: "/post",
+        src: "PostController"
+      },
+      {
+        name: "post.action",
         path: "/post/:action",
         src: "PostController"
       }
@@ -127,21 +129,19 @@ export class MyApp extends Mixin(connect(store)(LitElement), [
     routes.map((route: any) => {
       const regex = pathToRegexp(route.path);
       const match = regex.exec(location.pathname);
-      // if (match) import(`../../controllers/${route.src}`);
-      if (match) if (match) matchedRoute = route;
+      if (match) matchedRoute = route;
     });
     if (matchedRoute)
       switch (matchedRoute.name) {
         case "post": {
           import("../../controllers/PostController");
         }
+        case "post.action": {
+          import("../../controllers/PostController");
+        }
       }
 
-    const post = pathToRegexp("/post/:action*");
-    const match = post.exec(location.pathname);
-    if (match) {
-      // import(/* webpackChunkName: "PostController" */ "../../post/PostController");
-    }
+    const page = this.shadowRoot.querySelector("#page");
   }
 
   // Events

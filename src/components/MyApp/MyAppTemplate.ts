@@ -1,5 +1,5 @@
 import { html } from "@polymer/lit-element";
-import "../Menu/MenuComponent";
+import("../Menu/MenuComponent");
 
 export default function({ router, user }: any) {
   return html`
@@ -92,6 +92,7 @@ export default function({ router, user }: any) {
                   no-title
                 >
                   <my-flex slot="content">
+                    <div id="page"></div>
                     <lit-route path="/" component="page-home"></lit-route>
                     <lit-route path="/info" component="page-info"></lit-route>
                     <lit-route
