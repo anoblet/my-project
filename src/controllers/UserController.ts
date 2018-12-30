@@ -8,7 +8,7 @@ import { navigate } from "lit-redux-router";
 import { store } from "../store.js";
 import { until } from "lit-html/directives/until";
 
-import("../AppUser/AppUser");
+import("../components/AppUser/AppUser");
 
 export interface UserController {
   [key: string]: any; // Add index signature

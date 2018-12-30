@@ -23,10 +23,13 @@ import { store } from "../../store.js";
 
 var pathToRegexp = require("path-to-regexp");
 
+import("../../User/SettingsComponent");
+
 connectRouter(store);
 
 import("../../controllers/PostController");
 import("../../controllers/UserController");
+import("../../User/SettingsComponent");
 
 export class MyApp extends Mixin(connect(store)(LitElement), [
   HelperMixin,
