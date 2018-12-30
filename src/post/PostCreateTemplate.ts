@@ -28,7 +28,7 @@ export default function() {
                     ${
                       field.type == "textarea"
                         ? html`
-                            <textaread
+                            <textarea
                               colspan="2"
                               name="${field.name}"
                               label="${field.label}"
