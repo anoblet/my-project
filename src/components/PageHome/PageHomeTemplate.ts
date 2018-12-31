@@ -11,7 +11,8 @@ export default function({ user }: any) {
               user.signedIn
                 ? html`
                     Welcome ${user.name}. You can change your
-                    <a href="/theme">theme</a>.
+                    <a href="/theme">theme</a> or edit a
+                    <a href="/post">public</a>
                   `
                 : html`
                     Please <a href="/user">sign in</a>.

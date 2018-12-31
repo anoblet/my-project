@@ -45,7 +45,7 @@ export class MyApp extends Mixin(connect(store)(LitElement), [
   public defaultDocument = {
     backgroundColor: "#ffffff",
     borderColor: "#000000",
-    primaryColor: "#000000",
+    primaryColor: "#666666",
     secondaryColor: "#000000",
     textColor: "#000000"
   };
