@@ -12,7 +12,7 @@ export default function({ user }: any) {
                 ? html`
                     Welcome ${user.name}. You can change your
                     <a href="/theme">theme</a> or edit a
-                    <a href="/post">public</a>
+                    <a href="/post">public post</a>.
                   `
                 : html`
                     Please <a href="/user">sign in</a>.
