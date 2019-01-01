@@ -18,3 +18,7 @@
 .column {
   flex: 1;
 }
+
+.no-grow {
+  flex-grow: 0;
+}

@@ -1,11 +1,10 @@
-import "../../../packages/DrawerAbsolute";
-import "../../../packages/MediaQuery";
+import("../../../packages/DrawerAbsolute");
+import("../../../packages/MediaQuery");
 
 import * as style from "./MyApp.scss";
 
 import { LitElement, html, property } from "@polymer/lit-element";
 
-import { BaseMixin } from "../../../packages/BaseMixin";
 import { FirebaseMixin } from "../../../packages/FirebaseMixin";
 import { HelperMixin } from "../../../packages/HelperMixin";
 import { MediaMixin } from "../../../packages/MediaMixin";
@@ -21,15 +20,14 @@ import { installRouter } from "pwa-helpers/router.js";
 import { runtime } from "../../Runtime";
 import { store } from "../../store.js";
 
+import(/* webpackChunkName: "PostController" */ "../../controllers/PostController");
+import(/* webpackChunkName: "UserController" */ "../../controllers/UserController");
+import(/* webpackChunkName: "UserSettings" */ "../../User/SettingsComponent");
+import(/* webpackChunkName: "PageInfo" */ "../PageInfo/PageInfo");
+
 var pathToRegexp = require("path-to-regexp");
 
-import("../../User/SettingsComponent");
-
 connectRouter(store);
-
-import("../../controllers/PostController");
-import("../../controllers/UserController");
-import("../../User/SettingsComponent");
 
 export class MyApp extends Mixin(connect(store)(LitElement), [
   HelperMixin,

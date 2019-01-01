@@ -1,12 +1,12 @@
 import { html, LitElement } from "@polymer/lit-element";
 import { Mixin } from "../../../packages/Mixin";
-import { BaseMixin } from "../../../packages/BaseMixin";
 import { TaskMixin } from "../../../packages/TaskMixin";
 import { connect } from "pwa-helpers/connect-mixin.js";
 import { store } from "../../store.js";
 import { StateMixin } from "../../../packages/StateMixin";
 import Template from "./AppHeaderTemplate";
 import * as Style from "./AppHeader.scss";
+import(/* webpackChunkName: "MWCFab" */ "@material/mwc-fab");
 
 export class AppHeader extends Mixin(connect(store)(LitElement), [
   TaskMixin,

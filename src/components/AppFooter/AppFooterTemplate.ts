@@ -1,8 +1,7 @@
-import "@material/mwc-fab";
 import { html } from "@polymer/lit-element";
 import * as style from "./AppFooter.scss";
 
-export default function({  }: any) {
+export default function() {
   return html`
     <style>
       ${style}
