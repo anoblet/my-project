@@ -5,6 +5,8 @@ const WebpackPwaManifest = require("webpack-pwa-manifest");
 const CopyWebpackPlugin = require("copy-webpack-plugin");
 const RobotstxtPlugin = require("robotstxt-webpack-plugin").default;
 const CleanWebpackPlugin = require("clean-webpack-plugin");
+var BundleAnalyzerPlugin = require("webpack-bundle-analyzer")
+  .BundleAnalyzerPlugin;
 
 module.exports = {
   mode: "production",
@@ -76,6 +78,7 @@ module.exports = {
     namedChunks: true
   },
   plugins: [
+    new CleanWebpackPlugin(["dist"]),
     new HtmlWebpackPlugin({
       template: "./index.html",
       filename: "index.html"
@@ -107,7 +110,6 @@ module.exports = {
         flatten: true
       }
     ]),
-    new RobotstxtPlugin(),
-    new CleanWebpackPlugin(["dist"])
+    new RobotstxtPlugin()
   ]
 };

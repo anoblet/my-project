@@ -3,23 +3,27 @@ import * as style from "./PostComponent.scss";
 import { LitElement, html, property } from "@polymer/lit-element";
 
 import { FirebaseMixin } from "../../packages/FirebaseMixin";
+import { TemplateMixin } from "../../packages/TemplateMixin";
 import { Mixin } from "../../packages/Mixin";
-import { connect } from "pwa-helpers/connect-mixin.js";
 import model from "./Post.json";
 import { navigate } from "lit-redux-router";
-import { store } from "../store.js";
-import { until } from "lit-html/directives/until";
+import Template from "./PostComponentTemplate.ts";
 
 export interface PostComponent {
   [key: string]: any; // Add index signature
 }
 
-export class PostComponent extends Mixin(LitElement, [FirebaseMixin]) {
+export class PostComponent extends Mixin(LitElement, [
+  FirebaseMixin,
+  TemplateMixin
+]) {
   @property({ type: Boolean }) editable: boolean;
   @property({ type: String }) id: string;
   @property({ type: String }) author: string;
   @property({ type: String }) title: string;
   @property({ type: String }) content: string;
+
+  template = Template;
 
   constructor() {
     super();
@@ -47,19 +51,9 @@ export class PostComponent extends Mixin(LitElement, [FirebaseMixin]) {
         value="${value}"
       ></input>
     `;
-    return html`
-      <vaadin-text-field
-        name="${field.name}"
-        label="${field.label}"
-        value="${value}"
-      ></vaadin-text-field>
-    `;
   }
 
   textarea({ field, value }: any) {
-    return html`
-      <textarea name="${field.name}" value="${value}"></textarea>
-    `;
     return html`
       <textarea name="${field.name}" value="${value}"></textarea>
     `;
@@ -91,18 +85,6 @@ export class PostComponent extends Mixin(LitElement, [FirebaseMixin]) {
         );
       }
     );
-  }
-
-  render() {
-    return html`
-      ${
-        until(
-          import("./PostComponentTemplate.ts").then(module =>
-            module.default.bind(this)()
-          )
-        )
-      }
-    `;
   }
 }
 

@@ -9,6 +9,10 @@ export const model = {
     name: "content",
     type: "textarea"
   },
+  date: {
+    label: "Date",
+    type: "text"
+  },
   title: {
     label: "Title",
     name: "title",
