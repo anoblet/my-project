@@ -1,24 +1,41 @@
 @import "../GlobalStyles";
 
+* {
+  box-sizing: border-box;
+}
+
 :host {
   display: flex;
   flex: 1;
 }
 
 .grid {
+  /*
   display: flex;
   flex-grow: 1;
   flex-direction: column;
+  */
+  display: grid;
+  flex: 1;
 }
 
 .row {
+  /*
   display: flex;
+  */
+  display: grid;
+  grid-template-columns: min-content 1fr 1fr min-content;
 }
 
 .column {
   flex: 1;
+  padding: 0.5em 1em;
 }
 
 .no-grow {
   flex-grow: 0;
+}
+
+.no-visibility {
+  visibility: hidden;
 }

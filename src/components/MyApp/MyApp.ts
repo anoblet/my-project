@@ -48,12 +48,8 @@ export class MyApp extends Mixin(connect(store)(LitElement), [
     textColor: "#000000"
   };
   public firebaseConfig = config.firebase;
-  public firebaseDocumentPath = "app";
-  public state: any;
-  public stateType: "app";
   public taskPending = false;
   public template: any = Template;
-  public templatePath = "src/components/MyApp/MyAppTemplate";
   public componentStyle: any = style;
 
   // Lifecycle
