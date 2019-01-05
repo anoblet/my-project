@@ -7,9 +7,11 @@ export const FirebaseMixin = function(superClass: any) {
     firebaseConfig: any;
     firebaseDocumentPath: any;
     firebaseInit() {
-      import(/* webpackChunkName: "FirebaseApp" */ "firebase/app").then(app => {
-        if (app.apps.length === 0) app.initializeApp(this.firebaseConfig);
-      });
+      return import(/* webpackChunkName: "FirebaseApp" */ "firebase/app").then(
+        app => {
+          if (app.apps.length === 0) app.initializeApp(this.firebaseConfig);
+        }
+      );
     }
 
     addDocument({ path, data }: any) {
@@ -231,26 +233,29 @@ export const FirebaseMixin = function(superClass: any) {
     }
 
     watchDocument(document: any, callback: any) {
-      return Promise.all([
-        import(/* webpackChunkName: "FirebaseApp" */ "firebase/app"),
-        import(/* webpackChunkName: "FirebaseFirestore" */ "firebase/firestore")
-      ]).then(async ([firebase]) => {
-        const firestore = firebase.firestore();
-        firestore.settings({ timestampsInSnapshots: true });
-        const user: any = await this.getUser();
-        if (!user) {
-          callback();
-          return;
-        } else {
-          if (!document) document = this.firebaseDocumentPath;
-          const firestoreDocument = firestore.doc(
-            `users/${user.uid}/state/${document}`
-          );
-          return firestoreDocument.onSnapshot((doc: any) => {
-            const source = doc.metadata.hasPendingWrites ? "local" : "remote";
-            if (callback) callback(doc.data());
-          });
-        }
+      return new Promise((resolve, reject) => {
+        return Promise.all([
+          import(/* webpackChunkName: "FirebaseApp" */ "firebase/app"),
+          import(/* webpackChunkName: "FirebaseFirestore" */ "firebase/firestore")
+        ]).then(async ([firebase]) => {
+          const firestore = firebase.firestore();
+          firestore.settings({ timestampsInSnapshots: true });
+          const user: any = await this.getUser();
+          if (!user) {
+            callback();
+            return;
+          } else {
+            if (!document) document = this.firebaseDocumentPath;
+            const firestoreDocument = firestore.doc(
+              `users/${user.uid}/state/${document}`
+            );
+            return firestoreDocument.onSnapshot((doc: any) => {
+              const source = doc.metadata.hasPendingWrites ? "local" : "remote";
+              if (callback) callback(doc.data());
+              resolve();
+            });
+          }
+        });
       });
     }
 
@@ -258,13 +263,16 @@ export const FirebaseMixin = function(superClass: any) {
       return Promise.all([
         import(/* webpackChunkName: "FirebaseApp" */ "firebase/app"),
         import(/* webpackChunkName: "FirebaseFirestore" */ "firebase/firestore")
-      ]).then(async ([firebase]) => {
+      ]).then(([firebase]) => {
         const firestore = firebase.firestore();
         firestore.settings({ timestampsInSnapshots: true });
         const document = firestore.doc(path);
-        document.onSnapshot((doc: any) => {
-          const source = doc.metadata.hasPendingWrites ? "local" : "remote";
-          if (callback) callback(doc.data());
+        return new Promise((resolve, reject) => {
+          document.onSnapshot((doc: any) => {
+            const source = doc.metadata.hasPendingWrites ? "local" : "remote";
+            callback(doc.data());
+            resolve();
+          });
         });
       });
     }

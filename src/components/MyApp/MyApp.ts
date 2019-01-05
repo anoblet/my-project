@@ -64,7 +64,7 @@ export class MyApp extends Mixin(connect(store)(LitElement), [
 
   firstUpdated() {
     super.firstUpdated();
-    this.runTasks([
+    this.taskChain([
       import(/* webpackChunkName: "MyFlex" */ "../../../packages/my-flex"),
       import(/* webpackChunkName: "MyGrid" */ "../../../packages/my-grid"),
       import(/* webpackChunkName: "MyLoader" */ "../../../packages/my-loader"),
@@ -78,16 +78,9 @@ export class MyApp extends Mixin(connect(store)(LitElement), [
       import(/* webpackChunkName: "PageHome" */ "../PageHome/PageHome"),
       this.firebaseInit(),
       this.firebaseCheckRedirect(),
-      this.getUser().then((user: any) => {
-        user ? this.onUserLoggedIn(user) : this.setState({}, "user");
-      }),
-      new Promise((resolve, reject) => {
-        this.watchDocument("theme", (document: any) => {
-          if (document) {
-            this.setState(document, "theme");
-          }
-          resolve();
-        });
+      this.getUser().then(async (user: any) => {
+        if (user) await this.onUserLoggedIn(user);
+        else this.setState({}, "user");
       })
     ]);
   }
@@ -96,16 +89,29 @@ export class MyApp extends Mixin(connect(store)(LitElement), [
     this.setState(this.defaultDocument, "theme");
   }
 
-  onUserLoggedIn(user: any) {
+  async onUserLoggedIn(user: any) {
     this.setState(user, "user");
-    this.watchDocumentNew({
-      path: `users/${this.state.user.uid}/settings/default`,
-      callback: (document: any) => {
-        if (document) {
-          this.setState(document, "settings");
+    return Promise.all([
+      this.watchDocumentNew({
+        path: `users/${this.state.user.uid}/settings/default`,
+        callback: (document: any) => {
+          if (document) {
+            this.setState(document, "settings");
+          }
         }
-      }
-    });
+      }),
+      this.watchDocumentNew({
+        path: `users/${this.state.user.uid}/state/theme`,
+        callback: (document: any) => {
+          return new Promise((resolve, reject) => {
+            if (document) {
+              this.setState(document, "theme");
+              resolve();
+            }
+          });
+        }
+      })
+    ]);
   }
 
   handleNavigation(location: any) {
