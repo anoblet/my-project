@@ -46,7 +46,13 @@ export class UserController extends Mixin(connect(store)(LitElement), [
 
   account() {
     this._template = html`
-      <app-user></app-user>
+      ${
+        until(
+          import("../user/PageAccount").then(({ default: template }) =>
+            template()
+          )
+        )
+      }
     `;
     this.requestUpdate();
   }
@@ -75,15 +81,16 @@ export class UserController extends Mixin(connect(store)(LitElement), [
     store.dispatch(navigate("/"));
   }
 
+  theme() {
+    this._template = html`
+      <app-theme></app-theme>
+    `;
+    this.requestUpdate();
+  }
+
   render() {
     return html`
-      <style>
-        :host {
-          display: flex;
-          flex: 1;
-        }
-      </style>
-      ${this._template}
+      <style></style> ${this._template}
     `;
   }
 }
