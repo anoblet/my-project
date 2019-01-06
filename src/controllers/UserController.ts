@@ -1,6 +1,7 @@
 import { LitElement, html, property } from "@polymer/lit-element";
 
 import { Mixin } from "../../packages/Mixin";
+import { FirebaseMixin } from "../../packages/FirebaseMixin";
 import { StateMixin } from "../../packages/StateMixin";
 import { User } from "../User";
 import { connect } from "pwa-helpers/connect-mixin.js";
@@ -15,9 +16,11 @@ export interface UserController {
 }
 
 export class UserController extends Mixin(connect(store)(LitElement), [
+  FirebaseMixin,
   StateMixin
 ]) {
   @property({ type: String }) action: string = "index";
+  @property({ type: Object }) data: any;
   _template: any;
 
   connectedCallback() {
@@ -55,6 +58,22 @@ export class UserController extends Mixin(connect(store)(LitElement), [
       }
     `;
     this.requestUpdate();
+  }
+
+  post() {
+    this.id = "Ada6HpwpiySEUT7unn2h";
+    import("../user/PostComponent");
+    const user = this.state.user.uid;
+    this.watchDocumentNew({
+      path: `users/${user}/posts/${this.id}`,
+      callback: (document: any) => {
+        this.data = document;
+        this._template = html`
+          <user-post-component .data="${this.data}"></user-post-component>
+        `;
+        this.requestUpdate();
+      }
+    });
   }
 
   signin() {

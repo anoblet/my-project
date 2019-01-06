@@ -1,7 +1,10 @@
 import { html } from "@polymer/lit-element";
 import * as style from "./PageAccount.scss";
 
-const links = [
+const links = [  {
+    href: "/user/posts",
+    label: "Posts"
+  },
   {
     href: "/user/theme",
     label: "Theme"
