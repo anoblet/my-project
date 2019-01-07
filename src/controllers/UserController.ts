@@ -9,6 +9,8 @@ import { navigate } from "lit-redux-router";
 import { store } from "../store.js";
 import { until } from "lit-html/directives/until";
 
+import structure from "../post/PostModel";
+
 import("../components/AppUser/AppUser");
 
 export interface UserController {
@@ -21,6 +23,7 @@ export class UserController extends Mixin(connect(store)(LitElement), [
 ]) {
   @property({ type: String }) action: string = "index";
   @property({ type: Object }) data: any;
+  @property({ type: String }) tail: any;
   _template: any;
 
   connectedCallback() {
@@ -60,18 +63,47 @@ export class UserController extends Mixin(connect(store)(LitElement), [
     this.requestUpdate();
   }
 
-  post() {
-    this.id = "Ada6HpwpiySEUT7unn2h";
-    import("../user/PostComponent");
-    const user = this.state.user.uid;
-    this.watchDocumentNew({
-      path: `users/${user}/posts/${this.id}`,
-      callback: (document: any) => {
-        this.data = document;
+  posts() {
+    console.log(this.tail);
+    console.log("hi");
+    const model = [
+      {
+        label: "Author",
+        name: "author",
+        type: "text"
+      },
+      {
+        label: "Title",
+        link: true,
+        name: "title",
+        type: "text"
+      }
+    ];
+    import("../components/CollectionGrid/CollectionGrid");
+    const userId = this.state.user.uid;
+    this.getUser().then((user: any) => {
+      if (user) {
         this._template = html`
-          <user-post-component .data="${this.data}"></user-post-component>
+          <collection-grid
+            .model="${model}"
+            .route="${this.tail}"
+            .path="${`/users/${userId}/posts`}"
+          ></collection-grid>
         `;
         this.requestUpdate();
+        return;
+        this.getCollection({
+          path: `/users/${userId}/posts`,
+          callback: (collection: any) => {
+            this._template = html`
+              <collection-grid
+                .path="${`/users/${userId}/posts`}"
+              ></collection-grid>
+            `;
+            this.requestUpdate();
+          },
+          watch: true
+        });
       }
     });
   }
@@ -109,7 +141,12 @@ export class UserController extends Mixin(connect(store)(LitElement), [
 
   render() {
     return html`
-      <style></style> ${this._template}
+      <style>
+        :host {
+          flex: 1;
+        }
+      </style>
+      ${this._template}
     `;
   }
 }
