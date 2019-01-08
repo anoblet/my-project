@@ -60,6 +60,7 @@ export class CollectionGrid extends Mixin(LitElement, [FirebaseMixin]) {
   }
 
   read(id: string) {
+    import("./FirebaseDocument");
     this.watchDocumentNew({
       path: `${this.path}/${id}`,
       callback: (document: any) => {
@@ -68,7 +69,7 @@ export class CollectionGrid extends Mixin(LitElement, [FirebaseMixin]) {
       }
     });
     this._template = () => html`
-      ${JSON.stringify(this.document)}
+      <firebase-document .path="${`${this.path}/${id}`}"></firebase-document>
     `;
   }
 
