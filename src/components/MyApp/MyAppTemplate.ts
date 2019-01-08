@@ -124,6 +124,10 @@ export default function({ router, user }: any) {
                       path="/user/:action/:tail"
                       component="user-controller"
                     ></lit-route>
+                    <lit-route
+                      path="/user/:action/:tail/:id"
+                      component="user-controller"
+                    ></lit-route>
                   </my-flex>
                 </my-card>
               </my-flex>

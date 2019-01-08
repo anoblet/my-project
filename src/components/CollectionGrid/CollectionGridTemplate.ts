@@ -3,6 +3,7 @@ import { render } from "lit-html";
 
 export default function() {
   return html`
+    ${this.dialogOpened}
     ${
       this.dialogOpened
         ? html`

@@ -42,7 +42,7 @@ export class UserController extends Mixin(connect(store)(LitElement), [
         ? store.dispatch(navigate("/user/account"))
         : store.dispatch(navigate("/user/signin"));
     } else {
-      this[this.action]();
+      this[this.action](this.id);
     }
   }
 
@@ -64,8 +64,6 @@ export class UserController extends Mixin(connect(store)(LitElement), [
   }
 
   posts() {
-    console.log(this.tail);
-    console.log("hi");
     const model = [
       {
         label: "Author",
@@ -81,12 +79,16 @@ export class UserController extends Mixin(connect(store)(LitElement), [
     ];
     import("../components/CollectionGrid/CollectionGrid");
     const userId = this.state.user.uid;
+    let route: string;
     this.getUser().then((user: any) => {
       if (user) {
+        if (this.tail) {
+          route = `${this.tail}/${this.id}`;
+        }
         this._template = html`
           <collection-grid
             .model="${model}"
-            .route="${this.tail}"
+            .route="${route}"
             .path="${`/users/${userId}/posts`}"
           ></collection-grid>
         `;
