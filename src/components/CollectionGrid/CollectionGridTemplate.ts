@@ -40,8 +40,8 @@ export default function() {
         <div class="column no-grow no-visibility"><button>Delete</button></div>
       </div>
       ${
-        this.collection
-          ? this.collection.map(
+        this._collection
+          ? this._collection.map(
               (document: any, index: number) => html`
                 <div class="row">
                   <div class="column no-grow">${index}</div>

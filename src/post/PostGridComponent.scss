@@ -10,13 +10,9 @@
 }
 
 .grid {
-  /*
-  display: flex;
-  flex-grow: 1;
-  flex-direction: column;
-  */
   display: grid;
   flex: 1;
+  height: min-content;
 }
 
 .row {

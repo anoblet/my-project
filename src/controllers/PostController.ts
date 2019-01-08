@@ -77,11 +77,6 @@ export class PostController extends Mixin(LitElement, [
       <post-component id="${id}"></post-component>
     `;
     this.requestUpdate();
-    return;
-    this._template = this.getAppDocument(`posts/${id}`).then(
-      ({ author, content, title }: any) => {}
-    );
-    this.requestUpdate();
   }
 
   readMulti() {

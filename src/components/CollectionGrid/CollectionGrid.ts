@@ -4,22 +4,26 @@ import template from "./CollectionGridTemplate";
 import { Mixin } from "../../../packages/Mixin";
 import { FirebaseMixin } from "../../../packages/FirebaseMixin";
 
+/**
+ * Firebase collection CRUD class
+ */
+
 export class CollectionGrid extends Mixin(LitElement, [FirebaseMixin]) {
-  @property({ type: Array }) collection: any;
-  @property({ type: Object }) model: any;
-  @property({ type: String }) path: string;
-  @property({ type: String }) route: string = "index";
-  @property({ type: Boolean }) dialogOpened: boolean;
-  document: any;
+  @property({ type: Array }) protected _collection: any; // Protected placeholder for a collection
+  @property({ type: Object }) protected _document: any; // Protected placeholder for a document
+  @property({ type: Object }) public model: any; // Structure of the collection
+  @property({ type: String }) public path: string; // The path to the Firebase collection
+  @property({ type: String }) public route: string = "index"; // A request path (for sub-routes)
+  @property({ type: Boolean }) public dialogOpened: boolean;
   /**
    * Function that returns a TemplateResult
    */
-  _template = () => html``;
+  public _template = () => html``;
 
   /**
    * Parse route, execute action
    */
-  firstUpdated() {
+  public firstUpdated() {
     super.firstUpdated();
     const parts = this.route ? this.route.split("/") : [];
     const action = parts[0] || "index";
@@ -33,11 +37,11 @@ export class CollectionGrid extends Mixin(LitElement, [FirebaseMixin]) {
    * Index action
    * @return [description]
    */
-  index() {
+  public index() {
     this.getCollection({
       path: this.path,
       callback: (collection: any) => {
-        this.collection = collection;
+        this._collection = collection;
       },
       watch: true
     });
@@ -47,8 +51,8 @@ export class CollectionGrid extends Mixin(LitElement, [FirebaseMixin]) {
   /**
    * Create action
    */
-  create() {
-    let formData: any = {};
+  public create() {
+    const formData: any = {};
     this.model.map((field: any) => {
       formData[field.name] = this.shadowRoot.querySelector(
         `[name='${field.name}']`
@@ -59,7 +63,7 @@ export class CollectionGrid extends Mixin(LitElement, [FirebaseMixin]) {
     this._template = template.bind(this);
   }
 
-  read(id: string) {
+  public read(id: string) {
     import("./FirebaseDocument");
     this.watchDocumentNew({
       path: `${this.path}/${id}`,
@@ -73,12 +77,12 @@ export class CollectionGrid extends Mixin(LitElement, [FirebaseMixin]) {
     `;
   }
 
-  delete(index: number) {
-    const item = this.collection[index];
+  public delete(index: number) {
+    const item = this._collection[index];
     this.deleteDocument({ path: `${this.path}/${item.id}` });
   }
 
-  render() {
+  public render() {
     return html`
       <style>
         ${style}

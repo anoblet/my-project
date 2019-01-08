@@ -6,6 +6,7 @@ export const FirebaseMixin = function(superClass: any) {
   return class extends superClass {
     firebaseConfig: any;
     firebaseDocumentPath: any;
+
     firebaseInit() {
       return import(/* webpackChunkName: "FirebaseApp" */ "firebase/app").then(
         app => {
@@ -14,63 +15,28 @@ export const FirebaseMixin = function(superClass: any) {
       );
     }
 
-    addDocument({ path, data }: any) {
-      return new Promise((resolve, reject) => {
-        Promise.all([
-          import(/* webpackChunkName: "FirebaseApp" */ "firebase/app"),
-          import(/* webpackChunkName: "FirebaseFirestore" */ "firebase/firestore")
-        ]).then(async ([firebase]) => {
-          const firestore = firebase.firestore();
-          firestore.settings({ timestampsInSnapshots: true });
-          firestore
-            .collection(path)
-            .add(data)
-            // .doc()
-            // .set(data)
-            .then(function(docRef: any) {
-              resolve(docRef.id);
-            })
-            .catch(function(error: any) {
-              reject(`Error adding document: ${error}`);
-            });
-        });
+    firestoreInit() {
+      return Promise.all([
+        import(/* webpackChunkName: "FirebaseApp" */ "firebase/app"),
+        import(/* webpackChunkName: "FirebaseStore" */ "firebase/firestore")
+      ]).then(([firebase, firestore]) => {
+        firebase.firestore().settings({ timestampsInSnapshots: true });
       });
     }
 
-    getAppDocument(
-      path: any = "",
-      config: any = {
-        watch: true
-      },
-      callback: any
-    ) {
-      return new Promise((resolve, reject) => {
-        Promise.all([
-          import(/* webpackChunkName: "FirebaseApp" */ "firebase/app"),
-          import(/* webpackChunkName: "FirebaseFirestore" */ "firebase/firestore")
-        ]).then(async ([firebase]) => {
-          const firestore = firebase.firestore();
-          firestore.settings({ timestampsInSnapshots: true });
-          const user: any = await this.getUser();
-          if (!user) resolve();
-          if (user) {
-            if (!path) path = this.firebaseDocumentPath;
-            const document = firestore.doc(path);
-            if (config.watch)
-              return document.onSnapshot((doc: any) => {
-                const source = doc.metadata.hasPendingWrites
-                  ? "local"
-                  : "remote";
-                if (callback) callback(doc.data());
-                resolve(doc.data());
-              });
-            else
-              document.get().then((doc: any) => {
-                if (!doc.exists) document.set(this.defaultDocument);
-                resolve(doc.data());
-              });
-          }
-        });
+    addDocument({ path, data }: any) {
+      return Promise.all([
+        import(/* webpackChunkName: "FirebaseApp" */ "firebase/app"),
+        import(/* webpackChunkName: "FirebaseFirestore" */ "firebase/firestore")
+      ]).then(([firebase]) => {
+        return firebase
+          .firestore()
+          .collection(path)
+          .add(data)
+          .then((docRef: any) => {
+            return docRef.id;
+          });
+        // .catch((error: any) => {});
       });
     }
 
@@ -99,43 +65,43 @@ export const FirebaseMixin = function(superClass: any) {
       });
     }
 
-    getDocument(
-      path: any = "",
-      config: any = {
-        watch: true
-      },
-      callback: any
-    ) {
-      return new Promise((resolve, reject) => {
-        Promise.all([
-          import(/* webpackChunkName: "FirebaseApp" */ "firebase/app"),
-          import(/* webpackChunkName: "FirebaseFirestore" */ "firebase/firestore")
-        ]).then(async ([firebase]) => {
-          const firestore = firebase.firestore();
-          firestore.settings({ timestampsInSnapshots: true });
-          const user: any = await this.getUser();
-          if (!user) resolve();
-          if (user) {
-            if (!path) path = this.firebaseDocumentPath;
-            const document = firestore.doc(`users/${user.uid}/state/${path}`);
-            if (config.watch)
-              return document.onSnapshot((doc: any) => {
-                console.log("Here");
-                const source = doc.metadata.hasPendingWrites
-                  ? "local"
-                  : "remote";
-                if (callback) callback(doc.data());
-                resolve(doc.data());
-              });
-            else
-              document.get().then((doc: any) => {
-                if (!doc.exists) document.set(this.defaultDocument);
-                resolve(doc.data());
-              });
-          }
-        });
-      });
-    }
+    // getDocument(
+    //   path: any = "",
+    //   config: any = {
+    //     watch: true
+    //   },
+    //   callback: any
+    // ) {
+    //   return new Promise((resolve, reject) => {
+    //     Promise.all([
+    //       import(/* webpackChunkName: "FirebaseApp" */ "firebase/app"),
+    //       import(/* webpackChunkName: "FirebaseFirestore" */ "firebase/firestore")
+    //     ]).then(async ([firebase]) => {
+    //       const firestore = firebase.firestore();
+    //       firestore.settings({ timestampsInSnapshots: true });
+    //       const user: any = await this.getUser();
+    //       if (!user) resolve();
+    //       if (user) {
+    //         if (!path) path = this.firebaseDocumentPath;
+    //         const document = firestore.doc(`users/${user.uid}/state/${path}`);
+    //         if (config.watch)
+    //           return document.onSnapshot((doc: any) => {
+    //             console.log("Here");
+    //             const source = doc.metadata.hasPendingWrites
+    //               ? "local"
+    //               : "remote";
+    //             if (callback) callback(doc.data());
+    //             resolve(doc.data());
+    //           });
+    //         else
+    //           document.get().then((doc: any) => {
+    //             if (!doc.exists) document.set(this.defaultDocument);
+    //             resolve(doc.data());
+    //           });
+    //       }
+    //     });
+    //   });
+    // }
 
     setDocument(data: any) {
       return new Promise((resolve, reject) => {
@@ -232,40 +198,18 @@ export const FirebaseMixin = function(superClass: any) {
       });
     }
 
-    watchDocument(document: any, callback: any) {
-      return new Promise((resolve, reject) => {
-        return Promise.all([
-          import(/* webpackChunkName: "FirebaseApp" */ "firebase/app"),
-          import(/* webpackChunkName: "FirebaseFirestore" */ "firebase/firestore")
-        ]).then(async ([firebase]) => {
-          const firestore = firebase.firestore();
-          firestore.settings({ timestampsInSnapshots: true });
-          const user: any = await this.getUser();
-          if (!user) {
-            callback();
-            return;
-          } else {
-            if (!document) document = this.firebaseDocumentPath;
-            const firestoreDocument = firestore.doc(
-              `users/${user.uid}/state/${document}`
-            );
-            return firestoreDocument.onSnapshot((doc: any) => {
-              const source = doc.metadata.hasPendingWrites ? "local" : "remote";
-              if (callback) callback(doc.data());
-              resolve();
-            });
-          }
-        });
-      });
-    }
-
+    /**
+     * [watchDocumentNew description]
+     * @param  {path     [description]
+     * @param  callback} [description]
+     * @return           [description]
+     */
     watchDocumentNew({ path, callback }: any) {
       return Promise.all([
         import(/* webpackChunkName: "FirebaseApp" */ "firebase/app"),
         import(/* webpackChunkName: "FirebaseFirestore" */ "firebase/firestore")
       ]).then(([firebase]) => {
         const firestore = firebase.firestore();
-        firestore.settings({ timestampsInSnapshots: true });
         const document = firestore.doc(path);
         return new Promise((resolve, reject) => {
           document.onSnapshot((doc: any) => {
@@ -278,19 +222,16 @@ export const FirebaseMixin = function(superClass: any) {
     }
 
     firebaseCheckRedirect() {
-      return new Promise((resolve, reject) => {
-        Promise.all([
-          import(/* webpackChunkName: "FirebaseApp" */ "firebase/app"),
-          import(/* webpackChunkName: "FirebaseAuth" */ "firebase/auth"),
-          import(/* webpackChunkName: "FirebaseUI" */ "firebaseui")
-        ]).then(([app, auth, ui]) => {
-          let instance =
-            ui.auth.AuthUI.getInstance() || new ui.auth.AuthUI(app.auth());
-          if (instance.isPendingRedirect()) {
-            instance.start(document.createElement("div"), {});
-          }
-          resolve();
-        });
+      return Promise.all([
+        import(/* webpackChunkName: "FirebaseApp" */ "firebase/app"),
+        import(/* webpackChunkName: "FirebaseAuth" */ "firebase/auth"),
+        import(/* webpackChunkName: "FirebaseUI" */ "firebaseui")
+      ]).then(([app, auth, ui]) => {
+        let instance =
+          ui.auth.AuthUI.getInstance() || new ui.auth.AuthUI(app.auth());
+        if (instance.isPendingRedirect()) {
+          instance.start(document.createElement("div"), {});
+        }
       });
     }
   };

@@ -7,9 +7,11 @@
   },
   "rules": {
     "curly": false,
+    "member-ordering": false,
     "ordered-imports": false,
     "quotemark": [true, "double"],
-    "trailing-comma": false
+    "trailing-comma": false,
+    "variable-name": false
   },
   "rulesDirectory": []
 }

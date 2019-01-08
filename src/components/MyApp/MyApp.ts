@@ -77,6 +77,7 @@ export class MyApp extends Mixin(connect(store)(LitElement), [
       import(/* webpackChunkName: "AppTheme" */ "../AppTheme/AppTheme"),
       import(/* webpackChunkName: "PageHome" */ "../PageHome/PageHome"),
       this.firebaseInit(),
+      this.firestoreInit(),
       this.firebaseCheckRedirect(),
       this.getUser().then(async (user: any) => {
         if (user) await this.onUserLoggedIn(user);
