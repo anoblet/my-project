@@ -59,27 +59,10 @@ export default function({ router, user }: any) {
                   <div slot="content">
                     <ul id="nav">
                       <a href="/"> <li>Home</li></a
-                      ><a
-                        @click="${(e: Event) => this._toggleDrawer()}"
-                        href="/blog"
-                      >
-                        <li>Blog</li></a
-                      ><a
-                        @click="${(e: Event) => this._toggleDrawer()}"
-                        href="/post"
-                      >
-                        <li>Post</li></a
-                      ><a
-                        @click="${(e: Event) => this._toggleDrawer()}"
-                        href="/user"
-                      >
-                        <li>User</li></a
-                      ><a
-                        @click="${(e: Event) => this._toggleDrawer()}"
-                        href="/info"
-                      >
-                        <li>Info</li></a
-                      >
+                      ><a href="/blog"> <li>Blog</li></a
+                      ><a href="/post"> <li>Post</li></a
+                      ><a href="/user"> <li>User</li></a
+                      ><a href="/info"> <li>Info</li></a>
                     </ul>
                   </div>
                 </my-card>

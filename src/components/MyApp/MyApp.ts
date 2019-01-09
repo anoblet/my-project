@@ -89,6 +89,11 @@ export class MyApp extends Mixin(connect(store)(LitElement), [
         else this.setState({}, "user");
       })
     ]);
+    const nav = this.shadowRoot.querySelector("#nav");
+    const links = nav.querySelectorAll("a");
+    links.forEach((link: any) =>
+      link.addEventListener("click", () => this._toggleDrawer())
+    );
   }
 
   setDefaultTheme() {
@@ -184,13 +189,8 @@ export class MyApp extends Mixin(connect(store)(LitElement), [
       <style>
         ${this.componentStyle}
       </style>
-      ${
-        !this.taskPending
-          ? this.template(this.state)
-          : html`
-              <my-loader></my-loader>
-            `
-      }
+      <my-loader ?hidden="${!this.taskPending}"></my-loader>
+      ${this.template(this.state)}
     `;
   }
 }
