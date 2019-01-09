@@ -7,12 +7,12 @@ import { Mixin } from "../../../packages/Mixin";
 import { StateMixin } from "../../../packages/StateMixin";
 import { TaskMixin } from "../../../packages/TaskMixin";
 import { store } from "../../store.js";
-import * as style from "./PageHome.scss";
-import Template from "./PageHomeTemplate";
+import * as style from "./PageBlog.scss";
+import Template from "./PageBlogTemplate";
 import "../../../packages/Dialog";
 import "../../components/CollectionList/CollectionList";
 
-export class PageHome extends Mixin(connect(store)(LitElement), [
+export class PageBlog extends Mixin(connect(store)(LitElement), [
   TaskMixin,
   StateMixin
 ]) {
@@ -34,4 +34,4 @@ export class PageHome extends Mixin(connect(store)(LitElement), [
   }
 }
 
-window.customElements.define("page-home", PageHome);
+window.customElements.define("page-blog", PageBlog);

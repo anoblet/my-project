@@ -24,6 +24,8 @@ import(/* webpackChunkName: "PostController" */ "../../controllers/PostControlle
 import(/* webpackChunkName: "UserController" */ "../../controllers/UserController");
 import(/* webpackChunkName: "UserSettings" */ "../../User/SettingsComponent");
 import(/* webpackChunkName: "PageInfo" */ "../PageInfo/PageInfo");
+import(/* webpackChunkName: "PageBlog" */ "../PageBlog/PageBlog");
+import(/* webpackChunkName: "Drawer" */ "../Drawer/Drawer");
 
 var pathToRegexp = require("path-to-regexp");
 
@@ -62,6 +64,10 @@ export class MyApp extends Mixin(connect(store)(LitElement), [
     // installRouter((location: any) => this.handleNavigation(location));
   }
 
+  ready() {
+    super.ready();
+  }
+
   firstUpdated() {
     super.firstUpdated();
     this.taskChain([
@@ -71,7 +77,6 @@ export class MyApp extends Mixin(connect(store)(LitElement), [
       import(/* webpackChunkName: "MyCard" */ "../../../packages/my-card"),
       import(/* webpackChunkName: "MWC-Icon" */ "@material/mwc-icon"),
       import(/* webpackChunkName: "MWC-Fab" */ "@material/mwc-fab"),
-      import(/* webpackChunkName: "AppDrawer" */ "../AppDrawer/AppDrawer"),
       import(/* webpackChunkName: "AppHeader" */ "../AppHeader/AppHeader"),
       import(/* webpackChunkName: "AppFooter" */ "../AppFooter/AppFooter"),
       import(/* webpackChunkName: "AppTheme" */ "../AppTheme/AppTheme"),

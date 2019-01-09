@@ -1,8 +1,8 @@
-import '@material/mwc-fab';
-import { html } from '@polymer/lit-element';
-import { until } from 'lit-html/directives/until';
+import "@material/mwc-fab";
+import { html } from "@polymer/lit-element";
+import { until } from "lit-html/directives/until";
 
-export default function ({ user }: any) {
+export default function({ user }: any) {
   return html`
     <my-grid id="content-grid" style="flex: 1; height: min-content;">
       <my-card collapsible grow>
@@ -14,18 +14,17 @@ export default function ({ user }: any) {
       <my-card collapsible grow>
         <h3 slot="title">Firebase</h3>
         <div slot="content">
-          ${user.signedIn ? html`
-            ${until(
-              this.getDocument('theme').then((document: any) => {
-                return html`
-                  <pre>${JSON.stringify(document, null, 2)}</pre>
+          ${
+            user.signedIn
+              ? html`
+                  ${this.firebaseState}
                 `
-              }),
-              html`<my-loader></my-loader>`
-            )}
-          ` : html`Sign in to see a Firebase document`}
+              : html`
+                  Sign in to see a Firebase document
+                `
+          }
         </div>
       </my-card>
     </my-grid>
-  `
+  `;
 }

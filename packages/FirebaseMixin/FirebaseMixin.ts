@@ -144,18 +144,19 @@ export const FirebaseMixin = function(superClass: any) {
           import(/* webpackChunkName: "FirebaseFirestore" */ "firebase/firestore"),
           import(/* webpackChunkName: "FirebaseUI" */ "firebaseui")
         ]).then(async ([firebase, auth, firestore, ui]) => {
-          let instance =
+          const instance =
             ui.auth.AuthUI.getInstance() || new ui.auth.AuthUI(firebase.auth());
-          let pendingRedirect = instance.isPendingRedirect();
+          const pendingRedirect = instance.isPendingRedirect();
           firebase.auth().onAuthStateChanged((user: any) => {
             if (!user && !pendingRedirect) resolve(false);
             if (user) {
-              const userModel: any = {};
-              userModel.signedIn = true;
-              userModel.uid = user.uid;
-              userModel.name = user.displayName;
-              userModel.email = user.email;
-              userModel.photo = user.photoURL;
+              const userModel = {
+                email: user.email,
+                name: user.displayName,
+                photo: user.photoURL,
+                signedIn: true,
+                uid: user.uid
+              };
               resolve(userModel);
             }
           });

@@ -57,12 +57,13 @@ export default function({ router, user }: any) {
                 >
                   <h3 slot="title">Menu</h3>
                   <div slot="content">
-                    <ul>
-                      <a
+                    <ul id="nav">
+                      <a href="/"> <li>Home</li></a
+                      ><a
                         @click="${(e: Event) => this._toggleDrawer()}"
-                        href="/"
+                        href="/blog"
                       >
-                        <li>Home</li></a
+                        <li>Blog</li></a
                       ><a
                         @click="${(e: Event) => this._toggleDrawer()}"
                         href="/post"
@@ -128,6 +129,7 @@ export default function({ router, user }: any) {
                       path="/user/:action/:tail/:id"
                       component="user-controller"
                     ></lit-route>
+                    <lit-route path="/blog" component="page-blog"></lit-route>
                   </my-flex>
                 </my-card>
               </my-flex>

@@ -1,0 +1,11 @@
+@import "../../GlobalStyles";
+
+:host {
+  display: flex;
+  flex: 1;
+}
+
+collection-list {
+  display: grid;
+  grid-gap: 1em;
+}
