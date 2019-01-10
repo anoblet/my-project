@@ -2,7 +2,6 @@ import { html, LitElement } from "@polymer/lit-element";
 import { connect } from "pwa-helpers/connect-mixin.js";
 import { BaseMixin } from "../../../packages/BaseMixin";
 import { FirebaseMixin } from "../../../packages/FirebaseMixin";
-import "../../../packages/lorem-ipsum";
 import { Mixin } from "../../../packages/Mixin";
 import { StateMixin } from "../../../packages/StateMixin";
 import { TaskMixin } from "../../../packages/TaskMixin";

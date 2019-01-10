@@ -7,7 +7,7 @@ const RobotstxtPlugin = require("robotstxt-webpack-plugin").default;
 const CleanWebpackPlugin = require("clean-webpack-plugin");
 var BundleAnalyzerPlugin = require("webpack-bundle-analyzer")
   .BundleAnalyzerPlugin;
-
+const HtmlLoader = require("html-loader");
 module.exports = {
   mode: "production",
   entry: "./src/components/MyApp/MyApp.ts",
@@ -33,6 +33,17 @@ module.exports = {
         test: /\.tsx?$/,
         use: "ts-loader",
         exclude: /node_modules/
+      },
+      {
+        test: /\.svg$/,
+        use: [
+          {
+            loader: "html-loader",
+            options: {
+              minimize: true
+            }
+          }
+        ]
       }
     ]
   },

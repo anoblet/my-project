@@ -63,6 +63,10 @@ export class UserController extends Mixin(connect(store)(LitElement), [
     this.requestUpdate();
   }
 
+  post() {
+    this.posts();
+  }
+
   posts() {
     const model = [
       {
@@ -93,19 +97,6 @@ export class UserController extends Mixin(connect(store)(LitElement), [
           ></collection-grid>
         `;
         this.requestUpdate();
-        return;
-        this.getCollection({
-          path: `/users/${userId}/posts`,
-          callback: (collection: any) => {
-            this._template = html`
-              <collection-grid
-                .path="${`/users/${userId}/posts`}"
-              ></collection-grid>
-            `;
-            this.requestUpdate();
-          },
-          watch: true
-        });
       }
     });
   }

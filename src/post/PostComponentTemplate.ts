@@ -1,4 +1,7 @@
 import { html } from "@polymer/lit-element";
+import("../../packages/Quill/QuillComponent");
+
+import { unsafeHTML } from "lit-html/directives/unsafe-html";
 
 export default function() {
   return html`
@@ -25,14 +28,16 @@ export default function() {
               `
         }
         ${
-          this.editable
-            ? html`
-                ${this.text({ field: this.model.content, value: this.content })}
+          this.content
+            ? this.editable
+              ? html`
+                <quill-component name="content" value="${this.content}"/>
               `
-            : html`
-                ${this.content}
-              `
+              : html`
+                <quill-component output value="${this.content}"/>`
+            : ""
         }
+
         <mwc-button
           @click="${
             (e: Event) => {

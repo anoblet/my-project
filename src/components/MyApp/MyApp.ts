@@ -26,6 +26,7 @@ import(/* webpackChunkName: "UserSettings" */ "../../User/SettingsComponent");
 import(/* webpackChunkName: "PageInfo" */ "../PageInfo/PageInfo");
 import(/* webpackChunkName: "PageBlog" */ "../PageBlog/PageBlog");
 import(/* webpackChunkName: "Drawer" */ "../Drawer/Drawer");
+import(/* webpackChunkName: "ProfileMenu" */ "../ProfileMenu/ProfileMenu");
 
 var pathToRegexp = require("path-to-regexp");
 

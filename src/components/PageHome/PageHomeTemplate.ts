@@ -11,8 +11,9 @@ export default function({ user }: any) {
               user.signedIn
                 ? html`
                     Welcome ${user.name}. You can change your
-                    <a href="/theme">theme</a> or edit a
-                    <a href="/post">public post</a>.
+                    <a href="/theme">theme</a> or create a
+                    <a href="/post">public post</a> or a
+                    <a href="/user/post">private post</a>.
                   `
                 : html`
                     Please <a href="/user">sign in</a>.
@@ -21,10 +22,6 @@ export default function({ user }: any) {
             Shift + space will give you a radial menu.
           </p>
         </div>
-      </my-card>
-      <my-card collapsible>
-        <h3 slot="title">Lorem Ipsum</h3>
-        <div slot="content"><lorem-ipsum count="100"></lorem-ipsum></div>
       </my-card>
     </my-grid>
     <my-dialog>Test</my-dialog>

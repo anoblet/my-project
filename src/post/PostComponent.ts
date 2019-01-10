@@ -55,7 +55,7 @@ export class PostComponent extends Mixin(LitElement, [
 
   textarea({ field, value }: any) {
     return html`
-      <textarea name="${field.name}" value="${value}"></textarea>
+      <textarea name="${field.name}">${value}</textarea>
     `;
   }
 

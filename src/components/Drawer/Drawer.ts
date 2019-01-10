@@ -7,10 +7,10 @@ import template from "./DrawerTemplate";
 
 export class Drawer extends LitElement {
   firstUpdated() {
-    const nav = this.shadowRoot.querySelector("#nav");
-    const links = nav.querySelectorAll("a");
+    // Close drawer on link click
+    const links = this.shadowRoot.querySelector("#nav").querySelectorAll("a");
     links.forEach((link: any) =>
-      link.addEventListener("click", () => this._closeDrawer())
+      link.addEventListener("click", this._closeDrawer)
     );
   }
 

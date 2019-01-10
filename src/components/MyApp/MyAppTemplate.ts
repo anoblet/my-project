@@ -20,29 +20,7 @@ export default function({ router, user }: any) {
         </div>
         <div slot="content">
           <my-flex id="center" style="position: relative;">
-            <div hidden id="profile-menu">
-              <ul>
-                <li>
-                  ${
-                    user.signedIn
-                      ? html`
-                          <li><a href="/user-settings">Settings</a></li>
-                          <li><a href="/theme">Theme</a></li>
-                        `
-                      : ""
-                  }
-                  ${
-                    user.signedIn
-                      ? html`
-                          <a href="/user/signout">Sign out</a>
-                        `
-                      : html`
-                          <a href="/user/signin">Sign in</a>
-                        `
-                  }
-                </li>
-              </ul>
-            </div>
+            <profile-menu id="profile-menu"></profile-menu>
             <my-grid id="drawer-container" media-size="${this.mediaSize}">
               <div
                 id="drawer"
