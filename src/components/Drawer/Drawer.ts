@@ -3,12 +3,37 @@ import { connect } from "pwa-helpers/connect-mixin.js";
 import { Mixin } from "../../../packages/Mixin";
 import { store } from "../../store.js";
 import * as style from "./Drawer.scss";
-import Template from "./DrawerTemplate";
+import template from "./DrawerTemplate";
 
 /**
  * @todo Extend BaseElement
  */
 
-export class Drawer extends Mixin(connect(store)(LitElement), []) {}
+export class Drawer extends LitElement {
+  firstUpdated() {
+    const nav = this.shadowRoot.querySelector("#nav");
+    const links = nav.querySelectorAll("a");
+    links.forEach((link: any) =>
+      link.addEventListener("click", () => this._closeDrawer())
+    );
+  }
+
+  _closeDrawer() {
+    this.dispatchEvent(
+      new CustomEvent("close-drawer", {
+        composed: true
+      })
+    );
+  }
+
+  render() {
+    return html`
+      <style>
+        ${style}
+      </style>
+      ${template.bind(this)()}
+    `;
+  }
+}
 
 window.customElements.define("app-drawer", Drawer);

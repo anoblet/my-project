@@ -3,10 +3,12 @@ import { render } from "lit-html";
 
 export default function() {
   return html`
-    ${
-      this._collection.map((document: any) =>
-        this.renderer ? this.renderer(document) : ""
-      )
-    }
+    <ul id="nav">
+      <a href="/"> <li>Home</li></a
+      ><a href="/blog"> <li>Blog</li></a
+      ><a href="/post"> <li>Post</li></a
+      ><a href="/user"> <li>User</li></a
+      ><a href="/info"> <li>Info</li></a>
+    </ul>
   `;
 }

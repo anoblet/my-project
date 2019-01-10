@@ -89,6 +89,14 @@ export class MyApp extends Mixin(connect(store)(LitElement), [
         else this.setState({}, "user");
       })
     ]);
+
+    // Register drawer listeners
+    this.addEventListener("close-drawer", this._closeDrawer);
+    this.addEventListener("drawer-toggled", this._toggleDrawer);
+  }
+
+  _closeDrawer() {
+    this.drawerOpened = false;
   }
 
   setDefaultTheme() {
@@ -184,6 +192,8 @@ export class MyApp extends Mixin(connect(store)(LitElement), [
       <style>
         ${this.componentStyle}
       </style>
+      <my-loader ?hidden="${!this.taskPending}"></my-loader>
+
       ${
         !this.taskPending
           ? this.template(this.state)

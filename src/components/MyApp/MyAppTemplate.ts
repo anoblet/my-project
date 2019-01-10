@@ -56,15 +56,7 @@ export default function({ router, user }: any) {
                   ?no-border="${this.mediaSize == "small"}"
                 >
                   <h3 slot="title">Menu</h3>
-                  <div slot="content">
-                    <ul id="nav">
-                      <a href="/"> <li>Home</li></a
-                      ><a href="/blog"> <li>Blog</li></a
-                      ><a href="/post"> <li>Post</li></a
-                      ><a href="/user"> <li>User</li></a
-                      ><a href="/info"> <li>Info</li></a>
-                    </ul>
-                  </div>
+                  <div slot="content"><app-drawer></app-drawer></div>
                 </my-card>
               </div>
               <my-flex id="content" grow scroll>
