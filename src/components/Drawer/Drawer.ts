@@ -5,10 +5,6 @@ import { store } from "../../store.js";
 import * as style from "./Drawer.scss";
 import template from "./DrawerTemplate";
 
-/**
- * @todo Extend BaseElement
- */
-
 export class Drawer extends LitElement {
   firstUpdated() {
     const nav = this.shadowRoot.querySelector("#nav");
@@ -18,6 +14,7 @@ export class Drawer extends LitElement {
     );
   }
 
+  // Handlers
   _closeDrawer() {
     this.dispatchEvent(
       new CustomEvent("close-drawer", {
