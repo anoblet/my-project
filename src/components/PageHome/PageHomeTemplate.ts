@@ -18,6 +18,7 @@ export default function({ user }: any) {
                     Please <a href="/user">sign in</a>.
                   `
             }
+            Shift + space will give you a radial menu.
           </p>
         </div>
       </my-card>
