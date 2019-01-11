@@ -1,5 +1,6 @@
 import { html } from "@polymer/lit-element";
 import("../../packages/Quill/QuillComponent");
+import("../../packages/Quill/QuillDisplay");
 
 import { unsafeHTML } from "lit-html/directives/unsafe-html";
 
@@ -28,21 +29,33 @@ export default function() {
               `
         }
         ${
-          this.content
-            ? this.editable
-              ? html`
-                <quill-component name="content" value="${this.content}"/>
+          this.editable
+            ? html`
+                <quill-component
+                  name="content"
+                  ?output="${this.editable}"
+                  .value="${this.content}"
+                ></quill-component>
               `
-              : html`
-                <quill-component output value="${this.content}"/>`
-            : ""
+            : html`
+                ${
+                  this.content
+                    ? html`
+                        <quill-display
+                          name="content"
+                          .value="${this.content}"
+                        ></quill-display>
+                      `
+                    : ""
+                }
+              `
         }
 
         <mwc-button
           @click="${
             (e: Event) => {
               if (this.editable) this.submitForm(e);
-              this.editable = !this.editable;
+              else this.editable = !this.editable;
             }
           }"
           >${

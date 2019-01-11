@@ -3,14 +3,13 @@ import * as style from "./Quill.scss";
 const Quill = require("quill");
 import { unsafeHTML } from "lit-html/directives/unsafe-html";
 
-export class QuillComponent extends LitElement {
-  @property({ type: Object }) delta: any;
-  @property({ type: String }) value: string;
+export class QuillDisplay extends LitElement {
   @property({ type: String }) html: string;
-  @property({ type: Boolean }) output: boolean = false;
+  @property({ type: String }) value: string;
 
   firstUpdated() {
     const container = this.shadowRoot.querySelector("#editor");
+    console.log(container);
     const options = {
       theme: "snow"
     };
@@ -20,20 +19,20 @@ export class QuillComponent extends LitElement {
       const content = JSON.parse(this.value);
       quill.setContents(content);
     }
-    quill.on("text-change", (value: any) => {
-      this.value = JSON.stringify(quill.getContents());
-      this.html = quill.root.innerHTML;
-    });
+    this.html = quill.root.innerHTML;
   }
 
   render() {
     return html`
       <style>
-        ${style}
+        [hidden] {
+          display: none;
+        }
       </style>
-      <div id="editor"></div>
+      ${unsafeHTML(this.html)}
+      <div hidden><div id="editor"></div></div>
     `;
   }
 }
 
-window.customElements.define("quill-component", QuillComponent);
+window.customElements.define("quill-display", QuillDisplay);

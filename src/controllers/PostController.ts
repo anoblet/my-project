@@ -52,9 +52,9 @@ export class PostController extends Mixin(LitElement, [
   }
 
   create() {
-    this._template = import("../post/PostCreateTemplate").then((module: any) =>
-      module.default.bind(this)(this)
-    );
+    this._template = html`
+      <post-component create editable></post-component>
+    `;
     this.requestUpdate();
   }
 
@@ -96,6 +96,7 @@ export class PostController extends Mixin(LitElement, [
 
   submitForm(e: any) {
     e.preventDefault();
+    console.log(this.action);
     const data: any = {};
     data.title = this.shadowRoot.querySelector("[name='title']").value;
     data.author = this.shadowRoot.querySelector("[name='author']").value;

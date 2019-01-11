@@ -129,7 +129,6 @@ export const FirebaseMixin = function(superClass: any) {
           import(/* webpackChunkName: "FirebaseFirestore" */ "firebase/firestore")
         ]).then(async ([firebase]) => {
           const firestore = firebase.firestore();
-          firestore.settings({ timestampsInSnapshots: true });
           const document = firestore.doc(path);
           document.set(data, { merge: true });
         });

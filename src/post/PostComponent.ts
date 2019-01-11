@@ -8,6 +8,7 @@ import { Mixin } from "../../packages/Mixin";
 import model from "./Post.json";
 import { navigate } from "lit-redux-router";
 import Template from "./PostComponentTemplate.ts";
+import { store } from "../store.js";
 
 export interface PostComponent {
   [key: string]: any; // Add index signature
@@ -22,6 +23,7 @@ export class PostComponent extends Mixin(LitElement, [
   @property({ type: String }) author: string;
   @property({ type: String }) title: string;
   @property({ type: String }) content: string;
+  @property({ type: Boolean }) create: boolean;
 
   template = Template;
 
@@ -30,7 +32,8 @@ export class PostComponent extends Mixin(LitElement, [
     this.model = model;
   }
 
-  firstUpdated() {
+  connectedCallback() {
+    super.connectedCallback();
     if (this.id)
       this.watchDocumentNew({
         path: `posts/${this.id}`,
@@ -38,6 +41,7 @@ export class PostComponent extends Mixin(LitElement, [
           if (document) {
             const keys = Object.keys(document);
             keys.map((key: any) => (this[key] = document[key]));
+            this.requestUpdate();
           }
         }
       });
@@ -45,10 +49,11 @@ export class PostComponent extends Mixin(LitElement, [
 
   text({ field, value }: any) {
     return html`
+      ${field.label}
       <input
         name="${field.name}"
         label="${field.label}"
-        value="${value}"
+        value="${value ? value : ""}"
       ></input>
     `;
   }
@@ -76,13 +81,13 @@ export class PostComponent extends Mixin(LitElement, [
       content: content.value
     };
 
+    if (this.create)
+      this.addDocument({ path: "posts", data }).then((result: any) => {
+        store.dispatch(navigate(`/post/read/${result}`));
+      });
     this.updateDocument({ path: `posts/${this.id}`, data }).then(
       (result: any) => {
-        return;
-        setTimeout(
-          () => this.store.dispatch(navigate(`/post/read/${result}`)),
-          2000
-        );
+        this.editable = !this.editable;
       }
     );
   }
