@@ -4,7 +4,6 @@ const Quill = require("quill");
 
 export class QuillComponent extends LitElement {
   @property({ type: String }) value: string;
-  @property({ type: String }) html: string;
 
   firstUpdated() {
     const container = this.shadowRoot.querySelector("#editor");
@@ -17,8 +16,14 @@ export class QuillComponent extends LitElement {
       quill.setContents(content);
     }
     quill.on("text-change", (value: any) => {
+      this.dispatchEvent(
+        new CustomEvent("text-change", {
+          bubbles: true,
+          composed: true,
+          detail: value
+        })
+      );
       this.value = JSON.stringify(quill.getContents());
-      this.html = quill.root.innerHTML;
     });
   }
 
