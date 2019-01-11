@@ -9,7 +9,9 @@ export default function({ user }: any) {
           html`
             <my-card collapsible>
               <h3 slot="title">${post.title}</h3>
-              <div slot="content">${post.content}</div>
+              <div slot="content">
+                <quill-display .value="${post.content}"></quill-display>
+              </div>
             </my-card>
           `
       }"
