@@ -9,12 +9,10 @@ export class QuillDisplay extends LitElement {
 
   firstUpdated() {
     const container = this.shadowRoot.querySelector("#editor");
-    console.log(container);
     const options = {
       theme: "snow"
     };
     const quill = new Quill(container, options);
-    console.log(this.value);
     if (this.value) {
       const content = JSON.parse(this.value);
       quill.setContents(content);

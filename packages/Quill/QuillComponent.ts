@@ -1,7 +1,6 @@
 import { LitElement, html, property } from "@polymer/lit-element";
 import * as style from "./Quill.scss";
 const Quill = require("quill");
-import { unsafeHTML } from "lit-html/directives/unsafe-html";
 
 export class QuillComponent extends LitElement {
   @property({ type: Object }) delta: any;
@@ -15,7 +14,6 @@ export class QuillComponent extends LitElement {
       theme: "snow"
     };
     const quill = new Quill(container, options);
-    console.log(this.value);
     if (this.value) {
       const content = JSON.parse(this.value);
       quill.setContents(content);
