@@ -3,10 +3,8 @@ import * as style from "./Quill.scss";
 const Quill = require("quill");
 
 export class QuillComponent extends LitElement {
-  @property({ type: Object }) delta: any;
   @property({ type: String }) value: string;
   @property({ type: String }) html: string;
-  @property({ type: Boolean }) output: boolean = false;
 
   firstUpdated() {
     const container = this.shadowRoot.querySelector("#editor");
