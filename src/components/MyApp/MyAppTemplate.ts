@@ -31,7 +31,7 @@ export default function({ router, user }: any) {
                   collapsible
                   full-height
                   grow
-                  ?no-border="${this.mediaSize == "small"}"
+                  style="border: 0 1em 1em 0"
                 >
                   <h3 slot="title">Menu</h3>
                   <div slot="content"><app-drawer></app-drawer></div>
@@ -83,6 +83,10 @@ export default function({ router, user }: any) {
                       component="user-controller"
                     ></lit-route>
                     <lit-route path="/blog" component="page-blog"></lit-route>
+                    <lit-route
+                      path="/contact"
+                      component="contact-component"
+                    ></lit-route>
                   </my-flex>
                 </my-card>
               </my-flex>

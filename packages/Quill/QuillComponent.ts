@@ -9,7 +9,7 @@ export class QuillComponent<LitElement> extends LitElement {
     const container = this.shadowRoot.querySelector("#editor");
     const options = {
       bounds: this.shadowRoot.querySelector("#editor"),
-      debug: "info",
+      // debug: "info",
       scrollingContainer: this,
       theme: "snow"
     };
@@ -25,18 +25,6 @@ export class QuillComponent<LitElement> extends LitElement {
       );
       this.value = JSON.stringify(quill.getContents());
     });
-    // const toolbar = this.shadowRoot.querySelector(".ql-toolbar button.ql-bold");
-    // toolbar.addEventListener("click", (e: Event) => {
-    //   e.preventDefault();
-    //   e.stopPropagation();
-    // });
-    // toolbar.addEventListener("mousedown", (e: Event) => {
-    //   e.preventDefault();
-    // });
-    // toolbar.addEventListener("mousemove", (e: Event) => {
-    //   e.preventDefault();
-    //   e.stopPropagation();
-    // });
   }
 
   render() {

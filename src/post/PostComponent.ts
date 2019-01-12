@@ -81,15 +81,17 @@ export class PostComponent extends Mixin(LitElement, [
       content: content.value
     };
 
-    if (this.create)
+    if (this.create) {
       this.addDocument({ path: "posts", data }).then((result: any) => {
         store.dispatch(navigate(`/post/read/${result}`));
       });
-    this.updateDocument({ path: `posts/${this.id}`, data }).then(
-      (result: any) => {
-        this.editable = !this.editable;
-      }
-    );
+    } else {
+      this.updateDocument({ path: `posts/${this.id}`, data }).then(
+        (result: any) => {
+          this.editable = !this.editable;
+        }
+      );
+    }
   }
 }
 

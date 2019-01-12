@@ -16,13 +16,21 @@ export default function({ user }: any) {
                     <a href="/user/post">private post</a>.
                   `
                 : html`
-                    Please <a href="/user">sign in</a>.
+                    <ul>
+                    <li>
+                      Please
+                      <a href="/user">sign in</a
+                      </a>.
+                      <a href="/post">Edit a public scoped post</a>
+                    </ul>
                   `
             }
-            Shift + space will give you a radial menu.
+            Shift + space or long tap will give you a radial menu. This can be
+            turned off in user/settings.
           </p>
         </div>
       </my-card>
+      <blog-component> </blog-component>
     </my-grid>
     <my-dialog>Test</my-dialog>
   `;

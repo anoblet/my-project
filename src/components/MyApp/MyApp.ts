@@ -27,6 +27,7 @@ import(/* webpackChunkName: "PageInfo" */ "../PageInfo/PageInfo");
 import(/* webpackChunkName: "PageBlog" */ "../PageBlog/PageBlog");
 import(/* webpackChunkName: "Drawer" */ "../Drawer/Drawer");
 import(/* webpackChunkName: "ProfileMenu" */ "../ProfileMenu/ProfileMenu");
+import(/* webpackChunkName: "Contact" */ "../Contact/Contact");
 
 var pathToRegexp = require("path-to-regexp");
 

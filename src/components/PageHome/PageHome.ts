@@ -10,6 +10,7 @@ import * as style from "./PageHome.scss";
 import Template from "./PageHomeTemplate";
 import "../../../packages/Dialog";
 import "../../components/CollectionList/CollectionList";
+import(/* webpackChunkName: "Blog" */ "../Blog/Blog");
 
 export class PageHome extends Mixin(connect(store)(LitElement), [
   TaskMixin,
