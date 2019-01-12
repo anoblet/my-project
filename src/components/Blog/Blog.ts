@@ -1,4 +1,4 @@
-import { html, LitElement, customElement } from "@polymer/lit-element";
+import { html, LitElement, customElement } from "lit-element";
 import * as style from "./Blog.scss";
 import Template from "./BlogTemplate";
 

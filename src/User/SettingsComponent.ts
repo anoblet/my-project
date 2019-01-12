@@ -1,6 +1,6 @@
 import * as style from "./SettingsComponent.scss";
 
-import { LitElement, html, property } from "@polymer/lit-element";
+import { LitElement, html, property } from "lit-element";
 
 import { Mixin } from "../../packages/Mixin";
 import { FirebaseMixin } from "../../packages/FirebaseMixin";

@@ -9,7 +9,7 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "@polymer/lit-element": "^0.6.2",
+    "lit-element": "^0.6.2",
     "@anoblet/mixin": "1.0.0",
     "@anoblet/base-mixin": "1.0.0"
   }

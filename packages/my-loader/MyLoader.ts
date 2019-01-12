@@ -1,4 +1,4 @@
-import { LitElement } from '@polymer/lit-element';
+import { LitElement } from 'lit-element';
 import { Mixin } from '@anoblet/mixin';
 import { BaseMixin } from '@anoblet/base-mixin';
 

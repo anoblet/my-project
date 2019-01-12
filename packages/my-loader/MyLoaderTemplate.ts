@@ -1,4 +1,4 @@
-import { html } from '@polymer/lit-element';
+import { html } from 'lit-element';
 import style from './MyLoader.scss';
 
 export default function (props: any) {

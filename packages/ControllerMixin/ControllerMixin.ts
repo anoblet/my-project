@@ -1,4 +1,4 @@
-import { html, property } from "@polymer/lit-element";
+import { html, property } from "lit-element";
 
 type Constructor<T = {}> = new (...args: any[]) => T;
 

@@ -1,4 +1,4 @@
-import { html, LitElement } from "@polymer/lit-element";
+import { html, LitElement } from "lit-element";
 import { Mixin } from "../../../packages/Mixin";
 import { TaskMixin } from "../../../packages/TaskMixin";
 import { connect } from "pwa-helpers/connect-mixin.js";

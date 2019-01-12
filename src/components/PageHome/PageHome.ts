@@ -1,35 +1,33 @@
-import { html, LitElement } from "@polymer/lit-element";
-import { connect } from "pwa-helpers/connect-mixin.js";
-import { BaseMixin } from "../../../packages/BaseMixin";
-import { FirebaseMixin } from "../../../packages/FirebaseMixin";
-import { Mixin } from "../../../packages/Mixin";
-import { StateMixin } from "../../../packages/StateMixin";
-import { TaskMixin } from "../../../packages/TaskMixin";
-import { store } from "../../store.js";
+import { css, html, LitElement } from "lit-element";
 import * as style from "./PageHome.scss";
 import Template from "./PageHomeTemplate";
-import "../../../packages/Dialog";
-import "../../components/CollectionList/CollectionList";
+import(/* webpackChunkName: "ComponentList" */ "../../components/CollectionList/CollectionList");
 import(/* webpackChunkName: "Blog" */ "../Blog/Blog");
+import { getTheme } from "../../theme-provider";
+import { Mixin } from "../../../packages/Mixin";
+import { StateMixin } from "../../../packages/StateMixin";
+import { connect } from "pwa-helpers/connect-mixin.js";
+import { store } from "../../store.js";
 
-export class PageHome extends Mixin(connect(store)(LitElement), [
-  TaskMixin,
-  StateMixin
-]) {
-  getPosts() {}
+export class PageHome extends Mixin(connect(store)(LitElement), [StateMixin]) {
+  static get styles() {
+    const theme = getTheme();
+    return [
+      css`
+        :host: {
+          background-color: ${theme.backgroundColor};
+          color: ${theme.textColor};
+        }
+      `
+    ];
+  }
 
   public render() {
     return html`
       <style>
         ${style}
       </style>
-      ${
-        !this.taskPending
-          ? Template.bind(this)(this.state)
-          : html`
-              <my-loader></my-loader>
-            `
-      }
+      ${Template.bind(this)(this.state)}
     `;
   }
 }

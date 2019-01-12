@@ -1,4 +1,4 @@
-import { html } from "@polymer/lit-element";
+import { html } from "lit-element";
 
 export default function({ user }: any) {
   return html`
@@ -12,16 +12,11 @@ export default function({ user }: any) {
                 ? html`
                     Welcome ${user.name}. You can change your
                     <a href="/theme">theme</a> or create a
-                    <a href="/post">public post</a> or a
                     <a href="/user/post">private post</a>.
                   `
                 : html`
                     <ul>
-                    <li>
-                      Please
-                      <a href="/user">sign in</a
-                      </a>.
-                      <a href="/post">Edit a public scoped post</a>
+                      <li>Please <a href="/user">sign in</a>.</li>
                     </ul>
                   `
             }
@@ -32,6 +27,5 @@ export default function({ user }: any) {
       </my-card>
       <blog-component> </blog-component>
     </my-grid>
-    <my-dialog>Test</my-dialog>
   `;
 }

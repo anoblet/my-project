@@ -9,7 +9,7 @@ import("../post/PostGridComponent");
 
 import * as style from "../post/PostController.scss";
 
-import { LitElement, html, property } from "@polymer/lit-element";
+import { LitElement, html, property } from "lit-element";
 
 import { FirebaseMixin } from "../../packages/FirebaseMixin";
 import { Mixin } from "../../packages/Mixin";

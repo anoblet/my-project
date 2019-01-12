@@ -1,4 +1,4 @@
-import { html } from "@polymer/lit-element";
+import { html } from "lit-element";
 import * as style from "./AppHeader.scss";
 
 export default function({  }: any) {

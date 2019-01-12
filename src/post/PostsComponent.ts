@@ -1,6 +1,6 @@
 import * as style from "./PostComponent.scss";
 
-import { LitElement, html, property } from "@polymer/lit-element";
+import { LitElement, html, property } from "lit-element";
 
 import { until } from "lit-html/directives/until";
 

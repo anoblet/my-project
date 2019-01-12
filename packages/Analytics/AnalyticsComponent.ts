@@ -1,4 +1,4 @@
-import { LitElement, property } from "@polymer/lit-element";
+import { LitElement, property } from "lit-element";
 
 export class AnalyticsComponent {
   @property({ type: String }) account: string;

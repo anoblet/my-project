@@ -1,6 +1,6 @@
 // import * as style from "./ListComponent.scss";
 //
-// import { LitElement, html, property } from "@polymer/lit-element";
+// import { LitElement, html, property } from "lit-element";
 //
 // import { TemplateMixin } from "../../packages/TemplateMixin";
 // import { Mixin } from "../../packages/MixiWn";

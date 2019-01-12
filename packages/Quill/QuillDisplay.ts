@@ -1,4 +1,4 @@
-import { LitElement, html, property } from "@polymer/lit-element";
+import { LitElement, html, property } from "lit-element";
 import * as style from "./Quill.scss";
 const Quill = require("quill");
 import { unsafeHTML } from "lit-html/directives/unsafe-html";

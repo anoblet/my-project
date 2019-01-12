@@ -14,6 +14,6 @@
     "@anoblet/debug-mixin": "1.0.0",
     "@anoblet/helper-mixin": "1.0.0",
     "@anoblet/rendertemplate": "git+https://github.com/anoblet/RenderTemplate.git",
-    "@polymer/lit-element": "^0.6.2"
+    "lit-element": "^0.6.2"
   }
 }

@@ -9,7 +9,7 @@
   "author": "Andrew Noblet",
   "license": "MIT",
   "dependencies": {
-    "@polymer/lit-element": "^0.6.2",
+    "lit-element": "^0.6.2",
     "@anoblet/base-mixin": "1.0.0",
     "lorem-ipsum": "^1.0.6"
   }

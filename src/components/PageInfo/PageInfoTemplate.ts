@@ -1,5 +1,5 @@
 import "@material/mwc-fab";
-import { html } from "@polymer/lit-element";
+import { html } from "lit-element";
 import { until } from "lit-html/directives/until";
 
 export default function({ user }: any) {

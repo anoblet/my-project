@@ -1,5 +1,5 @@
 import(/* webpackChunkName: "MWCFab" */ "@material/mwc-fab");
-import { html, LitElement } from "@polymer/lit-element";
+import { html, LitElement } from "lit-element";
 import { BaseMixin } from "../../../packages/BaseMixin";
 import { TemplateMixin } from "../../../packages/TemplateMixin";
 import { Mixin } from "../../../packages/Mixin";

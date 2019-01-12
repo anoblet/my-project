@@ -1,5 +1,5 @@
 import * as style from "./CollectionGrid.scss";
-import { LitElement, html, property } from "@polymer/lit-element";
+import { LitElement, html, property } from "lit-element";
 import template from "./CollectionGridTemplate";
 import { Mixin } from "../../../packages/Mixin";
 import { FirebaseMixin } from "../../../packages/FirebaseMixin";

@@ -1,4 +1,4 @@
-import { html, LitElement, property } from '@polymer/lit-element';
+import { html, LitElement, property } from 'lit-element';
 import { BaseMixin } from '@anoblet/base-mixin';
 
 const loremIpsum = require('lorem-ipsum');

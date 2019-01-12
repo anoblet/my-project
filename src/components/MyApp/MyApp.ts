@@ -3,7 +3,7 @@ import("../../../packages/MediaQuery");
 
 import * as style from "./MyApp.scss";
 
-import { LitElement, html, property } from "@polymer/lit-element";
+import { LitElement, html, property } from "lit-element";
 
 import { FirebaseMixin } from "../../../packages/FirebaseMixin";
 import { HelperMixin } from "../../../packages/HelperMixin";
