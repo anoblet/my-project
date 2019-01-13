@@ -1,7 +1,7 @@
 :host {
   display: flex;
   flex-direction: column;
-  border: 1px solid var(--border-color) !important;
+  border: 1px solid var(--border-color);
   padding: 1em;
   max-width: 100%;
 }
@@ -26,7 +26,7 @@
   cursor: pointer;
 }
 
-:host(:not([full-height])){
+:host(:not([full-height])) {
   height: min-content;
 }
 
@@ -69,7 +69,8 @@
   }
 }
 
-::slotted(h2), ::slotted(h3) {
+::slotted(h2),
+::slotted(h3) {
   margin-block-start: 0;
   margin-block-end: 0;
 }
@@ -87,7 +88,7 @@
 
 #content {
   display: flex;
-  flex:1;
+  flex: 1;
 }
 
 #title {
@@ -115,7 +116,7 @@ mwc-icon:hover {
   cursor: pointer;
 }
 
-.border{
+.border {
   border: 1px solid var(--border-color);
 }
 

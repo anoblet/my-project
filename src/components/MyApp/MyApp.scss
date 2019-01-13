@@ -54,6 +54,7 @@ app-drawer-absolute {
 
 #drawer {
   display: flex;
+  padding: 1em;
 }
 
 #drawer[media-size="small"] {
@@ -80,7 +81,6 @@ app-drawer-absolute {
 
 :host([drawer-opened]) #drawer-container:not([media-size="small"]) {
   grid-template-columns: minmax(128px, 1fr) 4fr;
-  grid-gap: 1em;
 }
 
 #container {
@@ -140,19 +140,15 @@ app-drawer-absolute {
 }
 
 #content {
+  border: 1px solid var(--border-color);
 }
 
 mwc-icon {
   color: var(--mdc-theme-primary);
 }
 
-lit-route {
-  /* padding-right: 1em; */
-  display: flex;
-}
-
 lit-route[active] {
-  flex: 1;
+  padding: 1em;
 }
 
 ul {
@@ -177,4 +173,9 @@ ul {
   position: absolute;
   right: 0;
   z-index: 1;
+}
+
+#drawer[media-size="small"] {
+  border: 0;
+  border-right: 1px solid var(--border-color);
 }

@@ -28,6 +28,7 @@ import(/* webpackChunkName: "PageBlog" */ "../PageBlog/PageBlog");
 import(/* webpackChunkName: "Drawer" */ "../Drawer/Drawer");
 import(/* webpackChunkName: "ProfileMenu" */ "../ProfileMenu/ProfileMenu");
 import(/* webpackChunkName: "Contact" */ "../Contact/Contact");
+import(/* webpackChunkName: "PageAdmin" */ "../PageAdmin/PageAdmin");
 
 var pathToRegexp = require("path-to-regexp");
 
@@ -178,6 +179,7 @@ export class MyApp extends Mixin(connect(store)(LitElement), [
     this.style.setProperty("--text-color", theme.textColor);
     this.style.setProperty("--primary-color", theme.primaryColor);
     this.style.setProperty("--secondary-color", theme.secondaryColor);
+    this.style.setProperty("--border-color", theme.borderColor);
   }
 
   // State

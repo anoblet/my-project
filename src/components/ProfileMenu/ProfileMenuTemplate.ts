@@ -4,25 +4,23 @@ import { render } from "lit-html";
 export default function({ user }: any) {
   return html`
     <ul>
-      <li>
-        ${
-          user.signedIn
-            ? html`
-                <li><a href="/user-settings">Settings</a></li>
-                <li><a href="/theme">Theme</a></li>
-              `
-            : ""
-        }
-        ${
-          user.signedIn
-            ? html`
-                <a href="/user/signout">Sign out</a>
-              `
-            : html`
-                <a href="/user/signin">Sign in</a>
-              `
-        }
-      </li>
+      ${
+        user.signedIn
+          ? html`
+              <a href="/user-settings"><li>Settings</li></a>
+              <li><a href="/theme">Theme</a></li>
+            `
+          : ""
+      }
+      ${
+        user.signedIn
+          ? html`
+              <a href="/user/signout"><li>Sign out</li></a>
+            `
+          : html`
+              <a href="/user/signin">Sign in</a>
+            `
+      }
     </ul>
   `;
 }

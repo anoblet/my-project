@@ -28,10 +28,12 @@ export default function({ router, user }: any) {
                 media-size="${this.mediaSize}"
               >
                 <my-card
+                  id="drawer-card"
                   collapsible
                   full-height
                   grow
-                  style="border: 0 1em 1em 0"
+                  no-border
+                  no-padding
                 >
                   <h3 slot="title">Menu</h3>
                   <div slot="content"><app-drawer></app-drawer></div>
@@ -87,6 +89,7 @@ export default function({ router, user }: any) {
                       path="/contact"
                       component="contact-component"
                     ></lit-route>
+                    <lit-route path="/admin" component="page-admin"></lit-route>
                   </my-flex>
                 </my-card>
               </my-flex>

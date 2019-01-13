@@ -5,7 +5,7 @@ import { LitElement, html, property } from "lit-element";
 import { FirebaseMixin } from "../../packages/FirebaseMixin";
 import { TemplateMixin } from "../../packages/TemplateMixin";
 import { Mixin } from "../../packages/Mixin";
-import model from "./Post.json";
+import model from "./PostModel";
 import { navigate } from "lit-redux-router";
 import Template from "./PostComponentTemplate.ts";
 import { store } from "../store.js";

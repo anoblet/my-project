@@ -12,6 +12,7 @@ import { until } from "lit-html/directives/until";
 import structure from "../post/PostModel";
 
 import("../components/AppUser/AppUser");
+import { config } from "../../config";
 
 export interface UserController {
   [key: string]: any; // Add index signature
@@ -112,16 +113,7 @@ export class UserController extends Mixin(connect(store)(LitElement), [
     const user = new User();
     user.signOut();
     this.setState({}, "user", { merge: false });
-    this.setState(
-      {
-        backgroundColor: "#242424",
-        borderColor: "#CCC",
-        textColor: "#CCC",
-        primaryColor: "#00ff00",
-        secondaryColor: "#ff0080"
-      },
-      "theme"
-    );
+    this.setState(config.defaultTheme, "theme");
     store.dispatch(navigate("/"));
   }
 

@@ -1,5 +1,5 @@
 import { html } from "lit-element";
-
+import("../../../packages/PellComponent/PellComponent");
 export default function({ user }: any) {
   return html`
     <my-grid id="content-grid">
@@ -22,6 +22,7 @@ export default function({ user }: any) {
             }
             Shift + space or long tap will give you a radial menu. This can be
             turned off in user/settings.
+            <pell-component></pell-component>
           </p>
         </div>
       </my-card>

@@ -36,6 +36,19 @@ export default function({ theme, user }: any) {
                         type="color"
                         value="${theme.textColor}"
                       />
+                      <label>Border color</label>
+                      <input
+                        @input="${
+                          (e: any) =>
+                            this.setState(
+                              { borderColor: e.target.value },
+                              "theme"
+                            )
+                        }"
+                        aria-label="Border color"
+                        type="color"
+                        value="${theme.borderColor}"
+                      />
                       <label>Primary color</label>
                       <input
                         @input="${

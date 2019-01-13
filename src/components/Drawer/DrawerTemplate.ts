@@ -3,11 +3,17 @@ import { render } from "lit-html";
 
 export default function() {
   return html`
-    <ul id="nav">
+    <ul>
       <a href="/"> <li>Home</li></a
       ><a href="/blog"> <li>Blog</li></a
-      ><a href="/contact"> <li>Contact</li></a
-      ><a href="/info"> <li>Info</li></a>
+      ><a href="/contact"> <li>Contact</li></a>
     </ul>
+    ${
+      this.state.user.uid === "m42gwHOSlbUniorNjigqa1nnHIE3"
+        ? html`
+            <a href="/admin">Admin</a>
+          `
+        : ""
+    }
   `;
 }

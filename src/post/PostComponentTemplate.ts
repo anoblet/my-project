@@ -31,6 +31,15 @@ export default function() {
         ${
           this.editable
             ? html`
+                ${this.text({ field: this.model.date, value: this.date })}
+              `
+            : html`
+                ${this.date}
+              `
+        }
+        ${
+          this.editable
+            ? html`
                 <quill-component
                   name="content"
                   ?output="${this.editable}"
