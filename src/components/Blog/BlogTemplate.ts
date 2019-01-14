@@ -12,12 +12,14 @@ export default function() {
               <my-card collapsible>
                 <h3 slot="title">
                   ${post.title}${
-                    this.state.user.uid === "m42gwHOSlbUniorNjigqa1nnHIE3"
-                      ? html`
-                          <a href="/post/edit/${post.id}"
-                            ><button>Edit</button></a
-                          >
-                        `
+                    this.state.app.mode === "experimental"
+                      ? this.state.user.uid === "m42gwHOSlbUniorNjigqa1nnHIE3"
+                        ? html`
+                            <a href="/post/edit/${post.id}"
+                              ><button>Edit</button></a
+                            >
+                          `
+                        : ""
                       : ""
                   }
                 </h3>

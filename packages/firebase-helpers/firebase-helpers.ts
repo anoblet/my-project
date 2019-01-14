@@ -28,16 +28,22 @@ export const getCollection = (path: string, options: any = {}) => {
       });
 };
 
-export const getDocument = (path: string, options: any = {}) => {
+export const updateDocument = ({ path, data }: any) => {
+  const firestore = firebase.firestore();
+  const document = firestore.doc(path);
+  document.set(data, { merge: true });
+};
+
+export const getDocument = ({ callback, path, options = {} }: any) => {
   const firestore = firebase.firestore();
   const document = firestore.doc(path);
   return options.watch
     ? document.get((doc: any) => {
         const source = doc.metadata.hasPendingWrites ? "local" : "remote";
-        options.callback(doc.data());
+        callback(doc.data());
       })
     : document.onSnapshot((doc: any) => {
         const source = doc.metadata.hasPendingWrites ? "local" : "remote";
-        options.callback(doc.data());
+        callback(doc.data());
       });
 };

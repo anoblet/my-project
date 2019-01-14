@@ -19,6 +19,7 @@ import { connectRouter } from "lit-redux-router";
 import { installRouter } from "pwa-helpers/router.js";
 import { runtime } from "../../Runtime";
 import { store } from "../../store.js";
+import { getDocument } from "../../../packages/firebase-helpers";
 
 import(/* webpackChunkName: "PostController" */ "../../post/PostController");
 import(/* webpackChunkName: "UserController" */ "../../controllers/UserController");
@@ -88,6 +89,14 @@ export class MyApp extends Mixin(connect(store)(LitElement), [
       this.firestoreInit(),
       this.firebaseCheckRedirect(),
       this.getUser().then(async (user: any) => {
+        const path = `users/${user.uid}/settings/default`;
+        if (user)
+          getDocument({
+            path,
+            callback: (document: any) => {
+              this.setState({ mode: document.mode }, "app");
+            }
+          });
         if (user) await this.onUserLoggedIn(user);
         else this.setState({}, "user");
       })

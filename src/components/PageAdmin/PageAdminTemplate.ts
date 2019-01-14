@@ -1,6 +1,6 @@
 import { html } from "lit-element";
 
-export default function({ user }: any) {
+export default function({ app, user }: any) {
   return html`
     <grid-component gap="1em">
       <card-component title="Links">
@@ -19,9 +19,17 @@ export default function({ user }: any) {
             }
           }"
         >
-          <option value="production">Production</option>
-          <option value="development">Development</option>
-          <option value="experimental">Experimental</option>
+          <option ?selected="${app.mode === "production"}" value="production"
+            >Production</option
+          >
+          <option ?selected="${app.mode === "development"}" value="development"
+            >Development</option
+          >
+          <option
+            ?selected="${app.mode === "experimental"}"
+            value="experimental"
+            >Experimental</option
+          >
         </select>
       </card-component>
     </grid-component>
