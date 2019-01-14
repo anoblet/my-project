@@ -16,7 +16,10 @@ export default function({ user }: any) {
                   `
                 : html`
                     <ul>
-                      <li>Please <a href="/user">sign in</a>.</li>
+                      <li>
+                        Please <a href="/user">sign in</a> (you can sign in
+                        anonymously).
+                      </li>
                     </ul>
                   `
             }

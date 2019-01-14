@@ -12,21 +12,16 @@ export default function() {
               <my-card collapsible>
                 <h3 slot="title">
                   ${post.title}${
-                    (this.state.user.uid = "m42gwHOSlbUniorNjigqa1nnHIE3"
+                    this.state.user.uid === "m42gwHOSlbUniorNjigqa1nnHIE3"
                       ? html`
                           <a href="/post/edit/${post.id}"
                             ><button>Edit</button></a
                           >
                         `
-                      : "")
+                      : ""
                   }
                 </h3>
-                <div slot="content">
-                  <!--
-                    <quill-display .value="${post.content}"></quill-display>
-                  -->
-                  ${unsafeHTML(post.content)}
-                </div>
+                <div slot="content">${unsafeHTML(post.content)}</div>
               </my-card>
             `
           )

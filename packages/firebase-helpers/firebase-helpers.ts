@@ -27,7 +27,7 @@ export const getCollection = (path: string, options: any = {}) => {
       });
 };
 
-export const getDocument = (path: string, options: any) => {
+export const getDocument = (path: string, options: any = {}) => {
   const firestore = firebase.firestore();
   const document = firestore.doc(path);
   return options.watch

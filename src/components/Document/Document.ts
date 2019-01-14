@@ -10,7 +10,7 @@ export class Document extends LitElement {
       ${JSON.stringify(this._data)}
     `;
 
-  firstUpdated() {
+  async firstUpdated() {
     this._data = await getDocument(this.path);
   }
 
