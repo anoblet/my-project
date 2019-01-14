@@ -11,5 +11,6 @@ export default function() {
         : ""
     }
     <div class="content"><slot></slot></div>
+    <div class="actions"><slot name="actions"></slot></div>
   `;
 }

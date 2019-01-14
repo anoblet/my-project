@@ -169,10 +169,14 @@ ul {
   border: 1px solid var(--border-color);
   border-top: 0;
   border-right: 0;
-  padding: 1em;
+  padding: 1em 2em 2em 2em;
   position: absolute;
   right: 0;
   z-index: 1;
+}
+
+#profile-menu li {
+  padding-bottom: 0.25em;
 }
 
 #drawer[media-size="small"] {

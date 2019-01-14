@@ -13,6 +13,13 @@ h3 {
   margin-block-start: 0;
 }
 
+.actions {
+  display: flex;
+  margin-top: 1em;
+  justify-content: flex-end;
+}
+
 .content {
   border: 1px solid var(--border-color);
+  padding: var(--card-inner-padding, 1em);
 }

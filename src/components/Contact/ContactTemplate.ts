@@ -11,9 +11,9 @@ export default function() {
           <label>Subject</label><input name="subject" placeholder="Subject" />
           <label>Message</label
           ><textarea name="message" placeholder="Message"></textarea>
-          <div class="card-actions"><mwc-button>Send</mwc-button></div>
         </grid-component>
       </form>
+      <div slot="actions"><mwc-button>Send</mwc-button></div>
     </card-component>
   `;
 }
