@@ -20,7 +20,7 @@ import { installRouter } from "pwa-helpers/router.js";
 import { runtime } from "../../Runtime";
 import { store } from "../../store.js";
 
-import(/* webpackChunkName: "PostController" */ "../../controllers/PostController");
+import(/* webpackChunkName: "PostController" */ "../../post/PostController");
 import(/* webpackChunkName: "UserController" */ "../../controllers/UserController");
 import(/* webpackChunkName: "UserSettings" */ "../../User/SettingsComponent");
 import(/* webpackChunkName: "PageInfo" */ "../PageInfo/PageInfo");
@@ -154,10 +154,10 @@ export class MyApp extends Mixin(connect(store)(LitElement), [
     if (matchedRoute)
       switch (matchedRoute.name) {
         case "post": {
-          import("../../controllers/PostController");
+          import("../../post/PostController");
         }
         case "post.action": {
-          import("../../controllers/PostController");
+          import("../../post/PostController");
         }
       }
 

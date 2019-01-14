@@ -40,20 +40,16 @@ export default function() {
         ${
           this.editable
             ? html`
-                <quill-component
+                <pell-component
                   name="content"
-                  ?output="${this.editable}"
-                  .value="${this.content}"
-                ></quill-component>
+                  .input="${this.content}"
+                ></pell-component>
               `
             : html`
                 ${
                   this.content
                     ? html`
-                        <quill-display
-                          name="content"
-                          .value="${this.content}"
-                        ></quill-display>
+                        ${unsafeHTML(this.content)}
                       `
                     : ""
                 }

@@ -1,8 +1,10 @@
-import { css, customElement, html, LitElement } from "lit-element";
+import { css, customElement, html, LitElement, property } from "lit-element";
 import { exec, init } from "pell/src/pell.js";
 
 @customElement("pell-component")
 export class PellComponent extends LitElement {
+  @property() input: string;
+  @property() value: string;
   static get styles() {
     return [
       css`
@@ -12,23 +14,27 @@ export class PellComponent extends LitElement {
     ];
   }
 
+  updated(changedProperties: any) {
+    console.log(changedProperties);
+    const editor: any = this.shadowRoot.querySelector("#editor");
+    if (changedProperties.get("input")) {
+      console.log("here");
+      editor.content.innerHTML = this.input;
+    }
+  }
+
   firstUpdated() {
-    console.log(this.shadowRoot.querySelector("#editor"));
+    console.log(this.input);
+    const editor: any = this.shadowRoot.querySelector("#editor");
     init({
-      element: this.shadowRoot.querySelector("#editor"),
-
-      // <Function>, required
-      // Use the output html, triggered by element's `oninput` event
-      onChange: (html: any) => console.log(html),
-
+      element: editor,
+      onChange: (html: any) => (this.value = html),
       // <string>, optional, default = 'div'
       // Instructs the editor which element to inject via the return key
       defaultParagraphSeparator: "div",
-
       // <boolean>, optional, default = false
       // Outputs <span style="font-weight: bold;"></span> instead of <b></b>
       styleWithCSS: false,
-
       // <Array[string | Object]>, string if overwriting, object if customizing/creating
       // action.name<string> (only required if overwriting)
       // action.icon<string> (optional if overwriting, required if custom action)
@@ -43,7 +49,9 @@ export class PellComponent extends LitElement {
           title: "Custom Action",
           result: () => console.log("Do something!")
         },
-        "underline"
+        "underline",
+        "olist",
+        "ulist"
       ],
 
       // classes<Array[string]> (optional)
@@ -55,6 +63,7 @@ export class PellComponent extends LitElement {
         selected: "pell-button-selected"
       }
     });
+    if (this.input) editor.content.innerHTML = this.input;
   }
 
   public render() {

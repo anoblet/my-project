@@ -58,10 +58,11 @@ export class PostController extends Mixin(LitElement, [
     this.requestUpdate();
   }
 
-  edit() {
+  edit(id: string) {
     this._template = html`
-      In progress
+      <post-component editable id="${id}"></post-component>
     `;
+    this.requestUpdate();
   }
 
   itemDeleted(item: any) {
