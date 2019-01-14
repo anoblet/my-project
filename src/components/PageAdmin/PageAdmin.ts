@@ -7,6 +7,9 @@ import { StateMixin } from "../../../packages/StateMixin";
 import { connect } from "pwa-helpers/connect-mixin.js";
 import { store } from "../../store.js";
 
+import("../CardComponent/CardComponent");
+import("../GridComponent/GridComponent");
+
 export class PageAdmin extends Mixin(connect(store)(LitElement), [StateMixin]) {
   static get styles() {
     const theme = getTheme();
@@ -18,6 +21,11 @@ export class PageAdmin extends Mixin(connect(store)(LitElement), [StateMixin]) {
         }
       `
     ];
+  }
+
+  constructor() {
+    super();
+    this.setStore(store);
   }
 
   public render() {

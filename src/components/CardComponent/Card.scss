@@ -1,0 +1,19 @@
+@import "../../GlobalStyles";
+
+:host {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  position: relative;
+  border: 1px solid var(--border-color);
+  padding: 1em;
+}
+
+h3 {
+  margin-block-start: 0;
+}
+
+.content {
+  border: 1px solid var(--border-color);
+  padding: 1em;
+}
