@@ -1,4 +1,5 @@
 import { html } from "lit-element";
+import { unsafeHTML } from "lit-html/directives/unsafe-html";
 
 export default function({ user }: any) {
   return html`
@@ -9,9 +10,7 @@ export default function({ user }: any) {
           html`
             <my-card collapsible>
               <h3 slot="title">${post.title}</h3>
-              <div slot="content">
-                <quill-display .value="${post.content}"></quill-display>
-              </div>
+              <div slot="content">${unsafeHTML(post.content)}</div>
             </my-card>
           `
       }"
