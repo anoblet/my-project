@@ -54,13 +54,13 @@ app-drawer-absolute {
 
 #drawer {
   display: flex;
-  padding: 1em;
+  padding: 2em 2em 1em 1em;
 }
 
 #drawer[media-size="small"] {
   position: absolute;
   background: var(--background-color);
-  min-width: 50%;
+  min-width: 33%;
   height: 100%;
   z-index: 1;
 }

@@ -11,7 +11,7 @@ import { store } from "../../store.js";
 // @customElement("blog-component")
 export class Blog extends Mixin(connect(store)(LitElement), [StateMixin]) {
   async getPosts() {
-    return await getCollection("posts");
+    return await getCollection("posts", { orderBy: "sortOrder" });
   }
 
   public render() {

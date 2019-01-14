@@ -57,7 +57,7 @@ export class SettingsComponent extends Mixin(connect(store)(LitElement), [
                         this.setState(state, "settings");
                       }
                     }"
-                  />
+                  /><span class="description">${setting.description}</span>
                 `;
             }
           })

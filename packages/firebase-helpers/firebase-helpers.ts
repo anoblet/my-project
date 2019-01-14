@@ -4,7 +4,8 @@ import * as firestore from "firebase/firestore";
 export const getCollection = (path: string, options: any = {}) => {
   const firestore = firebase.firestore();
   firestore.settings({ timestampsInSnapshots: true });
-  const collection = firestore.collection(path);
+  let collection = firestore.collection(path);
+  if (options.orderBy) collection = collection.orderBy(options.orderBy);
   return options.watch
     ? collection.onSnapshot((querySnapshot: any) => {
         let result: any = [];
