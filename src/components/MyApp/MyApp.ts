@@ -26,7 +26,7 @@ import(/* webpackChunkName: "UserController" */ "../../controllers/UserControlle
 import(/* webpackChunkName: "UserSettings" */ "../../User/SettingsComponent");
 import(/* webpackChunkName: "PageInfo" */ "../PageInfo/PageInfo");
 import(/* webpackChunkName: "PageBlog" */ "../PageBlog/PageBlog");
-import(/* webpackChunkName: "Drawer" */ "../Drawer/Drawer");
+import(/* webpackChunkName: "Drawer" */ "../DrawerComponent/Drawer");
 import(/* webpackChunkName: "ProfileMenu" */ "../ProfileMenu/ProfileMenu");
 import(/* webpackChunkName: "Contact" */ "../Contact/Contact");
 import(/* webpackChunkName: "PageAdmin" */ "../PageAdmin/PageAdmin");
@@ -46,13 +46,6 @@ export class MyApp extends Mixin(connect(store)(LitElement), [
   @property({ type: String }) public title = "Andrew Noblet";
   @property({ type: Boolean, reflect: true, attribute: "drawer-opened" })
   public drawerOpened = false;
-  public defaultDocument = {
-    backgroundColor: "#ffffff",
-    borderColor: "#000000",
-    primaryColor: "#666666",
-    secondaryColor: "#000000",
-    textColor: "#000000"
-  };
   public firebaseConfig = config.firebase;
   public taskPending = false;
   public template: any = Template;
@@ -112,7 +105,7 @@ export class MyApp extends Mixin(connect(store)(LitElement), [
   }
 
   setDefaultTheme() {
-    this.setState(this.defaultDocument, "theme");
+    this.setState(config.defaultTheme, "theme");
   }
 
   async onUserLoggedIn(user: any) {

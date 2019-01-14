@@ -27,17 +27,7 @@ export default function({ router, user }: any) {
                 ?hidden="${!this.drawerOpened}"
                 media-size="${this.mediaSize}"
               >
-                <my-card
-                  id="drawer-card"
-                  collapsible
-                  full-height
-                  grow
-                  no-border
-                  no-padding
-                >
-                  <h3 slot="title">Menu</h3>
-                  <div slot="content"><app-drawer></app-drawer></div>
-                </my-card>
+                <app-drawer></app-drawer>
               </div>
               <my-flex id="content" grow scroll>
                 <my-card

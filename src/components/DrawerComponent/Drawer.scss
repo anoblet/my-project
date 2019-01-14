@@ -1,0 +1,29 @@
+@import "../../GlobalStyles";
+
+* {
+  box-sizing: border-box;
+}
+
+:host {
+  --border-color: var(--background-color);
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  position: relative;
+
+  border: 1px solid var(--border-color);
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+li {
+  padding: 0.5em 0;
+  border-bottom: 1px solid var(--background-color);
+}
+
+li:hover {
+  /* background: var(--primary-color); */
+  border-bottom: 1px solid var(--primary-color);
+}
