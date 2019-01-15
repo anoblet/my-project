@@ -18,7 +18,7 @@ import { connect } from "pwa-helpers/connect-mixin.js";
 import { model } from "../post/PostModel";
 import { navigate } from "lit-redux-router";
 import navigation from "../post/NavigationTemplate";
-import { store } from "../store.js";
+import { store } from "../store";
 import { until } from "lit-html/directives/until";
 
 export interface PostController {

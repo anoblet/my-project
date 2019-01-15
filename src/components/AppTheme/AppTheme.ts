@@ -4,7 +4,7 @@ import { config } from "../../../config";
 import { BaseMixin } from "../../../packages/BaseMixin";
 import { StateMixin } from "../../../packages/StateMixin";
 import { Mixin } from "../../../packages/Mixin";
-import { store } from "../../store.js";
+import { store } from "../../store";
 import { TaskMixin } from "../../../packages/TaskMixin";
 import Template from "./AppThemeTemplate";
 import { FirebaseMixin } from "../../../packages/FirebaseMixin";

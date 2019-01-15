@@ -6,7 +6,7 @@ import "../../../packages/lorem-ipsum";
 import { Mixin } from "../../../packages/Mixin";
 import { StateMixin } from "../../../packages/StateMixin";
 import { TaskMixin } from "../../../packages/TaskMixin";
-import { store } from "../../store.js";
+import { store } from "../../store";
 import * as style from "./PageBlog.scss";
 import Template from "./PageBlogTemplate";
 import "../../../packages/Dialog";

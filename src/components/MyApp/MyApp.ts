@@ -3,7 +3,7 @@ import("../../../packages/MediaQuery");
 
 import * as style from "./MyApp.scss";
 
-import { LitElement, html, property } from "lit-element";
+import { customElement, LitElement, html, property } from "lit-element";
 
 import { FirebaseMixin } from "../../../packages/FirebaseMixin";
 import { HelperMixin } from "../../../packages/HelperMixin";
@@ -18,7 +18,7 @@ import { connect } from "pwa-helpers/connect-mixin.js";
 import { connectRouter } from "lit-redux-router";
 import { installRouter } from "pwa-helpers/router.js";
 import { runtime } from "../../Runtime";
-import { store } from "../../store.js";
+import { store } from "../../store";
 import { getDocument } from "../../../packages/firebase-helpers";
 
 import(/* webpackChunkName: "PostController" */ "../../post/PostController");

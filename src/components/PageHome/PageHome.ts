@@ -7,7 +7,7 @@ import { getTheme } from "../../theme-provider";
 import { Mixin } from "../../../packages/Mixin";
 import { StateMixin } from "../../../packages/StateMixin";
 import { connect } from "pwa-helpers/connect-mixin.js";
-import { store } from "../../store.js";
+import { store } from "../../store";
 
 export class PageHome extends Mixin(connect(store)(LitElement), [StateMixin]) {
   static get styles() {

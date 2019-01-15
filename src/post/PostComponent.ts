@@ -8,7 +8,7 @@ import { Mixin } from "../../packages/Mixin";
 import model from "./PostModel";
 import { navigate } from "lit-redux-router";
 import Template from "./PostComponentTemplate.ts";
-import { store } from "../store.js";
+import { store } from "../store";
 
 export interface PostComponent {
   [key: string]: any; // Add index signature

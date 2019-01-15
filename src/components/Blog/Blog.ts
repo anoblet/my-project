@@ -6,7 +6,7 @@ import("../../../packages/Quill/QuillDisplay");
 import { connect } from "pwa-helpers/connect-mixin.js";
 import { Mixin } from "../../../packages/Mixin";
 import { StateMixin } from "../../../packages/StateMixin";
-import { store } from "../../store.js";
+import { store } from "../../store";
 
 // @customElement("blog-component")
 export class Blog extends Mixin(connect(store)(LitElement), [StateMixin]) {

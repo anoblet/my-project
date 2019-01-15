@@ -3,7 +3,7 @@ import { connect } from 'pwa-helpers/connect-mixin.js';
 import { Mixin } from '../../../packages/Mixin';
 import { StateMixin } from '../../../packages/StateMixin';
 import { TaskMixin } from '../../../packages/TaskMixin';
-import { store } from '../../store.js';
+import { store } from '../../store';
 import * as style from './AppDrawer.scss';
 import Template from './AppDrawerTemplate';
 
