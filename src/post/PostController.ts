@@ -118,7 +118,11 @@ export class PostController extends Mixin(LitElement, [
       <style>
         ${style}
       </style>
-      <div id="navigation">${navigation()}</div>
+      <!--
+        <div id="navigation">
+          <a href="/post/read"><mwc-button outlined>List</mwc-button></a>
+        </div>
+      -->
       ${until(this._template, "")}
     `;
   }

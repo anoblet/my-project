@@ -33,6 +33,11 @@ export const model = {
       label: "Content",
       name: "content",
       type: "textarea"
+    },
+    {
+      label: "Sort order",
+      name: "sort",
+      type: "number"
     }
   ]
 };

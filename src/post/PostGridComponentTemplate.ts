@@ -3,15 +3,18 @@ import { render } from "lit-html";
 
 export default function() {
   return html`
-    <div class="grid">
-      <div class="row">
-        <div class="column no-grow">#</div>
-        <div class="column">Title</div>
-        <div class="column">Author</div>
-        <div class="column no-grow no-visibility"><button>Delete</button></div>
-      </div>
-      ${
-        this.items.map(
+    <card-component>
+      <h3 slot="title"><a href="/post">Posts</a></h3
+      <div class="grid">
+        <div class="row">
+          <div class="column no-grow">#</div>
+          <div class="column">Title</div>
+          <div class="column">Author</div>
+          <div class="column no-grow no-visibility">
+            <button>Delete</button>
+          </div>
+        </div>
+        ${this.items.map(
           (item: any, index: number) => html`
             <div class="row">
               <div class="column no-grow">${index}</div>
@@ -24,8 +27,11 @@ export default function() {
               </div>
             </div>
           `
-        )
-      }
-    </div>
+        )}
+      </div>
+      <div slot="actions">
+        <a href="/post/create"><mwc-button outlined>New</mwc-button></a>
+      </div>
+    </card-component>
   `;
 }

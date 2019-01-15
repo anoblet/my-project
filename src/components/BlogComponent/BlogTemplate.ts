@@ -11,12 +11,12 @@ export default function() {
             (post: any) => html`
               <my-card collapsible>
                 <h3 slot="title">
-                  ${post.title}${
+                  <a href="/post/read/${post.id}">${post.title}</a>${
                     this.state.app.mode === "experimental"
                       ? this.state.user.uid === "m42gwHOSlbUniorNjigqa1nnHIE3"
                         ? html`
                             <a href="/post/edit/${post.id}"
-                              ><button>Edit</button></a
+                              ><mwc-icon>edit</mwc-icon></a
                             >
                           `
                         : ""

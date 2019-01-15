@@ -9,7 +9,8 @@
   padding: 1em;
 }
 
-h3 {
+h3,
+::slotted(h3) {
   margin-block-start: 0;
 }
 

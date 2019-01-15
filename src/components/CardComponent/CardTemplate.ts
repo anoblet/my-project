@@ -9,7 +9,7 @@ export default function() {
             <h3>${this.title}</h3>
           `
         : ""
-    }
+    } <slot name="title"></slot>
     <div class="content"><slot></slot></div>
     <div class="actions"><slot name="actions"></slot></div>
   `;

@@ -141,6 +141,7 @@ app-drawer-absolute {
 
 #content {
   border: 1px solid var(--border-color);
+  flex-direction: column;
 }
 
 mwc-icon {

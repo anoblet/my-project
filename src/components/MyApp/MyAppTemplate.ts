@@ -30,6 +30,13 @@ export default function({ router, user }: any) {
                 <app-drawer></app-drawer>
               </div>
               <my-flex id="content" grow scroll>
+                ${
+                  this.state.app.mode === "development"
+                    ? html`
+                        <breadcrumb-component></breadcrumb-component>
+                      `
+                    : ""
+                }
                 <my-card
                   full-height
                   grow

@@ -30,6 +30,7 @@ import(/* webpackChunkName: "Drawer" */ "../DrawerComponent/Drawer");
 import(/* webpackChunkName: "ProfileMenu" */ "../ProfileMenu/ProfileMenu");
 import(/* webpackChunkName: "Contact" */ "../Contact/Contact");
 import(/* webpackChunkName: "PageAdmin" */ "../PageAdmin/PageAdmin");
+import(/* webpackChunkName: "Breadcrumb" */ "../BreadcrumbComponent/Breadcrumb");
 
 var pathToRegexp = require("path-to-regexp");
 

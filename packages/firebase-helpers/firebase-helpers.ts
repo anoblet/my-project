@@ -1,31 +1,37 @@
 import * as firebase from "firebase/app";
 import * as firestore from "firebase/firestore";
 
-export const getCollection = (path: string, options: any = {}) => {
+/**
+ * Returns either an array of documents, or fires a callback depending on whether or not watch is true
+ * @return Array | Void
+ */
+export const getCollection = ({ path, callback, watch, orderBy }: any) => {
   const firestore = firebase.firestore();
   firestore.settings({ timestampsInSnapshots: true });
   let collection = firestore.collection(path);
-  if (options.orderBy) collection = collection.orderBy(options.orderBy);
-  return options.watch
-    ? collection.onSnapshot((querySnapshot: any) => {
-        let result: any = [];
-        querySnapshot.forEach(function(doc: any) {
-          const data = doc.data();
-          data.id = doc.id;
-          result.push(data);
-        });
-        if (options.callback) options.callback(result);
-      })
-    : collection.get().then((querySnapshot: any) => {
-        let result: any = [];
-        querySnapshot.forEach(function(doc: any) {
-          const data = doc.data();
-          data.id = doc.id;
-          result.push(data);
-        });
-        if (options.callback) options.callback(result);
-        return result;
+  if (orderBy) collection = collection.orderBy(orderBy);
+  // Watch is enabled, let's use a callback
+  if (watch)
+    collection.onSnapshot((querySnapshot: any) => {
+      let result: any = [];
+      querySnapshot.forEach(function(doc: any) {
+        const data = doc.data();
+        data.id = doc.id;
+        result.push(data);
       });
+      if (callback) callback(result);
+    });
+  // Watch is diabled, let's return an array of objects
+  else
+    return collection.get().then((querySnapshot: any) => {
+      let result: any = [];
+      querySnapshot.forEach(function(doc: any) {
+        const data = doc.data();
+        data.id = doc.id;
+        result.push(data);
+      });
+      return result;
+    });
 };
 
 export const updateDocument = ({ path, data }: any) => {

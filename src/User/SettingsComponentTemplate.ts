@@ -5,7 +5,7 @@ export default function() {
     <style>
       .description {
         display: block;
-        font-size: 0.5em;
+        font-size: 0.75em;
         padding: 1em 0;
       }
     </style>
