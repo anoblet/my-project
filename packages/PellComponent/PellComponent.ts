@@ -8,7 +8,8 @@ export class PellComponent extends LitElement {
   static get styles() {
     return [
       css`
-        :host: {
+        .pell-content {
+          min-height: 128px;
         }
       `
     ];
@@ -68,7 +69,6 @@ export class PellComponent extends LitElement {
 
   public render() {
     return html`
-      <style></style>
       <div id="editor"></div>
     `;
   }

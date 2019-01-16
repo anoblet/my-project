@@ -10,7 +10,7 @@ export default function() {
           `
         : ""
     } <slot name="title"></slot>
-    <div class="content"><slot></slot></div>
+    <div class="content"><slot name="content"></slot></div>
     <div class="actions"><slot name="actions"></slot></div>
   `;
 }

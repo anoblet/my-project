@@ -1,4 +1,5 @@
 import { html } from "lit-element";
+import { render } from "lit-html";
 
 export default function({ app, user }: any) {
   return html`

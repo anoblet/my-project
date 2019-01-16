@@ -1,11 +1,20 @@
 import * as style from "./PostGridComponent.scss";
-
-import { LitElement, html, property } from "lit-element";
-
+import { css, LitElement, html, property } from "lit-element";
 import { until } from "lit-html/directives/until";
+import template from "./PostGridComponentTemplate";
 
 export class PostGridComponent extends LitElement {
   @property({ type: Array }) items: any;
+
+  static get styles() {
+    return [
+      css`
+        card-component {
+          max-width: 100%;
+        }
+      `
+    ];
+  }
 
   deleteItem(index: Number) {
     const items = this.items;
@@ -24,13 +33,7 @@ export class PostGridComponent extends LitElement {
       <style>
         ${style}
       </style>
-      ${
-        until(
-          import("./PostGridComponentTemplate.ts").then(module =>
-            module.default.bind(this)()
-          )
-        )
-      }
+      ${template.bind(this)()}
     `;
   }
 }

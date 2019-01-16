@@ -40,13 +40,16 @@ export const updateDocument = ({ path, data }: any) => {
   document.set(data, { merge: true });
 };
 
+/**
+ * Returns a promise/document, or calls a callback depending on the watch property
+ */
 export const getDocument = ({ callback, path, options = {} }: any) => {
   const firestore = firebase.firestore();
   const document = firestore.doc(path);
   return options.watch
     ? document.get((doc: any) => {
         const source = doc.metadata.hasPendingWrites ? "local" : "remote";
-        callback(doc.data());
+        return doc.data();
       })
     : document.onSnapshot((doc: any) => {
         const source = doc.metadata.hasPendingWrites ? "local" : "remote";

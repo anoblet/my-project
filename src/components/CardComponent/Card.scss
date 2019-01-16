@@ -23,4 +23,9 @@ h3,
 .content {
   border: 1px solid var(--border-color);
   padding: var(--card-inner-padding, 1em);
+  overflow-x: auto;
+}
+
+[slot="content"] {
+  overflow: auto;
 }
