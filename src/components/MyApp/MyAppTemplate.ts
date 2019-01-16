@@ -31,10 +31,12 @@ export default function({ router, user }: any) {
               </div>
               <my-flex id="content" grow scroll>
                 ${
-                  this.state.app.mode === "development"
-                    ? html`
-                        <breadcrumb-component></breadcrumb-component>
-                      `
+                  this.state.app.settings
+                    ? this.state.app.settings.mode >= 1
+                      ? html`
+                          <breadcrumb-component></breadcrumb-component>
+                        `
+                      : ""
                     : ""
                 }
                 <my-card
@@ -86,7 +88,10 @@ export default function({ router, user }: any) {
                       path="/contact"
                       component="contact-component"
                     ></lit-route>
-                    <lit-route path="/admin" component="page-admin"></lit-route>
+                    <lit-route
+                      path="/admin"
+                      component="admin-component"
+                    ></lit-route>
                   </my-flex>
                 </my-card>
               </my-flex>

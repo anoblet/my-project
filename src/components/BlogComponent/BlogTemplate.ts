@@ -12,7 +12,7 @@ export default function() {
               <my-card collapsible>
                 <h3 slot="title">
                   <a href="/post/read/${post.id}">${post.title}</a>${
-                    this.state.app.mode === "experimental"
+                    this.state.app.settings.mode >= 1
                       ? this.state.user.uid === "m42gwHOSlbUniorNjigqa1nnHIE3"
                         ? html`
                             <a href="/post/edit/${post.id}"

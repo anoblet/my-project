@@ -29,7 +29,7 @@ import(/* webpackChunkName: "PageBlog" */ "../PageBlog/PageBlog");
 import(/* webpackChunkName: "Drawer" */ "../DrawerComponent/Drawer");
 import(/* webpackChunkName: "ProfileMenu" */ "../ProfileMenu/ProfileMenu");
 import(/* webpackChunkName: "Contact" */ "../Contact/Contact");
-import(/* webpackChunkName: "PageAdmin" */ "../PageAdmin/PageAdmin");
+import(/* webpackChunkName: "AdminComponent" */ "../AdminComponent/Admin");
 import(/* webpackChunkName: "Breadcrumb" */ "../BreadcrumbComponent/Breadcrumb");
 
 var pathToRegexp = require("path-to-regexp");
@@ -88,7 +88,7 @@ export class MyApp extends Mixin(connect(store)(LitElement), [
           getDocument({
             path,
             callback: (document: any) => {
-              this.setState({ mode: document.mode }, "app");
+              this.setState({ settings: document }, "app");
             }
           });
         if (user) await this.onUserLoggedIn(user);
