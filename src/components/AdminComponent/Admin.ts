@@ -5,6 +5,7 @@ import { store } from "../../store";
 import { Mixin } from "../../../packages/Mixin";
 import { StateMixin } from "../../../packages/StateMixin";
 import { updateDocument } from "../../../packages/firebase-helpers";
+import GlobalStyles from "../../Styles";
 
 import(/* webpackChunkName: "CardComponent" */ "../CardComponent/CardComponent");
 import(/* webpackChunkName: "GridComponent" */ "../GridComponent/GridComponent");
@@ -33,8 +34,9 @@ export class AdminComponent extends Mixin(connect(store)(LitElement), [
 ]) {
   static get styles() {
     return [
+      GlobalStyles,
       css`
-        :host: {
+        @import (../../GlobalStyles): host:  {
         }
       `
     ];
@@ -43,11 +45,10 @@ export class AdminComponent extends Mixin(connect(store)(LitElement), [
   constructor() {
     super();
     this.setStore(store);
-    this.addReducer("app/settings");
+    // this.addReducer("app/settings");
   }
 
   find(path: string, object: any) {
-    console.log(this.state);
     const parts = path.split("/");
     let value = object;
     try {
@@ -84,42 +85,54 @@ export class AdminComponent extends Mixin(connect(store)(LitElement), [
 
   render() {
     return html`
-      <card-component title="Settings">
-        <div slot="content">
-          ${
-            fields.map(
-              (field: any) => html`
-                <label>${field.label}</label>:
-                ${
-                  field.type === "dropdown"
-                    ? html`
-                        <select
-                          @input="${(e: Event) => this.valueChanged(e)}"
-                          name="${field.name}"
-                          >${
-                            field.options.map(
-                              (option: any) =>
-                                html`
-                                  <option
-                                    ?selected="${
-                                      this.find(field.statePath, this.state) ==
-                                        option.value
-                                    }"
-                                    value="${option.value}"
-                                    >${option.label}</option
-                                  >
-                                `
-                            )
-                          }
-                        </select>
-                      `
-                    : ""
-                }
-              `
-            )
-          }
-        </div>
-      </card-component>
+      <style></style>
+      <grid-component>
+        <card-component title="Settings">
+          <div slot="content">
+            ${
+              fields.map(
+                (field: any) => html`
+                  <label>${field.label}</label>:
+                  ${
+                    field.type === "dropdown"
+                      ? html`
+                          <select
+                            @input="${(e: Event) => this.valueChanged(e)}"
+                            name="${field.name}"
+                            >${
+                              field.options.map(
+                                (option: any) =>
+                                  html`
+                                    <option
+                                      ?selected="${
+                                        this.find(
+                                          field.statePath,
+                                          this.state
+                                        ) == option.value
+                                      }"
+                                      value="${option.value}"
+                                      >${option.label}</option
+                                    >
+                                  `
+                              )
+                            }
+                          </select>
+                        `
+                      : ""
+                  }
+                `
+              )
+            }
+          </div>
+        </card-component>
+        <card-component title="Links">
+          <div slot="content">
+            <ul>
+              <a href="/post"><li>Posts</li></a>
+            </ul>
+          </div>
+        </card-component>
+      </grid-component>
     `;
   }
 }

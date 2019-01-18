@@ -2,6 +2,7 @@ import { css, html, LitElement } from "lit-element";
 import * as style from "./PageHome.scss";
 import Template from "./PageHomeTemplate";
 import(/* webpackChunkName: "ComponentList" */ "../../components/CollectionList/CollectionList");
+import(/* webpackChunkName: "EyeChart" */ "../EyeChart/EyeChartComponent");
 import(/* webpackChunkName: "Blog" */ "../BlogComponent/Blog");
 import { getTheme } from "../../theme-provider";
 import { Mixin } from "../../../packages/Mixin";

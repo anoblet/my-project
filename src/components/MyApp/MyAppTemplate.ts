@@ -30,15 +30,6 @@ export default function({ router, user }: any) {
                 <app-drawer></app-drawer>
               </div>
               <my-flex id="content" grow scroll>
-                ${
-                  this.state.app.settings
-                    ? this.state.app.settings.mode >= 1
-                      ? html`
-                          <breadcrumb-component></breadcrumb-component>
-                        `
-                      : ""
-                    : ""
-                }
                 <my-card
                   full-height
                   grow
@@ -47,7 +38,15 @@ export default function({ router, user }: any) {
                   no-title
                 >
                   <my-flex slot="content">
-                    <div id="page"></div>
+                    ${
+                      this.state.app.settings
+                        ? this.state.app.settings.mode >= 1
+                          ? html`
+                              <breadcrumb-component></breadcrumb-component>
+                            `
+                          : ""
+                        : ""
+                    }
                     <lit-route path="/" component="page-home"></lit-route>
                     <lit-route path="/info" component="page-info"></lit-route>
                     <lit-route
@@ -91,6 +90,14 @@ export default function({ router, user }: any) {
                     <lit-route
                       path="/admin"
                       component="admin-component"
+                    ></lit-route>
+                    <lit-route
+                      path="/components"
+                      component="page-components"
+                    ></lit-route>
+                    <lit-route
+                      path="/components/:component"
+                      component="page-components"
                     ></lit-route>
                   </my-flex>
                 </my-card>

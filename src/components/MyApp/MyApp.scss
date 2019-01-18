@@ -12,6 +12,8 @@
   --secondary-color: #ff0080;
   --debug-padding: 0;
   --debug-border: 0;
+  --padding: 1em;
+  --button-color: var(--primary-color);
 
   --background-color-elevated: var(--primary-color);
 
@@ -54,7 +56,7 @@ app-drawer-absolute {
 
 #drawer {
   display: flex;
-  padding: 1em 1em 0 0;
+  padding: 0 1em 0 0;
 }
 
 #drawer[media-size="small"] {
@@ -183,4 +185,12 @@ ul {
 #drawer[media-size="small"] {
   border: 0;
   border-right: 1px solid var(--border-color);
+}
+
+breadcrumb-component {
+  margin: 1em 1em 0 1em;
+}
+
+breadcrumb-component a {
+  display: block;
 }

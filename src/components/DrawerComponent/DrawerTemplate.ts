@@ -6,9 +6,16 @@ export default function() {
     <card-component>
       <div slot="content">
         <ul>
-          <a href="/"> <li>Home</li></a
-          ><!-- <a href="/blog"> <li>Blog</li></a>
-          --><a href="/contact"> <li>Contact</li></a>
+          <a href="/"> <li>Home</li></a>
+          ${
+            this.state.app.settings.mode >= 1
+              ? html`
+                  <a href="/components"> <li>Components</li></a>
+                `
+              : ""
+          }
+          <!-- <a href="/blog"> <li>Blog</li></a> -->
+          <a href="/contact"> <li>Contact</li></a>
           ${
             this.state.user.uid === "m42gwHOSlbUniorNjigqa1nnHIE3"
               ? html`

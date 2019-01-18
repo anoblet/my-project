@@ -11,19 +11,28 @@
 
 h3,
 ::slotted(h3) {
+  display: flex;
+  align-items: center;
   margin-block-start: 0;
+}
+
+::slotted([slot="title"]) a {
+  display: flex;
+  align-items: center;
+}
+
+::slotted([slot="content"]) {
+  border: 1px solid var(--border-color);
+  padding: var(--card-inner-padding, 1em);
+  overflow-x: auto;
 }
 
 .actions {
   display: flex;
-  margin-top: 1em;
   justify-content: flex-end;
 }
 
 .content {
-  border: 1px solid var(--border-color);
-  padding: var(--card-inner-padding, 1em);
-  overflow-x: auto;
 }
 
 [slot="content"] {

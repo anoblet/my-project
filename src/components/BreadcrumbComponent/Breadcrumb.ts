@@ -7,20 +7,35 @@ import { store } from "../../store";
 //@customElement("breadcrumb-component")
 export class BreadcrumbComponent extends connect(store)(LitElement) {
   @property() activeRoute: string;
+  @property({ type: Boolean }) hidden: boolean = false;
   static get styles() {
     return [style];
   }
 
   formatRoute(route: string) {
+    if (route === "/") this.hidden = true;
+    else {
+      this.hidden = false;
+    }
     let parts = route.split("/");
+    // Remove first entry if just '/'
     parts.shift();
+    // Declare an empty base
     let base = "";
     const formattedRoute = html`
       ${
-        parts.map((part: string) => {
+        parts.map((part: string, index: number) => {
           base += `/${part}`;
           return html`
-            /<a href="${base}">${part}</a>
+            <span class="primary"
+              >${
+                index
+                  ? html`
+                      /
+                    `
+                  : ""
+              } <a href="${base}">${part}</a></span
+            >
           `;
         })
       }
@@ -34,7 +49,7 @@ export class BreadcrumbComponent extends connect(store)(LitElement) {
 
   render() {
     return html`
-      ${this.formatRoute(this.activeRoute)}
+      <div>${this.formatRoute(this.activeRoute)}</div>
     `;
   }
 }

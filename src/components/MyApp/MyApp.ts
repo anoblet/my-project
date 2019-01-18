@@ -31,6 +31,7 @@ import(/* webpackChunkName: "ProfileMenu" */ "../ProfileMenu/ProfileMenu");
 import(/* webpackChunkName: "Contact" */ "../Contact/Contact");
 import(/* webpackChunkName: "AdminComponent" */ "../AdminComponent/Admin");
 import(/* webpackChunkName: "Breadcrumb" */ "../BreadcrumbComponent/Breadcrumb");
+import(/* webpackChunkName: "PageComponents" */ "../PageComponents/PageComponents");
 
 var pathToRegexp = require("path-to-regexp");
 
