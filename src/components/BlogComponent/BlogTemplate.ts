@@ -5,9 +5,8 @@ import { unsafeHTML } from "lit-html/directives/unsafe-html";
 export default function() {
   return html`
     ${
-      until(
-        this.getPosts().then((posts: any) =>
-          posts.map(
+      this.posts
+        ? this.posts.map(
             (post: any) => html`
               <card-component collapsible>
                 <h3 slot="title">
@@ -16,15 +15,17 @@ export default function() {
                     style="display: flex; align-items: center;"
                     >${post.title}</a
                   >${
-                    this.state.app.settings.mode >= 2
-                      ? this.state.user.uid === "m42gwHOSlbUniorNjigqa1nnHIE3"
-                        ? html`
-                            <a
-                              href="/post/edit/${post.id}"
-                              style="display: flex; align-items: center;"
-                              ><mwc-icon>edit</mwc-icon></a
-                            >
-                          `
+                    this.state.app.settings
+                      ? this.state.app.settings.mode >= 2
+                        ? this.state.user.uid === "m42gwHOSlbUniorNjigqa1nnHIE3"
+                          ? html`
+                              <a
+                                href="/post/edit/${post.id}"
+                                style="display: flex; align-items: center;"
+                                ><mwc-icon>edit</mwc-icon></a
+                              >
+                            `
+                          : ""
                         : ""
                       : ""
                   }
@@ -33,8 +34,7 @@ export default function() {
               </card-component>
             `
           )
-        )
-      )
+        : ""
     }
   `;
 }

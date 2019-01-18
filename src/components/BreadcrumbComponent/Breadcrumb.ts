@@ -27,14 +27,14 @@ export class BreadcrumbComponent extends connect(store)(LitElement) {
         parts.map((part: string, index: number) => {
           base += `/${part}`;
           return html`
-            <span class="primary"
+            <span
               >${
                 index
                   ? html`
                       /
                     `
                   : ""
-              } <a href="${base}">${part}</a></span
+              } <a class="primary" href="${base}">${part}</a></span
             >
           `;
         })
@@ -49,7 +49,7 @@ export class BreadcrumbComponent extends connect(store)(LitElement) {
 
   render() {
     return html`
-      <div>${this.formatRoute(this.activeRoute)}</div>
+      <div>${this.formatRoute(this.activeRoute)}/</div>
     `;
   }
 }

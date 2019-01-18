@@ -6,6 +6,7 @@ export default css`
 
   a {
     color: var(--primary-color);
+    text-decoration: none;
   }
 
   .primary {

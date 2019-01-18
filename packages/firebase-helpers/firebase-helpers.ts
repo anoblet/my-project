@@ -12,7 +12,6 @@ const firebase = window.firebase;
 const firebaseui = window.firebaseui;
 
 export const initApp = (config: any) => {
-  console.log(firebase.apps);
   if (firebase.apps.length === 0) firebase.initializeApp(config);
 };
 
@@ -35,7 +34,6 @@ export const getUser = ({ callback }: any) => {
     new firebaseui.auth.AuthUI(firebase.auth());
   const pendingRedirect = instance.isPendingRedirect();
   firebase.auth().onAuthStateChanged((user: any) => {
-    console.log("Auth state changed", user);
     if (!user && !pendingRedirect) return callback(false);
     if (user) {
       return callback(user);

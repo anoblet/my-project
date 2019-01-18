@@ -88,7 +88,10 @@ export class MyApp extends Mixin(connect(store)(LitElement), [
         await checkRedirect();
         await getUser({
           callback: async (user: any) => {
-            if (!user) resolve();
+            if (!user) {
+              this.setDefaultTheme();
+              resolve();
+            }
             if (user) {
               const userModel = {
                 email: user.email,

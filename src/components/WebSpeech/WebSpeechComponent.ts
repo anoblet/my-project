@@ -26,8 +26,6 @@ var grammar =
   letters.join(". | ") +
   " ;";
 
-console.log(grammar);
-
 export class WebSpeech extends LitElement {
   recognition: any;
   recognitionList: any;

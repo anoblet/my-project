@@ -43,7 +43,11 @@ export default function({ router, user }: any) {
                         this.state.app.settings
                           ? this.state.app.settings.mode >= 1
                             ? html`
-                                <card-component>
+                                <card-component
+                                  ?hidden="${
+                                    this.state.router.activeRoute === "/"
+                                  }"
+                                >
                                   <breadcrumb-component></breadcrumb-component
                                 ></card-component>
                               `
