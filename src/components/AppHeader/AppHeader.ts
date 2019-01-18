@@ -12,11 +12,6 @@ export class AppHeader extends Mixin(connect(store)(LitElement), [
   TaskMixin,
   StateMixin
 ]) {
-  firstUpdated() {
-    super.firstUpdated();
-    this.setButtonBackground();
-  }
-
   setButtonBackground() {
     const fab = this.querySelector("mwc-fab");
     const button = fab.shadowRoot.querySelector("button");
@@ -26,6 +21,11 @@ export class AppHeader extends Mixin(connect(store)(LitElement), [
         button.style.backgroundSize = "contain";
       }
     }
+  }
+
+  stateChanged(state: any) {
+    super.stateChanged(state);
+    if (state.user) this.setButtonBackground();
   }
 
   render() {

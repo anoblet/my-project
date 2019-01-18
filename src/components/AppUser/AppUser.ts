@@ -9,6 +9,9 @@ import { store } from "../../store";
 
 import Template from "./AppUserTemplate";
 
+const firebase = window.firebase;
+const firebaseui = window.firebaseui;
+
 export class AppUser extends Mixin(connect(store)(LitElement), [
   BaseMixin,
   TaskMixin,
@@ -97,7 +100,7 @@ export class AppUser extends Mixin(connect(store)(LitElement), [
       Promise.all([
         import(/* webpackChunkName: "FirebaseApp" */ "firebase/app"),
         import(/* webpackChunkName: "FirebaseUI" */ "firebaseui")
-      ]).then(async ([firebase, firebaseui]) => {
+      ]).then(async () => {
         const el = document.createElement("div");
         const ui =
           firebaseui.auth.AuthUI.getInstance() ||

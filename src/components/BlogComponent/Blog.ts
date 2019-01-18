@@ -26,7 +26,7 @@ export class Blog extends Mixin(connect(store)(LitElement), [StateMixin]) {
       <style>
         ${style}
       </style>
-      ${template.bind(this)()}
+      ${this.state.app.settings ? template.bind(this)() : ""}
     `;
   }
 }

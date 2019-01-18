@@ -1,6 +1,3 @@
-import("../../../packages/DrawerAbsolute");
-import("../../../packages/MediaQuery");
-
 import * as style from "./MyApp.scss";
 
 import { customElement, LitElement, html, property } from "lit-element";
@@ -20,6 +17,11 @@ import { installRouter } from "pwa-helpers/router.js";
 import { runtime } from "../../Runtime";
 import { store } from "../../store";
 import { getDocument } from "../../../packages/firebase-helpers";
+import { initApp } from "../../../packages/firebase-helpers";
+import { initStore } from "../../../packages/firebase-helpers";
+import { checkRedirect } from "../../../packages/firebase-helpers";
+import { getUser } from "../../../packages/firebase-helpers";
+import { setState } from "../../../packages/state-helpers/state-helpers";
 
 import(/* webpackChunkName: "PostController" */ "../../post/PostController");
 import(/* webpackChunkName: "UserController" */ "../../controllers/UserController");
@@ -32,6 +34,7 @@ import(/* webpackChunkName: "Contact" */ "../Contact/Contact");
 import(/* webpackChunkName: "AdminComponent" */ "../AdminComponent/Admin");
 import(/* webpackChunkName: "Breadcrumb" */ "../BreadcrumbComponent/Breadcrumb");
 import(/* webpackChunkName: "PageComponents" */ "../PageComponents/PageComponents");
+import("../../../packages/MediaQuery");
 
 var pathToRegexp = require("path-to-regexp");
 
@@ -80,20 +83,40 @@ export class MyApp extends Mixin(connect(store)(LitElement), [
       import(/* webpackChunkName: "AppFooter" */ "../AppFooter/AppFooter"),
       import(/* webpackChunkName: "AppTheme" */ "../AppTheme/AppTheme"),
       import(/* webpackChunkName: "PageHome" */ "../PageHome/PageHome"),
-      this.firebaseInit(),
-      this.firestoreInit(),
-      this.firebaseCheckRedirect(),
-      this.getUser().then(async (user: any) => {
-        const path = `users/${user.uid}/settings/default`;
-        if (user)
-          getDocument({
-            path,
-            callback: (document: any) => {
-              this.setState({ settings: document }, "app");
-            }
-          });
-        if (user) await this.onUserLoggedIn(user);
-        else this.setState({}, "user");
+      new Promise(async resolve => {
+        await initApp(this.firebaseConfig);
+        await initStore();
+        await checkRedirect();
+        await getUser({
+          callback: async (user: any) => {
+            if (user) {
+              console.log("User logged in");
+              const userModel = {
+                email: user.email,
+                name: user.displayName,
+                photo: user.photoURL,
+                signedIn: true,
+                uid: user.uid
+              };
+              await setState({ data: userModel, store: store, type: "user" });
+              await getDocument({
+                path: `users/${user.uid}/settings/default`,
+                callback: (document: any) => {
+                  this.setState({ settings: document }, "app");
+                }
+              });
+              await getDocument({
+                path: `users/${user.uid}/state/theme`,
+                callback: (document: any) => {
+                  if (document) {
+                    this.setState(document, "theme");
+                  }
+                }
+              });
+            } else this.setState({}, "user");
+          }
+        });
+        resolve();
       })
     ]);
 
@@ -111,6 +134,7 @@ export class MyApp extends Mixin(connect(store)(LitElement), [
   }
 
   async onUserLoggedIn(user: any) {
+    console.log(this.state);
     this.setState(user, "user");
     return Promise.all([
       this.watchDocumentNew({
