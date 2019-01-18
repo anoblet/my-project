@@ -10,6 +10,8 @@ import Template from "./AppThemeTemplate";
 import { FirebaseMixin } from "../../../packages/FirebaseMixin";
 import * as style from "./AppTheme.scss";
 import "../../../packages/my-grid/GridItem";
+import { updateDocument } from "../../../packages/firebase-helpers/firebase-helpers";
+const firebase = window.firebase;
 
 /**
  * @todo Extend BaseElement
@@ -170,7 +172,11 @@ export class AppTheme extends Mixin(connect(store)(LitElement), [
 
   stateChanged(state: any) {
     super.stateChanged(state);
-    this.setDocument(state.theme);
+    if (state.user)
+      updateDocument({
+        path: `users/${state.user.uid}/state/theme`,
+        data: state.theme
+      });
   }
 
   render() {

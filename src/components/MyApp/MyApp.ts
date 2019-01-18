@@ -62,7 +62,6 @@ export class MyApp extends Mixin(connect(store)(LitElement), [
     this.setStore(store);
     this.addReducer("app"), this.addReducer("user"), this.addReducer("theme");
     this.addReducer("settings");
-    this.setDefaultTheme();
     // installRouter((location: any) => this.handleNavigation(location));
   }
 
@@ -89,8 +88,8 @@ export class MyApp extends Mixin(connect(store)(LitElement), [
         await checkRedirect();
         await getUser({
           callback: async (user: any) => {
+            if (!user) resolve();
             if (user) {
-              console.log("User logged in");
               const userModel = {
                 email: user.email,
                 name: user.displayName,
@@ -99,24 +98,31 @@ export class MyApp extends Mixin(connect(store)(LitElement), [
                 uid: user.uid
               };
               await setState({ data: userModel, store: store, type: "user" });
-              await getDocument({
-                path: `users/${user.uid}/settings/default`,
-                callback: (document: any) => {
-                  this.setState({ settings: document }, "app");
-                }
-              });
-              await getDocument({
-                path: `users/${user.uid}/state/theme`,
-                callback: (document: any) => {
-                  if (document) {
-                    this.setState(document, "theme");
+              await new Promise(resolve => {
+                getDocument({
+                  path: `users/${user.uid}/settings/default`,
+                  callback: (document: any) => {
+                    this.setState({ settings: document }, "app");
+                    this.setState(document, "settings");
+                    resolve();
                   }
-                }
+                });
+              });
+              await new Promise(resolve => {
+                getDocument({
+                  path: `users/${user.uid}/state/theme`,
+                  callback: (document: any) => {
+                    if (document) {
+                      this.setState(document, "theme");
+                    }
+                    resolve();
+                  }
+                });
               });
             } else this.setState({}, "user");
+            resolve();
           }
         });
-        resolve();
       })
     ]);
 

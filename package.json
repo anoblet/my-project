@@ -19,8 +19,6 @@
     "@types/node": "^10.12.18",
     "@types/node-sass": "^3.10.32",
     "@webcomponents/webcomponentsjs": "^2.2.3",
-    "firebase": "^5.7.3",
-    "firebaseui": "^3.5.1",
     "html-loader": "^0.5.5",
     "lit-element": "^2.0.0-rc.2",
     "lit-redux-router": "^0.3.3",

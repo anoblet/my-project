@@ -9,6 +9,7 @@ import { connect } from "pwa-helpers/connect-mixin.js";
 import { settings } from "./Settings";
 import { store } from "../store";
 import { until } from "lit-html/directives/until";
+import { getDocument, updateDocument } from "../../packages/firebase-helpers";
 
 export class SettingsComponent extends Mixin(connect(store)(LitElement), [
   FirebaseMixin,
@@ -25,7 +26,7 @@ export class SettingsComponent extends Mixin(connect(store)(LitElement), [
 
     if (this.state) {
       if (this.state.user.signedIn) {
-        this.watchDocumentNew({
+        getDocument({
           path: `users/${this.state.user.uid}/settings/default`,
           callback: (document: any) => {
             if (document) {
@@ -67,11 +68,10 @@ export class SettingsComponent extends Mixin(connect(store)(LitElement), [
   }
 
   stateChanged(state: any) {
-    super.stateChanged();
-    this.state = state;
+    super.stateChanged(state);
     if (state.user.signedIn) {
       if (state.settings) {
-        this.setDocumentNew({
+        updateDocument({
           path: `users/${state.user.uid}/settings/default`,
           data: state.settings
         });

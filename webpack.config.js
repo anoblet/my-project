@@ -127,7 +127,7 @@ module.exports = {
         flatten: true
       }
     ]),
-    new RobotstxtPlugin(),
-    new BundleAnalyzerPlugin()
+    new RobotstxtPlugin()
+    // new BundleAnalyzerPlugin()
   ]
 };

@@ -9,6 +9,7 @@ import model from "./PostModel";
 import { navigate } from "lit-redux-router";
 import Template from "./PostComponentTemplate.ts";
 import { store } from "../store";
+import { getDocument } from "../../packages/firebase-helpers";
 
 export interface PostComponent {
   [key: string]: any; // Add index signature
@@ -35,7 +36,7 @@ export class PostComponent extends Mixin(LitElement, [
   connectedCallback() {
     super.connectedCallback();
     if (this.id)
-      this.watchDocumentNew({
+      getDocument({
         path: `posts/${this.id}`,
         callback: (document: any) => {
           if (document) {

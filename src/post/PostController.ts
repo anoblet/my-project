@@ -21,6 +21,8 @@ import navigation from "../post/NavigationTemplate";
 import { store } from "../store";
 import { until } from "lit-html/directives/until";
 
+import { getCollection } from "../../packages/firebase-helpers";
+
 export interface PostController {
   [key: string]: any; // Add index signature
 }
@@ -88,7 +90,7 @@ export class PostController extends Mixin(LitElement, [
       this.requestUpdate();
     };
 
-    this.getCollection({
+    getCollection({
       callback: renderGrid,
       path: "posts",
       watch: true

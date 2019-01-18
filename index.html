@@ -73,7 +73,6 @@
     />
     <script>
       // Initialize Firebase
-      // TODO: Replace with your project's customized code snippet
       var config = {
         apiKey: "AIzaSyA1sarBCzD7i_UBEMcE5321POKcAX48YYs",
         authDomain: "my-project-75792.firebaseapp.com",
@@ -85,10 +84,10 @@
       firebase.initializeApp(config);
 
       // Initialize Cloud Firestore through Firebase
-      var db = firebase.firestore();
+      const firestore = firebase.firestore();
 
       // Disable deprecated features
-      db.settings({
+      firestore.settings({
         timestampsInSnapshots: true
       });
     </script>
