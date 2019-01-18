@@ -1,6 +1,13 @@
-import * as firebase from "firebase/app";
-import * as firestore from "firebase/firestore";
+// import * as firebase from "firebase/app";
+// import * as firestore from "firebase/firestore";
 
+declare global {
+  interface Window {
+    firebase: any;
+  }
+}
+
+const firebase = window.firebase;
 /**
  * Returns either an array of documents, or fires a callback depending on whether or not watch is true
  * @return Array | Void

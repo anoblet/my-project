@@ -1,6 +1,10 @@
-// import * as firebase from 'firebase/app';
-// import * as firestore from 'firebase/firestore';
-// import * as auth from 'firebase/auth';
+declare global {
+  interface Window {
+    firebase: any;
+  }
+}
+
+const firebase = window.firebase;
 
 export const FirebaseMixin = function(superClass: any) {
   return class extends superClass {

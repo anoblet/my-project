@@ -9,11 +9,11 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "@anoblet/defaultvalue": "git+https://github.com/anoblet/DefaultValue.git",
-    "@anoblet/mixin": "1.0.0",
     "@anoblet/debug-mixin": "1.0.0",
+    "@anoblet/defaultvalue": "git+https://github.com/anoblet/DefaultValue.git",
     "@anoblet/helper-mixin": "1.0.0",
+    "@anoblet/mixin": "1.0.0",
     "@anoblet/rendertemplate": "git+https://github.com/anoblet/RenderTemplate.git",
-    "lit-element": "^0.6.2"
+    "lit-element": "^2.0.0-rc.2"
   }
 }

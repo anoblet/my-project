@@ -38,67 +38,82 @@ export default function({ router, user }: any) {
                   no-title
                 >
                   <my-flex slot="content">
-                    ${
-                      this.state.app.settings
-                        ? this.state.app.settings.mode >= 1
-                          ? html`
-                              <breadcrumb-component></breadcrumb-component>
-                            `
+                    <grid-component style="margin: 1em;">
+                      ${
+                        this.state.app.settings
+                          ? this.state.app.settings.mode >= 1
+                            ? html`
+                                <card-component>
+                                  <breadcrumb-component></breadcrumb-component
+                                ></card-component>
+                              `
+                            : ""
                           : ""
-                        : ""
-                    }
-                    <lit-route path="/" component="page-home"></lit-route>
-                    <lit-route path="/info" component="page-info"></lit-route>
-                    <lit-route
-                      path="/post"
-                      component="post-controller"
-                    ></lit-route>
-                    <lit-route
-                      path="/post/:action"
-                      component="post-controller"
-                    ></lit-route>
-                    <lit-route
-                      path="/post/:action/:id"
-                      component="post-controller"
-                    ></lit-route>
-                    <lit-route path="/theme" component="app-theme"></lit-route>
-                    <lit-route
-                      path="/user"
-                      component="user-controller"
-                    ></lit-route>
-                    <lit-route
-                      path="/user-settings"
-                      component="settings-component"
-                    ></lit-route>
-                    <lit-route
-                      path="/user/:action"
-                      component="user-controller"
-                    ></lit-route>
-                    <lit-route
-                      path="/user/:action/:tail"
-                      component="user-controller"
-                    ></lit-route>
-                    <lit-route
-                      path="/user/:action/:tail/:id"
-                      component="user-controller"
-                    ></lit-route>
-                    <lit-route path="/blog" component="page-blog"></lit-route>
-                    <lit-route
-                      path="/contact"
-                      component="contact-component"
-                    ></lit-route>
-                    <lit-route
-                      path="/admin"
-                      component="admin-component"
-                    ></lit-route>
-                    <lit-route
-                      path="/components"
-                      component="page-components"
-                    ></lit-route>
-                    <lit-route
-                      path="/components/:component"
-                      component="page-components"
-                    ></lit-route>
+                      }
+                      <div>
+                        <lit-route path="/" component="page-home"></lit-route>
+                        <lit-route
+                          path="/info"
+                          component="page-info"
+                        ></lit-route>
+                        <lit-route
+                          path="/post"
+                          component="post-controller"
+                        ></lit-route>
+                        <lit-route
+                          path="/post/:action"
+                          component="post-controller"
+                        ></lit-route>
+                        <lit-route
+                          path="/post/:action/:id"
+                          component="post-controller"
+                        ></lit-route>
+                        <lit-route
+                          path="/theme"
+                          component="app-theme"
+                        ></lit-route>
+                        <lit-route
+                          path="/user"
+                          component="user-controller"
+                        ></lit-route>
+                        <lit-route
+                          path="/user-settings"
+                          component="settings-component"
+                        ></lit-route>
+                        <lit-route
+                          path="/user/:action"
+                          component="user-controller"
+                        ></lit-route>
+                        <lit-route
+                          path="/user/:action/:tail"
+                          component="user-controller"
+                        ></lit-route>
+                        <lit-route
+                          path="/user/:action/:tail/:id"
+                          component="user-controller"
+                        ></lit-route>
+                        <lit-route
+                          path="/blog"
+                          component="page-blog"
+                        ></lit-route>
+                        <lit-route
+                          path="/contact"
+                          component="contact-component"
+                        ></lit-route>
+                        <lit-route
+                          path="/admin"
+                          component="admin-component"
+                        ></lit-route>
+                        <lit-route
+                          path="/components"
+                          component="page-components"
+                        ></lit-route>
+                        <lit-route
+                          path="/components/:component"
+                          component="page-components"
+                        ></lit-route>
+                      </div>
+                    </grid-component>
                   </my-flex>
                 </my-card>
               </my-flex>

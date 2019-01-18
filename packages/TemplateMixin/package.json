@@ -9,6 +9,6 @@
   "author": "Andrew Noblet",
   "license": "MIT",
   "dependencies": {
-    "lit-element": "^0.6.2"
+    "lit-element": "^2.0.0-rc.2"
   }
 }

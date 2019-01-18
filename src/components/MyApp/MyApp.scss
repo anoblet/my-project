@@ -69,7 +69,6 @@ app-drawer-absolute {
 
 #drawer-container {
   flex: 1;
-  grid-gap: 0;
   position: relative;
 }
 
@@ -150,10 +149,6 @@ mwc-icon {
   color: var(--mdc-theme-primary);
 }
 
-lit-route[active] {
-  padding: 1em;
-}
-
 ul {
   list-style-type: none;
   padding-inline-start: 0;
@@ -188,7 +183,6 @@ ul {
 }
 
 breadcrumb-component {
-  margin: 1em 1em 0 1em;
 }
 
 breadcrumb-component a {

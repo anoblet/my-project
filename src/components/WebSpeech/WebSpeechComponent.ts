@@ -26,12 +26,15 @@ var grammar =
   letters.join(". | ") +
   " ;";
 
-export class WebSpeech {
+console.log(grammar);
+
+export class WebSpeech extends LitElement {
   recognition: any;
   recognitionList: any;
-  result: string;
+  @property() result: string;
 
-  constructor() {
+  connectedCallback() {
+    super.connectedCallback();
     if (!SpeechRecognition) alert("No speech recognition");
     if (!SpeechGrammarList) alert("No speech grammer list");
     if (!SpeechRecognitionEvent) alert("No speech recognition event");
@@ -46,9 +49,11 @@ export class WebSpeech {
       this.onResult(event);
     };
     this.recognition.onerror = (event: any) => {
+      console.log(event);
       console.log("Error");
     };
     this.recognition.onnomatch = (event: any) => {
+      console.log(event);
       console.log("No match");
     };
   }
@@ -69,8 +74,9 @@ export class WebSpeech {
 
   public render() {
     return html`
-      <button @click="${() => this.recognition.start()}">Record</button>
-      <slot></slot>
+      ${template.bind(this)()}
     `;
   }
 }
+
+window.customElements.define("web-speech", WebSpeech);

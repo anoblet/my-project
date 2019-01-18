@@ -8,6 +8,9 @@ export class ButtonComponent extends LitElement {
     return [
       css`
         button {
+          display: flex;
+          flex-grow: 1;
+          justify-content: center;
           background: inherit;
           border: 1px solid var(--button-color);
           padding: var(--padding);

@@ -105,7 +105,16 @@ module.exports = {
           destination: "icons"
         }
       ],
-      theme_color: "#fff"
+      theme_color: "#fff",
+      permissions: {
+        "audio-capture": {
+          description: "Audio capture"
+        },
+        "speech-recognition": {
+          description: "Speech recognition"
+        }
+      },
+      type: "privileged"
     }),
     new WorkboxPlugin.GenerateSW({
       clientsClaim: true,
@@ -118,6 +127,7 @@ module.exports = {
         flatten: true
       }
     ]),
-    new RobotstxtPlugin()
+    new RobotstxtPlugin(),
+    new BundleAnalyzerPlugin()
   ]
 };

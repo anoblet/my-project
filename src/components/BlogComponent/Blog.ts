@@ -2,7 +2,7 @@ import { css, html, LitElement, customElement } from "lit-element";
 import * as style from "./Blog.scss";
 import template from "./BlogTemplate";
 import { getCollection } from "../../../packages/firebase-helpers";
-import("../../../packages/Quill/QuillDisplay");
+// import("../../../packages/Quill/QuillDisplay");
 import { connect } from "pwa-helpers/connect-mixin.js";
 import { Mixin } from "../../../packages/Mixin";
 import { StateMixin } from "../../../packages/StateMixin";

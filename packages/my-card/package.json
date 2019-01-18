@@ -8,9 +8,9 @@
   },
   "author": "Andrew Noblet",
   "license": "ISC",
-    "dependencies": {
-      "lit-element": "^0.6.2",
-      "@anoblet/base-mixin": "1.0.0",
-      "@anoblet/debug-mixin": "1.0.0"
-    }
+  "dependencies": {
+    "lit-element": "^2.0.0-rc.2",
+    "@anoblet/base-mixin": "1.0.0",
+    "@anoblet/debug-mixin": "1.0.0"
+  }
 }

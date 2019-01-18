@@ -6,7 +6,7 @@ import globalStyles from "../../Styles";
 
 import(/* webpackChunkName: "EyeChart" */ "../EyeChart/EyeChartComponent");
 import(/* webpackChunkName: "EyeTest" */ "../EyeTest/EyeTestComponent");
-import(/* webpackChunkName: "WebSpeech" */ "../WebSpeech/WebSpeech");
+import(/* webpackChunkName: "WebSpeech" */ "../WebSpeech/WebSpeechComponent");
 
 const components = ["eye-chart"];
 

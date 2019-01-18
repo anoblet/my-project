@@ -8,7 +8,7 @@ export default function() {
         <div><div class="character">${this.character}</div></div>
       </card-component>
       <card-component>
-        <div slot="content">
+        <grid-component style="grid-template-columns: repeat(2, 1fr)">
           <button-component
             @click="${this.previous}"
             label="Previous"
@@ -17,15 +17,20 @@ export default function() {
             @click="${this.next}"
             label="Next"
           ></button-component>
-        </div>
+          <button-component
+            @click="${this.record}"
+            label="Record answer"
+            style="grid-column: -1/1"
+          ></button-component>
+        </grid-component>
       </card-component>
       ${
         this.mode >= 1
           ? html`
               <card-component title="Development"
                 ><div slot="content">
-                  <button @click="${this.next}">Record answer</button> Index:
-                  ${this.currentIndex} History: ${JSON.stringify(this.history)}
+                  Current Index: ${this.currentIndex} History:
+                  <pre>${JSON.stringify(this.history, null, 2)}</pre>
                 </div></card-component
               >
             `
