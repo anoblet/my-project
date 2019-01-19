@@ -8,10 +8,12 @@ export default function() {
         <ul>
           <a href="/"> <li>Home</li></a>
           ${
-            this.state.app.settings.mode >= 1
-              ? html`
-                  <a href="/components"> <li>Components</li></a>
-                `
+            this.state.app.settings
+              ? this.state.app.settings.mode >= 1
+                ? html`
+                    <a href="/components"> <li>Components</li></a>
+                  `
+                : ""
               : ""
           }
           <!-- <a href="/blog"> <li>Blog</li></a> -->

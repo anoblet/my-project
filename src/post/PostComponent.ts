@@ -9,7 +9,9 @@ import model from "./PostModel";
 import { navigate } from "lit-redux-router";
 import Template from "./PostComponentTemplate.ts";
 import { store } from "../store";
+import { addDocument } from "../../packages/firebase-helpers";
 import { getDocument } from "../../packages/firebase-helpers";
+import { updateDocument } from "../../packages/firebase-helpers";
 
 export interface PostComponent {
   [key: string]: any; // Add index signature
@@ -83,15 +85,13 @@ export class PostComponent extends Mixin(LitElement, [
     };
 
     if (this.create) {
-      this.addDocument({ path: "posts", data }).then((result: any) => {
+      addDocument({ path: "posts", data }).then((result: any) => {
         store.dispatch(navigate(`/post/read/${result}`));
       });
     } else {
-      this.updateDocument({ path: `posts/${this.id}`, data }).then(
-        (result: any) => {
-          this.editable = !this.editable;
-        }
-      );
+      updateDocument({ path: `posts/${this.id}`, data }).then((result: any) => {
+        this.editable = !this.editable;
+      });
     }
   }
 }

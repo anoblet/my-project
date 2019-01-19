@@ -6,7 +6,7 @@ import { unsafeHTML } from "lit-html/directives/unsafe-html";
 
 export default function() {
   return html`
-    <my-card>
+    <card-component>
       <h3 slot="title">
         ${
           this.editable
@@ -55,8 +55,10 @@ export default function() {
                 }
               `
         }
-
+      </div>
+      <div slot="actions">
         <mwc-button
+          outlined
           @click="${
             (e: Event) => {
               if (this.editable) this.submitForm(e);
@@ -74,6 +76,6 @@ export default function() {
           }</mwc-button
         >
       </div>
-    </my-card>
+    </card-component>
   `;
 }

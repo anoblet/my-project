@@ -117,6 +117,17 @@ export default function({ router, user }: any) {
                           component="page-components"
                         ></lit-route>
                       </div>
+                      ${
+                        this.state.settings.mode >= 1
+                          ? html`
+                              <card-component
+                                ><h3 slot="title">Log</h3>
+                                <div slot="content">
+                                  <log-component></log-component></div
+                              ></card-component>
+                            `
+                          : ""
+                      }
                     </grid-component>
                   </my-flex>
                 </my-card>

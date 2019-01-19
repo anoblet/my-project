@@ -30,7 +30,7 @@ export class Drawer extends Mixin(connect(store)(LitElement), [StateMixin]) {
       <style>
         ${style}
       </style>
-      ${this.state.app.settings ? template.bind(this)() : ""}
+      ${template.bind(this)()}
     `;
   }
 }

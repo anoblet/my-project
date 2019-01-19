@@ -6,7 +6,7 @@ export default css`
   }
 
   a {
-    color: var(--primary-color);
+    color: var(--secondary-color);
     /* font-weight: 550; */
     text-decoration: none;
   }
@@ -28,5 +28,25 @@ export default css`
 
   [grow] {
     flex-grow: 1;
+  }
+
+  input,
+  textarea {
+    background: inherit;
+    color: var(--text-color);
+  }
+
+  input {
+    border: 0;
+    border-bottom: 1px solid var(--border-color);
+  }
+
+  input:focus,
+  textarea:focus {
+    outline: none;
+  }
+
+  textarea {
+    padding: 1em;
   }
 `;

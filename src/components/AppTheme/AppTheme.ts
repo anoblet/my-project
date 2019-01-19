@@ -1,4 +1,5 @@
 import { html, LitElement, property } from "lit-element";
+import { until } from "lit-html/directives/until";
 import { connect } from "pwa-helpers/connect-mixin.js";
 import { config } from "../../../config";
 import { BaseMixin } from "../../../packages/BaseMixin";
@@ -10,8 +11,47 @@ import Template from "./AppThemeTemplate";
 import { FirebaseMixin } from "../../../packages/FirebaseMixin";
 import * as style from "./AppTheme.scss";
 import "../../../packages/my-grid/GridItem";
+import { getDocument } from "../../../packages/firebase-helpers/firebase-helpers";
 import { updateDocument } from "../../../packages/firebase-helpers/firebase-helpers";
+
 const firebase = window.firebase;
+
+const fields = [
+  { name: "backgroundColor" },
+  { name: "textColor" },
+  { name: "linkColor" },
+  { name: "borderColor" }
+];
+
+const getData = async () => {
+  const state = store.getState();
+  return await getDocument({ path: `users/${state.user.uid}/settings/theme` });
+};
+
+const template = (document: any) =>
+  html`
+    ${
+      fields.map(
+        (field: any) =>
+          html`
+            <input
+              name="${field.name}"
+              type="color"
+              value="${document[field.name]}"
+              @input="${(e: any) => updateField(field.name, e.target.value)}"
+            />
+          `
+      )
+    }
+  `;
+
+const updateField = (field: string, value: string) => {
+  const state = store.getState();
+  updateDocument({
+    path: `users/${state.user.uid}/settings/theme`,
+    data: { [field]: value }
+  });
+};
 
 /**
  * @todo Extend BaseElement
@@ -191,6 +231,7 @@ export class AppTheme extends Mixin(connect(store)(LitElement), [
               <my-loader></my-loader>
             `
       }
+      ${until(getData().then((data: any) => template(data)))}
     `;
   }
 }

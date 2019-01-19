@@ -35,6 +35,8 @@ import(/* webpackChunkName: "AdminComponent" */ "../AdminComponent/Admin");
 import(/* webpackChunkName: "Breadcrumb" */ "../BreadcrumbComponent/Breadcrumb");
 import(/* webpackChunkName: "PageComponents" */ "../PageComponents/PageComponents");
 import("../../../packages/MediaQuery");
+import(/* webpackChunkName: "LogComponent" */ "../LogComponent/LogComponent");
+import { log } from "../../Log";
 
 var pathToRegexp = require("path-to-regexp");
 
@@ -83,6 +85,7 @@ export class MyApp extends Mixin(connect(store)(LitElement), [
       import(/* webpackChunkName: "AppTheme" */ "../AppTheme/AppTheme"),
       import(/* webpackChunkName: "PageHome" */ "../PageHome/PageHome"),
       new Promise(async resolve => {
+        log("Running init methods");
         await initApp(this.firebaseConfig);
         await initStore();
         await checkRedirect();
@@ -108,7 +111,8 @@ export class MyApp extends Mixin(connect(store)(LitElement), [
                     this.setState({ settings: document }, "app");
                     this.setState(document, "settings");
                     resolve();
-                  }
+                  },
+                  watch: true
                 });
               });
               await new Promise(resolve => {
@@ -119,7 +123,8 @@ export class MyApp extends Mixin(connect(store)(LitElement), [
                       this.setState(document, "theme");
                     }
                     resolve();
-                  }
+                  },
+                  watch: true
                 });
               });
             } else this.setState({}, "user");

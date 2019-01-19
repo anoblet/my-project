@@ -16,16 +16,13 @@ export class PellComponent extends LitElement {
   }
 
   updated(changedProperties: any) {
-    console.log(changedProperties);
     const editor: any = this.shadowRoot.querySelector("#editor");
     if (changedProperties.get("input")) {
-      console.log("here");
       editor.content.innerHTML = this.input;
     }
   }
 
   firstUpdated() {
-    console.log(this.input);
     const editor: any = this.shadowRoot.querySelector("#editor");
     init({
       element: editor,

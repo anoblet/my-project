@@ -19,6 +19,11 @@ export const initStore = () => {
   firebase.firestore().settings({ timestampsInSnapshots: true });
 };
 
+/**
+ * Needed so that after a signin has been processed,
+ * on redirect, the form is added to capture the result
+ * @return [description]
+ */
 export const checkRedirect = () => {
   let instance =
     firebaseui.auth.AuthUI.getInstance() ||
@@ -34,10 +39,10 @@ export const getUser = ({ callback }: any) => {
     new firebaseui.auth.AuthUI(firebase.auth());
   const pendingRedirect = instance.isPendingRedirect();
   firebase.auth().onAuthStateChanged((user: any) => {
+    // If not logged in, or pending a redirect let's return false
     if (!user && !pendingRedirect) return callback(false);
-    if (user) {
-      return callback(user);
-    }
+    // User is logged in, let's return the user
+    if (user) return callback(user);
   });
 };
 
@@ -74,10 +79,25 @@ export const getCollection = ({ path, callback, watch, orderBy }: any) => {
     });
 };
 
+/**
+ * [firestore description]
+ * @return A promise which resolves to the id of added document
+ */
+
+export const addDocument = ({ path, data }: any) => {
+  return firebase
+    .firestore()
+    .collection(path)
+    .add(data)
+    .then((docRef: any) => {
+      return docRef.id;
+    });
+};
+
 export const updateDocument = ({ path, data }: any) => {
   const firestore = firebase.firestore();
   const document = firestore.doc(path);
-  document.set(data, { merge: true });
+  return document.set(data, { merge: true });
 };
 
 /**
@@ -87,12 +107,12 @@ export const getDocument = ({ callback, path, watch }: any) => {
   const firestore = firebase.firestore();
   const document = firestore.doc(path);
   return watch
-    ? document.get((doc: any) => {
-        const source = doc.metadata.hasPendingWrites ? "local" : "remote";
-        return doc.data();
-      })
-    : document.onSnapshot((doc: any) => {
+    ? document.onSnapshot((doc: any) => {
         const source = doc.metadata.hasPendingWrites ? "local" : "remote";
         callback(doc.data());
+      })
+    : document.get().then((doc: any) => {
+        const source = doc.metadata.hasPendingWrites ? "local" : "remote";
+        return doc.data();
       });
 };
