@@ -129,7 +129,7 @@ export default function({ theme, user }: any) {
                       >
                       <mwc-button
                         outlined
-                        @click="${() => this.setState(this.miscTheme, "theme")}"
+                        @click="${() => this.setTheme("misc")}"
                         >Gray</mwc-button
                       >
                       <mwc-button
@@ -143,28 +143,7 @@ export default function({ theme, user }: any) {
                 <my-card grow>
                   <h3 slot="title">Saved themes</h3>
                   <my-flex slot="content">
-                    <my-grid columns="2">
-                      ${
-                        theme.savedThemes
-                          ? theme.savedThemes.map(
-                              (theme: any, index: any) =>
-                                html`
-                                  <a
-                                    @click="${() => this.setSavedTheme(index)}"
-                                    href="#"
-                                    >${theme.name}</a
-                                  >
-                                  <mwc-button
-                                    @click="${
-                                      (e: any) => this.deleteTheme(index)
-                                    }${index}"
-                                    >Delete</mwc-button
-                                  >
-                                `
-                            )
-                          : ""
-                      }
-                    </my-grid>
+                    <my-grid columns="2"> ${this.listThemes()} </my-grid>
                   </my-flex>
                 </my-card>
               </my-grid>

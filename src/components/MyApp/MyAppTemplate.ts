@@ -85,6 +85,10 @@ export default function({ router, user }: any) {
                           component="settings-component"
                         ></lit-route>
                         <lit-route
+                          path="/user/theme"
+                          component="theme-component"
+                        ></lit-route>
+                        <lit-route
                           path="/user/:action"
                           component="user-controller"
                         ></lit-route>

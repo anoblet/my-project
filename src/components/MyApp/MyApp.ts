@@ -34,8 +34,10 @@ import(/* webpackChunkName: "Contact" */ "../Contact/Contact");
 import(/* webpackChunkName: "AdminComponent" */ "../AdminComponent/Admin");
 import(/* webpackChunkName: "Breadcrumb" */ "../BreadcrumbComponent/Breadcrumb");
 import(/* webpackChunkName: "PageComponents" */ "../PageComponents/PageComponents");
-import("../../../packages/MediaQuery");
 import(/* webpackChunkName: "LogComponent" */ "../LogComponent/LogComponent");
+import(/* webpackChunkName: "ThemeComponent" */ "../ThemeComponent/ThemeComponent");
+import("../../../packages/MediaQuery");
+
 import { log } from "../../Log";
 
 var pathToRegexp = require("path-to-regexp");
@@ -115,17 +117,6 @@ export class MyApp extends Mixin(connect(store)(LitElement), [
                   watch: true
                 });
               });
-              // await new Promise(resolve => {
-              //   getDocument({
-              //     path: `users/${user.uid}/state/theme`,
-              //     callback: (document: any) => {
-              //       if (document) {
-              //         this.setState(document, "theme");
-              //       }
-              //       resolve();
-              //     },
-              //     watch: true
-              //   });
               await new Promise(resolve => {
                 getDocument({
                   path: `users/${user.uid}/settings/theme`,

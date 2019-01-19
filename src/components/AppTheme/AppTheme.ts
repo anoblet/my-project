@@ -11,10 +11,9 @@ import Template from "./AppThemeTemplate";
 import { FirebaseMixin } from "../../../packages/FirebaseMixin";
 import * as style from "./AppTheme.scss";
 import "../../../packages/my-grid/GridItem";
+import { getCollection } from "../../../packages/firebase-helpers/firebase-helpers";
 import { getDocument } from "../../../packages/firebase-helpers/firebase-helpers";
 import { updateDocument } from "../../../packages/firebase-helpers/firebase-helpers";
-
-const firebase = window.firebase;
 
 const fields = [
   { name: "backgroundColor" },
@@ -53,6 +52,18 @@ const updateField = (field: string, value: string) => {
   });
 };
 
+const setTheme = (theme: any) => {
+  const state = store.getState();
+  updateDocument({
+    path: `users/${state.user.uid}/settings/theme`,
+    data: { currentTheme: theme }
+  });
+};
+
+export interface AppTheme {
+  [key: string]: any; // Add index signature
+}
+
 /**
  * @todo Extend BaseElement
  */
@@ -77,7 +88,7 @@ export class AppTheme extends Mixin(connect(store)(LitElement), [
   };
   miscTheme: any = {
     backgroundColor: "#534A71",
-    borderColor: "#CCC",
+    borderColor: "#CCCCCC",
     primaryColor: "#4EE8EA",
     secondaryColor: "#5ECBC1",
     textColor: "#C2FB7C"
@@ -108,7 +119,14 @@ export class AppTheme extends Mixin(connect(store)(LitElement), [
   }
 
   setTheme(theme: any) {
-    this.setState(this[`${theme}Theme`], "theme");
+    console.log(theme);
+    console.log(this[`${theme}Theme`]);
+    const state = store.getState();
+    updateDocument({
+      path: `users/${state.user.uid}/settings/theme`,
+      data: { currentTheme: this[`${theme}Theme`] }
+    });
+    // this.setState(this[`${theme}Theme`], "theme");
   }
 
   setDefaultTheme() {
@@ -151,7 +169,15 @@ export class AppTheme extends Mixin(connect(store)(LitElement), [
   }
 
   saveTheme() {
-    const theme = this.state.theme;
+    const state = store.getState();
+    const name = this.shadowRoot.querySelector("#themeName").value;
+    if (name !== "")
+      updateDocument({
+        path: `users/${state.user.uid}/settings/theme/savedThemes/${name}`,
+        data: state.theme
+      });
+    return;
+    const theme = state.theme;
     let savedThemes = theme.savedThemes;
     if (!savedThemes) savedThemes = [];
     savedThemes.push({
@@ -165,29 +191,37 @@ export class AppTheme extends Mixin(connect(store)(LitElement), [
   }
 
   setSavedTheme(index: any) {
-    let savedThemes = this.state.theme.savedThemes;
-    this.setState({ currentTheme: savedThemes[index] }, "theme");
+    const state = store.getState();
+    let savedThemes = state.theme.savedThemes;
+    console.log(savedThemes);
+    updateDocument({
+      path: `users/${state.user.uid}/settings/theme`,
+      data: { currentTheme: savedThemes[index] }
+    });
   }
 
   listThemes() {
-    const savedThemes = this.state.theme.savedThemes;
-    if (!savedThemes) return;
+    const state = store.getState();
+    const savedThemes = async () =>
+      await getCollection({
+        path: `users/${state.user.uid}/settings/theme/savedThemes/`
+      });
     return html`
       <ul>
         ${
-          savedThemes.map(
-            (theme: any, index: any) =>
-              html`
-                <li>
-                  <a @click="${() => this.setSavedTheme(index)}"
-                    >${theme.name}</a
-                  >
-                  <mwc-button
-                    @click="${(e: any) => this.deleteTheme(index)}${index}"
-                    >Delete</mwc-button
-                  >
-                </li>
+          until(
+            savedThemes().then(
+              themes => html`
+                ${
+                  themes.map(
+                    (theme: any) =>
+                      html`
+                        <a @click="${() => setTheme(theme)}">${theme.id}</a>
+                      `
+                  )
+                }
               `
+            )
           )
         }
       </ul>
@@ -212,22 +246,31 @@ export class AppTheme extends Mixin(connect(store)(LitElement), [
 
   stateChanged(state: any) {
     super.stateChanged(state);
-    if (state.user)
-      updateDocument({
-        path: `users/${state.user.uid}/state/theme`,
-        data: state.theme
-      });
+    if (state.theme)
+      if (state.user) {
+        // updateDocument({
+        //   path: `users/${state.user.uid}/settings/theme`,
+        //   data: state.theme
+        // });
+      }
   }
 
   render() {
+    const state = store.getState();
     return html`
       <style>
         ${style}
       </style>
       <grid-component style="flex: 1">
-        <card-component title="Current Theme">
-          ${until(data().then((data: any) => template(data)))}
-        </card-component>
+        ${
+          state.app.settings.mode >= 1
+            ? html`
+                <card-component title="Current Theme">
+                  ${until(data().then((data: any) => template(data)))}
+                </card-component>
+              `
+            : ""
+        }
         ${
           !this.taskPending
             ? Template.bind(this)(this.state)

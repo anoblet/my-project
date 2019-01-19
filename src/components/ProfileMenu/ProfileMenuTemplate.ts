@@ -1,5 +1,5 @@
 import { html } from "lit-element";
-import { render } from "lit-html";
+import { store } from "../../store";
 
 export default function({ user }: any) {
   return html`
@@ -10,6 +10,16 @@ export default function({ user }: any) {
               <a href="/user-settings"><li>Settings</li></a>
               <li><a href="/theme">Theme</a></li>
             `
+          : ""
+      }
+      ${
+        user.signedIn
+          ? store.getState().app.settings.mode >= 1
+            ? html`
+                <a href="/user-settings"><li>Settings</li></a>
+                <li><a href="/theme">Theme</a></li>
+              `
+            : ""
           : ""
       }
       ${
