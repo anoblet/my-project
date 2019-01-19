@@ -6,9 +6,9 @@ export const TemplateMixin = function(superClass: any) {
     public templatePath: string;
 
     public importTemplate(template: string = "") {
-      import(this.templatePath).then((module: any) => {
-        this.template = module.default.bind(this);
-      });
+      // import(this.templatePath).then((module: any) => {
+      //   this.template = module.default.bind(this);
+      // });
     }
 
     render() {

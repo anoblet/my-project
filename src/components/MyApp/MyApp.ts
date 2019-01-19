@@ -115,12 +115,23 @@ export class MyApp extends Mixin(connect(store)(LitElement), [
                   watch: true
                 });
               });
+              // await new Promise(resolve => {
+              //   getDocument({
+              //     path: `users/${user.uid}/state/theme`,
+              //     callback: (document: any) => {
+              //       if (document) {
+              //         this.setState(document, "theme");
+              //       }
+              //       resolve();
+              //     },
+              //     watch: true
+              //   });
               await new Promise(resolve => {
                 getDocument({
-                  path: `users/${user.uid}/state/theme`,
+                  path: `users/${user.uid}/settings/theme`,
                   callback: (document: any) => {
                     if (document) {
-                      this.setState(document, "theme");
+                      this.setState(document.currentTheme, "theme");
                     }
                     resolve();
                   },

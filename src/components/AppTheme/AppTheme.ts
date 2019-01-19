@@ -23,12 +23,12 @@ const fields = [
   { name: "borderColor" }
 ];
 
-const getData = async () => {
+const data = async () => {
   const state = store.getState();
   return await getDocument({ path: `users/${state.user.uid}/settings/theme` });
 };
 
-const template = (document: any) =>
+const template = ({ currentTheme }: any) =>
   html`
     ${
       fields.map(
@@ -37,7 +37,7 @@ const template = (document: any) =>
             <input
               name="${field.name}"
               type="color"
-              value="${document[field.name]}"
+              value="${currentTheme[field.name]}"
               @input="${(e: any) => updateField(field.name, e.target.value)}"
             />
           `
@@ -49,7 +49,7 @@ const updateField = (field: string, value: string) => {
   const state = store.getState();
   updateDocument({
     path: `users/${state.user.uid}/settings/theme`,
-    data: { [field]: value }
+    data: { currentTheme: { [field]: value } }
   });
 };
 
@@ -166,7 +166,7 @@ export class AppTheme extends Mixin(connect(store)(LitElement), [
 
   setSavedTheme(index: any) {
     let savedThemes = this.state.theme.savedThemes;
-    this.setState(savedThemes[index], "theme");
+    this.setState({ currentTheme: savedThemes[index] }, "theme");
   }
 
   listThemes() {
@@ -224,14 +224,18 @@ export class AppTheme extends Mixin(connect(store)(LitElement), [
       <style>
         ${style}
       </style>
-      ${
-        !this.taskPending
-          ? Template.bind(this)(this.state)
-          : html`
-              <my-loader></my-loader>
-            `
-      }
-      ${until(getData().then((data: any) => template(data)))}
+      <grid-component style="flex: 1">
+        <card-component title="Current Theme">
+          ${until(data().then((data: any) => template(data)))}
+        </card-component>
+        ${
+          !this.taskPending
+            ? Template.bind(this)(this.state)
+            : html`
+                <my-loader></my-loader>
+              `
+        }
+      </grid-component>
     `;
   }
 }
