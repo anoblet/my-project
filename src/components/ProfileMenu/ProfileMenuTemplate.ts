@@ -16,8 +16,7 @@ export default function({ user }: any) {
         user.signedIn
           ? store.getState().app.settings.mode >= 1
             ? html`
-                <a href="/user-settings"><li>Settings</li></a>
-                <li><a href="/theme">Theme</a></li>
+                <li><a href="/user-theme">Theme(new)</a></li>
               `
             : ""
           : ""

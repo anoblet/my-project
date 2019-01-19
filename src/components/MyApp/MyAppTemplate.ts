@@ -85,7 +85,7 @@ export default function({ router, user }: any) {
                           component="settings-component"
                         ></lit-route>
                         <lit-route
-                          path="/user/theme"
+                          path="/user-theme"
                           component="theme-component"
                         ></lit-route>
                         <lit-route
@@ -122,7 +122,7 @@ export default function({ router, user }: any) {
                         ></lit-route>
                       </div>
                       ${
-                        this.state.settings.mode >= 1
+                        this.state.settings.mode >= 2
                           ? html`
                               <card-component
                                 ><h3 slot="title">Log</h3>

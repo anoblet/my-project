@@ -38,7 +38,6 @@ export default css`
 
   input {
     border: 0;
-    border-bottom: 1px solid var(--border-color);
   }
 
   input:focus,

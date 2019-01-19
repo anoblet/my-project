@@ -7,10 +7,10 @@ import globalStyle from "../../Styles";
 import themeEdit from "./ThemeEdit";
 
 const properties = [
-  { property: "backgroundColor" },
-  { property: "textColor" },
-  { property: "linkColor" },
-  { property: "borderColor" }
+  { label: "Background color", property: "backgroundColor" },
+  { label: "Text color", property: "textColor" },
+  { label: "Link color", property: "linkColor" },
+  { label: "Border color", property: "borderColor" }
 ];
 
 const getThemePath = () => {
@@ -30,7 +30,9 @@ export class ThemeComponent extends LitElement {
   public render() {
     const state = store.getState();
     return html`
-      ${themeEdit({ fields: properties, theme: state.theme })}
+      <card-component>
+        ${themeEdit({ fields: properties, theme: state.theme })}
+      </card-component>
     `;
   }
 }

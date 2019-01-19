@@ -46,7 +46,8 @@ export class PostComponent extends Mixin(LitElement, [
             keys.map((key: any) => (this[key] = document[key]));
             this.requestUpdate();
           }
-        }
+        },
+        watch: true
       });
   }
 
