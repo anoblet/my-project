@@ -22,6 +22,7 @@ import { store } from "../store";
 import { until } from "lit-html/directives/until";
 
 import { getCollection } from "../../packages/firebase-helpers";
+import { deleteDocument } from "../../packages/firebase-helpers";
 
 export interface PostController {
   [key: string]: any; // Add index signature

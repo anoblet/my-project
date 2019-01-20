@@ -39,6 +39,7 @@ import(/* webpackChunkName: "ThemeComponent" */ "../ThemeComponent/ThemeComponen
 import("../../../packages/MediaQuery");
 
 import { log } from "../../Log";
+import { debug } from "../../debug";
 
 var pathToRegexp = require("path-to-regexp");
 
@@ -93,11 +94,14 @@ export class MyApp extends Mixin(connect(store)(LitElement), [
         await checkRedirect();
         await getUser({
           callback: async (user: any) => {
+            // Client is not logged in, nor pending redirect
             if (!user) {
               this.setDefaultTheme();
               resolve();
             }
+            // Client is logged in
             if (user) {
+              // Get the most useful information
               const userModel = {
                 email: user.email,
                 name: user.displayName,
@@ -105,18 +109,7 @@ export class MyApp extends Mixin(connect(store)(LitElement), [
                 signedIn: true,
                 uid: user.uid
               };
-              await setState({ data: userModel, store: store, type: "user" });
-              await new Promise(resolve => {
-                getDocument({
-                  path: `users/${user.uid}/settings/default`,
-                  callback: (document: any) => {
-                    this.setState({ settings: document }, "app");
-                    this.setState(document, "settings");
-                    resolve();
-                  },
-                  watch: true
-                });
-              });
+              // Load theme from Firebase
               await new Promise(resolve => {
                 getDocument({
                   path: `users/${user.uid}/settings/theme`,
@@ -129,12 +122,30 @@ export class MyApp extends Mixin(connect(store)(LitElement), [
                   watch: true
                 });
               });
+              // Map to state (document): user
+              await setState({ data: userModel, store: store, type: "user" });
+              // Load settings from firebaseConfig
+              await new Promise(resolve => {
+                getDocument({
+                  path: `users/${user.uid}/settings/default`,
+                  callback: (document: any) => {
+                    this.setState({ settings: document }, "app");
+                    this.setState(document, "settings");
+                    resolve();
+                  },
+                  watch: true
+                });
+              });
             } else this.setState({}, "user");
             resolve();
           }
         });
       })
     ]);
+
+    // Let's override mode
+    debug("Overiding mode so that it is set to 2");
+    this.setState({ settings: { mode: 2 } }, "app");
 
     // Register drawer listeners
     this.addEventListener("close-drawer", this._closeDrawer);

@@ -3,6 +3,9 @@ import { store } from "../../store";
 import(/* webpackChunkName: "ButtonComponent" */ "../ButtonComponent/ButtonComponent");
 
 export default function() {
+  // Refreshed on render
+  const state = store.getState();
+
   return html`
     <grid-component>
       <card-component>
@@ -11,14 +14,16 @@ export default function() {
       <card-component>
         <grid-component style="grid-template-columns: repeat(2, 1fr)">
           ${
-            store.getState().app.settings.mode >= 2
-              ? html`
-                  <button-component
-                    @click="${this.handsOff}"
-                    label="Hands off!"
-                    style="grid-column: -1/1"
-                  ></button-component>
-                `
+            state.app.settings
+              ? state.app.settings.mode >= 2
+                ? html`
+                    <button-component
+                      @click="${this.handsOff}"
+                      label="Hands off!"
+                      style="grid-column: -1/1"
+                    ></button-component>
+                  `
+                : ""
               : ""
           }
           <button-component

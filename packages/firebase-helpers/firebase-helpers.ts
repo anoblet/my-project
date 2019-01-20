@@ -9,6 +9,7 @@ declare global {
 }
 
 const firebase = window.firebase;
+const firestore = firebase.firestore();
 const firebaseui = window.firebaseui;
 
 export const initApp = (config: any) => {
@@ -51,7 +52,6 @@ export const getUser = ({ callback }: any) => {
  * @return Array | Void
  */
 export const getCollection = ({ path, callback, watch, orderBy }: any) => {
-  const firestore = firebase.firestore();
   firestore.settings({ timestampsInSnapshots: true });
   let collection = firestore.collection(path);
   if (orderBy) collection = collection.orderBy(orderBy);
@@ -85,8 +85,7 @@ export const getCollection = ({ path, callback, watch, orderBy }: any) => {
  */
 
 export const addDocument = ({ path, data }: any) => {
-  return firebase
-    .firestore()
+  return firestore
     .collection(path)
     .add(data)
     .then((docRef: any) => {
@@ -95,7 +94,6 @@ export const addDocument = ({ path, data }: any) => {
 };
 
 export const updateDocument = ({ path, data }: any) => {
-  const firestore = firebase.firestore();
   const document = firestore.doc(path);
   return document.set(data, { merge: true });
 };
@@ -104,7 +102,6 @@ export const updateDocument = ({ path, data }: any) => {
  * Returns a promise/document, or calls a callback depending on the watch property
  */
 export const getDocument = ({ callback, path, watch }: any) => {
-  const firestore = firebase.firestore();
   const document = firestore.doc(path);
   return watch
     ? document.onSnapshot((doc: any) => {
@@ -116,3 +113,5 @@ export const getDocument = ({ callback, path, watch }: any) => {
         return doc.data();
       });
 };
+
+export const deleteDocument = ({ path }: any) => {};
