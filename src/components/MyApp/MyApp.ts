@@ -21,7 +21,10 @@ import { initApp } from "../../../packages/firebase-helpers";
 import { initStore } from "../../../packages/firebase-helpers";
 import { checkRedirect } from "../../../packages/firebase-helpers";
 import { getUser } from "../../../packages/firebase-helpers";
+import { updateDocument } from "../../../packages/firebase-helpers";
 import { setState } from "../../../packages/state-helpers/state-helpers";
+import { themeStructure } from "../ThemeComponent/ThemeComponent";
+import { installOfflineWatcher } from "pwa-helpers/network.js";
 
 import(/* webpackChunkName: "PostController" */ "../../post/PostController");
 import(/* webpackChunkName: "UserController" */ "../../controllers/UserController");
@@ -70,8 +73,11 @@ export class MyApp extends Mixin(connect(store)(LitElement), [
     // installRouter((location: any) => this.handleNavigation(location));
   }
 
-  ready() {
-    super.ready();
+  connectedCallback() {
+    super.connectedCallback();
+    installOfflineWatcher((offline: boolean) => {
+      console.log(offline);
+    });
   }
 
   firstUpdated() {
@@ -230,19 +236,21 @@ export class MyApp extends Mixin(connect(store)(LitElement), [
   }
 
   public updateStyles(theme: any) {
-    this.style.setProperty("--background-color", theme.backgroundColor);
-    this.style.setProperty("--text-color", theme.textColor);
-    this.style.setProperty("--primary-color", theme.primaryColor);
-    this.style.setProperty("--secondary-color", theme.secondaryColor);
-    this.style.setProperty("--border-color", theme.borderColor);
+    themeStructure.map((field: any) => {
+      this.style.setProperty(field.varName, theme[field.property]);
+    });
   }
 
   // State
   public stateChanged(state: any) {
     super.stateChanged(state);
-    this.state = state;
-    if (state.theme) {
-      this.updateStyles(state.theme);
+    const theme = state.theme;
+    if (theme) {
+      updateDocument({
+        path: `users/${state.user.uid}/settings/theme`,
+        data: { currentTheme: theme }
+      });
+      this.updateStyles(theme);
     }
   }
 

@@ -149,7 +149,11 @@ export class AppTheme extends Mixin(connect(store)(LitElement), [
       primaryColor: this.randomColor(),
       secondaryColor: this.randomColor()
     };
-    this.setState(colors, "theme");
+    const state = store.getState();
+    updateDocument({
+      path: `users/${state.user.uid}/settings/theme`,
+      data: { currentTheme: colors }
+    });
   }
 
   randomOnLoadToggle() {
