@@ -4,7 +4,7 @@ import { render } from "lit-html";
 export default function() {
   return html`
     <card-component>
-      <div slot="content">
+      <div slot="content" style="overflow: initial;">
         <ul>
           <a href="/"> <li>Home</li></a>
           ${
@@ -16,7 +16,6 @@ export default function() {
                 : ""
               : ""
           }
-          <!-- <a href="/blog"> <li>Blog</li></a> -->
           <a href="/contact"> <li>Contact</li></a>
           ${
             this.state.user.uid === "m42gwHOSlbUniorNjigqa1nnHIE3"

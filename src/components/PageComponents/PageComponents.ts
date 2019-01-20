@@ -5,6 +5,7 @@ import template from "./PageComponentsTemplate";
 import Styles from "../../Styles";
 
 import(/* webpackChunkName: "EyeChart" */ "../EyeChart/EyeChartComponent");
+import(/* webpackChunkName: "EyeExam" */ "../EyeExam/EyeExamComponent");
 import(/* webpackChunkName: "EyeTest" */ "../EyeTest/EyeTestComponent");
 import(/* webpackChunkName: "WebSpeech" */ "../WebSpeech/WebSpeechComponent");
 

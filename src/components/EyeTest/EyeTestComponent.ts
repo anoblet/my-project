@@ -9,9 +9,11 @@ const WebSpeechInstance = new WebSpeech();
 // @customElement("blog-component")
 export class EyeTest extends LitElement {
   @property() character: string;
-  @property({ type: Array }) history: any = [];
   @property() currentIndex: number = -1;
+  // fullscreen
+  @property() fullscreen: boolean;
   mode: number = 1;
+  @property({ type: Array }) history: any = [];
 
   constructor() {
     super();
@@ -30,6 +32,12 @@ export class EyeTest extends LitElement {
   getCharacter() {
     const letters = "abcdefghijklmnopqrstuvwxyz";
     return letters.charAt(Math.floor(Math.random() * letters.length));
+  }
+
+  handsOff() {
+    // Turn on fullscreen
+    this.fullscreen = true;
+    // Assume white on color
   }
 
   next() {

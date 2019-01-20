@@ -7,6 +7,7 @@ export default function() {
           <ul>
             <a href="/components/eye-chart"><li>Eye Chart</li></a>
             <a href="/components/eye-test"><li>Eye Test</li></a>
+            <a href="/components/eye-exam"><li>Eye Exam</li></a>
             <a href="/components/web-speech"> <li>Web Speech API</li></a>
           </ul>
         </div></card-component

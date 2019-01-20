@@ -19,7 +19,7 @@ export default css`
     list-style-type: none;
     margin-block-start: 0;
     margin-block-end: 0;
-    padding-inline-start: 0;
+    padding-inline-start: 1em;
   }
 
   [flex] {

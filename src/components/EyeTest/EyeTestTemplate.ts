@@ -1,4 +1,5 @@
 import { html } from "lit-element";
+import { store } from "../../store";
 import(/* webpackChunkName: "ButtonComponent" */ "../ButtonComponent/ButtonComponent");
 
 export default function() {
@@ -9,6 +10,17 @@ export default function() {
       </card-component>
       <card-component>
         <grid-component style="grid-template-columns: repeat(2, 1fr)">
+          ${
+            store.getState().app.settings.mode >= 2
+              ? html`
+                  <button-component
+                    @click="${this.handsOff}"
+                    label="Hands off!"
+                    style="grid-column: -1/1"
+                  ></button-component>
+                `
+              : ""
+          }
           <button-component
             @click="${this.previous}"
             label="Previous"

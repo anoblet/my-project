@@ -39,18 +39,7 @@ export class PellComponent extends LitElement {
       // action.title<string> (optional)
       // action.result<Function> (required)
       // Specify the actions you specifically want (in order)
-      actions: [
-        "bold",
-        {
-          name: "custom",
-          icon: "C",
-          title: "Custom Action",
-          result: () => console.log("Do something!")
-        },
-        "underline",
-        "olist",
-        "ulist"
-      ],
+      actions: ["bold", "link", "olist", "ulist", "underline"],
 
       // classes<Array[string]> (optional)
       // Choose your custom class names

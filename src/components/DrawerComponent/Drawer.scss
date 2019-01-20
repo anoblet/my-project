@@ -12,6 +12,7 @@
   position: relative;
   border: 1px solid var(--border-color);
   --card-inner-padding: 0;
+  width: min-content;
 }
 
 a:hover {
