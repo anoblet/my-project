@@ -69,7 +69,7 @@ export class PostController extends Mixin(LitElement, [
   }
 
   itemDeleted(item: any) {
-    this.deleteDocument({ path: `posts/${item.id}` });
+    deleteDocument({ path: `posts/${item.id}` });
   }
 
   read(id: any) {

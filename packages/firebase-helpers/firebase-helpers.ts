@@ -109,9 +109,19 @@ export const getDocument = ({ callback, path, watch }: any) => {
         callback(doc.data());
       })
     : document.get().then((doc: any) => {
-        const source = doc.metadata.hasPendingWrites ? "local" : "remote";
         return doc.data();
       });
 };
 
-export const deleteDocument = ({ path }: any) => {};
+/**
+ * Delete document
+ * @param  path Document path inside of Firebase
+ * @return      Promise
+ */
+export const deleteDocument = ({ path }: any) => {
+  return firestore
+    .doc(path)
+    .delete()
+    .then(() => console.log("Document deleted"))
+    .catch((error: any) => console.log("Could not delete document", error));
+};
