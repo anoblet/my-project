@@ -1,5 +1,8 @@
 import { css, customElement, html, LitElement, property } from "lit-element";
-import { exec, init } from "pell/src/pell.js";
+// import { exec, init } from "pell/src/pell";
+// import * as pell from "pell";
+// import { exec, init } from "pell";
+const pell = require("pell");
 
 @customElement("pell-component")
 export class PellComponent extends LitElement {
@@ -24,7 +27,7 @@ export class PellComponent extends LitElement {
 
   firstUpdated() {
     const editor: any = this.shadowRoot.querySelector("#editor");
-    init({
+    pell.init({
       element: editor,
       onChange: (html: any) => (this.value = html),
       // <string>, optional, default = 'div'

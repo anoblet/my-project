@@ -1,8 +1,8 @@
 import { css, customElement, html, LitElement, property } from "lit-element";
+import { BaseElement } from "../../BaseElement";
 import * as style from "./Blog.scss";
 import template from "./BlogTemplate";
 import { getCollection } from "../../../packages/firebase-helpers";
-// import("../../../packages/Quill/QuillDisplay");
 import { connect } from "pwa-helpers/connect-mixin.js";
 import { Mixin } from "../../../packages/Mixin";
 import { StateMixin } from "../../../packages/StateMixin";
@@ -12,15 +12,11 @@ import("@material/mwc-icon");
 // import style from "./BlogStyle";
 
 // @customElement("blog-component")
-export class Blog extends Mixin(connect(store)(LitElement), [
+export class Blog extends Mixin(connect(store)(BaseElement), [
   StateMixin,
   TaskMixin
 ]) {
   @property() posts: any;
-  // static get styles() {
-  //   const styles = style();
-  //   return [styles];
-  // }
 
   connectedCallback() {
     super.connectedCallback();
@@ -37,6 +33,10 @@ export class Blog extends Mixin(connect(store)(LitElement), [
         });
       })
     ]);
+  }
+
+  async beforeRender() {
+    console.log("A");
   }
 
   public render() {

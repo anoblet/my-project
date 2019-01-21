@@ -17,7 +17,7 @@ export const TaskMixin = function(superClass: any) {
       return new Promise((resolve, reject) => {
         return Promise.all(tasks).then((results: any) => {
           this.stopTask();
-          return results;
+          resolve(results);
         });
       });
     }

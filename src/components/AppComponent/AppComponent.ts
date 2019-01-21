@@ -30,7 +30,6 @@ import(/* webpackChunkName: "PostController" */ "../../post/PostController");
 import(/* webpackChunkName: "UserController" */ "../../controllers/UserController");
 import(/* webpackChunkName: "UserSettings" */ "../../User/SettingsComponent");
 import(/* webpackChunkName: "PageInfo" */ "../PageInfo/PageInfo");
-import(/* webpackChunkName: "PageBlog" */ "../PageBlog/PageBlog");
 import(/* webpackChunkName: "Drawer" */ "../DrawerComponent/Drawer");
 import(/* webpackChunkName: "ProfileMenu" */ "../ProfileMenu/ProfileMenu");
 import(/* webpackChunkName: "Contact" */ "../Contact/Contact");
