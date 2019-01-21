@@ -9,7 +9,7 @@ const CleanWebpackPlugin = require("clean-webpack-plugin");
 const HtmlLoader = require("html-loader");
 module.exports = {
   mode: "production",
-  entry: "./src/components/MyApp/MyApp.ts",
+  entry: "./src/components/AppComponent/AppComponent.ts",
   output: {
     path: path.resolve(__dirname, "dist"),
     publicPath: "/",
