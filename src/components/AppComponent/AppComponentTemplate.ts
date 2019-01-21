@@ -1,4 +1,6 @@
 import { html } from "lit-element";
+import { filterByMode } from "../../Debug";
+
 import("../Menu/MenuComponent");
 
 export default function({ router, user }: any) {
@@ -122,7 +124,7 @@ export default function({ router, user }: any) {
                         ></lit-route>
                       </div>
                       ${
-                        this.state.settings.mode >= 2
+                        filterByMode(1)
                           ? html`
                               <card-component
                                 ><h3 slot="title">Log</h3>

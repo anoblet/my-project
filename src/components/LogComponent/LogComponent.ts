@@ -2,11 +2,14 @@ import { css, html, LitElement, property } from "lit-element";
 import { getLog } from "../../Debug";
 
 export class Log extends LitElement {
+  getHistory() {
+    return getLog();
+  }
   render() {
     return html`
       <ul>
         ${
-          getLog().map(
+          this.getHistory().map(
             (message: string) =>
               html`
                 <li>${message}</li>
