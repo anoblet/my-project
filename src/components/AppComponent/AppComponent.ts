@@ -41,8 +41,7 @@ import(/* webpackChunkName: "LogComponent" */ "../LogComponent/LogComponent");
 import(/* webpackChunkName: "ThemeComponent" */ "../ThemeComponent/ThemeComponent");
 import("../../../packages/MediaQuery");
 
-import { log } from "../../Log";
-import { debug } from "../../debug";
+import { log } from "../../Debug";
 
 var pathToRegexp = require("path-to-regexp");
 
@@ -75,9 +74,7 @@ export class AppComponent extends Mixin(connect(store)(LitElement), [
 
   connectedCallback() {
     super.connectedCallback();
-    installOfflineWatcher((offline: boolean) => {
-      console.log(offline);
-    });
+    installOfflineWatcher((offline: boolean) => {});
   }
 
   firstUpdated() {
@@ -102,11 +99,13 @@ export class AppComponent extends Mixin(connect(store)(LitElement), [
           callback: async (user: any) => {
             // Client is not logged in, nor pending redirect
             if (!user) {
+              log("User is not logged in");
               this.setDefaultTheme();
               resolve();
             }
             // Client is logged in
             if (user) {
+              log("User is logged in");
               // Get the most useful information
               const userModel = {
                 email: user.email,
@@ -150,7 +149,7 @@ export class AppComponent extends Mixin(connect(store)(LitElement), [
     ]);
 
     // Let's override mode
-    debug("Overiding mode so that it is set to 2");
+    log("Overiding mode so that it is set to 2");
     this.setState({ settings: { mode: 2 } }, "app");
 
     // Register drawer listeners

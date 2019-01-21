@@ -1,4 +1,6 @@
-let history: any = [];
+// Singleton instance (?)
 
-export const debug = (message: string) => history.push(message);
+const history: any = [];
+
+export const log = (message: string) => history.push(message);
 export const getLog = () => history;
