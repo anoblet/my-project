@@ -31,10 +31,14 @@ export const checkRedirect = () => {
   }
 };
 
+/**
+ * Only takes a callback that fires one the user status has been resolved
+ */
 export const getUser = ({ callback }: any) => {
   const instance =
     firebaseui.auth.AuthUI.getInstance() ||
     new firebaseui.auth.AuthUI(firebase.auth());
+  // If true, the user has logged in, and Firebase UI is waiting to process it
   const pendingRedirect = instance.isPendingRedirect();
   firebase.auth().onAuthStateChanged((user: any) => {
     // If not logged in, or pending a redirect let's return false
@@ -77,8 +81,8 @@ export const getCollection = ({ path, callback, watch, orderBy }: any) => {
 };
 
 /**
- * [firestore description]
- * @return A promise which resolves to the id of added document
+ * Add a document to a collection
+ * @return The document ID
  */
 
 export const addDocument = ({ path, data }: any) => {
