@@ -1,21 +1,79 @@
 import { html } from "lit-element";
-import { render } from "lit-html";
+
+import { unsafeHTML } from "lit-html/directives/unsafe-html";
 
 export default function() {
   return html`
     <card-component>
-      <ul>
-        <a href="/"> <li>Home</li></a
-        ><!-- <a href="/blog"> <li>Blog</li></a>
-        --><a href="/contact"> <li>Contact</li></a>
+      <h3 slot="title">
         ${
-          this.state.user.uid === "m42gwHOSlbUniorNjigqa1nnHIE3"
+          this.editable
             ? html`
-                <a href="/admin"><li>Admin</li></a>
+                ${this.text({ field: this.model.title, value: this.title })}
               `
-            : ""
+            : html`
+                ${this.title}
+              `
         }
-      </ul>
+      </h3>
+      <div slot="content">
+        ${
+          this.editable
+            ? html`
+                ${this.text({ field: this.model.author, value: this.author })}
+              `
+            : html`
+                ${this.author}
+              `
+        }
+        ${
+          this.editable
+            ? html`
+                ${this.text({ field: this.model.date, value: this.date })}
+              `
+            : html`
+                ${this.date}
+              `
+        }
+        ${
+          this.editable
+            ? html`
+                <pell-component
+                  name="content"
+                  .input="${this.content}"
+                ></pell-component>
+              `
+            : html`
+                ${
+                  this.content
+                    ? html`
+                        ${unsafeHTML(this.content)}
+                      `
+                    : ""
+                }
+              `
+        }
+      </div>
+      <div slot="actions">
+        <mwc-button
+          outlined
+          @click="${
+            (e: Event) => {
+              if (this.editable) this.submitForm(e);
+              else this.editable = !this.editable;
+            }
+          }"
+          >${
+            this.editable
+              ? html`
+                  Save
+                `
+              : html`
+                  Edit
+                `
+          }</mwc-button
+        >
+      </div>
     </card-component>
   `;
 }
