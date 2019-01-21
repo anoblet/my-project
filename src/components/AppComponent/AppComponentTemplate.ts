@@ -1,7 +1,7 @@
 import { html } from "lit-element";
 import { filterByMode } from "../../Debug";
 
-import("../Menu/MenuComponent");
+import("../MenuComponent/MenuComponent");
 
 export default function({ router, user }: any) {
   return html`

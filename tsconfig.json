@@ -3,6 +3,7 @@
     "outDir": "./dist/",
     "noImplicitAny": true,
     "module": "esnext",
+    "moduleResolution": "node",
     "target": "esnext",
     "experimentalDecorators": true,
     "allowJs": true

@@ -6,13 +6,21 @@ export class Log extends LitElement {
     return getLog();
   }
   render() {
+    const history = getLog();
     return html`
       <ul>
         ${
           this.getHistory().map(
-            (message: string) =>
+            (item: any, index: number) =>
               html`
-                <li>${message}</li>
+                <li>
+                  ${item.message}
+                  (${
+                    Math.round(
+                      index ? item.time - history[index - 1].time : item.time
+                    )
+                  }ms)
+                </li>
               `
           )
         }

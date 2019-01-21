@@ -44,6 +44,7 @@ import { log } from "../../Debug";
 
 var pathToRegexp = require("path-to-regexp");
 
+// @ts-ignore
 connectRouter(store);
 
 export class AppComponent extends Mixin(connect(store)(LitElement), [
