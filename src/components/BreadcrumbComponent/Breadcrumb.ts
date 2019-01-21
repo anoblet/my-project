@@ -1,6 +1,6 @@
 import { css, customElement, html, LitElement, property } from "lit-element";
 import style from "./BreadcrumbStyle";
-import Styles from "../../Styles";
+import GlobalStyle from "../../GlobalStyle";
 import template from "./BreadcrumbTemplate";
 import { connect } from "pwa-helpers/connect-mixin.js";
 import { store } from "../../store";
@@ -10,7 +10,7 @@ export class BreadcrumbComponent extends connect(store)(LitElement) {
   @property() activeRoute: string;
   @property({ type: Boolean }) hidden: boolean = false;
   static get styles() {
-    return [Styles, style];
+    return [GlobalStyle, style];
   }
 
   formatRoute(route: string) {

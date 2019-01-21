@@ -5,7 +5,7 @@ import { store } from "../../store";
 import { Mixin } from "../../../packages/Mixin";
 import { StateMixin } from "../../../packages/StateMixin";
 import { updateDocument } from "../../../packages/firebase-helpers";
-import GlobalStyles from "../../Styles";
+import GlobalStyle from "../../GlobalStyle";
 
 import(/* webpackChunkName: "CardComponent" */ "../CardComponent/CardComponent");
 import(/* webpackChunkName: "GridComponent" */ "../GridComponent/GridComponent");
@@ -33,13 +33,7 @@ export class AdminComponent extends Mixin(connect(store)(LitElement), [
   StateMixin
 ]) {
   static get styles() {
-    return [
-      GlobalStyles,
-      css`
-        @import (../../GlobalStyles): host:  {
-        }
-      `
-    ];
+    return [GlobalStyle];
   }
 
   constructor() {

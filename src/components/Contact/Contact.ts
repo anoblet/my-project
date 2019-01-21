@@ -4,12 +4,12 @@ import { Mixin } from "../../../packages/Mixin";
 import { store } from "../../store";
 import * as style from "./Contact.scss";
 import template from "./ContactTemplate";
-import styles from "../../Styles";
+import GlobalStyle from "../../GlobalStyle";
 
 @customElement("contact-component")
 export class Contact extends LitElement {
   static get styles() {
-    return [styles];
+    return [GlobalStyle];
   }
   render() {
     return html`

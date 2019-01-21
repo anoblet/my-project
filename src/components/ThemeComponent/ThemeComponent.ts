@@ -6,7 +6,7 @@ import { getCollection } from "../../../packages/firebase-helpers/firebase-helpe
 import { getDocument } from "../../../packages/firebase-helpers/firebase-helpers";
 import { updateDocument } from "../../../packages/firebase-helpers/firebase-helpers";
 import { setState } from "../../../packages/state-helpers/state-helpers";
-import globalStyle from "../../Styles";
+import GlobalStyle from "../../GlobalStyle";
 import themeEdit from "./ThemeEdit";
 import listThemes from "./ListThemes";
 import saveThemeTemplate from "./SaveTheme";
@@ -61,7 +61,7 @@ export class ThemeComponent extends LitElement {
   }
 
   static get styles() {
-    return [globalStyle];
+    return [GlobalStyle];
   }
 
   public render() {

@@ -8,7 +8,6 @@ export default function({ user }: any) {
         user.signedIn
           ? html`
               <a href="/user-settings"><li>Settings</li></a>
-              <li><a href="/theme">Theme</a></li>
             `
           : ""
       }
@@ -16,7 +15,7 @@ export default function({ user }: any) {
         user.signedIn
           ? store.getState().app.settings.mode >= 1
             ? html`
-                <li><a href="/user-theme">Theme(new)</a></li>
+                <li><a href="/user-theme">Theme</a></li>
               `
             : ""
           : ""

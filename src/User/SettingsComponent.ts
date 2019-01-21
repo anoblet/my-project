@@ -23,7 +23,6 @@ export class SettingsComponent extends Mixin(connect(store)(LitElement), [
 
   firstUpdated() {
     super.firstUpdated();
-
     if (this.state) {
       if (this.state.user.signedIn) {
         getDocument({
@@ -39,6 +38,7 @@ export class SettingsComponent extends Mixin(connect(store)(LitElement), [
   }
 
   form() {
+    const state = store.getState();
     return html`
       <form>
         ${
@@ -60,6 +60,55 @@ export class SettingsComponent extends Mixin(connect(store)(LitElement), [
                     }"
                   /><span class="description">${setting.description}</span>
                 `;
+              case Number: {
+                return html`
+                  <label>${setting.label}</label
+                  ><input
+                    ?checked="${this.state.settings[setting.name]}"
+                    name="${setting.name}"
+                    type="number"
+                    @input="${
+                      (e: any) => {
+                        const state: any = {};
+                        state[setting.name] = e.target.value;
+                        this.setState(state, "settings");
+                      }
+                    }"
+                  /><span class="description">${setting.description}</span>
+                `;
+              }
+              case "select": {
+                return html`
+                  <label>${setting.label}</label>
+                  <select
+                    name="${setting.name}"
+                    @input="${
+                      (e: any) => {
+                        const state: any = {
+                          [setting.name]:
+                            e.target.options[e.target.selectedIndex].value
+                        };
+
+                        this.setState(state, "settings");
+                      }
+                    }"
+                    >${
+                      setting.options.map(
+                        (option: any) =>
+                          html`
+                            <option
+                              ?selected="${
+                                state.app.settings[option.name] == option.value
+                              }"
+                              value="${option.value}"
+                              >${option.label}</option
+                            >
+                          `
+                      )
+                    }</select
+                  ><span class="description">${setting.description}</span>
+                `;
+              }
             }
           })
         }

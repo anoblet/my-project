@@ -5,8 +5,7 @@ const WebpackPwaManifest = require("webpack-pwa-manifest");
 const CopyWebpackPlugin = require("copy-webpack-plugin");
 const RobotstxtPlugin = require("robotstxt-webpack-plugin").default;
 const CleanWebpackPlugin = require("clean-webpack-plugin");
-var BundleAnalyzerPlugin = require("webpack-bundle-analyzer")
-  .BundleAnalyzerPlugin;
+
 const HtmlLoader = require("html-loader");
 module.exports = {
   mode: "production",
@@ -33,17 +32,6 @@ module.exports = {
         test: /\.tsx?$/,
         use: "ts-loader",
         exclude: /node_modules/
-      },
-      {
-        test: /\.svg$/,
-        use: [
-          {
-            loader: "html-loader",
-            options: {
-              minimize: true
-            }
-          }
-        ]
       }
     ]
   },
@@ -93,10 +81,10 @@ module.exports = {
     }),
     new WebpackPwaManifest({
       filename: "manifest.json",
-      name: "My Progressive Web App",
-      short_name: "MyPWA",
-      description: "My awesome Progressive Web App!",
-      background_color: "#ffffff",
+      name: "Andrew Noblet",
+      short_name: "AN",
+      description: "Andrew Noblet",
+      background_color: "#000000",
       crossorigin: "use-credentials", //can be null, use-credentials or anonymous
       icons: [
         {
@@ -105,16 +93,7 @@ module.exports = {
           destination: "icons"
         }
       ],
-      theme_color: "#fff",
-      permissions: {
-        "audio-capture": {
-          description: "Audio capture"
-        },
-        "speech-recognition": {
-          description: "Speech recognition"
-        }
-      },
-      type: "privileged"
+      theme_color: "#000000"
     }),
     new WorkboxPlugin.GenerateSW({
       clientsClaim: true,
@@ -128,6 +107,5 @@ module.exports = {
       }
     ]),
     new RobotstxtPlugin()
-    // new BundleAnalyzerPlugin()
   ]
 };

@@ -2,7 +2,7 @@ import { html, LitElement, property } from "lit-element";
 import { unsafeHTML } from "lit-html/directives/unsafe-html";
 import style from "./PageComponentsStyle";
 import template from "./PageComponentsTemplate";
-import Styles from "../../Styles";
+import GlobalStyle from "../../GlobalStyle";
 
 import(/* webpackChunkName: "EyeChart" */ "../EyeChart/EyeChartComponent");
 import(/* webpackChunkName: "EyeExam" */ "../EyeExam/EyeExamComponent");
@@ -18,7 +18,7 @@ export class PageComponents extends LitElement {
   }
 
   static get styles() {
-    return [Styles, style];
+    return [GlobalStyle, style];
   }
 
   get template() {
