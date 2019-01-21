@@ -1,28 +1,26 @@
-import * as style from "./PostComponent.scss";
-
 import { LitElement, html, property } from "lit-element";
-
-import { FirebaseMixin } from "../../../packages/FirebaseMixin";
-import { TemplateMixin } from "../../../packages/TemplateMixin";
 import { Mixin } from "../../../packages/Mixin";
-import model from "../../post/PostModel";
+import { TemplateMixin } from "../../../packages/TemplateMixin";
 import { navigate } from "lit-redux-router";
-import template from "./PostTemplate";
 import { store } from "../../store";
-import { addDocument } from "../../../packages/firebase-helpers";
-import { getDocument } from "../../../packages/firebase-helpers";
-import { updateDocument } from "../../../packages/firebase-helpers";
+import {
+  addDocument,
+  getDocument,
+  updateDocument
+} from "../../../packages/firebase-helpers";
 
 import("../../../packages/PellComponent/PellComponent");
+
+import structure from "./PostStructure";
+import template from "./PostTemplate";
+
+import * as style from "./PostComponent.scss";
 
 export interface PostComponent {
   [key: string]: any; // Add index signature
 }
 
-export class PostComponent extends Mixin(LitElement, [
-  FirebaseMixin,
-  TemplateMixin
-]) {
+export class PostComponent extends Mixin(LitElement, [TemplateMixin]) {
   @property({ type: Boolean }) editable: boolean;
   @property({ type: String }) id: string;
   @property({ type: String }) author: string;
@@ -34,7 +32,7 @@ export class PostComponent extends Mixin(LitElement, [
 
   constructor() {
     super();
-    this.model = model;
+    this.model = structure;
   }
 
   connectedCallback() {

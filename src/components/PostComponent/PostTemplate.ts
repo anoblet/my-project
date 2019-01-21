@@ -1,6 +1,6 @@
 import { html } from "lit-element";
-
 import { unsafeHTML } from "lit-html/directives/unsafe-html";
+import structure from "./PostStructure";
 
 export default function() {
   return html`
@@ -9,7 +9,7 @@ export default function() {
         ${
           this.editable
             ? html`
-                ${this.text({ field: this.model.title, value: this.title })}
+                ${this.text({ field: structure.title, value: this.title })}
               `
             : html`
                 ${this.title}
@@ -20,7 +20,7 @@ export default function() {
         ${
           this.editable
             ? html`
-                ${this.text({ field: this.model.author, value: this.author })}
+                ${this.text({ field: structure.author, value: this.author })}
               `
             : html`
                 ${this.author}
@@ -29,7 +29,7 @@ export default function() {
         ${
           this.editable
             ? html`
-                ${this.text({ field: this.model.date, value: this.date })}
+                ${this.text({ field: structure.date, value: this.date })}
               `
             : html`
                 ${this.date}
