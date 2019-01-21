@@ -1,6 +1,3 @@
-// import * as firebase from "firebase/app";
-// import * as firestore from "firebase/firestore";
-
 declare global {
   interface Window {
     firebase: any;
@@ -85,6 +82,7 @@ export const getCollection = ({ path, callback, watch, orderBy }: any) => {
  */
 
 export const addDocument = ({ path, data }: any) => {
+  console.log("Adding document");
   return firestore
     .collection(path)
     .add(data)
@@ -94,6 +92,7 @@ export const addDocument = ({ path, data }: any) => {
 };
 
 export const updateDocument = ({ path, data }: any) => {
+  console.log("Updating document");
   const document = firestore.doc(path);
   return document.set(data, { merge: true });
 };

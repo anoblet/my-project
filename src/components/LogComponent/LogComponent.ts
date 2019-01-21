@@ -13,14 +13,21 @@ export class Log extends LitElement {
           this.getHistory().map(
             (item: any, index: number) =>
               html`
-                <li>
-                  ${item.message}
-                  (${
-                    Math.round(
-                      index ? item.time - history[index - 1].time : item.time
-                    )
-                  }ms)
-                </li>
+                ${
+                  !index
+                    ? html`
+                        <li>...${Math.round(item.time)}ms</li>
+                        <li>${item.message}</li>
+                      `
+                    : html`
+                        <li>
+                          ${item.message}
+                          (+${
+                            Math.round(item.time - history[index - 1].time)
+                          }ms)
+                        </li>
+                      `
+                }
               `
           )
         }

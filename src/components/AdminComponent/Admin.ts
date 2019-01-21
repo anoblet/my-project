@@ -73,7 +73,9 @@ export class AdminComponent extends Mixin(connect(store)(LitElement), [
     if (state.app.settings) {
       const path = `users/${state.user.uid}/settings/default`;
       const data = { mode: state.app.settings.mode };
-      updateDocument({ path, data });
+
+      // Updates a document too many times
+      // updateDocument({ path, data });
     }
   }
 

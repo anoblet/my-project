@@ -120,10 +120,11 @@ export class SettingsComponent extends Mixin(connect(store)(LitElement), [
     super.stateChanged(state);
     if (state.user.signedIn) {
       if (state.settings) {
-        updateDocument({
-          path: `users/${state.user.uid}/settings/default`,
-          data: state.settings
-        });
+        // Updates a document too many times
+        // updateDocument({
+        //   path: `users/${state.user.uid}/settings/default`,
+        //   data: state.settings
+        // });
       }
     }
   }

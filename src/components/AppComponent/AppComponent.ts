@@ -149,8 +149,8 @@ export class AppComponent extends Mixin(connect(store)(LitElement), [
     ]);
 
     // Let's override mode
-    log("Overiding mode so that it is set to 2");
-    this.setState({ settings: { mode: 2 } }, "app");
+    log("Overiding mode so that it is set to development");
+    this.setState({ settings: { mode: 1 } }, "app");
 
     // Register drawer listeners
     this.addEventListener("close-drawer", this._closeDrawer);
@@ -245,10 +245,11 @@ export class AppComponent extends Mixin(connect(store)(LitElement), [
     super.stateChanged(state);
     const theme = state.theme;
     if (theme) {
-      updateDocument({
-        path: `users/${state.user.uid}/settings/theme`,
-        data: { currentTheme: theme }
-      });
+      // Updates a document too many times
+      // updateDocument({
+      //   path: `users/${state.user.uid}/settings/theme`,
+      //   data: { currentTheme: theme }
+      // });
       this.updateStyles(theme);
     }
   }
