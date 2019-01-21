@@ -13,6 +13,8 @@ import { addDocument } from "../../packages/firebase-helpers";
 import { getDocument } from "../../packages/firebase-helpers";
 import { updateDocument } from "../../packages/firebase-helpers";
 
+import("../../packages/PellComponent/PellComponent");
+
 export interface PostComponent {
   [key: string]: any; // Add index signature
 }

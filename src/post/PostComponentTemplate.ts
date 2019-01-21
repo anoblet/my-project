@@ -1,6 +1,4 @@
 import { html } from "lit-element";
-// import("../../packages/Quill/QuillComponent");
-// import("../../packages/Quill/QuillDisplay");
 
 import { unsafeHTML } from "lit-html/directives/unsafe-html";
 
