@@ -23,6 +23,7 @@ export const settings = [
         label: "Experimental",
         value: 2
       }
-    ]
+    ],
+    statePath: "app/settings/mode"
   }
 ];

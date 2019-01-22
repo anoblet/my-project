@@ -11,6 +11,21 @@ import { store } from "../store";
 import { until } from "lit-html/directives/until";
 import { getDocument, updateDocument } from "../../packages/firebase-helpers";
 
+const find = (path: string, object: any) => {
+  const parts = path.split("/");
+  let value = object;
+  try {
+    parts.map((part: string) => {
+      if (!value[part]) throw false;
+      value = value[part];
+    });
+  } catch (error) {
+    console.log("Could not find", path);
+    value = error;
+  }
+  return value;
+};
+
 export class SettingsComponent extends Mixin(connect(store)(LitElement), [
   FirebaseMixin,
   StateMixin
@@ -53,9 +68,12 @@ export class SettingsComponent extends Mixin(connect(store)(LitElement), [
                     type="checkbox"
                     @click="${
                       (e: any) => {
-                        const state: any = {};
-                        state[setting.name] = e.target.checked;
-                        this.setState(state, "settings");
+                        const state = store.getState();
+                        const path = `users/${state.user.uid}/settings/default`;
+                        const data: any = {};
+                        data[setting.name] = e.target.checked;
+                        updateDocument({ path, data });
+                        // this.setState(state, "settings");
                       }
                     }"
                   /><span class="description">${setting.description}</span>
@@ -84,12 +102,14 @@ export class SettingsComponent extends Mixin(connect(store)(LitElement), [
                     name="${setting.name}"
                     @input="${
                       (e: any) => {
-                        const state: any = {
+                        const data: any = {
                           [setting.name]:
                             e.target.options[e.target.selectedIndex].value
                         };
-
-                        this.setState(state, "settings");
+                        const state = store.getState();
+                        const path = `users/${state.user.uid}/settings/default`;
+                        updateDocument({ path, data });
+                        // this.setState(state, "settings");
                       }
                     }"
                     >${
@@ -98,7 +118,7 @@ export class SettingsComponent extends Mixin(connect(store)(LitElement), [
                           html`
                             <option
                               ?selected="${
-                                state.app.settings[option.name] == option.value
+                                state.settings[setting.name] == option.value
                               }"
                               value="${option.value}"
                               >${option.label}</option

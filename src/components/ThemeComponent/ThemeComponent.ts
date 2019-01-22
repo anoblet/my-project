@@ -43,7 +43,11 @@ const theme = async () => {
 
 export const setTheme = (theme: any) => {
   const state = store.getState();
-  setState({ data: theme, store: store, type: "theme" });
+  // setState({ data: theme, store: store, type: "theme" });
+  updateDocument({
+    path: `users/${state.user.uid}/settings/theme`,
+    data: { currentTheme: theme }
+  });
 };
 
 export class ThemeComponent extends LitElement {

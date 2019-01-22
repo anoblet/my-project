@@ -58,13 +58,17 @@ export class AdminComponent extends Mixin(connect(store)(LitElement), [
   }
 
   valueChanged(e: any) {
+    const state = store.getState();
+    const path = `users/${state.user.uid}/settings/default`;
+
     const settings: any = {};
     let value;
     if (e.target.nodeName.toLowerCase() === "select") {
       value = e.target.options[e.target.selectedIndex].value;
     }
     settings[e.target.name] = value;
-    this.setState({ settings }, "app");
+    updateDocument({ path, data: settings });
+    // this.setState({ settings }, "app");
   }
 
   stateChanged(state: any) {

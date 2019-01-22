@@ -21,6 +21,7 @@ export const initStore = () => {
  * Needed so that after a signin has been processed,
  * on redirect, the form is added to capture the result
  * @return [description]
+ *
  */
 export const checkRedirect = () => {
   let instance =
@@ -33,6 +34,9 @@ export const checkRedirect = () => {
 
 /**
  * Only takes a callback that fires one the user status has been resolved
+ *
+ * Example: getUser((user: any) => console.log(user))
+ *
  */
 export const getUser = ({ callback }: any) => {
   const instance =
@@ -51,6 +55,14 @@ export const getUser = ({ callback }: any) => {
 /**
  * Returns either an array of documents, or fires a callback depending on whether or not watch is true
  * @return Array | Void
+ *
+ * Examples:
+ *
+ * Single-use promise
+ * getCollection({path: "posts", orderBy: "date"}).then((colleciton: any) => console.log(collection))
+ *
+ * Multi-use callback
+ * getCollection({callback: (collection)=> console.log(collection), path: "posts", orderBy: "date", watch: true})
  */
 export const getCollection = ({ path, callback, watch, orderBy }: any) => {
   firestore.settings({ timestampsInSnapshots: true });
@@ -83,6 +95,9 @@ export const getCollection = ({ path, callback, watch, orderBy }: any) => {
 /**
  * Add a document to a collection
  * @return The document ID
+ *
+ * Example: addDocument("posts", { title: "Sample title" })
+ *
  */
 
 export const addDocument = ({ path, data }: any) => {
@@ -94,6 +109,16 @@ export const addDocument = ({ path, data }: any) => {
       return docRef.id;
     });
 };
+
+/**
+ * Update or create a document
+ *
+ * Example:
+ *
+ * updateDocument({ path: "posts/<postId>", { title: "Sample title" } })
+ *
+ * @return
+ */
 
 export const updateDocument = ({ path, data }: any) => {
   console.log("Updating document");

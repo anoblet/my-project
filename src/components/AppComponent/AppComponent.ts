@@ -66,6 +66,7 @@ export class AppComponent extends Mixin(connect(store)(LitElement), [
   // Lifecycle
   constructor() {
     super();
+    log("App is constructing");
     this.setStore(store);
     this.addReducer("app"), this.addReducer("user"), this.addReducer("theme");
     this.addReducer("settings");
@@ -91,7 +92,7 @@ export class AppComponent extends Mixin(connect(store)(LitElement), [
       import(/* webpackChunkName: "AppTheme" */ "../AppTheme/AppTheme"),
       import(/* webpackChunkName: "PageHome" */ "../PageHome/PageHome"),
       new Promise(async resolve => {
-        log("Running init methods");
+        log("Run init methods");
         await initApp(this.firebaseConfig);
         await initStore();
         await checkRedirect();
@@ -150,7 +151,7 @@ export class AppComponent extends Mixin(connect(store)(LitElement), [
 
     // Let's override mode
     log("Overiding mode so that it is set to development");
-    this.setState({ settings: { mode: 1 } }, "app");
+    // this.setState({ settings: { mode: 1 } }, "app");
 
     // Register drawer listeners
     this.addEventListener("close-drawer", this._closeDrawer);
