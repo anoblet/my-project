@@ -109,7 +109,7 @@ export class AppComponent extends Mixin(connect(store)(LitElement), [
       new Promise(async resolve => {
         log("Run init methods");
         await initApp(this.firebaseConfig);
-        await initStore();
+        // await initStore();
         await checkRedirect();
         await getUser({
           callback: async (user: any) => {
@@ -166,7 +166,7 @@ export class AppComponent extends Mixin(connect(store)(LitElement), [
 
     // Let's override mode
     log("Set default mode");
-    this.setState({ settings: { mode: 0 } }, "app");
+    this.setState({ settings: { mode: 1 } }, "app");
 
     // Register drawer listeners
     this.addEventListener("close-drawer", this._closeDrawer);
