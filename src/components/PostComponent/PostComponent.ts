@@ -14,8 +14,6 @@ import("../../../packages/PellComponent/PellComponent");
 import { structure } from "./PostStructure";
 import template from "./PostTemplate";
 
-import * as style from "./PostComponent.scss";
-
 export interface PostComponent {
   [key: string]: any; // Add index signature
 }
@@ -53,12 +51,12 @@ export class PostComponent extends Mixin(LitElement, [TemplateMixin]) {
 
   text({ field, value }: any) {
     return html`
-      ${field.label}
+      <label>${field.label}</label>:
       <input
         name="${field.name}"
         label="${field.label}"
         value="${value ? value : ""}"
-      ></input>
+      />
     `;
   }
 

@@ -14,86 +14,66 @@ export default function() {
   return html`
     <card-component>
       <h3 slot="title">
-        ${
-          this.editable
-            ? html`
-                ${
-                  this.text({
-                    field: search("title", structure),
-                    value: this.title
-                  })
-                }
-              `
-            : html`
-                ${this.title}
-              `
-        }
+        ${this.editable
+          ? html`
+              ${this.text({
+                field: search("title", structure),
+                value: this.title
+              })}
+            `
+          : html`
+              ${this.title}
+            `}
       </h3>
       <div slot="content">
-        ${
-          this.editable
-            ? html`
-                ${
-                  this.text({
-                    field: search("author", structure),
-                    value: this.author
-                  })
-                }
-              `
-            : html`
-                ${this.author}
-              `
-        }
-        ${
-          this.editable
-            ? html`
-                ${
-                  this.text({
-                    field: search("date", structure),
-                    value: this.date
-                  })
-                }
-              `
-            : html`
-                ${this.date}
-              `
-        } <label>Content</label> ${
-          this.editable
-            ? html`
-                <pell-component
-                  name="content"
-                  .input="${this.content}"
-                ></pell-component>
-              `
-            : html`
-                ${
-                  this.content
-                    ? html`
-                        ${unsafeHTML(this.content)}
-                      `
-                    : ""
-                }
-              `
-        }
+        ${this.editable
+          ? html`
+              ${this.text({
+                field: search("author", structure),
+                value: this.author
+              })}
+            `
+          : html`
+              ${this.author}
+            `}
+        ${this.editable
+          ? html`
+              ${this.text({
+                field: search("date", structure),
+                value: this.date
+              })}
+            `
+          : html`
+              ${this.date}
+            `} <label>Content</label> ${this.editable
+          ? html`
+              <pell-component
+                name="content"
+                .input="${this.content}"
+              ></pell-component>
+            `
+          : html`
+              ${this.content
+                ? html`
+                    ${unsafeHTML(this.content)}
+                  `
+                : ""}
+            `}
       </div>
       <div slot="actions">
         <mwc-button
           outlined
-          @click="${
-            (e: Event) => {
-              if (this.editable) this.submitForm(e);
-              else this.editable = !this.editable;
-            }
-          }"
-          >${
-            this.editable
-              ? html`
-                  Save
-                `
-              : html`
-                  Edit
-                `
-          }</mwc-button
+          @click="${(e: Event) => {
+            if (this.editable) this.submitForm(e);
+            else this.editable = !this.editable;
+          }}"
+          >${this.editable
+            ? html`
+                Save
+              `
+            : html`
+                Edit
+              `}</mwc-button
         >
       </div>
     </card-component>

@@ -1,7 +1,4 @@
-import * as style from "./AppComponent.scss";
-
-import { customElement, LitElement, html, property } from "lit-element";
-
+import { LitElement, css, customElement, html, property } from "lit-element";
 import { FirebaseMixin } from "../../../packages/FirebaseMixin";
 import { HelperMixin } from "../../../packages/HelperMixin";
 import { MediaMixin } from "../../../packages/MediaMixin";
@@ -25,6 +22,8 @@ import { updateDocument } from "../../../packages/firebase-helpers";
 import { setState } from "../../../packages/state-helpers/state-helpers";
 import { themeStructure } from "../ThemeComponent/ThemeStructure";
 import { installOfflineWatcher } from "pwa-helpers/network.js";
+import componentStyle from "./AppStyle";
+import globalStyle from "../../GlobalStyle";
 
 import { log } from "../../Debug";
 
@@ -47,7 +46,7 @@ export class AppComponent extends Mixin(connect(store)(LitElement), [
   public firebaseConfig = config.firebase;
   public taskPending = false;
   public template: any = Template;
-  public componentStyle: any = style;
+  // public componentStyle: any = style;
 
   // Lifecycle
   constructor() {
@@ -242,29 +241,23 @@ export class AppComponent extends Mixin(connect(store)(LitElement), [
     super.stateChanged(state);
     const theme = state.theme;
     if (theme) {
-      // Updates a document too many times
-      // updateDocument({
-      //   path: `users/${state.user.uid}/settings/theme`,
-      //   data: { currentTheme: theme }
-      // });
       this.updateStyles(theme);
     }
   }
 
+  static get styles() {
+    return [globalStyle, componentStyle];
+  }
+
   public render() {
     return html`
-      <style>
-        ${this.componentStyle}
-      </style>
       <my-loader ?hidden="${!this.taskPending}"></my-loader>
 
-      ${
-        !this.taskPending
-          ? this.template(this.state)
-          : html`
-              <my-loader></my-loader>
-            `
-      }
+      ${!this.taskPending
+        ? this.template(this.state)
+        : html`
+            <my-loader></my-loader>
+          `}
     `;
   }
 }

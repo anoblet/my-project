@@ -12,6 +12,8 @@ import Template from "./AppUserTemplate";
 const firebase = window.firebase;
 const firebaseui = window.firebaseui;
 
+import Style2 from "./FirebaseUIStyle"
+
 export class AppUser extends Mixin(connect(store)(LitElement), [
   BaseMixin,
   TaskMixin,
@@ -116,6 +118,11 @@ export class AppUser extends Mixin(connect(store)(LitElement), [
 
   stateChanged(state: any) {
     this.state = state;
+  }
+
+  static get styles() {
+    return [Style2
+    ];
   }
 
   render() {

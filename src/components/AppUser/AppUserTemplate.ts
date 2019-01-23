@@ -9,9 +9,10 @@ import(/* webpackChunkName: "MyFlex" */ "../../../packages/my-flex");
 
 export default function({ user }: any) {
   return html`
+    <!--
     <style>
       @import "https://www.gstatic.com/firebasejs/ui/3.5.2/firebase-ui-auth.css";
-    </style>
+    </style> -->
     <my-card collapsible grow>
       <h3 slot="title">User</h3>
       <my-flex direction="column" grow slot="content">
