@@ -54,6 +54,7 @@ export class PellComponent extends LitElement {
       }
     });
     if (this.input) editor.content.innerHTML = this.input;
+    this.value = this.input;
   }
 
   public render() {

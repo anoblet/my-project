@@ -1,5 +1,4 @@
 import { html, LitElement, property } from "lit-element";
-import { until } from "lit-html/directives/until";
 import { store } from "../../store";
 import { addDocument } from "../../../packages/firebase-helpers/firebase-helpers";
 import { getCollection } from "../../../packages/firebase-helpers/firebase-helpers";
@@ -10,27 +9,7 @@ import GlobalStyle from "../../GlobalStyle";
 import themeEdit from "./ThemeEdit";
 import listThemes from "./ListThemes";
 import saveThemeTemplate from "./SaveTheme";
-
-export const themeStructure = [
-  {
-    label: "Background color",
-    property: "backgroundColor",
-    varName: "--background-color"
-  },
-  { label: "Text color", property: "textColor", varName: "--text-color" },
-  { label: "Link color", property: "linkColor", varName: "--link-color" },
-  { label: "Border color", property: "borderColor", varName: "--border-color" },
-  {
-    label: "Primary color",
-    property: "primaryColor",
-    varName: "--primary-color"
-  },
-  {
-    label: "Secondary color",
-    property: "secondaryColor",
-    varName: "--secondary-color"
-  }
-];
+import { themeStructure } from "./ThemeStructure";
 
 const getThemePath = () => {
   const state = store.getState();
@@ -50,11 +29,37 @@ export const setTheme = (theme: any) => {
   });
 };
 
+const randomColor = () => {
+  var letters = "0123456789ABCDEF";
+  var color = "#";
+  for (var i = 0; i < 6; i++) {
+    color += letters[Math.floor(Math.random() * 16)];
+  }
+  return color;
+};
+
+const randomTheme = () => {
+  const state = store.getState();
+  let theme: any = {};
+  themeStructure.map((field: any) => {
+    theme[field.property] = randomColor();
+  });
+  setTheme(theme);
+};
+
 export class ThemeComponent extends LitElement {
+  @property({ type: Array }) currentTheme: any = {};
   @property({ type: Array }) savedThemes: any;
 
   firstUpdated() {
     const state = store.getState();
+    getDocument({
+      callback: (theme: any) => {
+        this.currentTheme = theme.currentTheme;
+      },
+      path: `/users/${state.user.uid}/settings/theme`,
+      watch: true
+    });
     getCollection({
       callback: (themes: any) => {
         this.savedThemes = themes;
@@ -73,7 +78,7 @@ export class ThemeComponent extends LitElement {
     return html`
       <grid-component>
         <card-component title="Current theme">
-          ${themeEdit({ fields: themeStructure, theme: state.theme })}
+          ${themeEdit({ fields: themeStructure, theme: this.currentTheme })}
         </card-component>
         <card-component> ${saveThemeTemplate.bind(this)()} </card-component>
         ${
@@ -82,13 +87,20 @@ export class ThemeComponent extends LitElement {
                 <card-component title="Saved themes">
                   <div slot="content">
                     <ul>
-                      ${listThemes.bind(this)()}
+                      ${listThemes(this.savedThemes)}
                     </ul>
                   </div>
                 </card-component>
               `
             : ""
         }
+        <card-component title="Random theme">
+          <mwc-button
+            label="Random theme"
+            outlined
+            @click="${randomTheme}"
+          ></mwc-button>
+        </card-component>
       </grid-component>
     `;
   }

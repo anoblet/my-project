@@ -1,6 +1,14 @@
 import { html } from "lit-element";
 import { unsafeHTML } from "lit-html/directives/unsafe-html";
-import structure from "./PostStructure";
+import { structure } from "./PostStructure";
+
+function search(nameKey: string, myArray: any) {
+  for (var i = 0; i < myArray.length; i++) {
+    if (myArray[i].name === nameKey) {
+      return myArray[i];
+    }
+  }
+}
 
 export default function() {
   return html`
@@ -9,7 +17,12 @@ export default function() {
         ${
           this.editable
             ? html`
-                ${this.text({ field: structure.title, value: this.title })}
+                ${
+                  this.text({
+                    field: search("title", structure),
+                    value: this.title
+                  })
+                }
               `
             : html`
                 ${this.title}
@@ -20,7 +33,12 @@ export default function() {
         ${
           this.editable
             ? html`
-                ${this.text({ field: structure.author, value: this.author })}
+                ${
+                  this.text({
+                    field: search("author", structure),
+                    value: this.author
+                  })
+                }
               `
             : html`
                 ${this.author}
@@ -29,13 +47,17 @@ export default function() {
         ${
           this.editable
             ? html`
-                ${this.text({ field: structure.date, value: this.date })}
+                ${
+                  this.text({
+                    field: search("date", structure),
+                    value: this.date
+                  })
+                }
               `
             : html`
                 ${this.date}
               `
-        }
-        ${
+        } <label>Content</label> ${
           this.editable
             ? html`
                 <pell-component

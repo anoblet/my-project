@@ -1,16 +1,13 @@
 import { css, html, LitElement, property } from "lit-element";
-import { getLog } from "../../Debug";
+import { getHistory } from "../../Debug";
 
 export class Log extends LitElement {
-  getHistory() {
-    return getLog();
-  }
   render() {
-    const history = getLog();
+    const history = getHistory();
     return html`
       <ul>
         ${
-          this.getHistory().map(
+          history().map(
             (item: any, index: number) =>
               html`
                 ${

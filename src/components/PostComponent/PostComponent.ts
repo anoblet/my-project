@@ -11,7 +11,7 @@ import {
 
 import("../../../packages/PellComponent/PellComponent");
 
-import structure from "./PostStructure";
+import { structure } from "./PostStructure";
 import template from "./PostTemplate";
 
 import * as style from "./PostComponent.scss";

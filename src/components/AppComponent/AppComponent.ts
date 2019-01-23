@@ -23,22 +23,8 @@ import { checkRedirect } from "../../../packages/firebase-helpers";
 import { getUser } from "../../../packages/firebase-helpers";
 import { updateDocument } from "../../../packages/firebase-helpers";
 import { setState } from "../../../packages/state-helpers/state-helpers";
-import { themeStructure } from "../ThemeComponent/ThemeComponent";
+import { themeStructure } from "../ThemeComponent/ThemeStructure";
 import { installOfflineWatcher } from "pwa-helpers/network.js";
-
-import(/* webpackChunkName: "PostController" */ "../../post/PostController");
-import(/* webpackChunkName: "UserController" */ "../../controllers/UserController");
-import(/* webpackChunkName: "UserSettings" */ "../../User/SettingsComponent");
-import(/* webpackChunkName: "PageInfo" */ "../PageInfo/PageInfo");
-import(/* webpackChunkName: "Drawer" */ "../DrawerComponent/Drawer");
-import(/* webpackChunkName: "ProfileMenu" */ "../ProfileMenu/ProfileMenu");
-import(/* webpackChunkName: "Contact" */ "../Contact/Contact");
-import(/* webpackChunkName: "AdminComponent" */ "../AdminComponent/Admin");
-import(/* webpackChunkName: "Breadcrumb" */ "../BreadcrumbComponent/Breadcrumb");
-import(/* webpackChunkName: "PageComponents" */ "../PageComponents/PageComponents");
-import(/* webpackChunkName: "LogComponent" */ "../LogComponent/LogComponent");
-import(/* webpackChunkName: "ThemeComponent" */ "../ThemeComponent/ThemeComponent");
-import("../../../packages/MediaQuery");
 
 import { log } from "../../Debug";
 
@@ -75,12 +61,7 @@ export class AppComponent extends Mixin(connect(store)(LitElement), [
 
   connectedCallback() {
     super.connectedCallback();
-    installOfflineWatcher((offline: boolean) => {});
-  }
-
-  firstUpdated() {
-    super.firstUpdated();
-    this.taskChain([
+    this.runTasks([
       import(/* webpackChunkName: "MyFlex" */ "../../../packages/my-flex"),
       import(/* webpackChunkName: "MyGrid" */ "../../../packages/my-grid"),
       import(/* webpackChunkName: "MyLoader" */ "../../../packages/my-loader"),
@@ -91,6 +72,20 @@ export class AppComponent extends Mixin(connect(store)(LitElement), [
       import(/* webpackChunkName: "AppFooter" */ "../AppFooter/AppFooter"),
       import(/* webpackChunkName: "AppTheme" */ "../AppTheme/AppTheme"),
       import(/* webpackChunkName: "PageHome" */ "../PageHome/PageHome"),
+      import(/* webpackChunkName: "PostController" */ "../../post/PostController"),
+      import(/* webpackChunkName: "UserController" */ "../../controllers/UserController"),
+      import(/* webpackChunkName: "UserSettings" */ "../../User/SettingsComponent"),
+      import(/* webpackChunkName: "PageInfo" */ "../PageInfo/PageInfo"),
+      import(/* webpackChunkName: "Drawer" */ "../DrawerComponent/Drawer"),
+      import(/* webpackChunkName: "ProfileMenu" */ "../ProfileMenu/ProfileMenu"),
+      import(/* webpackChunkName: "Contact" */ "../Contact/Contact"),
+      import(/* webpackChunkName: "AdminComponent" */ "../AdminComponent/AdminComponent"),
+      import(/* webpackChunkName: "Breadcrumb" */ "../BreadcrumbComponent/Breadcrumb"),
+      import(/* webpackChunkName: "PageComponents" */ "../PageComponents/PageComponents"),
+      import(/* webpackChunkName: "LogComponent" */ "../LogComponent/LogComponent"),
+      import(/* webpackChunkName: "ThemeComponent" */ "../ThemeComponent/ThemeComponent"),
+      import(/* webpackChunkName: "MediaQuery" */ "../../../packages/MediaQuery"),
+      import(/* webpackChunkName: "MenuComponent" */ "../MenuComponent/MenuComponent"),
       new Promise(async resolve => {
         log("Run init methods");
         await initApp(this.firebaseConfig);
@@ -150,12 +145,13 @@ export class AppComponent extends Mixin(connect(store)(LitElement), [
     ]);
 
     // Let's override mode
-    log("Overiding mode so that it is set to development");
-    // this.setState({ settings: { mode: 1 } }, "app");
+    log("Set default mode");
+    this.setState({ settings: { mode: 0 } }, "app");
 
     // Register drawer listeners
     this.addEventListener("close-drawer", this._closeDrawer);
     this.addEventListener("drawer-toggled", this._toggleDrawer);
+    installOfflineWatcher((offline: boolean) => {});
   }
 
   _closeDrawer() {

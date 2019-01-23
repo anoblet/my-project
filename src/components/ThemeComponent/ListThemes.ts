@@ -1,11 +1,11 @@
 import { html } from "lit-element";
 import { setTheme } from "./ThemeComponent";
 
-export default function() {
+export default function(themes: any) {
   return html`
     <ul>
       ${
-        this.savedThemes.map(
+        themes.map(
           (theme: any) =>
             html`
               <a href=""

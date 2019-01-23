@@ -66,11 +66,6 @@
     <script src="https://www.gstatic.com/firebasejs/5.5.5/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/5.5.5/firebase-firestore.js"></script>
     <script src="https://www.gstatic.com/firebasejs/ui/3.5.2/firebase-ui-auth__en.js"></script>
-    <link
-      type="text/css"
-      rel="stylesheet"
-      href="https://www.gstatic.com/firebasejs/ui/3.5.2/firebase-ui-auth.css"
-    />
     <script>
       // Initialize Firebase
       var config = {
@@ -82,14 +77,6 @@
         messagingSenderId: "552770278955"
       };
       firebase.initializeApp(config);
-
-      // Initialize Cloud Firestore through Firebase
-      const firestore = firebase.firestore();
-
-      // Disable deprecated features
-      firestore.settings({
-        timestampsInSnapshots: true
-      });
     </script>
     <meta
       name="viewport"

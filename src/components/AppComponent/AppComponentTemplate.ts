@@ -1,8 +1,6 @@
 import { html } from "lit-element";
 import { filterByMode } from "../../Debug";
 
-import("../MenuComponent/MenuComponent");
-
 export default function({ router, user }: any) {
   return html`
     <my-flex direction="column" id="container" style="grid-gap: 0;">

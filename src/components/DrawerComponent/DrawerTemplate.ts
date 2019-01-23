@@ -1,6 +1,6 @@
 import { html } from "lit-element";
 import { render } from "lit-html";
-
+import { filterByMode } from "../../Debug";
 export default function() {
   return html`
     <card-component>
@@ -8,12 +8,10 @@ export default function() {
         <ul>
           <a href="/"> <li>Home</li></a>
           ${
-            this.state.app.settings
-              ? this.state.app.settings.mode >= 1
-                ? html`
-                    <a href="/components"> <li>Components</li></a>
-                  `
-                : ""
+            filterByMode(0)
+              ? html`
+                  <a href="/components"> <li>Components</li></a>
+                `
               : ""
           }
           <a href="/contact"> <li>Contact</li></a>
