@@ -1,7 +1,7 @@
 import { html } from "lit-element";
 import { setTheme } from "./ThemeComponent";
 import { addDocument } from "../../../packages/firebase-helpers/firebase-helpers";
-import { store } from "../../store";
+import { store } from "../../Store";
 
 const saveTheme = (name: string) => {
   const state = store.getState();

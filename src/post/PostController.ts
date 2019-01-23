@@ -18,7 +18,7 @@ import { connect } from "pwa-helpers/connect-mixin.js";
 import { model } from "../post/PostModel";
 import { navigate } from "lit-redux-router";
 import navigation from "../post/NavigationTemplate";
-import { store } from "../store";
+import { store } from "../Store";
 import { until } from "lit-html/directives/until";
 
 import { getCollection } from "../../packages/firebase-helpers";

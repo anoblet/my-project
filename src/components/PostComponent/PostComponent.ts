@@ -2,7 +2,7 @@ import { LitElement, html, property } from "lit-element";
 import { Mixin } from "../../../packages/Mixin";
 import { TemplateMixin } from "../../../packages/TemplateMixin";
 import { navigate } from "lit-redux-router";
-import { store } from "../../store";
+import { store } from "../../Store";
 import {
   addDocument,
   getDocument,

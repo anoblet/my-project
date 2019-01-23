@@ -15,7 +15,7 @@ import { connect } from "pwa-helpers/connect-mixin.js";
 import { connectRouter } from "lit-redux-router";
 import { installRouter } from "pwa-helpers/router.js";
 import { runtime } from "../../Runtime";
-import { store } from "../../store";
+import { store } from "../../Store";
 import { getDocument } from "../../../packages/firebase-helpers";
 import { initApp } from "../../../packages/firebase-helpers";
 import { initStore } from "../../../packages/firebase-helpers";

@@ -8,7 +8,7 @@ import { Mixin } from "../../packages/Mixin";
 import model from "./PostModel";
 import { navigate } from "lit-redux-router";
 import Template from "./PostComponentTemplate.ts";
-import { store } from "../store";
+import { store } from "../Store";
 import { addDocument } from "../../packages/firebase-helpers";
 import { getDocument } from "../../packages/firebase-helpers";
 import { updateDocument } from "../../packages/firebase-helpers";

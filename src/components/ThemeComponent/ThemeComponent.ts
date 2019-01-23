@@ -1,5 +1,5 @@
 import { html, LitElement, property } from "lit-element";
-import { store } from "../../store";
+import { store } from "../../Store";
 import { addDocument } from "../../../packages/firebase-helpers/firebase-helpers";
 import { getCollection } from "../../../packages/firebase-helpers/firebase-helpers";
 import { getDocument } from "../../../packages/firebase-helpers/firebase-helpers";

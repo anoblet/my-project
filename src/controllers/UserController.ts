@@ -6,7 +6,7 @@ import { StateMixin } from "../../packages/StateMixin";
 import { User } from "../User";
 import { connect } from "pwa-helpers/connect-mixin.js";
 import { navigate } from "lit-redux-router";
-import { store } from "../store";
+import { store } from "../Store";
 import { until } from "lit-html/directives/until";
 
 import structure from "../post/PostModel";

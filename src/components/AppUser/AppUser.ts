@@ -5,7 +5,7 @@ import { BaseMixin } from "../../../packages/BaseMixin";
 import { Mixin } from "../../../packages/Mixin";
 import { StateMixin } from "../../../packages/StateMixin";
 import { TaskMixin } from "../../../packages/TaskMixin";
-import { store } from "../../store";
+import { store } from "../../Store";
 
 import Template from "./AppUserTemplate";
 

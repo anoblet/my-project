@@ -2,7 +2,7 @@ import { html, LitElement } from "lit-element";
 import { Mixin } from "../../../packages/Mixin";
 import { TaskMixin } from "../../../packages/TaskMixin";
 import { connect } from "pwa-helpers/connect-mixin.js";
-import { store } from "../../store";
+import { store } from "../../Store";
 import { StateMixin } from "../../../packages/StateMixin";
 import Template from "./AppHeaderTemplate";
 import * as Style from "./AppHeader.scss";

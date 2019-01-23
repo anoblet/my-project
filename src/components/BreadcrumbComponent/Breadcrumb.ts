@@ -3,7 +3,7 @@ import style from "./BreadcrumbStyle";
 import GlobalStyle from "../../GlobalStyle";
 import template from "./BreadcrumbTemplate";
 import { connect } from "pwa-helpers/connect-mixin.js";
-import { store } from "../../store";
+import { store } from "../../Store";
 
 //@customElement("breadcrumb-component")
 export class BreadcrumbComponent extends connect(store)(LitElement) {

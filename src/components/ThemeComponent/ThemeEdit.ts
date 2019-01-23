@@ -1,6 +1,6 @@
 import { html } from "lit-element";
 import { updateDocument } from "../../../packages/firebase-helpers/firebase-helpers";
-import { store } from "../../store";
+import { store } from "../../Store";
 
 const updateField = (field: string, value: string) => {
   const state = store.getState();

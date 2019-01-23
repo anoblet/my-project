@@ -1,5 +1,5 @@
 import { html } from "lit-element";
-import { store } from "../../store";
+import { store } from "../../Store";
 
 export default function({ user }: any) {
   return html`
