@@ -9,10 +9,10 @@ import { store } from "../../Store";
 
 import Template from "./AppUserTemplate";
 
-const firebase = window.firebase;
-const firebaseui = window.firebaseui;
+// const firebase = window.firebase;
+// const firebaseui = window.firebaseui;
 
-import Style2 from "./FirebaseUIStyle"
+import Style2 from "./FirebaseUIStyle";
 
 export class AppUser extends Mixin(connect(store)(LitElement), [
   BaseMixin,
@@ -81,14 +81,14 @@ export class AppUser extends Mixin(connect(store)(LitElement), [
   }
 
   signout() {
-    // Promise.all([
-    //   import(/* webpackChunkName: "FirebaseApp" */ "firebase/app")
-    //   // import(/* webpackChunkName: "firebaseAuth" */ 'firebase/auth')
-    // ]).then(([firebase]) => {
-    firebase.auth().signOut();
-    this.setState({}, "user", { merge: false });
-    this.runTasks([this._resetSettings()]);
-    // });
+    Promise.all([
+      import(/* webpackChunkName: "FirebaseApp" */ "firebase/app")
+      // import(/* webpackChunkName: "firebaseAuth" */ 'firebase/auth')
+    ]).then(([firebase]) => {
+      firebase.auth().signOut();
+      this.setState({}, "user", { merge: false });
+      this.runTasks([this._resetSettings()]);
+    });
   }
 
   createForm(el: any) {
@@ -99,21 +99,21 @@ export class AppUser extends Mixin(connect(store)(LitElement), [
 
   getForm() {
     return new Promise((resolve, reject) => {
-      // Promise.all([
-      //   import(/* webpackChunkName: "FirebaseApp" */ "firebase/app"),
-      //   import(/* webpackChunkName: "FirebaseUI" */ "firebaseui")
-      // ]).then(async () => {
-      const el = document.createElement("div");
-      const ui =
-        firebaseui.auth.AuthUI.getInstance() ||
-        new firebaseui.auth.AuthUI(firebase.auth());
-      ui.start(el, {
-        ...config.firebaseui,
-        ...{ credentialHelper: firebaseui.auth.CredentialHelper.NONE }
+      Promise.all([
+        import(/* webpackChunkName: "FirebaseApp" */ "firebase/app"),
+        import(/* webpackChunkName: "FirebaseUI" */ "firebaseui")
+      ]).then(async ([firebase, firebaseui]) => {
+        const el = document.createElement("div");
+        const ui =
+          firebaseui.auth.AuthUI.getInstance() ||
+          new firebaseui.auth.AuthUI(firebase.auth());
+        ui.start(el, {
+          ...config.firebaseui,
+          ...{ credentialHelper: firebaseui.auth.CredentialHelper.NONE }
+        });
+        resolve(el);
       });
-      resolve(el);
     });
-    // });
   }
 
   stateChanged(state: any) {
@@ -121,8 +121,7 @@ export class AppUser extends Mixin(connect(store)(LitElement), [
   }
 
   static get styles() {
-    return [Style2
-    ];
+    return [Style2];
   }
 
   render() {
