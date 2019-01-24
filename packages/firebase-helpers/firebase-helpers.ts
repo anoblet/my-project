@@ -1,20 +1,30 @@
-declare global {
-  interface Window {
-    firebase: any;
-    firebaseui: any;
-  }
-}
+import * as firebaseui from "firebaseui"
 
-const firebase = window.firebase;
-const firestore = firebase.firestore();
-const firebaseui = window.firebaseui;
+// declare global {
+//   interface Window {
+//     firebase: any;
+//     firebaseui: any;
+//   }
+// }
+
+// const firebase = window.firebase;
+// const firestore = firebase.firestore();
+// const firebaseui = window.firebaseui;
 
 export const initApp = (config: any) => {
-  if (firebase.apps.length === 0) firebase.initializeApp(config);
+  import(/* webpackChunkName: "Firebase" */ "firebase/app").then(firebase => {
+    if (firebase.apps.length === 0) firebase.initializeApp(config);
+  });
 };
 
 export const initStore = () => {
-  firebase.firestore().settings({ timestampsInSnapshots: true });
+  return Promise.all([
+    import(/* webpackChunkName: "Firebase" */ "firebase/app"),
+    // @ts-ignore
+    import(/* webpackChunkName: "FirebaseAuth" */ "firebase/firestore")
+  ]).then(([firebase, firestore]) => {
+    firebase.firestore().settings({ timestampsInSnapshots: true });
+  });
 };
 
 /**
@@ -24,12 +34,20 @@ export const initStore = () => {
  *
  */
 export const checkRedirect = () => {
-  let instance =
-    firebaseui.auth.AuthUI.getInstance() ||
-    new firebaseui.auth.AuthUI(firebase.auth());
-  if (instance.isPendingRedirect()) {
-    instance.start(document.createElement("div"), {});
-  }
+  return Promise.all([
+    import(/* webpackChunkName: "Firebase" */ "firebase/app"),
+    // @ts-ignore
+    import(/* webpackChunkName: "FirebaseAuth" */ "firebase/auth"),
+    ,
+    import(/* webpackChunkName: "FirebaseUI" */ "firebaseui")
+  ]).then(([firebase, auth]) => {
+    const instance =
+      firebaseui.auth.AuthUI.getInstance() ||
+      new firebaseui.auth.AuthUI(firebase.auth());
+    if (instance.isPendingRedirect()) {
+      instance.start(document.createElement("div"), {});
+    }
+  });
 };
 
 /**
@@ -39,16 +57,24 @@ export const checkRedirect = () => {
  *
  */
 export const getUser = ({ callback }: any) => {
-  const instance =
-    firebaseui.auth.AuthUI.getInstance() ||
-    new firebaseui.auth.AuthUI(firebase.auth());
-  // If true, the user has logged in, and Firebase UI is waiting to process it
-  const pendingRedirect = instance.isPendingRedirect();
-  firebase.auth().onAuthStateChanged((user: any) => {
-    // If not logged in, or pending a redirect let's return false
-    if (!user && !pendingRedirect) return callback(false);
-    // User is logged in, let's return the user
-    if (user) return callback(user);
+  return Promise.all([
+    import(/* webpackChunkName: "Firebase" */ "firebase/app"),
+    // @ts-ignore
+    import(/* webpackChunkName: "FirebaseAuth" */ "firebase/auth"),
+    ,
+    import(/* webpackChunkName: "FirebaseUI" */ "firebaseui")
+  ]).then(([firebase, auth]) => {
+    const instance =
+      firebaseui.auth.AuthUI.getInstance() ||
+      new firebaseui.auth.AuthUI(firebase.auth());
+    // If true, the user has logged in, and Firebase UI is waiting to process it
+    const pendingRedirect = instance.isPendingRedirect();
+    firebase.auth().onAuthStateChanged((user: any) => {
+      // If not logged in, or pending a redirect let's return false
+      if (!user && !pendingRedirect) return callback(false);
+      // User is logged in, let's return the user
+      if (user) return callback(user);
+    });
   });
 };
 
@@ -65,8 +91,13 @@ export const getUser = ({ callback }: any) => {
  * getCollection({callback: (collection)=> console.log(collection), path: "posts", orderBy: "date", watch: true})
  */
 export const getCollection = ({ path, callback, watch, orderBy }: any) => {
-  firestore.settings({ timestampsInSnapshots: true });
-  let collection = firestore.collection(path);
+  return Promise.all([
+    import(/* webpackChunkName: "Firebase" */ "firebase/app"),
+    // @ts-ignore
+    import(/* webpackChunkName: "FirebaseAuth" */ "firebase/firestore")
+  ]).then(([firebase, firestore]) => {
+  let collection = firebase.firestore().collection(path);
+  // @ts-ignore
   if (orderBy) collection = collection.orderBy(orderBy);
   // Watch is enabled, let's use a callback
   if (watch)
@@ -90,6 +121,7 @@ export const getCollection = ({ path, callback, watch, orderBy }: any) => {
       });
       return result;
     });
+  });
 };
 
 /**
@@ -102,12 +134,18 @@ export const getCollection = ({ path, callback, watch, orderBy }: any) => {
 
 export const addDocument = ({ path, data }: any) => {
   console.log("Adding document");
-  return firestore
-    .collection(path)
-    .add(data)
-    .then((docRef: any) => {
-      return docRef.id;
-    });
+  return Promise.all([
+    import(/* webpackChunkName: "Firebase" */ "firebase/app"),
+    // @ts-ignore
+    import(/* webpackChunkName: "FirebaseAuth" */ "firebase/firestore")
+  ]).then(([firebase]) => {
+    return firebase.firestore()
+      .collection(path)
+      .add(data)
+      .then((docRef: any) => {
+        return docRef.id;
+      });
+  });
 };
 
 /**
@@ -122,15 +160,26 @@ export const addDocument = ({ path, data }: any) => {
 
 export const updateDocument = ({ path, data }: any) => {
   console.log("Updating document");
-  const document = firestore.doc(path);
-  return document.set(data, { merge: true });
+  return Promise.all([
+    import(/* webpackChunkName: "Firebase" */ "firebase/app"),
+    // @ts-ignore
+    import(/* webpackChunkName: "FirebaseAuth" */ "firebase/firestore")
+  ]).then(([firebase]) => {
+    const document = firebase.firestore().doc(path);
+    return document.set(data, { merge: true });
+  });
 };
 
 /**
  * Returns a promise/document, or calls a callback depending on the watch property
  */
 export const getDocument = ({ callback, path, watch }: any) => {
-  const document = firestore.doc(path);
+  return Promise.all([
+    import(/* webpackChunkName: "Firebase" */ "firebase/app"),
+    // @ts-ignore
+    import(/* webpackChunkName: "FirebaseAuth" */ "firebase/firestore")
+  ]).then(([firebase]) => {
+  const document = firebase.firestore().doc(path);
   return watch
     ? document.onSnapshot((doc: any) => {
         const source = doc.metadata.hasPendingWrites ? "local" : "remote";
@@ -139,6 +188,7 @@ export const getDocument = ({ callback, path, watch }: any) => {
     : document.get().then((doc: any) => {
         return doc.data();
       });
+  });
 };
 
 /**
@@ -147,9 +197,33 @@ export const getDocument = ({ callback, path, watch }: any) => {
  * @return      Promise
  */
 export const deleteDocument = ({ path }: any) => {
-  return firestore
+  return Promise.all([
+    import(/* webpackChunkName: "Firebase" */ "firebase/app"),
+    // @ts-ignore
+    import(/* webpackChunkName: "FirebaseAuth" */ "firebase/firestore")
+  ]).then(([firebase]) => {
+  return firebase.firestore()
     .doc(path)
     .delete()
     .then(() => console.log("Document deleted"))
     .catch((error: any) => console.log("Could not delete document", error));
+  });
+};
+
+const load = (depends: any = [], callback: any) => {
+  let modules: any = [
+    import(/* webpackChunkName: "Firebase" */ "firebase/app")
+  ];
+  if (depends.includes("auth"))
+    modules.push(
+      // @ts-ignore
+      import(/* webpackChunkName: "Firebase" */ "firebase/auth")
+    );
+  if (depends.includes("firestore"))
+    modules.push(
+      // @ts-ignore
+      import(/* webpackChunkName: "Firebase" */ "firebase/firestore")
+    );
+
+  Promise.all(modules).then(([firebase]) => callback(firebase));
 };

@@ -32,6 +32,27 @@ var pathToRegexp = require("path-to-regexp");
 // @ts-ignore
 connectRouter(store);
 
+const load = (modules: any = [], callback: any) => {
+  let dependencies: any = [
+    import(/* webpackChunkName: "Firebase" */ "firebase/app")
+  ];
+  if (modules.includes("auth"))
+    dependencies.push(
+      // @ts-ignore
+      import(/* webpackChunkName: "Firebase" */ "firebase/auth")
+    );
+  if (modules.includes("firestore"))
+    dependencies.push(
+      // @ts-ignore
+      import(/* webpackChunkName: "Firebase" */ "firebase/firestore")
+    );
+
+  // Promise.all(dependencies).then(([firebase]) => callback(firebase));
+  Promise.all(dependencies).then(([firebase]) => (window.firebase = firebase));
+};
+
+load("auth", "firestore");
+
 export class AppComponent extends Mixin(connect(store)(LitElement), [
   HelperMixin,
   // TemplateMixin,
@@ -91,7 +112,7 @@ export class AppComponent extends Mixin(connect(store)(LitElement), [
       new Promise(async resolve => {
         log("Run init methods");
         await initApp(this.firebaseConfig);
-        await initStore();
+        // await initStore();
         await checkRedirect();
         await getUser({
           callback: async (user: any) => {
@@ -148,7 +169,7 @@ export class AppComponent extends Mixin(connect(store)(LitElement), [
 
     // Let's override mode
     log("Set default mode");
-    this.setState({ settings: { mode: 0 } }, "app");
+    this.setState({ settings: { mode: 1 } }, "app");
 
     // Register drawer listeners
     this.addEventListener("close-drawer", this._closeDrawer);
