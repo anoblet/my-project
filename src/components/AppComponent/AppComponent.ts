@@ -60,6 +60,10 @@ export class AppComponent extends Mixin(connect(store)(LitElement), [
 
   connectedCallback() {
     super.connectedCallback();
+    console.log("hi")
+    // Let's set a default theme
+    log("Setting default theme")
+    setState( { data: config.defaultTheme, store: store, type: "theme"})
     this.runTasks([
       import(/* webpackChunkName: "MyFlex" */ "../../../packages/my-flex"),
       import(/* webpackChunkName: "MyGrid" */ "../../../packages/my-grid"),

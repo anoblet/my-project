@@ -17,4 +17,5 @@ export const subscribe = (listener: any) => {
 export const filterByMode = (mode: number) => {
   const state = store.getState();
   if (state.app.settings) return state.app.settings.mode >= mode;
+  else return true;
 };
