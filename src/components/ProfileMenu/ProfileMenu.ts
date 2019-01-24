@@ -9,14 +9,29 @@ import { StateMixin } from "../../../packages/StateMixin";
 export class ProfileMenu extends Mixin(connect(store)(LitElement), [
   StateMixin
 ]) {
-  @property({ type: Boolean, reflect: true, attribute: "hidden" })
+  @property({ type: Boolean, reflect: true })
   hidden: boolean = true;
+  handler: any;
+
+  connectedCallback() {
+    super.connectedCallback();
+    this.handler = (e: any) => {};
+  }
+
   firstUpdated() {
     // Close ProfileMenu on link click
     const links = this.shadowRoot.querySelectorAll("a");
     links.forEach((link: any) =>
       link.addEventListener("click", this._closeProfileMenu.bind(this))
     );
+  }
+
+  close() {
+    this.hidden = true;
+  }
+
+  open() {
+    this.hidden = false;
   }
 
   // Handlers

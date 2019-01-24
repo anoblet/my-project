@@ -39,21 +39,15 @@ export default function({ router, user }: any) {
                 >
                   <my-flex slot="content">
                     <grid-component style="margin: 1em;">
-                      ${
-                        this.state.app.settings
-                          ? this.state.app.settings.mode >= 1
-                            ? html`
-                                <card-component
-                                  ?hidden="${
-                                    this.state.router.activeRoute === "/"
-                                  }"
-                                >
-                                  <breadcrumb-component></breadcrumb-component
-                                ></card-component>
-                              `
-                            : ""
-                          : ""
-                      }
+                      ${this.state.settings.breadcrumbs
+                        ? html`
+                            <card-component
+                              ?hidden="${this.state.router.activeRoute === "/"}"
+                            >
+                              <breadcrumb-component></breadcrumb-component
+                            ></card-component>
+                          `
+                        : ""}
                       <div>
                         <lit-route path="/" component="page-home"></lit-route>
                         <lit-route
@@ -121,17 +115,15 @@ export default function({ router, user }: any) {
                           component="page-components"
                         ></lit-route>
                       </div>
-                      ${
-                        filterByMode(1)
-                          ? html`
-                              <card-component
-                                ><h3 slot="title">Log</h3>
-                                <div slot="content">
-                                  <log-component></log-component></div
-                              ></card-component>
-                            `
-                          : ""
-                      }
+                      ${this.state.settings.displayLog
+                        ? html`
+                            <card-component
+                              ><h3 slot="title">Log</h3>
+                              <div slot="content">
+                                <log-component></log-component></div
+                            ></card-component>
+                          `
+                        : ""}
                     </grid-component>
                   </my-flex>
                 </my-card>

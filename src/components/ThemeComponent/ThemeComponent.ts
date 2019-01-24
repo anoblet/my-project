@@ -1,15 +1,20 @@
 import { html, LitElement, property } from "lit-element";
 import { store } from "../../Store";
-import { addDocument } from "../../../packages/firebase-helpers/firebase-helpers";
-import { getCollection } from "../../../packages/firebase-helpers/firebase-helpers";
-import { getDocument } from "../../../packages/firebase-helpers/firebase-helpers";
-import { updateDocument } from "../../../packages/firebase-helpers/firebase-helpers";
+import {
+  addDocument,
+  getCollection,
+  getDocument,
+  updateDocument
+} from "../../../packages/firebase-helpers/firebase-helpers";
 import { setState } from "../../../packages/state-helpers/state-helpers";
-import GlobalStyle from "../../GlobalStyle";
 import themeEdit from "./ThemeEdit";
 import listThemes from "./ListThemes";
 import saveThemeTemplate from "./SaveTheme";
 import { themeStructure } from "./ThemeStructure";
+
+import GlobalStyle from "../../GlobalStyle";
+
+import("@material/mwc-switch");
 
 const getThemePath = () => {
   const state = store.getState();
@@ -47,6 +52,41 @@ const randomTheme = () => {
   setTheme(theme);
 };
 
+const toggleTheme = () => {
+  const state = store.getState();
+  return html`
+    <mwc-switch
+      ?checked=${state.settings.dark}
+      @change=${(e: any) => {
+        console.log(e);
+        const theme = e.target.checked
+          ? {
+              backgroundColor: "#000000",
+              borderColor: "#c0c0c0",
+              primaryColor: "#666666",
+              secondaryColor: "#000000",
+              textColor: "#ffffff"
+            }
+          : {
+              backgroundColor: "#ffffff",
+              borderColor: "#c0c0c0",
+              primaryColor: "#666666",
+              secondaryColor: "#000000",
+              textColor: "#000000"
+            };
+        updateDocument({
+          path: `users/${state.user.uid}/settings/default`,
+          data: { dark: e.target.checked }
+        });
+        updateDocument({
+          path: `users/${state.user.uid}/settings/theme`,
+          data: { currentTheme: theme }
+        });
+      }}
+    ></mwc-switch>
+  `;
+};
+
 export class ThemeComponent extends LitElement {
   @property({ type: Array }) currentTheme: any = {};
   @property({ type: Array }) savedThemes: any;
@@ -76,30 +116,29 @@ export class ThemeComponent extends LitElement {
   public render() {
     return html`
       <grid-component>
-      <card-component title="Random theme">
-        <mwc-button
-          label="Random theme"
-          outlined
-          @click="${randomTheme}"
-        ></mwc-button>
-      </card-component>
+        <card-component title="Random theme">
+          <mwc-button
+            label="Random theme"
+            outlined
+            @click="${randomTheme}"
+          ></mwc-button>
+        </card-component>
+        ${toggleTheme()}
         <card-component title="Current theme">
           ${themeEdit({ fields: themeStructure, theme: this.currentTheme })}
         </card-component>
         <card-component> ${saveThemeTemplate.bind(this)()} </card-component>
-        ${
-          this.savedThemes
-            ? html`
-                <card-component title="Saved themes">
-                  <div slot="content">
-                    <ul>
-                      ${listThemes(this.savedThemes)}
-                    </ul>
-                  </div>
-                </card-component>
-              `
-            : ""
-        }
+        ${this.savedThemes
+          ? html`
+              <card-component title="Saved themes">
+                <div slot="content">
+                  <ul>
+                    ${listThemes(this.savedThemes)}
+                  </ul>
+                </div>
+              </card-component>
+            `
+          : ""}
       </grid-component>
     `;
   }

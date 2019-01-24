@@ -9,8 +9,12 @@ export default function() {
       <li>
         <a href="/user/posts"><mwc-fab icon="subject"></mwc-fab></a>
       </li>
-      <li><a href="/user/theme"><mwc-fab icon="brush"></a></mwc-fab></li>
-      <li><mwc-fab></mwc-fab></li>
+      <li>
+        <a href="/user-theme"><mwc-fab icon="brush"></mwc-fab></a>
+      </li>
+      <li>
+        <a href="/user-theme"><mwc-fab icon="view_array"></mwc-fab></a>
+      </li>
       <li><mwc-fab></mwc-fab></li>
       <li><mwc-fab></mwc-fab></li>
       <li><mwc-fab></mwc-fab></li>

@@ -8,7 +8,7 @@ export default function({ user }: any) {
     <ul>
       ${user.signedIn
         ? html`
-            <a href="/user-settings"><li>Settings</li></a>
+            <li><a href="/user-settings">Settings</a></li>
           `
         : ""}
       ${filterByMode(1)
@@ -16,12 +16,12 @@ export default function({ user }: any) {
             <li><a href="/user-theme">Theme</a></li>
           `
         : ""}
-      ${user.signedIn
+      ${!user.signedIn
         ? html`
-            <a href="/user/signout"><li>Sign out</li></a>
+            <li><a href="/user/signin">Sign in</a></li>
           `
         : html`
-            <a href="/user/signin">Sign in</a>
+            <li><a href="/user/signout">Sign out</a></li>
           `}
     </ul>
   `;

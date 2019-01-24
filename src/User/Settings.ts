@@ -6,6 +6,18 @@ export const settings = [
     type: Boolean
   },
   {
+    description: "Enable breadcrumbs",
+    label: "Breadcrumbs",
+    name: "breadcrumbs",
+    type: Boolean
+  },
+  {
+    description: "Display log",
+    label: "Display log",
+    name: "displayLog",
+    type: Boolean
+  },
+  {
     description: "Mode",
     label: "Mode",
     name: "mode",

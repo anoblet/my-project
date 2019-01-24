@@ -230,7 +230,9 @@ export class AppComponent extends Mixin(connect(store)(LitElement), [
 
   public _toggleProfile() {
     const menu = this.shadowRoot.querySelector("#profile-menu");
-    this._toggleAttribute("hidden", menu);
+    if(menu.hidden) menu.open();
+    else menu.close();
+    // this._toggleAttribute("hidden", menu);
   }
 
   public updateStyles(theme: any) {

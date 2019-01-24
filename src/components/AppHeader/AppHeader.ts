@@ -1,23 +1,33 @@
-import { html, LitElement } from "lit-element";
-import { Mixin } from "../../../packages/Mixin";
-import { TaskMixin } from "../../../packages/TaskMixin";
-import { connect } from "pwa-helpers/connect-mixin.js";
-import { store } from "../../Store";
-import { StateMixin } from "../../../packages/StateMixin";
-import Template from "./AppHeaderTemplate";
-import * as Style from "./AppHeader.scss";
+import { LitElement, html, query } from "lit-element";
+import template from "./AppHeaderTemplate";
 import(/* webpackChunkName: "MWCFab" */ "@material/mwc-fab");
+import * as style from "./AppHeader.scss";
 
-export class AppHeader extends Mixin(connect(store)(LitElement), [
-  TaskMixin,
-  StateMixin
-]) {
-  setButtonBackground() {
+import ComponentStyle from "./Style.ts";
+
+import { getUser } from "../../../packages/firebase-helpers";
+
+export class AppHeader extends LitElement {
+  @query("mwc-fab") fab: any;
+
+  firstUpdated() {
+    getUser({
+      callback: (user: any) => {
+        if (user) this.setButtonBackground(user);
+        else {
+          // Is this necessary?
+          this.resetButton();
+        }
+      }
+    });
+  }
+
+  setButtonBackground(user: any) {
     const fab = this.querySelector("mwc-fab");
     const button = fab.shadowRoot.querySelector("button");
     if (button) {
-      if (this.state.user.photo) {
-        button.style.background = `url('${this.state.user.photo}')`;
+      if (user.photoURL) {
+        button.style.background = `url('${user.photoURL}')`;
         button.style.backgroundSize = "contain";
       }
     }
@@ -27,32 +37,21 @@ export class AppHeader extends Mixin(connect(store)(LitElement), [
     const fab = this.querySelector("mwc-fab");
     const button = fab.shadowRoot.querySelector("button");
     if (button) {
-      button.style.background = "initial";
+      button.style.background = `var(--secondary-color)`;
       button.style.backgroundSize = "initial";
     }
   }
 
-  stateChanged(state: any) {
-    super.stateChanged(state);
-    console.log(state.user.signedIn);
-    if (state.user.signedIn === true) this.setButtonBackground();
-    else if (!state.user.signedIn)
-      () => {
-        console.log("User not logged in");
-        this.resetButton();
-      };
+  static get styles() {
+    return [ComponentStyle];
   }
 
   render() {
     return html`
       <style>
-        ${Style}
+        ${style}
       </style>
-      ${!this.taskPending
-        ? Template.bind(this)(this.state)
-        : html`
-            <my-loader></my-loader>
-          `}
+      ${template.bind(this)()}
     `;
   }
 }
