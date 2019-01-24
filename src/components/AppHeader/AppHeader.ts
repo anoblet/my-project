@@ -23,9 +23,24 @@ export class AppHeader extends Mixin(connect(store)(LitElement), [
     }
   }
 
+  resetButton() {
+    const fab = this.querySelector("mwc-fab");
+    const button = fab.shadowRoot.querySelector("button");
+    if (button) {
+      button.style.background = "initial";
+      button.style.backgroundSize = "initial";
+    }
+  }
+
   stateChanged(state: any) {
     super.stateChanged(state);
-    if (state.user) this.setButtonBackground();
+    console.log(state.user.signedIn);
+    if (state.user.signedIn === true) this.setButtonBackground();
+    else if (!state.user.signedIn)
+      () => {
+        console.log("User not logged in");
+        this.resetButton();
+      };
   }
 
   render() {
@@ -33,13 +48,11 @@ export class AppHeader extends Mixin(connect(store)(LitElement), [
       <style>
         ${Style}
       </style>
-      ${
-        !this.taskPending
-          ? Template.bind(this)(this.state)
-          : html`
-              <my-loader></my-loader>
-            `
-      }
+      ${!this.taskPending
+        ? Template.bind(this)(this.state)
+        : html`
+            <my-loader></my-loader>
+          `}
     `;
   }
 }

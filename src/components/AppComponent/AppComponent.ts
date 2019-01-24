@@ -8,20 +8,20 @@ import { TaskMixin } from "../../../packages/TaskMixin";
 import Template from "./AppComponentTemplate";
 import { TemplateMixin } from "../../../packages/TemplateMixin";
 import { config } from "../../../config";
-import { connect } from "pwa-helpers/connect-mixin.js";
-import { connectRouter } from "lit-redux-router";
-import { installRouter } from "pwa-helpers/router.js";
 import { runtime } from "../../Runtime";
 import { store } from "../../Store";
-import { getDocument } from "../../../packages/firebase-helpers";
-import { initApp } from "../../../packages/firebase-helpers";
-import { initStore } from "../../../packages/firebase-helpers";
-import { checkRedirect } from "../../../packages/firebase-helpers";
-import { getUser } from "../../../packages/firebase-helpers";
-import { updateDocument } from "../../../packages/firebase-helpers";
+import { checkRedirect, getDocument, getUser, initApp, initStore, updateDocument } from "../../../packages/firebase-helpers";
 import { setState } from "../../../packages/state-helpers/state-helpers";
 import { themeStructure } from "../ThemeComponent/ThemeStructure";
+
+import { connectRouter } from "lit-redux-router";
+
+// pwa-helpers
+import { connect } from "pwa-helpers/connect-mixin.js";
+import { installRouter } from "pwa-helpers/router.js";
 import { installOfflineWatcher } from "pwa-helpers/network.js";
+
+// styles
 import componentStyle from "./AppStyle";
 import globalStyle from "../../GlobalStyle";
 
@@ -60,7 +60,6 @@ export class AppComponent extends Mixin(connect(store)(LitElement), [
 
   connectedCallback() {
     super.connectedCallback();
-    console.log("hi")
     // Let's set a default theme
     log("Setting default theme")
     setState( { data: config.defaultTheme, store: store, type: "theme"})

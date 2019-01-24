@@ -74,9 +74,15 @@ export class ThemeComponent extends LitElement {
   }
 
   public render() {
-    const state = store.getState();
     return html`
       <grid-component>
+      <card-component title="Random theme">
+        <mwc-button
+          label="Random theme"
+          outlined
+          @click="${randomTheme}"
+        ></mwc-button>
+      </card-component>
         <card-component title="Current theme">
           ${themeEdit({ fields: themeStructure, theme: this.currentTheme })}
         </card-component>
@@ -94,13 +100,6 @@ export class ThemeComponent extends LitElement {
               `
             : ""
         }
-        <card-component title="Random theme">
-          <mwc-button
-            label="Random theme"
-            outlined
-            @click="${randomTheme}"
-          ></mwc-button>
-        </card-component>
       </grid-component>
     `;
   }
