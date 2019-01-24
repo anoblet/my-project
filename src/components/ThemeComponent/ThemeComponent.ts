@@ -11,10 +11,10 @@ import themeEdit from "./ThemeEdit";
 import listThemes from "./ListThemes";
 import saveThemeTemplate from "./SaveTheme";
 import { themeStructure } from "./ThemeStructure";
-
+import {toggleDark} from "./ToggleDark"
 import GlobalStyle from "../../GlobalStyle";
 
-import("@material/mwc-switch");
+import(/* webpackChunkName: "MWCSwitch" */ "@material/mwc-switch");
 
 const getThemePath = () => {
   const state = store.getState();
@@ -27,7 +27,6 @@ const theme = async () => {
 
 export const setTheme = (theme: any) => {
   const state = store.getState();
-  // setState({ data: theme, store: store, type: "theme" });
   updateDocument({
     path: `users/${state.user.uid}/settings/theme`,
     data: { currentTheme: theme }
@@ -52,40 +51,7 @@ const randomTheme = () => {
   setTheme(theme);
 };
 
-const toggleTheme = () => {
-  const state = store.getState();
-  return html`
-    <mwc-switch
-      ?checked=${state.settings.dark}
-      @change=${(e: any) => {
-        console.log(e);
-        const theme = e.target.checked
-          ? {
-              backgroundColor: "#000000",
-              borderColor: "#c0c0c0",
-              primaryColor: "#666666",
-              secondaryColor: "#000000",
-              textColor: "#ffffff"
-            }
-          : {
-              backgroundColor: "#ffffff",
-              borderColor: "#c0c0c0",
-              primaryColor: "#666666",
-              secondaryColor: "#000000",
-              textColor: "#000000"
-            };
-        updateDocument({
-          path: `users/${state.user.uid}/settings/default`,
-          data: { dark: e.target.checked }
-        });
-        updateDocument({
-          path: `users/${state.user.uid}/settings/theme`,
-          data: { currentTheme: theme }
-        });
-      }}
-    ></mwc-switch>
-  `;
-};
+
 
 export class ThemeComponent extends LitElement {
   @property({ type: Array }) currentTheme: any = {};
@@ -123,7 +89,7 @@ export class ThemeComponent extends LitElement {
             @click="${randomTheme}"
           ></mwc-button>
         </card-component>
-        ${toggleTheme()}
+        ${toggleDark()}
         <card-component title="Current theme">
           ${themeEdit({ fields: themeStructure, theme: this.currentTheme })}
         </card-component>
