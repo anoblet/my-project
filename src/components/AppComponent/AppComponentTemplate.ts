@@ -115,6 +115,7 @@ export default function({ router, user }: any) {
                           component="page-components"
                         ></lit-route>
                       </div>
+                      <div id="portal"></div>
                       ${this.state.settings.displayLog
                         ? html`
                             <card-component

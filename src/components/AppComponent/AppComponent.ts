@@ -36,7 +36,6 @@ import { log } from "../../Debug";
 
 var pathToRegexp = require("path-to-regexp");
 
-
 connectRouter(store);
 
 const load = (modules: any = [], callback: any) => {
@@ -83,7 +82,7 @@ export class AppComponent extends Mixin(connect(store)(LitElement), [
     this.setStore(store);
     this.addReducer("app"), this.addReducer("user"), this.addReducer("theme");
     this.addReducer("settings");
-    // installRouter((location: any) => this.handleNavigation(location));
+    installRouter((location: any) => this.handleNavigation(location, event));
   }
 
   connectedCallback() {
@@ -218,7 +217,7 @@ export class AppComponent extends Mixin(connect(store)(LitElement), [
     ]);
   }
 
-  handleNavigation(location: any) {
+  handleNavigation(location: any, event: any) {
     const routes = [
       {
         name: "post",
@@ -229,6 +228,12 @@ export class AppComponent extends Mixin(connect(store)(LitElement), [
         name: "post.action",
         path: "/post/:action",
         src: "PostController"
+      },
+      {
+        name: "contact",
+        path: "/contact",
+        src: "../Contact/Contact",
+        tagName: "contact-component"
       }
     ];
 
@@ -238,8 +243,13 @@ export class AppComponent extends Mixin(connect(store)(LitElement), [
       const match = regex.exec(location.pathname);
       if (match) matchedRoute = route;
     });
-    if (matchedRoute)
+    console.log(matchedRoute);
+    if (matchedRoute) {
       switch (matchedRoute.name) {
+        case "contact": {
+          import("../Contact/Contact");
+          console.log("Here");
+        }
         case "post": {
           import("../../post/PostController");
         }
@@ -247,8 +257,10 @@ export class AppComponent extends Mixin(connect(store)(LitElement), [
           import("../../post/PostController");
         }
       }
-
-    const page = this.shadowRoot.querySelector("#page");
+      const portal = <Element>this.renderRoot.querySelector("#portal");
+      const child = document.createElement(matchedRoute.tagName);
+      portal.appendChild(child);
+    }
   }
 
   // Events
@@ -267,7 +279,6 @@ export class AppComponent extends Mixin(connect(store)(LitElement), [
     themeStructure.map((field: any) => {
       const test = "";
       if (!field.varName) {
-        console.log(field);
         const parts = field.property.split(/(?=[A-Z])/);
         const property = parts.join("-");
         this.style.setProperty(`--${property}`, theme[field.property]);
