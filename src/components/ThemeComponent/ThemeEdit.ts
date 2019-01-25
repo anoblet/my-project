@@ -12,12 +12,26 @@ const updateField = (field: string, value: string) => {
 
 const renderField = (field: any, theme: any) => html`
   <label>${field.label}</label>
-  <input
-    name="${field.name}"
-    type="color"
-    value="${theme[field.property]}"
-    @input="${(e: any) => updateField(field.property, e.target.value)}"
-  />
+  ${!field.type
+    ? html`
+        <input
+          name="${field.name}"
+          type="color"
+          value="${theme[field.property]}"
+          @input="${(e: any) => updateField(field.property, e.target.value)}"
+        />
+      `
+    : ""}
+  ${field.type === "size"
+    ? html`
+        <input
+          name="${field.name}"
+          type="text"
+          value="${theme[field.property]}"
+          @input="${(e: any) => updateField(field.property, e.target.value)}"
+        />
+      `
+    : ""}
 `;
 
 export default ({ fields, theme }: any) =>

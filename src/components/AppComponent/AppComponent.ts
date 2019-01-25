@@ -10,7 +10,14 @@ import { TemplateMixin } from "../../../packages/TemplateMixin";
 import { config } from "../../../config";
 import { runtime } from "../../Runtime";
 import { store } from "../../Store";
-import { checkRedirect, getDocument, getUser, initApp, initStore, updateDocument } from "../../../packages/firebase-helpers";
+import {
+  checkRedirect,
+  getDocument,
+  getUser,
+  initApp,
+  initStore,
+  updateDocument
+} from "../../../packages/firebase-helpers";
 import { setState } from "../../../packages/state-helpers/state-helpers";
 import { themeStructure } from "../ThemeComponent/ThemeStructure";
 
@@ -29,7 +36,7 @@ import { log } from "../../Debug";
 
 var pathToRegexp = require("path-to-regexp");
 
-// @ts-ignore
+
 connectRouter(store);
 
 const load = (modules: any = [], callback: any) => {
@@ -82,8 +89,8 @@ export class AppComponent extends Mixin(connect(store)(LitElement), [
   connectedCallback() {
     super.connectedCallback();
     // Let's set a default theme
-    log("Setting default theme")
-    setState( { data: config.defaultTheme, store: store, type: "theme"})
+    log("Setting default theme");
+    setState({ data: config.defaultTheme, store: store, type: "theme" });
     this.runTasks([
       import(/* webpackChunkName: "MyFlex" */ "../../../packages/my-flex"),
       import(/* webpackChunkName: "MyGrid" */ "../../../packages/my-grid"),
@@ -251,14 +258,20 @@ export class AppComponent extends Mixin(connect(store)(LitElement), [
 
   public _toggleProfile() {
     const menu = this.shadowRoot.querySelector("#profile-menu");
-    if(menu.hidden) menu.open();
+    if (menu.hidden) menu.open();
     else menu.close();
     // this._toggleAttribute("hidden", menu);
   }
 
   public updateStyles(theme: any) {
     themeStructure.map((field: any) => {
-      this.style.setProperty(field.varName, theme[field.property]);
+      const test = "";
+      if (!field.varName) {
+        console.log(field);
+        const parts = field.property.split(/(?=[A-Z])/);
+        const property = parts.join("-");
+        this.style.setProperty(`--${property}`, theme[field.property]);
+      } else this.style.setProperty(field.varName, theme[field.property]);
     });
   }
 

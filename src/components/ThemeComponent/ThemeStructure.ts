@@ -16,5 +16,10 @@ export const themeStructure = [
     label: "Secondary color",
     property: "secondaryColor",
     varName: "--secondary-color"
+  },
+  {
+    label: "Padding",
+    property: "padding",
+    type: "size"
   }
 ];
