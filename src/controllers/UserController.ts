@@ -3,15 +3,14 @@ import { LitElement, html, property } from "lit-element";
 import { Mixin } from "../../packages/Mixin";
 import { FirebaseMixin } from "../../packages/FirebaseMixin";
 import { StateMixin } from "../../packages/StateMixin";
-import { User } from "../User";
 import { connect } from "pwa-helpers/connect-mixin.js";
 import { navigate } from "lit-redux-router";
 import { store } from "../Store";
 import { until } from "lit-html/directives/until";
-
+import { User } from "../User"
 import structure from "../post/PostModel";
+import("../components/AppUser/AppUser")
 
-import("../components/AppUser/AppUser");
 import { config } from "../../config";
 
 export interface UserController {

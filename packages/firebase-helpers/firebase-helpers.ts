@@ -1,18 +1,5 @@
-import * as firebaseui from "firebaseui"
-
-// declare global {
-//   interface Window {
-//     firebase: any;
-//     firebaseui: any;
-//   }
-// }
-
-// const firebase = window.firebase;
-// const firestore = firebase.firestore();
-// const firebaseui = window.firebaseui;
-
 export const initApp = (config: any) => {
-  import(/* webpackChunkName: "Firebase" */ "firebase/app").then(firebase => {
+  return import(/* webpackChunkName: "Firebase" */ "firebase/app").then(firebase => {
     if (firebase.apps.length === 0) firebase.initializeApp(config);
   });
 };
@@ -41,6 +28,7 @@ export const checkRedirect = () => {
     ,
     import(/* webpackChunkName: "FirebaseUI" */ "firebaseui")
   ]).then(([firebase, auth]) => {
+    const firebaseui = require("firebaseui");
     const instance =
       firebaseui.auth.AuthUI.getInstance() ||
       new firebaseui.auth.AuthUI(firebase.auth());
@@ -64,6 +52,7 @@ export const getUser = ({ callback }: any) => {
     ,
     import(/* webpackChunkName: "FirebaseUI" */ "firebaseui")
   ]).then(([firebase, auth]) => {
+    const firebaseui = require("firebaseui");
     const instance =
       firebaseui.auth.AuthUI.getInstance() ||
       new firebaseui.auth.AuthUI(firebase.auth());

@@ -1,6 +1,5 @@
 import { html, LitElement, property } from "lit-element";
 import { connect } from "pwa-helpers/connect-mixin.js";
-import { config } from "../../../config";
 import { BaseMixin } from "../../../packages/BaseMixin";
 import { Mixin } from "../../../packages/Mixin";
 import { StateMixin } from "../../../packages/StateMixin";
@@ -9,10 +8,10 @@ import { store } from "../../Store";
 
 import Template from "./AppUserTemplate";
 
-// const firebase = window.firebase;
-// const firebaseui = window.firebaseui;
-
 import Style2 from "./FirebaseUIStyle";
+
+import { config } from "../../../config";
+import { initApp } from "../../../packages/firebase-helpers";
 
 export class AppUser extends Mixin(connect(store)(LitElement), [
   BaseMixin,
@@ -103,14 +102,15 @@ export class AppUser extends Mixin(connect(store)(LitElement), [
         import(/* webpackChunkName: "FirebaseApp" */ "firebase/app"),
         import(/* webpackChunkName: "FirebaseUI" */ "firebaseui")
       ]).then(async ([firebase, firebaseui]) => {
+        await initApp(config);
         const el = document.createElement("div");
-        const ui =
-          firebaseui.auth.AuthUI.getInstance() ||
-          new firebaseui.auth.AuthUI(firebase.auth());
-        ui.start(el, {
-          ...config.firebaseui,
-          ...{ credentialHelper: firebaseui.auth.CredentialHelper.NONE }
-        });
+          const ui =
+            firebaseui.auth.AuthUI.getInstance() ||
+            new firebaseui.auth.AuthUI(firebase.auth());
+          ui.start(el, {
+            ...config.firebaseui,
+            ...{ credentialHelper: firebaseui.auth.CredentialHelper.NONE }
+          });
         resolve(el);
       });
     });

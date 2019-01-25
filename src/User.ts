@@ -1,5 +1,3 @@
-const firebase = window.firebase;
-
 export class User {
   signOut() {
     return Promise.all([

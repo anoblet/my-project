@@ -21,7 +21,7 @@
     "@types/node-sass": "^3.10.32",
     "@types/redux": "^3.6.0",
     "@webcomponents/webcomponentsjs": "^2.2.3",
-    "firebase": "^5.8.0",
+    "firebase": "^5.8.1",
     "firebaseui": "^3.5.2",
     "html-loader": "^0.5.5",
     "lit-element": "^2.0.0-rc.2",

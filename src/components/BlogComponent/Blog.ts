@@ -16,27 +16,25 @@ export class Blog extends Mixin(connect(store)(BaseElement), [
   StateMixin,
   TaskMixin
 ]) {
+  @property() loaded: any;
   @property() posts: any;
 
-  connectedCallback() {
-    super.connectedCallback();
-    this.runTasks([
-      new Promise(resolve => {
-        getCollection({
-          callback: (collection: any) => {
-            this.posts = collection;
-            resolve();
-          },
-          path: "posts",
-          orderBy: "sortOrder",
-          watch: true
-        });
-      })
-    ]);
+  constructor() {
+    super();
+    getCollection({
+      callback: (collection: any) => {
+        this.posts = collection;
+        this.loaded = true;
+      },
+      path: "posts",
+      orderBy: "sortOrder",
+      watch: true
+    });
   }
 
-  async beforeRender() {
-    console.log("A");
+  shouldUpdate(changedProperties: any) {
+    if(!this.loaded) return false;
+    else return super.shouldUpdate(changedProperties);
   }
 
   public render() {

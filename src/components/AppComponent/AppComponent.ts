@@ -1,32 +1,26 @@
-import { LitElement, css, customElement, html, property } from "lit-element";
-import { FirebaseMixin } from "../../../packages/FirebaseMixin";
+import { LitElement, customElement, html, property } from "lit-element";
 import { HelperMixin } from "../../../packages/HelperMixin";
 import { MediaMixin } from "../../../packages/MediaMixin";
 import { Mixin } from "../../../packages/Mixin";
 import { StateMixin } from "../../../packages/StateMixin";
 import { TaskMixin } from "../../../packages/TaskMixin";
-import Template from "./AppComponentTemplate";
-import { TemplateMixin } from "../../../packages/TemplateMixin";
 import { config } from "../../../config";
-import { runtime } from "../../Runtime";
 import { store } from "../../Store";
 import {
   checkRedirect,
   getDocument,
   getUser,
-  initApp,
-  initStore,
-  updateDocument
+  initApp
 } from "../../../packages/firebase-helpers";
 import { setState } from "../../../packages/state-helpers/state-helpers";
 import { themeStructure } from "../ThemeComponent/ThemeStructure";
-
-import { connectRouter } from "lit-redux-router";
 
 // pwa-helpers
 import { connect } from "pwa-helpers/connect-mixin.js";
 import { installRouter } from "pwa-helpers/router.js";
 import { installOfflineWatcher } from "pwa-helpers/network.js";
+
+import template from "./AppComponentTemplate";
 
 // styles
 import componentStyle from "./AppStyle";
@@ -34,45 +28,21 @@ import globalStyle from "../../GlobalStyle";
 
 import { log } from "../../Debug";
 
-var pathToRegexp = require("path-to-regexp");
-
-connectRouter(store);
-
-const load = (modules: any = [], callback: any) => {
-  let dependencies: any = [
-    import(/* webpackChunkName: "Firebase" */ "firebase/app")
-  ];
-  if (modules.includes("auth"))
-    dependencies.push(
-      // @ts-ignore
-      import(/* webpackChunkName: "Firebase" */ "firebase/auth")
-    );
-  if (modules.includes("firestore"))
-    dependencies.push(
-      // @ts-ignore
-      import(/* webpackChunkName: "Firebase" */ "firebase/firestore")
-    );
-
-  // Promise.all(dependencies).then(([firebase]) => callback(firebase));
-  Promise.all(dependencies).then(([firebase]) => (window.firebase = firebase));
-};
-
-load("auth", "firestore");
+import { handleNavigation } from "../../Router";
+import { routes } from "./Routes";
 
 export class AppComponent extends Mixin(connect(store)(LitElement), [
   HelperMixin,
-  // TemplateMixin,
   TaskMixin,
   StateMixin,
-  FirebaseMixin,
   MediaMixin
 ]) {
   @property({ type: String }) public title = "Andrew Noblet";
   @property({ type: Boolean, reflect: true, attribute: "drawer-opened" })
   public drawerOpened = false;
   public firebaseConfig = config.firebase;
-  public taskPending = false;
-  public template: any = Template;
+  public taskPending = true;
+  @property() public template: any = template;
   // public componentStyle: any = style;
 
   // Lifecycle
@@ -82,7 +52,6 @@ export class AppComponent extends Mixin(connect(store)(LitElement), [
     this.setStore(store);
     this.addReducer("app"), this.addReducer("user"), this.addReducer("theme");
     this.addReducer("settings");
-    installRouter((location: any) => this.handleNavigation(location, event));
   }
 
   connectedCallback() {
@@ -100,17 +69,14 @@ export class AppComponent extends Mixin(connect(store)(LitElement), [
       import(/* webpackChunkName: "AppHeader" */ "../AppHeader/AppHeader"),
       import(/* webpackChunkName: "AppFooter" */ "../AppFooter/AppFooter"),
       import(/* webpackChunkName: "AppTheme" */ "../AppTheme/AppTheme"),
-      import(/* webpackChunkName: "PageHome" */ "../PageHome/PageHome"),
       import(/* webpackChunkName: "PostController" */ "../../post/PostController"),
       import(/* webpackChunkName: "UserController" */ "../../controllers/UserController"),
       import(/* webpackChunkName: "UserSettings" */ "../../User/SettingsComponent"),
       import(/* webpackChunkName: "PageInfo" */ "../PageInfo/PageInfo"),
       import(/* webpackChunkName: "Drawer" */ "../DrawerComponent/Drawer"),
       import(/* webpackChunkName: "ProfileMenu" */ "../ProfileMenu/ProfileMenu"),
-      import(/* webpackChunkName: "Contact" */ "../Contact/Contact"),
       import(/* webpackChunkName: "AdminComponent" */ "../AdminComponent/AdminComponent"),
       import(/* webpackChunkName: "Breadcrumb" */ "../BreadcrumbComponent/Breadcrumb"),
-      import(/* webpackChunkName: "PageComponents" */ "../PageComponents/PageComponents"),
       import(/* webpackChunkName: "LogComponent" */ "../LogComponent/LogComponent"),
       import(/* webpackChunkName: "ThemeComponent" */ "../ThemeComponent/ThemeComponent"),
       import(/* webpackChunkName: "MediaQuery" */ "../../../packages/MediaQuery"),
@@ -180,7 +146,23 @@ export class AppComponent extends Mixin(connect(store)(LitElement), [
     // Register drawer listeners
     this.addEventListener("close-drawer", this._closeDrawer);
     this.addEventListener("drawer-toggled", this._toggleDrawer);
+
     installOfflineWatcher((offline: boolean) => {});
+  }
+
+  shouldUpdate(changedProperties: any) {
+    if (this.taskPending) return false;
+    return super.shouldUpdate();
+  }
+
+  firstUpdated() {
+    installRouter((location: any) =>
+      handleNavigation({
+        location,
+        routes,
+        portal: this.renderRoot.querySelector("#portal")
+      })
+    );
   }
 
   _closeDrawer() {
@@ -217,52 +199,6 @@ export class AppComponent extends Mixin(connect(store)(LitElement), [
     ]);
   }
 
-  handleNavigation(location: any, event: any) {
-    const routes = [
-      {
-        name: "post",
-        path: "/post",
-        src: "PostController"
-      },
-      {
-        name: "post.action",
-        path: "/post/:action",
-        src: "PostController"
-      },
-      {
-        name: "contact",
-        path: "/contact",
-        src: "../Contact/Contact",
-        tagName: "contact-component"
-      }
-    ];
-
-    let matchedRoute: any;
-    routes.map((route: any) => {
-      const regex = pathToRegexp(route.path);
-      const match = regex.exec(location.pathname);
-      if (match) matchedRoute = route;
-    });
-    console.log(matchedRoute);
-    if (matchedRoute) {
-      switch (matchedRoute.name) {
-        case "contact": {
-          import("../Contact/Contact");
-          console.log("Here");
-        }
-        case "post": {
-          import("../../post/PostController");
-        }
-        case "post.action": {
-          import("../../post/PostController");
-        }
-      }
-      const portal = <Element>this.renderRoot.querySelector("#portal");
-      const child = document.createElement(matchedRoute.tagName);
-      portal.appendChild(child);
-    }
-  }
-
   // Events
   public _toggleDrawer() {
     this.drawerOpened = !this.drawerOpened;
@@ -277,12 +213,13 @@ export class AppComponent extends Mixin(connect(store)(LitElement), [
 
   public updateStyles(theme: any) {
     themeStructure.map((field: any) => {
-      const test = "";
-      if (!field.varName) {
-        const parts = field.property.split(/(?=[A-Z])/);
-        const property = parts.join("-");
-        this.style.setProperty(`--${property}`, theme[field.property]);
-      } else this.style.setProperty(field.varName, theme[field.property]);
+      if (theme[field.property]) {
+        if (!field.varName) {
+          const parts = field.property.split(/(?=[A-Z])/);
+          const property = parts.join("-");
+          this.style.setProperty(`--${property}`, theme[field.property]);
+        } else this.style.setProperty(field.varName, theme[field.property]);
+      }
     });
   }
 
@@ -301,13 +238,7 @@ export class AppComponent extends Mixin(connect(store)(LitElement), [
 
   public render() {
     return html`
-      <my-loader ?hidden="${!this.taskPending}"></my-loader>
-
-      ${!this.taskPending
-        ? this.template(this.state)
-        : html`
-            <my-loader></my-loader>
-          `}
+      ${this.template(this.state)}
     `;
   }
 }
