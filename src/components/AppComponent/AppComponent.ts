@@ -30,6 +30,7 @@ import { log } from "../../Debug";
 
 import { handleNavigation, setPortal, setRoutes } from "../../Router";
 import { routes } from "./Routes";
+import "../PageHome/PageHome"
 
 export class AppComponent extends Mixin(connect(store)(LitElement), [
   HelperMixin,
@@ -152,10 +153,16 @@ export class AppComponent extends Mixin(connect(store)(LitElement), [
 
   shouldUpdate(changedProperties: any) {
     if (this.taskPending) return false;
-    return super.shouldUpdate();
+    return super.shouldUpdate(changedProperties);
   }
 
   firstUpdated() {
+    this.dispatchEvent(
+      new CustomEvent("app-loaded", {
+        bubbles: true,
+        composed: true
+      })
+    );
     setPortal(this.renderRoot.querySelector("#portal"));
     setRoutes(routes);
     installRouter((location: any) =>

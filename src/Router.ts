@@ -1,15 +1,39 @@
-var pathToRegexp = require("path-to-regexp");
+const pathToRegexp = require("path-to-regexp");
 
+/*
+  Example:
+  export const routes = [
+    {
+      path: "",
+      component: "page-home",
+      src: () => import("../PageHome/PageHome")
+    },
+    {
+      path: "/post/:action/:id?",
+      component: "post-controller",
+      src: () =>
+        import("../../post/PostController")
+    },
+  ];
+*/
+
+// Set a default route array, and portal
 let globalRoutes: any = [];
 let globalPortal: any;
+
+export interface route {
+  path: string,
+  component: string,
+  src?: any
+}
 
 export const setRoutes = (routes: any) => {
   globalRoutes = routes;
 };
 
 export const setPortal = (portal: any) => {
-  globalPortal = portal
-}
+  globalPortal = portal;
+};
 
 export const navigate = (path: string) => {
   window.history.pushState({}, "", path);
@@ -46,7 +70,9 @@ export const handleNavigation = ({ location, portal, routes }: any) => {
     matchedRoute.keys.map((key: any) => {
       element[key.name] = matchedRoute.data[key.name];
     });
-    portal.appendChild(element);
+    if(element.beforeRender) element.beforeRender().then(() => portal.appendChild(element));
+    else portal.appendChild(element);
+
     // portal.removeAttribute("hidden");
   }
 };

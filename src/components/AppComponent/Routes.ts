@@ -1,9 +1,11 @@
+import { route } from "../../Router"
+
 export const routes = [
-  {
+  <route>{
     path: "",
     component: "page-home",
-    src: () =>
-      import(/* webpackChunkName: "PageHome" */ /* webpackPreload: true */ "../PageHome/PageHome")
+    // src: () =>
+      // import(/* webpackChunkName: "PageHome" */ /* webpackPreload: true */ "../PageHome/PageHome")
   },
   {
     path: "/contact",

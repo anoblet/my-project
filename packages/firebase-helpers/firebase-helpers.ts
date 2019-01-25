@@ -1,3 +1,11 @@
+declare global {
+  interface Window {
+    firebaseui: any;
+  }
+}
+
+const firebaseui = window.firebaseui;
+
 export const initApp = (config: any) => {
   return import(/* webpackChunkName: "Firebase" */ "firebase/app").then(firebase => {
     if (firebase.apps.length === 0) firebase.initializeApp(config);
@@ -28,7 +36,6 @@ export const checkRedirect = () => {
     ,
     import(/* webpackChunkName: "FirebaseUI" */ "firebaseui")
   ]).then(([firebase, auth]) => {
-    const firebaseui = require("firebaseui");
     const instance =
       firebaseui.auth.AuthUI.getInstance() ||
       new firebaseui.auth.AuthUI(firebase.auth());
@@ -52,7 +59,6 @@ export const getUser = ({ callback }: any) => {
     ,
     import(/* webpackChunkName: "FirebaseUI" */ "firebaseui")
   ]).then(([firebase, auth]) => {
-    const firebaseui = require("firebaseui");
     const instance =
       firebaseui.auth.AuthUI.getInstance() ||
       new firebaseui.auth.AuthUI(firebase.auth());
@@ -83,7 +89,7 @@ export const getCollection = ({ path, callback, watch, orderBy }: any) => {
   return Promise.all([
     import(/* webpackChunkName: "Firebase" */ "firebase/app"),
     // @ts-ignore
-    import(/* webpackChunkName: "FirebaseAuth" */ "firebase/firestore")
+    import(/* webpackChunkName: "FirebaseFirestore" */ "firebase/firestore")
   ]).then(([firebase, firestore]) => {
   let collection = firebase.firestore().collection(path);
   // @ts-ignore
@@ -126,7 +132,7 @@ export const addDocument = ({ path, data }: any) => {
   return Promise.all([
     import(/* webpackChunkName: "Firebase" */ "firebase/app"),
     // @ts-ignore
-    import(/* webpackChunkName: "FirebaseAuth" */ "firebase/firestore")
+    import(/* webpackChunkName: "FirebaseFirestore" */ "firebase/firestore")
   ]).then(([firebase]) => {
     return firebase.firestore()
       .collection(path)
@@ -152,7 +158,7 @@ export const updateDocument = ({ path, data }: any) => {
   return Promise.all([
     import(/* webpackChunkName: "Firebase" */ "firebase/app"),
     // @ts-ignore
-    import(/* webpackChunkName: "FirebaseAuth" */ "firebase/firestore")
+    import(/* webpackChunkName: "FirebaseFirestore" */ "firebase/firestore")
   ]).then(([firebase]) => {
     const document = firebase.firestore().doc(path);
     return document.set(data, { merge: true });
@@ -166,7 +172,7 @@ export const getDocument = ({ callback, path, watch }: any) => {
   return Promise.all([
     import(/* webpackChunkName: "Firebase" */ "firebase/app"),
     // @ts-ignore
-    import(/* webpackChunkName: "FirebaseAuth" */ "firebase/firestore")
+    import(/* webpackChunkName: "FirebaseFirestore" */ "firebase/firestore")
   ]).then(([firebase]) => {
   const document = firebase.firestore().doc(path);
   return watch
@@ -189,7 +195,7 @@ export const deleteDocument = ({ path }: any) => {
   return Promise.all([
     import(/* webpackChunkName: "Firebase" */ "firebase/app"),
     // @ts-ignore
-    import(/* webpackChunkName: "FirebaseAuth" */ "firebase/firestore")
+    import(/* webpackChunkName: "FirebaseFirestore" */ "firebase/firestore")
   ]).then(([firebase]) => {
   return firebase.firestore()
     .doc(path)
@@ -206,12 +212,12 @@ const load = (depends: any = [], callback: any) => {
   if (depends.includes("auth"))
     modules.push(
       // @ts-ignore
-      import(/* webpackChunkName: "Firebase" */ "firebase/auth")
+      import(/* webpackChunkName: "FirebaseAuth" */ "firebase/auth")
     );
   if (depends.includes("firestore"))
     modules.push(
       // @ts-ignore
-      import(/* webpackChunkName: "Firebase" */ "firebase/firestore")
+      import(/* webpackChunkName: "FirebaseFirestore" */ "firebase/firestore")
     );
 
   Promise.all(modules).then(([firebase]) => callback(firebase));

@@ -1,5 +1,6 @@
 import { css, html, LitElement } from "lit-element";
 import template from "./PageHomeTemplate";
+import "../BlogComponent/Blog";
 
 import(/* webpackChunkName: "GridComponent" */ "../GridComponent/GridComponent");
 import(/* webpackChunkName: "BlogComponent" */ "../BlogComponent/Blog");

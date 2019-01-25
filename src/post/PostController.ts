@@ -16,7 +16,7 @@ import { Mixin } from "../../packages/Mixin";
 import { StateMixin } from "../../packages/StateMixin";
 import { connect } from "pwa-helpers/connect-mixin.js";
 import { model } from "../post/PostModel";
-import { navigate } from "lit-redux-router";
+import { navigate } from "../Router";
 import navigation from "../post/NavigationTemplate";
 import { store } from "../Store";
 import { until } from "lit-html/directives/until";
@@ -46,10 +46,10 @@ export class PostController extends Mixin(LitElement, [
   firstUpdated() {
     if (super.firstUpdated) super.firstUpdated();
     if (this.action == "index") {
-      store.dispatch(navigate("/post/read"));
+      // store.dispatch(navigate("/post/read"));
     } else {
       if (this[this.action]) this[this.action](this.id);
-      else store.dispatch(navigate("/post"));
+      // else store.dispatch(navigate("/post"));
     }
     if (this.action !== "read") this.requestUpdate();
   }

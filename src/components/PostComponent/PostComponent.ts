@@ -1,7 +1,7 @@
 import { LitElement, html, property } from "lit-element";
 import { Mixin } from "../../../packages/Mixin";
 import { TemplateMixin } from "../../../packages/TemplateMixin";
-import { navigate } from "lit-redux-router";
+import { navigate } from "../../Router";
 import { store } from "../../Store";
 import {
   addDocument,
@@ -42,11 +42,17 @@ export class PostComponent extends Mixin(LitElement, [TemplateMixin]) {
           if (document) {
             const keys = Object.keys(document);
             keys.map((key: any) => (this[key] = document[key]));
+            this.loaded = true;
             this.requestUpdate();
           }
         },
         watch: true
       });
+  }
+
+  shouldUpdate() {
+    if(!this.loaded) return false;
+    else return super.shouldUpdate();
   }
 
   text({ field, value }: any) {
@@ -85,7 +91,7 @@ export class PostComponent extends Mixin(LitElement, [TemplateMixin]) {
 
     if (this.create) {
       addDocument({ path: "posts", data }).then((result: any) => {
-        store.dispatch(navigate(`/post/read/${result}`));
+        // navigate(`/post/read/${result}`));
       });
     } else {
       updateDocument({ path: `posts/${this.id}`, data }).then((result: any) => {
