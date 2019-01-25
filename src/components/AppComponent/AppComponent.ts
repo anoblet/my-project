@@ -28,7 +28,7 @@ import globalStyle from "../../GlobalStyle";
 
 import { log } from "../../Debug";
 
-import { handleNavigation } from "../../Router";
+import { handleNavigation, setPortal, setRoutes } from "../../Router";
 import { routes } from "./Routes";
 
 export class AppComponent extends Mixin(connect(store)(LitElement), [
@@ -156,6 +156,8 @@ export class AppComponent extends Mixin(connect(store)(LitElement), [
   }
 
   firstUpdated() {
+    setPortal(this.renderRoot.querySelector("#portal"));
+    setRoutes(routes);
     installRouter((location: any) =>
       handleNavigation({
         location,

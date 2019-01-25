@@ -1,7 +1,25 @@
 var pathToRegexp = require("path-to-regexp");
 
+let globalRoutes: any = [];
+let globalPortal: any;
+
+export const setRoutes = (routes: any) => {
+  globalRoutes = routes;
+};
+
+export const setPortal = (portal: any) => {
+  globalPortal = portal
+}
+
+export const navigate = (path: string) => {
+  window.history.pushState({}, "", path);
+  handleNavigation({ location: window.location });
+};
+
 export const handleNavigation = ({ location, portal, routes }: any) => {
   let matchedRoute: any;
+  portal = portal || globalPortal;
+  routes = routes || globalRoutes;
   routes.map((route: any) => {
     let keys: any = [];
     const regex = pathToRegexp(route.path, keys);

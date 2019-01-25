@@ -4,12 +4,12 @@ import { Mixin } from "../../packages/Mixin";
 import { FirebaseMixin } from "../../packages/FirebaseMixin";
 import { StateMixin } from "../../packages/StateMixin";
 import { connect } from "pwa-helpers/connect-mixin.js";
-import { navigate } from "lit-redux-router";
+import { navigate } from "../Router";
 import { store } from "../Store";
 import { until } from "lit-html/directives/until";
-import { User } from "../User"
+import { User } from "../User";
 import structure from "../post/PostModel";
-import("../components/AppUser/AppUser")
+import("../components/AppUser/AppUser");
 
 import { config } from "../../config";
 
@@ -38,9 +38,9 @@ export class UserController extends Mixin(connect(store)(LitElement), [
 
     if (this.action == "index") {
       const signedIn = this.state.user.signedIn;
-      signedIn
-        ? store.dispatch(navigate("/user/account"))
-        : store.dispatch(navigate("/user/signin"));
+      // signedIn
+      //   ? store.dispatch(navigate("/user/account"))
+      //   : store.dispatch(navigate("/user/signin"));
     } else {
       this[this.action](this.id);
     }
@@ -52,13 +52,11 @@ export class UserController extends Mixin(connect(store)(LitElement), [
 
   account() {
     this._template = html`
-      ${
-        until(
-          import("../user/PageAccount").then(({ default: template }) =>
-            template()
-          )
+      ${until(
+        import("../user/PageAccount").then(({ default: template }) =>
+          template()
         )
-      }
+      )}
     `;
     this.requestUpdate();
   }
@@ -113,7 +111,7 @@ export class UserController extends Mixin(connect(store)(LitElement), [
     user.signOut();
     this.setState({}, "user", { merge: false });
     this.setState(config.defaultTheme, "theme");
-    store.dispatch(navigate("/"));
+    navigate("/");
   }
 
   theme() {
