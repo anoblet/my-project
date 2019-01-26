@@ -70,7 +70,6 @@ export class PostController extends Mixin(LitElement, [
   }
 
   read(id: any) {
-    console.log(id);
     return id && id != "undefined" ? this.readSingle(id) : this.readMulti();
   }
 
@@ -82,7 +81,6 @@ export class PostController extends Mixin(LitElement, [
   }
 
   readMulti() {
-    console.log("Here");
     const renderGrid = (collection: any) => {
       this.template = html`
         <post-grid-component .items="${collection}"></post-grid-component>
@@ -99,7 +97,6 @@ export class PostController extends Mixin(LitElement, [
 
   submitForm(e: any) {
     e.preventDefault();
-    console.log(this.action);
     const data: any = {};
     data.title = this.shadowRoot.querySelector("[name='title']").value;
     data.author = this.shadowRoot.querySelector("[name='author']").value;

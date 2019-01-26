@@ -17,11 +17,18 @@ export class EyeExamComponent extends LitElement {
   constructor() {
     super();
     WebSpeechInstance.onResult = (e: any) => {
-      const currentIndex = e.results.length - 1;
-      const result = e.results[currentIndex][0].transcript;
-      this.history[this.currentIndex].result = result;
-      this.requestUpdate();
+      this.onResult(e);
     };
+  }
+
+  onResult(e: any) {
+    const currentIndex = e.results.length - 1;
+    const answer = e.results[currentIndex][0].transcript;
+    const lower = answer.toLowerCase();
+    const result = lower.startsWith(this.history[this.currentIndex].expectation) ? true : false;
+    this.history[this.currentIndex].answer = answer;
+    this.history[this.currentIndex].result = result;
+    this.requestUpdate();
   }
 
   firstUpdated() {
@@ -40,11 +47,13 @@ export class EyeExamComponent extends LitElement {
   }
 
   next() {
+    console.log(this.currentIndex);
+    if (this.currentIndex !== -1)
+      if (this.history[this.currentIndex].result == "") return;
     if (this.currentIndex === this.history.length - 1) {
       this.character = this.getCharacter();
       const step = {
         expectation: this.character,
-        result: ""
       };
       this.history.push(step);
     } else {
