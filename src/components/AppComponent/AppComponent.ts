@@ -182,32 +182,6 @@ export class AppComponent extends Mixin(connect(store)(LitElement), [
     this.setState(config.defaultTheme, "theme");
   }
 
-  async onUserLoggedIn(user: any) {
-    console.log(this.state);
-    this.setState(user, "user");
-    return Promise.all([
-      this.watchDocumentNew({
-        path: `users/${this.state.user.uid}/settings/default`,
-        callback: (document: any) => {
-          if (document) {
-            this.setState(document, "settings");
-          }
-        }
-      }),
-      this.watchDocumentNew({
-        path: `users/${this.state.user.uid}/state/theme`,
-        callback: (document: any) => {
-          return new Promise((resolve, reject) => {
-            if (document) {
-              this.setState(document, "theme");
-              resolve();
-            }
-          });
-        }
-      })
-    ]);
-  }
-
   // Events
   public _toggleDrawer() {
     this.drawerOpened = !this.drawerOpened;
