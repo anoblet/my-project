@@ -5,7 +5,7 @@ import { model } from "./PostModel";
 
 export default function() {
   return html`
-    <my-card>
+    <card-component>
       <h3 slot="title">Create Post</h3>
       <div slot="content">
         <form>
@@ -48,6 +48,6 @@ export default function() {
         </form>
         <div id="result"></div>
       </div>
-    </my-card>
+    </card-component>
   `;
 }

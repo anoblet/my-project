@@ -13,7 +13,7 @@ export default function({ user }: any) {
     <style>
       @import "https://www.gstatic.com/firebasejs/ui/3.5.2/firebase-ui-auth.css";
     </style> -->
-    <my-card collapsible grow>
+    <card-component collapsible grow>
       <h3 slot="title">User</h3>
       <my-flex direction="column" grow slot="content">
         ${
@@ -35,6 +35,6 @@ export default function({ user }: any) {
               `
         }
       </my-flex>
-    </my-card>
+    </card-component>
   `;
 }

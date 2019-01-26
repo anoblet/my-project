@@ -3,6 +3,9 @@ import { store } from "./Store";
 const history: any = [];
 const subscribers: any = [];
 
+// Pass-thru API as this is an enhancement
+export const debug = (message: string) => log(message);
+
 export const log = (message: string) => {
   subscribers.map((listener: any) => listener(message));
   history.push({ message, time: performance.now() });
