@@ -1,7 +1,7 @@
 import { html } from "lit-element";
 export default function({ theme, user }: any) {
   return html`
-    <my-card collapsible grow full-height>
+    <card-component collapsible grow full-height>
       <h3 slot="title">Menu</h3>
       <div slot="content">
         <ul>
@@ -10,6 +10,6 @@ export default function({ theme, user }: any) {
           <li><a href="/info">Info</a></li>
         </ul>
       </div>
-    </my-card>
+    </card-component>
   `;
 }

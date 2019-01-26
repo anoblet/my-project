@@ -1,8 +1,7 @@
 import { LitElement, property } from 'lit-element';
-import { BaseMixin } from '@anoblet/base-mixin';
 import Template from './MyFlexTemplate';
 
-export class MyFlex extends BaseMixin(LitElement) {
+export class MyFlex extends LitElement {
   @property({type: String, reflect: true}) direction: any;
 
   render() {
