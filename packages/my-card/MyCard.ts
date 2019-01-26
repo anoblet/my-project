@@ -1,23 +1,26 @@
-import { LitElement, property } from 'lit-element';
-import { Mixin } from '../Mixin';
-import { BaseMixin } from '@anoblet/base-mixin';
+import { LitElement, property } from "lit-element";
+import Template from "./MyCardTemplate";
 
-import Template from './MyCardTemplate';
+export class MyCard extends LitElement {
+  @property({ type: Boolean }) collapsible: any = false;
+  @property({ type: Boolean, reflect: true }) collapsed: any = false;
 
-export class MyCard extends Mixin(LitElement, [BaseMixin]) {
-  @property({type: Boolean}) collapsible: any = false;
-  @property({type: Boolean, reflect: true}) collapsed: any = false;
-
-  firstUpdated() {
-    super.firstUpdated();
-    if(this.collapsible) {
-      const title = this.shadowRoot.querySelector('#title');
-      title.addEventListener('click', () => this.toggle());
-    }
+  firstUpdated(changedProperties: any) {
+    // changedProperties is a map type
+    this.addListeners();
+    // Just in case
+    if (super.firstUpdated) super.firstUpdated(changedProperties);
   }
 
   toggle() {
     this.collapsed = !this.collapsed;
+  }
+
+  addListeners() {
+    if (this.collapsible) {
+      const title = this.shadowRoot.querySelector("#title");
+      title.addEventListener("click", () => this.toggle());
+    }
   }
 
   render() {
@@ -25,4 +28,4 @@ export class MyCard extends Mixin(LitElement, [BaseMixin]) {
   }
 }
 
-window.customElements.define('my-card', MyCard);
+window.customElements.define("my-card", MyCard);
