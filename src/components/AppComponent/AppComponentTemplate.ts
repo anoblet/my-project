@@ -67,6 +67,7 @@ export default function({ router, user }: any) {
       </my-card>
     </my-flex>
     <my-flex id="bottom"> <app-footer></app-footer> </my-flex>
+    <toast-component></toast-component>
     <menu-component></menu-component>
   `;
 }

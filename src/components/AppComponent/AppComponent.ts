@@ -80,6 +80,8 @@ export class AppComponent extends Mixin(connect(store)(LitElement), [
       import(/* webpackChunkName: "ThemeComponent" */ "../ThemeComponent/ThemeComponent"),
       import(/* webpackChunkName: "MediaQuery" */ "../../../packages/MediaQuery"),
       import(/* webpackChunkName: "MenuComponent" */ "../MenuComponent/MenuComponent"),
+      import(/* webpackChunkName: "MenuComponent" */ "../MenuComponent/MenuComponent"),
+      import(/* webpackChunkName: "ToastComponent" */ "../ToastComponent/ToastComponent"),
       new Promise(async resolve => {
         log("Run init methods");
         await initApp(this.firebaseConfig);
