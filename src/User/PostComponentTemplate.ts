@@ -2,7 +2,7 @@ import { html } from "lit-element";
 
 export default function() {
   return html`
-    <my-card>
+    <card-component>
       <h3 slot="title">
         ${
           this.editable
@@ -51,6 +51,6 @@ export default function() {
           }</mwc-button
         >
       </div>
-    </my-card>
+    </card-component>
   `;
 }

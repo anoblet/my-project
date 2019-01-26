@@ -23,7 +23,7 @@ export class AppHeader extends LitElement {
   }
 
   setButtonBackground(user: any) {
-    const fab = this.querySelector("mwc-fab");
+    const fab = this.querySelector("#userProfile");
     const button = fab.shadowRoot.querySelector("button");
     if (button) {
       if (user.photoURL) {
@@ -34,7 +34,7 @@ export class AppHeader extends LitElement {
   }
 
   resetButton() {
-    const fab = this.querySelector("mwc-fab");
+    const fab = this.querySelector("#userProfile");
     const button = fab.shadowRoot.querySelector("button");
     if (button) {
       button.style.background = `var(--secondary-color)`;

@@ -115,6 +115,10 @@ export default css`
     padding-right: 1em;
   }
 
+  #menu ::slotted(button) {
+    background: initial;
+  }
+
   #menu:hover {
     cursor: pointer;
   }

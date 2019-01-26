@@ -9,9 +9,9 @@ export default function() {
         padding: 1em 0;
       }
     </style>
-    <my-card>
+    <card-component>
       <h3 slot="title">${this.title}</h3>
-      <div slot="content">${this.form()}</div></my-card
-    >
+      <div slot="content">${this.form()}</div>
+    </card-component>
   `;
 }
