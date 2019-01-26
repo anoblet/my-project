@@ -1,9 +1,3 @@
-// import("@vaadin/vaadin-grid/theme/material/vaadin-grid.js");
-// import("@vaadin/vaadin-grid/theme/material/vaadin-grid-filter-column.js");
-//import("@vaadin/vaadin-text-field/theme/material/vaadin-text-field.js");
-//import("@vaadin/vaadin-text-field/theme/material/vaadin-text-area.js");
-// import("@vaadin/vaadin-form-layout/theme/material/vaadin-form-layout.js");
-
 import("../components/PostComponent/PostComponent");
 import("../post/PostGridComponent");
 
@@ -24,6 +18,8 @@ import { until } from "lit-html/directives/until";
 import { getCollection } from "../../packages/firebase-helpers";
 import { deleteDocument } from "../../packages/firebase-helpers";
 
+import { debug } from "../Debug";
+
 export interface PostController {
   [key: string]: any; // Add index signature
 }
@@ -33,7 +29,7 @@ export class PostController extends Mixin(LitElement, [
   StateMixin
 ]) {
   @property({ type: String }) action: string = "index";
-  _template: any;
+  template: any;
 
   connectedCallback() {
     if (super.connectedCallback) super.connectedCallback();
@@ -45,11 +41,12 @@ export class PostController extends Mixin(LitElement, [
 
   firstUpdated() {
     if (super.firstUpdated) super.firstUpdated();
+    this.action = this.action || "index";
+    debug(this.action);
     if (this.action == "index") {
-      // store.dispatch(navigate("/post/read"));
+      navigate("/post/read");
     } else {
       if (this[this.action]) this[this.action](this.id);
-      // else store.dispatch(navigate("/post"));
     }
     if (this.action !== "read") this.requestUpdate();
   }
@@ -73,19 +70,21 @@ export class PostController extends Mixin(LitElement, [
   }
 
   read(id: any) {
-    id ? this.readSingle(id) : this.readMulti();
+    console.log(id);
+    return id && id != "undefined" ? this.readSingle(id) : this.readMulti();
   }
 
   readSingle(id: string) {
-    this._template = html`
+    this.template = html`
       <post-component id="${id}"></post-component>
     `;
     this.requestUpdate();
   }
 
   readMulti() {
+    console.log("Here");
     const renderGrid = (collection: any) => {
-      this._template = html`
+      this.template = html`
         <post-grid-component .items="${collection}"></post-grid-component>
       `;
       this.requestUpdate();
@@ -121,12 +120,7 @@ export class PostController extends Mixin(LitElement, [
       <style>
         ${style}
       </style>
-      <!--
-        <div id="navigation">
-          <a href="/post/read"><mwc-button outlined>List</mwc-button></a>
-        </div>
-      -->
-      ${until(this._template, "")}
+      ${this.template}
     `;
   }
 }

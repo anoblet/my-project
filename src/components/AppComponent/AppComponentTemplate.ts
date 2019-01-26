@@ -63,10 +63,10 @@ export default function({ router, user }: any) {
               </my-flex>
             </my-grid>
           </my-flex>
-          <my-flex id="bottom"> <app-footer></app-footer> </my-flex>
         </div>
       </my-card>
     </my-flex>
+    <my-flex id="bottom"> <app-footer></app-footer> </my-flex>
     <menu-component></menu-component>
   `;
 }

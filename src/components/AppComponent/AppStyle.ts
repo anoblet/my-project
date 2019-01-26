@@ -115,21 +115,12 @@ export default css`
     padding-right: 1em;
   }
 
-  #menu ::slotted(button) {
-    background: initial;
-  }
-
   #menu:hover {
     cursor: pointer;
   }
 
   #center {
     flex: 1;
-  }
-
-  #title {
-    margin-left: 1em;
-    color: var(--secondary-color);
   }
 
   #drawer-container[opened] {
