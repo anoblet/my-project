@@ -85,7 +85,6 @@ export class AppComponent extends Mixin(connect(store)(LitElement), [
       new Promise(async resolve => {
         log("Run init methods");
         await initApp(this.firebaseConfig);
-        // await initStore();
         await checkRedirect();
         await getUser({
           callback: async (user: any) => {

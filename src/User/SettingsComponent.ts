@@ -56,82 +56,87 @@ export class SettingsComponent extends Mixin(connect(store)(LitElement), [
     const state = store.getState();
     return html`
       <form>
-        ${
-          settings.map((setting: any) => {
-            switch (setting.type) {
-              case Boolean:
-                return html`
-                  <label>${setting.label}</label
-                  ><input
-                    ?checked="${this.state.settings[setting.name]}"
-                    name="${setting.name}"
-                    type="checkbox"
-                    @click="${
-                      (e: any) => {
-                        const state = store.getState();
-                        const path = `users/${state.user.uid}/settings/default`;
-                        const data: any = {};
-                        data[setting.name] = e.target.checked;
-                        updateDocument({ path, data });
-                        // this.setState(state, "settings");
-                      }
-                    }"
-                  /><span class="description">${setting.description}</span>
-                `;
-              case Number: {
-                return html`
-                  <label>${setting.label}</label
-                  ><input
-                    ?checked="${this.state.settings[setting.name]}"
-                    name="${setting.name}"
-                    type="number"
-                    @input="${
-                      (e: any) => {
-                        const state: any = {};
-                        state[setting.name] = e.target.value;
-                        this.setState(state, "settings");
-                      }
-                    }"
-                  /><span class="description">${setting.description}</span>
-                `;
-              }
-              case "select": {
-                return html`
-                  <label>${setting.label}</label>
-                  <select
-                    name="${setting.name}"
-                    @input="${
-                      (e: any) => {
-                        const data: any = {
-                          [setting.name]:
-                            e.target.options[e.target.selectedIndex].value
-                        };
-                        const state = store.getState();
-                        const path = `users/${state.user.uid}/settings/default`;
-                        updateDocument({ path, data });
-                        // this.setState(state, "settings");
-                      }
-                    }"
-                    >${
-                      setting.options.map(
-                        (option: any) =>
-                          html`
-                            <option
-                              ?selected="${
-                                state.settings[setting.name] == option.value
-                              }"
-                              value="${option.value}"
-                              >${option.label}</option
-                            >
-                          `
-                      )
-                    }</select
-                  ><span class="description">${setting.description}</span>
-                `;
-              }
+        ${settings.map((setting: any) => {
+          switch (setting.type) {
+            case Boolean:
+              return html`
+                <label>${setting.label}</label
+                ><input
+                  ?checked="${this.state.settings[setting.name]}"
+                  name="${setting.name}"
+                  type="checkbox"
+                  @click="${(e: any) => {
+                    const state = store.getState();
+                    const path = `users/${state.user.uid}/settings/default`;
+                    const data: any = {};
+                    data[setting.name] = e.target.checked;
+                    updateDocument({ path, data });
+                    // this.setState(state, "settings");
+                  }}"
+                /><span class="description">${setting.description}</span>
+              `;
+            case String:
+              return html`
+                <label>${setting.label}</label
+                ><input
+                  value="${this.state.settings[setting.name]}"
+                  name="${setting.name}"
+                  type="text"
+                  @change="${(e: any) => {
+                    const state = store.getState();
+                    const path = `users/${state.user.uid}/settings/default`;
+                    const data: any = {};
+                    data[setting.name] = e.target.value;
+                    updateDocument({ path, data });
+                  }}"
+                /><span class="description">${setting.description}</span>
+              `;
+            case Number: {
+              return html`
+                <label>${setting.label}</label
+                ><input
+                  ?checked="${this.state.settings[setting.name]}"
+                  name="${setting.name}"
+                  type="number"
+                  @input="${(e: any) => {
+                    const state: any = {};
+                    state[setting.name] = e.target.value;
+                    this.setState(state, "settings");
+                  }}"
+                /><span class="description">${setting.description}</span>
+              `;
             }
-          })
-        }
+            case "select": {
+              return html`
+                <label>${setting.label}</label>
+                <select
+                  name="${setting.name}"
+                  @input="${(e: any) => {
+                    const data: any = {
+                      [setting.name]:
+                        e.target.options[e.target.selectedIndex].value
+                    };
+                    const state = store.getState();
+                    const path = `users/${state.user.uid}/settings/default`;
+                    updateDocument({ path, data });
+                    // this.setState(state, "settings");
+                  }}"
+                  >${setting.options.map(
+                    (option: any) =>
+                      html`
+                        <option
+                          ?selected="${state.settings[setting.name] ==
+                            option.value}"
+                          value="${option.value}"
+                          >${option.label}</option
+                        >
+                      `
+                  )}</select
+                ><span class="description">${setting.description}</span>
+              `;
+            }
+          }
+        })}
       </form>
     `;
   }
@@ -151,13 +156,11 @@ export class SettingsComponent extends Mixin(connect(store)(LitElement), [
 
   render() {
     return html`
-      ${
-        until(
-          import("./SettingsComponentTemplate.ts").then(module =>
-            module.default.bind(this)()
-          )
+      ${until(
+        import("./SettingsComponentTemplate.ts").then(module =>
+          module.default.bind(this)()
         )
-      }
+      )}
     `;
   }
 }

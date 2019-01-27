@@ -1,5 +1,11 @@
 export const settings = [
   {
+    description: "username",
+    label: "Username",
+    name: "username",
+    type: String
+  },
+  {
     description: "Enable the right-click of the mouse to toggle the main menu",
     label: "Right click",
     name: "rightClick",

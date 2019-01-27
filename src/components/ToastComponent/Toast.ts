@@ -6,3 +6,5 @@ export const fireToast = (message: string) =>
       detail: message
     })
   );
+
+export const toast = (message: string) => fireToast(message);

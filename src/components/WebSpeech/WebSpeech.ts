@@ -46,10 +46,13 @@ export class WebSpeech {
       this.onResult(event);
     };
     this.recognition.onerror = (event: any) => {
-      console.log("Error");
+      this.onError(event);
     };
     this.recognition.onnomatch = (event: any) => {
-      console.log("No match");
+      this.onNoMatch(event);
+    };
+    this.recognition.onend = (event: any) => {
+      this.onEnd(event);
     };
   }
 
@@ -58,19 +61,9 @@ export class WebSpeech {
     this.result = event.results[currentIndex][0].transcript;
   }
 
-  static get styles() {
-    return [
-      css`
-        :host: {
-        }
-      `
-    ];
-  }
+  onEnd(event: any) {}
 
-  public render() {
-    return html`
-      <button @click="${() => this.recognition.start()}">Record</button>
-      <slot></slot>
-    `;
-  }
+  onError(event: any) {}
+
+  onNoMatch(event: any) {}
 }

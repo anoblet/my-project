@@ -1,9 +1,8 @@
 import { css } from "lit-element";
 
 export default css`
-  .character {
+  #character {
     display: flex;
-    font-size: 3em;
     justify-content: center;
   }
 
@@ -18,5 +17,17 @@ export default css`
 
   web-speech button {
     background: blue;
+  }
+
+  #fontSize {
+    position: absolute;
+    top: 0;
+    right: 0;
+    display: flex;
+    align-items: center;
+  }
+
+  .relative {
+    position: relative
   }
 `;
