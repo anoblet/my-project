@@ -5,7 +5,7 @@
 }
 
 :host {
-  --border-color: var(--background-color);
+  --border-color: var(--border-color);
   display: flex;
   flex-direction: column;
   flex: 1;

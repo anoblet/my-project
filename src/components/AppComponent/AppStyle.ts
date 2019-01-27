@@ -21,15 +21,6 @@ export default css`
     --mdc-theme-primary: var(--primary-color);
     --mdc-theme-secondary: var(--secondary-color);
 
-    /* Vaadin */
-
-    --material-background-color: var(--background-color);
-    --material-body-text-color: var(--text-color);
-    --material-primary-color: var(--primary-color);
-    --material-primary-text-color: var(--primary-color);
-    --material-secondary-text-color: var(--secondary-color);
-    --_material-text-field-input-line-background-color: var(--secondary-color);
-
     display: flex;
     flex: 1;
     flex-direction: column;
