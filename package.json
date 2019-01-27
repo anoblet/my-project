@@ -31,7 +31,6 @@
     "path-to-regexp": "^2.4.0",
     "pell": "^1.0.6",
     "pwa-helpers": "^0.9.0",
-    "randomcolor": "^0.5.3",
     "redux": "^4.0.1",
     "redux-thunk": "^2.3.0",
     "robotstxt-webpack-plugin": "^4.0.1",
