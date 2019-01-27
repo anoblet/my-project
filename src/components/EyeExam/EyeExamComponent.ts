@@ -24,45 +24,58 @@ export interface exam {
   };
 }
 
+const log = [];
+
+const debug = (message: string) => {
+  log.push(message);
+}
+
 export class EyeExamComponent extends LitElement {
   @property() character: string;
   @property() currentIndex: number = -1;
+  @property() finished: boolean = false;
   @property() fullscreen: boolean;
+  @property() hideNavigation: boolean = true;
+  @property() perLine: number = 10;
+  @property() correctPerLine: number = 3;
+  @property() report: any = [];
   @property({ type: Array }) history: any = [];
   @property({ type: String }) fontSize: string;
-  @property() hideNavigation: boolean = false;
-  @property() finished: boolean = false;
-  @property() report: any = [];
-  mode: number = 1;
 
   constructor() {
     super();
+    this.mapWebSpeechEvents();
+  }
+
+  mapWebSpeechEvents() {
     WebSpeechInstance.onResult = (e: any) => this.onResult(e);
-    WebSpeechInstance.onNoMatch = (e: any) => {
-      console.log(e);
-      toast("No match");
-    };
-    WebSpeechInstance.onError = (e: any) => {
-      console.log(e);
-      toast("Please try again");
-      setTimeout(this.record, 250);
-    };
-    WebSpeechInstance.onEnd = (e: any) => {
-      console.log("On end", this.currentIndex, this.history, e);
-      if (this.history[this.currentIndex - 1])
-        if (!this.history[this.currentIndex - 1].answer) {
-          toast("Error");
-        }
-    };
+    WebSpeechInstance.onNoMatch = (e: any) => this.onNoMatch(e);
+    WebSpeechInstance.onError = (e: any) => this.onError(e);
+    WebSpeechInstance.onEnd = (e: any) => this.onEnd(e);
+  }
+
+  onEnd(e: any) {
+    debug("On end");
+    if (this.history[this.currentIndex - 1])
+      if (!this.history[this.currentIndex - 1].answer) {
+        toast("Error");
+      }
+  }
+
+  onError(e: any) {
+    console.log(e);
+    toast("Please try again");
+    setTimeout(this.record, 250);
+  }
+
+  onNoMatch(e: any) {
+    console.log(e);
+    toast("No match");
   }
 
   onResult(e: any) {
     const currentIndex = e.results.length - 1;
     const answer = e.results[currentIndex][0].transcript;
-    console.log(answer);
-    console.log(this.currentIndex);
-    console.log(this.history);
-    console.log(this.history[this.currentIndex]);
     const lower = answer.toLowerCase();
     const result = lower.startsWith(this.history[this.currentIndex].expectation)
       ? true
@@ -71,7 +84,7 @@ export class EyeExamComponent extends LitElement {
     this.history[this.currentIndex].result = result;
     this.history[this.currentIndex].fontSize = this.fontSize;
     this.performUpdate();
-    if (this.currentIndex < 4) this.next();
+    if (this.currentIndex < (this.perLine - 1)) this.next();
     else {
       this.report.push(this.history);
       this.finished = true;
@@ -84,9 +97,7 @@ export class EyeExamComponent extends LitElement {
     return letters.charAt(Math.floor(Math.random() * letters.length));
   }
 
-  start() {
-
-  }
+  start() {}
 
   next() {
     if (this.currentIndex !== -1)
@@ -160,6 +171,10 @@ export class EyeExamComponent extends LitElement {
       hideRecord: {
         label: "Hide record",
         type: Boolean
+      },
+      perLine: {
+        label: "Characters per line",
+        type: Number
       }
     };
   }

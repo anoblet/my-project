@@ -34,3 +34,11 @@ h3,
   display: flex;
   justify-content: flex-end;
 }
+
+:host([collapsed]) {
+  height: min-content;
+}
+
+:host([collapsed]) #content {
+  display: none;
+}

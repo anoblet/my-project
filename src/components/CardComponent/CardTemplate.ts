@@ -3,14 +3,16 @@ import { render } from "lit-html";
 
 export default function() {
   return html`
-    ${
-      this.title
-        ? html`
+    ${this.title
+      ? html`
+          <div id="title">
             <h3>${this.title}</h3>
-          `
-        : html`
-            <slot name="title"></slot>
-          `
-    } <slot name="content"> </slot><slot> </slot> <slot name="actions"></slot>
+          </div>
+        `
+      : html`
+          <slot name="title"></slot>
+        `}
+    <div id="content"><slot name="content"> </slot><slot> </slot></div>
+    <slot name="actions"></slot>
   `;
 }

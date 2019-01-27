@@ -2,6 +2,7 @@ import { html } from "lit-element";
 import { store } from "../../Store";
 import { renderForm } from "../PropertyEditor/PropertyEditor";
 import { properties } from "./Properties";
+import { filterByMode } from "../../Debug";
 import(/* webpackChunkName: "ButtonComponent" */ "../ButtonComponent/ButtonComponent");
 import(/* webpackChunkName: "ReportComponent" */ "./ReportComponent");
 
@@ -11,7 +12,7 @@ export default function() {
 
   return html`
     <grid-component>
-      <card-component title="Properties"
+      <card-component collapsible title="Properties"
         ><div slot="content">
           ${renderForm(this.constructor.properties, this)}
         </div></card-component
@@ -93,12 +94,13 @@ export default function() {
             ></card-component>
           `
         : ""}
-      ${this.mode >= 1
+      ${filterByMode(1)
         ? html`
             <card-component title="Development"
               ><div slot="content">
                 Current Index: ${this.currentIndex} History:
                 <pre>${JSON.stringify(this.history, null, 2)}</pre>
+                <pre>${JSON.stringify(this.report, null, 2)}</pre>
               </div></card-component
             >
           `
