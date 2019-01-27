@@ -5,7 +5,7 @@ const WebpackPwaManifest = require("webpack-pwa-manifest");
 const CopyWebpackPlugin = require("copy-webpack-plugin");
 const RobotstxtPlugin = require("robotstxt-webpack-plugin").default;
 const CleanWebpackPlugin = require("clean-webpack-plugin");
-
+const UglifyJsPlugin = require("uglifyjs-webpack-plugin");
 const HtmlLoader = require("html-loader");
 module.exports = {
   mode: "production",
@@ -46,6 +46,15 @@ module.exports = {
     historyApiFallback: true
   },
   optimization: {
+    minimizer: [
+      new UglifyJsPlugin({
+        uglifyOptions: {
+          output: {
+            comments: false
+          }
+        }
+      })
+    ],
     splitChunks: {
       chunks: "async",
       minSize: 30000,
