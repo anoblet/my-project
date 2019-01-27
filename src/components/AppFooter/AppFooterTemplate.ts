@@ -7,7 +7,7 @@ export default function() {
       ${style}
     </style>
     <a
-      href="https://github.com/anoblet/my-app"
+      href="https://github.com/anoblet"
       rel="noreferrer"
       target="_blank"
     >
