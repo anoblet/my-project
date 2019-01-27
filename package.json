@@ -25,7 +25,6 @@
     "firebaseui": "^3.5.2",
     "html-loader": "^0.5.5",
     "lit-element": "^2.0.0-rc.2",
-    "lorem-ipsum": "^1.0.6",
     "marked": "^0.6.0",
     "object-path": "^0.11.4",
     "path-to-regexp": "^2.4.0",

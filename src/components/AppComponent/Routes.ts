@@ -4,8 +4,6 @@ export const routes = [
   <route>{
     path: "",
     component: "page-home",
-    // src: () =>
-      // import(/* webpackChunkName: "PageHome" */ /* webpackPreload: true */ "../PageHome/PageHome")
   },
   {
     path: "/admin",
