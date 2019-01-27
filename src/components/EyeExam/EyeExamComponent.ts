@@ -35,8 +35,10 @@ export class EyeExamComponent extends LitElement {
   @property() currentIndex: number = -1;
   @property() finished: boolean = false;
   @property() fullscreen: boolean;
+  @property() hideHistory: boolean = true;
   @property() hideNavigation: boolean = true;
-  @property() perLine: number = 10;
+  @property() hideRecord: boolean = true;
+  @property() perLine: number = 5;
   @property() correctPerLine: number = 3;
   @property() report: any = [];
   @property({ type: Array }) history: any = [];
@@ -163,6 +165,10 @@ export class EyeExamComponent extends LitElement {
       fontSize: {
         label: "Font size",
         type: String
+      },
+      hideHistory: {
+        label: "Hide history",
+        type: Boolean
       },
       hideNavigation: {
         label: "Hide navigation",

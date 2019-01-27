@@ -12,7 +12,7 @@ export default function() {
 
   return html`
     <grid-component>
-      <card-component collapsible title="Properties"
+      <card-component collapsed collapsible title="Properties"
         ><div slot="content">
           ${renderForm(this.constructor.properties, this)}
         </div></card-component
@@ -79,11 +79,15 @@ export default function() {
                 ></button-component>
               `
             : ""}
-          <button-component
-            @click="${this.generateReport}"
-            label="Generate report"
-            style="grid-column: -1/1"
-          ></button-component>
+          ${false
+            ? html`
+                <button-component
+                  @click="${this.generateReport}"
+                  label="Generate report"
+                  style="grid-column: -1/1"
+                ></button-component>
+              `
+            : ""}
         </grid-component>
       </card-component>
       ${this.finished
@@ -94,7 +98,7 @@ export default function() {
             ></card-component>
           `
         : ""}
-      ${filterByMode(1)
+      ${!this.hideHistory
         ? html`
             <card-component title="Development"
               ><div slot="content">

@@ -11,7 +11,7 @@ export const renderForm = (properties: any, component: any) => {
           ? html`
               <input
                 type="checkbox"
-                ?checked=${component[property.name]}
+                ?checked=${component[property]}
                 @change=${(e: any) => (component[property] = e.target.checked)}
               />
             `
