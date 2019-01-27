@@ -17,18 +17,24 @@ const checkDuplicate: any = (input: any, criteria: string) => {
 export interface config {}
 
 export interface exam {
-  // Start off at largest font-setSize
-  step: {
-    fontSize: string;
-    history: { expectation: string; answer: string; result: boolean };
-  };
+  lines: Array<line>
+}
+
+export interface line {
+  size: string
+  results: Array<result>
+}
+
+export interface result {
+  question: string,
+  answer: string
 }
 
 const log = [];
 
 const debug = (message: string) => {
   log.push(message);
-}
+};
 
 export class EyeExamComponent extends LitElement {
   @property() character: string;
@@ -76,22 +82,26 @@ export class EyeExamComponent extends LitElement {
   }
 
   onResult(e: any) {
-    const currentIndex = e.results.length - 1;
-    const answer = e.results[currentIndex][0].transcript;
+    const answer = this.getResult(e);
     const lower = answer.toLowerCase();
     const result = lower.startsWith(this.history[this.currentIndex].expectation)
       ? true
       : false;
     this.history[this.currentIndex].answer = answer;
     this.history[this.currentIndex].result = result;
-    this.history[this.currentIndex].fontSize = this.fontSize;
+    // this.history[this.currentIndex].fontSize = this.fontSize;
     this.performUpdate();
-    if (this.currentIndex < (this.perLine - 1)) this.next();
+    if (this.currentIndex < this.perLine - 1) this.next();
     else {
       this.report.push(this.history);
       this.finished = true;
       toast("Finished");
     }
+  }
+
+  getResult(e: any) {
+    const currentIndex = e.results.length - 1;
+    return e.results[currentIndex][0].transcript;
   }
 
   getCharacter() {
@@ -187,7 +197,6 @@ export class EyeExamComponent extends LitElement {
 
   firstUpdated() {
     this.fontSize = "2in";
-    console.log(EyeExamComponent.properties);
   }
 
   static get styles() {

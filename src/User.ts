@@ -1,3 +1,10 @@
+import { store } from "./Store";
+
+export const isAdmin = () => {
+  const state = store.getState();
+  return state.user.uid === "m42gwHOSlbUniorNjigqa1nnHIE3";
+}
+
 export class User {
   signOut() {
     return Promise.all([

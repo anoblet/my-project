@@ -2,6 +2,9 @@
   "rules": {
     ".read": true,
     ".write": true,
+    "posts": {
+      ".write": "auth.uid === 'm42gwHOSlbUniorNjigqa1nnHIE3'"
+    },
     "users": {
       "$user_id": {
         ".read": "auth != null && auth.uid == $user_id",
