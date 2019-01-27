@@ -74,7 +74,6 @@ export class AdminComponent extends Mixin(connect(store)(LitElement), [
 
   render() {
     return html`
-      <style></style>
       <grid-component>
         <card-component title="Settings">
           <div slot="content">

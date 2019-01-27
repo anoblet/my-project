@@ -1,13 +1,18 @@
 import { html } from "lit-element";
 import { updateDocument } from "../../../packages/firebase-helpers/firebase-helpers";
 import { store } from "../../Store";
+import { toast } from "../ToastComponent/Toast";
 
 const updateField = (field: string, value: string) => {
   const state = store.getState();
   updateDocument({
     path: `users/${state.user.uid}/settings/theme`,
     data: { currentTheme: { [field]: value } }
-  });
+  })
+    .then(() => {})
+    .catch((error: any) => {
+      toast("Error");
+    });
 };
 
 const renderField = (field: any, theme: any) => html`

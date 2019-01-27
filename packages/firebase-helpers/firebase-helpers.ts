@@ -161,7 +161,10 @@ export const updateDocument = ({ path, data }: any) => {
     import(/* webpackChunkName: "FirebaseFirestore" */ "firebase/firestore")
   ]).then(([firebase]) => {
     const document = firebase.firestore().doc(path);
+    console.log("Here");
     return document.set(data, { merge: true });
+    console.log("Here2");
+
   });
 };
 
