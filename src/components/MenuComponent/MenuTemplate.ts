@@ -13,7 +13,7 @@ export default function() {
         <a href="/user-theme"><mwc-fab icon="brush"></mwc-fab></a>
       </li>
       <li>
-        <a href="/user-theme"><mwc-fab icon="view_array"></mwc-fab></a>
+        ><a @click=${() => {}}><mwc-fab icon="share"></mwc-fab></a>
       </li>
       <li><mwc-fab></mwc-fab></li>
       <li><mwc-fab></mwc-fab></li>

@@ -114,9 +114,11 @@ export default function() {
         ? html`
             <card-component title="Development"
               ><div slot="content">
-                Current Index: ${this.currentIndex} History:
+                History:
                 <pre>${JSON.stringify(this.history, null, 2)}</pre>
+                Report:
                 <pre>${JSON.stringify(this.report, null, 2)}</pre>
+                Current Index: ${this.currentIndex}
               </div></card-component
             >
           `

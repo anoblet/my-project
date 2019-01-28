@@ -45,6 +45,7 @@ export class EyeExamComponent extends LitElement {
   @property() correctPerLine: number = 3;
   @property() character: string;
   @property() currentIndex: number = -1;
+  @property() distanceFromScreen: number = 1;
   @property() finished: boolean = false;
   @property() fullscreen: boolean;
   @property() showHistory: boolean = false;
@@ -185,6 +186,11 @@ export class EyeExamComponent extends LitElement {
       autoStart: {
         type: Boolean,
         label: "Auto start"
+      },
+      distanceFromScreen: {
+        description: "Distance from screen as measured in meters",
+        type: Number,
+        label: "Distance from screen(meters)"
       },
       fontSize: {
         label: "Font size",
