@@ -47,9 +47,9 @@ export class EyeExamComponent extends LitElement {
   @property() currentIndex: number = -1;
   @property() finished: boolean = false;
   @property() fullscreen: boolean;
-  @property() hideHistory: boolean = true;
-  @property() hideNavigation: boolean = true;
-  @property() hideRecord: boolean = true;
+  @property() showHistory: boolean = false;
+  @property() showNavigation: boolean = false;
+  @property() showRecord: boolean = false;
   @property() perLine: number = 5;
   @property() perLineThreshold: number = 0.5;
   @property() report: any = [];
@@ -164,34 +164,42 @@ export class EyeExamComponent extends LitElement {
    * Sets the font size
    * @param  size
    * @return void
-   */
+   * */
 
   setSize(size: string) {
     const character = <HTMLElement>this.renderRoot.querySelector("#character");
     character.style.fontSize = size;
   }
 
+
+
+  // Lifecycle methods
+
+  firstUpdated() {
+    this.fontSize = "2in";
+  }
+
+  // Component methods
   static get properties() {
     return {
       autoStart: {
         type: Boolean,
         label: "Auto start"
       },
-
       fontSize: {
         label: "Font size",
         type: String
       },
-      hideHistory: {
-        label: "Hide history",
+      showHistory: {
+        label: "Show history",
         type: Boolean
       },
-      hideNavigation: {
-        label: "Hide navigation",
+      showNavigation: {
+        label: "Show navigation",
         type: Boolean
       },
-      hideRecord: {
-        label: "Hide record",
+      showRecord: {
+        label: "Show record",
         type: Boolean
       },
       perLine: {
@@ -205,10 +213,6 @@ export class EyeExamComponent extends LitElement {
       },
 
     };
-  }
-
-  firstUpdated() {
-    this.fontSize = "2in";
   }
 
   static get styles() {

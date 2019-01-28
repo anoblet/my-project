@@ -70,7 +70,7 @@ export default function() {
             label="Start"
             style="grid-column: -1/1"
           ></button-component>
-          ${!this.hideNavigation
+          ${this.showNavigation
             ? html`
                 <button-component
                   @click="${this.previous}"
@@ -82,7 +82,7 @@ export default function() {
                 ></button-component>
               `
             : ""}
-          ${!this.hideRecord
+          ${this.showRecord
             ? html`
                 <button-component
                   @click="${this.record}"
@@ -110,7 +110,7 @@ export default function() {
             ></card-component>
           `
         : ""}
-      ${!this.hideHistory
+      ${this.showHistory
         ? html`
             <card-component title="Development"
               ><div slot="content">
