@@ -142,9 +142,8 @@ export const getCollection = ({ path, callback, watch, orderBy }: any) => {
 /**
  * Add a document to a collection
  * @return The document ID
- *
+ * @todo Return DocRef
  * Example: addDocument("posts", { title: "Sample title" })
- *
  * */
 export const addDocument = ({ path, data }: any) => {
   return Promise.all([
@@ -170,18 +169,14 @@ export const addDocument = ({ path, data }: any) => {
  * @return
  * */
 
-export const updateDocument = ({ path, data }: any) => {
+export const updateDocument = ({ data, path }: any) => {
   console.log("Updating document");
   return Promise.all([
     import(/* webpackChunkName: "Firebase" */ "firebase/app"),
     // @ts-ignore
     import(/* webpackChunkName: "FirebaseFirestore" */ "firebase/firestore")
-  ]).then(([firebase]) => {
-    const document = firebase.firestore().doc(path);
-    console.log("Here");
-    return document.set(data, { merge: true });
-    console.log("Here2");
-  });
+  ]).then(([firebase]) =>firebase.firestore().doc(path).set(data, { merge: true })
+  );
 };
 
 /**
@@ -220,8 +215,6 @@ export const deleteDocument = ({ path }: any) => {
       .firestore()
       .doc(path)
       .delete()
-      .then(() => console.log("Document deleted"))
-      .catch((error: any) => console.log("Could not delete document", error));
   });
 };
 

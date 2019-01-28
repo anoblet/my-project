@@ -38,10 +38,11 @@ const debug = (message: string) => {
 
 // [ Properties] is now going to be an object, lets roll with that
 const properties = {
-  
+
 }
 
 export class EyeExamComponent extends LitElement {
+  @property() correctPerLine: number = 3;
   @property() character: string;
   @property() currentIndex: number = -1;
   @property() finished: boolean = false;
@@ -50,7 +51,7 @@ export class EyeExamComponent extends LitElement {
   @property() hideNavigation: boolean = true;
   @property() hideRecord: boolean = true;
   @property() perLine: number = 5;
-  @property() correctPerLine: number = 3;
+  @property() perLineThreshold: number = 0.5;
   @property() report: any = [];
   @property({ type: Array }) history: any = [];
   @property({ type: String }) fontSize: string;
@@ -196,7 +197,13 @@ export class EyeExamComponent extends LitElement {
       perLine: {
         label: "Characters per line",
         type: Number
-      }
+      },
+      perLineThreshold: {
+        description: "A value in between 0 and 1 indication correct answers/questions asked.",
+        label: "Per line threshold",
+        type: Number
+      },
+
     };
   }
 
