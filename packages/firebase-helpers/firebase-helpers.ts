@@ -1,16 +1,39 @@
+/**
+ * Utility functions for Firebase
+ * - Declares firebasui on Window for some reason (firebaseui is not a UMD module as must be defined on the global scope)
+ * */
+
 declare global {
   interface Window {
     firebaseui: any;
   }
 }
 
+/**
+ * Kinda lazy so I'm grabbing firebaseui from the window
+ * */
+
 const firebaseui = window.firebaseui;
 
+/**
+ * Should be run once and only once since it instantiates Firebase
+ *  - Should be of type <firebaseConfig> (How the hell would I type that anyways :P)
+ * @param  config
+ * @return Promise
+ * */
 export const initApp = (config: any) => {
-  return import(/* webpackChunkName: "Firebase" */ "firebase/app").then(firebase => {
-    if (firebase.apps.length === 0) firebase.initializeApp(config);
-  });
+  return import(/* webpackChunkName: "Firebase" */ "firebase/app").then(
+    firebase => {
+      if (firebase.apps.length === 0) firebase.initializeApp(config);
+    }
+  );
 };
+
+/**
+ * @param void
+ * @return Promise
+ * - [Deprecated in 0.0.2] { timestampsInSnapshots: true } is no longer needed
+ * */
 
 export const initStore = () => {
   return Promise.all([
@@ -26,8 +49,7 @@ export const initStore = () => {
  * Needed so that after a signin has been processed,
  * on redirect, the form is added to capture the result
  * @return [description]
- *
- */
+ * */
 export const checkRedirect = () => {
   return Promise.all([
     import(/* webpackChunkName: "Firebase" */ "firebase/app"),
@@ -47,14 +69,13 @@ export const checkRedirect = () => {
 
 /**
  * Only takes a callback that fires one the user status has been resolved
- *
+ * 
  * Example: getUser((user: any) => console.log(user))
  *
  */
 export const getUser = ({ callback }: any) => {
   return Promise.all([
-    import(/* webpackChunkName: "Firebase" */ "firebase/app"),
-    // @ts-ignore
+    import(/* webpackChunkName: "Firebase" */ "firebase/app"), // @ts-ignore
     import(/* webpackChunkName: "FirebaseAuth" */ "firebase/auth"),
     ,
     import(/* webpackChunkName: "FirebaseUI" */ "firebaseui")
@@ -87,35 +108,34 @@ export const getUser = ({ callback }: any) => {
  */
 export const getCollection = ({ path, callback, watch, orderBy }: any) => {
   return Promise.all([
-    import(/* webpackChunkName: "Firebase" */ "firebase/app"),
-    // @ts-ignore
+    import(/* webpackChunkName: "Firebase" */ "firebase/app"), // @ts-ignore
     import(/* webpackChunkName: "FirebaseFirestore" */ "firebase/firestore")
   ]).then(([firebase, firestore]) => {
-  let collection = firebase.firestore().collection(path);
-  // @ts-ignore
-  if (orderBy) collection = collection.orderBy(orderBy);
-  // Watch is enabled, let's use a callback
-  if (watch)
-    collection.onSnapshot((querySnapshot: any) => {
-      let result: any = [];
-      querySnapshot.forEach(function(doc: any) {
-        const data = doc.data();
-        data.id = doc.id;
-        result.push(data);
+    let collection = firebase.firestore().collection(path);
+    // @ts-ignore
+    if (orderBy) collection = collection.orderBy(orderBy);
+    // Watch is enabled, let's use a callback
+    if (watch)
+      collection.onSnapshot((querySnapshot: any) => {
+        let result: any = [];
+        querySnapshot.forEach(function(doc: any) {
+          const data = doc.data();
+          data.id = doc.id;
+          result.push(data);
+        });
+        if (callback) callback(result);
       });
-      if (callback) callback(result);
-    });
-  // Watch is diabled, let's return an array of objects
-  else
-    return collection.get().then((querySnapshot: any) => {
-      let result: any = [];
-      querySnapshot.forEach(function(doc: any) {
-        const data = doc.data();
-        data.id = doc.id;
-        result.push(data);
+    // Watch is diabled, let's return an array of objects
+    else
+      return collection.get().then((querySnapshot: any) => {
+        let result: any = [];
+        querySnapshot.forEach(function(doc: any) {
+          const data = doc.data();
+          data.id = doc.id;
+          result.push(data);
+        });
+        return result;
       });
-      return result;
-    });
   });
 };
 
@@ -128,13 +148,12 @@ export const getCollection = ({ path, callback, watch, orderBy }: any) => {
  */
 
 export const addDocument = ({ path, data }: any) => {
-  console.log("Adding document");
   return Promise.all([
-    import(/* webpackChunkName: "Firebase" */ "firebase/app"),
-    // @ts-ignore
+    import(/* webpackChunkName: "Firebase" */ "firebase/app"), // @ts-ignore
     import(/* webpackChunkName: "FirebaseFirestore" */ "firebase/firestore")
   ]).then(([firebase]) => {
-    return firebase.firestore()
+    return firebase
+      .firestore()
       .collection(path)
       .add(data)
       .then((docRef: any) => {
@@ -156,15 +175,13 @@ export const addDocument = ({ path, data }: any) => {
 export const updateDocument = ({ path, data }: any) => {
   console.log("Updating document");
   return Promise.all([
-    import(/* webpackChunkName: "Firebase" */ "firebase/app"),
-    // @ts-ignore
+    import(/* webpackChunkName: "Firebase" */ "firebase/app"), // @ts-ignore
     import(/* webpackChunkName: "FirebaseFirestore" */ "firebase/firestore")
   ]).then(([firebase]) => {
     const document = firebase.firestore().doc(path);
     console.log("Here");
     return document.set(data, { merge: true });
     console.log("Here2");
-
   });
 };
 
@@ -173,19 +190,18 @@ export const updateDocument = ({ path, data }: any) => {
  */
 export const getDocument = ({ callback, path, watch }: any) => {
   return Promise.all([
-    import(/* webpackChunkName: "Firebase" */ "firebase/app"),
-    // @ts-ignore
+    import(/* webpackChunkName: "Firebase" */ "firebase/app"), // @ts-ignore
     import(/* webpackChunkName: "FirebaseFirestore" */ "firebase/firestore")
   ]).then(([firebase]) => {
-  const document = firebase.firestore().doc(path);
-  return watch
-    ? document.onSnapshot((doc: any) => {
-        const source = doc.metadata.hasPendingWrites ? "local" : "remote";
-        callback(doc.data());
-      })
-    : document.get().then((doc: any) => {
-        return doc.data();
-      });
+    const document = firebase.firestore().doc(path);
+    return watch
+      ? document.onSnapshot((doc: any) => {
+          const source = doc.metadata.hasPendingWrites ? "local" : "remote";
+          callback(doc.data());
+        })
+      : document.get().then((doc: any) => {
+          return doc.data();
+        });
   });
 };
 
@@ -196,15 +212,15 @@ export const getDocument = ({ callback, path, watch }: any) => {
  */
 export const deleteDocument = ({ path }: any) => {
   return Promise.all([
-    import(/* webpackChunkName: "Firebase" */ "firebase/app"),
-    // @ts-ignore
+    import(/* webpackChunkName: "Firebase" */ "firebase/app"), // @ts-ignore
     import(/* webpackChunkName: "FirebaseFirestore" */ "firebase/firestore")
   ]).then(([firebase]) => {
-  return firebase.firestore()
-    .doc(path)
-    .delete()
-    .then(() => console.log("Document deleted"))
-    .catch((error: any) => console.log("Could not delete document", error));
+    return firebase
+      .firestore()
+      .doc(path)
+      .delete()
+      .then(() => console.log("Document deleted"))
+      .catch((error: any) => console.log("Could not delete document", error));
   });
 };
 
