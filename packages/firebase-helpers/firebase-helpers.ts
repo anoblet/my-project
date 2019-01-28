@@ -68,14 +68,15 @@ export const checkRedirect = () => {
 };
 
 /**
- * Only takes a callback that fires one the user status has been resolved
- * 
+ * Only takes a callback that fires once the user status has been resolved
+ *
  * Example: getUser((user: any) => console.log(user))
  *
  */
 export const getUser = ({ callback }: any) => {
   return Promise.all([
-    import(/* webpackChunkName: "Firebase" */ "firebase/app"), // @ts-ignore
+    import(/* webpackChunkName: "Firebase" */ "firebase/app"),
+    // @ts-ignore
     import(/* webpackChunkName: "FirebaseAuth" */ "firebase/auth"),
     ,
     import(/* webpackChunkName: "FirebaseUI" */ "firebaseui")
