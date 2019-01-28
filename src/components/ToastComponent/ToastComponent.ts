@@ -21,7 +21,7 @@ export class ToastComponent extends LitElement {
   fire(message: string) {
     this.message = message;
     this.hidden = false;
-    setTimeout(() => (this.hidden = true), 1000);
+    setTimeout(() => (this.hidden = true), 4000);
   }
 
   static get styles() {

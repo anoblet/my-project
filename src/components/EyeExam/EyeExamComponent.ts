@@ -45,7 +45,7 @@ export class EyeExamComponent extends LitElement {
   @property() correctPerLine: number = 3;
   @property() character: string;
   @property() currentIndex: number = -1;
-  @property() distanceFromScreen: number = 1;
+  @property() distanceFromScreen: number = 1; // Arbitrary at this point
   @property() finished: boolean = false;
   @property() fullscreen: boolean;
   @property() showHistory: boolean = false;

@@ -8,7 +8,7 @@ import {
   getDocument,
   updateDocument
 } from "../../../packages/firebase-helpers";
-
+import { toast } from "../ToastComponent/Toast";
 import("../../../packages/PellComponent/PellComponent");
 
 import { structure } from "./PostStructure";
@@ -51,7 +51,7 @@ export class PostComponent extends Mixin(LitElement, [TemplateMixin]) {
   }
 
   shouldUpdate() {
-    if(!this.loaded) return false;
+    if (!this.loaded) return false;
     else return super.shouldUpdate();
   }
 
@@ -90,13 +90,17 @@ export class PostComponent extends Mixin(LitElement, [TemplateMixin]) {
     };
 
     if (this.create) {
-      addDocument({ path: "posts", data }).then((result: any) => {
-        // navigate(`/post/read/${result}`));
-      });
+      addDocument({ path: "posts", data })
+        .then((result: any) => {})
+        .then(() => toast("Document added"))
+        .catch(error => toast("Error"));
     } else {
-      updateDocument({ path: `posts/${this.id}`, data }).then((result: any) => {
-        this.editable = !this.editable;
-      });
+      updateDocument({ path: `posts/${this.id}`, data })
+        .then((result: any) => {
+          this.editable = !this.editable;
+        })
+        .then(() => toast("Document updated"))
+        .catch(error => toast("Error, could not update the document. Maybe you are not signed in?"));
     }
   }
 }
