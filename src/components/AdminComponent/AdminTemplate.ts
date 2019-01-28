@@ -16,12 +16,10 @@ export default function({ app, user }: any) {
           <label for="mode">Mode</label>
           <select
             id="mode"
-            @input="${
-              (e: any) => {
-                const value = e.target.options[e.target.selectedIndex].value;
-                this.setState({ mode: value }, "app");
-              }
-            }"
+            @input="${(e: any) => {
+              const value = e.target.options[e.target.selectedIndex].value;
+              this.setState({ mode: value }, "app");
+            }}"
           >
             <option ?selected="${app.mode === "production"}" value="production"
               >Production</option
@@ -37,6 +35,9 @@ export default function({ app, user }: any) {
               >Experimental</option
             >
           </select>
+          <div>
+            Theme:
+          </div>
         </div>
       </card-component>
     </grid-component>

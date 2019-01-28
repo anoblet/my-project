@@ -1,10 +1,30 @@
 // Consider a change to component-editor
-
 import { html } from "lit-element";
+import { string } from "./String";
 
-// Properties may not be needed at this point as they can be derived from 'component.constructor.peroperties'
-export const renderForm = (properties: any, component: any) => {
-  const _properties = component.constructor.properties;
+export interface property {
+  label?: string;
+  type: any;
+}
+
+export const PropertyEditor = () => {};
+
+/**
+ * [keys description]
+ * @param  component [description]
+ * @param  properties [description]
+ * @param  onChange [description]
+ * @return HTMLTemplateResult
+ * */
+export const renderForm = (
+  component: any,
+  properties: any = undefined,
+  onChange: any = undefined
+) => {
+  const _properties = properties
+    ? properties
+    : component.constructor.properties;
+
   return html`
   <grid-component style="grid-template-columns: auto min-content">
     ${Object.keys(_properties).map(
@@ -13,9 +33,10 @@ export const renderForm = (properties: any, component: any) => {
         ${_properties[property].type === Boolean
           ? html`
               <input
+                name=${property}
                 type="checkbox"
                 ?checked=${component[property]}
-                @change=${(e: any) => (component[property] = e.target.checked)}
+                @change="${(e: any) => onChange(property, e.target.checked)}}"
               />
             `
           : ""}
@@ -24,7 +45,7 @@ export const renderForm = (properties: any, component: any) => {
               <input
                 type="number"
                 value=${component[property]}
-                @change=${(e: any) => (component[property] = e.target.value)}
+                @change=${(e: any) => onChange(property, e.target.checked)}
               />
             `
           : ""}
@@ -33,7 +54,7 @@ export const renderForm = (properties: any, component: any) => {
               <input
                 type="text"
                 value=${component[property]}
-                @change=${(e: any) => (component[property] = e.target.value)}
+                @change=${(e: any) => onChange(property, e.target.value)}
               />
             `
           : ""}

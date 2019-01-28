@@ -4,12 +4,15 @@ import { css, customElement, html, LitElement, property } from "lit-element";
 // import { exec, init } from "pell";
 const pell = require("pell");
 
+import globalStyle from "../../src/GlobalStyle";
+
 @customElement("pell-component")
 export class PellComponent extends LitElement {
   @property() input: string;
   @property() value: string;
   static get styles() {
     return [
+      globalStyle,
       css`
         .pell-content {
           min-height: 128px;

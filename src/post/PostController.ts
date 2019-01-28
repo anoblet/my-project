@@ -52,14 +52,14 @@ export class PostController extends Mixin(LitElement, [
   }
 
   create() {
-    this._template = html`
+    this.template = html`
       <post-component create editable></post-component>
     `;
     this.requestUpdate();
   }
 
   edit(id: string) {
-    this._template = html`
+    this.template = html`
       <post-component editable id="${id}"></post-component>
     `;
     this.requestUpdate();

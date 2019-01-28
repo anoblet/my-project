@@ -19,7 +19,11 @@ export default function() {
         ? html`
             <card-component collapsed collapsible title="Properties"
               ><div slot="content">
-                ${renderForm(this.constructor.properties, this)}
+                ${renderForm(
+                  this,
+                  null,
+                  (property: string, value: any) => (this[property] = value)
+                )}
               </div></card-component
             >
           `

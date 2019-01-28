@@ -50,10 +50,10 @@ export class PostComponent extends Mixin(LitElement, [TemplateMixin]) {
       });
   }
 
-  shouldUpdate() {
-    if (!this.loaded) return false;
-    else return super.shouldUpdate();
-  }
+  // shouldUpdate() {
+  //   if (!this.loaded) return false;
+  //   else return super.shouldUpdate();
+  // }
 
   text({ field, value }: any) {
     return html`
