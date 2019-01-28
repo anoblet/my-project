@@ -3,6 +3,9 @@ import { store } from "../../Store";
 import { renderForm } from "../PropertyEditor/PropertyEditor";
 import { properties } from "./Properties";
 import { filterByMode } from "../../Debug";
+import { isAdmin } from "../../User"; // isAdmin is a function not a property and may be re-evaluate on each render
+
+// Components
 import(/* webpackChunkName: "ButtonComponent" */ "../ButtonComponent/ButtonComponent");
 import(/* webpackChunkName: "ReportComponent" */ "./ReportComponent");
 
@@ -12,11 +15,15 @@ export default function() {
 
   return html`
     <grid-component>
-      <card-component collapsed collapsible title="Properties"
-        ><div slot="content">
-          ${renderForm(this.constructor.properties, this)}
-        </div></card-component
-      >
+      ${isAdmin()
+        ? html`
+            <card-component collapsed collapsible title="Properties"
+              ><div slot="content">
+                ${renderForm(this.constructor.properties, this)}
+              </div></card-component
+            >
+          `
+        : ""}
       <card-component>
         ${!this.character
           ? html`

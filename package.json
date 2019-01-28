@@ -4,6 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "publish": "webpack && firebase deploy",
+    "save": "git add . | git commit -m 'Chore: Save'",
     "start": "webpack-dev-server",
     "dev": "webpack-dev-server --mode development",
     "test": "echo \"Error: no test specified\" && exit 1"

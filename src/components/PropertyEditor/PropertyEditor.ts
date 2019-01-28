@@ -1,5 +1,8 @@
+// Consider a change to component-editor
+
 import { html } from "lit-element";
 
+// Properties may not be needed at this point as they can be derived from 'component.constructor.peroperties'
 export const renderForm = (properties: any, component: any) => {
   const _properties = component.constructor.properties;
   return html`
