@@ -1,5 +1,6 @@
 import { html } from "lit-element";
-import * as style from "./PageAccount.scss";
+//import * as style from "./PageAccount.scss";
+// import { style } from "./PageAccountStyle"
 
 const links = [  {
     href: "/user/posts",
@@ -17,9 +18,6 @@ const links = [  {
 
 export default function() {
   return html`
-    <style>
-      ${style}
-    </style>
     <ul>
       ${
         links.map(
