@@ -37,13 +37,18 @@ export default function() {
                 <div id="character" style="font-size: ${this.fontSize}">
                   ${this.character}
                 </div>
-                <div id="fontSize">
-                  <input
-                    type="text"
-                    value="${this.fontSize}"
-                    @change=${(e: any) => (this.fontSize = e.target.value)}
-                  /><mwc-icon>edit</mwc-icon>
-                </div>
+                ${false
+                  ? html`
+                      <div id="fontSize">
+                        <input
+                          type="text"
+                          value="${this.fontSize}"
+                          @change=${(e: any) =>
+                            (this.fontSize = e.target.value)}
+                        /><mwc-icon>edit</mwc-icon>
+                      </div>
+                    `
+                  : ""}
               </div>
             `}
       </card-component>

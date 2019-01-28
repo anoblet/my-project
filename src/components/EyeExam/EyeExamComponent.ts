@@ -36,6 +36,11 @@ const debug = (message: string) => {
   log.push(message);
 };
 
+// [ Properties] is now going to be an object, lets roll with that
+const properties = {
+  
+}
+
 export class EyeExamComponent extends LitElement {
   @property() character: string;
   @property() currentIndex: number = -1;

@@ -10,3 +10,6 @@ Scaffolding includes:
   * Installable as an app
   * Separation of concerns -- seperate template files, sass-loader
   * (100) score in all 5 Lighthouse scorings
+
+  @todo
+    - Testing (Code coverage)
