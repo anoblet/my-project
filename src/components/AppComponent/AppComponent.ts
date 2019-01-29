@@ -30,7 +30,20 @@ import { log } from "../../Debug";
 
 import { handleNavigation, setPortal, setRoutes } from "../../Router";
 import { routes } from "./Routes";
-import "../PageHome/PageHome"
+import "../PageHome/PageHome";
+
+const getAppSettings = () => {
+  return getDocument({
+    path: `app/settings`
+  }).then((document: any) => {
+    console.log(document);
+    const app = {
+      settings: { defaultTheme: document.defaultTheme }
+    };
+    setState({ data: app, store: store, type: "app" });
+    setState({ data: document.defaultTheme, store: store, type: "theme" });
+  });
+};
 
 export class AppComponent extends Mixin(connect(store)(LitElement), [
   HelperMixin,
@@ -59,7 +72,7 @@ export class AppComponent extends Mixin(connect(store)(LitElement), [
     super.connectedCallback();
     // Let's set a default theme
     log("Setting default theme");
-    setState({ data: config.defaultTheme, store: store, type: "theme" });
+    // setState({ data: config.defaultTheme, store: store, type: "theme" });
     this.runTasks([
       import(/* webpackChunkName: "MyFlex" */ "../../../packages/my-flex"),
       import(/* webpackChunkName: "MyGrid" */ "../../../packages/my-grid"),
@@ -69,11 +82,9 @@ export class AppComponent extends Mixin(connect(store)(LitElement), [
       import(/* webpackChunkName: "MWCIcon" */ "@material/mwc-icon"),
       import(/* webpackChunkName: "MWCFab" */ "@material/mwc-fab"),
       import(/* webpackChunkName: "AppHeader" */ "../AppHeader/AppHeader"),
-      import(/* webpackChunkName: "AppFooter" */ "../AppFooter/AppFooter"),
-      // @deprecated import(/* webpackChunkName: "AppTheme" */ "../AppTheme/AppTheme"),
+      import(/* webpackChunkName: "AppFooter" */ "../AppFooter/AppFooter"), // @deprecated import(/* webpackChunkName: "AppTheme" */ "../AppTheme/AppTheme"),
       import(/* webpackChunkName: "Drawer" */ "../DrawerComponent/Drawer"),
-      import(/* webpackChunkName: "ProfileMenu" */ "../ProfileMenu/ProfileMenu"),
-      // @deprecated
+      import(/* webpackChunkName: "ProfileMenu" */ "../ProfileMenu/ProfileMenu"), // @deprecated
       import(/* webpackChunkName: "AdminComponent" */ "../AdminComponent/AdminComponent"),
       import(/* webpackChunkName: "Breadcrumb" */ "../BreadcrumbComponent/Breadcrumb"),
       import(/* webpackChunkName: "LogComponent" */ "../LogComponent/LogComponent"),
@@ -91,8 +102,7 @@ export class AppComponent extends Mixin(connect(store)(LitElement), [
             // Client is not logged in, nor pending redirect
             if (!user) {
               log("User is not logged in");
-              this.setDefaultTheme();
-              resolve();
+              await getAppSettings();
             }
             // Client is logged in
             if (user) {
@@ -125,7 +135,7 @@ export class AppComponent extends Mixin(connect(store)(LitElement), [
                 getDocument({
                   path: `users/${user.uid}/settings/default`,
                   callback: (document: any) => {
-                    this.setState({ settings: document }, "app");
+                    // this.setState({ settings: document }, "app");
                     this.setState(document, "settings");
                     resolve();
                   },

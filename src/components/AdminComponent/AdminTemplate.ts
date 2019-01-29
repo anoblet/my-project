@@ -1,9 +1,25 @@
 import { html } from "lit-element";
 import { render } from "lit-html";
+import { editTheme } from "./EditTheme";
+import { setTheme } from "./SetTheme";
+import { theme } from "../ThemeComponent/Theme";
 
 export default function({ app, user }: any) {
+  const _theme: theme = {
+    backgroundColor: "#3E3E4B",
+    borderColor: "#255451",
+    primaryColor: "#C7318E",
+    secondaryColor: "#E75384",
+    textColor: "#D5F0EE",
+    linkColor: "#0A8470"
+  };
   return html`
     <grid-component gap="1em">
+      <card-component title="Edit theme">
+        <div slot="content">
+          ${setTheme()} ${editTheme(_theme)}
+        </div>
+      </card-component>
       <card-component title="Links">
         <div slot="content">
           <ul>
