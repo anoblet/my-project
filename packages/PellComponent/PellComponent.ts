@@ -14,8 +14,19 @@ export class PellComponent extends LitElement {
     return [
       globalStyle,
       css`
+        button {
+          background: inherit;
+          border: 1px solid var(--border-color);
+          color: var(--primary-color);
+          padding: 0.75em;
+        }
+        .pell-actionbar {
+          margin-top: 1em;
+        }
         .pell-content {
+          margin-top: 1em;
           min-height: 128px;
+          border: 1px solid var(--border-color);
         }
       `
     ];

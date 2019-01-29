@@ -40,6 +40,10 @@ export default css`
     border: 0;
   }
 
+  input[type=text] {
+    border-bottom: 1px solid var(--border-color);
+  }
+
   input:focus,
   textarea:focus {
     outline: none;

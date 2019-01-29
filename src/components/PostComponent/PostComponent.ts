@@ -14,6 +14,8 @@ import("../../../packages/PellComponent/PellComponent");
 import { structure } from "./PostStructure";
 import template from "./PostTemplate";
 
+import globalStyle from "../../GlobalStyle";
+
 export interface PostComponent {
   [key: string]: any; // Add index signature
 }
@@ -61,6 +63,7 @@ export class PostComponent extends Mixin(LitElement, [TemplateMixin]) {
       <input
         name="${field.name}"
         label="${field.label}"
+        type="text"
         value="${value ? value : ""}"
       />
     `;
@@ -100,8 +103,18 @@ export class PostComponent extends Mixin(LitElement, [TemplateMixin]) {
           this.editable = !this.editable;
         })
         .then(() => toast("Document updated"))
-        .catch(error => toast("Error, could not update the document. Maybe you are not signed in?"));
+        .catch(error =>
+          toast(
+            "Error, could not update the document. Maybe you are not signed in?"
+          )
+        );
     }
+  }
+
+  static get styles() {
+    return [
+      globalStyle
+    ]
   }
 }
 

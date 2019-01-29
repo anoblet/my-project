@@ -26,39 +26,47 @@ export default function() {
             `}
       </h3>
       <div slot="content">
-        ${this.editable
-          ? html`
-              ${this.text({
-                field: search("author", structure),
-                value: this.author
-              })}
-            `
-          : html`
-              ${this.author}
-            `}
-        ${this.editable
-          ? html`
-              ${this.text({
-                field: search("date", structure),
-                value: this.date
-              })}
-            `
-          : html`
-              ${this.date}
-            `} <label>Content</label> ${this.editable
-          ? html`
-              <pell-component
-                name="content"
-                .input="${this.content}"
-              ></pell-component>
-            `
-          : html`
-              ${this.content
-                ? html`
-                    ${unsafeHTML(this.content)}
-                  `
-                : ""}
-            `}
+        <div>
+          ${this.editable
+            ? html`
+                ${this.text({
+                  field: search("author", structure),
+                  value: this.author
+                })}
+              `
+            : html`
+                ${this.author}
+              `}
+        </div>
+        <div>
+          ${this.editable
+            ? html`
+                ${this.text({
+                  field: search("date", structure),
+                  value: this.date
+                })}
+              `
+            : html`
+                ${this.date}
+              `}
+        </div>
+        <div>
+          ${this.editable
+            ? html`
+                <label>Content</label>
+                <pell-component
+                  name="content"
+                  .input="${this.content}"
+                ></pell-component>
+              `
+            : html`
+                ${this.content
+                  ? html`
+                      ${unsafeHTML(this.content)}
+                    `
+                  : ""}
+              `}
+        </div>
       </div>
       <div slot="actions">
         <mwc-button
