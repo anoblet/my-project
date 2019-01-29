@@ -36,9 +36,8 @@ const getAppSettings = () => {
   return getDocument({
     path: `app/settings`
   }).then((document: any) => {
-    console.log(document);
     const app = {
-      settings: { defaultTheme: document.defaultTheme }
+      settings: document
     };
     setState({ data: app, store: store, type: "app" });
     setDefaultTheme(document.defaultTheme);
@@ -103,10 +102,10 @@ export class AppComponent extends Mixin(connect(store)(LitElement), [
         await checkRedirect();
         await getUser({
           callback: async (user: any) => {
+            await getAppSettings();
             // Client is not logged in, nor pending redirect
             if (!user) {
               log("User is not logged in");
-              await getAppSettings();
             }
             // Client is logged in
             if (user) {
@@ -152,10 +151,6 @@ export class AppComponent extends Mixin(connect(store)(LitElement), [
         });
       })
     ]);
-
-    // Let's override mode
-    log("Set default mode");
-    this.setState({ settings: { mode: 1 } }, "app");
 
     // Register drawer listeners
     this.addEventListener("close-drawer", this._closeDrawer);
