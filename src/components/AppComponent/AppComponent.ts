@@ -26,7 +26,7 @@ import template from "./AppComponentTemplate";
 import componentStyle from "./AppStyle";
 import globalStyle from "../../GlobalStyle";
 
-import { log } from "../../Debug";
+import { debug } from "../../Debug";
 
 import { handleNavigation, setPortal, setRoutes } from "../../Router";
 import { routes } from "./Routes";
@@ -65,7 +65,7 @@ export class AppComponent extends Mixin(connect(store)(LitElement), [
   // Lifecycle
   constructor() {
     super();
-    log("App is constructing");
+    debug("App is constructing");
     this.setStore(store);
     this.addReducer("app"), this.addReducer("user"), this.addReducer("theme");
     this.addReducer("settings");
@@ -74,7 +74,7 @@ export class AppComponent extends Mixin(connect(store)(LitElement), [
   connectedCallback() {
     super.connectedCallback();
     // Let's set a default theme
-    log("Setting default theme");
+    debug("Setting default theme");
     // setState({ data: config.defaultTheme, store: store, type: "theme" });
     this.runTasks([
       import(/* webpackChunkName: "MyFlex" */ "../../../packages/my-flex"),
@@ -97,7 +97,7 @@ export class AppComponent extends Mixin(connect(store)(LitElement), [
       import(/* webpackChunkName: "MenuComponent" */ "../MenuComponent/MenuComponent"),
       import(/* webpackChunkName: "ToastComponent" */ "../ToastComponent/ToastComponent"),
       new Promise(async resolve => {
-        log("Run init methods");
+        debug("Run init methods");
         await initApp(this.firebaseConfig);
         await checkRedirect();
         await getUser({
@@ -105,11 +105,11 @@ export class AppComponent extends Mixin(connect(store)(LitElement), [
             await getAppSettings();
             // Client is not logged in, nor pending redirect
             if (!user) {
-              log("User is not logged in");
+              debug("User is not logged in");
             }
             // Client is logged in
             if (user) {
-              log("User is logged in");
+              debug("User is logged in");
               // Get the most useful information
               const userModel = {
                 email: user.email,
