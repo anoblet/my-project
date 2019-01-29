@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "publish": "webpack && firebase deploy",
+    "publish": "git push && webpack && firebase deploy",
     "start": "webpack-dev-server",
     "save": "git add . && git commit -m \"Chore: Save\"",
     "dev": "webpack-dev-server --mode development",
