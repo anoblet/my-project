@@ -1,11 +1,11 @@
 import { html } from "lit-element";
-import { render } from "lit-html";
 import { filterByMode } from "../../Debug";
+import { isAdmin } from "../../User";
 
 export default function() {
   return html`
     <card-component>
-      <div slot="content" style="overflow: initial;">
+      <div slot="content">
         <ul>
           <a href="/"> <li>Home</li></a>
           ${filterByMode(0)
@@ -14,12 +14,16 @@ export default function() {
               `
             : ""}
           <a href="/contact"> <li>Contact</li></a>
-          ${this.state.user.uid === "m42gwHOSlbUniorNjigqa1nnHIE3"
+          ${isAdmin
             ? html`
                 <a href="/admin"><li>Admin</li></a>
               `
             : ""}
         </ul>
+      </div>
+    </card-component>
+    <card-component>
+      <div slot="content" style="overflow: initial;">
         <ul>
           <li><a href="/">Report an issue</a></li>
         </ul>

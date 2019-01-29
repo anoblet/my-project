@@ -7,11 +7,12 @@ import { connect } from "pwa-helpers/connect-mixin.js";
 import { navigate } from "../Router";
 import { store } from "../Store";
 import { until } from "lit-html/directives/until";
-import { User } from "../User";
+import { signOut } from "../User";
 import structure from "../post/PostModel";
 import("../components/AppUser/AppUser");
 
 import { config } from "../../config";
+
 
 export interface UserController {
   [key: string]: any; // Add index signature
@@ -107,8 +108,9 @@ export class UserController extends Mixin(connect(store)(LitElement), [
   }
 
   signout() {
-    const user = new User();
-    user.signOut();
+    // const user = new User();
+    // user.signOut();
+    signOut();
     this.setState({}, "user", { merge: false });
     this.setState(config.defaultTheme, "theme");
     navigate("/");
