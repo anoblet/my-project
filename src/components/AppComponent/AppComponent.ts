@@ -1,36 +1,31 @@
+import "../PageHome/PageHome";
+
 import { LitElement, customElement, html, property } from "lit-element";
-import { HelperMixin } from "../../../packages/HelperMixin";
-import { MediaMixin } from "../../../packages/MediaMixin";
-import { Mixin } from "../../../packages/Mixin";
-import { StateMixin } from "../../../packages/StateMixin";
-import { TaskMixin } from "../../../packages/TaskMixin";
-import { config } from "../../../config";
-import { store } from "../../Store";
 import {
   checkRedirect,
   getDocument,
   getUser,
   initApp
 } from "../../../packages/firebase-helpers";
-import { setState } from "../../../packages/state-helpers/state-helpers";
-import { themeStructure } from "../ThemeComponent/ThemeStructure";
-
-// pwa-helpers
-import { connect } from "pwa-helpers/connect-mixin.js";
-import { installRouter } from "pwa-helpers/router.js";
-import { installOfflineWatcher } from "pwa-helpers/network.js";
-
-import template from "./AppComponentTemplate";
-
-// styles
-import componentStyle from "./AppStyle";
-import globalStyle from "../../GlobalStyle";
-
-import { debug } from "../../Debug";
-
 import { handleNavigation, setPortal, setRoutes } from "../../Router";
+
+import { HelperMixin } from "../../../packages/HelperMixin";
+import { MediaMixin } from "../../../packages/MediaMixin";
+import { Mixin } from "../../../packages/Mixin";
+import { StateMixin } from "../../../packages/StateMixin";
+import { TaskMixin } from "../../../packages/TaskMixin";
+import componentStyle from "./AppStyle";
+import { config } from "../../../config";
+import { connect } from "pwa-helpers/connect-mixin.js";
+import { debug } from "../../Debug";
+import globalStyle from "../../GlobalStyle";
+import { installOfflineWatcher } from "pwa-helpers/network.js";
+import { installRouter } from "pwa-helpers/router.js";
 import { routes } from "./Routes";
-import "../PageHome/PageHome";
+import { setState } from "../../../packages/state-helpers/state-helpers";
+import { store } from "../../Store";
+import template from "./AppComponentTemplate";
+import { themeStructure } from "../ThemeComponent/ThemeStructure";
 
 const getAppSettings = () => {
   return getDocument({
@@ -190,20 +185,14 @@ export class AppComponent extends Mixin(connect(store)(LitElement), [
     this.drawerOpened = false;
   }
 
-  setDefaultTheme() {
-    this.setState(config.defaultTheme, "theme");
-  }
-
-  // Events
+  // Handlers
   public _toggleDrawer() {
     this.drawerOpened = !this.drawerOpened;
   }
 
   public _toggleProfile() {
     const menu = this.shadowRoot.querySelector("#profile-menu");
-    if (menu.hidden) menu.open();
-    else menu.close();
-    // this._toggleAttribute("hidden", menu);
+    menu.hidden ? menu.open() : menu.close();
   }
 
   public updateStyles(theme: any) {
