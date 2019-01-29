@@ -41,8 +41,12 @@ const getAppSettings = () => {
       settings: { defaultTheme: document.defaultTheme }
     };
     setState({ data: app, store: store, type: "app" });
-    setState({ data: document.defaultTheme, store: store, type: "theme" });
+    setDefaultTheme(document.defaultTheme);
   });
+};
+
+const setDefaultTheme = (theme: any) => {
+  setState({ data: theme, store: store, type: "theme" });
 };
 
 export class AppComponent extends Mixin(connect(store)(LitElement), [

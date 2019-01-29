@@ -20,6 +20,9 @@ export default function() {
               `
             : ""}
         </ul>
+        <ul>
+          <li><a href="/">Report an issue</a></li>
+        </ul>
       </div>
     </card-component>
   `;
