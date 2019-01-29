@@ -153,10 +153,14 @@ export class AppComponent extends Mixin(connect(store)(LitElement), [
     ]);
 
     // Register drawer listeners
-    this.addEventListener("close-drawer", this._closeDrawer);
-    this.addEventListener("drawer-toggled", this._toggleDrawer);
+    this.registerlisteners();
 
     installOfflineWatcher((offline: boolean) => {});
+  }
+
+  registerlisteners() {
+    this.addEventListener("close-drawer", this._closeDrawer);
+    this.addEventListener("drawer-toggled", this._toggleDrawer);
   }
 
   shouldUpdate(changedProperties: any) {
