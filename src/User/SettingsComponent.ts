@@ -56,7 +56,7 @@ export class SettingsComponent extends Mixin(connect(store)(LitElement), [
     const state = store.getState();
     return html`
       <form>
-        <grid-component style="grid-template-columns: 1fr 1fr 1fr;">
+        <grid-component style="grid-template-columns: 1fr 1fr;">
           ${settings.map((setting: any) => {
             switch (setting.type) {
               case Boolean:
