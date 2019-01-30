@@ -38,7 +38,7 @@ export default function() {
             `
           : html`
               <div class="relative">
-                <div id="character" style="font-size: ${this.fontSize}">
+                <div id="character" style="font-size: ${this.startGontSize}">
                   ${this.character}
                 </div>
                 ${false

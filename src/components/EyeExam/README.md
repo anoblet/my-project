@@ -1,3 +1,5 @@
 - Keyboard input (Non-verbal)
 - Dislexia Testing
-- Coler blind testing
+- Color blind testing
+
+20/70 15.2pt at 1'

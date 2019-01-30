@@ -45,7 +45,7 @@ export class EyeExamComponent extends LitElement {
   @property() correctPerLine: number = 3;
   @property() character: string;
   @property() currentIndex: number = -1;
-  @property() distanceFromScreen: number = 1; // Arbitrary at this point
+  @property() distanceFromScreen: number = 10; // Arbitrary at this point
   @property() finished: boolean = false;
   @property() fullscreen: boolean;
   @property() showHistory: boolean = false;
@@ -54,6 +54,7 @@ export class EyeExamComponent extends LitElement {
   @property() perLine: number = 5;
   @property() perLineThreshold: number = 0.5;
   @property() report: any = [];
+  @property() startFontSize: any = "152pt";
   @property({ type: Array }) history: any = [];
   @property({ type: String }) fontSize: string;
 
@@ -177,7 +178,7 @@ export class EyeExamComponent extends LitElement {
   // Lifecycle methods
 
   firstUpdated() {
-    this.fontSize = "2in";
+    this.fontSize = "152pt";
   }
 
   // Component methods
@@ -192,7 +193,7 @@ export class EyeExamComponent extends LitElement {
         type: Number,
         label: "Distance from screen(meters)"
       },
-      fontSize: {
+      startFontSize: {
         label: "Font size",
         type: String
       },
