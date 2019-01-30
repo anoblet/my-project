@@ -10,6 +10,22 @@ import { initApp } from "../../../packages/firebase-helpers";
 import { store } from "../../Store";
 import uiStyle from "./FirebaseUIStyle";
 
+export const getForm = () =>
+    Promise.all([
+      import(/* webpackChunkName: "FirebaseApp" */ "firebase/app"),
+      import(/* webpackChunkName: "FirebaseUI" */ "firebaseui")
+    ]).then(async ([firebase, firebaseui]) => {
+      const el = document.createElement("div");
+      const ui =
+        firebaseui.auth.AuthUI.getInstance() ||
+        new firebaseui.auth.AuthUI(firebase.auth());
+      ui.start(el, {
+        ...config.firebaseui,
+        ...{ credentialHelper: firebaseui.auth.CredentialHelper.NONE }
+      });
+      return el;
+    });
+
 export class AppUser extends Mixin(connect(store)(LitElement), [
   TaskMixin,
 ]) {
