@@ -33,7 +33,7 @@ export class Blog extends Mixin(connect(store)(BaseElement), [
   }
 
   shouldUpdate(changedProperties: any) {
-    if(!this.loaded) return false;
+    if (!this.loaded) return false;
     else return super.shouldUpdate(changedProperties);
   }
 

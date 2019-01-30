@@ -17,4 +17,13 @@ export class BaseElement extends LitElement {
       return false;
     }
   }
+
+  _setDefaultValue() {
+    // @ts-ignore
+    const properties = this.constructor.properties;
+    Object.keys(properties).map(key => {
+      // @ts-ignore
+      if (properties[key].value) this[key] = properties[key].value;
+    });
+  }
 }
