@@ -14,7 +14,7 @@ export default function() {
               `
             : ""}
           <a href="/contact"> <li>Contact</li></a>
-          ${isAdmin
+          ${isAdmin()
             ? html`
                 <a href="/admin"><li>Admin</li></a>
               `
