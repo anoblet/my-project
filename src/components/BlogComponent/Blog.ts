@@ -1,6 +1,5 @@
 import { css, customElement, html, LitElement, property } from "lit-element";
 import { BaseElement } from "../../BaseElement";
-import * as style from "./Blog.scss";
 import template from "./BlogTemplate";
 import { getCollection } from "../../../packages/firebase-helpers";
 import { connect } from "pwa-helpers/connect-mixin.js";
@@ -9,11 +8,10 @@ import { StateMixin } from "../../../packages/StateMixin";
 import { TaskMixin } from "../../../packages/TaskMixin";
 import { store } from "../../Store";
 import("@material/mwc-icon");
-// import style from "./BlogStyle";
+import globalStyle from "../../GlobalStyle"
 
 // @customElement("blog-component")
 export class Blog extends Mixin(connect(store)(BaseElement), [
-  StateMixin,
   TaskMixin
 ]) {
   @property() loaded: any;
@@ -37,11 +35,26 @@ export class Blog extends Mixin(connect(store)(BaseElement), [
     else return super.shouldUpdate(changedProperties);
   }
 
+  static get styles() {
+    return [
+      globalStyle,
+      css`
+        * {
+          box-sizing: border-box;
+        }
+
+        :host {
+          display: grid;
+          grid-gap: 1em;
+          flex: 1;
+          position: relative;
+        }
+      `
+    ];
+  }
+
   public render() {
     return html`
-      <style>
-        ${style}
-      </style>
       ${template.bind(this)()}
     `;
   }
