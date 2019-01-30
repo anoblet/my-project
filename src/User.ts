@@ -1,5 +1,7 @@
 import { store } from "./Store";
 import { setState } from "../packages/state-helpers/state-helpers";
+import { navigate } from "./Router";
+import { toast } from "./components/ToastComponent/Toast";
 
 export const isAdmin = () => {
   const state = store.getState();
@@ -15,11 +17,34 @@ export const isSignedIn = (fakeParam: any = "") => {
   return state.user.signedIn;
 };
 
-export const signOut = () => {
+/**
+ * Sign out clear /user in state and redirect to /
+ * @param redirect - URL to redirect to after sign out. Defaults to "/"
+ * @return void
+ */
+
+export const signOut = (redirect: any = "/") => {
+  const _redirect = redirect || "/";
+
+  // We could assume auth has already been called by nowd
   return Promise.all([
     import(/* webpackChunkName: "Firebase" */ "firebase/app"), // @ts-ignore
     import(/* webpackChunkName: "FirebaseAuth" */ "firebase/auth")
-  ]).then(([firebase, auth]) => {
-    firebase.auth().signOut();
-  });
+  ])
+    .then(([firebase, auth]) => {
+      // Firebase sign out
+      firebase.auth().signOut();
+      // Reset state
+      setState({
+        config: { merge: false },
+        data: {},
+        store: store,
+        type: "user"
+      });
+    })
+    .then(() => {
+      toast("Signed out");
+      // Navigate index
+      navigate("/");
+    });
 };
