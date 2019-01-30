@@ -8,7 +8,7 @@ import { store } from "../../Store";
 
 import Template from "./AppUserTemplate";
 
-import Style2 from "./FirebaseUIStyle";
+import uiStyle from "./FirebaseUIStyle";
 
 import { config } from "../../../config";
 import { initApp } from "../../../packages/firebase-helpers";
@@ -104,7 +104,7 @@ export class AppUser extends Mixin(connect(store)(LitElement), [
   }
 
   static get styles() {
-    return [Style2];
+    return [uiStyle];
   }
 
   render() {

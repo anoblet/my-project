@@ -15,9 +15,20 @@ export default function({ app, user }: any) {
   };
   return html`
     <grid-component gap="1em">
-      <card-component title="Edit theme">
+      <card-component title="Global Scope">
         <div slot="content">
-          ${setTheme()} ${editTheme(_theme)}
+        <grid-component>
+          <card-component title="Assign theme">
+            <div slot="content">
+              ${setTheme()}
+            </div>
+          </card-component>
+          <card-component title="Edit theme">
+            <div slot="content">
+              ${setTheme()} ${editTheme(_theme)}
+            </div>
+          </card-component>
+          </grid-component>
         </div>
       </card-component>
       <card-component title="Links">
