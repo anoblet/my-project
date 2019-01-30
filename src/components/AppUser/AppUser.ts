@@ -1,6 +1,5 @@
 import { LitElement, html, property } from "lit-element";
 
-import { BaseMixin } from "../../../packages/BaseMixin";
 import { Mixin } from "../../../packages/Mixin";
 import { StateMixin } from "../../../packages/StateMixin";
 import { TaskMixin } from "../../../packages/TaskMixin";
@@ -10,18 +9,16 @@ import { connect } from "pwa-helpers/connect-mixin.js";
 import { initApp } from "../../../packages/firebase-helpers";
 import { store } from "../../Store";
 import uiStyle from "./FirebaseUIStyle";
-import { signOut } from "../../User";
 
 export class AppUser extends Mixin(connect(store)(LitElement), [
   TaskMixin,
-  StateMixin
 ]) {
   @property({ type: Boolean }) isSignedIn = false;
   @property({ type: Object }) form: any;
 
   constructor() {
     super();
-    this.setStore(store);
+    // this.setStore(store);
   }
 
   signedIn(user: any) {
@@ -59,10 +56,6 @@ export class AppUser extends Mixin(connect(store)(LitElement), [
       });
       return el;
     });
-  }
-
-  stateChanged(state: any) {
-    this.state = state;
   }
 
   static get styles() {

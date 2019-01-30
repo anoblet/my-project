@@ -5,7 +5,7 @@ import { isSignedIn } from "../../User";
 import { signOut } from "../../User";
 import { until } from "lit-html/directives/until";
 
-export default function({ user }: any) {
+export default function() {
   return html`
     <card-component collapsible grow>
       <h3 slot="title">User</h3>
