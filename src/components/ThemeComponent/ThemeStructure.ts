@@ -8,6 +8,12 @@ export const themeStructure = [
   { label: "Link color", property: "linkColor", varName: "--link-color" },
   { label: "Border color", property: "borderColor", varName: "--border-color" },
   {
+    label: "Border radius",
+    property: "borderRadius",
+    type: "size",
+    varName: "--border-radius"
+  },
+  {
     label: "Primary color",
     property: "primaryColor",
     varName: "--primary-color"
