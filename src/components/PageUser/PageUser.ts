@@ -10,6 +10,7 @@ import Template from "./PageUserTemplate";
 import * as Style from "./PageUser.scss";
 import { until } from "lit-html/directives/until";
 import { AppUser } from "../AppUser/AppUser";
+import { signOut } from "../../User";
 
 export class PageUser extends Mixin(connect(store)(LitElement), [
   TaskMixin,
@@ -35,8 +36,7 @@ export class PageUser extends Mixin(connect(store)(LitElement), [
     this._template = html`
       <pre>${this.state}</pre>
     `;
-    const user = new AppUser();
-    user.signout();
+    signOut();
   }
 
   getActionTemplate(action: string) {

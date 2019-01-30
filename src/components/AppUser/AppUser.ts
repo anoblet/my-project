@@ -26,37 +26,7 @@ export const getForm = () =>
       return el;
     });
 
-export class AppUser extends Mixin(connect(store)(LitElement), [
-  TaskMixin,
-]) {
-  @property({ type: Boolean }) isSignedIn = false;
-  @property({ type: Object }) form: any;
-
-  constructor() {
-    super();
-    // this.setStore(store);
-  }
-
-  signedIn(user: any) {
-    return user ? true : false;
-  }
-
-  authStateChanged(user: any) {
-    const userModel: any = {};
-    const signedIn = user ? true : false;
-    userModel.signedIn = signedIn;
-    if (signedIn) {
-      userModel.name = user.displayName;
-      userModel.email = user.email;
-      userModel.photo = this.getPhotoUrl(user);
-    }
-    this.setState(userModel, "user");
-  }
-
-  getPhotoUrl(user: any) {
-    return user.photoURL;
-  }
-
+export class AppUser extends LitElement {
   getForm() {
     return Promise.all([
       import(/* webpackChunkName: "FirebaseApp" */ "firebase/app"),
@@ -79,7 +49,7 @@ export class AppUser extends Mixin(connect(store)(LitElement), [
   }
 
   render() {
-    return Template.bind(this)(this.state);
+    return Template.bind(this)();
   }
 }
 
