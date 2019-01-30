@@ -1,13 +1,7 @@
 import { LitElement, html, property } from "lit-element";
 
-import { Mixin } from "../../../packages/Mixin";
-import { StateMixin } from "../../../packages/StateMixin";
-import { TaskMixin } from "../../../packages/TaskMixin";
-import Template from "./AppUserTemplate";
+import template from "./AppUserTemplate";
 import { config } from "../../../config";
-import { connect } from "pwa-helpers/connect-mixin.js";
-import { initApp } from "../../../packages/firebase-helpers";
-import { store } from "../../Store";
 import uiStyle from "./FirebaseUIStyle";
 
 export const getForm = () =>
@@ -49,7 +43,7 @@ export class AppUser extends LitElement {
   }
 
   render() {
-    return Template.bind(this)();
+    return template.bind(this)();
   }
 }
 

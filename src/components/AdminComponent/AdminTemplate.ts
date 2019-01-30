@@ -25,7 +25,7 @@ export default function({ app, user }: any) {
             </card-component>
             <card-component title="Edit theme">
               <div slot="content">
-                ${setTheme()} ${editTheme(_theme)}
+                ${editTheme(_theme)}
               </div>
             </card-component>
           </grid-component>
