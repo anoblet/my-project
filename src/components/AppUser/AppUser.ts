@@ -14,7 +14,6 @@ import { config } from "../../../config";
 import { initApp } from "../../../packages/firebase-helpers";
 
 export class AppUser extends Mixin(connect(store)(LitElement), [
-  BaseMixin,
   TaskMixin,
   StateMixin
 ]) {
@@ -24,22 +23,6 @@ export class AppUser extends Mixin(connect(store)(LitElement), [
   constructor() {
     super();
     this.setStore(store);
-  }
-
-  connectedCallback() {
-    super.connectedCallback();
-    // this.runTasks([this.registerAuthStateChanged()]);
-  }
-
-  registerAuthStateChanged() {
-    // Promise.all([
-    //   import(/* webpackChunkName: "FirebaseApp" */ "firebase/app"),
-    //   import(/* webpackChunkName: "FirebaseAuth" */ "firebase/auth")
-    // ]).then(([firebase]) => {
-    //   firebase.auth().onAuthStateChanged((user: any) => {
-    //     this.authStateChanged(user);
-    //   });
-    // });
   }
 
   signedIn(user: any) {

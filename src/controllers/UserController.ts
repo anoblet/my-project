@@ -1,18 +1,17 @@
 import { LitElement, html, property } from "lit-element";
 
-import { Mixin } from "../../packages/Mixin";
 import { FirebaseMixin } from "../../packages/FirebaseMixin";
+import { Mixin } from "../../packages/Mixin";
 import { StateMixin } from "../../packages/StateMixin";
+import { config } from "../../config";
 import { connect } from "pwa-helpers/connect-mixin.js";
 import { navigate } from "../Router";
-import { store } from "../Store";
-import { until } from "lit-html/directives/until";
 import { signOut } from "../User";
+import { store } from "../Store";
 import structure from "../post/PostModel";
+import { until } from "lit-html/directives/until";
+
 import("../components/AppUser/AppUser");
-
-import { config } from "../../config";
-
 
 export interface UserController {
   [key: string]: any; // Add index signature
