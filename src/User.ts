@@ -10,10 +10,9 @@ export const resetState = () => {
   setState({ config: { merge: false }, data: {}, store: store, type: "app" });
 };
 
-export const isSignedIn = () => {
+export const isSignedIn = (fakeParam: any = "") => {
   const state = store.getState();
-  console.log(state.user.isSignedIn);
-  return state.user.isSignedIn;
+  return state.user.signedIn;
 };
 
 export const signOut = () => {

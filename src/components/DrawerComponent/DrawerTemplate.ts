@@ -8,7 +8,7 @@ export default function() {
       <div slot="content">
         <ul>
           <a href="/"> <li>Home</li></a>
-          ${filterByMode(0)
+          ${isAdmin()
             ? html`
                 <a href="/components"> <li>Components</li></a>
               `

@@ -1,22 +1,21 @@
 import { html } from "lit-element";
 import { store } from "../../Store";
 import { filterByMode } from "../../Debug";
-import { isSignedIn } from "../../User";
+// Evaluated on first render, but not after
+import { isSignedIn } from "../../User"
 
-export default function({ user }: any) {
+// Cannot use functions for conditionals as they are not observed
+
+export default () => {
   return html`
     <ul>
-      ${user.signedIn
-        ? html`
-            <li><a href="/user-settings">Settings</a></li>
-          `
-        : ""}
       ${isSignedIn()
         ? html`
+            <li><a href="/user-settings">Settings</a></li>
             <li><a href="/user-theme">Theme</a></li>
           `
         : ""}
-      ${isSignedIn()
+      ${!isSignedIn()
         ? html`
             <li><a href="/user/signin">Sign in</a></li>
           `
