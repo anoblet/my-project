@@ -7,6 +7,13 @@ export default function() {
       ? html`
           <div id="title">
             <h3>${this.title}</h3>
+            ${this.collapsible
+              ? html`
+                  <mwc-icon
+                    >${this.collapsed ? "expand_more" : "expand_less"}</mwc-icon
+                  >
+                `
+              : ""}
           </div>
         `
       : html`

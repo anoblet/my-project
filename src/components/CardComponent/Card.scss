@@ -42,3 +42,8 @@ h3,
 :host([collapsed]) #content {
   display: none;
 }
+
+#title {
+  display: flex;
+  justify-content: space-between;
+}
