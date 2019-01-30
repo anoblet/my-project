@@ -1,4 +1,4 @@
-import { LitElement, css, customElement, html, property } from "lit-element";
+import { LitElement, customElement, property } from "lit-element";
 
 import { BaseElement } from "../../BaseElement";
 import { Mixin } from "../../../packages/Mixin";
@@ -6,14 +6,16 @@ import { StateMixin } from "../../../packages/StateMixin";
 import { TaskMixin } from "../../../packages/TaskMixin";
 import { connect } from "pwa-helpers/connect-mixin.js";
 import { getCollection } from "../../../packages/firebase-helpers";
-import globalStyle from "../../GlobalStyle"
+import globalStyle from "../../GlobalStyle";
 import { store } from "../../Store";
 import template from "./BlogTemplate";
+import style from "./BlogStyle";
 
 import("@material/mwc-icon");
 
 // @customElement("blog-component")
 export class Blog extends Mixin(connect(store)(BaseElement), [
+  StateMixin,
   TaskMixin
 ]) {
   @property() loaded: any;
@@ -38,27 +40,11 @@ export class Blog extends Mixin(connect(store)(BaseElement), [
   }
 
   static get styles() {
-    return [
-      globalStyle,
-      css`
-        * {
-          box-sizing: border-box;
-        }
-
-        :host {
-          display: grid;
-          grid-gap: 1em;
-          flex: 1;
-          position: relative;
-        }
-      `
-    ];
+    return [globalStyle, style];
   }
 
   public render() {
-    return html`
-      ${template.bind(this)()}
-    `;
+    return template.bind(this)();
   }
 }
 

@@ -129,6 +129,7 @@ export default css`
 
   #content {
     border: 1px solid var(--border-color);
+    border-radius: var(--border-radius) 0 0 var(--border-radius);
     flex-direction: column;
   }
 
