@@ -1,7 +1,7 @@
 import { html } from "lit-element";
 import { store } from "../../Store";
-
 import { filterByMode } from "../../Debug";
+import { isSignedIn } from "../../User";
 
 export default function({ user }: any) {
   return html`
@@ -11,12 +11,12 @@ export default function({ user }: any) {
             <li><a href="/user-settings">Settings</a></li>
           `
         : ""}
-      ${filterByMode(1)
+      ${isSignedIn()
         ? html`
             <li><a href="/user-theme">Theme</a></li>
           `
         : ""}
-      ${!user.signedIn
+      ${isSignedIn()
         ? html`
             <li><a href="/user/signin">Sign in</a></li>
           `

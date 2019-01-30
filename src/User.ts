@@ -10,6 +10,12 @@ export const resetState = () => {
   setState({ config: { merge: false }, data: {}, store: store, type: "app" });
 };
 
+export const isSignedIn = () => {
+  const state = store.getState();
+  console.log(state.user.isSignedIn);
+  return state.user.isSignedIn;
+};
+
 export const signOut = () => {
   return Promise.all([
     import(/* webpackChunkName: "Firebase" */ "firebase/app"), // @ts-ignore
