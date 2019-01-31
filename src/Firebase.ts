@@ -10,5 +10,8 @@ const loadFirebase = (modules: any = [], callback: any) => {
 };
 
 export const run = (packages: any, callback: any) => {
-  Promise.all(packages).then(([firebase]) => callback(firebase));
+  const imports = [];
+  imports.push(import(/* webpackChunkName: "Firebase" */ "firebase/app"))
+  packages.includes("auth");
+  Promise.all(imports).then(([firebase]) => callback(firebase));
 };
