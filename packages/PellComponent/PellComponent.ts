@@ -16,12 +16,15 @@ export class PellComponent extends LitElement {
       css`
         button {
           background: inherit;
-          border: 1px solid var(--border-color);
+          border: 0;
           color: var(--primary-color);
           padding: 0.75em;
         }
         .pell-actionbar {
           margin-top: 1em;
+          display: grid;
+          grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+          width: fit-content;
         }
         .pell-content {
           margin-top: 1em;
