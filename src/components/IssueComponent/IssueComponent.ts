@@ -1,6 +1,7 @@
 import { LitElement, html } from "lit-element";
 import { renderForm } from "../PropertyEditor/PropertyEditor";
 import { config } from "../../../config";
+import {toast} from "../ToastComponent/Toast"
 
 const issue = {
   title: "",
@@ -25,7 +26,7 @@ export class IssueComponent extends LitElement {
         body: JSON.stringify(this._data)
       }
     ).then(response => {
-      console.log(response);
+      toast("Issue created")
     });
   }
 
