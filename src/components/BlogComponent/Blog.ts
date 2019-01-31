@@ -8,8 +8,8 @@ import { connect } from "pwa-helpers/connect-mixin.js";
 import { getCollection } from "../../../packages/firebase-helpers";
 import globalStyle from "../../GlobalStyle";
 import { store } from "../../Store";
-import template from "./BlogTemplate";
 import style from "./BlogStyle";
+import template from "./BlogTemplate";
 
 import("@material/mwc-icon");
 
