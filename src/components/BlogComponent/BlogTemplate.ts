@@ -4,6 +4,7 @@ import { unsafeHTML } from "lit-html/directives/unsafe-html";
 
 export default function() {
   return html`
+  <grid-component>
     ${this.posts
       ? this.posts.map((post: any) => {
           if(post.archived) return;
@@ -33,5 +34,6 @@ export default function() {
           `;
         })
       : ""}
+      </grid-component>
   `;
 }

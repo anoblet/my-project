@@ -1,5 +1,4 @@
 import { html } from "lit-element";
-import { store } from "../../Store";
 import { renderForm } from "../PropertyEditor/PropertyEditor";
 import { properties } from "./Properties";
 import { filterByMode } from "../../Debug";
@@ -10,9 +9,6 @@ import(/* webpackChunkName: "ButtonComponent" */ "../ButtonComponent/ButtonCompo
 import(/* webpackChunkName: "ReportComponent" */ "./ReportComponent");
 
 export default function() {
-  // Refreshed on render
-  const state = store.getState();
-
   return html`
     <grid-component>
       ${isAdmin()
@@ -38,7 +34,7 @@ export default function() {
             `
           : html`
               <div class="relative">
-                <div id="character" style="font-size: ${this.startGontSize}">
+                <div id="character" style="font-size: ${this.startFontSize}">
                   ${this.character}
                 </div>
                 ${false
@@ -58,16 +54,14 @@ export default function() {
       </card-component>
       <card-component>
         <grid-component style="grid-template-columns: repeat(2, 1fr)">
-          ${state.app.settings
-            ? state.app.settings.mode >= 2
-              ? html`
-                  <button-component
-                    @click="${this.handsOff}"
-                    label="Hands off!"
-                    style="grid-column: -1/1"
-                  ></button-component>
-                `
-              : ""
+          ${filterByMode(2)
+            ? html`
+                <button-component
+                  @click="${this.handsOff}"
+                  label="Hands off!"
+                  style="grid-column: -1/1"
+                ></button-component>
+              `
             : ""}
           <button-component
             @click="${this.next}"
