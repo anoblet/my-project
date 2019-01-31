@@ -26,7 +26,7 @@ export const isSignedIn = (fakeParam: any = "") => {
 export const signOut = (redirect: any = "/") => {
   const _redirect = redirect || "/";
 
-  // We could assume auth has already been called by nowd
+  // We could assume auth has already been called by now
   return Promise.all([
     import(/* webpackChunkName: "Firebase" */ "firebase/app"), // @ts-ignore
     import(/* webpackChunkName: "FirebaseAuth" */ "firebase/auth")

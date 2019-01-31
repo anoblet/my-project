@@ -62,7 +62,8 @@ export const handleNavigation = ({ location, portal, routes }: any) => {
   });
   if (matchedRoute.src) matchedRoute.src();
   if (portal) {
-    // portal.setAttribute("hidden", "");
+    // @todo Create an event here
+    // Example: portal.setAttribute("hidden", "");
     while (portal.firstChild) {
       portal.removeChild(portal.firstChild);
     }
