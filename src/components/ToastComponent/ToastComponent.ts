@@ -39,6 +39,8 @@ export class ToastComponent extends LitElement {
           align-items: center;
           background: var(--background-color);
           border: 1px solid var(--border-color);
+          border-color: var(--border-color);
+          border-radius: var(--border-radius);
         }
       `
     ];
