@@ -14,7 +14,7 @@ const password = config.github.password;
 
 /**
  * Submit the issue to the endpoint
- * @return
+ * @return Promise
  * */
 export const post = ({ data }: IssueRequest) => {
   const endpoint = `https://api.github.com/repos/${user}/${repo}/issues`;
