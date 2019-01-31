@@ -1,7 +1,7 @@
 import { LitElement, html } from "lit-element";
 import { renderForm } from "../PropertyEditor/PropertyEditor";
 import { config } from "../../../config";
-import {toast} from "../ToastComponent/Toast"
+import { toast } from "../ToastComponent/Toast";
 
 const issue = {
   title: "",
@@ -21,12 +21,14 @@ export class IssueComponent extends LitElement {
         method: "POST",
         headers: {
           Accept: "application/json",
-          Authorization: "Basic " + btoa(`${config.github.username}:${config.github.password}`)
+          Authorization:
+            "Basic " +
+            btoa(`${config.github.username}:${config.github.password}`)
         },
         body: JSON.stringify(this._data)
       }
     ).then(response => {
-      toast("Issue created")
+      toast("Issue created");
     });
   }
 
@@ -55,8 +57,7 @@ export class IssueComponent extends LitElement {
     return html`
       <card-component title="Create an issue">
         ${renderForm(this, null, (property: string, value: any) => {
-          this._data[property] = value;
-          this.performUpdate();
+          this._data = {...this._data, ... {[property]: value}};
         })}
         ${JSON.stringify(this._data)}
         <div slot="actions">
