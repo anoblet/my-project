@@ -22,6 +22,7 @@ export const post = ({ data }: IssueRequest) => {
     method: "POST",
     headers: {
       Accept: "application/json",
+      // Basic auth
       Authorization: "Basic " + btoa(`${username}:${password}`)
     },
     body: JSON.stringify(data)
