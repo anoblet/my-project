@@ -9,7 +9,7 @@ const UglifyJsPlugin = require("uglifyjs-webpack-plugin");
 const HtmlLoader = require("html-loader");
 module.exports = {
   mode: "production",
-  entry: "./src/components/AppComponent/AppComponent.ts",
+  entry: "./index.ts",
   output: {
     path: path.resolve(__dirname, "dist"),
     publicPath: "/",
