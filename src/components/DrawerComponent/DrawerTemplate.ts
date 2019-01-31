@@ -8,7 +8,7 @@ export default function() {
       <div slot="content">
         <ul>
           <a href="/"> <li>Home</li></a>
-          ${isAdmin()
+          ${true // isAdmin()
             ? html`
                 <a href="/components"> <li>Components</li></a>
               `
@@ -25,7 +25,7 @@ export default function() {
     <card-component>
       <div slot="content" style="overflow: initial;">
         <ul>
-          <li><a href="/">Report an issue</a></li>
+          <li><a href="/issue">Report an issue</a></li>
         </ul>
       </div>
     </card-component>

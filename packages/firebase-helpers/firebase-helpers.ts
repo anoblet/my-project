@@ -44,7 +44,7 @@ export const initApp = (config: any) => {
 export const initStore = () => {
   return Promise.all([
     import(/* webpackChunkName: "Firebase" */ "firebase/app"), // @ts-ignore
-    import(/* webpackChunkName: "FirebaseAuth" */ "firebase/firestore")
+    import(/* webpackChunkName: "FirebaseFirestore" */ "firebase/firestore")
   ]).then(([firebase, firestore]) => {
     firebase.firestore().settings({ timestampsInSnapshots: true });
   });

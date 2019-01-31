@@ -27,8 +27,9 @@ export const renderForm = (
 
   return html`
   <grid-component style="grid-template-columns: auto min-content">
-    ${Object.keys(_properties).map(
-      (property: any) => html`
+    ${Object.keys(_properties).map((property: any) => {
+      if (property.startsWith("_")) return;
+      return html`
         <label>${_properties[property].label}</label>
         ${_properties[property].type === Boolean
           ? html`
@@ -58,8 +59,8 @@ export const renderForm = (
               />
             `
           : ""}
-      `
-    )}
+      `;
+    })}
     </grid-component
   `;
 };

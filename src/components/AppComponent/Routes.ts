@@ -58,5 +58,11 @@ export const routes = [
     component: "theme-component",
     src: () =>
       import(/* webpackChunkName: "ThemeComponent" */ /* webpackPrefetch: true */ "../ThemeComponent/ThemeComponent")
+  },
+  {
+    path: "/issue",
+    component: "issue-component",
+    src: () =>
+      import(/* webpackChunkName: "IssueComponent" */ /* webpackPrefetch: true */ "../IssueComponent/IssueComponent")
   }
 ];
