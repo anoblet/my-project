@@ -43,10 +43,12 @@ export class IssueComponent extends LitElement {
         type: Object
       },
       title: {
+        inputType: "text",
         label: "Title",
         type: String
       },
       body: {
+        inputType: "textarea",
         label: "Comment",
         type: String
       }

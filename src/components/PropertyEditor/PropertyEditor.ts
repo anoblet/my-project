@@ -31,36 +31,67 @@ export const renderForm = (
       if (property.startsWith("_")) return;
       return html`
         <label>${_properties[property].label}</label>
-        ${_properties[property].type === Boolean
+        ${_properties[property].inputType
           ? html`
-              <input
-                name=${property}
-                type="checkbox"
-                ?checked=${component[property]}
-                @change="${(e: any) => onChange(property, e.target.checked)}}"
-              />
+              ${_properties[property].inputType === "text"
+                ? renderTextField(property, component, onChange)
+                : ""}
+              ${_properties[property].inputType === "textarea"
+                ? renderTextarea(property, component, onChange)
+                : ""}
             `
-          : ""}
-        ${_properties[property].type === Number
-          ? html`
-              <input
-                type="number"
-                value=${component[property]}
-                @change=${(e: any) => onChange(property, e.target.checked)}
-              />
-            `
-          : ""}
-        ${_properties[property].type === String
-          ? html`
-              <input
-                type="text"
-                value=${component[property]}
-                @change=${(e: any) => onChange(property, e.target.value)}
-              />
-            `
-          : ""}
+          : html`
+              ${_properties[property].type === Boolean
+                ? renderCheckbox(property, component, onChange)
+                : ""}
+              ${_properties[property].type === Number
+                ? renderNumberField(property, component, onChange)
+                : ""}
+              ${_properties[property].type === String
+                ? renderTextField(property, component, onChange)
+                : ""}
+            `}
       `;
     })}
     </grid-component
+  `;
+};
+
+const renderTextField = (field: any, component: any, onChange: any) => {
+  return html`
+    <input
+      type="text"
+      value=${component[field]}
+      @change=${(e: any) => onChange(field, e.target.value)}
+    />
+  `;
+};
+
+const renderTextarea = (field: any, component: any, onChange: any) => {
+  return html`
+    <textarea @change=${(e: any) => onChange(field, e.target.value)}>
+${component[field]}</textarea
+    >
+  `;
+};
+
+const renderNumberField = (field: any, component: any, onChange: any) => {
+  return html`
+    <input
+      type="number"
+      value=${component[field]}
+      @change=${(e: any) => onChange(field, e.target.value)}
+    />
+  `;
+};
+
+const renderCheckbox = (field: any, component: any, onChange: any) => {
+  return html`
+    <input
+      name=${field}
+      type="checkbox"
+      ?checked=${component[field]}
+      @change="${(e: any) => onChange(field, e.target.checked)}}"
+    />
   `;
 };
