@@ -17,17 +17,17 @@ const checkDuplicate: any = (input: any, criteria: string) => {
 export interface config {}
 
 export interface exam {
-  lines: Array<line>
+  lines: Array<line>;
 }
 
 export interface line {
-  size: string
-  results: Array<result>
+  size: string;
+  results: Array<result>;
 }
 
 export interface result {
-  question: string,
-  answer: string
+  question: string;
+  answer: string;
 }
 
 const log = [];
@@ -37,15 +37,22 @@ const debug = (message: string) => {
 };
 
 // [ Properties] is now going to be an object, lets roll with that
-const properties = {
+const properties = {};
 
-}
+const validateResult = (e: any, expectation: string) => {
+  const currentIndex = e.results.length - 1;
+  const result = e.results[currentIndex][0].transcript;
+  const lower = result.toLowerCase();
+  return lower.startsWith(expectation);
+};
+
+const steps = [10, 8, 6.25, 5, 4, 3.125, 2.5, 2, 1];
 
 export class EyeExamComponent extends LitElement {
   @property() correctPerLine: number = 3;
   @property() character: string;
   @property() currentIndex: number = -1;
-  @property() distanceFromScreen: number = 10; // Arbitrary at this point
+  @property() distanceFromScreen: number = 20; // Arbitrary at this point
   @property() finished: boolean = false;
   @property() fullscreen: boolean;
   @property() showHistory: boolean = false;
@@ -53,8 +60,8 @@ export class EyeExamComponent extends LitElement {
   @property() showRecord: boolean = false;
   @property() perLine: number = 5;
   @property() perLineThreshold: number = 0.5;
-  @property() report: any = [];
-  @property() startFontSize: any = "152pt";
+  @property({ type: Array }) report: any = [];
+  @property() startFontSize: any = "10em";
   @property({ type: Array }) history: any = [];
   @property({ type: String }) fontSize: string;
 
@@ -92,16 +99,21 @@ export class EyeExamComponent extends LitElement {
   onResult(e: any) {
     const answer = this.getResult(e);
     const lower = answer.toLowerCase();
-    const result = lower.startsWith(this.history[this.currentIndex].expectation)
-      ? true
-      : false;
-    this.history[this.currentIndex].answer = answer;
-    this.history[this.currentIndex].result = result;
-    // this.history[this.currentIndex].fontSize = this.fontSize;
-    this.performUpdate();
+
+    const result = validateResult(
+      e,
+      this.history[this.currentIndex].expectation
+    );
+
+    const index = this.history.length - 1;
+    this.history[index].answer = answer;
+    this.history[index].result = result;
+
+    console.log(this.history.length - 1);
     if (this.currentIndex < this.perLine - 1) this.next();
     else {
-      this.report.push(this.history);
+      this.report.push({ fontSize: this.fontSize, history: this.history });
+      this.history = [];
       this.finished = true;
       toast("Finished");
     }
@@ -173,8 +185,6 @@ export class EyeExamComponent extends LitElement {
     character.style.fontSize = size;
   }
 
-
-
   // Lifecycle methods
 
   firstUpdated() {
@@ -214,11 +224,11 @@ export class EyeExamComponent extends LitElement {
         type: Number
       },
       perLineThreshold: {
-        description: "A value in between 0 and 1 indication correct answers/questions asked.",
+        description:
+          "A value in between 0 and 1 indication correct answers/questions asked.",
         label: "Per line threshold",
         type: Number
-      },
-
+      }
     };
   }
 

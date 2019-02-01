@@ -3,6 +3,7 @@ import { renderForm } from "../PropertyEditor/PropertyEditor";
 import { properties } from "./Properties";
 import { filterByMode } from "../../Debug";
 import { isAdmin } from "../../User"; // isAdmin is a function not a property and may be re-evaluate on each render
+import { references } from "./References";
 
 // Components
 import(/* webpackChunkName: "ButtonComponent" */ "../ButtonComponent/ButtonComponent");
@@ -100,7 +101,7 @@ export default function() {
             : ""}
         </grid-component>
       </card-component>
-      ${this.finished
+      ${false
         ? html`
             <card-component title="Report"
               ><div slot="content">
@@ -121,6 +122,9 @@ export default function() {
             >
           `
         : ""}
+      <card-component title="References"
+        ><div slot="content">${references}</div></card-component
+      >
     </grid-component>
   `;
 }
