@@ -4,8 +4,6 @@ declare global {
   }
 }
 
-const firebase = window.firebase;
-
 export const FirebaseMixin = function(superClass: any) {
   return class extends superClass {
     //   firebaseConfig: any;
