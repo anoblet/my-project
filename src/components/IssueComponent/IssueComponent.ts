@@ -1,35 +1,18 @@
-import { LitElement, html } from "lit-element";
+import { LitElement, html, property } from "lit-element";
 import { renderForm } from "../PropertyEditor/PropertyEditor";
-import { config } from "../../../config";
 import { toast } from "../ToastComponent/Toast";
-
-const issue = {
-  title: "",
-  comment: ""
-};
-
-export interface IssueComponent {
-  [key: string]: any; // Add index signature
-}
+import { issue } from "../Github/Issue";
+import { createIssue } from "../Github/CreateIssue";
 
 // Should this be a view only component or get it's own data?
 export class IssueComponent extends LitElement {
+  @property({type: Object}) _data: any;
+
+// What if saveForm didn't rely on this but took an argument?
   saveForm() {
-    const response = fetch(
-      "https://api.github.com/repos/anoblet/my-project/issues",
-      {
-        method: "POST",
-        headers: {
-          Accept: "application/json",
-          Authorization:
-            "Basic " +
-            btoa(`${config.github.username}:${config.github.password}`)
-        },
-        body: JSON.stringify(this._data)
-      }
-    ).then(response => {
-      toast("Issue created");
-    });
+    createIssue({ data: this._data })
+      .then((response: any) => toast("Issue created"))
+      .catch((response: any) => toast(`Could not create issue: ${response}`));
   }
 
   constructor() {
@@ -59,7 +42,7 @@ export class IssueComponent extends LitElement {
     return html`
       <card-component title="Create an issue">
         ${renderForm(this, null, (property: string, value: any) => {
-          this._data = {...this._data, ... {[property]: value}};
+          this._data = { ...this._data, ...{ [property]: value } };
         })}
         ${JSON.stringify(this._data)}
         <div slot="actions">
