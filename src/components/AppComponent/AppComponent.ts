@@ -1,6 +1,7 @@
 import "../PageHome/PageHome";
 
-import { LitElement, customElement, html, property } from "lit-element";
+import { LitElement, html, property } from "lit-element";
+// import { customElement } from "lit-element";
 import {
   checkRedirect,
   getDocument,

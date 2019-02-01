@@ -1,4 +1,4 @@
-import { html, LitElement, property } from 'lit-element';
+import { html, LitElement } from 'lit-element';
 import { Mixin } from '../Mixin';
 import { StateMixin } from '../StateMixin';
 import { TaskMixin } from '../TaskMixin';
