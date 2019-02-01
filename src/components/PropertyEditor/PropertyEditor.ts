@@ -17,7 +17,7 @@ export const PropertyEditor = () => {};
  * @return HTMLTemplateResult
  * */
 
- // Should be structure, values, generic onchange
+// Should be structure, values, generic onchange
 export const renderForm = (
   component: any,
   properties: any = undefined,
@@ -31,6 +31,12 @@ export const renderForm = (
   <grid-component style="grid-template-columns: auto min-content">
     ${Object.keys(_properties).map((property: any) => {
       if (property.startsWith("_")) return;
+      const field = {
+        property,
+        ..._properties[property],
+        value: component.value,
+        onChange
+      };
       return html`
         <label>${_properties[property].label}</label>
         ${_properties[property].inputType
@@ -44,7 +50,8 @@ export const renderForm = (
             `
           : html`
               ${_properties[property].type === Boolean
-                ? renderCheckbox(property, component, onChange)
+                ? // ? renderCheckbox(property, component, onChange)
+                  renderSwitch(field)
                 : ""}
               ${_properties[property].type === Number
                 ? renderNumberField(property, component, onChange)
@@ -59,16 +66,12 @@ export const renderForm = (
   `;
 };
 
-
 // values
 const renderTextField = (field: any, component: any, onChange: any) => {
   return html`
-    <input
-      placeholder=${field.placeholder}
-      type="text"
-      value="${component[field]}""
-      @change=${(e: any) => onChange(field, e.target.value)}
-    />
+    <input placeholder=${field.placeholder} type="text"
+    value="${component[field]}""
+    @change=${(e: any) => onChange(field, e.target.value)} />
   `;
 };
 
@@ -98,5 +101,25 @@ const renderCheckbox = (field: any, component: any, onChange: any) => {
       ?checked=${component[field]}
       @change="${(e: any) => onChange(field, e.target.checked)}}"
     />
+  `;
+};
+
+/**
+ * Renders a toggle switch
+ * @param  field
+ * @return HTMLTemplateResult
+ *
+ * Broken
+ */
+const renderSwitch = ({ property, value, onChange }: any) => {
+  return html`
+    <mwc-switch
+      name=${name}
+      ?checked=${value}
+      @change=${(e: any) => {
+        console.log(e);
+        onChange(property, e.target.checked);
+      }}
+    ></mwc-switch>
   `;
 };
