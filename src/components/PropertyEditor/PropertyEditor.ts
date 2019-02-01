@@ -16,6 +16,8 @@ export const PropertyEditor = () => {};
  * @param  onChange [description]
  * @return HTMLTemplateResult
  * */
+
+ // Should be structure, values, generic onchange
 export const renderForm = (
   component: any,
   properties: any = undefined,
@@ -57,11 +59,14 @@ export const renderForm = (
   `;
 };
 
+
+// values
 const renderTextField = (field: any, component: any, onChange: any) => {
   return html`
     <input
+      placeholder=${field.placeholder}
       type="text"
-      value=${component[field]}
+      value="${component[field]}""
       @change=${(e: any) => onChange(field, e.target.value)}
     />
   `;
