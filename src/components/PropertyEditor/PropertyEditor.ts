@@ -90,11 +90,12 @@ export const renderForm = (
 
 // values
 const renderTextField = (field: any, component: any, onChange: any) => {
+  const value = component[field] || "";
   return html`
     <input
       name="${field}"
       type="text"
-      value="${component[field]}"
+      value=${value}
       @change=${(e: any) => onChange(field, e.target.value)}
     />
   `;
