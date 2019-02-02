@@ -101,7 +101,7 @@ export class PostComponent extends Mixin(LitElement, [TemplateMixin]) {
         .then(() => toast("Document updated"))
         .catch(error =>
           toast(
-            "Error, could not update the document. Maybe you are not signed in?"
+            "Error, could not update the document. Maybe you do not have the right permissions?"
           )
         );
     }
