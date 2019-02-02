@@ -1,4 +1,4 @@
-import { LitElement, html, property } from "lit-element";
+import { LitElement, css, html, property } from "lit-element";
 import { Mixin } from "../../../packages/Mixin";
 import { TemplateMixin } from "../../../packages/TemplateMixin";
 import { navigate } from "../../Router";
@@ -16,15 +16,14 @@ import template from "./PostTemplate";
 
 import globalStyle from "../../GlobalStyle";
 
+import { renderForm } from "../PropertyEditor/PropertyEditor";
+
 export interface PostComponent {
   [key: string]: any; // Add index signature
 }
 
 export class PostComponent extends Mixin(LitElement, [TemplateMixin]) {
   @property({ type: Boolean }) editable: boolean;
-  @property({ type: String }) id: string;
-  @property({ type: String }) author: string;
-  @property({ type: String }) title: string;
   @property({ type: String }) content: string;
   @property({ type: Boolean }) create: boolean;
 
@@ -107,8 +106,35 @@ export class PostComponent extends Mixin(LitElement, [TemplateMixin]) {
     }
   }
 
+  static get properties() {
+    return {
+      // body: { label: "Body", type: String, inputType: "textarea" },
+      content: { label: "Body", type: String, inputType: "pell" },
+      date: { label: "Date", type: String },
+      id: { label: "ID", type: String },
+      title: { label: "Title", type: String, description: "Title of the post" },
+      author: { label: "Author", type: String },
+      sortOrder: { label: "Sort order", type: Number }
+    };
+  }
+
   static get styles() {
-    return [globalStyle];
+    return [
+      globalStyle,
+      css`grid-component {
+          grid-template-columns: 1fr !important;`
+    ];
+  }
+
+  render() {
+    return html`
+      ${renderForm(
+        this,
+        null,
+        (property: string, value: any) => (this[property] = value)
+      )}
+      <button @click=${(e: any) => this.submitForm(e)}>Save</button>
+    `;
   }
 }
 

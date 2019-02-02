@@ -9,34 +9,23 @@ export interface property {
 
 export const PropertyEditor = () => {};
 
-const merge = (property: string, _properties: any, component: any, onChange: any ) => {
+const merge = (
+  property: string,
+  _properties: any,
+  component: any,
+  onChange: any
+) => {
   return {
     property,
     ..._properties[property],
     value: component.value,
     onChange
   };
-}
-
-const switchBuiltInTypes = () => {
-//   return html`
-//       ${_properties[property].type === Boolean
-//         ? renderCheckbox(property, component, onChange)
-//           // renderSwitch(field)
-//         : ""}
-//       ${_properties[property].type === Number
-//         ? renderNumberField(property, component, onChange)
-//         : ""}
-//       ${_properties[property].type === String
-//         ? renderTextField(property, component, onChange)
-//         : ""}
-//     `}
-// `;
-}
+};
 
 export interface FormField {
-  type: string, // text, textarea, Number
-  value?: any
+  type: string; // text, textarea, Number
+  value?: any;
 }
 
 /**
@@ -72,12 +61,20 @@ export const renderForm = (
               ${_properties[property].inputType === "textarea"
                 ? renderTextarea(property, component, onChange)
                 : ""}
+              ${_properties[property].inputType === "pell"
+                ? html`
+                    <pell-component
+                      name="content"
+                      .input=${component[property]}
+                    ></pell-component>
+                  `
+                : ""}
             `
           : html`
               ${_properties[property].type === Boolean
                 ? renderCheckbox(property, component, onChange)
-                  // renderSwitch(field)
-                : ""}
+                : // renderSwitch(field)
+                  ""}
               ${_properties[property].type === Number
                 ? renderNumberField(property, component, onChange)
                 : ""}
@@ -94,15 +91,21 @@ export const renderForm = (
 // values
 const renderTextField = (field: any, component: any, onChange: any) => {
   return html`
-    <input placeholder=${field.placeholder} type="text"
-    value="${component[field]}""
-    @change=${(e: any) => onChange(field, e.target.value)} />
+    <input
+      name="${field}"
+      type="text"
+      value="${component[field]}"
+      @change=${(e: any) => onChange(field, e.target.value)}
+    />
   `;
 };
 
 const renderTextarea = (field: any, component: any, onChange: any) => {
   return html`
-    <textarea @change=${(e: any) => onChange(field, e.target.value)}>
+    <textarea
+      name=${field}
+      @change=${(e: any) => onChange(field, e.target.value)}
+    >
 ${component[field]}</textarea
     >
   `;
@@ -111,6 +114,7 @@ ${component[field]}</textarea
 const renderNumberField = (field: any, component: any, onChange: any) => {
   return html`
     <input
+      name=${field}
       type="number"
       value=${component[field]}
       @change=${(e: any) => onChange(field, e.target.value)}
