@@ -77,19 +77,15 @@ export class PostComponent extends Mixin(LitElement, [TemplateMixin]) {
 
   submitForm(e: any) {
     e.preventDefault();
-    const title = this.shadowRoot.querySelector(
-      "[name='title']"
-    ) as HTMLInputElement;
-    const author = this.shadowRoot.querySelector(
-      "[name='author']"
-    ) as HTMLInputElement;
-    const content = this.shadowRoot.querySelector(
-      "[name='content']"
-    ) as HTMLInputElement;
+    const title = this.shadowRoot.querySelector("[name='title']").value;
+    const author = this.shadowRoot.querySelector("[name='author']").value;
+    const content = this.shadowRoot.querySelector("[name='content']").value;
+    const sortOrder = this.shadowRoot.querySelector("[name='sortOrder']").value;
     const data: any = {
-      title: title.value,
-      author: author.value,
-      content: content.value
+      title,
+      author,
+      content,
+      sortOrder
     };
 
     if (this.create) {
@@ -112,9 +108,7 @@ export class PostComponent extends Mixin(LitElement, [TemplateMixin]) {
   }
 
   static get styles() {
-    return [
-      globalStyle
-    ]
+    return [globalStyle];
   }
 }
 

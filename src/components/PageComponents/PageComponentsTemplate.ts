@@ -7,13 +7,13 @@ export default function() {
       <card-component title="Components">
         <div slot="content">
           <ul>
-            <a href="/components/eye-chart"><li>Eye Chart</li></a>
-            ${isAdmin()
+            <!-- <a href="/components/eye-chart"><li>Eye Chart</li></a> -->
+            ${true // isAdmin()
               ? html`
                   <a href="/components/eye-exam"><li>Eye Exam</li></a>
                 `
               : ""}
-            <a href="/components/web-speech"> <li>Web Speech API</li></a>
+            <!-- <a href="/components/web-speech"> <li>Web Speech API</li></a> -->
           </ul>
         </div></card-component
       >

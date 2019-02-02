@@ -42,6 +42,18 @@ export default function() {
           ${this.editable
             ? html`
                 ${this.text({
+                  field: search("sortOrder", structure),
+                  value: this.sortOrder
+                })}
+              `
+            : html`
+                ${this.author}
+              `}
+        </div>
+        <div>
+          ${this.editable
+            ? html`
+                ${this.text({
                   field: search("date", structure),
                   value: this.date
                 })}

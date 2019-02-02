@@ -15,6 +15,11 @@ export const structure: any = [
     type: "text"
   },
   {
+    label: "Sort order",
+    name: "sortOrder",
+    type: "number"
+  },
+  {
     label: "Content",
     name: "content",
     type: "textarea"

@@ -7,6 +7,7 @@ import GlobalStyle from "../../GlobalStyle";
 import(/* webpackChunkName: "EyeChart" */ "../EyeChart/EyeChartComponent");
 import(/* webpackChunkName: "EyeExam" */ "../EyeExam/EyeExamComponent");
 import(/* webpackChunkName: "WebSpeech" */ "../WebSpeech/WebSpeechComponent");
+import(/* webpackChunkName: "PropertyEditor" */ "../PropertyEditor/PropertyEditor");
 
 const components = ["eye-chart"];
 
