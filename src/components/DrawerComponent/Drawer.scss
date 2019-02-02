@@ -6,8 +6,6 @@
 
 :host {
   --border-color: var(--border-color);
-  display: flex;
-  flex-direction: column;
   flex: 1;
   position: relative;
   border: 1px solid var(--border-color);

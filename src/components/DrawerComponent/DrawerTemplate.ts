@@ -1,5 +1,4 @@
 import { html } from "lit-element";
-import { filterByMode } from "../../Debug";
 import { isAdmin } from "../../User";
 
 export default function() {
