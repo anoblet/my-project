@@ -79,7 +79,8 @@ export class PostComponent extends Mixin(LitElement, [TemplateMixin]) {
     const title = this.shadowRoot.querySelector("[name='title']").value;
     const author = this.shadowRoot.querySelector("[name='author']").value;
     const content = this.shadowRoot.querySelector("[name='content']").value;
-    const sortOrder = parseInt(this.shadowRoot.querySelector("[name='sortOrder']").value);
+    let sortOrder = this.shadowRoot.querySelector("[name='sortOrder']").value;
+    sortOrder = parseInt(sortOrder);
     const data: any = {
       title,
       author,
