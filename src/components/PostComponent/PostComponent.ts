@@ -79,7 +79,7 @@ export class PostComponent extends Mixin(LitElement, [TemplateMixin]) {
     const title = this.shadowRoot.querySelector("[name='title']").value;
     const author = this.shadowRoot.querySelector("[name='author']").value;
     const content = this.shadowRoot.querySelector("[name='content']").value;
-    const sortOrder = this.shadowRoot.querySelector("[name='sortOrder']").value;
+    const sortOrder = parseInt(this.shadowRoot.querySelector("[name='sortOrder']").value);
     const data: any = {
       title,
       author,
@@ -127,14 +127,16 @@ export class PostComponent extends Mixin(LitElement, [TemplateMixin]) {
   }
 
   render() {
-    return html`
-      ${renderForm(
-        this,
-        null,
-        (property: string, value: any) => (this[property] = value)
-      )}
-      <button @click=${(e: any) => this.submitForm(e)}>Save</button>
-    `;
+    return this.loaded
+      ? html`
+          ${renderForm(
+            this,
+            null,
+            (property: string, value: any) => (this[property] = value)
+          )}
+          <button @click=${(e: any) => this.submitForm(e)}>Save</button>
+        `
+      : html``;
   }
 }
 
