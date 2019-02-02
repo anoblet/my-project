@@ -1,0 +1,52 @@
+[debug] [2019-02-02T16:12:35.868Z] ----------------------------------------------------------------------
+[debug] [2019-02-02T16:12:35.873Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\Andrew Noblet\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js deploy
+[debug] [2019-02-02T16:12:35.873Z] CLI Version:   6.3.0
+[debug] [2019-02-02T16:12:35.873Z] Platform:      win32
+[debug] [2019-02-02T16:12:35.873Z] Node Version:  v10.14.1
+[debug] [2019-02-02T16:12:35.875Z] Time:          Sat Feb 02 2019 11:12:35 GMT-0500 (Eastern Standard Time)
+[debug] [2019-02-02T16:12:35.875Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2019-02-02T16:12:35.890Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2019-02-02T16:12:35.891Z] > authorizing via signed-in user
+[debug] [2019-02-02T16:12:35.891Z] [iam] checking project my-project-75792 for permissions ["firebase.projects.get","firebasedatabase.instances.update","firebasehosting.sites.update"]
+[debug] [2019-02-02T16:12:35.893Z] > refreshing access token with scopes: ["email","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","openid"]
+[debug] [2019-02-02T16:12:35.893Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
+ <request body omitted>
+[debug] [2019-02-02T16:12:36.286Z] <<< HTTP RESPONSE 200
+[debug] [2019-02-02T16:12:36.311Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects/my-project-75792:testIamPermissions  
+
+[debug] [2019-02-02T16:12:36.704Z] <<< HTTP RESPONSE 200
+[debug] [2019-02-02T16:12:36.705Z] >>> HTTP REQUEST GET https://firebase.googleapis.com/v1beta1/projects/my-project-75792  
+ 
+[debug] [2019-02-02T16:12:37.193Z] <<< HTTP RESPONSE 200
+[info] 
+[info] === Deploying to 'my-project-75792'...
+[info] 
+[info] i  deploying database, hosting
+[info] i  database: checking rules syntax...
+[debug] [2019-02-02T16:12:37.235Z] >>> HTTP REQUEST PUT https://my-project-75792.firebaseio.com/.settings/rules.json?dryRun=true  
+ {
+  "rules": {
+    ".read": true,
+    ".write": true,
+    "posts": {
+      ".write": "auth.uid === 'm42gwHOSlbUniorNjigqa1nnHIE3'"
+    },
+    "users": {
+      "$user_id": {
+        ".read": "auth != null && auth.uid == $user_id",
+        ".write": "$user_id === auth.uid"
+      }
+    }
+  }
+}
+
+[debug] [2019-02-02T16:12:37.577Z] Error: Client network socket disconnected before secure TLS connection was established
+    at TLSSocket.onConnectEnd (_tls_wrap.js:1086:19)
+    at Object.onceWrapper (events.js:273:13)
+    at TLSSocket.emit (events.js:187:15)
+    at TLSSocket.EventEmitter.emit (domain.js:442:20)
+    at endReadableNT (_stream_readable.js:1094:12)
+    at process._tickCallback (internal/process/next_tick.js:63:19)
+[error] 
+[error] Error: Server Error. Client network socket disconnected before secure TLS connection was established
