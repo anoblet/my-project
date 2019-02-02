@@ -9,6 +9,36 @@ export interface property {
 
 export const PropertyEditor = () => {};
 
+const merge = (property: string, _properties: any, component: any, onChange: any ) => {
+  return {
+    property,
+    ..._properties[property],
+    value: component.value,
+    onChange
+  };
+}
+
+const switchBuiltInTypes = () => {
+//   return html`
+//       ${_properties[property].type === Boolean
+//         ? renderCheckbox(property, component, onChange)
+//           // renderSwitch(field)
+//         : ""}
+//       ${_properties[property].type === Number
+//         ? renderNumberField(property, component, onChange)
+//         : ""}
+//       ${_properties[property].type === String
+//         ? renderTextField(property, component, onChange)
+//         : ""}
+//     `}
+// `;
+}
+
+export interface FormField {
+  type: string, // text, textarea, Number
+  value?: any
+}
+
 /**
  * [keys description]
  * @param  component [description]
@@ -31,12 +61,7 @@ export const renderForm = (
   <grid-component style="grid-template-columns: auto min-content">
     ${Object.keys(_properties).map((property: any) => {
       if (property.startsWith("_")) return;
-      const field = {
-        property,
-        ..._properties[property],
-        value: component.value,
-        onChange
-      };
+      const field = merge(property, _properties, component, onChange);
       return html`
         <label>${_properties[property].label}</label>
         ${_properties[property].inputType
@@ -50,8 +75,8 @@ export const renderForm = (
             `
           : html`
               ${_properties[property].type === Boolean
-                ? // ? renderCheckbox(property, component, onChange)
-                  renderSwitch(field)
+                ? renderCheckbox(property, component, onChange)
+                  // renderSwitch(field)
                 : ""}
               ${_properties[property].type === Number
                 ? renderNumberField(property, component, onChange)

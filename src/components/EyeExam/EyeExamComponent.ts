@@ -3,6 +3,7 @@ import style from "./EyeExamStyle";
 import template from "./EyeExamTemplate";
 import { toast } from "../ToastComponent/Toast";
 import { renderForm } from "../PropertyEditor/PropertyEditor";
+import globalStyle from "../../GlobalStyle";
 
 import { WebSpeech } from "../WebSpeech/WebSpeech";
 
@@ -233,7 +234,7 @@ export class EyeExamComponent extends LitElement {
   }
 
   static get styles() {
-    return [style];
+    return [globalStyle, style];
   }
 
   get template() {
