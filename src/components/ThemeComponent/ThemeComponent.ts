@@ -88,7 +88,9 @@ export class ThemeComponent extends LitElement {
             @click="${randomTheme}"
           ></mwc-button>
         </card-component>
+        <card-component title="Toggles">
         ${toggleDark()} ${toggleShadow()}
+        </card-component>
         <card-component title="Current theme">
           ${themeEdit({ fields: themeStructure, theme: this.currentTheme })}
         </card-component>
