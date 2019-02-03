@@ -48,7 +48,8 @@ export default css`
 
   #drawer {
     display: flex;
-    padding: 0 1em 0 0;
+    /* box-shadow: 10px 10px 10px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23); */
+    box-shadow: 10px 0 10px -10px;
   }
 
   #drawer[media-size="small"] {
@@ -62,6 +63,7 @@ export default css`
   #drawer-container {
     flex: 1;
     position: relative;
+    grid-gap: 0;
   }
 
   [full-height] {
@@ -128,8 +130,10 @@ export default css`
   }
 
   #content {
+    /*
     border: 1px solid var(--border-color);
     border-radius: var(--border-radius) 0 0 var(--border-radius);
+    */
     flex-direction: column;
   }
 
