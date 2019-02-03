@@ -3,7 +3,7 @@ import { isAdmin } from "../../User";
 
 export default function() {
   return html`
-    <card-component>
+    <card-component .shadow=${false}>
       <div slot="content">
         <ul>
           <a href="/"> <li>Home</li></a>
@@ -21,7 +21,7 @@ export default function() {
         </ul>
       </div>
     </card-component>
-    <card-component>
+    <card-component .shadow=${false}>
       <div slot="content" style="overflow: initial;">
         <ul>
           <li><a href="/issue">Report an issue</a></li>

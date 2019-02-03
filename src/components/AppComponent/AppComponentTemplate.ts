@@ -20,13 +20,11 @@ export default function({ router, user }: any) {
       <my-flex id="center" style="position: relative;">
         <profile-menu id="profile-menu"></profile-menu>
         <my-grid id="drawer-container" media-size="${this.mediaSize}">
-          <div
+          <app-drawer
             id="drawer"
             ?hidden="${!this.drawerOpened}"
             media-size="${this.mediaSize}"
-          >
-            <app-drawer></app-drawer>
-          </div>
+          ></app-drawer> 
           <my-flex id="content" grow scroll>
             <my-card
               full-height

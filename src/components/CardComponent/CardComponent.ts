@@ -6,6 +6,7 @@ import template from "./CardTemplate";
 export class CardComponent extends LitElement {
   @property({ type: Boolean }) collapsible: boolean = false;
   @property({ type: Boolean, reflect: true }) collapsed: boolean = false;
+  @property({ type: Boolean, reflect: true }) shadow: boolean = true;
 
   firstUpdated(changedProperties: any) {
     this.addListeners();
