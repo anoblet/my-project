@@ -137,7 +137,7 @@ export class PostComponent extends Mixin(LitElement, [TemplateMixin]) {
               (property: string, value: any) => (this[property] = value)
             )}
             <div slot="actions">
-              <button @click=${(e: any) => this.submitForm(e)}>Save</button>
+              <mwc-button outlined @click=${(e: any) => this.submitForm(e)}>Save</mwc-button>
             </div>
           </card-component>
         `
