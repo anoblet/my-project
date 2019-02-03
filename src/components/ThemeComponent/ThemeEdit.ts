@@ -17,7 +17,7 @@ const updateField = (field: string, value: string) => {
 
 const renderField = (field: any, theme: any) => html`
   <label>${field.label}</label>
-  ${!field.type
+  ${field.type === "color"
     ? html`
         <input
           name="${field.name}"

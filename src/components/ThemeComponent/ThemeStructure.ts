@@ -2,11 +2,27 @@ export const themeStructure = [
   {
     label: "Background color",
     property: "backgroundColor",
-    varName: "--background-color"
+    varName: "--background-color",
+    type: "color"
   },
-  { label: "Text color", property: "textColor", varName: "--text-color" },
-  { label: "Link color", property: "linkColor", varName: "--link-color" },
-  { label: "Border color", property: "borderColor", varName: "--border-color" },
+  {
+    label: "Text color",
+    property: "textColor",
+    varName: "--text-color",
+    type: "color"
+  },
+  {
+    label: "Link color",
+    property: "linkColor",
+    varName: "--link-color",
+    type: "color"
+  },
+  {
+    label: "Border color",
+    property: "borderColor",
+    varName: "--border-color",
+    type: "color"
+  },
   {
     label: "Border radius",
     property: "borderRadius",
@@ -16,12 +32,14 @@ export const themeStructure = [
   {
     label: "Primary color",
     property: "primaryColor",
-    varName: "--primary-color"
+    varName: "--primary-color",
+    type: "color"
   },
   {
     label: "Secondary color",
     property: "secondaryColor",
-    varName: "--secondary-color"
+    varName: "--secondary-color",
+    type: "color"
   },
   {
     label: "Padding",

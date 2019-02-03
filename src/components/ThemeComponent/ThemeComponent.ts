@@ -47,7 +47,7 @@ const randomTheme = () => {
   const state = store.getState();
   let theme: any = {};
   themeStructure.map((field: any) => {
-    theme[field.property] = randomColor();
+    if (field.type === "color") theme[field.property] = randomColor();
   });
   setTheme(theme);
 };
@@ -89,7 +89,7 @@ export class ThemeComponent extends LitElement {
           ></mwc-button>
         </card-component>
         <card-component title="Toggles">
-        ${toggleDark()} ${toggleShadow()}
+          ${toggleDark()} ${toggleShadow()}
         </card-component>
         <card-component title="Current theme">
           ${themeEdit({ fields: themeStructure, theme: this.currentTheme })}
