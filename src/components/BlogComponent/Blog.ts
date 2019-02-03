@@ -30,7 +30,12 @@ export class Blog extends Mixin(connect(store)(BaseElement), [
       },
       path: "posts",
       orderBy: "sortOrder",
-      watch: true
+      watch: true,
+      where: {
+        property: "featured",
+        operator: "===",
+        value: true
+      }
     });
   }
 

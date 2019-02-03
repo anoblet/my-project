@@ -112,6 +112,7 @@ export class PostComponent extends Mixin(LitElement, [TemplateMixin]) {
       // body: { label: "Body", type: String, inputType: "textarea" },
       content: { label: "Body", type: String, inputType: "pell" },
       date: { label: "Date", type: String },
+      featured: {label: "Featured", type: Boolean },
       id: { label: "ID", type: String },
       title: { label: "Title", type: String, description: "Title of the post" },
       author: { label: "Author", type: String },
