@@ -15,7 +15,9 @@ export default function(themes: any) {
             <a
               href=""
               @click="${() =>
-                setTheme(theme).then(() => toast("Theme updated")).catch(() => toast("Could not update theme"))}"
+                setTheme(theme)
+                  .then(() => toast("Theme updated"))
+                  .catch(() => toast("Could not update theme"))}"
               >${theme.name}</a
             >
             <button
