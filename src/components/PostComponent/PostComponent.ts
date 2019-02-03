@@ -130,12 +130,16 @@ export class PostComponent extends Mixin(LitElement, [TemplateMixin]) {
   render() {
     return this.loaded
       ? html`
-          ${renderForm(
-            this,
-            null,
-            (property: string, value: any) => (this[property] = value)
-          )}
-          <button @click=${(e: any) => this.submitForm(e)}>Save</button>
+          <card-component>
+            ${renderForm(
+              this,
+              null,
+              (property: string, value: any) => (this[property] = value)
+            )}
+            <div slot="actions">
+              <button @click=${(e: any) => this.submitForm(e)}>Save</button>
+            </div>
+          </card-component>
         `
       : html``;
   }
