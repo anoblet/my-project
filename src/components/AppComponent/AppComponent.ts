@@ -222,7 +222,17 @@ export class AppComponent extends Mixin(connect(store)(LitElement), [
   }
 
   public render() {
+    const state = store.getState();
     return html`
+      ${state.settings.shadows
+        ? html`
+            <style>
+              :host {
+                --box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+              }
+            </style>
+          `
+        : ""}
       ${this.template(this.state)}
     `;
   }

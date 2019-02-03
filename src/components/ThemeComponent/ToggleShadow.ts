@@ -11,7 +11,6 @@ export const toggleShadow = () => {
       type="checkbox"
       ?checked=${state.settings.shadows}
       @change=${(e: any) => {
-        alert("Hi");
         updateDocument({
           path: `users/${state.user.uid}/settings/default`,
           data: { shadows: e.target.checked }
@@ -23,7 +22,6 @@ export const toggleShadow = () => {
           <mwc-switch
             ?checked=${state.settings.dark}
             @change=${(e: any) => {
-              alert("Hi");
               updateDocument({
                 path: `users/${state.user.uid}/settings/default`,
                 data: { shadows: e.target.checked }
