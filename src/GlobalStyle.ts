@@ -15,11 +15,10 @@ export default css`
     text-decoration: underline;
   }
 
-  ul {
-    list-style-type: none;
-    margin-block-start: 0;
+  ul, ol {
+    /* margin-block-start: 0;
     margin-block-end: 0;
-    padding-inline-start: 1em;
+    padding-inline-start: 1em; */
   }
 
   [flex] {
@@ -40,7 +39,7 @@ export default css`
     border: 0;
   }
 
-  input[type=text] {
+  input[type=text], input[type=number] {
     border-bottom: 1px solid var(--border-color);
   }
 

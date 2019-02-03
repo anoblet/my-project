@@ -28,7 +28,7 @@ const theme = async () => {
 
 export const setTheme = (theme: any) => {
   const state = store.getState();
-  updateDocument({
+  return updateDocument({
     path: `users/${state.user.uid}/settings/theme`,
     data: { currentTheme: theme }
   });
