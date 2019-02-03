@@ -6,6 +6,7 @@ import { updateDocument } from "../../../packages/firebase-helpers/firebase-help
 export const toggleDark = () => {
   const state = store.getState();
   return html`
+    <label>Toggle dark</label>
     <mwc-switch
       ?checked=${state.settings.dark}
       @change=${(e: any) => {
