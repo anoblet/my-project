@@ -11,7 +11,8 @@ import themeEdit from "./ThemeEdit";
 import listThemes from "./ListThemes";
 import saveThemeTemplate from "./SaveTheme";
 import { themeStructure } from "./ThemeStructure";
-import {toggleDark} from "./ToggleDark"
+import { toggleDark } from "./ToggleDark";
+import { toggleShadow } from "./ToggleShadow";
 import GlobalStyle from "../../GlobalStyle";
 
 import(/* webpackChunkName: "MWCSwitch" */ "@material/mwc-switch");
@@ -51,8 +52,6 @@ const randomTheme = () => {
   setTheme(theme);
 };
 
-
-
 export class ThemeComponent extends LitElement {
   @property({ type: Array }) currentTheme: any = {};
   @property({ type: Array }) savedThemes: any;
@@ -89,7 +88,7 @@ export class ThemeComponent extends LitElement {
             @click="${randomTheme}"
           ></mwc-button>
         </card-component>
-        ${toggleDark()}
+        ${toggleDark()} ${toggleShadow()}
         <card-component title="Current theme">
           ${themeEdit({ fields: themeStructure, theme: this.currentTheme })}
         </card-component>
