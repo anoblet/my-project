@@ -9,7 +9,6 @@ export default function() {
         <div class="row">
           <div class="column no-grow">#</div>
           <div class="column">Title</div>
-          <div class="column">Author</div>
           <div class="column no-grow no-visibility">
             <button>Delete</button>
           </div>
@@ -22,7 +21,6 @@ export default function() {
                 <div class="column">
                   <a href="/post/read/${item.id}">${item.title}</a>
                 </div>
-                <div class="column">${item.author}</div>
                 <div class="column no-grow">
                   <button @click="${() => this.deleteItem(index)}">
                     Delete
