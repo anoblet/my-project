@@ -13,3 +13,5 @@ Scaffolding includes:
 
   @todo
     - Testing (Code coverage)
+
+  * How often should we adopt new features? (CSS tag, RxFire)
