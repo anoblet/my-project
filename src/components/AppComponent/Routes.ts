@@ -1,9 +1,10 @@
-import { route } from "../../Router"
+import { route } from "../../Router";
+import { getReadme } from "../Readme/Readme";
 
 export const routes = [
   <route>{
     path: "",
-    component: "page-home",
+    component: "page-home"
   },
   {
     path: "/admin",
@@ -64,5 +65,11 @@ export const routes = [
     component: "issue-component",
     src: () =>
       import(/* webpackChunkName: "IssueComponent" */ /* webpackPrefetch: true */ "../IssueComponent/IssueComponent")
+  },
+  {
+    path: "/readme",
+    component: "readme-component",
+    src: () =>
+      import(/* webpackChunkName: "ReadmeComponent" */ /* webpackPrefetch: true */ "../Readme/ReadmeComponent")
   }
 ];

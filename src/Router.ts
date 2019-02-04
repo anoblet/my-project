@@ -1,3 +1,4 @@
+
 const pathToRegexp = require("path-to-regexp");
 
 /*
@@ -22,9 +23,9 @@ let globalRoutes: any = [];
 let globalPortal: any;
 
 export interface route {
-  path: string,
-  component: string,
-  src?: any
+  path: string;
+  component: string;
+  src?: any;
 }
 
 export const setRoutes = (routes: any) => {
@@ -63,17 +64,22 @@ export const handleNavigation = ({ location, portal, routes }: any) => {
   if (matchedRoute.src) matchedRoute.src();
   if (portal) {
     // @todo Create an event here during DOM manipulation
-    // Example: portal.setAttribute("hidden", "");
     while (portal.firstChild) {
       portal.removeChild(portal.firstChild);
     }
-    const element = document.createElement(matchedRoute.component);
-    matchedRoute.keys.map((key: any) => {
-      element[key.name] = matchedRoute.data[key.name];
-    });
-    if(element.beforeRender) element.beforeRender().then(() => portal.appendChild(element));
-    else portal.appendChild(element);
-
-    // portal.removeAttribute("hidden");
+    if (matchedRoute.action) {
+      // const html = matchedRoute.action();
+      // const element = <Generic>document.createElement("generic-component");
+      // element.template = html;
+      // portal.appendChild(element);
+    } else {
+      const element = document.createElement(matchedRoute.component);
+      matchedRoute.keys.map((key: any) => {
+        element[key.name] = matchedRoute.data[key.name];
+      });
+      if (element.beforeRender)
+        element.beforeRender().then(() => portal.appendChild(element));
+      else portal.appendChild(element);
+    }
   }
 };
