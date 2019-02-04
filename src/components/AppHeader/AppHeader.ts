@@ -3,7 +3,7 @@ import template from "./AppHeaderTemplate";
 import(/* webpackChunkName: "MWCFab" */ "@material/mwc-fab");
 import * as style from "./AppHeader.scss";
 
-import ComponentStyle from "./Style.ts";
+import ComponentStyle from "./Style";
 
 import { getUser } from "../../../packages/firebase-helpers";
 
@@ -22,15 +22,14 @@ export class AppHeader extends LitElement {
     });
   }
 
-  setButtonBackground(user: any) {
+  setButtonBackground(user: any = false) {
     const fab = this.querySelector("#userProfile");
     const button = fab.shadowRoot.querySelector("button");
-    if (button) {
+    if (button)
       if (user.photoURL) {
         button.style.background = `url('${user.photoURL}')`;
         button.style.backgroundSize = "contain";
       }
-    }
   }
 
   resetButton() {

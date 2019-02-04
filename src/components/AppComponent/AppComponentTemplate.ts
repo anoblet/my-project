@@ -24,7 +24,7 @@ export default function({ router, user }: any) {
             id="drawer"
             ?hidden="${!this.drawerOpened}"
             media-size="${this.mediaSize}"
-          ></app-drawer> 
+          ></app-drawer>
           <my-flex id="content" grow scroll>
             <my-card
               full-height
