@@ -1,4 +1,4 @@
-import { css, html, LitElement } from "lit-element";
+import { css, html, property, LitElement } from "lit-element";
 import template from "./PageHomeTemplate";
 import "../BlogComponent/Blog";
 
