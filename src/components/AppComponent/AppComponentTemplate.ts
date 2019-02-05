@@ -16,7 +16,7 @@ export default function({ router, user }: any) {
         >Profile</mwc-fab
       >
     </app-header>
-    <my-flex id="center" style="position: relative;">
+    <div id="center" style="position: relative;">
       <profile-menu id="profile-menu"></profile-menu>
       <my-grid id="drawer-container" media-size="${this.mediaSize}">
         <app-drawer
@@ -51,7 +51,7 @@ export default function({ router, user }: any) {
           </my-card>
         </my-flex>
       </my-grid>
-    </my-flex>
+    </div>
     <app-footer id="bottom"></app-footer>
     <toast-component></toast-component>
     <menu-component></menu-component>

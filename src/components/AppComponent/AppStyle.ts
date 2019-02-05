@@ -111,6 +111,7 @@ export default css`
   }
 
   #center {
+    display: flex;
     flex: 1;
   }
 
