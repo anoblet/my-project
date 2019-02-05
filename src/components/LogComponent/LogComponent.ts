@@ -1,5 +1,7 @@
-import { css, html, LitElement, property } from "lit-element";
+import { LitElement, html } from "lit-element";
+
 import { getHistory } from "../../Debug";
+
 
 export class Log extends LitElement {
   render() {
