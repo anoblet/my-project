@@ -57,11 +57,11 @@ export const initStore = () => {
  * */
 export const checkRedirect = () => {
   return Promise.all([
-    import(/* webpackChunkName: "Firebase" */ "firebase/app"), // @ts-ignore
+    import(/* webpackChunkName: "Firebase" */ "firebase/app"),
+    // @ts-ignore
     import(/* webpackChunkName: "FirebaseAuth" */ "firebase/auth"),
-    ,
     import(/* webpackChunkName: "FirebaseUI" */ "firebaseui")
-  ]).then(([firebase, auth]) => {
+  ]).then(([firebase, auth, firebaseui]) => {
     const instance =
       firebaseui.auth.AuthUI.getInstance() ||
       new firebaseui.auth.AuthUI(firebase.auth());
@@ -77,11 +77,11 @@ export const checkRedirect = () => {
  * */
 export const getUser = ({ callback }: any) => {
   return Promise.all([
-    import(/* webpackChunkName: "Firebase" */ "firebase/app"), // @ts-ignore
+    import(/* webpackChunkName: "Firebase" */ "firebase/app"),
+    // @ts-ignore
     import(/* webpackChunkName: "FirebaseAuth" */ "firebase/auth"),
-    ,
     import(/* webpackChunkName: "FirebaseUI" */ "firebaseui")
-  ]).then(([firebase, auth]) => {
+  ]).then(([firebase, auth, firebaseui]) => {
     const instance =
       firebaseui.auth.AuthUI.getInstance() ||
       new firebaseui.auth.AuthUI(firebase.auth());

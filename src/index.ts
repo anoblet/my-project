@@ -1,1 +1,1 @@
-import "./components/AppComponent/AppComponent";
+import(/* webpackChunkName: "App" */ "./components/AppComponent/AppComponent");
