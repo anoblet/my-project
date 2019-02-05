@@ -142,6 +142,7 @@ export class AppComponent extends Mixin(connect(store)(LitElement), [
                 });
               });
             } else this.setState({}, "user");
+            debug("App component is updated");
             resolve();
           }
         });
@@ -228,7 +229,8 @@ export class AppComponent extends Mixin(connect(store)(LitElement), [
         ? html`
             <style>
               :host {
-                --box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+                --box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16),
+                  0 3px 6px rgba(0, 0, 0, 0.23);
               }
             </style>
           `

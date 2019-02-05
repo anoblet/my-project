@@ -16,17 +16,19 @@ import("@material/mwc-icon");
 // @customElement("blog-component")
 export class Blog extends Mixin(connect(store)(BaseElement), [
   StateMixin,
-  TaskMixin
+  // TaskMixin
 ]) {
-  @property() loaded: any;
-  @property() posts: any;
+  // @property() loaded: any;
+  loaded = false;
+  taskPending = true;
+  @property() posts: any = [];
 
   constructor() {
     super();
     getCollection({
       callback: (collection: any) => {
         this.posts = collection;
-        this.loaded = true;
+        this.taskPending = false;
       },
       path: "posts",
       orderBy: "sortOrder",
@@ -40,7 +42,8 @@ export class Blog extends Mixin(connect(store)(BaseElement), [
   }
 
   shouldUpdate(changedProperties: any) {
-    if (!this.loaded) return false;
+    console.log("Here", this.taskPending);
+    if (this.taskPending) return false;
     else return super.shouldUpdate(changedProperties);
   }
 
