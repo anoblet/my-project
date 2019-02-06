@@ -52,36 +52,38 @@ export const renderForm = (
       if (property.startsWith("_")) return;
       const field = merge(property, _properties, component, onChange);
       return html`
-        <label>${_properties[property].label}</label>
-        ${_properties[property].inputType
-          ? html`
-              ${_properties[property].inputType === "text"
-                ? renderTextField(property, component, onChange)
-                : ""}
-              ${_properties[property].inputType === "textarea"
-                ? renderTextarea(property, component, onChange)
-                : ""}
-              ${_properties[property].inputType === "pell"
-                ? html`
-                    <pell-component
-                      name="content"
-                      .input=${component[property]}
-                    ></pell-component>
-                  `
-                : ""}
-            `
-          : html`
-              ${_properties[property].type === Boolean
-                ? renderCheckbox(property, component, onChange)
-                : // renderSwitch(field)
-                  ""}
-              ${_properties[property].type === Number
-                ? renderNumberField(property, component, onChange)
-                : ""}
-              ${_properties[property].type === String
-                ? renderTextField(property, component, onChange)
-                : ""}
-            `}
+        <div class="field" ?pell=${_properties[property].inputType === "pell"}>
+          <label>${_properties[property].label}</label>
+          ${_properties[property].inputType
+            ? html`
+                ${_properties[property].inputType === "text"
+                  ? renderTextField(property, component, onChange)
+                  : ""}
+                ${_properties[property].inputType === "textarea"
+                  ? renderTextarea(property, component, onChange)
+                  : ""}
+                ${_properties[property].inputType === "pell"
+                  ? html`
+                      <pell-component
+                        name="content"
+                        .input=${component[property]}
+                      ></pell-component>
+                    `
+                  : ""}
+              `
+            : html`
+                ${_properties[property].type === Boolean
+                  ? renderCheckbox(property, component, onChange)
+                  : // renderSwitch(field)
+                    ""}
+                ${_properties[property].type === Number
+                  ? renderNumberField(property, component, onChange)
+                  : ""}
+                ${_properties[property].type === String
+                  ? renderTextField(property, component, onChange)
+                  : ""}
+              `}
+        </div>
       `;
     })}
     </grid-component

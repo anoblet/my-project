@@ -1,22 +1,22 @@
 import { LitElement, css, html, property } from "lit-element";
-import { Mixin } from "../../../packages/Mixin";
-import { TemplateMixin } from "../../../packages/TemplateMixin";
-import { navigate } from "../../Router";
-import { store } from "../../Store";
 import {
   addDocument,
   getDocument,
   updateDocument
 } from "../../../packages/firebase-helpers";
-import { toast } from "../ToastComponent/Toast";
-import("../../../packages/PellComponent/PellComponent");
 
-import { structure } from "./PostStructure";
-import template from "./PostTemplate";
-
+import { Mixin } from "../../../packages/Mixin";
+import { TemplateMixin } from "../../../packages/TemplateMixin";
 import globalStyle from "../../GlobalStyle";
-
+import { navigate } from "../../Router";
 import { renderForm } from "../PropertyEditor/PropertyEditor";
+import { store } from "../../Store";
+import { structure } from "./PostStructure";
+import style from "./PostStyle";
+import template from "./PostTemplate";
+import { toast } from "../ToastComponent/Toast";
+
+import("../../../packages/PellComponent/PellComponent");
 
 export interface PostComponent {
   [key: string]: any; // Add index signature
@@ -107,7 +107,7 @@ export class PostComponent extends Mixin(LitElement, [TemplateMixin]) {
       // body: { label: "Body", type: String, inputType: "textarea" },
       content: { label: "Body", type: String, inputType: "pell" },
       date: { label: "Date", type: String },
-      featured: {label: "Featured", type: Boolean },
+      featured: { label: "Featured", type: Boolean },
       id: { label: "ID", type: String },
       title: { label: "Title", type: String, description: "Title of the post" },
       author: { label: "Author", type: String },
@@ -116,11 +116,7 @@ export class PostComponent extends Mixin(LitElement, [TemplateMixin]) {
   }
 
   static get styles() {
-    return [
-      globalStyle,
-      css`grid-component {
-          grid-template-columns: 1fr !important;`
-    ];
+    return [globalStyle, style];
   }
 
   render() {
@@ -133,7 +129,9 @@ export class PostComponent extends Mixin(LitElement, [TemplateMixin]) {
               (property: string, value: any) => (this[property] = value)
             )}
             <div slot="actions">
-              <mwc-button outlined @click=${(e: any) => this.submitForm(e)}>Save</mwc-button>
+              <mwc-button outlined @click=${(e: any) => this.submitForm(e)}
+                >Save</mwc-button
+              >
             </div>
           </card-component>
         `
