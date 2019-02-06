@@ -1,4 +1,4 @@
-import { LitElement, css, html, property } from "lit-element";
+import { LitElement, html, property } from "lit-element";
 import {
   addDocument,
   getDocument,
