@@ -1,6 +1,4 @@
 import { html } from "lit-element";
-//import * as style from "./PageAccount.scss";
-// import { style } from "./PageAccountStyle"
 
 const links = [  {
     href: "/user/posts",
