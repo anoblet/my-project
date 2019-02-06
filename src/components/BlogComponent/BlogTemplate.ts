@@ -32,7 +32,7 @@ export default function() {
                   : ""
                 : ""}
             </h3>
-            <div slot="content">${unsafeHTML(post.content)}</div>
+            <div slot="content">${unsafeHTML(post.body)}</div>
           </card-component>
         `;
       })}
