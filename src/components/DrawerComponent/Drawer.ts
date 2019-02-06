@@ -10,8 +10,9 @@ import { connect } from "pwa-helpers/connect-mixin.js";
 import { store } from "../../Store";
 import template from "./DrawerTemplate";
 
-// @customElement("drawer-component")
-export class Drawer extends Mixin(connect(store)(LitElement), [StateMixin]) {
+@customElement("app-drawer")
+//@customElement("drawer-component")
+export class Drawer extends LitElement {
   firstUpdated() {
     // Close drawer on link click
     const links = this.shadowRoot.querySelectorAll("a");
@@ -37,5 +38,3 @@ export class Drawer extends Mixin(connect(store)(LitElement), [StateMixin]) {
     return template.bind(this)();
   }
 }
-
-window.customElements.define("app-drawer", Drawer);
