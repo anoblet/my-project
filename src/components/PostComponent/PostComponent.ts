@@ -8,9 +8,7 @@ import {
 import { Mixin } from "../../../packages/Mixin";
 import { TemplateMixin } from "../../../packages/TemplateMixin";
 import globalStyle from "../../GlobalStyle";
-import { navigate } from "../../Router";
 import { renderForm } from "../PropertyEditor/PropertyEditor";
-import { store } from "../../Store";
 import { structure } from "./PostStructure";
 import style from "./PostStyle";
 import template from "./PostTemplate";
@@ -102,14 +100,14 @@ export class PostComponent extends Mixin(LitElement, [TemplateMixin]) {
     }
   }
 
+  // Property editor respects this order...
   static get properties() {
     return {
-      // body: { label: "Body", type: String, inputType: "textarea" },
-      content: { label: "Body", type: String, inputType: "pell" },
+      title: { label: "Title", type: String, description: "Title of the post" },
+      body: { label: "Body", type: String, inputType: "pell" },
       date: { label: "Date", type: String },
       featured: { label: "Featured", type: Boolean },
       id: { label: "ID", type: String },
-      title: { label: "Title", type: String, description: "Title of the post" },
       author: { label: "Author", type: String },
       sortOrder: { label: "Sort order", type: Number }
     };
