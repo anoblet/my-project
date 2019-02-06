@@ -74,7 +74,7 @@ export default function() {
             : html`
                 ${this.content
                   ? html`
-                      ${unsafeHTML(this.content)}
+                      ${unsafeHTML(this.body)}
                     `
                   : ""}
               `}

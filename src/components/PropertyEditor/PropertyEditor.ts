@@ -65,7 +65,7 @@ export const renderForm = (
                 ${_properties[property].inputType === "pell"
                   ? html`
                       <pell-component
-                        name="content"
+                        name=${property}
                         .input=${component[property]}
                       ></pell-component>
                     `
