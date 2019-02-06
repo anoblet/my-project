@@ -5,6 +5,8 @@ import { store } from "../../Store";
 import * as style from "./ProfileMenu.scss";
 import template from "./ProfileMenuTemplate";
 import { StateMixin } from "../../../packages/StateMixin";
+import GlobalStyle from "../../GlobalStyle";
+
 
 export class ProfileMenu extends Mixin(connect(store)(LitElement), [
   StateMixin
@@ -37,6 +39,10 @@ export class ProfileMenu extends Mixin(connect(store)(LitElement), [
   // Handlers
   _closeProfileMenu() {
     this.hidden = true;
+  }
+
+  static get styles() {
+    return GlobalStyle
   }
 
   render() {
