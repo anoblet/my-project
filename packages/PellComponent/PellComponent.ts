@@ -22,8 +22,8 @@ export class PellComponent extends LitElement {
         }
         .pell-actionbar {
           margin-top: 1em;
-          display: grid;
-          grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+          /* display: grid;
+          grid-template-columns: 1fr 1fr 1fr 1fr 1fr; */
           width: fit-content;
         }
         .pell-content {
@@ -59,7 +59,6 @@ export class PellComponent extends LitElement {
       // action.title<string> (optional)
       // action.result<Function> (required)
       // Specify the actions you specifically want (in order)
-      actions: ["bold", "link", "olist", "ulist", "underline"],
 
       // classes<Array[string]> (optional)
       // Choose your custom class names

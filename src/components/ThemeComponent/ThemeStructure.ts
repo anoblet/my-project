@@ -45,5 +45,10 @@ export const themeStructure = [
     label: "Padding",
     property: "padding",
     type: "size"
+  },
+  {
+    label: "Card inner padding",
+    property: "cardInnerPadding",
+    type: "size"
   }
 ];
