@@ -56,9 +56,9 @@ export class EyeExamComponent extends LitElement {
   @property() distanceFromScreen: number = 20; // Arbitrary at this point
   @property() finished: boolean = false;
   @property() fullscreen: boolean;
-  @property() showHistory: boolean = false;
-  @property() showNavigation: boolean = false;
-  @property() showRecord: boolean = false;
+  @property() showHistory: boolean = true
+  @property() showNavigation: boolean = true;
+  @property() showRecord: boolean = true;
   @property() perLine: number = 5;
   @property() perLineThreshold: number = 0.5;
   @property({ type: Array }) report: any = [];
