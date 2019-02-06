@@ -50,40 +50,59 @@ export const renderForm = (
   <grid-component style="grid-template-columns: auto min-content">
     ${Object.keys(_properties).map((property: any) => {
       if (property.startsWith("_")) return;
-      const field = merge(property, _properties, component, onChange);
+      // const field = merge(property, _properties, component, onChange);
       return html`
-        <div class="field" ?pell=${_properties[property].inputType === "pell"}>
-          <label>${_properties[property].label}</label>
-          ${_properties[property].inputType
-            ? html`
-                ${_properties[property].inputType === "text"
-                  ? renderTextField(property, component, onChange)
-                  : ""}
-                ${_properties[property].inputType === "textarea"
-                  ? renderTextarea(property, component, onChange)
-                  : ""}
-                ${_properties[property].inputType === "pell"
+        ${_properties[property].inputType !== "pell"
+          ? html`
+              <div
+                class="field"
+                ?pell=${_properties[property].inputType === "pell"}
+              >
+                <label>${_properties[property].label}</label>
+                ${_properties[property].inputType
                   ? html`
-                      <pell-component
-                        name=${property}
-                        .input=${component[property]}
-                      ></pell-component>
+                      ${_properties[property].inputType === "text"
+                        ? renderTextField(property, component, onChange)
+                        : ""}
+                      ${_properties[property].inputType === "textarea"
+                        ? renderTextarea(property, component, onChange)
+                        : ""}
+                      ${_properties[property].inputType === "pell"
+                        ? html`
+                            <card-component>
+                              <pell-component
+                                name=${property}
+                                .input=${component[property]}
+                              ></pell-component>
+                            </card-component>
+                          `
+                        : ""}
                     `
-                  : ""}
-              `
-            : html`
-                ${_properties[property].type === Boolean
-                  ? renderCheckbox(property, component, onChange)
-                  : // renderSwitch(field)
-                    ""}
-                ${_properties[property].type === Number
-                  ? renderNumberField(property, component, onChange)
-                  : ""}
-                ${_properties[property].type === String
-                  ? renderTextField(property, component, onChange)
-                  : ""}
-              `}
-        </div>
+                  : html`
+                      ${_properties[property].type === Boolean
+                        ? renderCheckbox(property, component, onChange)
+                        : // renderSwitch(field)
+                          ""}
+                      ${_properties[property].type === Number
+                        ? renderNumberField(property, component, onChange)
+                        : ""}
+                      ${_properties[property].type === String
+                        ? renderTextField(property, component, onChange)
+                        : ""}
+                    `}
+              </div>
+            `
+          : html`
+              <div class="field" pell>
+                <card-component>
+                  <label>${_properties[property].label}</label>
+                  <pell-component
+                    name=${property}
+                    .input=${component[property]}
+                  ></pell-component>
+                </card-component>
+              </div>
+            `}
       `;
     })}
     </grid-component
