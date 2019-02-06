@@ -12,7 +12,7 @@ import(/* webpackChunkName: "ReportComponent" */ "./ReportComponent");
 export default function() {
   return html`
     <grid-component>
-      ${isAdmin()
+      ${true
         ? html`
             <card-component collapsed collapsible title="Properties"
               ><div slot="content">
