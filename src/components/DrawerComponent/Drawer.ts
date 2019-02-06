@@ -34,12 +34,7 @@ export class Drawer extends Mixin(connect(store)(LitElement), [StateMixin]) {
   }
 
   render() {
-    return html`
-      <style>
-        ${style}
-      </style>
-      ${template.bind(this)()}
-    `;
+    return template.bind(this)();
   }
 }
 
