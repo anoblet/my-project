@@ -1,8 +1,8 @@
-import { LitElement, html } from "lit-element";
+import { LitElement, customElement, html } from "lit-element";
 
 import { getHistory } from "../../Debug";
 
-
+@customElement("log-component")
 export class Log extends LitElement {
   render() {
     const history = getHistory();
@@ -28,5 +28,3 @@ export class Log extends LitElement {
     `;
   }
 }
-
-window.customElements.define("log-component", Log);
