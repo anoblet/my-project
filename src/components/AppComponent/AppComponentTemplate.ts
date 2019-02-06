@@ -19,11 +19,11 @@ export default function({ router, user }: any) {
     <div id="center" style="position: relative;">
       <profile-menu id="profile-menu"></profile-menu>
       <my-grid id="drawer-container" media-size="${this.mediaSize}">
-        <app-drawer
+        <drawer-component
           id="drawer"
           ?hidden="${!this.drawerOpened}"
           media-size="${this.mediaSize}"
-        ></app-drawer>
+        ></drawer-component>
         <my-flex id="content" grow scroll>
           <my-card full-height grow no-inside-border no-outside-border no-title>
             <my-flex slot="content">

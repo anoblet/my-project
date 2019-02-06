@@ -10,8 +10,8 @@ import { connect } from "pwa-helpers/connect-mixin.js";
 import { store } from "../../Store";
 import template from "./DrawerTemplate";
 
-@customElement("app-drawer")
-//@customElement("drawer-component")
+//@customElement("app-drawer")
+@customElement("drawer-component")
 export class Drawer extends LitElement {
   firstUpdated() {
     // Close drawer on link click
