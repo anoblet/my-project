@@ -1,9 +1,13 @@
-import { customElement, html, LitElement, property } from "lit-element";
-import { connect } from "pwa-helpers/connect-mixin.js";
+import * as style from "./Drawer.scss";
+
+import { LitElement, css, customElement, html } from "lit-element";
+
+import GlobalStyle from "../../GlobalStyle";
 import { Mixin } from "../../../packages/Mixin";
 import { StateMixin } from "../../../packages/StateMixin";
+import Style from "./Style";
+import { connect } from "pwa-helpers/connect-mixin.js";
 import { store } from "../../Store";
-import * as style from "./Drawer.scss";
 import template from "./DrawerTemplate";
 
 // @customElement("drawer-component")
@@ -23,6 +27,10 @@ export class Drawer extends Mixin(connect(store)(LitElement), [StateMixin]) {
         composed: true
       })
     );
+  }
+
+  static get styles() {
+    return [GlobalStyle, css``];
   }
 
   render() {
