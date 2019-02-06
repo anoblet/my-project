@@ -48,7 +48,8 @@ export const themeStructure = [
   },
   {
     label: "Card inner padding",
-    property: "card-inner-padding",
+    property: "cardInnerPadding",
+    varName: "--card-inner-padding",
     type: "size"
   }
 ];

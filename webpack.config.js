@@ -111,11 +111,6 @@ module.exports = {
         from: "node_modules/@webcomponents/webcomponentsjs/*.js",
         to: "js/webcomponentsjs",
         flatten: true
-      },
-      {
-        from: "src/assets/icon_18dp.png",
-        to: "",
-        flatten: true
       }
     ]),
     new RobotstxtPlugin()
