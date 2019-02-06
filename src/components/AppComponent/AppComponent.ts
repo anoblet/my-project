@@ -70,7 +70,6 @@ export class AppComponent extends Mixin(connect(store)(LitElement), [
     super.connectedCallback();
     // Let's set a default theme
     debug("Setting default theme");
-    // setState({ data: config.defaultTheme, store: store, type: "theme" });
     this.runTasks([
       import(/* webpackChunkName: "MyFlex" */ "../../../packages/my-flex"),
       import(/* webpackChunkName: "MyGrid" */ "../../../packages/my-grid"),
@@ -101,6 +100,7 @@ export class AppComponent extends Mixin(connect(store)(LitElement), [
             // Client is not logged in, nor pending redirect
             if (!user) {
               debug("User is not logged in");
+              resolve();
             }
             // Client is logged in
             if (user) {
