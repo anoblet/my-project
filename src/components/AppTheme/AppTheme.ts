@@ -1,18 +1,22 @@
-import { html, LitElement, property } from "lit-element";
-import { until } from "lit-html/directives/until";
-import { connect } from "pwa-helpers/connect-mixin.js";
-import { config } from "../../../config";
+import "../../../packages/my-grid/GridItem";
+
+import * as style from "./AppTheme.scss";
+import GlobalStyle from "../../GlobalStyle";
+
+import { LitElement, css, html} from "lit-element";
+
 import { BaseMixin } from "../../../packages/BaseMixin";
-import { StateMixin } from "../../../packages/StateMixin";
+import { FirebaseMixin } from "../../../packages/FirebaseMixin";
 import { Mixin } from "../../../packages/Mixin";
-import { store } from "../../Store";
+import { StateMixin } from "../../../packages/StateMixin";
 import { TaskMixin } from "../../../packages/TaskMixin";
 import Template from "./AppThemeTemplate";
-import { FirebaseMixin } from "../../../packages/FirebaseMixin";
-import * as style from "./AppTheme.scss";
-import "../../../packages/my-grid/GridItem";
+import { config } from "../../../config";
+import { connect } from "pwa-helpers/connect-mixin.js";
 import { getCollection } from "../../../packages/firebase-helpers/firebase-helpers";
 import { getDocument } from "../../../packages/firebase-helpers/firebase-helpers";
+import { store } from "../../Store";
+import { until } from "lit-html/directives/until";
 import { updateDocument } from "../../../packages/firebase-helpers/firebase-helpers";
 
 const fields = [
@@ -98,6 +102,10 @@ export class AppTheme extends Mixin(connect(store)(LitElement), [
   stateType: any = "theme";
 
   savedThemes: any = [];
+
+  static get styles() {
+    return GlobalStyle;
+  }
 
   // Lifecycle
   constructor() {
