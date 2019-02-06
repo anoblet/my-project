@@ -56,7 +56,6 @@ export class AppComponent extends Mixin(connect(store)(LitElement), [
   public firebaseConfig = config.firebase;
   public taskPending = true;
   @property() public template: any = template;
-  // public componentStyle: any = style;
 
   // Lifecycle
   constructor() {
