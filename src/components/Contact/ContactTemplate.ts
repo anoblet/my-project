@@ -16,7 +16,9 @@ export default function() {
           </grid-component>
         </form>
       </div>
-      <div slot="actions"><mwc-button>Send</mwc-button></div>
+      <div slot="actions">
+        <mwc-button @click="${this.send}">Send</mwc-button>
+      </div>
     </card-component>
   `;
 }

@@ -1,13 +1,16 @@
-import { html, LitElement, customElement, property } from "lit-element";
-import { connect } from "pwa-helpers/connect-mixin.js";
-import { Mixin } from "../../../packages/Mixin";
-import { store } from "../../Store";
 import * as style from "./Contact.scss";
-import template from "./ContactTemplate";
+
+import { LitElement, customElement, html } from "lit-element";
+
 import GlobalStyle from "../../GlobalStyle";
+import template from "./ContactTemplate";
 
 @customElement("contact-component")
 export class Contact extends LitElement {
+  send() {
+    toast("Email not set up yet");
+  }
+
   static get styles() {
     return [GlobalStyle];
   }
