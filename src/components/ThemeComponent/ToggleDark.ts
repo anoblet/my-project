@@ -7,7 +7,8 @@ export const toggleDark = () => {
   const state = store.getState();
   return html`
     <label>Toggle dark</label>
-    <mwc-switch
+    <input
+      type="checkbox"
       ?checked=${state.settings.dark}
       @change=${(e: any) => {
         const theme = e.target.checked
@@ -34,6 +35,6 @@ export const toggleDark = () => {
           data: { currentTheme: theme }
         });
       }}
-    ></mwc-switch>
+    />
   `;
 };
