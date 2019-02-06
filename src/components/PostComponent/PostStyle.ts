@@ -7,6 +7,11 @@ export default css`
 
   .field {
     margin-bottom: 1em;
+    display: flex;
+  }
+
+  .field > label, input {
+    flex: 1;
   }
 
   .field[pell] {
