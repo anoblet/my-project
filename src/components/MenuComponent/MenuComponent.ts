@@ -11,6 +11,7 @@ import template from "./MenuTemplate";
 import { connect } from "pwa-helpers/connect-mixin.js";
 import { store } from "../../Store";
 import { until } from "lit-html/directives/until";
+import GlobalStyle from "../../GlobalStyle";
 
 export class MenuComponent extends Mixin(connect(store)(LitElement), [
   FirebaseMixin,
@@ -54,6 +55,10 @@ export class MenuComponent extends Mixin(connect(store)(LitElement), [
         document.removeEventListener("contextmenu", this.boundListener);
       }
     }
+  }
+
+  static get styles() {
+    return GlobalStyle
   }
 
   public render() {
