@@ -1,6 +1,8 @@
 import * as style from "./PostGridComponent.scss";
-import { css, LitElement, html, property } from "lit-element";
-import { until } from "lit-html/directives/until";
+
+import { LitElement, css, html, property } from "lit-element";
+
+import GlobalStyle from "../GlobalStyle";
 import template from "./PostGridComponentTemplate";
 
 export class PostGridComponent extends LitElement {
@@ -8,6 +10,7 @@ export class PostGridComponent extends LitElement {
 
   static get styles() {
     return [
+      GlobalStyle,
       css`
         card-component {
           max-width: 100%;
