@@ -104,12 +104,12 @@ export class PostComponent extends Mixin(LitElement, [TemplateMixin]) {
   static get properties() {
     return {
       title: { label: "Title", type: String, description: "Title of the post" },
-      body: { label: "Body", type: String, inputType: "pell" },
       date: { label: "Date", type: String },
       featured: { label: "Featured", type: Boolean },
       id: { label: "ID", type: String },
       author: { label: "Author", type: String },
-      sortOrder: { label: "Sort order", type: Number }
+      sortOrder: { label: "Sort order", type: Number },
+      body: { label: "Body", type: String, inputType: "pell" }
     };
   }
 
