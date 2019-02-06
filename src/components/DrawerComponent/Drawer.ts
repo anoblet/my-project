@@ -1,6 +1,6 @@
 import * as style from "./Drawer.scss";
 
-import { LitElement, css, customElement, html } from "lit-element";
+import { LitElement, customElement } from "lit-element";
 
 import GlobalStyle from "../../GlobalStyle";
 import { Mixin } from "../../../packages/Mixin";
@@ -30,7 +30,7 @@ export class Drawer extends Mixin(connect(store)(LitElement), [StateMixin]) {
   }
 
   static get styles() {
-    return [GlobalStyle, css``];
+    return [GlobalStyle, Style];
   }
 
   render() {
