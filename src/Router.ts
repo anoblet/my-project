@@ -1,4 +1,3 @@
-
 const pathToRegexp = require("path-to-regexp");
 
 /*
@@ -67,19 +66,18 @@ export const handleNavigation = ({ location, portal, routes }: any) => {
     while (portal.firstChild) {
       portal.removeChild(portal.firstChild);
     }
+
+    // If action is set, let's perform th action
     if (matchedRoute.action) {
-      // const html = matchedRoute.action();
-      // const element = <Generic>document.createElement("generic-component");
-      // element.template = html;
-      // portal.appendChild(element);
-    } else {
-      const element = document.createElement(matchedRoute.component);
-      matchedRoute.keys.map((key: any) => {
-        element[key.name] = matchedRoute.data[key.name];
-      });
-      if (element.beforeRender)
-        element.beforeRender().then(() => portal.appendChild(element));
-      else portal.appendChild(element);
+      return;
     }
+
+    const element = document.createElement(matchedRoute.component);
+    matchedRoute.keys.map((key: any) => {
+      element[key.name] = matchedRoute.data[key.name];
+    });
+    if (element.beforeRender)
+      element.beforeRender().then(() => portal.appendChild(element));
+    else portal.appendChild(element);
   }
 };
