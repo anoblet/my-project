@@ -47,7 +47,7 @@ export const renderForm = (
     : component.constructor.properties;
 
   return html`
-  <grid-component style="grid-template-columns: auto min-content">
+  <grid-component>
     ${Object.keys(_properties).map((property: any) => {
       if (property.startsWith("_")) return;
       const field = {
@@ -60,7 +60,6 @@ export const renderForm = (
           ? html`
               <div
                 class="field"
-                ?pell=${_properties[property].inputType === "pell"}
               >
                 <label>${_properties[property].label}</label>
                 ${_properties[property].inputType
