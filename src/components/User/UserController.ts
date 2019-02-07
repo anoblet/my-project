@@ -1,17 +1,17 @@
 import { LitElement, html, property } from "lit-element";
 
-import { FirebaseMixin } from "../../packages/FirebaseMixin";
-import { Mixin } from "../../packages/Mixin";
-import { StateMixin } from "../../packages/StateMixin";
-import { config } from "../../config";
+import { FirebaseMixin } from "../../../packages/FirebaseMixin";
+import { Mixin } from "../../../packages/Mixin";
+import { StateMixin } from "../../../packages/StateMixin";
+import { config } from "../../../config";
 import { connect } from "pwa-helpers/connect-mixin.js";
-import { navigate } from "../Router";
-import { signOut } from "../User";
-import { store } from "../Store";
-import structure from "../post/PostModel";
+import { navigate } from "../../Router";
+import { signOut } from "../../User";
+import { store } from "../../Store";
+import structure from "../../components/Post/PostModel";
 import { until } from "lit-html/directives/until";
 
-import("../components/AppUser/AppUser");
+import("..//AppUser/AppUser");
 
 export interface UserController {
   [key: string]: any; // Add index signature
@@ -53,7 +53,7 @@ export class UserController extends Mixin(connect(store)(LitElement), [
   account() {
     this._template = html`
       ${until(
-        import("../components/User/PageAccount").then(({ default: template }) =>
+        import("./PageAccount").then(({ default: template }) =>
           template()
         )
       )}
@@ -79,7 +79,7 @@ export class UserController extends Mixin(connect(store)(LitElement), [
         type: "text"
       }
     ];
-    import("../components/CollectionGrid/CollectionGrid");
+    import("../CollectionGrid/CollectionGrid");
     const userId = this.state.user.uid;
     let route: string;
     this.getUser().then((user: any) => {

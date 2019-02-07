@@ -1,24 +1,24 @@
-import("../components/PostComponent/PostComponent");
-import("../post/PostGridComponent");
+import("../PostComponent/PostComponent");
+import("./PostGridComponent");
 
-import * as style from "../post/PostController.scss";
+import * as style from "./PostController.scss";
 
 import { LitElement, html, property } from "lit-element";
 
-import { FirebaseMixin } from "../../packages/FirebaseMixin";
-import { Mixin } from "../../packages/Mixin";
-import { StateMixin } from "../../packages/StateMixin";
+import { FirebaseMixin } from "../../../packages/FirebaseMixin";
+import { Mixin } from "../../../packages/Mixin";
+import { StateMixin } from "../../../packages/StateMixin";
 import { connect } from "pwa-helpers/connect-mixin.js";
-import { model } from "../post/PostModel";
-import { navigate } from "../Router";
-import navigation from "../post/NavigationTemplate";
-import { store } from "../Store";
+import { model } from "./PostModel";
+import { navigate } from "../../Router";
+import navigation from "./NavigationTemplate";
+import { store } from "../../Store";
 import { until } from "lit-html/directives/until";
 
-import { getCollection } from "../../packages/firebase-helpers";
-import { deleteDocument } from "../../packages/firebase-helpers";
+import { getCollection } from "../../../packages/firebase-helpers";
+import { deleteDocument } from "../../../packages/firebase-helpers";
 
-import { debug } from "../Debug";
+import { debug } from "../../Debug";
 
 export interface PostController {
   [key: string]: any; // Add index signature

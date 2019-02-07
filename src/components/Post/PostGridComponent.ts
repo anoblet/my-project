@@ -2,7 +2,7 @@ import * as style from "./PostGridComponent.scss";
 
 import { LitElement, css, html, property } from "lit-element";
 
-import GlobalStyle from "../GlobalStyle";
+import GlobalStyle from "../../GlobalStyle";
 import template from "./PostGridComponentTemplate";
 
 export class PostGridComponent extends LitElement {
