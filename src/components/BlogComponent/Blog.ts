@@ -42,7 +42,6 @@ export class Blog extends Mixin(connect(store)(BaseElement), [
   }
 
   shouldUpdate(changedProperties: any) {
-    console.log("Here", this.taskPending);
     if (this.taskPending) return false;
     else return super.shouldUpdate(changedProperties);
   }

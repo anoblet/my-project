@@ -5,7 +5,6 @@ import { isAdmin } from "../../User";
 import { store } from "../../Store";
 
 export default function() {
-  console.log(this.posts);
   const state = store.getState();
   return html`
     <grid-component>
