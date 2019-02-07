@@ -24,6 +24,13 @@ export default function() {
     <card-component .shadow=${false}>
       <div slot="content" style="overflow: initial;">
         <ul>
+          <li><a href="/site-map">Sitemap</a></li>
+        </ul>
+      </div>
+    </card-component>
+    <card-component .shadow=${false}>
+      <div slot="content" style="overflow: initial;">
+        <ul>
           <li><a href="/issue">Report an issue</a></li>
         </ul>
       </div>

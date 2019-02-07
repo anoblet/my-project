@@ -1,4 +1,4 @@
-import { LitElement, customElement, property } from "lit-element";
+import { LitElement, customElement, html, property } from "lit-element";
 import { generateSitemap } from "./Sitemap";
 import { routes } from "../AppComponent/Routes";
 
@@ -7,6 +7,10 @@ class Sitemap extends LitElement {
   @property() template: any;
 
   render() {
-    return generateSitemap(routes);
+    return html`
+      <card-component title="Sitemap">
+        ${generateSitemap(routes)}
+      </card-component>
+    `;
   }
 }
