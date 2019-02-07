@@ -1,10 +1,8 @@
-import * as style from "./Contact.scss";
-
 import { LitElement, customElement, html } from "lit-element";
 
 import GlobalStyle from "../../GlobalStyle";
+import Style from "./Style";
 import template from "./ContactTemplate";
-
 import { toast } from "../../Toast";
 
 @customElement("contact-component")
@@ -14,13 +12,10 @@ export class Contact extends LitElement {
   }
 
   static get styles() {
-    return [GlobalStyle];
+    return [GlobalStyle, Style];
   }
   render() {
     return html`
-      <style>
-        ${style}
-      </style>
       ${template.bind(this)()}
     `;
   }
