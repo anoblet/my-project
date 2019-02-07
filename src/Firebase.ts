@@ -1,5 +1,5 @@
 const loadFirebase = (modules: any = [], callback: any) => {
-  let temp: any = [import(/* webpackChunkName: "Firebase" */ "firebase/app")];
+  const temp: any = [import(/* webpackChunkName: "Firebase" */ "firebase/app")];
   if (modules.includes("auth"))
     temp.push(import(/* webpackChunkName: "Firebase" */ "firebase/auth"));
   if (modules.includes("firestore"))
@@ -11,7 +11,7 @@ const loadFirebase = (modules: any = [], callback: any) => {
 
 export const run = (packages: any, callback: any) => {
   const imports = [];
-  imports.push(import(/* webpackChunkName: "Firebase" */ "firebase/app"))
+  imports.push(import(/* webpackChunkName: "Firebase" */ "firebase/app"));
   packages.includes("auth");
   Promise.all(imports).then(([firebase]) => callback(firebase));
 };

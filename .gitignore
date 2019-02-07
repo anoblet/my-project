@@ -2,3 +2,4 @@
 config.ts
 dist
 node_modules
+tslint.log

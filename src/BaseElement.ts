@@ -1,27 +1,29 @@
 import { LitElement, property } from "lit-element";
 
 export class BaseElement extends LitElement {
-  @property() loaded = false;
-  connectedCallback() {
+  @property() private loaded = false;
+  public connectedCallback() {
     super.connectedCallback();
     this.beforeLoaded().then(() => {
       this.loaded = true;
     });
   }
 
-  async beforeLoaded() {}
+  private async beforeLoaded() {
+    return;
+  }
 
-  shouldUpdate(changedProperties: any) {
+  protected shouldUpdate(changedProperties: any) {
     if (this.loaded) return super.shouldUpdate(changedProperties);
     else {
       return false;
     }
   }
 
-  _setDefaultValue() {
+  private _setDefaultValue() {
     // @ts-ignore
     const properties = this.constructor.properties;
-    Object.keys(properties).map(key => {
+    Object.keys(properties).map((key: string) => {
       // @ts-ignore
       if (properties[key].value) this[key] = properties[key].value;
     });
