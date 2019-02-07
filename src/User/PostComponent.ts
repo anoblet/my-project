@@ -4,7 +4,7 @@ import { LitElement, html, property } from "lit-element";
 
 import { TemplateMixin } from "../../packages/TemplateMixin";
 import { Mixin } from "../../packages/Mixin";
-import Template from "./PostComponentTemplate.ts";
+import Template from "./PostComponentTemplate";
 
 export class PostComponent extends Mixin(LitElement, [TemplateMixin]) {
   @property({ type: Object }) data: any;
