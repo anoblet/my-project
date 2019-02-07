@@ -39,7 +39,7 @@ export default css`
     border: 0;
   }
 
-  input[type=text], input[type=number] {
+  input[type=text], input[type=number], input[type=email] {
     border-bottom: 1px solid var(--border-color);
   }
 
@@ -49,6 +49,7 @@ export default css`
   }
 
   textarea {
+    border: 1px solid var(--border-color);
     padding: 1em;
   }
 `;

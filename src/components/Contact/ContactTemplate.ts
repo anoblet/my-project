@@ -8,9 +8,9 @@ export default function() {
         <form>
           <grid-component>
             <label>Email</label
-            ><input name="email" placeholder="john@example.com" />
+            ><input name="email" type="email" placeholder="john@example.com" />
             <label>Subject</label
-            ><input name="subject" placeholder="Subject" />
+            ><input name="subject" type="text" placeholder="Subject" />
             <label>Message</label
             ><textarea name="message" placeholder="Message"></textarea>
           </grid-component>
