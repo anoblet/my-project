@@ -1,4 +1,4 @@
-const loadFirebase = (modules: any = [], callback: any) => {
+export const loadFirebase = (modules: any = [], callback: any) => {
   const temp: any = [import(/* webpackChunkName: "Firebase" */ "firebase/app")];
   if (modules.includes("auth"))
     temp.push(import(/* webpackChunkName: "Firebase" */ "firebase/auth"));
