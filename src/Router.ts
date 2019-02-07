@@ -1,4 +1,4 @@
-const pathToRegexp = require("path-to-regexp");
+import pathToRegexp from "path-to-regexp";
 
 /*
   Example:
@@ -21,7 +21,7 @@ const pathToRegexp = require("path-to-regexp");
 let globalRoutes: any = [];
 let globalPortal: any;
 
-export interface route {
+export interface IRoute {
   path: string;
   component: string;
   src?: any;

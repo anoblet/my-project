@@ -1,11 +1,11 @@
-import { route } from "../../Router";
+import { IRoute } from "../../Router";
 import { getReadme } from "../Readme/Readme";
 
 export const routes = [
   {
     path: "",
     component: "page-home"
-  } as route,
+  } as IRoute,
   {
     path: "/admin",
     component: "admin-component",
