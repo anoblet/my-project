@@ -103,12 +103,12 @@ export class PostComponent extends Mixin(LitElement, [TemplateMixin]) {
   // Property editor respects this order...
   static get properties() {
     return {
+      id: { disabled: true, label: "ID", type: String },
       title: { label: "Title", type: String, description: "Title of the post" },
-      date: { label: "Date", type: String },
-      featured: { label: "Featured", type: Boolean },
-      id: { label: "ID", type: String },
       author: { label: "Author", type: String },
+      date: { label: "Date", type: String },
       sortOrder: { label: "Sort order", type: Number },
+      featured: { label: "Featured", type: Boolean },
       body: { label: "Body", type: String, inputType: "pell" }
     };
   }

@@ -50,17 +50,17 @@ export const renderForm = (
   <grid-component>
     ${Object.keys(_properties).map((property: any) => {
       if (property.startsWith("_")) return;
+      console.log(_properties[property]);
       const field = {
+        disabled: _properties[property].disabled,
         name: property,
-        value: component[property],
-        onChange
+        onChange,
+        value: component[property]
       };
       return html`
         ${_properties[property].inputType !== "pell"
           ? html`
-              <div
-                class="field"
-              >
+              <div class="field">
                 <label>${_properties[property].label}</label>
                 ${_properties[property].inputType
                   ? html`
