@@ -21,7 +21,7 @@ export const getForm = () =>
     });
 
 export class AppUser extends LitElement {
-  getForm() {
+  public getForm() {
     return Promise.all([
       import(/* webpackChunkName: "FirebaseApp" */ "firebase/app"),
       import(/* webpackChunkName: "FirebaseUI" */ "firebaseui")
@@ -42,7 +42,7 @@ export class AppUser extends LitElement {
     return [uiStyle];
   }
 
-  render() {
+  public render() {
     return template.bind(this)();
   }
 }

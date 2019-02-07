@@ -10,7 +10,7 @@ export class UserComponent extends LitElement {
     return [globalStyle, style];
   }
 
-  render() {
+  public render() {
     return template.bind(this)();
   }
 }

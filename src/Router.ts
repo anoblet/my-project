@@ -45,7 +45,7 @@ export const handleNavigation = ({ location, portal, routes }: any) => {
   portal = portal || globalPortal;
   routes = routes || globalRoutes;
   routes.map((route: any) => {
-    let keys: any = [];
+    const keys: any = [];
     const regex = pathToRegexp(route.path, keys);
     const match = regex.exec(location.pathname);
     if (!match) return;
@@ -53,7 +53,7 @@ export const handleNavigation = ({ location, portal, routes }: any) => {
       match.shift();
       matchedRoute = route;
       matchedRoute.keys = keys;
-      let data: any = {};
+      const data: any = {};
       keys.map((key: any, index: number) => {
         data[key.name] = match[index];
       });

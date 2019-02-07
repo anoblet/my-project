@@ -2,11 +2,11 @@ import { LitElement, html, customElement, property } from "lit-element";
 
 @customElement("form-component")
 export class FormComponent extends LitElement {
-  @property() fields: unknown;
+  @property() public fields: unknown;
 
-  _data = {};
+  public _data = {};
 
-  render() {
+  public render() {
     return html``;
   }
 }

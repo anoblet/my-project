@@ -28,10 +28,10 @@ export class PostController extends Mixin(LitElement, [
   FirebaseMixin,
   StateMixin
 ]) {
-  @property({ type: String }) action: string = "index";
-  template: any;
+  @property({ type: String }) public action: string = "index";
+  public template: any;
 
-  connectedCallback() {
+  public connectedCallback() {
     if (super.connectedCallback) super.connectedCallback();
     this.addEventListener("item-deleted", (e: any) =>
       this.itemDeleted(e.detail)
@@ -39,7 +39,7 @@ export class PostController extends Mixin(LitElement, [
     this.setStore(store);
   }
 
-  firstUpdated() {
+  public firstUpdated() {
     if (super.firstUpdated) super.firstUpdated();
     this.action = this.action || "index";
     debug(this.action);
@@ -51,36 +51,36 @@ export class PostController extends Mixin(LitElement, [
     if (this.action !== "read") this.requestUpdate();
   }
 
-  create() {
+  public create() {
     this.template = html`
       <post-component create editable></post-component>
     `;
     this.requestUpdate();
   }
 
-  edit(id: string) {
+  public edit(id: string) {
     this.template = html`
       <post-component editable id="${id}"></post-component>
     `;
     this.requestUpdate();
   }
 
-  itemDeleted(item: any) {
+  public itemDeleted(item: any) {
     deleteDocument({ path: `posts/${item.id}` });
   }
 
-  read(id: any) {
+  public read(id: any) {
     return id && id != "undefined" ? this.readSingle(id) : this.readMulti();
   }
 
-  readSingle(id: string) {
+  public readSingle(id: string) {
     this.template = html`
       <post-component id="${id}"></post-component>
     `;
     this.requestUpdate();
   }
 
-  readMulti() {
+  public readMulti() {
     const renderGrid = (collection: any) => {
       this.template = html`
         <post-grid-component .items="${collection}"></post-grid-component>
@@ -95,7 +95,7 @@ export class PostController extends Mixin(LitElement, [
     });
   }
 
-  submitForm(e: any) {
+  public submitForm(e: any) {
     e.preventDefault();
     const data: any = {};
     data.title = this.shadowRoot.querySelector("[name='title']").value;
@@ -112,7 +112,7 @@ export class PostController extends Mixin(LitElement, [
     });
   }
 
-  render() {
+  public render() {
     return html`
       <style>
         ${style}

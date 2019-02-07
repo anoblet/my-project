@@ -7,10 +7,10 @@ import { toast } from "../ToastComponent/Toast";
 // Should this be a view only component or get it's own data?
 @customElement("issue-component")
 export class IssueComponent extends LitElement {
-  @property({ type: Object }) _data: any = {};
+  @property({ type: Object }) public _data: any = {};
 
   // What if saveForm didn't rely on this but took an argument?
-  saveForm() {
+  public saveForm() {
     createIssue({ data: this._data })
       .then(() => toast("Issue created"))
       .catch((response: any) => toast(`Could not create issue: ${response}`));
@@ -41,7 +41,7 @@ export class IssueComponent extends LitElement {
     return styles;
   }
 
-  render() {
+  public render() {
     return html`
       <card-component title="Create an issue">
         <div slot="content">

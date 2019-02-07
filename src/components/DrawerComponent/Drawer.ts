@@ -10,10 +10,10 @@ import { connect } from "pwa-helpers/connect-mixin.js";
 import { store } from "../../Store";
 import template from "./DrawerTemplate";
 
-//@customElement("app-drawer")
+// @customElement("app-drawer")
 @customElement("drawer-component")
 export class Drawer extends LitElement {
-  firstUpdated() {
+  public firstUpdated() {
     // Close drawer on link click
     const links = this.shadowRoot.querySelectorAll("a");
     links.forEach((link: any) =>
@@ -22,7 +22,7 @@ export class Drawer extends LitElement {
   }
 
   // Handlers
-  _closeDrawer() {
+  public _closeDrawer() {
     this.dispatchEvent(
       new CustomEvent("close-drawer", {
         composed: true
@@ -34,7 +34,7 @@ export class Drawer extends LitElement {
     return [GlobalStyle, Style];
   }
 
-  render() {
+  public render() {
     return template.bind(this)();
   }
 }

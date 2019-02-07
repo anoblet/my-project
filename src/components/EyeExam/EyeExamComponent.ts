@@ -18,12 +18,12 @@ const checkDuplicate: any = (input: any, criteria: string) => {
 export interface config {}
 
 export interface exam {
-  lines: Array<line>;
+  lines: line[];
 }
 
 export interface line {
   size: string;
-  results: Array<result>;
+  results: result[];
 }
 
 export interface result {
@@ -50,35 +50,35 @@ const validateResult = (e: any, expectation: string) => {
 const steps = [10, 8, 6.25, 5, 4, 3.125, 2.5, 2, 1];
 
 export class EyeExamComponent extends LitElement {
-  @property() correctPerLine: number = 3;
-  @property() character: string;
-  @property() currentIndex: number = -1;
-  @property() distanceFromScreen: number = 20; // Arbitrary at this point
-  @property() finished: boolean = false;
-  @property() fullscreen: boolean;
-  @property() showHistory: boolean = true
-  @property() showNavigation: boolean = true;
-  @property() showRecord: boolean = true;
-  @property() perLine: number = 5;
-  @property() perLineThreshold: number = 0.5;
-  @property({ type: Array }) report: any = [];
-  @property() startFontSize: any = "10em";
-  @property({ type: Array }) history: any = [];
-  @property({ type: String }) fontSize: string;
+  @property() public correctPerLine: number = 3;
+  @property() public character: string;
+  @property() public currentIndex: number = -1;
+  @property() public distanceFromScreen: number = 20; // Arbitrary at this point
+  @property() public finished: boolean = false;
+  @property() public fullscreen: boolean;
+  @property() public showHistory: boolean = true;
+  @property() public showNavigation: boolean = true;
+  @property() public showRecord: boolean = true;
+  @property() public perLine: number = 5;
+  @property() public perLineThreshold: number = 0.5;
+  @property({ type: Array }) public report: any = [];
+  @property() public startFontSize: any = "10em";
+  @property({ type: Array }) public history: any = [];
+  @property({ type: String }) public fontSize: string;
 
   constructor() {
     super();
     this.mapWebSpeechEvents();
   }
 
-  mapWebSpeechEvents() {
+  public mapWebSpeechEvents() {
     WebSpeechInstance.onResult = (e: any) => this.onResult(e);
     WebSpeechInstance.onNoMatch = (e: any) => this.onNoMatch(e);
     WebSpeechInstance.onError = (e: any) => this.onError(e);
     WebSpeechInstance.onEnd = (e: any) => this.onEnd(e);
   }
 
-  onEnd(e: any) {
+  public onEnd(e: any) {
     debug("On end");
     if (this.history[this.currentIndex - 1])
       if (!this.history[this.currentIndex - 1].answer) {
@@ -86,18 +86,18 @@ export class EyeExamComponent extends LitElement {
       }
   }
 
-  onError(e: any) {
+  public onError(e: any) {
     console.log(e);
     toast("Please try again");
     setTimeout(this.record, 250);
   }
 
-  onNoMatch(e: any) {
+  public onNoMatch(e: any) {
     console.log(e);
     toast("No match");
   }
 
-  onResult(e: any) {
+  public onResult(e: any) {
     const answer = this.getResult(e);
     const lower = answer.toLowerCase();
 
@@ -120,19 +120,19 @@ export class EyeExamComponent extends LitElement {
     }
   }
 
-  getResult(e: any) {
+  public getResult(e: any) {
     const currentIndex = e.results.length - 1;
     return e.results[currentIndex][0].transcript;
   }
 
-  getCharacter() {
+  public getCharacter() {
     const letters = "abcdefghijklmnopqrstuvwxyz";
     return letters.charAt(Math.floor(Math.random() * letters.length));
   }
 
-  start() {}
+  public start() {}
 
-  next() {
+  public next() {
     if (this.currentIndex !== -1)
       if (!this.history[this.currentIndex].answer) {
         toast("Answer is needed");
@@ -152,13 +152,13 @@ export class EyeExamComponent extends LitElement {
       };
       this.history.push(step);
     } else {
-      this.character = this.history[this.currentIndex + 1]["expectation"];
+      this.character = this.history[this.currentIndex + 1].expectation;
     }
     this.currentIndex++;
     setTimeout(this.record, 500);
   }
 
-  previous() {
+  public previous() {
     if (!this.history.length) {
       toast("No history");
       return;
@@ -167,11 +167,11 @@ export class EyeExamComponent extends LitElement {
       toast("Beyondd range");
       return;
     }
-    this.character = this.history[this.currentIndex - 1]["expectation"];
+    this.character = this.history[this.currentIndex - 1].expectation;
     this.currentIndex--;
   }
 
-  record() {
+  public record() {
     WebSpeechInstance.recognition.start();
   }
 
@@ -181,14 +181,14 @@ export class EyeExamComponent extends LitElement {
    * @return void
    * */
 
-  setSize(size: string) {
-    const character = <HTMLElement>this.renderRoot.querySelector("#character");
+  public setSize(size: string) {
+    const character = this.renderRoot.querySelector("#character") as HTMLElement;
     character.style.fontSize = size;
   }
 
   // Lifecycle methods
 
-  firstUpdated() {
+  public firstUpdated() {
     this.fontSize = "152pt";
   }
 

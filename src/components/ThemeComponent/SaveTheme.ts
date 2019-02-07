@@ -10,7 +10,7 @@ const saveTheme = (name: string, scope: any) => {
   addDocument({
     path: `users/${state.user.uid}/settings/theme/savedThemes`,
     data: { ...state.theme, ...{ name } }
-  }).then(() => fireToast("Theme saved!"))
+  }).then(() => fireToast("Theme saved!"));
 };
 
 export default function() {
@@ -20,9 +20,9 @@ export default function() {
       outlined
       @click="${
         (e: any) => {
-          const field = <HTMLInputElement>(
+          const field = (
             this.renderRoot.querySelector("#name")
-          );
+          ) as HTMLInputElement;
           saveTheme(field.value, this);
         }
       }"

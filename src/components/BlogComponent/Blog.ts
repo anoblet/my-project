@@ -19,9 +19,9 @@ export class Blog extends Mixin(connect(store)(BaseElement), [
   // TaskMixin
 ]) {
   // @property() loaded: any;
-  loaded = false;
-  taskPending = true;
-  @property() posts: any = [];
+  public loaded = false;
+  public taskPending = true;
+  @property() public posts: any = [];
 
   constructor() {
     super();
@@ -41,7 +41,7 @@ export class Blog extends Mixin(connect(store)(BaseElement), [
     });
   }
 
-  shouldUpdate(changedProperties: any) {
+  public shouldUpdate(changedProperties: any) {
     if (this.taskPending) return false;
     else return super.shouldUpdate(changedProperties);
   }

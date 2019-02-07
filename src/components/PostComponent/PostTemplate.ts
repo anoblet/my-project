@@ -3,7 +3,7 @@ import { unsafeHTML } from "lit-html/directives/unsafe-html";
 import { structure } from "./PostStructure";
 
 function search(nameKey: string, myArray: any) {
-  for (var i = 0; i < myArray.length; i++) {
+  for (let i = 0; i < myArray.length; i++) {
     if (myArray[i].name === nameKey) {
       return myArray[i];
     }

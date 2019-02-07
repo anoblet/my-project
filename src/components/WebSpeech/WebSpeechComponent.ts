@@ -16,22 +16,22 @@ declare global {
 
 const SpeechRecognition =
   window.SpeechRecognition || window.webkitSpeechRecognition;
-var SpeechGrammarList =
+let SpeechGrammarList =
   window.SpeechGrammarList || window.webkitSpeechGrammarList;
-var SpeechRecognitionEvent =
+let SpeechRecognitionEvent =
   window.SpeechRecognitionEvent || window.webkitSpeechRecognitionEvent;
 
-var grammar =
+let grammar =
   "#JSGF V1.0; grammar letters; public <letter> = " +
   letters.join(". | ") +
   " ;";
 
 export class WebSpeech extends LitElement {
-  recognition: any;
-  recognitionList: any;
-  @property() result: string;
+  public recognition: any;
+  public recognitionList: any;
+  @property() public result: string;
 
-  connectedCallback() {
+  public connectedCallback() {
     super.connectedCallback();
     if (!SpeechRecognition) alert("No speech recognition");
     if (!SpeechGrammarList) alert("No speech grammer list");
@@ -56,7 +56,7 @@ export class WebSpeech extends LitElement {
     };
   }
 
-  onResult(event: any) {
+  public onResult(event: any) {
     const currentIndex = event.results.length - 1;
     this.result = event.results[currentIndex][0].transcript;
   }

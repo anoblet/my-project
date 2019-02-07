@@ -2,26 +2,26 @@ import { css, html, LitElement, property } from "lit-element";
 import { getDocument } from "../../../packages/firebase-helpers";
 
 export class Document extends LitElement {
-  @property({ type: String }) path: string;
-  _data: any;
+  @property({ type: String }) public path: string;
+  public _data: any;
 
-  template: any = () =>
+  public template: any = () =>
     html`
       ${JSON.stringify(this._data)}
-    `;
+    `
 
-  async firstUpdated() {
+  public async firstUpdated() {
     this._data = await getDocument(this.path);
   }
 
-  create() {}
-  async read() {
+  public create() {}
+  public async read() {
     this._data = await getDocument(this.path);
   }
-  update() {}
-  delete() {}
+  public update() {}
+  public delete() {}
 
-  render() {
+  public render() {
     return this.template();
   }
 }

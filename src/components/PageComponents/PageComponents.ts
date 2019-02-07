@@ -13,9 +13,9 @@ import(/* webpackChunkName: "PropertyEditor" */ "../PropertyEditor/PropertyEdito
 const components = ["eye-chart"];
 
 export class PageComponents extends LitElement {
-  @property() component: string;
+  @property() public component: string;
 
-  firstUpdated() {
+  public firstUpdated() {
     // if(this.component)
   }
 

@@ -7,14 +7,14 @@ import { toast } from "../../Toast";
 
 @customElement("contact-component")
 export class Contact extends LitElement {
-  send() {
+  public send() {
     setTimeout(() => toast("Our email has not been set up yet :/"), 2000);
   }
 
   static get styles() {
     return [GlobalStyle, Style];
   }
-  render() {
+  public render() {
     return html`
       ${template.bind(this)()}
     `;

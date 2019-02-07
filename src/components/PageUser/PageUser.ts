@@ -17,35 +17,35 @@ export class PageUser extends Mixin(connect(store)(LitElement), [
   StateMixin,
   FirebaseMixin
 ]) {
-  @property({ type: String }) action: string = "index";
+  @property({ type: String }) public action: string = "index";
 
-  connectedCallback() {
+  public connectedCallback() {
     super.connectedCallback();
     this[this.action]();
   }
 
-  index() {
+  public index() {
     this._template = html`
       ${until(this.getActionTemplate("index"), "")}
     `;
   }
 
-  signin() {}
+  public signin() {}
 
-  signout() {
+  public signout() {
     this._template = html`
       <pre>${this.state}</pre>
     `;
     signOut();
   }
 
-  getActionTemplate(action: string) {
+  public getActionTemplate(action: string) {
     return import(`./${action}`).then((module: any) => {
       return module.default.bind(this)(this.state);
     });
   }
 
-  render() {
+  public render() {
     return html`
       ${this._template}
     `;

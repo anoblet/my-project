@@ -2,7 +2,6 @@ import { html } from "lit-element";
 
 const defaultOnChange = (e: any) => (this._data[name] = e.detail.value);
 
-
 export const renderNumber = ({
   disabled,
   name,

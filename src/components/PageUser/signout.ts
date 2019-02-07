@@ -1,3 +1,3 @@
-import { signOut } from "../../User"
+import { signOut } from "../../User";
 
 signOut();

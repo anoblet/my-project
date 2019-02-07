@@ -17,7 +17,7 @@ const getTrue = (data: any) => {
 };
 
 export class Report extends LitElement {
-  @property() exam: string;
+  @property() public exam: string;
 
   static get properties() {
     return {
@@ -28,7 +28,7 @@ export class Report extends LitElement {
     };
   }
 
-  firstUpdated() {
+  public firstUpdated() {
     getTrue(this.exam);
   }
 

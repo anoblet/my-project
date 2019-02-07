@@ -4,21 +4,21 @@ import { template } from "./ToastTemplate";
 import globalStyle from "../../GlobalStyle";
 
 export class ToastComponent extends LitElement {
-  @property({ type: Boolean, reflect: true }) hidden: boolean = true;
-  @property() message: string;
-  toastFire: any;
+  @property({ type: Boolean, reflect: true }) public hidden: boolean = true;
+  @property() public message: string;
+  public toastFire: any;
 
   constructor() {
     super();
     this.toastFire = (e: any) => this.fire(e.detail);
   }
 
-  connectedCallback() {
+  public connectedCallback() {
     super.connectedCallback();
     document.addEventListener("toast-fire", this.toastFire);
   }
 
-  fire(message: string) {
+  public fire(message: string) {
     this.message = message;
     this.hidden = false;
     setTimeout(() => (this.hidden = true), 4000);
@@ -46,7 +46,7 @@ export class ToastComponent extends LitElement {
     ];
   }
 
-  render() {
+  public render() {
     return template.bind(this)();
   }
 }

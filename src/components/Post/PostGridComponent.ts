@@ -6,7 +6,7 @@ import GlobalStyle from "../../GlobalStyle";
 import template from "./PostGridComponentTemplate";
 
 export class PostGridComponent extends LitElement {
-  @property({ type: Array }) items: any;
+  @property({ type: Array }) public items: any;
 
   static get styles() {
     return [
@@ -19,7 +19,7 @@ export class PostGridComponent extends LitElement {
     ];
   }
 
-  deleteItem(index: Number) {
+  public deleteItem(index: Number) {
     const items = this.items;
     const item = items.splice(index, 1);
     this.items = [...items];
@@ -31,7 +31,7 @@ export class PostGridComponent extends LitElement {
     );
   }
 
-  render() {
+  public render() {
     return html`
       <style>
         ${style}

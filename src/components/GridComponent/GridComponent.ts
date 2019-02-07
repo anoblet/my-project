@@ -4,7 +4,7 @@ import template from "./GridTemplate";
 
 @customElement("grid-component")
 export class GridComponent extends LitElement {
-  render() {
+  public render() {
     return html`
       <style>
         ${style}

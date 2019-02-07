@@ -6,7 +6,7 @@ import { Mixin } from "../../../packages/Mixin";
 import Template from "./AppFooterTemplate";
 
 export class AppFooter extends Mixin(LitElement, [TemplateMixin]) {
-  template = Template;
+  public template = Template;
 }
 
 window.customElements.define("app-footer", AppFooter);

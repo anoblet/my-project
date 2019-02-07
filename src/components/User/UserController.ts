@@ -21,17 +21,17 @@ export class UserController extends Mixin(connect(store)(LitElement), [
   FirebaseMixin,
   StateMixin
 ]) {
-  @property({ type: String }) action: string = "index";
-  @property({ type: Object }) data: any;
-  @property({ type: String }) tail: any;
-  _template: any;
+  @property({ type: String }) public action: string = "index";
+  @property({ type: Object }) public data: any;
+  @property({ type: String }) public tail: any;
+  public _template: any;
 
-  connectedCallback() {
+  public connectedCallback() {
     super.connectedCallback();
     this.setStore(store);
   }
 
-  firstUpdated() {
+  public firstUpdated() {
     if (super.firstUpdated) {
       super.firstUpdated();
     }
@@ -46,11 +46,11 @@ export class UserController extends Mixin(connect(store)(LitElement), [
     }
   }
 
-  index() {
+  public index() {
     alert("Hi");
   }
 
-  account() {
+  public account() {
     this._template = html`
       ${until(
         import("./PageAccount").then(({ default: template }) =>
@@ -61,11 +61,11 @@ export class UserController extends Mixin(connect(store)(LitElement), [
     this.requestUpdate();
   }
 
-  post() {
+  public post() {
     this.posts();
   }
 
-  posts() {
+  public posts() {
     const model = [
       {
         label: "Author",
@@ -99,14 +99,14 @@ export class UserController extends Mixin(connect(store)(LitElement), [
     });
   }
 
-  signin() {
+  public signin() {
     this._template = html`
       <app-user></app-user>
     `;
     this.requestUpdate();
   }
 
-  signout() {
+  public signout() {
     // const user = new User();
     // user.signOut();
     signOut();
@@ -115,14 +115,14 @@ export class UserController extends Mixin(connect(store)(LitElement), [
     navigate("/");
   }
 
-  theme() {
+  public theme() {
     this._template = html`
       <app-theme></app-theme>
     `;
     this.requestUpdate();
   }
 
-  render() {
+  public render() {
     return html`
       <style>
         :host {

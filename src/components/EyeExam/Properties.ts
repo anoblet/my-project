@@ -2,7 +2,7 @@ export const properties = (component: any) => [
   {
     label: "Auto-start",
     name: "autoStart",
-    onChange: (e: any) => component["autoStart"] = e.target.checked,
+    onChange: (e: any) => component.autoStart = e.target.checked,
     type: Boolean
   },
   {
@@ -13,7 +13,7 @@ export const properties = (component: any) => [
   {
     label: "Hide navigation",
     name: "hideNavigation",
-    onChange: (e: any) => component["hideNavigation"] = e.target.checked,
+    onChange: (e: any) => component.hideNavigation = e.target.checked,
     type: Boolean
   }
-]
+];

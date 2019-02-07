@@ -8,9 +8,9 @@ import ComponentStyle from "./Style";
 import { getUser } from "../../../packages/firebase-helpers";
 
 export class AppHeader extends LitElement {
-  @query("mwc-fab") fab: any;
+  @query("mwc-fab") public fab: any;
 
-  firstUpdated() {
+  public firstUpdated() {
     getUser({
       callback: (user: any) => {
         if (user) this.setButtonBackground(user);
@@ -22,7 +22,7 @@ export class AppHeader extends LitElement {
     });
   }
 
-  setButtonBackground(user: any = false) {
+  public setButtonBackground(user: any = false) {
     const fab = this.querySelector("#userProfile");
     const button = fab.shadowRoot.querySelector("button");
     if (button)
@@ -32,7 +32,7 @@ export class AppHeader extends LitElement {
       }
   }
 
-  resetButton() {
+  public resetButton() {
     const fab = this.querySelector("#userProfile");
     const button = fab.shadowRoot.querySelector("button");
     if (button) {
@@ -45,7 +45,7 @@ export class AppHeader extends LitElement {
     return [ComponentStyle];
   }
 
-  render() {
+  public render() {
     return html`
       <style>
         ${style}

@@ -2,10 +2,10 @@ import { route } from "../../Router";
 import { getReadme } from "../Readme/Readme";
 
 export const routes = [
-  <route>{
+  {
     path: "",
     component: "page-home"
-  },
+  } as route,
   {
     path: "/admin",
     component: "admin-component",

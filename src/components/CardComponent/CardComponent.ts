@@ -4,19 +4,19 @@ import template from "./CardTemplate";
 
 @customElement("card-component")
 export class CardComponent extends LitElement {
-  @property({ type: Boolean }) collapsible: boolean = false;
-  @property({ type: Boolean, reflect: true }) collapsed: boolean = false;
-  @property({ type: Boolean, reflect: true }) shadow: boolean = true;
+  @property({ type: Boolean }) public collapsible: boolean = false;
+  @property({ type: Boolean, reflect: true }) public collapsed: boolean = false;
+  @property({ type: Boolean, reflect: true }) public shadow: boolean = true;
 
-  firstUpdated(changedProperties: any) {
+  public firstUpdated(changedProperties: any) {
     this.addListeners();
   }
 
-  toggle() {
+  public toggle() {
     this.collapsed = !this.collapsed;
   }
 
-  addListeners() {
+  public addListeners() {
     if (this.collapsible) {
       const title = this.shadowRoot.querySelector("#title");
       if (title) title.addEventListener("click", () => this.toggle());
@@ -32,7 +32,7 @@ export class CardComponent extends LitElement {
       `
     ];
   }
-  render() {
+  public render() {
     return html`
       <style>
         ${style}

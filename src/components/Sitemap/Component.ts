@@ -4,9 +4,9 @@ import { routes } from "../AppComponent/Routes";
 
 @customElement("sitemap-component")
 class Sitemap extends LitElement {
-  @property() template: any;
+  @property() public template: any;
 
-  render() {
+  public render() {
     return html`
       <card-component title="Sitemap">
         ${generateSitemap(routes)}

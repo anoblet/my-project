@@ -35,13 +35,13 @@ const getAppSettings = () => {
     const app = {
       settings: document
     };
-    setState({ data: app, store: store, type: "app" });
+    setState({ data: app, store, type: "app" });
     setDefaultTheme(document.defaultTheme);
   });
 };
 
 const setDefaultTheme = (theme: any) => {
-  setState({ data: theme, store: store, type: "theme" });
+  setState({ data: theme, store, type: "theme" });
 };
 
 export class AppComponent extends Mixin(connect(store)(LitElement), [
@@ -65,7 +65,7 @@ export class AppComponent extends Mixin(connect(store)(LitElement), [
     this.addReducer("settings");
   }
 
-  connectedCallback() {
+  public connectedCallback() {
     super.connectedCallback();
     // Let's set a default theme
     debug("Setting default theme");
@@ -89,7 +89,7 @@ export class AppComponent extends Mixin(connect(store)(LitElement), [
       import(/* webpackChunkName: "MenuComponent" */ "../MenuComponent/MenuComponent"),
       import(/* webpackChunkName: "MenuComponent" */ "../MenuComponent/MenuComponent"),
       import(/* webpackChunkName: "ToastComponent" */ "../ToastComponent/ToastComponent"),
-      new Promise(async resolve => {
+      new Promise(async (resolve) => {
         debug("Run init methods");
         await initApp(this.firebaseConfig);
         await checkRedirect();
@@ -113,7 +113,7 @@ export class AppComponent extends Mixin(connect(store)(LitElement), [
                 uid: user.uid
               };
               // Load theme from Firebase
-              await new Promise(resolve => {
+              await new Promise((resolve) => {
                 getDocument({
                   path: `users/${user.uid}/settings/theme`,
                   callback: (document: any) => {
@@ -126,9 +126,9 @@ export class AppComponent extends Mixin(connect(store)(LitElement), [
                 });
               });
               // Map to state (document): user
-              await setState({ data: userModel, store: store, type: "user" });
+              await setState({ data: userModel, store, type: "user" });
               // Load settings from firebaseConfig
-              await new Promise(resolve => {
+              await new Promise((resolve) => {
                 getDocument({
                   path: `users/${user.uid}/settings/default`,
                   callback: (document: any) => {
@@ -153,17 +153,17 @@ export class AppComponent extends Mixin(connect(store)(LitElement), [
     installOfflineWatcher((offline: boolean) => {});
   }
 
-  registerlisteners() {
+  public registerlisteners() {
     this.addEventListener("close-drawer", this._closeDrawer);
     this.addEventListener("drawer-toggled", this._toggleDrawer);
   }
 
-  shouldUpdate(changedProperties: any) {
+  public shouldUpdate(changedProperties: any) {
     if (this.taskPending) return false;
     return super.shouldUpdate(changedProperties);
   }
 
-  firstUpdated() {
+  public firstUpdated() {
     this.dispatchEvent(
       new CustomEvent("app-loaded", {
         bubbles: true,
@@ -181,7 +181,7 @@ export class AppComponent extends Mixin(connect(store)(LitElement), [
     );
   }
 
-  _closeDrawer() {
+  public _closeDrawer() {
     this.drawerOpened = false;
   }
 

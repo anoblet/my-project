@@ -21,18 +21,18 @@ export interface PostComponent {
 }
 
 export class PostComponent extends Mixin(LitElement, [TemplateMixin]) {
-  @property({ type: Boolean }) editable: boolean;
-  @property({ type: String }) content: string;
-  @property({ type: Boolean }) create: boolean;
+  @property({ type: Boolean }) public editable: boolean;
+  @property({ type: String }) public content: string;
+  @property({ type: Boolean }) public create: boolean;
 
-  template = template;
+  public template = template;
 
   constructor() {
     super();
     this.model = structure;
   }
 
-  connectedCallback() {
+  public connectedCallback() {
     super.connectedCallback();
     if (this.id)
       getDocument({
@@ -49,7 +49,7 @@ export class PostComponent extends Mixin(LitElement, [TemplateMixin]) {
       });
   }
 
-  text({ field, value }: any) {
+  public text({ field, value }: any) {
     return html`
       <label>${field.label}</label>:
       <input
@@ -61,13 +61,13 @@ export class PostComponent extends Mixin(LitElement, [TemplateMixin]) {
     `;
   }
 
-  textarea({ field, value }: any) {
+  public textarea({ field, value }: any) {
     return html`
       <textarea name="${field.name}">${value}</textarea>
     `;
   }
 
-  submitForm(e: any) {
+  public submitForm(e: any) {
     e.preventDefault();
     const title = this.shadowRoot.querySelector("[name='title']").value;
     const author = this.shadowRoot.querySelector("[name='author']").value;
@@ -85,14 +85,14 @@ export class PostComponent extends Mixin(LitElement, [TemplateMixin]) {
       addDocument({ path: "posts", data })
         .then((result: any) => {})
         .then(() => toast("Document added"))
-        .catch(error => toast("Error"));
+        .catch((error) => toast("Error"));
     } else {
       updateDocument({ path: `posts/${this.id}`, data })
         .then((result: any) => {
           this.editable = !this.editable;
         })
         .then(() => toast("Document updated"))
-        .catch(error =>
+        .catch((error) =>
           toast(
             "Error, could not update the document. Maybe you do not have the right permissions?"
           )
@@ -117,7 +117,7 @@ export class PostComponent extends Mixin(LitElement, [TemplateMixin]) {
     return [globalStyle, style];
   }
 
-  render() {
+  public render() {
     return this.loaded
       ? html`
           <card-component>

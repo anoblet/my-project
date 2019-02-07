@@ -2,7 +2,7 @@ import { css, html, LitElement, customElement, property } from "lit-element";
 
 @customElement("button-component")
 export class ButtonComponent extends LitElement {
-  @property() label: string;
+  @property() public label: string;
 
   static get styles() {
     return [
@@ -20,7 +20,7 @@ export class ButtonComponent extends LitElement {
     ];
   }
 
-  render() {
+  public render() {
     return html`
       <button>${this.label}</button>
     `;

@@ -11,7 +11,7 @@ import { fields } from "./Settings";
 import(/* webpackChunkName: "CardComponent" */ "../CardComponent/CardComponent");
 import(/* webpackChunkName: "GridComponent" */ "../GridComponent/GridComponent");
 
-var objectPath = require("object-path");
+let objectPath = require("object-path");
 
 export interface AdminComponent {
   [key: string]: any; // Add index signature
@@ -27,11 +27,11 @@ export class AdminComponent extends Mixin(connect(store)(LitElement), [
 
   constructor() {
     super();
-    //this.setStore(store);
+    // this.setStore(store);
     // this.addReducer("app/settings");
   }
 
-  find(path: string, object: any) {
+  public find(path: string, object: any) {
     const parts = path.split("/");
     let value = object;
     try {
@@ -46,7 +46,7 @@ export class AdminComponent extends Mixin(connect(store)(LitElement), [
     return value;
   }
 
-  valueChanged(e: any) {
+  public valueChanged(e: any) {
     const state = store.getState();
     const path = `users/${state.user.uid}/settings/default`;
 
@@ -60,7 +60,7 @@ export class AdminComponent extends Mixin(connect(store)(LitElement), [
     // this.setState({ settings }, "app");
   }
 
-  stateChanged(state: any) {
+  public stateChanged(state: any) {
     super.stateChanged();
     this.state = state;
     if (state.app.settings) {
@@ -72,7 +72,7 @@ export class AdminComponent extends Mixin(connect(store)(LitElement), [
     }
   }
 
-  render() {
+  public render() {
     return template.bind(this)(this.state);
     return html`
       <grid-component>

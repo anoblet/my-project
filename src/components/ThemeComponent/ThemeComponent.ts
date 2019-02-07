@@ -35,9 +35,9 @@ export const setTheme = (theme: any) => {
 };
 
 const randomColor = () => {
-  var letters = "0123456789ABCDEF";
-  var color = "#";
-  for (var i = 0; i < 6; i++) {
+  const letters = "0123456789ABCDEF";
+  let color = "#";
+  for (let i = 0; i < 6; i++) {
     color += letters[Math.floor(Math.random() * 16)];
   }
   return color;
@@ -45,7 +45,7 @@ const randomColor = () => {
 
 const randomTheme = () => {
   const state = store.getState();
-  let theme: any = {};
+  const theme: any = {};
   themeStructure.map((field: any) => {
     if (field.type === "color") theme[field.property] = randomColor();
   });
@@ -53,10 +53,10 @@ const randomTheme = () => {
 };
 
 export class ThemeComponent extends LitElement {
-  @property({ type: Array }) currentTheme: any = {};
-  @property({ type: Array }) savedThemes: any;
+  @property({ type: Array }) public currentTheme: any = {};
+  @property({ type: Array }) public savedThemes: any;
 
-  firstUpdated() {
+  public firstUpdated() {
     const state = store.getState();
     getDocument({
       callback: (theme: any) => {

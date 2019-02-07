@@ -4,9 +4,9 @@ import template from "./EyeChartTemplate";
 
 // @customElement("blog-component")
 export class EyeChart extends LitElement {
-  @property() lines: number = 10;
+  @property() public lines: number = 10;
 
-  getChart() {
+  public getChart() {
     const lines = new Array(this.lines).fill(0);
     return html`
       ${
@@ -20,7 +20,7 @@ export class EyeChart extends LitElement {
     `;
   }
 
-  getLine(index: number) {
+  public getLine(index: number) {
     const characters = new Array(index).fill(0);
     return html`
       ${
@@ -34,7 +34,7 @@ export class EyeChart extends LitElement {
     `;
   }
 
-  getCharacter() {
+  public getCharacter() {
     const letters = "abcdefghijklmnopqrstuvwxyz";
     return letters.charAt(Math.floor(Math.random() * letters.length));
   }

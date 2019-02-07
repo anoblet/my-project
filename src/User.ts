@@ -9,7 +9,7 @@ export const isAdmin = () => {
 };
 
 export const resetState = () => {
-  setState({ config: { merge: false }, data: {}, store: store, type: "app" });
+  setState({ config: { merge: false }, data: {}, store, type: "app" });
 };
 
 export const isSignedIn = (fakeParam: any = "") => {
@@ -38,7 +38,7 @@ export const signOut = (redirect: any = "/") => {
       setState({
         config: { merge: false },
         data: {},
-        store: store,
+        store,
         type: "user"
       });
     })

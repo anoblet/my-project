@@ -8,7 +8,7 @@ const style = html`
 `;
 
 export class FirebaseDocument extends Mixin(LitElement, [FirebaseMixin]) {
-  firstUpdated() {
+  public firstUpdated() {
     this.watchDocumentNew({
       path: this.path,
       callback: (document: any) => {
@@ -17,7 +17,7 @@ export class FirebaseDocument extends Mixin(LitElement, [FirebaseMixin]) {
       }
     });
   }
-  render() {
+  public render() {
     return html`
       <style>
         ${style}

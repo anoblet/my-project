@@ -16,20 +16,20 @@ declare global {
 
 const SpeechRecognition =
   window.SpeechRecognition || window.webkitSpeechRecognition;
-var SpeechGrammarList =
+let SpeechGrammarList =
   window.SpeechGrammarList || window.webkitSpeechGrammarList;
-var SpeechRecognitionEvent =
+let SpeechRecognitionEvent =
   window.SpeechRecognitionEvent || window.webkitSpeechRecognitionEvent;
 
-var grammar =
+let grammar =
   "#JSGF V1.0; grammar letters; public <letter> = " +
   letters.join(". | ") +
   " ;";
 
 export class WebSpeech {
-  recognition: any;
-  recognitionList: any;
-  result: string;
+  public recognition: any;
+  public recognitionList: any;
+  public result: string;
 
   constructor() {
     if (!SpeechRecognition) alert("No speech recognition");
@@ -56,14 +56,14 @@ export class WebSpeech {
     };
   }
 
-  onResult(event: any) {
+  public onResult(event: any) {
     const currentIndex = event.results.length - 1;
     this.result = event.results[currentIndex][0].transcript;
   }
 
-  onEnd(event: any) {}
+  public onEnd(event: any) {}
 
-  onError(event: any) {}
+  public onError(event: any) {}
 
-  onNoMatch(event: any) {}
+  public onNoMatch(event: any) {}
 }

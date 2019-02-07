@@ -4,7 +4,7 @@ import { getHistory } from "../../Debug";
 
 @customElement("log-component")
 export class Log extends LitElement {
-  render() {
+  public render() {
     const history = getHistory();
     return html`
       <ul>

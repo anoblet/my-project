@@ -17,7 +17,7 @@ export class MenuComponent extends Mixin(connect(store)(LitElement), [
   FirebaseMixin,
   StateMixin
 ]) {
-  @property({ type: Boolean, reflect: true }) hidden = true;
+  @property({ type: Boolean, reflect: true }) public hidden = true;
 
   constructor() {
     super();
@@ -25,7 +25,7 @@ export class MenuComponent extends Mixin(connect(store)(LitElement), [
     document.addEventListener("keyup", this._onKeyUp.bind(this));
   }
 
-  firstUpdated() {
+  public firstUpdated() {
     super.firstUpdated();
 
     const links = this.shadowRoot.querySelectorAll("a");
@@ -36,18 +36,18 @@ export class MenuComponent extends Mixin(connect(store)(LitElement), [
     });
   }
 
-  _onContextMenu(e: any) {
+  public _onContextMenu(e: any) {
     e.preventDefault();
     this.hidden = !this.hidden;
   }
 
-  _onKeyUp(e: any) {
+  public _onKeyUp(e: any) {
     if (e.shiftKey && e.keyCode == 32) {
       this.hidden = !this.hidden;
     }
   }
 
-  stateChanged(state: any) {
+  public stateChanged(state: any) {
     if (state.settings) {
       if (state.settings.rightClick) {
         document.addEventListener("contextmenu", this.boundListener);
@@ -58,7 +58,7 @@ export class MenuComponent extends Mixin(connect(store)(LitElement), [
   }
 
   static get styles() {
-    return GlobalStyle
+    return GlobalStyle;
   }
 
   public render() {

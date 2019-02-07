@@ -2,7 +2,7 @@ import { html } from "lit-element";
 import { store } from "../../Store";
 import { filterByMode } from "../../Debug";
 // Evaluated on first render, but not after
-import { isSignedIn, signOut } from "../../User"
+import { isSignedIn, signOut } from "../../User";
 
 // Cannot use functions for conditionals as they are not observed
 // Rather than use a hyperlink, why not fire an event
@@ -25,4 +25,4 @@ export default () => {
           `}
     </ul>
   `;
-}
+};

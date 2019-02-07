@@ -3,9 +3,9 @@ import { getReadme } from "./Readme";
 
 @customElement("readme-component")
 class Readme extends LitElement {
-  @property() template: any;
+  @property() public template: any;
 
-  render() {
+  public render() {
     return getReadme();
   }
 }

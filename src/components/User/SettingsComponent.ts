@@ -36,7 +36,7 @@ export class SettingsComponent extends Mixin(connect(store)(LitElement), [
     this.addReducer("settings");
   }
 
-  firstUpdated() {
+  public firstUpdated() {
     super.firstUpdated();
     if (this.state) {
       if (this.state.user.signedIn) {
@@ -52,7 +52,7 @@ export class SettingsComponent extends Mixin(connect(store)(LitElement), [
     }
   }
 
-  form() {
+  public form() {
     const state = store.getState();
     return html`
       <form>
@@ -142,7 +142,7 @@ export class SettingsComponent extends Mixin(connect(store)(LitElement), [
     `;
   }
 
-  stateChanged(state: any) {
+  public stateChanged(state: any) {
     super.stateChanged(state);
     if (state.user.signedIn) {
       if (state.settings) {
@@ -155,10 +155,10 @@ export class SettingsComponent extends Mixin(connect(store)(LitElement), [
     }
   }
 
-  render() {
+  public render() {
     return html`
       ${until(
-        import("./SettingsComponentTemplate.ts").then(module =>
+        import("./SettingsComponentTemplate.ts").then((module) =>
           module.default.bind(this)()
         )
       )}

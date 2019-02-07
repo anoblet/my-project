@@ -5,20 +5,20 @@ import template from "./BreadcrumbTemplate";
 import { connect } from "pwa-helpers/connect-mixin.js";
 import { store } from "../../Store";
 
-//@customElement("breadcrumb-component")
+// @customElement("breadcrumb-component")
 export class BreadcrumbComponent extends connect(store)(LitElement) {
-  @property() activeRoute: string;
-  @property({ type: Boolean }) hidden: boolean = false;
+  @property() public activeRoute: string;
+  @property({ type: Boolean }) public hidden: boolean = false;
   static get styles() {
     return [GlobalStyle, style];
   }
 
-  formatRoute(route: string) {
+  public formatRoute(route: string) {
     if (route === "/") this.hidden = true;
     else {
       this.hidden = false;
     }
-    let parts = route.split("/");
+    const parts = route.split("/");
     // Remove first entry if just '/'
     parts.shift();
     // Declare an empty base
@@ -44,11 +44,11 @@ export class BreadcrumbComponent extends connect(store)(LitElement) {
     return formattedRoute;
   }
 
-  stateChanged(state: any) {
+  public stateChanged(state: any) {
     this.activeRoute = state.router.activeRoute;
   }
 
-  render() {
+  public render() {
     return html`
       <div>${this.formatRoute(this.activeRoute)}/</div>
     `;

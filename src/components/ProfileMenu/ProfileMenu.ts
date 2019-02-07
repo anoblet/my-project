@@ -7,20 +7,19 @@ import template from "./ProfileMenuTemplate";
 import { StateMixin } from "../../../packages/StateMixin";
 import GlobalStyle from "../../GlobalStyle";
 
-
 export class ProfileMenu extends Mixin(connect(store)(LitElement), [
   StateMixin
 ]) {
   @property({ type: Boolean, reflect: true })
-  hidden: boolean = true;
-  handler: any;
+  public hidden: boolean = true;
+  public handler: any;
 
-  connectedCallback() {
+  public connectedCallback() {
     super.connectedCallback();
     this.handler = (e: any) => {};
   }
 
-  firstUpdated() {
+  public firstUpdated() {
     // Close ProfileMenu on link click
     const links = this.shadowRoot.querySelectorAll("a");
     links.forEach((link: any) =>
@@ -28,24 +27,24 @@ export class ProfileMenu extends Mixin(connect(store)(LitElement), [
     );
   }
 
-  close() {
+  public close() {
     this.hidden = true;
   }
 
-  open() {
+  public open() {
     this.hidden = false;
   }
 
   // Handlers
-  _closeProfileMenu() {
+  public _closeProfileMenu() {
     this.hidden = true;
   }
 
   static get styles() {
-    return GlobalStyle
+    return GlobalStyle;
   }
 
-  render() {
+  public render() {
     return html`
       <style>
         ${style}
