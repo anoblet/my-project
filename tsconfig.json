@@ -8,6 +8,7 @@
     // "noUnusedLocals": true,
     "target": "esnext",
     "experimentalDecorators": true,
-    "allowJs": true
+    "allowJs": true,
+    "alwaysStrict": true
   }
 }
