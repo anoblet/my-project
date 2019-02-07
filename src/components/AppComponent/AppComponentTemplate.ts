@@ -1,5 +1,6 @@
-import { html } from "lit-element";
+import { config } from "../../../config";
 import { filterByMode } from "../../Debug";
+import { html } from "lit-element";
 
 export default function({ router, user }: any) {
   return html`
@@ -7,7 +8,7 @@ export default function({ router, user }: any) {
       <mwc-fab icon="menu" id="menu" mini @click="${this._toggleDrawer}"
         >menu</mwc-fab
       >
-      <span id="title"><a href="/">${this.title}</a></span>
+      <span id="title"><a href="/">${config.site.title}</a></span>
       <mwc-fab
         id="userProfile"
         mini

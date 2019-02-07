@@ -50,7 +50,6 @@ export class AppComponent extends Mixin(connect(store)(LitElement), [
   StateMixin,
   MediaMixin
 ]) {
-  @property({ type: String }) public title = "Andrew Noblet";
   @property({ type: Boolean, reflect: true, attribute: "drawer-opened" })
   public drawerOpened = false;
   public firebaseConfig = config.firebase;
