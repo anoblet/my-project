@@ -1,6 +1,6 @@
 // Consider a change to component-editor
 import { html } from "lit-element";
-import { string } from "./String";
+import { renderNumber, renderText } from "../Form/Form";
 
 export interface property {
   label?: string;
@@ -50,7 +50,11 @@ export const renderForm = (
   <grid-component style="grid-template-columns: auto min-content">
     ${Object.keys(_properties).map((property: any) => {
       if (property.startsWith("_")) return;
-      // const field = merge(property, _properties, component, onChange);
+      const field = {
+        name: property,
+        value: component[property],
+        onChange
+      };
       return html`
         ${_properties[property].inputType !== "pell"
           ? html`
@@ -62,7 +66,7 @@ export const renderForm = (
                 ${_properties[property].inputType
                   ? html`
                       ${_properties[property].inputType === "text"
-                        ? renderTextField(property, component, onChange)
+                        ? renderText(field)
                         : ""}
                       ${_properties[property].inputType === "textarea"
                         ? renderTextarea(property, component, onChange)
@@ -84,10 +88,10 @@ export const renderForm = (
                         : // renderSwitch(field)
                           ""}
                       ${_properties[property].type === Number
-                        ? renderNumberField(property, component, onChange)
+                        ? renderNumber(field)
                         : ""}
                       ${_properties[property].type === String
-                        ? renderTextField(property, component, onChange)
+                        ? renderText(field)
                         : ""}
                     `}
               </div>
