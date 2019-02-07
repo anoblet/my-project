@@ -52,7 +52,7 @@ export const routes = [
     path: "/user-settings",
     component: "settings-component",
     src: () =>
-      import(/* webpackChunkName: "SettingsComponent" */ /* webpackPrefetch: true */ "../../User/SettingsComponent")
+      import(/* webpackChunkName: "SettingsComponent" */ /* webpackPrefetch: true */ "../User/SettingsComponent")
   },
   {
     path: "/user-theme",

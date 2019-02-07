@@ -2,14 +2,14 @@ import * as style from "./SettingsComponent.scss";
 
 import { LitElement, html, property } from "lit-element";
 
-import { Mixin } from "../../packages/Mixin";
-import { FirebaseMixin } from "../../packages/FirebaseMixin";
-import { StateMixin } from "../../packages/StateMixin";
+import { Mixin } from "../../../packages/Mixin";
+import { FirebaseMixin } from "../../../packages/FirebaseMixin";
+import { StateMixin } from "../../../packages/StateMixin";
 import { connect } from "pwa-helpers/connect-mixin.js";
 import { settings } from "./Settings";
-import { store } from "../Store";
+import { store } from "../../Store";
 import { until } from "lit-html/directives/until";
-import { getDocument, updateDocument } from "../../packages/firebase-helpers";
+import { getDocument, updateDocument } from "../../../packages/firebase-helpers";
 
 const find = (path: string, object: any) => {
   const parts = path.split("/");
