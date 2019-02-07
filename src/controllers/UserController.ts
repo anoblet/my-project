@@ -53,7 +53,7 @@ export class UserController extends Mixin(connect(store)(LitElement), [
   account() {
     this._template = html`
       ${until(
-        import("../user/PageAccount").then(({ default: template }) =>
+        import("../components/User/PageAccount").then(({ default: template }) =>
           template()
         )
       )}
