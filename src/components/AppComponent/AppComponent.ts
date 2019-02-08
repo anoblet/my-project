@@ -51,6 +51,7 @@ export class AppComponent extends Mixin(connect(store)(LitElement), [
   MediaMixin
 ]) {
   @property({ type: Boolean, reflect: true, attribute: "drawer-opened" })
+  @property({ type: Boolean, reflect: true, attribute: "show-loader" })
   public drawerOpened = false;
   public firebaseConfig = config.firebase;
   public taskPending = true;
