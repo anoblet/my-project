@@ -116,9 +116,9 @@ module.exports = {
       }
     ]),
     new RobotstxtPlugin(),
-    new WebpackLighthousePlugin({
-      url: "http://localhost:8080/",
-      perf: true
-    })
+    // new WebpackLighthousePlugin({
+    //   url: "http://localhost:8080/",
+    //   perf: true
+    // })
   ]
 };
