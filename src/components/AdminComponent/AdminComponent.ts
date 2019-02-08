@@ -1,17 +1,16 @@
-import { css, html, LitElement, customElement, property } from "lit-element";
-import template from "./AdminTemplate";
-import { connect } from "pwa-helpers/connect-mixin.js";
-import { store } from "../../Store";
+import { LitElement, css, html } from "lit-element";
+
+import GlobalStyle from "../../GlobalStyle";
 import { Mixin } from "../../../packages/Mixin";
 import { StateMixin } from "../../../packages/StateMixin";
-import { updateDocument } from "../../../packages/firebase-helpers";
-import GlobalStyle from "../../GlobalStyle";
+import { connect } from "pwa-helpers/connect-mixin.js";
 import { fields } from "./Settings";
+import { store } from "../../Store";
+import template from "./AdminTemplate";
+import { updateDocument } from "../../../packages/firebase-helpers";
 
 import(/* webpackChunkName: "CardComponent" */ "../CardComponent/CardComponent");
 import(/* webpackChunkName: "GridComponent" */ "../GridComponent/GridComponent");
-
-let objectPath = require("object-path");
 
 export interface AdminComponent {
   [key: string]: any; // Add index signature
