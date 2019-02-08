@@ -1,4 +1,4 @@
-import { LitElement, css, html } from "lit-element";
+import { LitElement, html } from "lit-element";
 
 import GlobalStyle from "../../GlobalStyle";
 import { Mixin } from "../../../packages/Mixin";
