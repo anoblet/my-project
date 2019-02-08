@@ -21,6 +21,7 @@ export const renderText = ({
   value
 }: any) => {
   onChange = onChange || defaultOnChange;
+  value = value || "";
   return html`
     <input name="${name}" type="text" value=${value} ?disabled=${disabled} @change=${onChange} />
   `;
