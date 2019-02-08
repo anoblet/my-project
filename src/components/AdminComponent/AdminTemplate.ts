@@ -3,7 +3,7 @@ import { editTheme } from "./EditTheme";
 import { setTheme } from "./SetTheme";
 import { theme } from "../ThemeComponent/Theme";
 
-export default function({ app, user }: any) {
+export default function({ app }: any) {
   const _theme: theme = {
     backgroundColor: "#3E3E4B",
     borderColor: "#255451",
