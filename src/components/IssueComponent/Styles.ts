@@ -7,5 +7,10 @@ export default [
     #form grid-component {
       grid-template-columns: 1fr !important;
     }
+
+    #form grid-component .field {
+      display: grid;
+      grid-gap: 1em;
+    }
   `
 ];
