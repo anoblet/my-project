@@ -1,7 +1,6 @@
-import "../PageHome/PageHome";
+;import "../PageHome/PageHome";
 
 import { LitElement, html, property } from "lit-element";
-// import { customElement } from "lit-element";
 import {
   checkRedirect,
   getDocument,
@@ -27,6 +26,29 @@ import { setState } from "../../../packages/state-helpers/state-helpers";
 import { store } from "../../Store";
 import template from "./AppComponentTemplate";
 import { themeStructure } from "../ThemeComponent/ThemeStructure";
+
+// import { customElement } from "lit-element";
+
+import(/* webpackChunkName: "MyFlex" */ "../../../packages/my-flex");
+import(/* webpackChunkName: "MyGrid" */ "../../../packages/my-grid");
+import(/* webpackChunkName: "MyLoader" */ "../../../packages/my-loader");
+import(/* webpackChunkName: "MyCard" */ "../../../packages/my-card");
+import(/* webpackChunkName: "MWCButton" */ "@material/mwc-button");
+import(/* webpackChunkName: "MWCIcon" */ "@material/mwc-icon");
+import(/* webpackChunkName: "MWCFab" */ "@material/mwc-fab");
+import(/* webpackChunkName: "AppHeader" */ "../AppHeader/AppHeader");
+import(/* webpackChunkName: "AppFooter" */ "../AppFooter/AppFooter"); // @deprecated import(/* webpackChunkName: "AppTheme" */ "../AppTheme/AppTheme"),
+import(/* webpackChunkName: "Drawer" */ "../DrawerComponent/Drawer");
+import(/* webpackChunkName: "ProfileMenu" */ "../ProfileMenu/ProfileMenu"); // @deprecated
+import(/* webpackChunkName: "AdminComponent" */ "../AdminComponent/AdminComponent");
+import(/* webpackChunkName: "Breadcrumb" */ "../BreadcrumbComponent/Breadcrumb");
+import(/* webpackChunkName: "LogComponent" */ "../LogComponent/LogComponent");
+import(/* webpackChunkName: "ThemeComponent" */ "../ThemeComponent/ThemeComponent");
+import(/* webpackChunkName: "MediaQuery" */ "../../../packages/MediaQuery");
+import(/* webpackChunkName: "MenuComponent" */ "../MenuComponent/MenuComponent");
+import(/* webpackChunkName: "MenuComponent" */ "../MenuComponent/MenuComponent");
+import(/* webpackChunkName: "ToastComponent" */ "../ToastComponent/ToastComponent");
+
 
 const getAppSettings = () => {
   return getDocument({
@@ -71,26 +93,7 @@ export class AppComponent extends Mixin(connect(store)(LitElement), [
     // Let's set a default theme
     debug("Setting default theme");
     this.runTasks([
-      import(/* webpackChunkName: "MyFlex" */ "../../../packages/my-flex"),
-      import(/* webpackChunkName: "MyGrid" */ "../../../packages/my-grid"),
-      import(/* webpackChunkName: "MyLoader" */ "../../../packages/my-loader"),
-      import(/* webpackChunkName: "MyCard" */ "../../../packages/my-card"),
-      import(/* webpackChunkName: "MWCButton" */ "@material/mwc-button"),
-      import(/* webpackChunkName: "MWCIcon" */ "@material/mwc-icon"),
-      import(/* webpackChunkName: "MWCFab" */ "@material/mwc-fab"),
-      import(/* webpackChunkName: "AppHeader" */ "../AppHeader/AppHeader"),
-      import(/* webpackChunkName: "AppFooter" */ "../AppFooter/AppFooter"), // @deprecated import(/* webpackChunkName: "AppTheme" */ "../AppTheme/AppTheme"),
-      import(/* webpackChunkName: "Drawer" */ "../DrawerComponent/Drawer"),
-      import(/* webpackChunkName: "ProfileMenu" */ "../ProfileMenu/ProfileMenu"), // @deprecated
-      import(/* webpackChunkName: "AdminComponent" */ "../AdminComponent/AdminComponent"),
-      import(/* webpackChunkName: "Breadcrumb" */ "../BreadcrumbComponent/Breadcrumb"),
-      import(/* webpackChunkName: "LogComponent" */ "../LogComponent/LogComponent"),
-      import(/* webpackChunkName: "ThemeComponent" */ "../ThemeComponent/ThemeComponent"),
-      import(/* webpackChunkName: "MediaQuery" */ "../../../packages/MediaQuery"),
-      import(/* webpackChunkName: "MenuComponent" */ "../MenuComponent/MenuComponent"),
-      import(/* webpackChunkName: "MenuComponent" */ "../MenuComponent/MenuComponent"),
-      import(/* webpackChunkName: "ToastComponent" */ "../ToastComponent/ToastComponent"),
-      new Promise(async (resolve) => {
+      new Promise(async resolve => {
         debug("Run init methods");
         await initApp(this.firebaseConfig);
         await checkRedirect();
@@ -114,7 +117,7 @@ export class AppComponent extends Mixin(connect(store)(LitElement), [
                 uid: user.uid
               };
               // Load theme from Firebase
-              await new Promise((resolve) => {
+              await new Promise(resolve => {
                 getDocument({
                   path: `users/${user.uid}/settings/theme`,
                   callback: (document: any) => {
@@ -129,7 +132,7 @@ export class AppComponent extends Mixin(connect(store)(LitElement), [
               // Map to state (document): user
               await setState({ data: userModel, store, type: "user" });
               // Load settings from firebaseConfig
-              await new Promise((resolve) => {
+              await new Promise(resolve => {
                 getDocument({
                   path: `users/${user.uid}/settings/default`,
                   callback: (document: any) => {
