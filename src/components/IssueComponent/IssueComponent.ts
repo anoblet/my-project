@@ -66,7 +66,7 @@ export class IssueComponent extends LitElement {
           </grid-component>
         </div>
         <div slot="actions">
-          <button @click=${() => this.saveForm()}>Create</button>
+          <mwc-button @click=${() => this.saveForm()}>Create</mwc-button>
         </div>
       </card-component>
     `;
