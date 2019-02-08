@@ -1,5 +1,4 @@
 import { html } from "lit-element";
-import { render } from "lit-html";
 import { editTheme } from "./EditTheme";
 import { setTheme } from "./SetTheme";
 import { theme } from "../ThemeComponent/Theme";
