@@ -7,6 +7,8 @@ const RobotstxtPlugin = require("robotstxt-webpack-plugin").default;
 const CleanWebpackPlugin = require("clean-webpack-plugin");
 const UglifyJsPlugin = require("uglifyjs-webpack-plugin");
 const HtmlLoader = require("html-loader");
+const WebpackLighthousePlugin = require("webpack-lighthouse-plugin");
+
 module.exports = {
   mode: "production",
   entry: "./src/index",
@@ -83,7 +85,7 @@ module.exports = {
     new CleanWebpackPlugin(["dist"]),
     new HtmlWebpackPlugin({
       template: "./index.html",
-      favicon: 'src/assets/icon_18dp.png',
+      favicon: "src/assets/icon_18dp.png",
       filename: "index.html"
     }),
     new WebpackPwaManifest({
@@ -113,6 +115,10 @@ module.exports = {
         flatten: true
       }
     ]),
-    new RobotstxtPlugin()
+    new RobotstxtPlugin(),
+    new WebpackLighthousePlugin({
+      url: "http://localhost:8080/",
+      perf: true
+    })
   ]
 };
