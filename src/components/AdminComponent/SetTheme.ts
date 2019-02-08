@@ -1,6 +1,6 @@
 import { html } from "lit-element";
 import { until } from "lit-html/directives/until";
-import { theme } from "../ThemeComponent/Theme";
+
 import {
   getCollection,
   updateDocument

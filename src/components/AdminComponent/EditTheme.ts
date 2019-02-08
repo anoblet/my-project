@@ -1,10 +1,10 @@
 import { html } from "lit-element";
-import { theme } from "../ThemeComponent/Theme";
+import { theme as themeType } from "../ThemeComponent/Theme";
 
 export const editTheme = (theme: any) => html`
-  ${Object.keys(theme as theme).map(
+  ${Object.keys(theme as themeType).map(
     (key: any) => html`
-      <input type="color" name="${key}" value=${theme[key]} @change=${(e: any) => {}} />
+      <input type="color" name="${key}" value=${theme[key]} @change=${() => {}} />
     `
   )}
 `;
