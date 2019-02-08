@@ -1,11 +1,11 @@
-import { html } from "lit-element";
-import { until } from "lit-html/directives/until";
-
 import {
   getCollection,
   updateDocument
 } from "../../../packages/firebase-helpers";
+
+import { html } from "lit-element";
 import { toast } from "../ToastComponent/Toast";
+import { until } from "lit-html/directives/until";
 
 const getThemes = () => {
   return getCollection({
