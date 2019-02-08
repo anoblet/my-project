@@ -8,10 +8,10 @@ export default function({ app, user }: any) {
   const _theme: theme = {
     backgroundColor: "#3E3E4B",
     borderColor: "#255451",
+    linkColor: "#0A8470",
     primaryColor: "#C7318E",
     secondaryColor: "#E75384",
-    textColor: "#D5F0EE",
-    linkColor: "#0A8470"
+    textColor: "#D5F0EE"
   };
   return html`
     <grid-component gap="1em">
