@@ -54,9 +54,15 @@ export class IssueComponent extends LitElement {
                   (this._data = { ...this._data, ...{ [property]: value } })
               )}
             </card-component>
-            <card-component>
-              ${JSON.stringify(this._data)}
-            </card-component>
+            ${false
+              ? html`
+                  <card-component title="Data">
+                    <div slot="content">
+                      ${JSON.stringify(this._data)}
+                    </div>
+                  </card-component>
+                `
+              : ""}
           </grid-component>
         </div>
         <div slot="actions">
