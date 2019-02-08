@@ -39,7 +39,7 @@ export class AdminComponent extends Mixin(connect(store)(LitElement), [
         value = value[part];
       });
     } catch (error) {
-      console.log("Could not find", path);
+      // console.log("Could not find", path);
       value = error;
     }
     return value;
@@ -96,7 +96,7 @@ export class AdminComponent extends Mixin(connect(store)(LitElement), [
                                         this.find(
                                           field.statePath,
                                           this.state
-                                        ) == option.value
+                                        ) === option.value
                                       }"
                                       value="${option.value}"
                                       >${option.label}</option
