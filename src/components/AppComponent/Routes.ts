@@ -4,8 +4,10 @@ import { getReadme } from "../Readme/Readme";
 export const routes = [
   {
     path: "",
-    component: "page-home"
-  } as IRoute,
+    component: "page-static",
+    src: () =>
+      import(/* webpackChunkName: "PageStatic" */ /* webpackPrefetch: true */ "../PageStatic")
+  },
   {
     path: "/admin",
     component: "admin-component",
@@ -71,11 +73,11 @@ export const routes = [
     component: "readme-component",
     src: () =>
       import(/* webpackChunkName: "ReadmeComponent" */ /* webpackPrefetch: true */ "../Readme/ReadmeComponent")
-  },  {
-      path: "/site-map",
-      component: "sitemap-component",
-      src: () =>
-        import(/* webpackChunkName: "SitemapComponent" */ /* webpackPrefetch: true */ "../Sitemap/Component")
-    }
-
+  },
+  {
+    path: "/site-map",
+    component: "sitemap-component",
+    src: () =>
+      import(/* webpackChunkName: "SitemapComponent" */ /* webpackPrefetch: true */ "../Sitemap/Component")
+  }
 ];

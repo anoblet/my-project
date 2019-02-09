@@ -1,4 +1,5 @@
 import "../PageHome/PageHome";
+import "../PageStatic";
 
 import { LitElement, html, property } from "lit-element";
 import {

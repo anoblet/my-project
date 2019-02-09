@@ -1,8 +1,8 @@
 import { LitElement, customElement, html, property } from "lit-element";
 
 
-@customElement("sitemap-component")
-class Sitemap extends LitElement {
+@customElement("page-static")
+class PageStatic extends LitElement {
   @property() public template: any;
 
   public render() {
