@@ -7,8 +7,6 @@ import globalStyle from "../../GlobalStyle";
 import style from "./BlogStyle";
 import template from "./BlogTemplate";
 
-import("@material/mwc-icon");
-
 // @customElement("blog-component")
 export class Blog extends Mixin(BaseElement, [
 ]) {
