@@ -52,16 +52,19 @@ import(/* webpackChunkName: "MenuComponent" */ "../MenuComponent/MenuComponent")
 import(/* webpackChunkName: "MenuComponent" */ "../MenuComponent/MenuComponent");
 import(/* webpackChunkName: "ToastComponent" */ "../ToastComponent/ToastComponent");
 
-const getAppSettings = async (callback: any) => {
-  return await getDocument({
-    path: "app/settings",
-    callback: (document: any) => {
-      if (document) {
-        callback(document);
-      }
-    },
-    watch: true
-  });
+const getAppSettings = (callback: any) => {
+  return new Promise(resolve =>
+    getDocument({
+      path: "app/settings",
+      callback: (document: any) => {
+        if (document) {
+          callback(document);
+        }
+        resolve();
+      },
+      watch: true
+    })
+  );
 };
 
 const setDefaultTheme = (theme: any) => {
@@ -95,21 +98,19 @@ export class AppComponent extends Mixin(connect(store)(LitElement), [
     super.connectedCallback();
     // Let's set a default theme
     debug("Setting default theme");
-    this.taskChain([
+    this.runTasks([
       new Promise(async resolve => {
         debug("Run init methods");
         await initApp(this.firebaseConfig);
-        await checkRedirect();
-        await (async () => {
-          await getAppSettings((document: any) => {
-            const app = {
-              settings: document
-            };
-            setState({ data: app, store, type: "app" });
-            const theme = documentToStyle(document.defaultTheme);
-            setTheme(theme, this);
-          });
-        })();
+        await getAppSettings((document: any) => {
+          const app = {
+            settings: document
+          };
+          setState({ data: app, store, type: "app" });
+          const theme = documentToStyle(document.defaultTheme);
+          setTheme(theme, this);
+          console.log("1");
+        });        await checkRedirect();
         await await getUser({
           callback: async (user: any) => {
             // Client is not logged in, nor pending redirect
@@ -156,6 +157,7 @@ export class AppComponent extends Mixin(connect(store)(LitElement), [
   }
 
   public firstUpdated() {
+    console.log("2");
     this.dispatchEvent(
       new CustomEvent("app-loaded", {
         bubbles: true,
