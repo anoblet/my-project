@@ -47,3 +47,11 @@ export const signOut = (redirect: any = "/") => {
       navigate("/");
     });
 };
+
+/**
+* Utility function to deal with a user
+*/
+
+const onUserLoggedIn = () => {
+
+}

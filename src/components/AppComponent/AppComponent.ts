@@ -118,16 +118,7 @@ export class AppComponent extends Mixin(connect(store)(LitElement), [
               };
               // Load theme from Firebase
               await new Promise(resolve => {
-                getDocument({
-                  path: `users/${user.uid}/settings/theme`,
-                  callback: (document: any) => {
-                    if (document) {
-                      this.setState(document.currentTheme, "theme");
-                    }
-                    resolve();
-                  },
-                  watch: true
-                });
+
               });
               // Map to state (document): user
               await setState({ data: userModel, store, type: "user" });
@@ -155,6 +146,21 @@ export class AppComponent extends Mixin(connect(store)(LitElement), [
     this.registerlisteners();
 
     installOfflineWatcher((offline: boolean) => {});
+  }
+
+  async _loadUserTheme() {
+    const state = store.getState();
+    const user = state.user;
+    return await getDocument({
+      path: `users/${user.uid}/settings/theme`,
+      callback: (document: any) => {
+        if (document) {
+          this.setState(document.currentTheme, "theme");
+        }
+        Promise.resolve(document);
+      },
+      watch: true
+    });
   }
 
   public registerlisteners() {
