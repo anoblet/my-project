@@ -110,8 +110,9 @@ export class AppComponent extends Mixin(connect(store)(LitElement), [
           const theme = documentToStyle(document.defaultTheme);
           setTheme(theme, this);
           console.log("1");
-        });        await checkRedirect();
-        await await getUser({
+        });
+        await checkRedirect();
+        await getUser({
           callback: async (user: any) => {
             // Client is not logged in, nor pending redirect
             if (!user) {
