@@ -26,6 +26,7 @@ import { setState } from "../../../packages/state-helpers/state-helpers";
 import { store } from "../../Store";
 import template from "./AppComponentTemplate";
 import { themeStructure } from "../ThemeComponent/ThemeStructure";
+import { loadUserTheme }  from "../../User"
 
 // import { customElement } from "lit-element";
 
@@ -117,9 +118,7 @@ export class AppComponent extends Mixin(connect(store)(LitElement), [
                 uid: user.uid
               };
               // Load theme from Firebase
-              await new Promise(resolve => {
-
-              });
+              await this._loadUserTheme();
               // Map to state (document): user
               await setState({ data: userModel, store, type: "user" });
               // Load settings from firebaseConfig
@@ -146,21 +145,6 @@ export class AppComponent extends Mixin(connect(store)(LitElement), [
     this.registerlisteners();
 
     installOfflineWatcher((offline: boolean) => {});
-  }
-
-  async _loadUserTheme() {
-    const state = store.getState();
-    const user = state.user;
-    return await getDocument({
-      path: `users/${user.uid}/settings/theme`,
-      callback: (document: any) => {
-        if (document) {
-          this.setState(document.currentTheme, "theme");
-        }
-        Promise.resolve(document);
-      },
-      watch: true
-    });
   }
 
   public registerlisteners() {
