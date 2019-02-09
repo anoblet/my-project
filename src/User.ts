@@ -55,7 +55,7 @@ export const signOut = (redirect: any = "/") => {
 
 const onUserLoggedIn = () => {};
 
-export const loadUserTheme = async () => {
+export const getUserTheme = async () => {
   const user = store.getState().user;
   return await getDocument({
     path: `users/${user.uid}/settings/theme`,

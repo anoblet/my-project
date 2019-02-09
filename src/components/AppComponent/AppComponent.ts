@@ -26,7 +26,7 @@ import { setState } from "../../../packages/state-helpers/state-helpers";
 import { store } from "../../Store";
 import template from "./AppComponentTemplate";
 import { themeStructure } from "../ThemeComponent/ThemeStructure";
-import { loadUserTheme } from "../../User";
+import { getUserTheme } from "../../User";
 
 // import { customElement } from "lit-element";
 
@@ -120,7 +120,7 @@ export class AppComponent extends Mixin(connect(store)(LitElement), [
               // Map to state (document): user
               await setState({ data: userModel, store, type: "user" });
               // Load theme from Firebase
-              await loadUserTheme();
+              await getUserTheme();
               // Load settings from firebaseConfig
               await new Promise(resolve =>
                 getDocument({
@@ -195,7 +195,6 @@ export class AppComponent extends Mixin(connect(store)(LitElement), [
   }
 
   public updateStyles(theme: any) {
-    console.log(theme);
     themeStructure.map((field: any) => {
       if (theme[field.property]) {
         if (!field.varName) {
