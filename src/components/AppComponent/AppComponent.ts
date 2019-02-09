@@ -95,6 +95,8 @@ export class AppComponent extends Mixin(connect(store)(LitElement), [
     // Let's set a default theme
     debug("Setting default theme");
     this.runTasks([
+      async () => {
+      },
       new Promise(async resolve => {
         debug("Run init methods");
         await initApp(this.firebaseConfig);
@@ -114,6 +116,9 @@ export class AppComponent extends Mixin(connect(store)(LitElement), [
               const userData = extract(user);
               // Map to state (document): user
               await setState({ data: userData, store, type: "user" });
+              await getUserSettings((document: any) => {
+                setState({ data: document, store, type: "settings" });
+              });
               // Load theme from Firebase
               await getUserTheme((document: any) => {
                 const theme = documentToStyle(document);
@@ -126,9 +131,6 @@ export class AppComponent extends Mixin(connect(store)(LitElement), [
         });
       })
     ]);
-    getUserSettings((document: any) => {
-      setState({ data: document, store, type: "settings" });
-    });
     // Register drawer listeners
     this.registerlisteners();
 
