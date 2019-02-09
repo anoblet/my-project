@@ -118,13 +118,10 @@ export class AppComponent extends Mixin(connect(store)(LitElement), [
               await getUserTheme((document: any) => {
                 const theme = documentToStyle(document);
                 setTheme(theme, this);
-              });
-              await getUserSettings((document: any) => {
-                setState({ data: document, store, type: "settings" });
+                resolve();
               });
             }
             debug("App component is updated");
-            resolve();
           }
         });
       })

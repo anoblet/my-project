@@ -10,7 +10,7 @@ import template from "./BlogTemplate";
 // @customElement("blog-component")
 export class Blog extends Mixin(BaseElement, [
 ]) {
-  public taskPending = true;
+  @property({ reflect: true, attribute: "task-pending"}) public taskPending = true;
   @property() public posts: any = [];
 
   constructor() {
