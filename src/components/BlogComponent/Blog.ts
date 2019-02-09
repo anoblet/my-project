@@ -2,24 +2,16 @@ import { LitElement, customElement, property } from "lit-element";
 
 import { BaseElement } from "../../BaseElement";
 import { Mixin } from "../../../packages/Mixin";
-import { StateMixin } from "../../../packages/StateMixin";
-import { TaskMixin } from "../../../packages/TaskMixin";
-import { connect } from "pwa-helpers/connect-mixin.js";
 import { getCollection } from "../../../packages/firebase-helpers";
 import globalStyle from "../../GlobalStyle";
-import { store } from "../../Store";
 import style from "./BlogStyle";
 import template from "./BlogTemplate";
 
 import("@material/mwc-icon");
 
 // @customElement("blog-component")
-export class Blog extends Mixin(connect(store)(BaseElement), [
-  StateMixin,
-  // TaskMixin
+export class Blog extends Mixin(BaseElement, [
 ]) {
-  // @property() loaded: any;
-  public loaded = false;
   public taskPending = true;
   @property() public posts: any = [];
 
