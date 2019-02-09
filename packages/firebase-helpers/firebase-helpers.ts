@@ -65,7 +65,7 @@ export const checkRedirect = () => {
     const instance =
       firebaseui.auth.AuthUI.getInstance() ||
       new firebaseui.auth.AuthUI(firebase.auth());
-    if (instance.isPendingRedirect()) {
+    if (true || instance.isPendingRedirect()) {
       instance.start(document.createElement("div"), {});
     }
   });

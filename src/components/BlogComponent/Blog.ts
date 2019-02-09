@@ -8,14 +8,18 @@ import style from "./BlogStyle";
 import template from "./BlogTemplate";
 
 // @customElement("blog-component")
-export class Blog extends Mixin(BaseElement, [
-]) {
-  @property({ reflect: true, attribute: "task-pending"}) public taskPending = true;
+export class Blog extends Mixin(BaseElement, []) {
+  @property({ reflect: true, attribute: "task-pending" })
+  public taskPending = true;
   @property() public posts: any = [];
 
   constructor() {
     super();
-    getCollection({
+    this.beforeRender();
+  }
+
+  async beforeRender() {
+    await getCollection({
       callback: (collection: any) => {
         this.posts = collection;
         this.taskPending = false;

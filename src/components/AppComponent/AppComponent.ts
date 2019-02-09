@@ -28,7 +28,7 @@ import template from "./AppComponentTemplate";
 import { themeStructure } from "../ThemeComponent/ThemeStructure";
 import { extract, getUserSettings, getUserTheme } from "../../User";
 import { setTheme, documentToStyle } from "../../Theme";
-
+// import("../Annyang/Annyang");
 // import { customElement } from "lit-element";
 
 import(/* webpackChunkName: "MyFlex" */ "../../../packages/my-flex");
@@ -98,10 +98,11 @@ export class AppComponent extends Mixin(connect(store)(LitElement), [
       new Promise(async resolve => {
         debug("Run init methods");
         await initApp(this.firebaseConfig);
-        await getAppSettings();
         await checkRedirect();
+        await getAppSettings();
         await getUser({
           callback: async (user: any) => {
+            console.log(user);
             // Client is not logged in, nor pending redirect
             if (!user) {
               debug("User is not logged in");
@@ -121,8 +122,8 @@ export class AppComponent extends Mixin(connect(store)(LitElement), [
               await getUserTheme((document: any) => {
                 const theme = documentToStyle(document);
                 setTheme(theme, this);
-                resolve();
               });
+              resolve();
             }
             debug("App component is updated");
           }
