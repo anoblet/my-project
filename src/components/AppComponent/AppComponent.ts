@@ -98,19 +98,18 @@ export class AppComponent extends Mixin(connect(store)(LitElement), [
       new Promise(async resolve => {
         debug("Run init methods");
         await initApp(this.firebaseConfig);
-        await new Promise(resolve => {
-          getAppSettings((document: any) => {
+        await checkRedirect();
+        await (async () => {
+          await getAppSettings((document: any) => {
             const app = {
               settings: document
             };
             setState({ data: app, store, type: "app" });
             const theme = documentToStyle(document.defaultTheme);
             setTheme(theme, this);
-            resolve();
           });
-        });
-        await checkRedirect();
-        await getUser({
+        })();
+        await await getUser({
           callback: async (user: any) => {
             // Client is not logged in, nor pending redirect
             if (!user) {
