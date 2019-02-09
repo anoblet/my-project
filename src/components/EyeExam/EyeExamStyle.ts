@@ -28,6 +28,18 @@ export default css`
   }
 
   .relative {
-    position: relative
+    position: relative;
+  }
+
+  .field {
+    display: flex;
+  }
+
+  .field > * {
+    flex: 1;
+  }
+
+  .field input {
+    text-align: center;
   }
 `;

@@ -50,7 +50,6 @@ export const renderForm = (
   <grid-component>
     ${Object.keys(_properties).map((property: any) => {
       if (property.startsWith("_")) return;
-      console.log(_properties[property]);
       const field = {
         disabled: _properties[property].disabled,
         name: property,
