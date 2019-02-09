@@ -117,10 +117,10 @@ export class AppComponent extends Mixin(connect(store)(LitElement), [
                 signedIn: true,
                 uid: user.uid
               };
-              // Load theme from Firebase
-              await this._loadUserTheme();
               // Map to state (document): user
               await setState({ data: userModel, store, type: "user" });
+              // Load theme from Firebase
+              await loadUserTheme();
               // Load settings from firebaseConfig
               await new Promise(resolve => {
                 getDocument({

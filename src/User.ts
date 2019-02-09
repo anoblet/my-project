@@ -2,7 +2,7 @@ import { store } from "./Store";
 import { setState } from "../packages/state-helpers/state-helpers";
 import { navigate } from "./Router";
 import { toast } from "./components/ToastComponent/Toast";
-import { getDocument } from "../packages/firebase-helpers/firebase-helpers"
+import { getDocument } from "../packages/firebase-helpers/firebase-helpers";
 
 export const isAdmin = () => {
   const state = store.getState();
@@ -50,14 +50,10 @@ export const signOut = (redirect: any = "/") => {
 };
 
 /**
-* Utility function to deal with a user
-*/
+ * Utility function to deal with a user
+ */
 
-const onUserLoggedIn = () => {
-
-}
-
-
+const onUserLoggedIn = () => {};
 
 export const loadUserTheme = async () => {
   const state = store.getState();
@@ -66,10 +62,10 @@ export const loadUserTheme = async () => {
     path: `users/${user.uid}/settings/theme`,
     callback: (document: any) => {
       if (document) {
-        this.setState(document.currentTheme, "theme");
+        setState({ data: document.currentTheme, store, type: "theme" });
       }
       Promise.resolve(document);
     },
     watch: true
   });
-}
+};
