@@ -8,7 +8,13 @@ var commands = {
     alert("Hello world!");
   },
   "eye exam": function() {
-    navigate("/componenets/eye-exam");
+    navigate("/components/eye-exam");
+  },
+  "settings": function() {
+    navigate("/user-settings");
+  },
+  "theme": function() {
+    navigate("/user-theme");
   }
 };
 

@@ -28,7 +28,7 @@ import template from "./AppComponentTemplate";
 import { themeStructure } from "../ThemeComponent/ThemeStructure";
 import { extract, getUserSettings, getUserTheme } from "../../User";
 import { setTheme, documentToStyle } from "../../Theme";
-// import("../Annyang/Annyang");
+import("../Annyang/Annyang");
 // import { customElement } from "lit-element";
 
 import(/* webpackChunkName: "MyFlex" */ "../../../packages/my-flex");
