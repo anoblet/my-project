@@ -3,6 +3,7 @@ import { setState } from "../packages/state-helpers/state-helpers";
 import { navigate } from "./Router";
 import { toast } from "./components/ToastComponent/Toast";
 import { getDocument } from "../packages/firebase-helpers/firebase-helpers";
+import { setTheme, documentToStyle } from "./Theme";
 
 export const isAdmin = () => {
   const state = store.getState();
@@ -55,13 +56,16 @@ export const signOut = (redirect: any = "/") => {
 
 const onUserLoggedIn = () => {};
 
-export const getUserTheme = async () => {
+export const getUserTheme = async (callback: any) => {
   const user = store.getState().user;
   return await getDocument({
     path: `users/${user.uid}/settings/theme`,
     callback: (document: any) => {
+      callback(document.currentTheme);
       if (document) {
-        setState({ data: document.currentTheme, store, type: "theme" });
+        // const theme = documentToStyle(document);
+        // setTheme(theme, this)
+        // setState({ data: document.currentTheme, store, type: "theme" });
       }
       Promise.resolve(document);
     },
