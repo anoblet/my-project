@@ -52,7 +52,7 @@ import(/* webpackChunkName: "MenuComponent" */ "../MenuComponent/MenuComponent")
 import(/* webpackChunkName: "ToastComponent" */ "../ToastComponent/ToastComponent");
 
 const getAppSettings = async (callback: any) => {
-  await getDocument({
+  return await getDocument({
     path: "app/settings",
     callback: (document: any) => {
       if (document) {
@@ -112,7 +112,6 @@ export class AppComponent extends Mixin(connect(store)(LitElement), [
         await checkRedirect();
         await getUser({
           callback: async (user: any) => {
-            console.log("2");
             // Client is not logged in, nor pending redirect
             if (!user) {
               debug("User is not logged in");
