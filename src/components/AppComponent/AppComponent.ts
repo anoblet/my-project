@@ -1,4 +1,4 @@
-;import "../PageHome/PageHome";
+import "../PageHome/PageHome";
 
 import { LitElement, html, property } from "lit-element";
 import {
@@ -26,7 +26,7 @@ import { setState } from "../../../packages/state-helpers/state-helpers";
 import { store } from "../../Store";
 import template from "./AppComponentTemplate";
 import { themeStructure } from "../ThemeComponent/ThemeStructure";
-import { loadUserTheme }  from "../../User"
+import { loadUserTheme } from "../../User";
 
 // import { customElement } from "lit-element";
 
@@ -50,7 +50,6 @@ import(/* webpackChunkName: "MenuComponent" */ "../MenuComponent/MenuComponent")
 import(/* webpackChunkName: "MenuComponent" */ "../MenuComponent/MenuComponent");
 import(/* webpackChunkName: "ToastComponent" */ "../ToastComponent/ToastComponent");
 
-
 const getAppSettings = () => {
   return getDocument({
     path: `app/settings`
@@ -66,6 +65,11 @@ const getAppSettings = () => {
 const setDefaultTheme = (theme: any) => {
   setState({ data: theme, store, type: "theme" });
 };
+
+const setTheme = (theme: any, element: any) =>
+  theme.map((propertyMap: any) => {
+    element.style.setProperty(propertyMap.property, propertyMap.value);
+  });
 
 export class AppComponent extends Mixin(connect(store)(LitElement), [
   HelperMixin,
@@ -188,7 +192,14 @@ export class AppComponent extends Mixin(connect(store)(LitElement), [
     menu.hidden ? menu.open() : menu.close();
   }
 
+  closeMenus() {
+    this.drawerOpened = false;
+    const menu = this.shadowRoot.querySelector("#profile-menu");
+    menu.close();
+  }
+
   public updateStyles(theme: any) {
+    console.log(theme);
     themeStructure.map((field: any) => {
       if (theme[field.property]) {
         if (!field.varName) {
