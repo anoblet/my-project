@@ -94,12 +94,12 @@ export class AppComponent extends Mixin(connect(store)(LitElement), [
     super.connectedCallback();
     // Let's set a default theme
     debug("Setting default theme");
+    getAppSettings();
     this.runTasks([
       new Promise(async resolve => {
         debug("Run init methods");
         await initApp(this.firebaseConfig);
         await checkRedirect();
-        await getAppSettings();
         await getUser({
           callback: async (user: any) => {
             console.log(user);
@@ -122,8 +122,8 @@ export class AppComponent extends Mixin(connect(store)(LitElement), [
               await getUserTheme((document: any) => {
                 const theme = documentToStyle(document);
                 setTheme(theme, this);
+                resolve();
               });
-              resolve();
             }
             debug("App component is updated");
           }
