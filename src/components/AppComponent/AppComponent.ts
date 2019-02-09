@@ -58,9 +58,10 @@ const getAppSettings = (callback: any) => {
       path: "app/settings",
       callback: (document: any) => {
         if (document) {
-          callback(document);
+          resolve(callback(document));
+        } else {
+          return resolve(false);
         }
-        resolve();
       },
       watch: true
     })
@@ -100,20 +101,21 @@ export class AppComponent extends Mixin(connect(store)(LitElement), [
     debug("Setting default theme");
 
     this.runTasks([
+      (async () => {
+        return await getAppSettings((document: any) => {
+          const app = {
+            settings: document
+          };
+          setState({ data: app, store, type: "app" });
+          const theme = documentToStyle(document.defaultTheme);
+          setTheme(theme, this);
+          return true;
+        });
+      })(),
       new Promise(async resolve => {
         debug("Run init methods");
         await initApp(this.firebaseConfig);
         await checkRedirect();
-        await (async () => {
-          await getAppSettings((document: any) => {
-            const app = {
-              settings: document
-            };
-            setState({ data: app, store, type: "app" });
-            const theme = documentToStyle(document.defaultTheme);
-            setTheme(theme, this);
-          });
-        })();
         await getUser({
           callback: async (user: any) => {
             // Client is not logged in, nor pending redirect
