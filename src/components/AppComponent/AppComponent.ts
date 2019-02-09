@@ -95,8 +95,6 @@ export class AppComponent extends Mixin(connect(store)(LitElement), [
     // Let's set a default theme
     debug("Setting default theme");
     this.runTasks([
-      async () => {
-      },
       new Promise(async resolve => {
         debug("Run init methods");
         await initApp(this.firebaseConfig);
