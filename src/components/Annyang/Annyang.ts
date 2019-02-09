@@ -22,4 +22,4 @@ var commands = {
 annyang.addCommands(commands);
 
 // Start listening.
-annyang.start();
+// annyang.start();
