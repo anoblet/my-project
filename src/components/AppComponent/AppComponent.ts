@@ -18,7 +18,7 @@ import componentStyle from "./AppStyle";
 import { config } from "../../../config";
 import { connect } from "pwa-helpers/connect-mixin.js";
 import { debug } from "../../Debug";
-import globalStyle from "../../GlobalStyle";
+import GlobalStyle from "../../GlobalStyle";
 import { installOfflineWatcher } from "pwa-helpers/network.js";
 import { installRouter } from "pwa-helpers/router.js";
 import { routes } from "./Routes";
@@ -220,7 +220,7 @@ export class AppComponent extends Mixin(connect(store)(LitElement), [
   }
 
   static get styles() {
-    return [globalStyle, componentStyle];
+    return [GlobalStyle, componentStyle];
   }
 
   public render() {
