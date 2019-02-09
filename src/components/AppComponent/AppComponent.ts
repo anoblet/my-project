@@ -51,20 +51,20 @@ import(/* webpackChunkName: "MenuComponent" */ "../MenuComponent/MenuComponent")
 import(/* webpackChunkName: "MenuComponent" */ "../MenuComponent/MenuComponent");
 import(/* webpackChunkName: "ToastComponent" */ "../ToastComponent/ToastComponent");
 
-const getAppSettings = () => {
-  return getDocument({
-    path: `app/settings`
-  }).then((document: any) => {
-    const app = {
-      settings: document
-    };
-    setState({ data: app, store, type: "app" });
-    setDefaultTheme(document.defaultTheme);
+const getAppSettings = async (callback: any) => {
+  await getDocument({
+    path: "app/settings",
+    callback: (document: any) => {
+      if (document) {
+        callback(document);
+      }
+    },
+    watch: true
   });
 };
 
 const setDefaultTheme = (theme: any) => {
-  setState({ data: theme, store, type: "theme" });
+  // setState({ data: theme, store, type: "theme" });
 };
 
 export class AppComponent extends Mixin(connect(store)(LitElement), [
@@ -94,15 +94,25 @@ export class AppComponent extends Mixin(connect(store)(LitElement), [
     super.connectedCallback();
     // Let's set a default theme
     debug("Setting default theme");
-    getAppSettings();
-    this.runTasks([
+    this.taskChain([
       new Promise(async resolve => {
         debug("Run init methods");
         await initApp(this.firebaseConfig);
+        await new Promise(resolve => {
+          getAppSettings((document: any) => {
+            const app = {
+              settings: document
+            };
+            setState({ data: app, store, type: "app" });
+            const theme = documentToStyle(document.defaultTheme);
+            setTheme(theme, this);
+            resolve();
+          });
+        });
         await checkRedirect();
         await getUser({
           callback: async (user: any) => {
-            console.log(user);
+            console.log("2");
             // Client is not logged in, nor pending redirect
             if (!user) {
               debug("User is not logged in");
