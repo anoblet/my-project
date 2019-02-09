@@ -61,14 +61,35 @@ export const getUserTheme = async (callback: any) => {
   return await getDocument({
     path: `users/${user.uid}/settings/theme`,
     callback: (document: any) => {
-      callback(document.currentTheme);
       if (document) {
-        // const theme = documentToStyle(document);
-        // setTheme(theme, this)
-        // setState({ data: document.currentTheme, store, type: "theme" });
+        callback(document.currentTheme);
       }
-      Promise.resolve(document);
+      Promise.resolve();
     },
     watch: true
   });
+};
+
+export const getUserSettings = async (callback: any) => {
+  const user = store.getState().user;
+  return await getDocument({
+    path: `users/${user.uid}/settings/default`,
+    callback: (document: any) => {
+      if (document) {
+        callback(document);
+      }
+      Promise.resolve();
+    },
+    watch: true
+  });
+};
+
+export const extract = (user: any) => {
+  return {
+    email: user.email,
+    name: user.displayName,
+    photo: user.photoURL,
+    signedIn: true,
+    uid: user.uid
+  };
 };

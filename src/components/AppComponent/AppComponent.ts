@@ -26,7 +26,7 @@ import { setState } from "../../../packages/state-helpers/state-helpers";
 import { store } from "../../Store";
 import template from "./AppComponentTemplate";
 import { themeStructure } from "../ThemeComponent/ThemeStructure";
-import { getUserTheme } from "../../User";
+import { extract, getUserSettings, getUserTheme } from "../../User";
 import { setTheme, documentToStyle } from "../../Theme";
 
 // import { customElement } from "lit-element";
@@ -111,31 +111,17 @@ export class AppComponent extends Mixin(connect(store)(LitElement), [
               // Client is logged in
               debug("User is logged in");
               // Get the most useful information
-              const userModel = {
-                email: user.email,
-                name: user.displayName,
-                photo: user.photoURL,
-                signedIn: true,
-                uid: user.uid
-              };
+              const userData = extract(user);
               // Map to state (document): user
-              await setState({ data: userModel, store, type: "user" });
+              await setState({ data: userData, store, type: "user" });
               // Load theme from Firebase
               await getUserTheme((document: any) => {
                 const theme = documentToStyle(document);
                 setTheme(theme, this);
               });
-              // Load settings from firebaseConfig
-              await new Promise(resolve =>
-                getDocument({
-                  path: `users/${user.uid}/settings/default`,
-                  callback: (document: any) => {
-                    setState({ data: document, store, type: "settings" });
-                    resolve();
-                  },
-                  watch: true
-                })
-              );
+              await getUserSettings((document: any) => {
+                setState({ data: document, store, type: "settings" });
+              });
             }
             debug("App component is updated");
             resolve();
@@ -143,7 +129,9 @@ export class AppComponent extends Mixin(connect(store)(LitElement), [
         });
       })
     ]);
-
+    getUserSettings((document: any) => {
+      setState({ data: document, store, type: "settings" });
+    });
     // Register drawer listeners
     this.registerlisteners();
 
