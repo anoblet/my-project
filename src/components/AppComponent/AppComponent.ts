@@ -66,11 +66,6 @@ const setDefaultTheme = (theme: any) => {
   setState({ data: theme, store, type: "theme" });
 };
 
-const setTheme = (theme: any, element: any) =>
-  theme.map((propertyMap: any) => {
-    element.style.setProperty(propertyMap.property, propertyMap.value);
-  });
-
 export class AppComponent extends Mixin(connect(store)(LitElement), [
   HelperMixin,
   TaskMixin,
@@ -88,7 +83,9 @@ export class AppComponent extends Mixin(connect(store)(LitElement), [
     super();
     debug("App is constructing");
     this.setStore(store);
-    this.addReducer("app"), this.addReducer("user"), this.addReducer("theme");
+    this.addReducer("app");
+    this.addReducer("user");
+    this.addReducer("theme");
     this.addReducer("settings");
   }
 
@@ -100,17 +97,17 @@ export class AppComponent extends Mixin(connect(store)(LitElement), [
       new Promise(async resolve => {
         debug("Run init methods");
         await initApp(this.firebaseConfig);
+        await getAppSettings();
         await checkRedirect();
         await getUser({
           callback: async (user: any) => {
-            await getAppSettings();
             // Client is not logged in, nor pending redirect
             if (!user) {
               debug("User is not logged in");
+              this.setState({}, "user");
               resolve();
-            }
-            // Client is logged in
-            if (user) {
+            } else {
+              // Client is logged in
               debug("User is logged in");
               // Get the most useful information
               const userModel = {
@@ -125,18 +122,17 @@ export class AppComponent extends Mixin(connect(store)(LitElement), [
               // Load theme from Firebase
               await loadUserTheme();
               // Load settings from firebaseConfig
-              await new Promise(resolve => {
+              await new Promise(resolve =>
                 getDocument({
                   path: `users/${user.uid}/settings/default`,
                   callback: (document: any) => {
-                    // this.setState({ settings: document }, "app");
-                    this.setState(document, "settings");
+                    setState({ data: document, store, type: "settings" });
                     resolve();
                   },
                   watch: true
-                });
-              });
-            } else this.setState({}, "user");
+                })
+              );
+            }
             debug("App component is updated");
             resolve();
           }
