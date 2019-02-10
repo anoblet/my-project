@@ -181,15 +181,6 @@ export class AppComponent extends Mixin(connect(store)(LitElement), [
     menu.close();
   }
 
-  // State
-  public stateChanged(state: any) {
-    super.stateChanged(state);
-    const theme = state.theme;
-    if (theme) {
-      // this.updateStyles(theme);
-    }
-  }
-
   static get styles() {
     return [GlobalStyle, componentStyle];
   }
