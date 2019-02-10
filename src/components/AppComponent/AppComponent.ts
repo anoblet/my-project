@@ -137,6 +137,7 @@ export class AppComponent extends Mixin(connect(store)(LitElement), [
   }
 
   public firstUpdated() {
+    debug("First updated");
     this.dispatchEvent(
       new CustomEvent("app-loaded", {
         bubbles: true,
