@@ -72,16 +72,15 @@ export const getUserTheme = async (callback: any) => {
 
 export const getUserSettings = async (callback: any) => {
   const user = store.getState().user;
-  return await getDocument({
-    path: `users/${user.uid}/settings/default`,
-    callback: (document: any) => {
-      if (document) {
-        callback(document);
-      }
-      Promise.resolve();
-    },
-    watch: true
-  });
+  return new Promise(resolve =>
+    getDocument({
+      path: `users/${user.uid}/settings/default`,
+      callback: (document: any) => {
+        document ? resolve(callback(document)) : resolve(false);
+      },
+      watch: true
+    })
+  );
 };
 
 export const extract = (user: any) => {

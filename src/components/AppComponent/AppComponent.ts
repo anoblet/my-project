@@ -80,7 +80,8 @@ export class AppComponent extends Mixin(connect(store)(LitElement), [
 
     this.runTasks([
       (async () => {
-        return await getAppSettings((document: any) => {
+        await initApp(this.firebaseConfig);
+        await getAppSettings((document: any) => {
           const app = {
             settings: document
           };
@@ -88,18 +89,15 @@ export class AppComponent extends Mixin(connect(store)(LitElement), [
           const theme = documentToStyle(document.defaultTheme);
           setTheme(theme, this);
         });
-      })(),
-      new Promise(async resolve => {
-        debug("Run init methods");
-        await initApp(this.firebaseConfig);
         await checkRedirect();
+      })(),
+      (async () => {
         await getUser({
           callback: async (user: any) => {
             // Client is not logged in, nor pending redirect
             if (!user) {
               debug("User is not logged in");
               this.setState({}, "user");
-              resolve();
             } else {
               // Client is logged in
               debug("User is logged in");
@@ -115,13 +113,12 @@ export class AppComponent extends Mixin(connect(store)(LitElement), [
               await getUserTheme((document: any) => {
                 const theme = documentToStyle(document);
                 setTheme(theme, this);
-                resolve();
               });
             }
             debug("App component is updated");
           }
         });
-      })
+      })()
     ]);
     // Register drawer listeners
     this.registerlisteners();
