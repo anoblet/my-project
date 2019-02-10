@@ -118,7 +118,6 @@ export class AppComponent extends Mixin(connect(store)(LitElement), [
             debug("App component is updated");
           }
         });
-        console.log(user);
       })()
     ]);
     // Register drawer listeners
