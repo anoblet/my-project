@@ -3,6 +3,7 @@ import { css, html, LitElement, customElement, property } from "lit-element";
 @customElement("button-component")
 export class ButtonComponent extends LitElement {
   @property() public label: string;
+  @property() public theme: string = "native";
 
   static get styles() {
     return [
@@ -22,7 +23,16 @@ export class ButtonComponent extends LitElement {
 
   public render() {
     return html`
-      <button>${this.label}</button>
+      ${this.theme === "material"
+        ? html`
+            <mwc-button label=${this.label}></mwc-button>
+          `
+        : ""}
+      ${this.theme === "native"
+        ? html`
+            <button>${this.label}</button>
+          `
+        : ""}
     `;
   }
 }

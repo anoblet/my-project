@@ -7,6 +7,9 @@ var commands = {
   hello: function() {
     alert("Hello world!");
   },
+  "home": function() {
+    navigate("/");
+  },
   "eye exam": function() {
     navigate("/components/eye-exam");
   },

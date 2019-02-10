@@ -3,9 +3,9 @@ import { getReadme } from "./Readme";
 
 @customElement("readme-component")
 class Readme extends LitElement {
-  @property() public template: any;
+  @property() public path: string = "https://raw.githubusercontent.com/anoblet/my-project/master/README.md";
 
   public render() {
-    return getReadme();
+    return getReadme(this.path);
   }
 }

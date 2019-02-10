@@ -3,11 +3,11 @@ import { until } from "lit-html/directives/until";
 import { unsafeHTML } from "lit-html/directives/unsafe-html";
 import { mdToHtml } from "../../../packages/Showdown/Showdown";
 
-export const getReadme = () => {
+export const getReadme = (path: string) => {
   return html`
     ${until(
       fetch(
-        "https://raw.githubusercontent.com/anoblet/my-project/master/README.md"
+        path
       )
         .then((response) => response.text())
         .then((document: any) => {
