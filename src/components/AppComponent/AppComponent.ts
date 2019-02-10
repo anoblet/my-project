@@ -83,7 +83,6 @@ export class AppComponent extends Mixin(connect(store)(LitElement), [
         await initApp(this.firebaseConfig);
         await checkRedirect();
         await (async () => {
-          console.log(1);
           debug("Getting app data");
           await getAppSettings((document: any) => {
             const app = {
@@ -92,17 +91,14 @@ export class AppComponent extends Mixin(connect(store)(LitElement), [
             setState({ data: app, store, type: "app" });
             const theme = documentToStyle(document.defaultTheme);
             setTheme(theme, this);
-            console.log(2);
             return true;
           });
           debug("Finished gettings app data");
         })();
         await (async () => {
-          console.log(3);
           debug("Getting user data");
           await getUser({
             callback: async (user: any) => {
-              console.log(4);
               if (!user) {
                 this.setState({}, "user");
               } else {

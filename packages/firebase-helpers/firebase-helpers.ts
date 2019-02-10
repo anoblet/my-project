@@ -63,7 +63,6 @@ export const checkRedirect = async () => {
       import(/* webpackChunkName: "FirebaseUI" */ "firebaseui")
     ]).then(async ([firebase, auth, firebaseui]) => {
       const _pendingRedirect = await pendingRedirect();
-      console.log(_pendingRedirect);
       if (_pendingRedirect) {
         const instance =
           firebaseui.auth.AuthUI.getInstance() ||
