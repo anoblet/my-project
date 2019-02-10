@@ -55,18 +55,26 @@ export const initStore = () => {
  * on redirect, the form is added to capture the result
  * @return [description]
  * */
-export const checkRedirect = () => {
-  return Promise.all([
-    import(/* webpackChunkName: "Firebase" */ "firebase/app"), // @ts-ignore
-    import(/* webpackChunkName: "FirebaseAuth" */ "firebase/auth"),
-    import(/* webpackChunkName: "FirebaseUI" */ "firebaseui")
-  ]).then(([firebase, auth, firebaseui]) => {
-    const instance =
-      firebaseui.auth.AuthUI.getInstance() ||
-      new firebaseui.auth.AuthUI(firebase.auth());
-    if (instance.isPendingRedirect()) {
-      instance.start(document.createElement("div"), {});
-    }
+export const checkRedirect = async () => {
+  return new Promise(resolve => {
+    return Promise.all([
+      import(/* webpackChunkName: "Firebase" */ "firebase/app"),
+      import(/* webpackChunkName: "FirebaseAuth" */ "firebase/auth"),
+      import(/* webpackChunkName: "FirebaseUI" */ "firebaseui")
+    ]).then(async ([firebase, auth, firebaseui]) => {
+      const _pendingRedirect = await pendingRedirect();
+      console.log(_pendingRedirect);
+      if (_pendingRedirect) {
+        const instance =
+          firebaseui.auth.AuthUI.getInstance() ||
+          new firebaseui.auth.AuthUI(firebase.auth());
+        instance.start(document.createElement("div"), {});
+      }
+      firebase.auth().onAuthStateChanged(user => {
+        if (!user && !_pendingRedirect) resolve();
+        if (user) return resolve();
+      });
+    });
   });
 };
 
