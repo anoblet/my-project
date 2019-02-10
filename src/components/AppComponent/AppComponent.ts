@@ -29,7 +29,7 @@ import template from "./AppComponentTemplate";
 import { themeStructure } from "../ThemeComponent/ThemeStructure";
 import { extract, getUserSettings, getUserTheme } from "../../User";
 import { setTheme, documentToStyle } from "../../Theme";
-import("../Annyang/Annyang");
+import { enableAnnyang, disableAnnyang } from "../Annyang";
 // import { customElement } from "lit-element";
 
 import(/* webpackChunkName: "MyFlex" */ "../../../packages/my-flex");
@@ -109,7 +109,7 @@ export class AppComponent extends Mixin(connect(store)(LitElement), [
           setState({ data: app, store, type: "app" });
           const theme = documentToStyle(document.defaultTheme);
           setTheme(theme, this);
-          return true;
+          if (document.annyangEnabled) enableAnnyang();
         });
       })(),
       new Promise(async resolve => {
@@ -132,6 +132,10 @@ export class AppComponent extends Mixin(connect(store)(LitElement), [
               await setState({ data: userData, store, type: "user" });
               await getUserSettings((document: any) => {
                 setState({ data: document, store, type: "settings" });
+                if (document.annyangEnabled) enableAnnyang();
+                else {
+                  disableAnnyang();
+                }
               });
               // Load theme from Firebase
               await getUserTheme((document: any) => {
@@ -162,7 +166,6 @@ export class AppComponent extends Mixin(connect(store)(LitElement), [
   }
 
   public firstUpdated() {
-    console.log("2");
     this.dispatchEvent(
       new CustomEvent("app-loaded", {
         bubbles: true,

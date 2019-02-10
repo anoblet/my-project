@@ -24,6 +24,12 @@ export const settings = [
     type: Boolean
   },
   {
+    description: "Enable Annyang",
+    label: "Enable Annyang",
+    name: "annyangEnabled",
+    type: Boolean
+  },
+  {
     description: "Mode",
     label: "Mode",
     name: "mode",

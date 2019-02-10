@@ -1,4 +1,4 @@
-import { navigate } from "../../Router";
+import { navigate } from "../Router";
 
 const annyang = require("annyang");
 
@@ -10,16 +10,21 @@ var commands = {
   "eye exam": function() {
     navigate("/components/eye-exam");
   },
-  "settings": function() {
+  settings: function() {
     navigate("/user-settings");
   },
-  "theme": function() {
+  theme: function() {
     navigate("/user-theme");
   }
 };
 
-// Add our commands to annyang
 annyang.addCommands(commands);
 
-// Start listening.
-// annyang.start();
+// Start listening
+export const enableAnnyang = () => {
+  annyang.start();
+};
+
+export const disableAnnyang = () => {
+  annyang.abort();
+};
