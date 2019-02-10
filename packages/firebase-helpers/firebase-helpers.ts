@@ -57,8 +57,7 @@ export const initStore = () => {
  * */
 export const checkRedirect = () => {
   return Promise.all([
-    import(/* webpackChunkName: "Firebase" */ "firebase/app"),
-    // @ts-ignore
+    import(/* webpackChunkName: "Firebase" */ "firebase/app"), // @ts-ignore
     import(/* webpackChunkName: "FirebaseAuth" */ "firebase/auth"),
     import(/* webpackChunkName: "FirebaseUI" */ "firebaseui")
   ]).then(([firebase, auth, firebaseui]) => {
@@ -76,22 +75,23 @@ export const checkRedirect = () => {
  * Example: getUser((user: any) => console.log(user))
  * */
 export const getUser = ({ callback }: any) => {
-  return Promise.all([
-    import(/* webpackChunkName: "Firebase" */ "firebase/app"),
-    // @ts-ignore
-    import(/* webpackChunkName: "FirebaseAuth" */ "firebase/auth"),
-    import(/* webpackChunkName: "FirebaseUI" */ "firebaseui")
-  ]).then(([firebase, auth, firebaseui]) => {
-    const instance =
-      firebaseui.auth.AuthUI.getInstance() ||
-      new firebaseui.auth.AuthUI(firebase.auth());
-    // If true, the user has logged in, and Firebase UI is waiting to process it
-    const pendingRedirect = instance.isPendingRedirect();
-    firebase.auth().onAuthStateChanged((user: any) => {
-      // If not logged in, or pending a redirect let's return false
-      if (!user && !pendingRedirect) return callback(false);
-      // User is logged in, let's return the user
-      if (user) return callback(user);
+  return new Promise(resolve => {
+    return Promise.all([
+      import(/* webpackChunkName: "Firebase" */ "firebase/app"), // @ts-ignore
+      import(/* webpackChunkName: "FirebaseAuth" */ "firebase/auth"),
+      import(/* webpackChunkName: "FirebaseUI" */ "firebaseui")
+    ]).then(([firebase, auth, firebaseui]) => {
+      const instance =
+        firebaseui.auth.AuthUI.getInstance() ||
+        new firebaseui.auth.AuthUI(firebase.auth());
+      // If true, the user has logged in, and Firebase UI is waiting to process it
+      const pendingRedirect = instance.isPendingRedirect();
+      firebase.auth().onAuthStateChanged((user: any) => {
+        // If not logged in, or pending a redirect let's return false
+        if (!user && !pendingRedirect) resolve(callback(false));
+        // User is logged in, let's return the user
+        if (user) return resolve(callback(user));
+      });
     });
   });
 };

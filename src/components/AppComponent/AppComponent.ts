@@ -92,7 +92,7 @@ export class AppComponent extends Mixin(connect(store)(LitElement), [
         await checkRedirect();
       })(),
       (async () => {
-        await getUser({
+        const user = await getUser({
           callback: async (user: any) => {
             // Client is not logged in, nor pending redirect
             if (!user) {
@@ -118,6 +118,7 @@ export class AppComponent extends Mixin(connect(store)(LitElement), [
             debug("App component is updated");
           }
         });
+        console.log(user);
       })()
     ]);
     // Register drawer listeners
