@@ -56,10 +56,6 @@ export const initStore = () => {
  * @return [description]
  * */
 export const checkRedirect = () => {
-  // run(["auth", "ui"], (firebase: any) => {
-  //   console.log(firebase);
-  // });
-  // return;
   return Promise.all([
     import(/* webpackChunkName: "Firebase" */ "firebase/app"), // @ts-ignore
     import(/* webpackChunkName: "FirebaseAuth" */ "firebase/auth"),
@@ -68,7 +64,7 @@ export const checkRedirect = () => {
     const instance =
       firebaseui.auth.AuthUI.getInstance() ||
       new firebaseui.auth.AuthUI(firebase.auth());
-    if (true || instance.isPendingRedirect()) {
+    if (instance.isPendingRedirect()) {
       instance.start(document.createElement("div"), {});
     }
   });
@@ -81,18 +77,12 @@ export const checkRedirect = () => {
 export const getUser = ({ callback }: any) => {
   return new Promise(resolve => {
     return Promise.all([
-      import(/* webpackChunkName: "Firebase" */ "firebase/app"), // @ts-ignore
-      import(/* webpackChunkName: "FirebaseAuth" */ "firebase/auth"),
-      import(/* webpackChunkName: "FirebaseUI" */ "firebaseui")
-    ]).then(([firebase, auth, firebaseui]) => {
-      const instance =
-        firebaseui.auth.AuthUI.getInstance() ||
-        new firebaseui.auth.AuthUI(firebase.auth());
-      // If true, the user has logged in, and Firebase UI is waiting to process it
-      const pendingRedirect = instance.isPendingRedirect();
+      import(/* webpackChunkName: "Firebase" */ "firebase/app") // @ts-ignore
+    ]).then(async ([firebase]) => {
+      const _pendingRedirect = await pendingRedirect();
       firebase.auth().onAuthStateChanged((user: any) => {
         // If not logged in, or pending a redirect let's return false
-        if (!user && !pendingRedirect) resolve(callback(false));
+        if (!user && !_pendingRedirect) resolve(callback(false));
         // User is logged in, let's return the user
         if (user) return resolve(callback(user));
       });
@@ -243,4 +233,17 @@ const run = (modules: any = [], callback: any) => {
     );
 
   return Promise.all(imports).then(([firebase]) => callback(firebase));
+};
+
+const pendingRedirect = async () => {
+  return Promise.all([
+    import(/* webpackChunkName: "Firebase" */ "firebase/app"), // @ts-ignore
+    import(/* webpackChunkName: "FirebaseAuth" */ "firebase/auth"),
+    import(/* webpackChunkName: "FirebaseUI" */ "firebaseui")
+  ]).then(([firebase, auth, firebaseui]) => {
+    const instance =
+      firebaseui.auth.AuthUI.getInstance() ||
+      new firebaseui.auth.AuthUI(firebase.auth());
+    return instance.isPendingRedirect();
+  });
 };
