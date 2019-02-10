@@ -39,7 +39,7 @@ const getAppSettings = (callback: any) => {
     getDocument({
       path: "app/settings",
       callback: (document: any) => {
-        document ? resolve(callback(document)) : resolve(false);
+        resolve(document ? callback(document) : false);
       },
       watch: true
     })
@@ -80,21 +80,28 @@ export class AppComponent extends Mixin(connect(store)(LitElement), [
 
     this.runTasks([
       (async () => {
+        console.log(1);
         await initApp(this.firebaseConfig);
-        await getAppSettings((document: any) => {
+        debug("Getting app data");
+        const settings = await getAppSettings((document: any) => {
           const app = {
             settings: document
           };
           setState({ data: app, store, type: "app" });
           const theme = documentToStyle(document.defaultTheme);
           setTheme(theme, this);
-          return
+          console.log(2)
         });
+        console.log(settings);
+        debug("Finished gettings app data");
       })(),
       (async () => {
+        console.log(3)
         await checkRedirect();
+        debug("Getting user data");
         await getUser({
           callback: async (user: any) => {
+            console.log(4)
             if (!user) {
               this.setState({}, "user");
             } else {
@@ -110,9 +117,9 @@ export class AppComponent extends Mixin(connect(store)(LitElement), [
                 setTheme(theme, this);
               });
             }
-            debug("App component is updated");
           }
         });
+        debug("Finished getting user data");
       })()
     ]);
     // Register drawer listeners
