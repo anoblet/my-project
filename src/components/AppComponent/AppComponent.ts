@@ -8,8 +8,12 @@ import {
   getUser,
   initApp
 } from "../../../packages/firebase-helpers";
+import { disableAnnyang, enableAnnyang } from "../Annyang";
+import { documentToStyle, setTheme } from "../../Theme";
+import { extract, getUserSettings, getUserTheme } from "../../User";
 import { handleNavigation, setPortal, setRoutes } from "../../Router";
 
+import GlobalStyle from "../../GlobalStyle";
 import { HelperMixin } from "../../../packages/HelperMixin";
 import { MediaMixin } from "../../../packages/MediaMixin";
 import { Mixin } from "../../../packages/Mixin";
@@ -19,7 +23,6 @@ import componentStyle from "./AppStyle";
 import { config } from "../../../config";
 import { connect } from "pwa-helpers/connect-mixin.js";
 import { debug } from "../../Debug";
-import GlobalStyle from "../../GlobalStyle";
 import { installOfflineWatcher } from "pwa-helpers/network.js";
 import { installRouter } from "pwa-helpers/router.js";
 import { routes } from "./Routes";
@@ -27,9 +30,20 @@ import { setState } from "../../../packages/state-helpers/state-helpers";
 import { store } from "../../Store";
 import template from "./AppComponentTemplate";
 import { themeStructure } from "../ThemeComponent/ThemeStructure";
-import { extract, getUserSettings, getUserTheme } from "../../User";
-import { setTheme, documentToStyle } from "../../Theme";
-import { enableAnnyang, disableAnnyang } from "../Annyang";
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // import { customElement } from "lit-element";
 
 import(/* webpackChunkName: "MyFlex" */ "../../../packages/my-flex");
