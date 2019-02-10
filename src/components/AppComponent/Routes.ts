@@ -79,5 +79,11 @@ export const routes = [
     component: "sitemap-component",
     src: () =>
       import(/* webpackChunkName: "SitemapComponent" */ /* webpackPrefetch: true */ "../Sitemap/Component")
+  },
+  {
+    path: "/blog",
+    component: "blog-component",
+    src: () =>
+      import(/* webpackChunkName: "BlogComponent" */ /* webpackPrefetch: true */ "../BlogComponent/Blog")
   }
 ];
