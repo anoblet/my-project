@@ -92,7 +92,7 @@ export class AppComponent extends Mixin(connect(store)(LitElement), [
         await checkRedirect();
       })(),
       (async () => {
-        const user = await getUser({
+        await getUser({
           callback: async (user: any) => {
             // Client is not logged in, nor pending redirect
             if (!user) {
