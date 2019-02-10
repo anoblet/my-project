@@ -63,7 +63,7 @@ export const checkRedirect = async () => {
       import(/* webpackChunkName: "FirebaseUI" */ "firebaseui")
     ]).then(async ([firebase, auth, firebaseui]) => {
       const _pendingRedirect = await pendingRedirect();
-      if(!_pendingRedirect) resolve();
+      if (!_pendingRedirect) resolve();
       else {
         const instance =
           firebaseui.auth.AuthUI.getInstance() ||
@@ -72,9 +72,7 @@ export const checkRedirect = async () => {
         firebase.auth().onAuthStateChanged(user => {
           if (user) return resolve();
         });
-
       }
-
     });
   });
 };
@@ -89,11 +87,9 @@ export const getUser = ({ callback }: any) => {
       import(/* webpackChunkName: "Firebase" */ "firebase/app") // @ts-ignore
     ]).then(async ([firebase]) => {
       const _pendingRedirect = await pendingRedirect();
+      if (_pendingRedirect) resolve(false);
       firebase.auth().onAuthStateChanged((user: any) => {
-        // If not logged in, or pending a redirect let's return false
-        if (!user && !_pendingRedirect) resolve(callback(false));
-        // User is logged in, let's return the user
-        if (user) return resolve(callback(user));
+        resolve(callback(user));
       });
     });
   });

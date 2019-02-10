@@ -81,7 +81,6 @@ export class AppComponent extends Mixin(connect(store)(LitElement), [
     this.runTasks([
       (async () => {
         await initApp(this.firebaseConfig);
-        await checkRedirect();
         await (async () => {
           debug("Getting app data");
           await getAppSettings((document: any) => {
@@ -95,6 +94,9 @@ export class AppComponent extends Mixin(connect(store)(LitElement), [
           });
           debug("Finished gettings app data");
         })();
+        debug("Check redirect");
+        await checkRedirect();
+        debug("Finished check redirect");
         await (async () => {
           debug("Getting user data");
           await getUser({
