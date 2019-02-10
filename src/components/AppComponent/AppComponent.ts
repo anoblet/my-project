@@ -82,10 +82,12 @@ export class AppComponent extends Mixin(connect(store)(LitElement), [
       (async () => {
         await initApp(this.firebaseConfig);
         await checkRedirect();
-        (async () => {
+        // Hack
+        await getUser({callback: () => {}});
+        await (async () => {
           console.log(1);
           debug("Getting app data");
-          const settings = await getAppSettings((document: any) => {
+          await getAppSettings((document: any) => {
             const app = {
               settings: document
             };
@@ -95,7 +97,6 @@ export class AppComponent extends Mixin(connect(store)(LitElement), [
             console.log(2);
             return true;
           });
-          console.log(settings);
           debug("Finished gettings app data");
         })();
         await (async () => {
