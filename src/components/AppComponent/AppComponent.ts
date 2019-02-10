@@ -109,7 +109,6 @@ export class AppComponent extends Mixin(connect(store)(LitElement), [
           setState({ data: app, store, type: "app" });
           const theme = documentToStyle(document.defaultTheme);
           setTheme(theme, this);
-          if (document.annyangEnabled) enableAnnyang();
         });
       })(),
       new Promise(async resolve => {
