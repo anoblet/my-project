@@ -58,11 +58,7 @@ const getAppSettings = (callback: any) => {
     getDocument({
       path: "app/settings",
       callback: (document: any) => {
-        if (document) {
-          resolve(callback(document));
-        } else {
-          return resolve(false);
-        }
+        document ? resolve(callback(document)) : resolve(false);
       },
       watch: true
     })
