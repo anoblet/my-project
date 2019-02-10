@@ -56,18 +56,17 @@ export const signOut = (redirect: any = "/") => {
 
 const onUserLoggedIn = () => {};
 
-export const getUserTheme = async (callback: any) => {
+export const getUserTheme = (callback: any) => {
   const user = store.getState().user;
-  return await getDocument({
-    path: `users/${user.uid}/settings/theme`,
-    callback: (document: any) => {
-      if (document) {
-        callback(document.currentTheme);
-      }
-      Promise.resolve();
-    },
-    watch: true
-  });
+  return new Promise(resolve => {
+    return getDocument({
+      path: `users/${user.uid}/settings/theme`,
+      callback: (document: any) => {
+        resolve(document ? callback(document.currentTheme) : false);
+      },
+      watch: true
+    });
+  })
 };
 
 export const getUserSettings = async (callback: any) => {

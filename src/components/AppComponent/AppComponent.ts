@@ -90,30 +90,24 @@ export class AppComponent extends Mixin(connect(store)(LitElement), [
           setTheme(theme, this);
         });
         await checkRedirect();
-      })(),
-      (async () => {
         await getUser({
           callback: async (user: any) => {
-            // Client is not logged in, nor pending redirect
             if (!user) {
-              debug("User is not logged in");
               this.setState({}, "user");
             } else {
-              // Client is logged in
-              debug("User is logged in");
-              // Get the most useful information
               const userData = extract(user);
-              // Map to state (document): user
               await setState({ data: userData, store, type: "user" });
               await getUserSettings((document: any) => {
                 setState({ data: document, store, type: "settings" });
                 document.annyangEnabled ? enableAnnyang() : disableAnnyang();
               });
               // Load theme from Firebase
-              await getUserTheme((document: any) => {
+              const theme = await getUserTheme((document: any) => {
                 const theme = documentToStyle(document);
                 setTheme(theme, this);
+                console.log(1);
               });
+              console.log()
             }
             debug("App component is updated");
           }
@@ -137,6 +131,7 @@ export class AppComponent extends Mixin(connect(store)(LitElement), [
   }
 
   public firstUpdated() {
+    console.log(2);
     this.dispatchEvent(
       new CustomEvent("app-loaded", {
         bubbles: true,
