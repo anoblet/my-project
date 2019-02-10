@@ -1,4 +1,4 @@
-import "../PageHome/PageHome";
+// import "../PageHome/PageHome";
 import "../PageStatic";
 
 import { LitElement, html, property } from "lit-element";
@@ -30,19 +30,6 @@ import { setState } from "../../../packages/state-helpers/state-helpers";
 import { store } from "../../Store";
 import template from "./AppComponentTemplate";
 import { themeStructure } from "../ThemeComponent/ThemeStructure";
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 // import { customElement } from "lit-element";
 
