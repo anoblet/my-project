@@ -88,7 +88,10 @@ export class AppComponent extends Mixin(connect(store)(LitElement), [
           setState({ data: app, store, type: "app" });
           const theme = documentToStyle(document.defaultTheme);
           setTheme(theme, this);
+          return
         });
+      })(),
+      (async () => {
         await checkRedirect();
         await getUser({
           callback: async (user: any) => {
@@ -105,9 +108,7 @@ export class AppComponent extends Mixin(connect(store)(LitElement), [
               const theme = await getUserTheme((document: any) => {
                 const theme = documentToStyle(document);
                 setTheme(theme, this);
-                console.log(1);
               });
-              console.log()
             }
             debug("App component is updated");
           }
@@ -131,7 +132,6 @@ export class AppComponent extends Mixin(connect(store)(LitElement), [
   }
 
   public firstUpdated() {
-    console.log(2);
     this.dispatchEvent(
       new CustomEvent("app-loaded", {
         bubbles: true,
