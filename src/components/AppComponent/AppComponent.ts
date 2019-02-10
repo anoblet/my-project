@@ -75,9 +75,6 @@ export class AppComponent extends Mixin(connect(store)(LitElement), [
 
   public connectedCallback() {
     super.connectedCallback();
-    // Let's set a default theme
-    debug("Setting default theme");
-
     this.runTasks([
       (async () => {
         await initApp(this.firebaseConfig);
