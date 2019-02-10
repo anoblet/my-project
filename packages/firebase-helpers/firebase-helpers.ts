@@ -56,10 +56,10 @@ export const initStore = () => {
  * @return [description]
  * */
 export const checkRedirect = () => {
-  run(["auth", "ui"], () => {
-    alert("hi!");
-  });
-  return;
+  // run(["auth", "ui"], (firebase: any) => {
+  //   console.log(firebase);
+  // });
+  // return;
   return Promise.all([
     import(/* webpackChunkName: "Firebase" */ "firebase/app"), // @ts-ignore
     import(/* webpackChunkName: "FirebaseAuth" */ "firebase/auth"),
@@ -237,7 +237,7 @@ const run = (modules: any = [], callback: any) => {
       import(/* webpackChunkName: "FirebaseFirestore" */ "firebase/firestore")
     );
 
-  Promise.all(modules).then(([firebase]) => callback(firebase));
+  return Promise.all(imports).then(([firebase]) => callback(firebase));
 };
 
 /**
