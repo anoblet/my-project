@@ -28,6 +28,7 @@
     "html-loader": "^0.5.5",
     "lit-element": "^2.0.1",
     "marked": "^0.6.0",
+    "ngrok": "^3.1.1",
     "object-path": "^0.11.4",
     "path-to-regexp": "^2.4.0",
     "pell": "^1.0.6",
