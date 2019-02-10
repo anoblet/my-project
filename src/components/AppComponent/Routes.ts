@@ -85,5 +85,11 @@ export const routes = [
     component: "blog-component",
     src: () =>
       import(/* webpackChunkName: "BlogComponent" */ /* webpackPrefetch: true */ "../BlogComponent/Blog")
+  },
+  {
+    path: "/log",
+    component: "log-component",
+    src: () =>
+      import(/* webpackChunkName: "LogComponent" */ /* webpackPrefetch: true */ "../LogComponent/LogComponent")
   }
 ];
