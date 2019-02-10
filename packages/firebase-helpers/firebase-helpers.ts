@@ -90,7 +90,6 @@ export const getUser = ({ callback }: any) => {
         new firebaseui.auth.AuthUI(firebase.auth());
       // If true, the user has logged in, and Firebase UI is waiting to process it
       const pendingRedirect = instance.isPendingRedirect();
-      console.log(pendingRedirect, "Pending");
       firebase.auth().onAuthStateChanged((user: any) => {
         // If not logged in, or pending a redirect let's return false
         if (!user && !pendingRedirect) resolve(callback(false));
@@ -225,6 +224,12 @@ export const deleteDocument = ({ path }: any) => {
   });
 };
 
+/**
+ * Deprecated function that was supposed to be use to act as a provider for Firbase. May still be useful.
+ * @param depends: ...["auth", "firestore", "ui"]
+ * Provides Firebase app + modules you specify from a callback
+ * */
+
 const run = (modules: any = [], callback: any) => {
   const imports: any = [];
   imports.push(import(/* webpackChunkName: "Firebase" */ "firebase/app"));
@@ -238,28 +243,4 @@ const run = (modules: any = [], callback: any) => {
     );
 
   return Promise.all(imports).then(([firebase]) => callback(firebase));
-};
-
-/**
- * Deprecated function that was supposed to be use to act as a provider for Firbase. May still be useful.
- * @param depends: ...["auth", "firestore", "ui"]
- * Provides Firebase app + modules you specify from a callback
- * */
-
-const load = (depends: any = [], callback: any) => {
-  let modules: any = [
-    import(/* webpackChunkName: "Firebase" */ "firebase/app")
-  ];
-  if (depends.includes("auth"))
-    modules.push(
-      import(// @ts-ignore
-      /* webpackChunkName: "FirebaseAuth" */ "firebase/auth")
-    );
-  if (depends.includes("firestore"))
-    modules.push(
-      import(// @ts-ignore
-      /* webpackChunkName: "FirebaseFirestore" */ "firebase/firestore")
-    );
-
-  Promise.all(modules).then(([firebase]) => callback(firebase));
 };
