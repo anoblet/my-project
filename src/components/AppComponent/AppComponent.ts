@@ -105,16 +105,21 @@ export class AppComponent extends Mixin(connect(store)(LitElement), [
                 this.setState({}, "user");
               } else {
                 const userData = extract(user);
-                await setState({ data: userData, store, type: "user" });
+                setState({ data: userData, store, type: "user" });
+                debug("Getting user settings");
                 await getUserSettings((document: any) => {
                   setState({ data: document, store, type: "settings" });
                   document.annyangEnabled ? enableAnnyang() : disableAnnyang();
                 });
+                debug("Finished getting user settings");
                 // Load theme from Firebase
-                const theme = await getUserTheme((document: any) => {
+                debug("Getting user theme");
+                await getUserTheme((document: any) => {
                   const theme = documentToStyle(document);
                   setTheme(theme, this);
                 });
+                debug("Finished getting user theme");
+
               }
             }
           });
