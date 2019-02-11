@@ -15,10 +15,10 @@ import template from "./DrawerTemplate";
 export class Drawer extends LitElement {
   public firstUpdated() {
     // Close drawer on link click
-    const links = this.shadowRoot.querySelectorAll("a");
-    links.forEach((link: any) =>
-      link.addEventListener("click", this._closeDrawer)
-    );
+    // const links = this.shadowRoot.querySelectorAll("a");
+    // links.forEach((link: any) =>
+    //   link.addEventListener("click", this._closeDrawer)
+    // );
   }
 
   // Handlers
