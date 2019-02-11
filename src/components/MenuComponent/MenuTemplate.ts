@@ -7,7 +7,7 @@ export default function() {
     </div>
     <ul id="menu">
       <li>
-        <a href="/user/posts"><mwc-fab icon="subject"></mwc-fab></a>
+        <a href="/blog"><mwc-fab icon="subject"></mwc-fab></a>
       </li>
       <li>
         <a href="/user-theme"><mwc-fab icon="brush"></mwc-fab></a>
