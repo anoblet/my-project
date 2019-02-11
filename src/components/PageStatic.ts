@@ -1,9 +1,14 @@
 import { LitElement, customElement, html, property } from "lit-element";
+import GlobalStyle from "../GlobalStyle";
 
 
 @customElement("page-static")
 class PageStatic extends LitElement {
   @property() public template: any;
+
+  static get styles() {
+    return GlobalStyle
+  }
 
   public render() {
     return html`
