@@ -18,3 +18,7 @@ export const documentToStyle = (document: any) => {
   });
   return styles;
 };
+
+export const documentToTheme = (document: any) => {
+  return documentToStyle(document);
+}

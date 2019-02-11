@@ -9,7 +9,7 @@ import {
   initApp
 } from "../../../packages/firebase-helpers";
 import { disableAnnyang, enableAnnyang } from "../Annyang";
-import { documentToStyle, setTheme } from "../../Theme";
+import { documentToStyle, documentToTheme, setTheme } from "../../Theme";
 import { extract, getUserSettings, getUserTheme } from "../../User";
 import { handleNavigation, setPortal, setRoutes } from "../../Router";
 
@@ -75,21 +75,18 @@ export class AppComponent extends Mixin(connect(store)(LitElement), [
 
   public connectedCallback() {
     super.connectedCallback();
+
     this.runTasks([
       (async () => {
         await initApp(this.firebaseConfig);
         await (async () => {
-          debug("Getting app data");
+          debug("Getting app settings");
           await getAppSettings((document: any) => {
-            const app = {
-              settings: document
-            };
-            setState({ data: app, store, type: "app" });
-            const theme = documentToStyle(document.defaultTheme);
+            setState({ data: { settings: document }, store, type: "app" });
+            const theme = documentToTheme(document.defaultTheme);
             setTheme(theme, this);
-            return true;
           });
-          debug("Finished gettings app data");
+          debug("Finished gettings app settings");
         })();
         debug("Check redirect");
         await checkRedirect();
@@ -98,14 +95,14 @@ export class AppComponent extends Mixin(connect(store)(LitElement), [
           debug("Getting user data");
           await getUser({
             callback: async (user: any) => {
-              if (!user) {
-                this.setState({}, "user");
-              } else {
+              if (!user) this.setState({}, "user");
+              else {
                 const userData = extract(user);
                 setState({ data: userData, store, type: "user" });
                 debug("Getting user settings");
                 await getUserSettings((document: any) => {
                   setState({ data: document, store, type: "settings" });
+                  // Enable annyang
                   document.annyangEnabled ? enableAnnyang() : disableAnnyang();
                 });
                 debug("Finished getting user settings");
@@ -116,7 +113,6 @@ export class AppComponent extends Mixin(connect(store)(LitElement), [
                   setTheme(theme, this);
                 });
                 debug("Finished getting user theme");
-
               }
             }
           });
@@ -142,15 +138,16 @@ export class AppComponent extends Mixin(connect(store)(LitElement), [
 
   public firstUpdated() {
     debug("First updated");
-    this.dispatchEvent(
-      new CustomEvent("app-loaded", {
-        bubbles: true,
-        composed: true
-      })
-    );
     setPortal(this.renderRoot.querySelector("#portal"));
     setRoutes(routes);
     installRouter((location: any) => {
+      this.dispatchEvent(
+        new CustomEvent("location-changed", {
+          bubbles: true,
+          composed: true,
+          detail: location
+        })
+      );
       handleNavigation({
         location,
         routes,
