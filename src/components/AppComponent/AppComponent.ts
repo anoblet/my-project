@@ -95,7 +95,7 @@ export class AppComponent extends Mixin(connect(store)(LitElement), [
           debug("Getting user data");
           await getUser({
             callback: async (user: any) => {
-              if (!user) this.setState({}, "user");
+              if (!user) true;// this.setState({}, "user");
               else {
                 const userData = extract(user);
                 setState({ data: userData, store, type: "user" });

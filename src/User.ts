@@ -3,7 +3,7 @@ import { setState } from "../packages/state-helpers/state-helpers";
 import { navigate } from "./Router";
 import { toast } from "./components/ToastComponent/Toast";
 import { getDocument } from "../packages/firebase-helpers/firebase-helpers";
-import { setTheme, documentToStyle } from "./Theme";
+import { getUser as _getUser } from "../packages/firebase-helpers";
 
 export const isAdmin = () => {
   const state = store.getState();
@@ -56,6 +56,11 @@ export const signOut = (redirect: any = "/") => {
 
 const onUserLoggedIn = () => {};
 
+export const getUser = (options: any) => {
+  const user = _getUser(options);
+  return extract(user);
+};
+
 export const getUserTheme = (callback: any) => {
   const user = store.getState().user;
   return new Promise(resolve => {
@@ -66,7 +71,7 @@ export const getUserTheme = (callback: any) => {
       },
       watch: true
     });
-  })
+  });
 };
 
 export const getUserSettings = (callback: any) => {
