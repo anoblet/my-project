@@ -29,7 +29,6 @@ import { routes } from "./Routes";
 import { setState } from "../../../packages/state-helpers/state-helpers";
 import { store } from "../../Store";
 import template from "./AppComponentTemplate";
-import { themeStructure } from "../ThemeComponent/ThemeStructure";
 
 // import { customElement } from "lit-element";
 import(/* webpackChunkName: "MyFlex" */ "./imports");

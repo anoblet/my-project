@@ -9,12 +9,12 @@ describe("<drawer-component>", () => {
   });
 
   it("drawer is displayed by default on large screens", async () => {
-    const el = await fixture("<drawer-component></drawer-component>");
-    expect(el.header).to.equal("My Example");
+    const el = await fixture("<drawer-component mediaSize='large'></drawer-component>");
+    expect(el.drawerOpened).to.equal(true);
   });
 
   it("drawer is closed on small screens", async () => {
-    const el = await fixture("<drawer-component></drawer-component>");
-    expect(el.header).to.equal("My Example");
+    const el = await fixture("<drawer-component mediaSize='small'></drawer-component>");
+    expect(el.drawerOpened).to.equal(false);
   });
 });
