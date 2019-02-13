@@ -4,7 +4,7 @@ type Constructor<T = {}> = new (...args: any[]) => T;
 
 export function MediaMixin<B extends Constructor<HTMLElement>>(baseClass: B) {
   class MixinClass extends baseClass {
-    @property({ type: String }) public mediaSize: string;
+    @property({ type: String, reflect: true, attribute: "media-size" }) public mediaSize: string;
 
     constructor(...args: any[]) {
       super(...args);
@@ -13,7 +13,7 @@ export function MediaMixin<B extends Constructor<HTMLElement>>(baseClass: B) {
         if (media.matches) {
           this.mediaSize = 'small';
         } else {
-          this.mediaSize = undefined;
+          this.mediaSize = "large";
         }
       };
       observer.addListener(myListener);
