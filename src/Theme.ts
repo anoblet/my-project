@@ -1,3 +1,5 @@
+import { getDocument } from "../packages/firebase-helpers";
+
 export const setTheme = (theme: any, element: any) => {
   theme.map((propertyMap: any) => {
     element.style.setProperty(propertyMap.property, propertyMap.value);
@@ -21,4 +23,12 @@ export const documentToStyle = (document: any) => {
 
 export const documentToTheme = (document: any) => {
   return documentToStyle(document);
-}
+};
+
+export const setDefaultTheme = async () => {
+  const settings = await getDocument({
+    path: `app/settings`
+  });
+  const theme = documentToTheme(settings.defaultTheme);
+  setTheme(theme, document.querySelector("app-component"));
+};

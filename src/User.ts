@@ -4,6 +4,7 @@ import { navigate } from "./Router";
 import { toast } from "./components/ToastComponent/Toast";
 import { getDocument } from "../packages/firebase-helpers/firebase-helpers";
 import { getUser as _getUser } from "../packages/firebase-helpers";
+import { setDefaultTheme } from "./Theme";
 
 export const isAdmin = () => {
   const state = store.getState();
@@ -42,6 +43,7 @@ export const signOut = (redirect: any = "/") => {
         store,
         type: "user"
       });
+      setDefaultTheme();
     })
     .then(() => {
       toast("Signed out");
