@@ -94,7 +94,8 @@ export class AppComponent extends Mixin(connect(store)(LitElement), [
           debug("Getting user data");
           await getUser({
             callback: async (user: any) => {
-              if (!user) true;// this.setState({}, "user");
+              if (!user) true;
+              // this.setState({}, "user");
               else {
                 const userData = extract(user);
                 setState({ data: userData, store, type: "user" });
@@ -137,6 +138,9 @@ export class AppComponent extends Mixin(connect(store)(LitElement), [
 
   public firstUpdated() {
     debug("First updated");
+    console.log(this.mediaSize);
+    if (this.mediaSize === "small") this.drawerOpened = false;
+    if (this.mediaSize === "large") this.drawerOpened = true;
     setPortal(this.renderRoot.querySelector("#portal"));
     setRoutes(routes);
     installRouter((location: any) => {
@@ -152,7 +156,7 @@ export class AppComponent extends Mixin(connect(store)(LitElement), [
         routes,
         portal: this.renderRoot.querySelector("#portal")
       });
-      this.closeMenus();
+      // this.closeMenus();
     });
   }
 
