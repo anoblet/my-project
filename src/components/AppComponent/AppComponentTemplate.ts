@@ -22,8 +22,7 @@ export default function({ router, user }: any) {
       <my-grid id="drawer-container" media-size="${this.mediaSize}">
         <drawer-component
           id="drawer"
-          ?hidden="${!this.drawerOpened}"
-          media-size="${this.mediaSize}"
+          opened=${this.drawerOpened}
         ></drawer-component>
         <my-flex id="content" grow scroll>
           <my-card full-height grow no-inside-border no-outside-border no-title>

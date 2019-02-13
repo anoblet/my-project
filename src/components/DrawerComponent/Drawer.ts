@@ -9,11 +9,23 @@ import { MediaMixin } from "../../../packages/MediaMixin"
 // @customElement("drawer-component")
 export class Drawer extends Mixin(LitElement, [MediaMixin]) {
   @property({ type: Boolean, reflect: true }) hidden: boolean = true;
+  // @property({ type: Boolean, reflect: true }) opened: boolean = true;
+  toggle() {
+    this.hidden = !this.hidden;
+  }
+
   constructor() {
     super();
-    // if (this.mediaSize === "small") this.hidden = true;
-    // if (this.mediaSize === "large") this.hidden = false;
+    console.log(this.mediaSize);
+    if (this.mediaSize === "small") this.hidden = true;
+    if (this.mediaSize === "large") this.hidden = false;
   }
+
+  set opened(value: any) {
+    this.opened = value;
+    this.hidden = !value;
+  }
+
   static get styles() {
     return [GlobalStyle, Style];
   }

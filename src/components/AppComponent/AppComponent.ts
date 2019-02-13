@@ -70,6 +70,8 @@ export class AppComponent extends Mixin(connect(store)(LitElement), [
     this.addReducer("user");
     this.addReducer("theme");
     this.addReducer("settings");
+    if (this.mediaSize === "small") this.drawerOpened = false;
+    if (this.mediaSize === "large") this.drawerOpened = true;
   }
 
   public connectedCallback() {
@@ -139,8 +141,8 @@ export class AppComponent extends Mixin(connect(store)(LitElement), [
   public firstUpdated() {
     debug("First updated");
     console.log(this.mediaSize);
-    if (this.mediaSize === "small") this.drawerOpened = false;
-    if (this.mediaSize === "large") this.drawerOpened = true;
+    // if (this.mediaSize === "small") this.drawerOpened = false;
+    // if (this.mediaSize === "large") this.drawerOpened = true;
     setPortal(this.renderRoot.querySelector("#portal"));
     setRoutes(routes);
     installRouter((location: any) => {
@@ -166,6 +168,8 @@ export class AppComponent extends Mixin(connect(store)(LitElement), [
 
   // Handlers
   public _toggleDrawer() {
+    const drawer = this.shadowRoot.querySelector("drawer-component");
+    if (drawer) drawer.toggle();
     this.drawerOpened = !this.drawerOpened;
   }
 
