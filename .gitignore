@@ -1,5 +1,6 @@
 .firebase
 config.ts
+coverage
 dist
 node_modules
 tslint.log
