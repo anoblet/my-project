@@ -6,6 +6,7 @@ import template from "./DrawerTemplate";
 
 @customElement("drawer-component")
 export class Drawer extends LitElement {
+  mediaSize = false;
   static get styles() {
     return [GlobalStyle, Style];
   }

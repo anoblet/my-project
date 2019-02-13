@@ -1,5 +1,5 @@
 import { html } from "lit-element";
-import { isAdmin } from "../../User";
+// import { isAdmin } from "../../User";
 
 export default function() {
   return html`
@@ -15,7 +15,7 @@ export default function() {
             : ""}
           <a href="/contact"> <li>Contact</li></a>
           <li><a href="/timings">Timings</a></li>
-          ${isAdmin()
+          ${true // isAdmin()
             ? html`
                 <a href="/admin"><li>Admin</li></a>
               `
