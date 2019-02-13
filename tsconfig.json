@@ -6,7 +6,7 @@
     "module": "esnext",
     "moduleResolution": "node",
     "noUnusedLocals": false,
-    "target": "es2015",
+    "target": "esnext",
     "experimentalDecorators": true,
     "allowJs": true,
     "alwaysStrict": true
