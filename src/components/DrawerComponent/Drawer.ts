@@ -9,7 +9,7 @@ import { MediaMixin } from "../../../packages/MediaMixin";
 // @customElement("drawer-component")
 export class Drawer extends Mixin(LitElement, [MediaMixin]) {
   @property({ type: Boolean, reflect: true }) hidden: boolean = true;
-  // @property({ type: Boolean, reflect: true }) opened: boolean = true;
+
   toggle() {
     this.hidden = !this.hidden;
   }
