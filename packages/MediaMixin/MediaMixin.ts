@@ -10,11 +10,19 @@ export function MediaMixin<B extends Constructor<HTMLElement>>(baseClass: B) {
       super(...args);
       const observer = window.matchMedia('(max-width: 500px)');
       const myListener = (media: any) => {
+        let mediaSize;
         if (media.matches) {
-          this.mediaSize = 'small';
+          mediaSize = 'small';
         } else {
-          this.mediaSize = "large";
+          mediaSize = "large";
         }
+        this.mediaSize = mediaSize
+        document.dispatchEvent(
+          new CustomEvent("media-changed", {
+            composed: true,
+            detail: mediaSize
+          })
+        );
       };
       observer.addListener(myListener);
       myListener(observer);

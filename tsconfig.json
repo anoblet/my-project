@@ -10,5 +10,6 @@
     "experimentalDecorators": true,
     "allowJs": true,
     "alwaysStrict": true
-  }
+  },
+  "exclude": ["**/*.test.ts"]
 }
