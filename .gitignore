@@ -3,4 +3,5 @@ config.ts
 coverage
 dist
 node_modules
+stats.json
 tslint.log
