@@ -45,10 +45,6 @@ const getAppSettings = (callback: any) => {
   );
 };
 
-const setDefaultTheme = (theme: any) => {
-  // setState({ data: theme, store, type: "theme" });
-};
-
 export class AppComponent extends Mixin(connect(store)(LitElement), [
   HelperMixin,
   TaskMixin,
