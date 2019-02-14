@@ -118,8 +118,25 @@ export default function() {
                 Report:
                 <pre>${JSON.stringify(this.report, null, 2)}</pre>
                 Current Index: ${this.currentIndex}
-              </div></card-component
-            >
+              </div>
+              <chart-component
+                .data="${[
+                  ["Chart thing", "Chart amount"],
+                  [
+                    "True",
+                    ((report: any) => {
+                      let valid = 0;
+                      if (report[0])
+                        report[0].history.map((letter: any) => {
+                          if (letter.result) valid++;
+                        });
+                      return valid;
+                    })(this.report)
+                  ],
+                  ["False", 1]
+                ]}"
+              ></chart-component>
+            </card-component>
           `
         : ""}
       <card-component title="References"

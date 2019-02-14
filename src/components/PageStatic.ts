@@ -1,6 +1,7 @@
 import { LitElement, customElement, html, property } from "lit-element";
 import GlobalStyle from "../GlobalStyle";
 import "./PatreonComponent";
+import "./Chart/ChartComponent";
 @customElement("page-static")
 class PageStatic extends LitElement {
   @property() public template: any;
