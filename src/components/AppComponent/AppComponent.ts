@@ -53,7 +53,6 @@ export class AppComponent extends Mixin(connect(store)(LitElement), [
 ]) {
   @property({ type: Boolean, reflect: true, attribute: "drawer-opened" })
   public drawerOpened = false;
-  public firebaseConfig = config.firebase;
   public taskPending = true;
   @property() public template: any = template;
 
@@ -75,7 +74,7 @@ export class AppComponent extends Mixin(connect(store)(LitElement), [
 
     this.runTasks([
       (async () => {
-        await initApp(this.firebaseConfig);
+        await initApp(config.firebase);
         await (async () => {
           debug("Getting app settings");
           await getAppSettings((document: any) => {
