@@ -1,9 +1,9 @@
-console.log("hi");
 const subscribers: any = [];
+let mediaSize: any;
 
 const observer = window.matchMedia("(max-width: 500px)");
 export const myListener = (media: any) => {
-  let mediaSize: string;
+  // let mediaSize: string;
   if (media.matches) {
     mediaSize = "small";
   } else {
@@ -14,11 +14,18 @@ export const myListener = (media: any) => {
 };
 observer.addListener(myListener);
 myListener(observer);
+
 export const getMediaSize = () => {
   myListener(observer);
 };
+
 export const watchMediaSize = (callback: any) =>
   subscribers.push(() => {
     // callback(mediaSize);
   });
+
+export const subscribe = (callback: any) => {
+  subscribers.push(callback);
+};
+
 export const watchDevice = () => {};
