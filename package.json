@@ -73,5 +73,11 @@
     "webpack-lighthouse-plugin": "^1.0.5",
     "webpack-pwa-manifest": "^3.8.0",
     "workbox-webpack-plugin": "^3.6.3"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm test",
+      "pre-push": "npm test"
+    }
   }
 }
