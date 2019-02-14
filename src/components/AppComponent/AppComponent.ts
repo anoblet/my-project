@@ -89,16 +89,13 @@ export class AppComponent extends Mixin(connect(store)(LitElement), [
           debug("Getting user data");
           await getUser({
             callback: async (user: any) => {
-              if (!user) true;
-              // this.setState({}, "user");
-              else {
+              if(user) {
                 const userData = extract(user);
                 setState({ data: userData, store, type: "user" });
                 debug("Getting user settings");
                 await getUserSettings((document: any) => {
                   setState({ data: document, store, type: "settings" });
-                  // Enable annyang
-                  document.annyangEnabled ? enableAnnyang() : disableAnnyang();
+                  this.handleAnnyang(document);
                 });
                 debug("Finished getting user settings");
                 // Load theme from Firebase
@@ -119,6 +116,10 @@ export class AppComponent extends Mixin(connect(store)(LitElement), [
     this.registerlisteners();
 
     installOfflineWatcher((offline: boolean) => {});
+  }
+
+  public handleAnnyang(document: any) {
+    document.annyangEnabled ? enableAnnyang() : disableAnnyang();
   }
 
   public registerlisteners() {
