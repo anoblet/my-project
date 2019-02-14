@@ -30,8 +30,7 @@ import { setState } from "../../../packages/state-helpers/state-helpers";
 import { store } from "../../Store";
 import template from "./AppComponentTemplate";
 
-// import { customElement } from "lit-element";
-import(/* webpackChunkName: "MyFlex" */ "./imports");
+import(/* webpackChunkName: "Imports" */ "./imports");
 
 const getAppSettings = (callback: any) => {
   return new Promise(resolve =>
