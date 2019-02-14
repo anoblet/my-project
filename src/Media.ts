@@ -20,9 +20,7 @@ export const getMediaSize = () => {
 };
 
 export const watchMediaSize = (callback: any) =>
-  subscribers.push(() => {
-    // callback(mediaSize);
-  });
+  subscribe(callback);
 
 export const subscribe = (callback: any) => {
   subscribers.push(callback);

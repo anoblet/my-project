@@ -16,16 +16,13 @@ export class Drawer extends Mixin(LitElement, [MediaMixin]) {
 
   constructor() {
     super();
-    console.log(this.mediaSize);
     if (this.mediaSize === "small") this.hidden = true;
     if (this.mediaSize === "large") this.hidden = false;
-    // document.addEventListener("media-changed", () => {
-    //   alert("Hi");
+
+    // watchMediaSize((mediaSize: string) => {
+    //   if (mediaSize === "small") this.hidden = true;
+    //   if (mediaSize === "large") this.hidden = false;
     // });
-    watchMediaSize((mediaSize: string) => {
-      if (mediaSize === "small") this.hidden = true;
-      if (mediaSize === "large") this.hidden = false;
-    });
   }
 
   set opened(value: any) {
