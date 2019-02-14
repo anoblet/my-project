@@ -8,8 +8,10 @@ const CleanWebpackPlugin = require("clean-webpack-plugin");
 const UglifyJsPlugin = require("uglifyjs-webpack-plugin");
 const HtmlLoader = require("html-loader");
 const WebpackLighthousePlugin = require("webpack-lighthouse-plugin");
+const SpeedMeasurePlugin = require("speed-measure-webpack-plugin");
+const smp = new SpeedMeasurePlugin();
 
-module.exports = {
+module.exports = smp.wrap({
   mode: "production",
   entry: "./src/index",
   output: {
@@ -121,4 +123,4 @@ module.exports = {
     //   perf: true
     // })
   ]
-};
+});

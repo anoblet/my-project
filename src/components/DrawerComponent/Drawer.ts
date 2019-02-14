@@ -5,7 +5,7 @@ import Style from "./Style";
 import template from "./DrawerTemplate";
 import { Mixin } from "../../../packages/Mixin";
 import { MediaMixin } from "../../../packages/MediaMixin";
-
+import { watchMediaSize } from "../../Media";
 // @customElement("drawer-component")
 export class Drawer extends Mixin(LitElement, [MediaMixin]) {
   @property({ type: Boolean, reflect: true }) hidden: boolean = true;
@@ -19,8 +19,12 @@ export class Drawer extends Mixin(LitElement, [MediaMixin]) {
     console.log(this.mediaSize);
     if (this.mediaSize === "small") this.hidden = true;
     if (this.mediaSize === "large") this.hidden = false;
-    document.addEventListener("media-changed", () => {
-      alert("Hi");
+    // document.addEventListener("media-changed", () => {
+    //   alert("Hi");
+    // });
+    watchMediaSize((mediaSize: string) => {
+      if (mediaSize === "small") this.hidden = true;
+      if (mediaSize === "large") this.hidden = false;
     });
   }
 
