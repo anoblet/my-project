@@ -18,6 +18,16 @@ module.exports = config => {
               test: /\.ts$/,
               use: "ts-loader",
               exclude: /node_modules/
+            },
+            {
+              test: /\.scss$/,
+              use: [
+                "to-string-loader",
+                {
+                  loader: "css-loader"
+                },
+                "sass-loader"
+              ]
             }
           ]
         },
