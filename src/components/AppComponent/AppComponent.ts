@@ -54,7 +54,6 @@ export class AppComponent extends Mixin(connect(store)(LitElement), [
   @property({ type: Boolean, reflect: true, attribute: "drawer-opened" })
   public drawerOpened = false;
   public taskPending = true;
-  @property() public template: any = template;
 
   // Lifecycle
   constructor() {
@@ -135,9 +134,6 @@ export class AppComponent extends Mixin(connect(store)(LitElement), [
 
   public firstUpdated() {
     debug("First updated");
-    console.log(this.mediaSize);
-    // if (this.mediaSize === "small") this.drawerOpened = false;
-    // if (this.mediaSize === "large") this.drawerOpened = true;
     setPortal(this.renderRoot.querySelector("#portal"));
     setRoutes(routes);
     installRouter((location: any) => {
@@ -196,7 +192,7 @@ export class AppComponent extends Mixin(connect(store)(LitElement), [
             </style>
           `
         : ""}
-      ${this.template(this.state)}
+      ${template.bind(this)(this.state)}
     `;
   }
 }
