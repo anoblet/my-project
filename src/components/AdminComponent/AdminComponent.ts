@@ -1,4 +1,4 @@
-import { LitElement, html } from "lit-element";
+import { LitElement, css, html } from "lit-element";
 
 import GlobalStyle from "../../GlobalStyle";
 import { Mixin } from "../../../packages/Mixin";
@@ -21,7 +21,14 @@ export class AdminComponent extends Mixin(connect(store)(LitElement), [
   StateMixin
 ]) {
   static get styles() {
-    return [GlobalStyle];
+    return [
+      GlobalStyle,
+      css`
+        :host {
+          flex: 1;
+        }
+      `
+    ];
   }
 
   constructor() {
@@ -77,40 +84,32 @@ export class AdminComponent extends Mixin(connect(store)(LitElement), [
       <grid-component>
         <card-component title="Settings">
           <div slot="content">
-            ${
-              fields.map(
-                (field: any) => html`
-                  <label>${field.label}</label>:
-                  ${
-                    field.type === "dropdown"
-                      ? html`
-                          <select
-                            @input="${(e: Event) => this.valueChanged(e)}"
-                            name="${field.name}"
-                            >${
-                              field.options.map(
-                                (option: any) =>
-                                  html`
-                                    <option
-                                      ?selected="${
-                                        this.find(
-                                          field.statePath,
-                                          this.state
-                                        ) === option.value
-                                      }"
-                                      value="${option.value}"
-                                      >${option.label}</option
-                                    >
-                                  `
-                              )
-                            }
-                          </select>
-                        `
-                      : ""
-                  }
-                `
-              )
-            }
+            ${fields.map(
+              (field: any) => html`
+                <label>${field.label}</label>:
+                ${field.type === "dropdown"
+                  ? html`
+                      <select
+                        @input="${(e: Event) => this.valueChanged(e)}"
+                        name="${field.name}"
+                        >${field.options.map(
+                          (option: any) =>
+                            html`
+                              <option
+                                ?selected="${this.find(
+                                  field.statePath,
+                                  this.state
+                                ) === option.value}"
+                                value="${option.value}"
+                                >${option.label}</option
+                              >
+                            `
+                        )}
+                      </select>
+                    `
+                  : ""}
+              `
+            )}
           </div>
         </card-component>
         <card-component title="Links">
