@@ -12,6 +12,7 @@ export default css`
     border: 1px solid var(--border-color);
     --card-inner-padding: 0;
     background: var(--background-color);
+    overflow: auto;
   }
 
   a:hover {
