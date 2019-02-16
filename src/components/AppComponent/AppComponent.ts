@@ -89,7 +89,7 @@ export class AppComponent extends Mixin(connect(store)(LitElement), [
           debug("Getting user data");
           await getUser({
             callback: async (user: any) => {
-              if(user) {
+              if (user) {
                 const userData = extract(user);
                 setState({ data: userData, store, type: "user" });
                 debug("Getting user settings");
@@ -137,11 +137,12 @@ export class AppComponent extends Mixin(connect(store)(LitElement), [
     setPortal(this.renderRoot.querySelector("#portal"));
     setRoutes(routes);
     installRouter((location: any) => {
+      console.log("here");
       this.dispatchEvent(
-        new CustomEvent("location-changed", {
+        new CustomEvent("route-changed", {
           bubbles: true,
           composed: true,
-          detail: location
+          detail: location.pathname
         })
       );
       handleNavigation({

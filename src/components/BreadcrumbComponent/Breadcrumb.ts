@@ -7,8 +7,19 @@ import { store } from "../../Store";
 
 // @customElement("breadcrumb-component")
 export class BreadcrumbComponent extends connect(store)(LitElement) {
-  @property() public activeRoute: string;
+  @property() public activeRoute: string = "/";
   @property({ type: Boolean }) public hidden: boolean = false;
+
+  connectedCallback() {
+    console.log("hi");
+    super.connectedCallback();
+    document.addEventListener("route-changed", this.routeChanged.bind(this));
+  }
+
+  routeChanged(e: any) {
+    this.activeRoute = e.detail;
+  }
+
   static get styles() {
     return [GlobalStyle, style];
   }
@@ -24,28 +35,24 @@ export class BreadcrumbComponent extends connect(store)(LitElement) {
     // Declare an empty base
     let base = "";
     const formattedRoute = html`
-      ${
-        parts.map((part: string, index: number) => {
-          base += `/${part}`;
-          return html`
-            <span
-              >${
-                index
-                  ? html`
-                      /
-                    `
-                  : ""
-              } <a class="primary" href="${base}">${part}</a></span
-            >
-          `;
-        })
-      }
+      ${parts.map((part: string, index: number) => {
+        base += `/${part}`;
+        return html`
+          <span
+            >${index
+              ? html`
+                  /
+                `
+              : ""} <a class="primary" href="${base}">${part}</a></span
+          >
+        `;
+      })}
     `;
     return formattedRoute;
   }
 
   public stateChanged(state: any) {
-    this.activeRoute = state.router.activeRoute;
+    // this.activeRoute = state.router.activeRoute;
   }
 
   public render() {

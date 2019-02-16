@@ -31,9 +31,8 @@ export default function({ router, user }: any) {
                 ${this.state.settings.breadcrumbs
                   ? html`
                       <card-component>
-                        <!--<breadcrumb-component></breadcrumb-component
-                      >--></card-component
-                      >
+                        <breadcrumb-component></breadcrumb-component
+                      ></card-component>
                     `
                   : ""}
                 <div id="portal" style="display: flex;"></div>
