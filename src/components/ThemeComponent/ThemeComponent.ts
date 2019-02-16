@@ -1,4 +1,4 @@
-import { html, LitElement, property } from "lit-element";
+import { LitElement, css, html, property } from "lit-element";
 import { store } from "../../Store";
 import {
   addDocument,
@@ -75,7 +75,9 @@ export class ThemeComponent extends LitElement {
   }
 
   static get styles() {
-    return [GlobalStyle];
+    return [GlobalStyle, css`:host {
+      flex: 1;
+    }`];
   }
 
   public render() {
