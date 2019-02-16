@@ -27,7 +27,7 @@ export default function({ router, user }: any) {
         <my-flex id="content" grow scroll>
           <my-card full-height grow no-inside-border no-outside-border no-title>
             <my-flex slot="content">
-              <grid-component style="flex: 1; margin: 1em;">
+              <grid-component style="margin: 1em;">
                 ${this.state.settings.breadcrumbs
                   ? html`
                       <card-component>
