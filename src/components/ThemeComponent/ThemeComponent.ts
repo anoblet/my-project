@@ -75,9 +75,14 @@ export class ThemeComponent extends LitElement {
   }
 
   static get styles() {
-    return [GlobalStyle, css`:host {
-      flex: 1;
-    }`];
+    return [
+      GlobalStyle,
+      css`
+        :host {
+          flex: 1;
+        }
+      `
+    ];
   }
 
   public render() {
