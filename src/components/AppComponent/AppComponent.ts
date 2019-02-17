@@ -74,13 +74,18 @@ export class AppComponent extends Mixin(connect(store)(LitElement), [
       (async () => {
         await initApp(config.firebase);
         await (async () => {
-          debug("Getting app settings");
-          await getAppSettings((document: any) => {
-            setState({ data: { settings: document }, store, type: "app" });
-            const theme = documentToTheme(document.defaultTheme);
+          if (!config.staticTheme) {
+            debug("Getting app settings");
+            await getAppSettings((document: any) => {
+              setState({ data: { settings: document }, store, type: "app" });
+              const theme = documentToTheme(document.defaultTheme);
+              setTheme(theme, this);
+            });
+            debug("Finished gettings app settings");
+          } else {
+            const theme = documentToTheme(config.theme);
             setTheme(theme, this);
-          });
-          debug("Finished gettings app settings");
+          }
         })();
         debug("Check redirect");
         await checkRedirect();
