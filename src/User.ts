@@ -5,6 +5,7 @@ import { toast } from "./components/ToastComponent/Toast";
 import { getDocument } from "../packages/firebase-helpers/firebase-helpers";
 import { getUser as _getUser } from "../packages/firebase-helpers";
 import { setDefaultTheme } from "./Theme";
+import { run } from "./Firebase";
 
 export const isAdmin = () => {
   const state = store.getState();
@@ -19,6 +20,16 @@ export const isSignedIn = (fakeParam: any = "") => {
   const state = store.getState();
   return state.user.signedIn;
 };
+
+// export const isSignedIn = async () => {
+//   await run(["auth"], (firebase: any) => {
+//     new Promise(resolve => {
+//       firebase.auth().onAuthStateChanged((user: any) => {
+//         resolve(!!user);
+//       });
+//     });
+//   });
+// };
 
 /**
  * Sign out clear /user in state and redirect to /
