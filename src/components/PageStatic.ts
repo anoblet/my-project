@@ -1,4 +1,4 @@
-import { LitElement, customElement, html, property } from "lit-element";
+import { LitElement, css, customElement, html, property } from "lit-element";
 import GlobalStyle from "../GlobalStyle";
 import "./PatreonComponent";
 import "./Chart/ChartComponent";
@@ -7,7 +7,11 @@ class PageStatic extends LitElement {
   @property() public template: any;
 
   static get styles() {
-    return GlobalStyle;
+    return [GlobalStyle, css`
+      :host {
+        flex: 1;
+      }
+      `];
   }
 
   public render() {
