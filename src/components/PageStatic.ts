@@ -7,11 +7,14 @@ class PageStatic extends LitElement {
   @property() public template: any;
 
   static get styles() {
-    return [GlobalStyle, css`
-      :host {
-        flex: 1;
-      }
-      `];
+    return [
+      GlobalStyle,
+      css`
+        :host {
+          flex: 1;
+        }
+      `
+    ];
   }
 
   public render() {
