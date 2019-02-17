@@ -1,12 +1,12 @@
 import { css } from "lit-element";
 
 export default css`
-:host {
-  display: flex;
-  flex: 1;
-  justify-content: center;
-  align-items: center;
-}
+  :host {
+    display: flex;
+    flex: 1;
+    justify-content: center;
+    align-items: center;
+  }
   .loader,
   .loader:before,
   .loader:after {
@@ -74,4 +74,4 @@ export default css`
       transform: rotate(360deg);
     }
   }
-`
+`;
