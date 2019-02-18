@@ -40,7 +40,7 @@ export class Blog extends Mixin(BaseElement, []) {
     if (this.taskPending)
       this.template = function() {
         return html`
-          <loading-component></loading-component>
+          <!-- <loading-component></loading-component> -->
         `;
       };
     else this.template = template;
