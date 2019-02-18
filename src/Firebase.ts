@@ -1,4 +1,4 @@
-export const run = (packages: any, callback: any) => {
+export const run = (packages: any, callback?: any) => {
   const imports: any = [];
   imports.push(import(/* webpackChunkName: "Firebase" */ "firebase/app"));
   if (packages.includes("auth"))
@@ -9,5 +9,6 @@ export const run = (packages: any, callback: any) => {
     imports.push(
       import(/* webpackChunkName: "FirebaseFirestore" */ "firebase/firestore")
     );
-  Promise.all(imports).then(([firebase]) => callback(firebase));
+  // Promise.all(imports).then(([firebase]) => callback(firebase));
+  return Promise.all(imports).then(([firebase]) => firebase);
 };
