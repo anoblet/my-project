@@ -40,7 +40,6 @@ export class AdminComponent extends Mixin(connect(store)(LitElement), [
         value = value[part];
       });
     } catch (error) {
-      // console.log("Could not find", path);
       value = error;
     }
     return value;
@@ -57,7 +56,6 @@ export class AdminComponent extends Mixin(connect(store)(LitElement), [
     }
     settings[e.target.name] = value;
     updateDocument({ path, data: settings });
-    // this.setState({ settings }, "app");
   }
 
   public stateChanged(state: any) {
@@ -66,55 +64,11 @@ export class AdminComponent extends Mixin(connect(store)(LitElement), [
     if (state.app.settings) {
       const path = `users/${state.user.uid}/settings/default`;
       const data = { mode: state.app.settings.mode };
-
-      // Updates a document too many times
-      // updateDocument({ path, data });
     }
   }
 
   public render() {
     return template.bind(this)(this.state);
-    return html`
-      <grid-component>
-        <card-component title="Settings">
-          <div slot="content">
-            ${fields.map(
-              (field: any) => html`
-                <label>${field.label}</label>:
-                ${field.type === "dropdown"
-                  ? html`
-                      <select
-                        @input="${(e: Event) => this.valueChanged(e)}"
-                        name="${field.name}"
-                        >${field.options.map(
-                          (option: any) =>
-                            html`
-                              <option
-                                ?selected="${this.find(
-                                  field.statePath,
-                                  this.state
-                                ) === option.value}"
-                                value="${option.value}"
-                                >${option.label}</option
-                              >
-                            `
-                        )}
-                      </select>
-                    `
-                  : ""}
-              `
-            )}
-          </div>
-        </card-component>
-        <card-component title="Links">
-          <div slot="content">
-            <ul>
-              <a href="/post"><li>Posts</li></a>
-            </ul>
-          </div>
-        </card-component>
-      </grid-component>
-    `;
   }
 }
 
