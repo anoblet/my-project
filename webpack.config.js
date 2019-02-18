@@ -108,8 +108,9 @@ module.exports = smp.wrap({
         flatten: true
       },
       {
-        from: "src/assets/loading.css",
-        to: "",
+        from: "src/assets/*.css",
+        to: "./",
+        flatten: true
       }
     ]),
     new RobotstxtPlugin(),
