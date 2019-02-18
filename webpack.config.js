@@ -50,15 +50,6 @@ module.exports = smp.wrap({
     historyApiFallback: true
   },
   optimization: {
-    minimizer: [
-      new UglifyJsPlugin({
-        uglifyOptions: {
-          output: {
-            comments: false
-          }
-        }
-      })
-    ],
     splitChunks: {
       chunks: "async",
       minSize: 30000,

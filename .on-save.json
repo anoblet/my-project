@@ -1,8 +1,0 @@
-[
-  {
-    "srcDir": "src",
-    "destDir": "dist",
-    "files": "**/*",
-    "command": "git add src && git commit -m \"Chore: Save\""
-  }
-]
