@@ -1,17 +1,13 @@
-export const loadFirebase = (modules: any = [], callback: any) => {
-  const temp: any = [import(/* webpackChunkName: "Firebase" */ "firebase/app")];
-  if (modules.includes("auth"))
-    temp.push(import(/* webpackChunkName: "Firebase" */ "firebase/auth"));
-  if (modules.includes("firestore"))
-    // @ts-ignore
-    temp.push(import(/* webpackChunkName: "Firebase" */ "firebase/firestore"));
-
-  Promise.all(temp).then(([firebase]) => callback(firebase));
-};
-
 export const run = (packages: any, callback: any) => {
-  const imports = [];
+  const imports: any = [];
   imports.push(import(/* webpackChunkName: "Firebase" */ "firebase/app"));
-  packages.includes("auth");
+  if (packages.includes("auth"))
+    imports.push(
+      import(/* webpackChunkName: "FirebaseAuth" */ "firebase/auth")
+    );
+  if (packages.includes("firestore"))
+    imports.push(
+      import(/* webpackChunkName: "FirebaseFirestore" */ "firebase/firestore")
+    );
   Promise.all(imports).then(([firebase]) => callback(firebase));
 };
