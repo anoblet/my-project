@@ -31,12 +31,6 @@ export class AdminComponent extends Mixin(connect(store)(LitElement), [
     ];
   }
 
-  constructor() {
-    super();
-    // this.setStore(store);
-    // this.addReducer("app/settings");
-  }
-
   public find(path: string, object: any) {
     const parts = path.split("/");
     let value = object;
