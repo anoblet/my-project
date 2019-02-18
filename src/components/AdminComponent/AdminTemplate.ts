@@ -1,8 +1,8 @@
 import { html } from "lit-element";
 import { editTheme } from "./EditTheme";
 import { setTheme } from "./SetTheme";
-import { theme } from "../ThemeComponent/Theme";
 import { store } from "../../Store";
+import { setState } from "../../../packages/state-helpers/state-helpers";
 
 export default function() {
   const state = store.getState();
@@ -40,7 +40,7 @@ export default function() {
             id="mode"
             @input="${(e: any) => {
               const value = e.target.options[e.target.selectedIndex].value;
-              this.setState({ mode: value }, "app");
+              setState({ data: { mode: value }, store, type: "app" });
             }}"
           >
             <option ?selected="${app.mode === "production"}" value="production"
