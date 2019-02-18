@@ -8,7 +8,7 @@ export default css`
     -webkit-animation: load1 1s infinite ease-in-out;
     animation: load1 1s infinite ease-in-out;
     width: 1em;
-    height: 4em;var(--secondary-color);
+    height: 4em;
   }
   .loader {
     color: var(--secondary-color);

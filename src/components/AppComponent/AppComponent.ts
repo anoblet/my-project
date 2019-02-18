@@ -53,11 +53,6 @@ export class AppComponent extends Mixin(connect(store)(LitElement), [
   @property({ type: Boolean, reflect: true, attribute: "drawer-opened" })
   public drawerOpened = false;
   public taskPending = true;
-  public template = function(state: any) {
-    return html`
-      <loading-component></loading-component>
-    `;
-  };
 
   // Lifecycle
   constructor() {
@@ -118,10 +113,7 @@ export class AppComponent extends Mixin(connect(store)(LitElement), [
               }
             }
           });
-          this.template = template;
-          await this.requestUpdate();
-          console.log(this.shadowRoot.querySelector("#portal"));
-          this.registerRouter();
+          document.querySelector("body #loading").setAttribute("hidden", "");
           debug("Finished getting user data");
         })();
       })()
@@ -142,12 +134,13 @@ export class AppComponent extends Mixin(connect(store)(LitElement), [
   }
 
   public shouldUpdate(changedProperties: any) {
-    // if (this.taskPending) return false;
+    if (this.taskPending) return false;
     return super.shouldUpdate(changedProperties);
   }
 
   public firstUpdated() {
     debug("First updated");
+    this.registerRouter();
   }
 
   registerRouter() {
@@ -211,7 +204,7 @@ export class AppComponent extends Mixin(connect(store)(LitElement), [
             </style>
           `
         : ""}
-      ${this.template.bind(this)(this.state)}
+      ${template.bind(this)(this.state)}
     `;
   }
 }
