@@ -6,13 +6,16 @@ export default css`
   }
 
   :host {
-    --border-color: var(--border-color);
     flex: 1;
     position: relative;
     border: 1px solid var(--border-color);
     --card-inner-padding: 0;
     background: var(--background-color);
     overflow: auto;
+  }
+
+  :host > * {
+    --border-color: var(--background-color);
   }
 
   a:hover {
