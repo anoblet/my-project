@@ -95,7 +95,8 @@ module.exports = smp.wrap({
           destination: "icons"
         }
       ],
-      theme_color: "#000000"
+      theme_color: "#000000",
+      inject: true
     }),
     new WorkboxPlugin.GenerateSW({
       clientsClaim: true,
