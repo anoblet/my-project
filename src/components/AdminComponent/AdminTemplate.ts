@@ -2,16 +2,12 @@ import { html } from "lit-element";
 import { editTheme } from "./EditTheme";
 import { setTheme } from "./SetTheme";
 import { theme } from "../ThemeComponent/Theme";
+import { store } from "../../Store";
 
-export default function({ app }: any) {
-  const _theme: theme = {
-    backgroundColor: "#3E3E4B",
-    borderColor: "#255451",
-    linkColor: "#0A8470",
-    primaryColor: "#C7318E",
-    secondaryColor: "#E75384",
-    textColor: "#D5F0EE"
-  };
+export default function() {
+  const state = store.getState();
+  const app = state.app;
+  const _theme = {};
   return html`
     <grid-component gap="1em">
       <card-component collapsible collapsed title="Global Scope">
