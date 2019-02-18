@@ -106,6 +106,10 @@ module.exports = smp.wrap({
         from: "node_modules/@webcomponents/webcomponentsjs/*.js",
         to: "js/webcomponentsjs",
         flatten: true
+      },
+      {
+        from: "src/assets/loading.css",
+        to: "",
       }
     ]),
     new RobotstxtPlugin(),
