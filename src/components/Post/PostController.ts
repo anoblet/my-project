@@ -19,6 +19,7 @@ import { getCollection } from "../../../packages/firebase-helpers";
 import { deleteDocument } from "../../../packages/firebase-helpers";
 
 import { debug } from "../../Debug";
+import { toast } from "../../Toast";
 
 export interface PostController {
   [key: string]: any; // Add index signature
@@ -66,7 +67,9 @@ export class PostController extends Mixin(LitElement, [
   }
 
   public itemDeleted(item: any) {
-    deleteDocument({ path: `posts/${item.id}` });
+    deleteDocument({ path: `posts/${item.id}` }).then(() =>
+      toast("Item deleted")
+    ).catch((error: any) => toast("Missing or insufficient permission"));
   }
 
   public read(id: any) {
