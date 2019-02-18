@@ -65,6 +65,10 @@ export class AppComponent extends Mixin(connect(store)(LitElement), [
     this.addReducer("settings");
     if (this.mediaSize === "small") this.drawerOpened = false;
     if (this.mediaSize === "large") this.drawerOpened = true;
+    if (this.staticTheme) {
+      const theme = documentToTheme(config.theme);
+      setTheme(theme, this);
+    }
   }
 
   public connectedCallback() {
@@ -74,18 +78,15 @@ export class AppComponent extends Mixin(connect(store)(LitElement), [
       (async () => {
         await initApp(config.firebase);
         await (async () => {
-          if (!config.staticTheme) {
-            debug("Getting app settings");
-            await getAppSettings((document: any) => {
-              setState({ data: { settings: document }, store, type: "app" });
+          debug("Getting app settings");
+          await getAppSettings((document: any) => {
+            setState({ data: { settings: document }, store, type: "app" });
+            if (!config.staticTheme) {
               const theme = documentToTheme(document.defaultTheme);
               setTheme(theme, this);
-            });
-            debug("Finished gettings app settings");
-          } else {
-            const theme = documentToTheme(config.theme);
-            setTheme(theme, this);
-          }
+            }
+          });
+          debug("Finished gettings app settings");
         })();
         debug("Check redirect");
         await checkRedirect();
