@@ -65,7 +65,7 @@ export class AppComponent extends Mixin(connect(store)(LitElement), [
     this.addReducer("settings");
     if (this.mediaSize === "small") this.drawerOpened = false;
     if (this.mediaSize === "large") this.drawerOpened = true;
-    if (this.staticTheme) {
+    if (config.staticTheme) {
       const theme = documentToTheme(config.theme);
       setTheme(theme, this);
     }
