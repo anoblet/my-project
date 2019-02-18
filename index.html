@@ -73,24 +73,11 @@
     />
     <meta name="Description" content="Andrew Noblet" />
     <title>Andrew Noblet</title>
-    <script>
-      document.addEventListener("app-loaded", () => {
-        // document.querySelector("#loading").hidden = true;
-        // document.querySelector("my-loader").hidden = true;
-      });
-    </script>
   </head>
 
-  <body show-loader unresolved>
+  <body unresolved>
     <noscript>Please enable javascript</noscript>
     <app-component></app-component>
-    <!-- <div id="loading">Loading...</div> -->
-    <!-- <my-loader style="background: #fff"></my-loader> -->
     <script src="/js/webcomponentsjs/webcomponents-loader.js"></script>
-    <script>
-      addEventListener("load", () => {
-        document.body.removeAttribute("show-loader");
-      });
-    </script>
   </body>
 </html>

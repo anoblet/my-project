@@ -53,6 +53,11 @@ export class AppComponent extends Mixin(connect(store)(LitElement), [
   @property({ type: Boolean, reflect: true, attribute: "drawer-opened" })
   public drawerOpened = false;
   public taskPending = true;
+  public template = function(state: any) {
+    return html`
+      <loading-component></loading-component>
+    `;
+  };
 
   // Lifecycle
   constructor() {
@@ -73,7 +78,6 @@ export class AppComponent extends Mixin(connect(store)(LitElement), [
 
   public connectedCallback() {
     super.connectedCallback();
-
     this.runTasks([
       (async () => {
         await initApp(config.firebase);
@@ -114,6 +118,10 @@ export class AppComponent extends Mixin(connect(store)(LitElement), [
               }
             }
           });
+          this.template = template;
+          await this.requestUpdate();
+          console.log(this.shadowRoot.querySelector("#portal"));
+          this.registerRouter();
           debug("Finished getting user data");
         })();
       })()
@@ -134,16 +142,18 @@ export class AppComponent extends Mixin(connect(store)(LitElement), [
   }
 
   public shouldUpdate(changedProperties: any) {
-    if (this.taskPending) return false;
+    // if (this.taskPending) return false;
     return super.shouldUpdate(changedProperties);
   }
 
   public firstUpdated() {
     debug("First updated");
+  }
+
+  registerRouter() {
     setPortal(this.renderRoot.querySelector("#portal"));
     setRoutes(routes);
     installRouter((location: any) => {
-      console.log("here");
       this.dispatchEvent(
         new CustomEvent("route-changed", {
           bubbles: true,
@@ -182,6 +192,8 @@ export class AppComponent extends Mixin(connect(store)(LitElement), [
     menu.close();
   }
 
+  async beforeRender() {}
+
   static get styles() {
     return [GlobalStyle, componentStyle];
   }
@@ -199,7 +211,7 @@ export class AppComponent extends Mixin(connect(store)(LitElement), [
             </style>
           `
         : ""}
-      ${template.bind(this)(this.state)}
+      ${this.template.bind(this)(this.state)}
     `;
   }
 }
