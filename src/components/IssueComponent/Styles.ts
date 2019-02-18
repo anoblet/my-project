@@ -4,6 +4,9 @@ import globalStyle from "../../GlobalStyle";
 export default [
   globalStyle,
   css`
+    :host {
+      flex: 1;
+    }
     #form grid-component {
       grid-template-columns: 1fr !important;
     }
