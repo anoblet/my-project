@@ -85,14 +85,14 @@ export class PostComponent extends Mixin(LitElement, [TemplateMixin]) {
       addDocument({ path: "posts", data })
         .then((result: any) => {})
         .then(() => toast("Document added"))
-        .catch((error) => toast("Error"));
+        .catch(error => toast("Error"));
     } else {
       updateDocument({ path: `posts/${this.id}`, data })
         .then((result: any) => {
           this.editable = !this.editable;
         })
         .then(() => toast("Document updated"))
-        .catch((error) =>
+        .catch(error =>
           toast(
             "Error, could not update the document. Maybe you do not have the right permissions?"
           )
@@ -118,22 +118,20 @@ export class PostComponent extends Mixin(LitElement, [TemplateMixin]) {
   }
 
   public render() {
-    return this.loaded
-      ? html`
-          <card-component>
-            ${renderForm(
-              this,
-              null,
-              (property: string, value: any) => (this[property] = value)
-            )}
-            <div slot="actions">
-              <mwc-button outlined @click=${(e: any) => this.submitForm(e)}
-                >Save</mwc-button
-              >
-            </div>
-          </card-component>
-        `
-      : html``;
+    return html`
+      <card-component>
+        ${renderForm(
+          this,
+          null,
+          (property: string, value: any) => (this[property] = value)
+        )}
+        <div slot="actions">
+          <mwc-button outlined @click=${(e: any) => this.submitForm(e)}
+            >Save</mwc-button
+          >
+        </div>
+      </card-component>
+    `;
   }
 }
 
