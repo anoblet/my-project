@@ -1,21 +1,29 @@
 import { config } from "../../../config";
 import { filterByMode } from "../../Debug";
 import { html } from "lit-element";
+import { isSignedIn } from "../../User";
 
-export default function({ router, user }: any) {
+export default function({ router, settings, user }: any) {
+  console.log(!!user);
   return html`
     <app-header>
       <mwc-fab icon="menu" id="menu" mini @click="${this._toggleDrawer}"
         >menu</mwc-fab
       >
       <span id="title"><a href="/">${config.site.title}</a></span>
-      <mwc-fab
-        id="userProfile"
-        mini
-        label="Account"
-        @click="${() => this._toggleProfile()}"
-        >Profile</mwc-fab
-      >
+      ${isSignedIn()
+        ? html`
+            <mwc-fab
+              id="userProfile"
+              mini
+              label="Account"
+              @click="${() => this._toggleProfile()}"
+              >Profile</mwc-fab
+            >
+          `
+        : html`
+            <a href="/user/signin">Sign in</a>
+          `}
     </app-header>
     <div id="center" style="position: relative;">
       <profile-menu id="profile-menu"></profile-menu>
@@ -28,7 +36,7 @@ export default function({ router, user }: any) {
           <my-card full-height grow no-inside-border no-outside-border no-title>
             <my-flex slot="content">
               <grid-component style="margin: 1em;">
-                ${this.state.settings.breadcrumbs
+                ${settings.breadcrumbs
                   ? html`
                       <card-component>
                         <breadcrumb-component></breadcrumb-component
@@ -36,7 +44,7 @@ export default function({ router, user }: any) {
                     `
                   : ""}
                 <div id="portal" style="display: flex;"></div>
-                ${this.state.settings.displayLog
+                ${settings.displayLog
                   ? html`
                       <card-component
                         ><h3 slot="title">Log</h3>
