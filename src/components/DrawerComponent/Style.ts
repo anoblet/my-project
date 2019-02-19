@@ -8,7 +8,6 @@ export default css`
   :host {
     flex: 1;
     position: relative;
-    border: 1px solid var(--border-color);
     --card-inner-padding: 0;
     background: var(--background-color);
     overflow: auto;
