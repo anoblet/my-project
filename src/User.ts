@@ -1,12 +1,20 @@
-import { store } from "./Store";
-import { setState } from "../packages/state-helpers/state-helpers";
-import { navigate } from "./Router";
-import { toast } from "./components/ToastComponent/Toast";
-import { getDocument } from "../packages/firebase-helpers/firebase-helpers";
 import { getUser as _getUser } from "../packages/firebase-helpers";
-import { setDefaultTheme } from "./Theme";
+import { getDocument } from "../packages/firebase-helpers/firebase-helpers";
+import { navigate } from "./Router";
 import { run } from "./Firebase";
+import { setDefaultTheme } from "./Theme";
+import { setState } from "../packages/state-helpers/state-helpers";
+import { store } from "./Store";
+import { toast } from "./components/ToastComponent/Toast";
 
+
+
+
+
+/**
+ * Check if a user is an admin
+ * @return Boolean
+ */
 export const isAdmin = () => {
   const state = store.getState();
   return state.user.uid === "m42gwHOSlbUniorNjigqa1nnHIE3";
