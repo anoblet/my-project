@@ -1,9 +1,10 @@
 import { html } from "lit-element";
 
 export const generateSitemap = (routes: any) => {
-  routes.shift();
+  const newRoutes = routes;
+  newRoutes.shift();
   const filteredRoutes: any = [];
-  routes.map((route: any) => {
+  newRoutes.map((route: any) => {
     if (!route.path.includes("?")) filteredRoutes.push(route.path);
   });
   return html`
