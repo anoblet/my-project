@@ -1,8 +1,8 @@
-import { IRoute } from "../../Router";
-import { getReadme } from "../Readme/Readme";
+import { Route } from "../../Router"
 
 export const routes = [
   {
+    name: "Home",
     path: "",
     component: "page-static",
     src: () =>

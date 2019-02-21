@@ -21,7 +21,7 @@ import pathToRegexp from "path-to-regexp";
 let globalRoutes: any = [];
 let globalPortal: any;
 
-export interface IRoute {
+export interface Route {
   path: string;
   component: string;
   src?: any;
