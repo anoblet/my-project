@@ -1,5 +1,6 @@
 import { toast as importedToast } from "./components/ToastComponent/Toast";
 
+//
 /**
  * Fire a toast
  * @param  message [description]
