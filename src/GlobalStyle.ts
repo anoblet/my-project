@@ -98,4 +98,8 @@ export default css`
       transform: rotate(360deg);
     }
   }
+
+  mwc-fab {
+    --mdc-theme-on-secondary: var(--background-color);
+  }
 `;
