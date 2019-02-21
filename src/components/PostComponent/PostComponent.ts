@@ -26,6 +26,7 @@ export class PostComponent extends Mixin(LitElement, [TemplateMixin]) {
   @property({ type: Boolean }) public create: boolean;
 
   public template = template;
+  public taskPending = true;
 
   constructor() {
     super();
@@ -41,7 +42,8 @@ export class PostComponent extends Mixin(LitElement, [TemplateMixin]) {
           if (document) {
             const keys = Object.keys(document);
             keys.map((key: any) => (this[key] = document[key]));
-            this.loaded = true;
+            // this.loaded = true;
+            this.taskPending = false;
             this.requestUpdate();
           }
         },
@@ -100,6 +102,11 @@ export class PostComponent extends Mixin(LitElement, [TemplateMixin]) {
     }
   }
 
+  shouldUpdate(changedProperties: any) {
+    if (this.taskPending) return false;
+    else return super.shouldUpdate(changedProperties);
+  }
+
   // Property editor respects this order...
   static get properties() {
     return {
@@ -118,6 +125,8 @@ export class PostComponent extends Mixin(LitElement, [TemplateMixin]) {
   }
 
   public render() {
+    // @ts-ignore
+    console.log(this.body);
     return html`
       <card-component>
         ${renderForm(
