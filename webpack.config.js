@@ -1,3 +1,4 @@
+const merge = require("webpack-merge");
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const WorkboxPlugin = require("workbox-webpack-plugin");
@@ -10,6 +11,8 @@ const HtmlLoader = require("html-loader");
 const WebpackLighthousePlugin = require("webpack-lighthouse-plugin");
 const SpeedMeasurePlugin = require("speed-measure-webpack-plugin");
 const smp = new SpeedMeasurePlugin();
+
+// const commonConfig = 
 
 module.exports = smp.wrap({
   mode: "production",
@@ -114,7 +117,7 @@ module.exports = smp.wrap({
         flatten: true
       }
     ]),
-    new RobotstxtPlugin(),
+    new RobotstxtPlugin()
     // new WebpackLighthousePlugin({
     //   url: "http://localhost:8080/",
     //   perf: true
