@@ -1,5 +1,4 @@
 import { config } from "../../../config";
-import { filterByMode } from "../../Debug";
 import { html } from "lit-element";
 import { isSignedIn } from "../../User";
 
