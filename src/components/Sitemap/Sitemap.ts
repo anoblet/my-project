@@ -1,7 +1,7 @@
 import { html } from "lit-element";
 
 export const generateSitemap = (routes: any) => {
-  const newRoutes = routes;
+  const newRoutes = [...routes];
   newRoutes.shift();
   const filteredRoutes: any = [];
   newRoutes.map((route: any) => {
