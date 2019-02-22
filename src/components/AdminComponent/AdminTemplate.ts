@@ -33,42 +33,6 @@ export default function() {
           </ul>
         </div>
       </card-component>
-      ${false
-        ? html`
-            <card-component title="App">
-              <div slot="content">
-                <label for="mode">Mode</label>
-                <select
-                  id="mode"
-                  @input="${(e: any) => {
-                    const value =
-                      e.target.options[e.target.selectedIndex].value;
-                    setState({ data: { mode: value }, store, type: "app" });
-                  }}"
-                >
-                  <option
-                    ?selected="${app.mode === "production"}"
-                    value="production"
-                    >Production</option
-                  >
-                  <option
-                    ?selected="${app.mode === "development"}"
-                    value="development"
-                    >Development</option
-                  >
-                  <option
-                    ?selected="${app.mode === "experimental"}"
-                    value="experimental"
-                    >Experimental</option
-                  >
-                </select>
-                <div>
-                  Theme:
-                </div>
-              </div>
-            </card-component>
-          `
-        : ""}
     </grid-component>
   `;
 }
