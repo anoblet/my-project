@@ -20,7 +20,7 @@ export const resetState = () => {
   setState({ config: { merge: false }, data: {}, store, type: "app" });
 };
 
-export const isSignedIn = (fakeParam: any = "") => {
+export const isSignedIn = () => {
   const state = store.getState();
   return state.user.signedIn;
 };
