@@ -3,7 +3,7 @@ import { navigate } from "../Router";
 const annyang = require("annyang");
 
 // Let's define a command.
-let commands = {
+const commands = {
   "hello"() {
     alert("Hello world!");
   },
