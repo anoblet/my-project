@@ -25,8 +25,8 @@ export class MediaQuery extends Mixin(LitElement, [TaskMixin]) {
     query = this.query ? this.query : query;
     if (query) {
       const observer = window.matchMedia(query);
-      const myListener = (observer: any) => {
-        if (observer.matches) {
+      const myListener = (_observer: any) => {
+        if (_observer.matches) {
           this.hidden = false;
         } else {
           this.hidden = true;

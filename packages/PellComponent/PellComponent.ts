@@ -1,10 +1,8 @@
-import { css, customElement, html, LitElement, property } from "lit-element";
-// import { exec, init } from "pell/src/pell";
-// import * as pell from "pell";
-// import { exec, init } from "pell";
-const pell = require("pell");
+import { LitElement, css, customElement, html, property } from "lit-element";
 
 import globalStyle from "../../src/GlobalStyle";
+// @ts-ignore
+import pell from "pell";
 
 @customElement("pell-component")
 export class PellComponent extends LitElement {
@@ -46,7 +44,7 @@ export class PellComponent extends LitElement {
     const editor: any = this.shadowRoot.querySelector("#editor");
     pell.init({
       element: editor,
-      onChange: (html: any) => (this.value = html),
+      onChange: (_html: any) => (this.value = _html),
       // <string>, optional, default = 'div'
       // Instructs the editor which element to inject via the return key
       defaultParagraphSeparator: "div",
