@@ -1,4 +1,7 @@
 #loading {
+  display: none;
+}
+#loading[enabled] {
   position: absolute;
   top: 0;
   left: 0;
