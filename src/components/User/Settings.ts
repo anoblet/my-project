@@ -29,25 +29,25 @@ export const settings = [
     name: "annyangEnabled",
     type: Boolean
   },
-  {
-    description: "Mode",
-    label: "Mode",
-    name: "mode",
-    type: "select",
-    options: [
-      {
-        label: "Production",
-        value: 0
-      },
-      {
-        label: "Development",
-        value: 1
-      },
-      {
-        label: "Experimental",
-        value: 2
-      }
-    ],
-    statePath: "app/settings/mode"
-  }
+  // {
+  //   description: "Mode",
+  //   label: "Mode",
+  //   name: "mode",
+  //   type: "select",
+  //   options: [
+  //     {
+  //       label: "Production",
+  //       value: 0
+  //     },
+  //     {
+  //       label: "Development",
+  //       value: 1
+  //     },
+  //     {
+  //       label: "Experimental",
+  //       value: 2
+  //     }
+  //   ],
+  //   statePath: "app/settings/mode"
+  // }
 ];
