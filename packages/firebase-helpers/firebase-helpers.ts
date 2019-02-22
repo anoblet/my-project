@@ -13,7 +13,7 @@ declare global {
 
 /**
  * Kinda lazy so I'm grabbing firebaseui from the window
- * */
+ **/
 
 const firebaseui = window.firebaseui;
 
@@ -22,7 +22,7 @@ const firebaseui = window.firebaseui;
  *  - Should be of type <firebaseConfig> (How the hell would I type that anyways :P)
  * @param  config
  * @return Promise
- * */
+ **/
 export const initApp = (config: any) => {
   // run(["firebase/app"], (firebase: any) => {
   //   console.log(firebase);
@@ -39,7 +39,7 @@ export const initApp = (config: any) => {
  * @param void
  * @return Promise
  * - [Deprecated in 0.0.2] { timestampsInSnapshots: true } is no longer needed
- * */
+ **/
 
 export const initStore = () => {
   return Promise.all([
@@ -54,7 +54,7 @@ export const initStore = () => {
  * Needed so that after a signin has been processed,
  * on redirect, the form is added to capture the result
  * @return [description]
- * */
+ **/
 export const checkRedirect = async () => {
   return new Promise((resolve) => {
     return Promise.all([
@@ -80,7 +80,7 @@ export const checkRedirect = async () => {
 /**
  * Only takes a callback that fires once the user status has been resolved
  * Example: getUser((user: any) => console.log(user))
- * */
+ **/
 export const getUser = ({ callback }: any) => {
   return new Promise((resolve) => {
     return Promise.all([
@@ -106,7 +106,7 @@ export const getUser = ({ callback }: any) => {
  *
  * Multi-use callback
  * getCollection({callback: (collection)=> console.log(collection), path: "posts", orderBy: "date", watch: true})
- * */
+ **/
 export const getCollection = ({ path, callback, watch, orderBy }: any) => {
   return Promise.all([
     import(/* webpackChunkName: "Firebase" */ "firebase/app"), // @ts-ignore
@@ -145,7 +145,7 @@ export const getCollection = ({ path, callback, watch, orderBy }: any) => {
  * @return The document ID
  * @todo Return DocRef
  * Example: addDocument("posts", { title: "Sample title" })
- * */
+ **/
 export const addDocument = ({ path, data }: any) => {
   return Promise.all([
     import(/* webpackChunkName: "Firebase" */ "firebase/app"), // @ts-ignore
@@ -167,7 +167,7 @@ export const addDocument = ({ path, data }: any) => {
  * Example:
  * updateDocument({ path: "posts/<postId>", { title: "Sample title" } })
  * @return
- * */
+ **/
 
 export const updateDocument = ({ data, path }: any) => {
   console.log("Updating document");
@@ -184,7 +184,7 @@ export const updateDocument = ({ data, path }: any) => {
 
 /**
  * Returns a promise/document, or calls a callback depending on the watch property
- * */
+ **/
 export const getDocument = ({ callback, path, watch }: any) => {
   return Promise.all([
     import(/* webpackChunkName: "Firebase" */ "firebase/app"), // @ts-ignore
@@ -206,7 +206,7 @@ export const getDocument = ({ callback, path, watch }: any) => {
  * Delete document
  * @param  path Document path inside of Firebase
  * @return      Promise
- * */
+ **/
 export const deleteDocument = ({ path }: any) => {
   return Promise.all([
     import(/* webpackChunkName: "Firebase" */ "firebase/app"), // @ts-ignore
@@ -223,7 +223,7 @@ export const deleteDocument = ({ path }: any) => {
  * Deprecated function that was supposed to be use to act as a provider for Firbase. May still be useful.
  * @param depends: ...["auth", "firestore", "ui"]
  * Provides Firebase app + modules you specify from a callback
- * */
+ **/
 
 const run = (modules: any = [], callback: any) => {
   const imports: any = [];

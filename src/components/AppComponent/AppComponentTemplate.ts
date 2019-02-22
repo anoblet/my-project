@@ -22,15 +22,15 @@ export default function({ router, settings, user }: any) {
             >
           `
         : html`
-            <!-- <a href="/user/signin">Sign in</a> -->
-            <mwc-fab
+            <a href="/user/signin"><mwc-button raised>Sign in</mwc-button></a>
+            <!-- <mwc-fab
               icon="account_circle"
               id="userProfile"
               mini
               label="Account"
               @click="${() => this._toggleProfile()}"
               >Profile</mwc-fab
-            >
+            > -->
           `}
     </app-header>
     <div id="center" style="position: relative;">

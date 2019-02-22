@@ -16,7 +16,7 @@ export class AppHeader extends LitElement {
         if (user) this.setButtonBackground(user);
         else {
           // Is this necessary?
-          this.resetButton();
+          // this.resetButton();
         }
       }
     });
