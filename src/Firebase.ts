@@ -12,3 +12,13 @@ export const run = (packages: any, callback?: any) => {
   // Promise.all(imports).then(([firebase]) => callback(firebase));
   return Promise.all(imports).then(([firebase]) => firebase);
 };
+
+export const authRedirect = () => {
+  return run(["auth"]).then((firebase: any) => {
+    const auth = firebase.auth();
+    return auth.getRedirectResult().then((result: any) => {
+      const user = result.user;
+      return user;
+    });
+  });
+};

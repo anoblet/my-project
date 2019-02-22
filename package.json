@@ -41,7 +41,6 @@
     "to-string-loader": "^1.1.5"
   },
   "devDependencies": {
-    "@material/mwc-icon-button": "file:../material-components-web-components/packages/icon-button",
     "@open-wc/testing": "^0.9.17",
     "@open-wc/testing-karma": "^0.4.11",
     "babel-core": "^6.26.3",

@@ -29,11 +29,12 @@ import { routes } from "./Routes";
 import { setState } from "../../../packages/state-helpers/state-helpers";
 import { store } from "../../Store";
 import template from "./AppComponentTemplate";
+import { authRedirect } from "../../Firebase";
 
 import(/* webpackChunkName: "Imports" */ "./imports");
 
 const getAppSettings = (callback: any) => {
-  return new Promise((resolve) =>
+  return new Promise(resolve =>
     getDocument({
       callback: (document: any) => {
         resolve(document ? callback(document) : false);
@@ -89,7 +90,7 @@ export class AppComponent extends Mixin(connect(store)(LitElement), [
           debug("Finished gettings app settings");
         })();
         debug("Check redirect");
-        await checkRedirect();
+        // await checkRedirect();
         debug("Finished check redirect");
         await (async () => {
           debug("Getting user data");
