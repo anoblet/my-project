@@ -47,9 +47,6 @@ export class AppHeader extends LitElement {
 
   public render() {
     return html`
-      <style>
-        ${style}
-      </style>
       ${template.bind(this)()}
     `;
   }

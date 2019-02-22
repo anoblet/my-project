@@ -22,7 +22,7 @@ export default function({ router, settings, user }: any) {
             >
           `
         : html`
-            <a href="/user/signin"><mwc-button raised>Sign in</mwc-button></a>
+            <a href="/user/signin"><mwc-button>Sign in</mwc-button></a>
             <!-- <mwc-fab
               icon="account_circle"
               id="userProfile"
