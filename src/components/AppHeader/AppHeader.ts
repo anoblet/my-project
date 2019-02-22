@@ -1,7 +1,6 @@
-import { LitElement, html, query } from "lit-element";
+import { LitElement, query } from "lit-element";
 import template from "./AppHeaderTemplate";
 import(/* webpackChunkName: "MWCFab" */ "@material/mwc-fab");
-import * as style from "./AppHeader.scss";
 
 import ComponentStyle from "./Style";
 
@@ -46,9 +45,7 @@ export class AppHeader extends LitElement {
   }
 
   public render() {
-    return html`
-      ${template.bind(this)()}
-    `;
+    return template.bind(this)();
   }
 }
 
