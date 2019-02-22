@@ -5,12 +5,12 @@ function defaultTask(cb) {
   src("src/index.js").pipe(
     prompt.prompt(
       {
-        type: "input",
+        message: "Component name",
         name: "name",
-        message: "Component name"
+        type: "input"
       },
       function(res) {
-        answers.task;
+        return true;
       }
     )
   );

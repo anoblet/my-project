@@ -15,9 +15,9 @@ module.exports = config => {
         module: {
           rules: [
             {
+              exclude: /node_modules/,
               test: /\.ts$/,
-              use: "ts-loader",
-              exclude: /node_modules/
+              use: "ts-loader"
             },
             {
               test: /\.scss$/,

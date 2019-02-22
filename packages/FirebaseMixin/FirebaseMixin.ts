@@ -4,7 +4,7 @@ declare global {
   }
 }
 
-export const FirebaseMixin = function(superClass: any) {
+export const FirebaseMixin = (superClass: any) => {
   return class extends superClass {
     //   firebaseConfig: any;
     //   firebaseDocumentPath: any;

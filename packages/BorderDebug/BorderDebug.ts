@@ -1,4 +1,4 @@
-export const BorderDebug = function(superClass: any) {
+export const BorderDebug = (superClass: any) => {
   return class extends superClass {
     public connectedCallback() {
       super.connectedCallback();
