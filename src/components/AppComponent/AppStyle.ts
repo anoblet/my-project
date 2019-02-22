@@ -179,4 +179,8 @@ export default css`
   breadcrumb-component a {
     display: block;
   }
+
+  #made-width {
+    text-align: center;
+  }
 `;

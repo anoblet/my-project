@@ -60,6 +60,7 @@ export default function({ router, settings, user }: any) {
                       ></card-component>
                     `
                   : ""}
+                  <!-- <span id="made-width">Made with ♥ by Andrew Noblet -->
               </grid-component>
             </my-flex>
           </my-card>
