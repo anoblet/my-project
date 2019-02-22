@@ -66,7 +66,7 @@ export const signOut = (redirect: any = "/") => {
     .then(() => {
       toast("Signed out");
       // Navigate index
-      navigate("/");
+      navigate(_redirect);
     });
 };
 
@@ -74,7 +74,9 @@ export const signOut = (redirect: any = "/") => {
  * Utility function to deal with a user
  */
 
-const onUserLoggedIn = () => {};
+export const onUserLoggedIn = () => {
+  return true;
+};
 
 export const getUser = (options: any) => {
   const user = _getUser(options);
@@ -83,7 +85,7 @@ export const getUser = (options: any) => {
 
 export const getUserTheme = (callback: any) => {
   const user = store.getState().user;
-  return new Promise((resolve) => {
+  return new Promise((resolve: any) => {
     return getDocument({
       path: `users/${user.uid}/settings/theme`,
       callback: (document: any) => {
@@ -96,7 +98,7 @@ export const getUserTheme = (callback: any) => {
 
 export const getUserSettings = (callback: any) => {
   const user = store.getState().user;
-  return new Promise((resolve) =>
+  return new Promise((resolve: any) =>
     getDocument({
       path: `users/${user.uid}/settings/default`,
       callback: (document: any) => {
