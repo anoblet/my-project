@@ -100,6 +100,6 @@ export default css`
   }
 
   mwc-fab {
-    --mdc-theme-on-secondary: var(--background-color)80;
+    --mdc-theme-on-secondary: var(--background-color);
   }
 `;
