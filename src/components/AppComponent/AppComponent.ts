@@ -108,7 +108,7 @@ export class AppComponent extends Mixin(connect(store)(LitElement), [
                 // Load theme from Firebase
                 debug("Getting user theme");
                 await getUserTheme((document: any) => {
-                  const theme = documentToStyle(document);
+                  const theme = documentToTheme(document);
                   setTheme(theme, this);
                 });
                 debug("Finished getting user theme");

@@ -1,4 +1,4 @@
-export const run = (packages: any, callback?: any) => {
+export const run = async (packages: any) => {
   const imports: any = [];
   imports.push(import(/* webpackChunkName: "Firebase" */ "firebase/app"));
   if (packages.includes("auth"))
@@ -13,7 +13,7 @@ export const run = (packages: any, callback?: any) => {
   return Promise.all(imports).then(([firebase]) => firebase);
 };
 
-export const authRedirect = () => {
+export const authRedirect = async () => {
   return run(["auth"]).then((firebase: any) => {
     const auth = firebase.auth();
     return auth.getRedirectResult().then((result: any) => {
