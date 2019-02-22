@@ -42,7 +42,7 @@ export const isSignedIn = (fakeParam: any = "") => {
  */
 
 export const signOut = async (redirect: any = "/") => {
-  const _redirect = redirect || "/";
+  const _redirect = "/";
   return run(["auth"])
     .then((firebase: any) => {
       firebase.auth().signOut();
