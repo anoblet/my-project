@@ -4,7 +4,7 @@ import { html } from "lit-element";
 import { isSignedIn } from "../../User";
 
 export default function({ router, settings, user }: any) {
-  console.log(!!user);
+  // console.log(!!user);
   return html`
     <app-header>
       <mwc-fab icon="menu" id="menu" mini @click="${this._toggleDrawer}"
