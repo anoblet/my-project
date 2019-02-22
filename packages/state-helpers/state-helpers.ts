@@ -5,7 +5,7 @@ export const setState = ({
   config = { merge: true }
 }: any) => {
   store.dispatch({
-    type: type,
+    type,
     state: data,
     merge: config.merge
   });

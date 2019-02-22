@@ -1,6 +1,6 @@
-export const OnSnapshotMixin = function (superClass: any) {
+export const OnSnapshotMixin = function(superClass: any) {
   return class extends superClass {
-    async registerOnSnapshot(document: any) {
+    public async registerOnSnapshot(document: any) {
       return new Promise((resolve, reject) => {
         document.onSnapshot((doc: any) => {
           this.onSnapshotCallback(doc);
@@ -8,9 +8,9 @@ export const OnSnapshotMixin = function (superClass: any) {
         });
       });
     }
-    onSnapshotCallback(document: any) {
+    public onSnapshotCallback(document: any) {
       // If request was not local, update state with the firebase document
-      if (document.metadata.hasPendingWrites !== 'local') this.setState(document.data(), 'settings');
+      if (document.metadata.hasPendingWrites !== "local") this.setState(document.data(), "settings");
     }
-  }
-}
+  };
+};

@@ -1,18 +1,18 @@
 export const TaskMixin = function(superClass: any) {
   return class extends superClass {
-    taskPending = false;
+    public taskPending = false;
 
-    startTask() {
+    public startTask() {
       this.taskPending = true;
       this.requestUpdate();
     }
 
-    stopTask() {
+    public stopTask() {
       this.taskPending = false;
       this.requestUpdate();
     }
 
-    runTasks(tasks: any) {
+    public runTasks(tasks: any) {
       this.startTask();
       return new Promise((resolve, reject) => {
         return Promise.all(tasks).then((results: any) => {
@@ -22,7 +22,7 @@ export const TaskMixin = function(superClass: any) {
       });
     }
 
-    taskChain(tasks: any) {
+    public taskChain(tasks: any) {
       this.startTask();
       return tasks
         .reduce((promiseChain: any, currentTask: any) => {

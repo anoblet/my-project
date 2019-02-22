@@ -11,7 +11,7 @@ export const TemplateMixin = function(superClass: any) {
       // });
     }
 
-    render() {
+    public render() {
       return this.template.bind(this)();
     }
 

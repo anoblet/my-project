@@ -87,14 +87,14 @@ export class PostComponent extends Mixin(LitElement, [TemplateMixin]) {
       addDocument({ path: "posts", data })
         .then((result: any) => {})
         .then(() => toast("Document added"))
-        .catch(error => toast("Error"));
+        .catch((error) => toast("Error"));
     } else {
       updateDocument({ path: `posts/${this.id}`, data })
         .then((result: any) => {
           this.editable = !this.editable;
         })
         .then(() => toast("Document updated"))
-        .catch(error =>
+        .catch((error) =>
           toast(
             "Error, could not update the document. Maybe you do not have the right permissions?"
           )
@@ -102,7 +102,7 @@ export class PostComponent extends Mixin(LitElement, [TemplateMixin]) {
     }
   }
 
-  shouldUpdate(changedProperties: any) {
+  public shouldUpdate(changedProperties: any) {
     if (this.taskPending) return false;
     else return super.shouldUpdate(changedProperties);
   }

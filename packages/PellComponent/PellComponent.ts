@@ -8,8 +8,8 @@ import globalStyle from "../../src/GlobalStyle";
 
 @customElement("pell-component")
 export class PellComponent extends LitElement {
-  @property() input: string;
-  @property() value: string;
+  @property() public input: string;
+  @property() public value: string;
   static get styles() {
     return [
       globalStyle,
@@ -35,14 +35,14 @@ export class PellComponent extends LitElement {
     ];
   }
 
-  updated(changedProperties: any) {
+  public updated(changedProperties: any) {
     const editor: any = this.shadowRoot.querySelector("#editor");
     if (changedProperties.get("input")) {
       editor.content.innerHTML = this.input;
     }
   }
 
-  firstUpdated() {
+  public firstUpdated() {
     const editor: any = this.shadowRoot.querySelector("#editor");
     pell.init({
       element: editor,

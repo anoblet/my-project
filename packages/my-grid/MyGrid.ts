@@ -7,16 +7,16 @@ import { BaseMixin } from "@anoblet/base-mixin";
 import Template from "./View/MyGrid";
 
 export class MyGrid extends BaseMixin(LitElement) {
-  @property({ type: String }) direction = "row";
-  @property({ type: Number }) columns: number;
+  @property({ type: String }) public direction = "row";
+  @property({ type: Number }) public columns: number;
 
-  connectedCallback() {
+  public connectedCallback() {
     super.connectedCallback();
     if (this.columns)
       this.style.gridTemplateColumns = `repeat(${this.columns}, 1fr)`;
   }
 
-  render() {
+  public render() {
     return Template.bind(this)();
   }
 }

@@ -5,14 +5,14 @@ import GlobalStyle from "../../GlobalStyle";
 import { GoogleCharts } from "google-charts";
 @customElement("chart-component")
 export class ChartComponent extends LitElement {
-  @property() data: any = [
+  @property() public data: any = [
     ["Chart thing", "Chart amount"],
     ["Lorem ipsum", 60],
     ["Dolor sit", 22],
     ["Sit amet", 18]
   ];
 
-  draw() {
+  public draw() {
     // @ts-ignore
     const data = GoogleCharts.api.visualization.arrayToDataTable(this.data);
     // @ts-ignore
@@ -22,15 +22,15 @@ export class ChartComponent extends LitElement {
     pie_1_chart.draw(data);
   }
 
-  load() {
+  public load() {
     GoogleCharts.load(() => this.draw());
   }
 
-  firstUpdated() {
+  public firstUpdated() {
     this.load();
   }
 
-  updated(changedProperties: any) {
+  public updated(changedProperties: any) {
     if (changedProperties.get("data")) this.load();
     super.updated(changedProperties);
   }

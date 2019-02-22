@@ -1,4 +1,4 @@
-import { html, property } from 'lit-element';
+import { html, property } from "lit-element";
 
 type Constructor<T = {}> = new (...args: any[]) => T;
 
@@ -8,15 +8,15 @@ export function MediaMixin<B extends Constructor<HTMLElement>>(baseClass: B) {
 
     constructor(...args: any[]) {
       super(...args);
-      const observer = window.matchMedia('(max-width: 500px)');
+      const observer = window.matchMedia("(max-width: 500px)");
       const myListener = (media: any) => {
         let mediaSize;
         if (media.matches) {
-          mediaSize = 'small';
+          mediaSize = "small";
         } else {
           mediaSize = "large";
         }
-        this.mediaSize = mediaSize
+        this.mediaSize = mediaSize;
         document.dispatchEvent(
           new CustomEvent("media-changed", {
             composed: true,

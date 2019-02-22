@@ -8,7 +8,7 @@ export const setTheme = (theme: any, element: any) => {
 
 export const documentToStyle = (document: any) => {
   const styles: any = [];
-  Object.keys(document).map(style => {
+  Object.keys(document).map((style) => {
     const parts = style.split(/(?=[A-Z])/);
     const lowerParts: any = [];
     parts.map((part: any) => {

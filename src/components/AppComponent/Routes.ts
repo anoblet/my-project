@@ -1,4 +1,4 @@
-import { Route } from "../../Router"
+import { Route } from "../../Router";
 
 export const routes = [
   {

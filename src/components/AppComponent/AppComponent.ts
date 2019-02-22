@@ -33,7 +33,7 @@ import template from "./AppComponentTemplate";
 import(/* webpackChunkName: "Imports" */ "./imports");
 
 const getAppSettings = (callback: any) => {
-  return new Promise(resolve =>
+  return new Promise((resolve) =>
     getDocument({
       callback: (document: any) => {
         resolve(document ? callback(document) : false);
@@ -182,13 +182,13 @@ export class AppComponent extends Mixin(connect(store)(LitElement), [
     menu.hidden ? menu.open() : menu.close();
   }
 
-  closeMenus() {
+  public closeMenus() {
     this.drawerOpened = false;
     const menu = this.shadowRoot.querySelector("#profile-menu");
     menu.close();
   }
 
-  async beforeRender() {}
+  public async beforeRender() {}
 
   static get styles() {
     return [GlobalStyle, componentStyle];

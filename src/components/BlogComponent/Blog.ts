@@ -19,7 +19,7 @@ export class Blog extends Mixin(BaseElement, []) {
     this.beforeRender();
   }
 
-  async beforeRender() {
+  public async beforeRender() {
     await getCollection({
       callback: (collection: any) => {
         this.posts = collection;

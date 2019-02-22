@@ -16,4 +16,4 @@ export const find = (path: string, object: any) => {
     value = error;
   }
   return value;
-}
+};

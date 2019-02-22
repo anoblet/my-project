@@ -3,15 +3,15 @@ import { html, LitElement, property } from "lit-element";
 import * as style from "./GridItem.scss";
 
 export class GridItem extends LitElement {
-  @property({ type: Boolean, reflect: true }) center: boolean;
-  @property({ type: Number }) span: number;
+  @property({ type: Boolean, reflect: true }) public center: boolean;
+  @property({ type: Number }) public span: number;
 
-  connectedCallback() {
+  public connectedCallback() {
     super.connectedCallback();
     if (this.span) this.style.gridColumn = `span ${this.span}`;
   }
 
-  render() {
+  public render() {
     return html`
       <style>
         ${style}</style

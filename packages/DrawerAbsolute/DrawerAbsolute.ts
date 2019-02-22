@@ -1,9 +1,9 @@
-import { html, LitElement } from 'lit-element';
-import { Mixin } from '../Mixin';
-import { StateMixin } from '../StateMixin';
-import { TaskMixin } from '../TaskMixin';
-import * as style from './DrawerAbsolute.scss';
-import Template from './DrawerAbsoluteTemplate';
+import { html, LitElement } from "lit-element";
+import { Mixin } from "../Mixin";
+import { StateMixin } from "../StateMixin";
+import { TaskMixin } from "../TaskMixin";
+import * as style from "./DrawerAbsolute.scss";
+import Template from "./DrawerAbsoluteTemplate";
 
 export class DrawerAbsolute extends Mixin(LitElement, [StateMixin, TaskMixin]) {
   public render() {
@@ -22,4 +22,4 @@ export class DrawerAbsolute extends Mixin(LitElement, [StateMixin, TaskMixin]) {
   }
 }
 
-window.customElements.define('app-drawer-absolute', DrawerAbsolute);
+window.customElements.define("app-drawer-absolute", DrawerAbsolute);

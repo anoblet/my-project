@@ -1,7 +1,7 @@
 export const isEmpty = (obj: any) => {
-  for(var key in obj) {
-    if(obj.hasOwnProperty(key))
+  for (let key in obj) {
+    if (obj.hasOwnProperty(key))
       return false;
   }
   return true;
-}
+};

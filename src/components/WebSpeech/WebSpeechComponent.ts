@@ -16,12 +16,12 @@ declare global {
 
 const SpeechRecognition =
   window.SpeechRecognition || window.webkitSpeechRecognition;
-let SpeechGrammarList =
+const SpeechGrammarList =
   window.SpeechGrammarList || window.webkitSpeechGrammarList;
-let SpeechRecognitionEvent =
+const SpeechRecognitionEvent =
   window.SpeechRecognitionEvent || window.webkitSpeechRecognitionEvent;
 
-let grammar =
+const grammar =
   "#JSGF V1.0; grammar letters; public <letter> = " +
   letters.join(". | ") +
   " ;";

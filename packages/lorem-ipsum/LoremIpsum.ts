@@ -1,16 +1,16 @@
-import { html, LitElement, property } from 'lit-element';
-import { BaseMixin } from '@anoblet/base-mixin';
+import { html, LitElement, property } from "lit-element";
+import { BaseMixin } from "@anoblet/base-mixin";
 
-const loremIpsum = require('lorem-ipsum');
+const loremIpsum = require("lorem-ipsum");
 
 export class LoremIpsum extends BaseMixin(LitElement) {
-  @property({type: Number}) count: any;
-  
-  render() {
+  @property({type: Number}) public count: any;
+
+  public render() {
     return html`
       ${loremIpsum({count: this.count})}
-    `
+    `;
   }
 }
 
-window.customElements.define('lorem-ipsum', LoremIpsum);
+window.customElements.define("lorem-ipsum", LoremIpsum);

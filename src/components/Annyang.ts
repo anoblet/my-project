@@ -3,20 +3,20 @@ import { navigate } from "../Router";
 const annyang = require("annyang");
 
 // Let's define a command.
-var commands = {
-  hello: function() {
+let commands = {
+  "hello"() {
     alert("Hello world!");
   },
-  "home": function() {
+  "home"() {
     navigate("/");
   },
-  "eye exam": function() {
+  "eye exam"() {
     navigate("/components/eye-exam");
   },
-  settings: function() {
+  "settings"() {
     navigate("/user-settings");
   },
-  theme: function() {
+  "theme"() {
     navigate("/user-theme");
   }
 };

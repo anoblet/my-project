@@ -29,7 +29,7 @@ export const initApp = (config: any) => {
   //   if (firebase.apps.length === 0) firebase.initializeApp(config);
   // })
   return import(/* webpackChunkName: "Firebase" */ "firebase/app").then(
-    firebase => {
+    (firebase) => {
       if (firebase.apps.length === 0) firebase.initializeApp(config);
     }
   );
@@ -56,7 +56,7 @@ export const initStore = () => {
  * @return [description]
  * */
 export const checkRedirect = async () => {
-  return new Promise(resolve => {
+  return new Promise((resolve) => {
     return Promise.all([
       import(/* webpackChunkName: "Firebase" */ "firebase/app"),
       import(/* webpackChunkName: "FirebaseAuth" */ "firebase/auth"),
@@ -69,7 +69,7 @@ export const checkRedirect = async () => {
       if (!_pendingRedirect) resolve();
       else {
         instance.start(document.createElement("div"), {});
-        firebase.auth().onAuthStateChanged(user => {
+        firebase.auth().onAuthStateChanged((user) => {
           if (user) return resolve();
         });
       }
@@ -82,7 +82,7 @@ export const checkRedirect = async () => {
  * Example: getUser((user: any) => console.log(user))
  * */
 export const getUser = ({ callback }: any) => {
-  return new Promise(resolve => {
+  return new Promise((resolve) => {
     return Promise.all([
       import(/* webpackChunkName: "Firebase" */ "firebase/app") // @ts-ignore
     ]).then(async ([firebase]) => {
@@ -118,7 +118,7 @@ export const getCollection = ({ path, callback, watch, orderBy }: any) => {
     // Watch is enabled, let's use a callback
     if (watch)
       collection.onSnapshot((querySnapshot: any) => {
-        let result: any = [];
+        const result: any = [];
         querySnapshot.forEach(function(doc: any) {
           const data = doc.data();
           data.id = doc.id;
@@ -129,7 +129,7 @@ export const getCollection = ({ path, callback, watch, orderBy }: any) => {
     // Watch is diabled, let's return an array of objects
     else
       return collection.get().then((querySnapshot: any) => {
-        let result: any = [];
+        const result: any = [];
         querySnapshot.forEach(function(doc: any) {
           const data = doc.data();
           data.id = doc.id;

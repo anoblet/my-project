@@ -12,7 +12,7 @@ const WebpackLighthousePlugin = require("webpack-lighthouse-plugin");
 const SpeedMeasurePlugin = require("speed-measure-webpack-plugin");
 const smp = new SpeedMeasurePlugin();
 
-// const commonConfig = 
+// const commonConfig =
 
 module.exports = smp.wrap({
   mode: "production",

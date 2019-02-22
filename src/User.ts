@@ -7,10 +7,6 @@ import { setState } from "../packages/state-helpers/state-helpers";
 import { store } from "./Store";
 import { toast } from "./components/ToastComponent/Toast";
 
-
-
-
-
 /**
  * Check if a user is an admin
  * @return Boolean
@@ -49,7 +45,7 @@ export const signOut = (redirect: any = "/") => {
   const _redirect = redirect || "/";
   run(["auth"]).then((firebase: any) => {
     firebase.auth().signOut();
-  })
+  });
   // We could assume auth has already been called by now
   return Promise.all([
     import(/* webpackChunkName: "Firebase" */ "firebase/app"), // @ts-ignore
@@ -87,7 +83,7 @@ export const getUser = (options: any) => {
 
 export const getUserTheme = (callback: any) => {
   const user = store.getState().user;
-  return new Promise(resolve => {
+  return new Promise((resolve) => {
     return getDocument({
       path: `users/${user.uid}/settings/theme`,
       callback: (document: any) => {
@@ -100,7 +96,7 @@ export const getUserTheme = (callback: any) => {
 
 export const getUserSettings = (callback: any) => {
   const user = store.getState().user;
-  return new Promise(resolve =>
+  return new Promise((resolve) =>
     getDocument({
       path: `users/${user.uid}/settings/default`,
       callback: (document: any) => {

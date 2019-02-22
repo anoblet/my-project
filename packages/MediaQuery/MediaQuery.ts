@@ -1,9 +1,9 @@
-import { html, LitElement, property } from 'lit-element';
-import { Mixin } from '../Mixin';
-import { StateMixin } from '../StateMixin';
-import { TaskMixin } from '../TaskMixin';
-import * as style from './MediaQuery.scss';
-import Template from './MediaQueryTemplate';
+import { html, LitElement, property } from "lit-element";
+import { Mixin } from "../Mixin";
+import { StateMixin } from "../StateMixin";
+import { TaskMixin } from "../TaskMixin";
+import * as style from "./MediaQuery.scss";
+import Template from "./MediaQueryTemplate";
 
 export class MediaQuery extends Mixin(LitElement, [TaskMixin]) {
   @property({ type: Boolean, reflect: true }) public hidden = false;
@@ -53,4 +53,4 @@ export class MediaQuery extends Mixin(LitElement, [TaskMixin]) {
   }
 }
 
-window.customElements.define('media-query', MediaQuery);
+window.customElements.define("media-query", MediaQuery);

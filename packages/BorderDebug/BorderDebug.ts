@@ -1,9 +1,9 @@
-export const BorderDebug = function (superClass: any) {
+export const BorderDebug = function(superClass: any) {
   return class extends superClass {
-    connectedCallback() {
+    public connectedCallback() {
       super.connectedCallback();
-      this.style.padding = 'var(--debug-padding)';
-      this.style.border = 'var(--debug-border)';
+      this.style.padding = "var(--debug-padding)";
+      this.style.border = "var(--debug-border)";
     }
-  }
-}
+  };
+};

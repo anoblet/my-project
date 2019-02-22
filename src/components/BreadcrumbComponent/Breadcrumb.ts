@@ -10,13 +10,13 @@ export class BreadcrumbComponent extends connect(store)(LitElement) {
   @property() public activeRoute: string = "/";
   @property({ type: Boolean }) public hidden: boolean = false;
 
-  connectedCallback() {
+  public connectedCallback() {
     console.log("hi");
     super.connectedCallback();
     document.addEventListener("route-changed", this.routeChanged.bind(this));
   }
 
-  routeChanged(e: any) {
+  public routeChanged(e: any) {
     this.activeRoute = e.detail;
   }
 

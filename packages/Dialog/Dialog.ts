@@ -2,13 +2,13 @@ import { html, LitElement, property } from "lit-element";
 import * as style from "./Dialog.scss";
 
 export class Dialog extends LitElement {
-  @property({ type: Boolean, reflect: true }) hidden: any = true;
+  @property({ type: Boolean, reflect: true }) public hidden: any = true;
 
-  open() {
+  public open() {
     this.hidden = false;
   }
 
-  render() {
+  public render() {
     return html`
       <style>
         ${style}
