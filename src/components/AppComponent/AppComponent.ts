@@ -35,10 +35,10 @@ import(/* webpackChunkName: "Imports" */ "./imports");
 const getAppSettings = (callback: any) => {
   return new Promise(resolve =>
     getDocument({
-      path: "app/settings",
       callback: (document: any) => {
         resolve(document ? callback(document) : false);
       },
+      path: "app/settings",
       watch: true
     })
   );
@@ -122,7 +122,9 @@ export class AppComponent extends Mixin(connect(store)(LitElement), [
     // Register drawer listeners
     this.registerlisteners();
 
-    installOfflineWatcher((offline: boolean) => {});
+    installOfflineWatcher((offline: boolean) => {
+      offline = true;
+    });
   }
 
   public handleAnnyang(document: any) {
@@ -144,7 +146,7 @@ export class AppComponent extends Mixin(connect(store)(LitElement), [
     this.registerRouter();
   }
 
-  registerRouter() {
+  public registerRouter() {
     setPortal(this.renderRoot.querySelector("#portal"));
     setRoutes(routes);
     installRouter((location: any) => {

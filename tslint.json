@@ -9,6 +9,7 @@
     "curly": false,
     "interface-name" : false,
     "member-ordering": false,
+    "object-literal-sort-keys": false,
     "ordered-imports": false,
     "quotemark": [true, "double"],
     "trailing-comma": false,

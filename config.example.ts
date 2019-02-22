@@ -26,7 +26,7 @@ export const config = {
       "anonymous"
     ],
     tosUrl: "<your-tos-url>",
-    privacyPolicyUrl: function() {
+    privacyPolicyUrl: () => {
       window.location.assign("<your-privacy-policy-url>");
     }
   }
