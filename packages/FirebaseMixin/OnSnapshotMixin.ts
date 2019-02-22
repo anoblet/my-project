@@ -1,4 +1,4 @@
-export const OnSnapshotMixin = function(superClass: any) {
+export const OnSnapshotMixin = (superClass: any) => {
   return class extends superClass {
     public async registerOnSnapshot(document: any) {
       return new Promise((resolve, reject) => {
