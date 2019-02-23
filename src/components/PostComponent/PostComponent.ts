@@ -12,7 +12,7 @@ import { renderForm } from "../PropertyEditor/PropertyEditor";
 import { structure } from "./PostStructure";
 import style from "./PostStyle";
 import template from "./PostTemplate";
-import { toast } from "../ToastComponent/Toast";
+import { toast } from "../../Toast";
 
 import("../../../packages/PellComponent/PellComponent");
 

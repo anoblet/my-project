@@ -5,7 +5,7 @@ import { run } from "./Firebase";
 import { setDefaultTheme } from "./Theme";
 import { setState } from "../packages/state-helpers/state-helpers";
 import { store } from "./Store";
-import { toast } from "./components/ToastComponent/Toast";
+import { toast } from "./Toast";
 
 /**
  * Check if a user is an admin

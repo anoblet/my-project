@@ -2,7 +2,7 @@ import { html } from "lit-element";
 import { setTheme } from "./ThemeComponent";
 import { store } from "../../Store";
 import { deleteDocument } from "../../../packages/firebase-helpers";
-import { toast } from "../ToastComponent/Toast";
+import { toast } from "../../Toast";
 
 export default function(themes: any) {
   const state = store.getState();

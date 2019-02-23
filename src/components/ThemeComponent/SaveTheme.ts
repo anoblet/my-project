@@ -5,7 +5,7 @@ import {
   getDocument
 } from "../../../packages/firebase-helpers/firebase-helpers";
 import { store } from "../../Store";
-import { fireToast } from "../ToastComponent/Toast";
+import { toast } from "../../Toast";
 
 const saveTheme = async (name: string, scope: any) => {
   const state = store.getState();
@@ -16,7 +16,7 @@ const saveTheme = async (name: string, scope: any) => {
   addDocument({
     path: `users/${state.user.uid}/settings/theme/savedThemes`,
     data: { ...theme.currentTheme, ...{ name } }
-  }).then(() => fireToast("Theme saved!"));
+  }).then(() => toast("Theme saved!"));
 };
 
 export default function() {

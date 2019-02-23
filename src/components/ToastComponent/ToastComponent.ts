@@ -21,7 +21,7 @@ export class ToastComponent extends LitElement {
   public fire(message: string) {
     this.message = message;
     this.hidden = false;
-    setTimeout(() => (this.hidden = true), 4000);
+    setTimeout(() => (this.hidden = true), 3000);
   }
 
   static get styles() {
@@ -30,10 +30,8 @@ export class ToastComponent extends LitElement {
       css`
         :host {
           position: fixed;
-          top: 25%;
-          left: 25%;
-          right: 25%;
-          bottom: 25%;
+          left: 33%;
+          right: 33%;
           display: flex;
           justify-content: center;
           align-items: center;

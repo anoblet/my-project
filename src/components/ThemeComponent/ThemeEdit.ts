@@ -1,7 +1,7 @@
 import { html } from "lit-element";
 import { updateDocument } from "../../../packages/firebase-helpers/firebase-helpers";
 import { store } from "../../Store";
-import { toast } from "../ToastComponent/Toast";
+import { toast } from "../../Toast";
 
 const updateField = (field: string, value: string) => {
   const state = store.getState();

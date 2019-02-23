@@ -2,7 +2,7 @@ import { LitElement, customElement, html, property } from "lit-element";
 import { createIssue } from "../Github/CreateIssue";
 import { renderForm } from "../PropertyEditor/PropertyEditor";
 import styles from "./Styles";
-import { toast } from "../ToastComponent/Toast";
+import { toast } from "../../Toast";
 
 // Should this be a view only component or get it's own data?
 @customElement("issue-component")

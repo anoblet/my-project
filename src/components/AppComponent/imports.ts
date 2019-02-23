@@ -16,7 +16,6 @@ import(/* webpackChunkName: "ThemeComponent" */ "../ThemeComponent/ThemeComponen
 import(/* webpackChunkName: "MediaQuery" */ "../../../packages/MediaQuery");
 import(/* webpackChunkName: "MenuComponent" */ "../MenuComponent/MenuComponent");
 import(/* webpackChunkName: "MenuComponent" */ "../MenuComponent/MenuComponent");
-import(/* webpackChunkName: "ToastComponent" */ "../ToastComponent/ToastComponent");
 import(/* webpackChunkName: "LoadingComponent" */ "../LoadingComponent");
 
 export default true;
