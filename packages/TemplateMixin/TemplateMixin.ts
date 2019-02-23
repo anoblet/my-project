@@ -1,8 +1,8 @@
 import { html } from "lit-element";
 
-export const TemplateMixin = function(superClass: any) {
+export const TemplateMixin = (superClass: any) => {
   return class extends superClass {
-    public template: Function;
+    public template: any;
     public templatePath: string;
 
     public importTemplate(template: string = "") {
