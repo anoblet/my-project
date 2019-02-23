@@ -5,7 +5,7 @@ import Style from "./Style";
 import template from "./DrawerTemplate";
 import { Mixin } from "../../../packages/Mixin";
 import { MediaMixin } from "../../../packages/MediaMixin";
-import { watchMediaSize } from "../../Media";
+
 // @customElement("drawer-component")
 export class Drawer extends Mixin(LitElement, [MediaMixin]) {
   @property({ type: Boolean, reflect: true }) public hidden: boolean = true;
