@@ -18,8 +18,8 @@ export default css`
   ul,
   ol {
     /* margin-block-start: 0;
-    margin-block-end: 0;
-    padding-inline-start: 1em; */
+    margin-block-end: 0; */
+    padding-inline-start: 1em;
   }
 
   [flex] {

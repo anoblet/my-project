@@ -21,7 +21,8 @@ export const themeStructure = [
     label: "Border size",
     property: "borderSize",
     varName: "--border-size",
-    type: "size"
+    type: "size",
+    unit: "px"
   },
   {
     label: "Border color",

@@ -37,6 +37,18 @@ const renderField = (field: any, theme: any) => html`
         />
       `
     : ""}
+  ${field.type === "range"
+    ? html`
+        <input
+          name="${field.name}"
+          type="range"
+          min="0"
+          max="0"
+          value="${theme[field.property]}"
+          @input="${(e: any) => updateField(field.property, e.target.value)}"
+        />
+      `
+    : ""}
 `;
 
 export default ({ fields, theme }: any) =>
