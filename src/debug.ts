@@ -19,3 +19,13 @@ export const filterByMode = (mode: number) => {
   if (state.app.settings) return state.app.settings.mode >= mode;
   else return true;
 };
+
+const start = (key: string) => {
+  return true;
+};
+
+const debugObject = {
+  // history: [],
+  pointer: "/",
+  start
+};
