@@ -21,18 +21,17 @@ export class Blog extends Mixin(BaseElement, []) {
 
   public async beforeRender() {
     await getCollection({
-      callback: (collection: any) => {
-        this.posts = collection;
-        this.taskPending = false;
-      },
       path: "posts",
       orderBy: "sortOrder",
-      watch: true,
+      watch: false,
       where: {
         property: "featured",
         operator: "===",
         value: true
       }
+    }).then((collection: any) => {
+      this.posts = collection;
+      this.taskPending = false;
     });
   }
 

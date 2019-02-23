@@ -40,7 +40,7 @@ export const navigate = (path: string) => {
   handleNavigation({ location: window.location });
 };
 
-export const handleNavigation = ({ location, portal, routes }: any) => {
+export const handleNavigation = async ({ location, portal, routes }: any) => {
   let matchedRoute: any;
   portal = portal || globalPortal;
   routes = routes || globalRoutes;
@@ -65,23 +65,16 @@ export const handleNavigation = ({ location, portal, routes }: any) => {
     if (!guard()) return;
   }
   if (matchedRoute.src) matchedRoute.src();
+  const element = document.createElement(matchedRoute.component);
+  matchedRoute.keys.map((key: any) => {
+    element[key.name] = matchedRoute.data[key.name];
+  });
+  if (element.beforeRender) await element.beforeRender();
   if (portal) {
     // @todo Create an event here during DOM manipulation
     while (portal.firstChild) {
       portal.removeChild(portal.firstChild);
     }
-
-    // If action is set, let's perform th action
-    if (matchedRoute.action) {
-      return;
-    }
-
-    const element = document.createElement(matchedRoute.component);
-    matchedRoute.keys.map((key: any) => {
-      element[key.name] = matchedRoute.data[key.name];
-    });
-    if (element.beforeRender)
-      element.beforeRender().then(() => portal.appendChild(element));
-    else portal.appendChild(element);
+    portal.appendChild(element);
   }
 };
