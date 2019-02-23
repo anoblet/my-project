@@ -14,12 +14,13 @@ export class Blog extends Mixin(BaseElement, []) {
   public taskPending = true;
   @property() public posts: any = [];
 
-  constructor() {
-    super();
-    this.beforeRender();
-  }
+  // constructor() {
+  //   super();
+  //   this.beforeRender();
+  // }
 
   public async beforeRender() {
+    console.log("hi");
     await getCollection({
       path: "posts",
       orderBy: "sortOrder",

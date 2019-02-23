@@ -41,6 +41,7 @@ export const navigate = (path: string) => {
 };
 
 export const handleNavigation = async ({ location, portal, routes }: any) => {
+  console.log("handle");
   let matchedRoute: any;
   portal = portal || globalPortal;
   routes = routes || globalRoutes;
@@ -64,7 +65,7 @@ export const handleNavigation = async ({ location, portal, routes }: any) => {
   if (guard) {
     if (!guard()) return;
   }
-  if (matchedRoute.src) matchedRoute.src();
+  if (matchedRoute.src) await matchedRoute.src();
   const element = document.createElement(matchedRoute.component);
   matchedRoute.keys.map((key: any) => {
     element[key.name] = matchedRoute.data[key.name];
