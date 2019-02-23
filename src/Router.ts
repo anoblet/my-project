@@ -60,6 +60,10 @@ export const handleNavigation = ({ location, portal, routes }: any) => {
       matchedRoute.data = data;
     }
   });
+  const guard = matchedRoute.guard;
+  if (guard) {
+    if (!guard()) return;
+  }
   if (matchedRoute.src) matchedRoute.src();
   if (portal) {
     // @todo Create an event here during DOM manipulation
