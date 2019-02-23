@@ -14,7 +14,7 @@ declare global {
  * Kinda lazy so I'm grabbing firebaseui from the window
  **/
 
-const firebaseui = window.firebaseui;
+// const firebaseui = window.firebaseui;
 
 /**
  * Should be run once and only once since it instantiates Firebase
@@ -28,7 +28,7 @@ export const initApp = (config: any) => {
   //   if (firebase.apps.length === 0) firebase.initializeApp(config);
   // })
   return import(/* webpackChunkName: "Firebase" */ "firebase/app").then(
-    firebase => {
+    (firebase: any) => {
       if (firebase.apps.length === 0) firebase.initializeApp(config);
     }
   );
@@ -55,7 +55,7 @@ export const initStore = () => {
  * @return [description]
  **/
 export const checkRedirect = async () => {
-  return new Promise(resolve => {
+  return new Promise((resolve: any) => {
     return Promise.all([
       import(/* webpackChunkName: "Firebase" */ "firebase/app"),
       import(/* webpackChunkName: "FirebaseAuth" */ "firebase/auth"),
@@ -68,7 +68,7 @@ export const checkRedirect = async () => {
       if (!_pendingRedirect) resolve();
       else {
         instance.start(document.createElement("div"), {});
-        firebase.auth().onAuthStateChanged(user => {
+        firebase.auth().onAuthStateChanged((user: any) => {
           if (user) return resolve();
         });
       }
@@ -81,7 +81,7 @@ export const checkRedirect = async () => {
  * Example: getUser((user: any) => console.log(user))
  **/
 export const getUser = ({ callback }: any) => {
-  return new Promise(resolve => {
+  return new Promise((resolve: any) => {
     return Promise.all([
       import(/* webpackChunkName: "Firebase" */ "firebase/app") // @ts-ignore
     ]).then(async ([firebase]) => {
@@ -118,7 +118,7 @@ export const getCollection = ({ path, callback, watch, orderBy }: any) => {
     if (watch)
       collection.onSnapshot((querySnapshot: any) => {
         const result: any = [];
-        querySnapshot.forEach(function(doc: any) {
+        querySnapshot.forEach((doc: any) => {
           const data = doc.data();
           data.id = doc.id;
           result.push(data);
@@ -129,7 +129,7 @@ export const getCollection = ({ path, callback, watch, orderBy }: any) => {
     else
       return collection.get().then((querySnapshot: any) => {
         const result: any = [];
-        querySnapshot.forEach(function(doc: any) {
+        querySnapshot.forEach((doc: any) => {
           const data = doc.data();
           data.id = doc.id;
           result.push(data);
@@ -169,7 +169,7 @@ export const addDocument = ({ path, data }: any) => {
  **/
 
 export const updateDocument = ({ data, path }: any) => {
-  console.log("Updating document");
+  // console.log("Updating document");
   return Promise.all([
     import(/* webpackChunkName: "Firebase" */ "firebase/app"), // @ts-ignore
     import(/* webpackChunkName: "FirebaseFirestore" */ "firebase/firestore")
