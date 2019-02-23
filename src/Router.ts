@@ -41,7 +41,6 @@ export const navigate = (path: string) => {
 };
 
 export const handleNavigation = async ({ location, portal, routes }: any) => {
-  console.log("handle");
   let matchedRoute: any;
   portal = portal || globalPortal;
   routes = routes || globalRoutes;
@@ -49,8 +48,7 @@ export const handleNavigation = async ({ location, portal, routes }: any) => {
     const keys: any = [];
     const regex = pathToRegexp(route.path, keys);
     const match = regex.exec(location.pathname);
-    if (!match) return;
-    else {
+    if (match) {
       match.shift();
       matchedRoute = route;
       matchedRoute.keys = keys;
@@ -61,6 +59,7 @@ export const handleNavigation = async ({ location, portal, routes }: any) => {
       matchedRoute.data = data;
     }
   });
+  if (!matchedRoute) throw new Error("Could not find route");
   const guard = matchedRoute.guard;
   if (guard) {
     if (!guard()) return;
@@ -72,10 +71,11 @@ export const handleNavigation = async ({ location, portal, routes }: any) => {
   });
   if (element.beforeRender) await element.beforeRender();
   if (portal) {
-    // @todo Create an event here during DOM manipulation
     while (portal.firstChild) {
       portal.removeChild(portal.firstChild);
     }
     portal.appendChild(element);
+  } else {
+    throw new Error("Could not find portal");
   }
 };
