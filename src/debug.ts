@@ -4,8 +4,8 @@ const history: any = [];
 const subscribers: any = [];
 
 export const debug = (message: string) => {
-  subscribers.map((listener: any) => listener(message));
   history.push({ message, time: performance.now() });
+  subscribers.map((listener: any) => listener(history));
 };
 
 export const getHistory = () => history;
