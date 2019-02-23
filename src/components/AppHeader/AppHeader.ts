@@ -11,7 +11,7 @@ export class AppHeader extends LitElement {
   public firstUpdated() {
     const state = store.getState();
     const user = state.user;
-    if (user) this.setButtonBackground(user);
+    if (user.signedIn) this.setButtonBackground(user);
   }
 
   public setButtonBackground(user: any = false) {
