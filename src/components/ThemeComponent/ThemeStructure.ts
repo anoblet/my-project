@@ -18,6 +18,12 @@ export const themeStructure = [
     type: "color"
   },
   {
+    label: "Border size",
+    property: "borderSize",
+    varName: "--border-size",
+    type: "size"
+  },
+  {
     label: "Border color",
     property: "borderColor",
     varName: "--border-color",
