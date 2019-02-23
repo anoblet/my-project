@@ -53,7 +53,6 @@ export default css`
   #drawer[media-size="small"] {
     position: absolute;
     background: var(--background-color);
-    min-width: 33%;
     height: 100%;
     z-index: 1;
   }
@@ -73,7 +72,7 @@ export default css`
   }
 
   :host([drawer-opened]) #drawer-container:not([media-size="small"]) {
-    grid-template-columns: minmax(128px, 1fr) 4fr;
+    grid-template-columns: minmax(min-content, auto) 4fr;
   }
 
   #container {
