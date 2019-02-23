@@ -1,4 +1,4 @@
-export const TaskMixin = function(superClass: any) {
+export const TaskMixin = (superClass: any) => {
   return class extends superClass {
     public taskPending = false;
 
