@@ -1,11 +1,7 @@
 import { html } from "lit-element";
-import * as style from "./AppFooter.scss";
 
 export default function() {
   return html`
-    <style>
-      ${style}
-    </style>
     <a
       href="https://github.com/anoblet/my-project"
       rel="noreferrer"
