@@ -1,4 +1,6 @@
+/* tslint:disable */
 const showdown = require("showdown");
+/* tslint:enable */
 
 /**
  * [Converter description]
