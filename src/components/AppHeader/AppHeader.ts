@@ -8,7 +8,6 @@ import template from "./AppHeaderTemplate";
 import(/* webpackChunkName: "MWCFab" */ "@material/mwc-fab");
 
 export class AppHeader extends LitElement {
-
   public firstUpdated() {
     const state = store.getState();
     const user = state.user;
