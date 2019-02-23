@@ -1,32 +1,26 @@
-import { LitElement, query } from "lit-element";
+import { LitElement } from "lit-element";
+
+import GlobalStyle from "../../GlobalStyle";
+import Style from "./Style";
+import { store } from "../../Store";
 import template from "./AppHeaderTemplate";
+
 import(/* webpackChunkName: "MWCFab" */ "@material/mwc-fab");
 
-import ComponentStyle from "./Style";
-
-import { getUser } from "../../../packages/firebase-helpers";
-
 export class AppHeader extends LitElement {
-  @query("mwc-fab") public fab: any;
 
   public firstUpdated() {
-    getUser({
-      callback: (user: any) => {
-        if (user) this.setButtonBackground(user);
-        else {
-          // Is this necessary?
-          // this.resetButton();
-        }
-      }
-    });
+    const state = store.getState();
+    const user = state.user;
+    if (user) this.setButtonBackground(user);
   }
 
   public setButtonBackground(user: any = false) {
     const fab = this.querySelector("#userProfile");
     const button = fab.shadowRoot.querySelector("button");
     if (button)
-      if (user.photoURL) {
-        button.style.background = `url('${user.photoURL}')`;
+      if (user.photo) {
+        button.style.background = `url('${user.photo}')`;
         button.style.backgroundSize = "contain";
       }
   }
@@ -41,7 +35,7 @@ export class AppHeader extends LitElement {
   }
 
   static get styles() {
-    return [ComponentStyle];
+    return [GlobalStyle, Style];
   }
 
   public render() {
