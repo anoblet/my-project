@@ -183,4 +183,8 @@ export default css`
   #made-width {
     text-align: center;
   }
+
+  mwc-fab {
+    --mdc-theme-secondary: var(--background-color);
+  }
 `;
