@@ -62,7 +62,7 @@ export class PostComponent extends Mixin(LitElement, [TemplateMixin]) {
     const author = this.shadowRoot.querySelector("[name='author']").value;
     const body = this.shadowRoot.querySelector("[name='body']").value;
     let sortOrder = this.shadowRoot.querySelector("[name='sortOrder']").value;
-    sortOrder = parseInt(sortOrder);
+    sortOrder = parseInt(sortOrder, 10);
     const data: any = {
       title,
       author,
@@ -72,16 +72,15 @@ export class PostComponent extends Mixin(LitElement, [TemplateMixin]) {
 
     if (this.create) {
       addDocument({ path: "posts", data })
-        .then((result: any) => {})
-        .then(() => toast("Document added"))
-        .catch(error => toast("Error"));
+        .then((result: any) => toast("Document added"))
+        .catch((error: any) => toast("Error"));
     } else {
       updateDocument({ path: `posts/${this.id}`, data })
         .then((result: any) => {
           this.editable = !this.editable;
         })
         .then(() => toast("Document updated"))
-        .catch(error =>
+        .catch((error: any) =>
           toast(
             "Error, could not update the document. Maybe you do not have the right permissions?"
           )
@@ -92,6 +91,7 @@ export class PostComponent extends Mixin(LitElement, [TemplateMixin]) {
   public connectedCallback() {
     super.connectedCallback();
     if (this.id) this.beforeRender();
+    else this.taskPending = false;
   }
 
   public shouldUpdate(changedProperties: any) {
@@ -124,7 +124,7 @@ export class PostComponent extends Mixin(LitElement, [TemplateMixin]) {
         ${renderForm(
           this,
           null,
-          (property: string, value: any) => (this[property] = value)
+          (_property: string, value: any) => (this[_property] = value)
         )}
         <div slot="actions">
           <mwc-button outlined @click=${(e: any) => this.submitForm(e)}
