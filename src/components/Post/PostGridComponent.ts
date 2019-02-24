@@ -1,10 +1,8 @@
-import * as style from "./PostGridComponent.scss";
-
 import { LitElement, css, html, property } from "lit-element";
 
 import GlobalStyle from "../../GlobalStyle";
-import template from "./PostGridComponentTemplate";
 import { getCollection } from "../../../packages/firebase-helpers";
+import template from "./PostGridComponentTemplate";
 
 export class PostGridComponent extends LitElement {
   @property({ type: Array }) public items: any;
@@ -27,19 +25,51 @@ export class PostGridComponent extends LitElement {
       path: "posts"
     }).then((collection: any) => {
       this.items = collection;
-      this.taskPending = false;
     });
-  }
-
-  public shouldUpdate(changedProperties: any) {
-    if (this.taskPending) return false;
-    else return super.shouldUpdate(changedProperties);
   }
 
   static get styles() {
     return [
       GlobalStyle,
       css`
+        * {
+          box-sizing: border-box;
+        }
+
+        :host {
+          display: flex;
+          flex: 1;
+        }
+
+        .grid {
+          display: grid;
+          flex: 1;
+          height: min-content;
+        }
+
+        .row {
+          /*
+        display: flex;
+        */
+          display: grid;
+          grid-template-columns: min-content 1fr min-content;
+        }
+
+        .column {
+          flex: 1;
+          padding: 0.5em 1em;
+          overflow: hidden;
+          text-overflow: ellipsis;
+        }
+
+        .no-grow {
+          flex-grow: 0;
+        }
+
+        .no-visibility {
+          visibility: hidden;
+        }
+
         card-component {
           max-width: 100%;
         }
@@ -48,12 +78,7 @@ export class PostGridComponent extends LitElement {
   }
 
   public render() {
-    return html`
-      <style>
-        ${style}
-      </style>
-      ${template.bind(this)()}
-    `;
+    return template.bind(this)()
   }
 }
 
