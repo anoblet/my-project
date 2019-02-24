@@ -148,7 +148,7 @@ export class AppComponent extends Mixin(connect(store)(LitElement), [
   public async registerRouter() {
     setPortal(this.renderRoot.querySelector("#portal"));
     setRoutes(routes);
-    await new Promise(() => {
+    await new Promise((resolve: any) => {
       installRouter(async (location: any) => {
         this.dispatchEvent(
           new CustomEvent("route-changed", {
