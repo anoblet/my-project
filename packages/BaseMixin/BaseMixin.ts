@@ -1,5 +1,5 @@
-import { Mixin } from "@anoblet/mixin";
-import { HelperMixin } from "@anoblet/helper-mixin";
+import { Mixin } from "../Mixin";
+import { HelperMixin } from "../HelperMixin";
 
 export const BaseMixin = (superclass: any) => class extends Mixin(superclass, [/* DebugMixin */, HelperMixin]) {
 };

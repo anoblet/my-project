@@ -1,5 +1,5 @@
 import { LitElement, property } from "lit-element";
-import { BaseMixin } from "@anoblet/base-mixin";
+import { BaseMixin } from "../BaseMixin";
 
 // import './src/components/MyRow/MyRow'
 // import './src/components/MyColumn/MyColumn'

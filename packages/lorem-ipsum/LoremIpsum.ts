@@ -1,5 +1,5 @@
 import { html, LitElement, property } from "lit-element";
-import { BaseMixin } from "@anoblet/base-mixin";
+import { BaseMixin } from "../BaseMixin";
 
 const loremIpsum = require("lorem-ipsum");
 

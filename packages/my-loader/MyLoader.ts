@@ -1,6 +1,6 @@
 import { LitElement } from "lit-element";
-import { Mixin } from "@anoblet/mixin";
-import { BaseMixin } from "@anoblet/base-mixin";
+import { Mixin } from "../Mixin";
+import { BaseMixin } from "../BaseMixin";
 
 import Template from "./MyLoaderTemplate";
 
