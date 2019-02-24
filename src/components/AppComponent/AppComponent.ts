@@ -28,6 +28,7 @@ import { routes } from "./Routes";
 import { setState } from "../../../packages/state-helpers/state-helpers";
 import { store } from "../../Store";
 import template from "./AppComponentTemplate";
+import { getUser as newGetUser } from "../../Firebase";
 
 import(/* webpackChunkName: "Imports" */ "./imports");
 
@@ -86,8 +87,8 @@ export class AppComponent extends Mixin(connect(store)(LitElement), [
         debug("Finished gettings app settings");
       }
       debug("Getting user state");
-      await getUser({
-        callback: async (user: any) => {
+      await newGetUser()
+        .then(async (user: any) => {
           if (user) {
             debug("User logged in");
             const userData = extract(user);
@@ -107,8 +108,7 @@ export class AppComponent extends Mixin(connect(store)(LitElement), [
           } else {
             debug("User not logged in");
           }
-        }
-      });
+        })
       // document.querySelector("body #loading").setAttribute("hidden", "");
       this.taskPending = false;
     })();

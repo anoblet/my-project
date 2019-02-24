@@ -21,3 +21,13 @@ export const authRedirect = async () => {
     });
   });
 };
+
+export const getUser = async () => {
+  return run(["auth"]).then((firebase: any) => {
+    return new Promise((resolve: any) => {
+      firebase.auth().onAuthStateChanged((user: any) => {
+        resolve(user);
+      });
+    });
+  });
+};
