@@ -29,7 +29,7 @@ export default function() {
       <card-component title="Links">
         <div slot="content">
           <ul>
-            <a href="/post"><li>Posts</li></a>
+            <a href="/post/list"><li>Posts</li></a>
           </ul>
         </div>
       </card-component>

@@ -23,7 +23,7 @@ export class PostGridComponent extends LitElement {
   }
 
   public async beforeRender() {
-    getCollection({
+    return getCollection({
       path: "posts"
     }).then((collection: any) => {
       this.items = collection;
