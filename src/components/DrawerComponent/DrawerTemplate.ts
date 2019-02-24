@@ -6,14 +6,14 @@ export default function() {
     <card-component .shadow=${false}>
       <div slot="content">
         <ul>
-          <a href="/"> <li>Home</li></a>
-          <a href="/blog"> <li>Blog</li></a>
+          <li><a href="/">Home</a></li>
+          <li><a href="/">Blog</a></li>
           ${true // isAdmin()
             ? html`
-                <a href="/components"> <li>Components</li></a>
+                <li><a href="/components">Components</a></li>
               `
             : ""}
-          <a href="/contact"> <li>Contact</li></a>
+          <li><a href="/contact">Contact</a></li>
           <li><a href="/timings">Timings</a></li>
           <li><a href="/readme">Readme</a></li>
           ${isAdmin()
