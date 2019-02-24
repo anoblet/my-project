@@ -1,7 +1,5 @@
-import { html } from "lit-element";
-
 export const isTrue = (expression: any, callback: any) => {
-  return expression ? callback : html``;
+  return expression ? callback : "";
 };
 
 export const find = (path: string, object: any) => {
@@ -16,4 +14,11 @@ export const find = (path: string, object: any) => {
     value = error;
   }
   return value;
+};
+
+export const isEmpty = (obj: any) => {
+  for (const key in obj) {
+    if (obj.hasOwnProperty(key)) return false;
+  }
+  return true;
 };
