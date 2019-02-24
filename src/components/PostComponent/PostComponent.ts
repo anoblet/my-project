@@ -9,7 +9,6 @@ import { Mixin } from "../../../packages/Mixin";
 import { TemplateMixin } from "../../../packages/TemplateMixin";
 import globalStyle from "../../GlobalStyle";
 import { renderForm } from "../PropertyEditor/PropertyEditor";
-import { structure } from "./PostStructure";
 import style from "./PostStyle";
 import template from "./PostTemplate";
 import { toast } from "../../Toast";
@@ -26,7 +25,7 @@ export class PostComponent extends Mixin(LitElement, [TemplateMixin]) {
   @property({ type: Boolean }) public create: boolean;
 
   public template = template;
-  public taskPending = true;
+  @property({ type: Boolean }) public taskPending = true;
 
   public async beforeRender() {
     return await getDocument({
@@ -35,7 +34,6 @@ export class PostComponent extends Mixin(LitElement, [TemplateMixin]) {
       if (document) {
         Object.keys(document).map((key: any) => (this[key] = document[key]));
         this.taskPending = false;
-        this.requestUpdate();
       }
     });
   }
@@ -76,14 +74,14 @@ export class PostComponent extends Mixin(LitElement, [TemplateMixin]) {
       addDocument({ path: "posts", data })
         .then((result: any) => {})
         .then(() => toast("Document added"))
-        .catch((error) => toast("Error"));
+        .catch(error => toast("Error"));
     } else {
       updateDocument({ path: `posts/${this.id}`, data })
         .then((result: any) => {
           this.editable = !this.editable;
         })
         .then(() => toast("Document updated"))
-        .catch((error) =>
+        .catch(error =>
           toast(
             "Error, could not update the document. Maybe you do not have the right permissions?"
           )
@@ -93,8 +91,7 @@ export class PostComponent extends Mixin(LitElement, [TemplateMixin]) {
 
   public connectedCallback() {
     super.connectedCallback();
-    if (this.id)
-      this.beforeRender();
+    if (this.id) this.beforeRender();
   }
 
   public shouldUpdate(changedProperties: any) {
