@@ -4,9 +4,37 @@ import { LitElement, css, html, property } from "lit-element";
 
 import GlobalStyle from "../../GlobalStyle";
 import template from "./PostGridComponentTemplate";
+import { getCollection } from "../../../packages/firebase-helpers";
 
 export class PostGridComponent extends LitElement {
   @property({ type: Array }) public items: any;
+  @property({ type: Boolean }) public taskPending = true;
+
+  public deleteItem(index: number) {
+    const items = this.items;
+    const item = items.splice(index, 1);
+    this.items = [...items];
+    this.dispatchEvent(
+      new CustomEvent("item-deleted", {
+        composed: true,
+        detail: item[0]
+      })
+    );
+  }
+
+  public async beforeRender() {
+    getCollection({
+      path: "posts"
+    }).then((collection: any) => {
+      this.items = collection;
+      this.taskPending = false;
+    });
+  }
+
+  public shouldUpdate(changedProperties: any) {
+    if (this.taskPending) return false;
+    else return super.shouldUpdate(changedProperties);
+  }
 
   static get styles() {
     return [
@@ -17,18 +45,6 @@ export class PostGridComponent extends LitElement {
         }
       `
     ];
-  }
-
-  public deleteItem(index: Number) {
-    const items = this.items;
-    const item = items.splice(index, 1);
-    this.items = [...items];
-    this.dispatchEvent(
-      new CustomEvent("item-deleted", {
-        composed: true,
-        detail: item[0]
-      })
-    );
   }
 
   public render() {

@@ -44,6 +44,12 @@ export const routes = [
     src: () =>
       import(/* webpackChunkName: "PostComponent" */ /* webpackPrefetch: true */ "../PostComponent/PostComponent")
   },
+  {
+    path: "/post/list",
+    component: "post-grid-component",
+    src: () =>
+      import(/* webpackChunkName: "PostGridComponent" */ /* webpackPrefetch: true */ "../Post/PostGridComponent")
+  },
   // {
   //   path: "/post/:action/:id?",
   //   component: "post-controller",
