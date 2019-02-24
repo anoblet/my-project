@@ -1,12 +1,13 @@
-import { LitElement, css, html, property } from "lit-element";
+import { LitElement, customElement, property } from "lit-element";
 
 import GlobalStyle from "../../GlobalStyle";
+import Style from "./PostGridStyle";
 import { getCollection } from "../../../packages/firebase-helpers";
 import template from "./PostGridComponentTemplate";
 
+@customElement("post-grid-component")
 export class PostGridComponent extends LitElement {
   @property({ type: Array }) public items: any;
-  @property({ type: Boolean }) public taskPending = true;
 
   public deleteItem(index: number) {
     const items = this.items;
@@ -21,7 +22,7 @@ export class PostGridComponent extends LitElement {
   }
 
   public async beforeRender() {
-    return getCollection({
+    await getCollection({
       path: "posts"
     }).then((collection: any) => {
       this.items = collection;
@@ -29,57 +30,10 @@ export class PostGridComponent extends LitElement {
   }
 
   static get styles() {
-    return [
-      GlobalStyle,
-      css`
-        * {
-          box-sizing: border-box;
-        }
-
-        :host {
-          display: flex;
-          flex: 1;
-        }
-
-        .grid {
-          display: grid;
-          flex: 1;
-          height: min-content;
-        }
-
-        .row {
-          /*
-        display: flex;
-        */
-          display: grid;
-          grid-template-columns: min-content 1fr min-content;
-        }
-
-        .column {
-          flex: 1;
-          padding: 0.5em 1em;
-          overflow: hidden;
-          text-overflow: ellipsis;
-        }
-
-        .no-grow {
-          flex-grow: 0;
-        }
-
-        .no-visibility {
-          visibility: hidden;
-        }
-
-        card-component {
-          max-width: 100%;
-        }
-      `
-    ];
+    return [GlobalStyle, Style];
   }
 
   public render() {
-    return template.bind(this)()
+    return template.bind(this)();
   }
 }
-
-window.customElements.define("post-grid-component", PostGridComponent);
