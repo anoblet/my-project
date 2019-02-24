@@ -3,13 +3,12 @@ import "../PageStatic";
 
 import { LitElement, html, property } from "lit-element";
 import {
-  checkRedirect,
   getDocument,
   getUser,
   initApp
 } from "../../../packages/firebase-helpers";
 import { disableAnnyang, enableAnnyang } from "../Annyang";
-import { documentToStyle, documentToTheme, setTheme } from "../../Theme";
+import { documentToTheme, setTheme } from "../../Theme";
 import { extract, getUserSettings, getUserTheme } from "../../User";
 import { handleNavigation, setPortal, setRoutes } from "../../Router";
 
@@ -29,12 +28,11 @@ import { routes } from "./Routes";
 import { setState } from "../../../packages/state-helpers/state-helpers";
 import { store } from "../../Store";
 import template from "./AppComponentTemplate";
-import { authRedirect } from "../../Firebase";
 
 import(/* webpackChunkName: "Imports" */ "./imports");
 
 const getAppSettings = (callback: any) => {
-  return new Promise(resolve =>
+  return new Promise((resolve: any) =>
     getDocument({
       callback: (document: any) => {
         resolve(document ? callback(document) : false);
@@ -124,7 +122,7 @@ export class AppComponent extends Mixin(connect(store)(LitElement), [
     this.registerlisteners();
 
     installOfflineWatcher((offline: boolean) => {
-      offline = true;
+      return offline;
     });
   }
 
@@ -147,23 +145,24 @@ export class AppComponent extends Mixin(connect(store)(LitElement), [
     this.registerRouter();
   }
 
-  public registerRouter() {
+  public async registerRouter() {
     setPortal(this.renderRoot.querySelector("#portal"));
     setRoutes(routes);
-    installRouter((location: any) => {
-      this.dispatchEvent(
-        new CustomEvent("route-changed", {
-          bubbles: true,
-          composed: true,
-          detail: location.pathname
-        })
-      );
-      handleNavigation({
-        location,
-        routes,
-        portal: this.renderRoot.querySelector("#portal")
+    await new Promise(() => {
+      installRouter(async (location: any) => {
+        this.dispatchEvent(
+          new CustomEvent("route-changed", {
+            bubbles: true,
+            composed: true,
+            detail: location.pathname
+          })
+        );
+        await handleNavigation({
+          location,
+          routes,
+          portal: this.renderRoot.querySelector("#portal")
+        });
       });
-      // this.closeMenus();
     });
   }
 
@@ -189,7 +188,9 @@ export class AppComponent extends Mixin(connect(store)(LitElement), [
     menu.close();
   }
 
-  public async beforeRender() {}
+  public async beforeRender() {
+    return true;
+  }
 
   static get styles() {
     return [GlobalStyle, componentStyle];
