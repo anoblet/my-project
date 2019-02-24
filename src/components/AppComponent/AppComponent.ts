@@ -87,28 +87,27 @@ export class AppComponent extends Mixin(connect(store)(LitElement), [
         debug("Finished gettings app settings");
       }
       debug("Getting user state");
-      await newGetUser()
-        .then(async (user: any) => {
-          if (user) {
-            debug("User logged in");
-            const userData = extract(user);
-            setState({ data: userData, store, type: "user" });
-            debug("Getting user settings");
-            await getUserSettings((document: any) => {
-              setState({ data: document, store, type: "settings" });
-              this.handleAnnyang(document);
-            });
-            debug("Finished getting user settings");
-            debug("Getting user theme");
-            await getUserTheme((document: any) => {
-              const theme = documentToTheme(document);
-              setTheme(theme, this);
-            });
-            debug("Finished getting user theme");
-          } else {
-            debug("User not logged in");
-          }
-        })
+      await newGetUser().then(async (user: any) => {
+        if (user) {
+          debug("User logged in");
+          const userData = extract(user);
+          setState({ data: userData, store, type: "user" });
+          debug("Getting user settings");
+          await getUserSettings((document: any) => {
+            setState({ data: document, store, type: "settings" });
+            this.handleAnnyang(document);
+          });
+          debug("Finished getting user settings");
+          debug("Getting user theme");
+          await getUserTheme((document: any) => {
+            const theme = documentToTheme(document);
+            setTheme(theme, this);
+          });
+          debug("Finished getting user theme");
+        } else {
+          debug("User not logged in");
+        }
+      });
       // document.querySelector("body #loading").setAttribute("hidden", "");
       this.taskPending = false;
     })();
