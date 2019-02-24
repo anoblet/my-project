@@ -9,7 +9,6 @@ export const run = async (packages: any) => {
     imports.push(
       import(/* webpackChunkName: "FirebaseFirestore" */ "firebase/firestore")
     );
-  // Promise.all(imports).then(([firebase]) => callback(firebase));
   return Promise.all(imports).then(([firebase]) => firebase);
 };
 
