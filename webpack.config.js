@@ -14,7 +14,7 @@ const smp = new SpeedMeasurePlugin();
 
 // const commonConfig =
 
-module.exports = smp.wrap({
+module.exports = {
   mode: "production",
   entry: "./src/index",
   output: {
@@ -123,4 +123,4 @@ module.exports = smp.wrap({
     //   perf: true
     // })
   ]
-});
+};
