@@ -150,6 +150,11 @@ export class AppComponent extends Mixin(connect(store)(LitElement), [
     setRoutes(routes);
     await new Promise((resolve: any) => {
       installRouter(async (location: any) => {
+        await handleNavigation({
+          location,
+          routes,
+          portal: this.renderRoot.querySelector("#portal")
+        });
         this.dispatchEvent(
           new CustomEvent("route-changed", {
             bubbles: true,
@@ -157,11 +162,7 @@ export class AppComponent extends Mixin(connect(store)(LitElement), [
             detail: location.pathname
           })
         );
-        await handleNavigation({
-          location,
-          routes,
-          portal: this.renderRoot.querySelector("#portal")
-        });
+        resolve();
       });
     });
   }
