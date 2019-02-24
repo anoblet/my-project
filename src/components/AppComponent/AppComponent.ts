@@ -51,7 +51,7 @@ export class AppComponent extends Mixin(connect(store)(LitElement), [
 ]) {
   @property({ type: Boolean, reflect: true, attribute: "drawer-opened" })
   public drawerOpened = false;
-  public taskPending = true;
+  @property({ type: Boolean }) public taskPending = true;
 
   // Lifecycle
   constructor() {
@@ -74,47 +74,44 @@ export class AppComponent extends Mixin(connect(store)(LitElement), [
     super.connectedCallback();
     (async () => {
       await initApp(config.firebase);
-      await (async () => {
+      if (config.globalSettings) {
         debug("Getting app settings");
-        if (config.globalSettings)
-          await getAppSettings((document: any) => {
-            setState({ data: { settings: document }, store, type: "app" });
-            if (!config.staticTheme) {
-              const theme = documentToTheme(document.defaultTheme);
-              setTheme(theme, this);
-            }
-          });
-        debug("Finished gettings app settings");
-      })();
-      debug("Check redirect");
-      // await checkRedirect();
-      debug("Finished check redirect");
-      await (async () => {
-        debug("Getting user data");
-        await getUser({
-          callback: async (user: any) => {
-            if (user) {
-              const userData = extract(user);
-              setState({ data: userData, store, type: "user" });
-              debug("Getting user settings");
-              await getUserSettings((document: any) => {
-                setState({ data: document, store, type: "settings" });
-                this.handleAnnyang(document);
-              });
-              debug("Finished getting user settings");
-              // Load theme from Firebase
-              debug("Getting user theme");
-              await getUserTheme((document: any) => {
-                const theme = documentToTheme(document);
-                setTheme(theme, this);
-              });
-              debug("Finished getting user theme");
-            }
+        await getAppSettings((document: any) => {
+          setState({ data: { settings: document }, store, type: "app" });
+          if (!config.staticTheme) {
+            const theme = documentToTheme(document.defaultTheme);
+            setTheme(theme, this);
           }
         });
-        document.querySelector("body #loading").setAttribute("hidden", "");
-        debug("Finished getting user data");
-      })();
+        debug("Finished gettings app settings");
+      }
+      debug("Getting user state");
+      await getUser({
+        callback: async (user: any) => {
+          if (user) {
+            debug("User logged in");
+            const userData = extract(user);
+            setState({ data: userData, store, type: "user" });
+            debug("Getting user settings");
+            await getUserSettings((document: any) => {
+              setState({ data: document, store, type: "settings" });
+              this.handleAnnyang(document);
+            });
+            debug("Finished getting user settings");
+            // Load theme from Firebase
+            debug("Getting user theme");
+            await getUserTheme((document: any) => {
+              const theme = documentToTheme(document);
+              setTheme(theme, this);
+            });
+            debug("Finished getting user theme");
+          } else {
+            debug("User not logged in");
+          }
+        }
+      });
+      // document.querySelector("body #loading").setAttribute("hidden", "");
+      this.taskPending = false;
     })();
     // Register drawer listeners
     this.registerlisteners();
