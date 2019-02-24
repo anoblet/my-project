@@ -26,7 +26,7 @@ import { store } from "../../Store";
 import template from "./AppComponentTemplate";
 import { getUser } from "../../Firebase";
 
-import(/* webpackChunkName: "Imports" */ "./imports");
+import(/* webpackChunkName: "Imports" */ /* webpackPrefetch: true */ "./Imports");
 
 const getAppSettings = (callback: any) => {
   return new Promise((resolve: any) =>
