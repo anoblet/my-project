@@ -35,6 +35,10 @@ export default css`
     border-bottom: 1px solid var(--primary-color);
   }
 
+  card-component {
+    padding-top: 0;
+  }
+
   card-component .content {
     padding: 0;
   }
