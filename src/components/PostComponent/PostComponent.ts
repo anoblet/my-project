@@ -40,17 +40,6 @@ export class PostComponent extends Mixin(LitElement, [TemplateMixin]) {
     });
   }
 
-  constructor() {
-    super();
-    this.model = structure;
-  }
-
-  public connectedCallback() {
-    super.connectedCallback();
-    if (this.id)
-      this.beforeRender();
-  }
-
   public text({ field, value }: any) {
     return html`
       <label>${field.label}</label>:
@@ -100,6 +89,12 @@ export class PostComponent extends Mixin(LitElement, [TemplateMixin]) {
           )
         );
     }
+  }
+
+  public connectedCallback() {
+    super.connectedCallback();
+    if (this.id)
+      this.beforeRender();
   }
 
   public shouldUpdate(changedProperties: any) {
