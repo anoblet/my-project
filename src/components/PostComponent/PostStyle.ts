@@ -1,6 +1,9 @@
 import { css } from "lit-element";
 
 export default css`
+  :host {
+    flex: 1;
+  }
   grid-component {
     grid-template-columns: 1fr !important;
   }
@@ -10,11 +13,12 @@ export default css`
     display: flex;
   }
 
-  .field > label, input {
+  .field > label,
+  input {
     flex: 1;
   }
 
   .field[pell] {
-    grid-column span 2;
+    /* grid-column: span 2; */
   }
 `;
