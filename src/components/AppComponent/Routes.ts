@@ -39,11 +39,17 @@ export const routes = [
       import(/* webpackChunkName: "PostController" */ /* webpackPrefetch: true */ "../Post/PostController")
   },
   {
-    path: "/post/:action/:id?",
-    component: "post-controller",
+    path: "/post/read/:id?",
+    component: "post-component",
     src: () =>
-      import(/* webpackChunkName: "PostController" */ /* webpackPrefetch: true */ "../Post/PostController")
+      import(/* webpackChunkName: "PostComponent" */ /* webpackPrefetch: true */ "../PostComponent/PostComponent")
   },
+  // {
+  //   path: "/post/:action/:id?",
+  //   component: "post-controller",
+  //   src: () =>
+  //     import(/* webpackChunkName: "PostController" */ /* webpackPrefetch: true */ "../Post/PostController")
+  // },
   {
     path: "/user/:action?",
     component: "user-controller",
