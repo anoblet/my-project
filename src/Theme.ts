@@ -6,15 +6,6 @@ export const setTheme = (theme: any, element: any) => {
   });
 };
 
-/**
- * Deprecated
- * @param  document [description]
- * @return          [description]
- */
-export const documentToStyle = (document: any) => {
-  return documentToTheme(document);
-};
-
 export const documentToTheme = (document: any) => {
   const styles: any = [];
   Object.keys(document).map((style) => {
