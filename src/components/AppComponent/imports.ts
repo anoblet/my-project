@@ -7,7 +7,6 @@ import(/* webpackChunkName: "MWCIcon" */ "@material/mwc-icon");
 import(/* webpackChunkName: "MWCFab" */ "@material/mwc-fab");
 import(/* webpackChunkName: "AppHeader" */ "../AppHeader/AppHeader");
 import(/* webpackChunkName: "AppFooter" */ "../AppFooter/AppFooter");
-// @deprecated import(/* webpackChunkName: "AppTheme" */ "../AppTheme/AppTheme"),
 import(/* webpackChunkName: "Drawer" */ "../DrawerComponent/Drawer");
 import(/* webpackChunkName: "ProfileMenu" */ "../ProfileMenu/ProfileMenu"); // @deprecated
 import(/* webpackChunkName: "AdminComponent" */ "../AdminComponent/AdminComponent");
