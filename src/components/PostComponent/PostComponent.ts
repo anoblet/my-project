@@ -28,6 +28,18 @@ export class PostComponent extends Mixin(LitElement, [TemplateMixin]) {
   public template = template;
   public taskPending = true;
 
+  public async beforeRender() {
+    return await getDocument({
+      path: `posts/${this.id}`
+    }).then((document: any) => {
+      if (document) {
+        Object.keys(document).map((key: any) => (this[key] = document[key]));
+        this.taskPending = false;
+        this.requestUpdate();
+      }
+    });
+  }
+
   constructor() {
     super();
     this.model = structure;
@@ -36,19 +48,7 @@ export class PostComponent extends Mixin(LitElement, [TemplateMixin]) {
   public connectedCallback() {
     super.connectedCallback();
     if (this.id)
-      getDocument({
-        path: `posts/${this.id}`,
-        callback: (document: any) => {
-          if (document) {
-            const keys = Object.keys(document);
-            keys.map((key: any) => (this[key] = document[key]));
-            // this.loaded = true;
-            this.taskPending = false;
-            this.requestUpdate();
-          }
-        },
-        watch: true
-      });
+      this.beforeRender();
   }
 
   public text({ field, value }: any) {
