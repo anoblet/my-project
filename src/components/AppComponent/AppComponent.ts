@@ -2,11 +2,7 @@
 import "../PageStatic";
 
 import { LitElement, html, property } from "lit-element";
-import {
-  getDocument,
-  getUser,
-  initApp
-} from "../../../packages/firebase-helpers";
+import { getDocument, initApp } from "../../../packages/firebase-helpers";
 import { disableAnnyang, enableAnnyang } from "../Annyang";
 import { documentToTheme, setTheme } from "../../Theme";
 import { extract, getUserSettings, getUserTheme } from "../../User";
@@ -28,7 +24,7 @@ import { routes } from "./Routes";
 import { setState } from "../../../packages/state-helpers/state-helpers";
 import { store } from "../../Store";
 import template from "./AppComponentTemplate";
-import { getUser as newGetUser } from "../../Firebase";
+import { getUser } from "../../Firebase";
 
 import(/* webpackChunkName: "Imports" */ "./imports");
 
@@ -87,7 +83,7 @@ export class AppComponent extends Mixin(connect(store)(LitElement), [
         debug("Finished gettings app settings");
       }
       debug("Getting user state");
-      await newGetUser().then(async (user: any) => {
+      await getUser().then(async (user: any) => {
         if (user) {
           debug("User logged in");
           const userData = extract(user);
