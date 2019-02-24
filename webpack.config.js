@@ -11,6 +11,7 @@ const HtmlLoader = require("html-loader");
 const WebpackLighthousePlugin = require("webpack-lighthouse-plugin");
 const SpeedMeasurePlugin = require("speed-measure-webpack-plugin");
 const smp = new SpeedMeasurePlugin();
+var Visualizer = require('webpack-visualizer-plugin');
 
 // const commonConfig =
 
@@ -117,7 +118,8 @@ module.exports = {
         flatten: true
       }
     ]),
-    new RobotstxtPlugin()
+    new RobotstxtPlugin(),
+    new Visualizer()
     // new WebpackLighthousePlugin({
     //   url: "http://localhost:8080/",
     //   perf: true

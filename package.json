@@ -74,6 +74,7 @@
     "webpack-lighthouse-plugin": "^1.0.5",
     "webpack-merge": "^4.2.1",
     "webpack-pwa-manifest": "^3.8.0",
+    "webpack-visualizer-plugin": "^0.1.11",
     "workbox-webpack-plugin": "^3.6.3"
   },
   "husky": {
