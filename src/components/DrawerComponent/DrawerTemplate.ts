@@ -7,7 +7,7 @@ export default function() {
       <div slot="content">
         <ul>
           <li><a href="/">Home</a></li>
-          <li><a href="/">Blog</a></li>
+          <li><a href="/blog">Blog</a></li>
           ${true // isAdmin()
             ? html`
                 <li><a href="/components">Components</a></li>
