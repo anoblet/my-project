@@ -133,6 +133,7 @@ export default css`
     border-radius: var(--border-radius) 0 0 var(--border-radius);
     */
     flex-direction: column;
+    overflow: auto;
   }
 
   mwc-icon {
