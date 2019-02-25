@@ -98,4 +98,8 @@ export default css`
       transform: rotate(360deg);
     }
   }
+
+  [scroll] {
+    overflow: auto;
+  }
 `;
