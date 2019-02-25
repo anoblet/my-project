@@ -25,7 +25,8 @@ import { setState } from "../../../packages/state-helpers/state-helpers";
 import { store } from "../../Store";
 import template from "./AppComponentTemplate";
 
-import(/* webpackChunkName: "Imports" */ "./Imports");
+// import(/* webpackChunkName: "Imports" */ "./Imports");
+import(/* webpackChunkName: "Imports" */ /* webpackPreload: true */ "./Imports");
 
 export class AppComponent extends Mixin(connect(store)(LitElement), [
   HelperMixin,
