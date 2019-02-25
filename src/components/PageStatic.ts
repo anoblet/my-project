@@ -21,9 +21,9 @@ class PageStatic extends LitElement {
     return html`
       <grid-component>
         <card-component title="Welcome">
-          Welcome! This is a static page. If you're looking for content go to
-          <a href="/blog">/blog</a>. To view the timings of the app, go to
-          <a href="/timings">/timings</a>.
+          If you're looking for content go to
+          <a href="/blog">our blog</a>. To view the timings of the app, visit
+          <a href="/timings">timings</a>.
         </card-component>
         <card-component title="Patreon">
           <patreon-component></patreon-component>
