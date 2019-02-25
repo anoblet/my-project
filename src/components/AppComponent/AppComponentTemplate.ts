@@ -64,7 +64,6 @@ export default function({ router, settings, user }: any) {
       </grid-component>
     </div>
     <app-footer id="bottom"></app-footer>
-    <toast-component></toast-component>
     <menu-component></menu-component>
   `;
 }

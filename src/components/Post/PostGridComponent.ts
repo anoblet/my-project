@@ -7,7 +7,7 @@ import {
   getCollection
 } from "../../../packages/firebase-helpers";
 import template from "./PostGridComponentTemplate";
-import { toast } from "../../Toast";
+import { toast } from "../Toast/Toast";
 
 @customElement("post-grid-component")
 export class PostGridComponent extends LitElement {

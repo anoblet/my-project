@@ -5,7 +5,7 @@ import {
   getDocument
 } from "../../../packages/firebase-helpers/firebase-helpers";
 import { store } from "../../Store";
-import { toast } from "../../Toast";
+import { toast } from "../Toast/Toast";
 
 const saveTheme = async (name: string, scope: any) => {
   const state = store.getState();

@@ -11,7 +11,7 @@ import globalStyle from "../../GlobalStyle";
 import { renderForm } from "../PropertyEditor/PropertyEditor";
 import style from "./PostStyle";
 import template from "./PostTemplate";
-import { toast } from "../../Toast";
+import { toast } from "../Toast/Toast";
 
 import("../../../packages/PellComponent/PellComponent");
 
