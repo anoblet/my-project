@@ -1,4 +1,5 @@
 import(/* webpackChunkName: "AppHeader" */ "../AppHeader/AppHeader");
+import(/* webpackChunkName: "AppHeader" */ "../PageStatic");
 import(/* webpackChunkName: "AppFooter" */ "../AppFooter/AppFooter");
 import(/* webpackChunkName: "MWCButton" */ "@material/mwc-button");
 import(/* webpackChunkName: "MWCFab" */ "@material/mwc-fab");

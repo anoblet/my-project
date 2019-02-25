@@ -1,5 +1,3 @@
-import "../PageStatic";
-
 import { LitElement, property } from "lit-element";
 import { disableAnnyang, enableAnnyang } from "../Annyang";
 import { documentToTheme, setTheme } from "../../Theme";
@@ -8,12 +6,7 @@ import { getDocument, initApp } from "../../../packages/firebase-helpers";
 import { handleNavigation, setPortal, setRoutes } from "../../Router";
 
 import GlobalStyle from "../../GlobalStyle";
-import { HelperMixin } from "../../../packages/HelperMixin";
-import { MediaMixin } from "../../../packages/MediaMixin";
-import { Mixin } from "../../../packages/Mixin";
-import { StateMixin } from "../../../packages/StateMixin";
 import Style from "./AppStyle";
-import { TaskMixin } from "../../../packages/TaskMixin";
 import { config } from "../../../config";
 import { connect } from "pwa-helpers/connect-mixin.js";
 import { debug } from "../../Debug";
@@ -24,15 +17,13 @@ import { routes } from "./Routes";
 import { setState } from "../../../packages/state-helpers/state-helpers";
 import { store } from "../../Store";
 import template from "./AppComponentTemplate";
+import { toast } from "../Toast/Toast";
+import { addReducer } from "../../State";
+import { subscribe } from "../../Media";
 
 import(/* webpackChunkName: "Imports" */ /* webpackPreload: true */ "./Imports");
 
-export class AppComponent extends Mixin(connect(store)(LitElement), [
-  HelperMixin,
-  TaskMixin,
-  StateMixin,
-  MediaMixin
-]) {
+export class AppComponent extends connect(store)(LitElement) {
   @property({ type: Boolean, reflect: true, attribute: "drawer-opened" })
   public drawerOpened = false;
   @property({ type: Boolean }) public taskPending = true;
@@ -41,13 +32,15 @@ export class AppComponent extends Mixin(connect(store)(LitElement), [
   constructor() {
     super();
     debug("App is constructing");
-    this.setStore(store);
-    this.addReducer("app");
-    this.addReducer("user");
-    this.addReducer("theme");
-    this.addReducer("settings");
-    if (this.mediaSize === "small") this.drawerOpened = false;
-    if (this.mediaSize === "large") this.drawerOpened = true;
+    // this.setStore(store);
+    addReducer({ type: "app", store });
+    addReducer({ type: "user", store });
+    addReducer({ type: "theme", store });
+    addReducer({ type: "settings", store });
+    subscribe((mediaSize: string) => {
+      if (mediaSize === "small") this.drawerOpened = false;
+      if (mediaSize === "large") this.drawerOpened = true;
+    });
     if (config.staticTheme) {
       const theme = documentToTheme(config.theme);
       setTheme(theme, this);
@@ -96,10 +89,6 @@ export class AppComponent extends Mixin(connect(store)(LitElement), [
     })();
     // Register drawer listeners
     this.registerlisteners();
-
-    installOfflineWatcher((offline: boolean) => {
-      return offline;
-    });
   }
 
   public handleAnnyang(document: any) {
@@ -119,6 +108,9 @@ export class AppComponent extends Mixin(connect(store)(LitElement), [
   public firstUpdated() {
     debug("First updated");
     this.registerRouter();
+    installOfflineWatcher((offline: boolean) => {
+      if (offline) toast("Offline");
+    });
   }
 
   public async registerRouter() {
@@ -149,19 +141,19 @@ export class AppComponent extends Mixin(connect(store)(LitElement), [
   }
 
   public _toggleDrawer() {
-    const drawer = this.shadowRoot.querySelector("drawer-component");
+    const drawer: any = this.shadowRoot.querySelector("drawer-component");
     if (drawer) drawer.toggle();
     this.drawerOpened = !this.drawerOpened;
   }
 
   public _toggleProfile() {
-    const menu = this.shadowRoot.querySelector("#profile-menu");
+    const menu: any = this.shadowRoot.querySelector("#profile-menu");
     menu.hidden ? menu.open() : menu.close();
   }
 
   public closeMenus() {
     this.drawerOpened = false;
-    const menu = this.shadowRoot.querySelector("#profile-menu");
+    const menu: any = this.shadowRoot.querySelector("#profile-menu");
     menu.close();
   }
 
@@ -175,6 +167,10 @@ export class AppComponent extends Mixin(connect(store)(LitElement), [
     else this.style.setProperty("--box-shadow", "initial");
   }
 
+  public stateChanged() {
+    this.requestUpdate();
+  }
+
   public async beforeRender() {
     return true;
   }
@@ -185,7 +181,7 @@ export class AppComponent extends Mixin(connect(store)(LitElement), [
 
   public render() {
     this.applyShadows();
-    return template.bind(this)(this.state);
+    return template.bind(this)();
   }
 }
 window.customElements.define("app-component", AppComponent);

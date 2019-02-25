@@ -12,4 +12,5 @@ mediaChanged(observer);
 
 export const subscribe = (callback: any) => {
   subscribers.push(callback);
+  mediaChanged(observer);
 };

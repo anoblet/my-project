@@ -1,8 +1,11 @@
 import { config } from "../../../config";
 import { html } from "lit-element";
 import { isSignedIn } from "../../User";
+import { store } from "../../Store";
 
-export default function({ settings }: any) {
+export default function() {
+  const state = store.getState();
+  const settings = state.settings;
   return html`
     <app-header>
       <mwc-fab icon="menu" id="menu" mini @click="${this._toggleDrawer}"

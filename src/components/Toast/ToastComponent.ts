@@ -28,4 +28,3 @@ class ToastComponent extends LitElement {
     `;
   }
 }
-window.customElements.define("toast-component", ToastComponent);
