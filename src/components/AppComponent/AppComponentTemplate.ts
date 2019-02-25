@@ -40,30 +40,28 @@ export default function({ router, settings, user }: any) {
           opened=${this.drawerOpened}
         ></drawer-component>
         <div id="content" grow scroll>
-          <my-card full-height grow no-inside-border no-outside-border no-title>
-            <div slot="content">
-              <grid-component style="margin: 1em;">
-                ${settings.breadcrumbs
-                  ? html`
-                      <card-component>
-                        <breadcrumb-component></breadcrumb-component
-                      ></card-component>
-                    `
-                  : ""}
-                <div id="portal" style="display: flex;"></div>
-                ${settings.displayLog
-                  ? html`
-                      <card-component
-                        ><h3 slot="title">Log</h3>
-                        <div slot="content">
-                          <log-component></log-component></div
-                      ></card-component>
-                    `
-                  : ""}
-                  <!-- <span id="made-width">Made with ♥ by Andrew Noblet -->
-              </grid-component>
-            </div>
-          </my-card>
+          <card-component>
+            <grid-component>
+              ${settings.breadcrumbs
+                ? html`
+                    <card-component>
+                      <breadcrumb-component></breadcrumb-component
+                    ></card-component>
+                  `
+                : ""}
+              <div id="portal" style="display: flex;"></div>
+              ${settings.displayLog
+                ? html`
+                    <card-component
+                      ><h3 slot="title">Log</h3>
+                      <div slot="content">
+                        <log-component></log-component></div
+                    ></card-component>
+                  `
+                : ""}
+              <!-- <span id="made-width">Made with ♥ by Andrew Noblet -->
+            </grid-component>
+          </card-component>
         </div>
       </grid-component>
     </div>
