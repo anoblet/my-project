@@ -1,5 +1,4 @@
 import { LitElement, css, html, property } from "lit-element";
-// import { toast as importedToast } from "./components/ToastComponent/Toast";
 
 class ToastComponent extends LitElement {
   @property() public content: string;
