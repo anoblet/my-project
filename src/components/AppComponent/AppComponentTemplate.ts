@@ -34,7 +34,7 @@ export default function({ router, settings, user }: any) {
     </app-header>
     <div id="center" style="position: relative;">
       <profile-menu id="profile-menu"></profile-menu>
-      <my-grid id="drawer-container" media-size="${this.mediaSize}">
+      <grid-component id="drawer-container" media-size="${this.mediaSize}">
         <drawer-component
           id="drawer"
           opened=${this.drawerOpened}
@@ -65,7 +65,7 @@ export default function({ router, settings, user }: any) {
             </div>
           </my-card>
         </div>
-      </my-grid>
+      </grid-component>
     </div>
     <app-footer id="bottom"></app-footer>
     <toast-component></toast-component>

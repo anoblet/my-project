@@ -13,6 +13,7 @@ import(/* webpackChunkName: "Breadcrumb" */ "../BreadcrumbComponent/Breadcrumb")
 import(/* webpackChunkName: "MediaQuery" */ "../../../packages/MediaQuery");
 import(/* webpackChunkName: "MenuComponent" */ "../MenuComponent/MenuComponent");
 import(/* webpackChunkName: "LoadingComponent" */ "../LoadingComponent");
-import(/* webpackChunkName: "CartComponent" */ "../CardComponent/CardComponent");
+import(/* webpackChunkName: "CardComponent" */ "../CardComponent/CardComponent");
+import(/* webpackChunkName: "GridComponent" */ "../GridComponent/GridComponent");
 
 export default true;
