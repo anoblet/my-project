@@ -1,11 +1,10 @@
-// import "../PageHome/PageHome";
 import "../PageStatic";
 
-import { LitElement, html, property } from "lit-element";
-import { getDocument, initApp } from "../../../packages/firebase-helpers";
+import { LitElement, property } from "lit-element";
 import { disableAnnyang, enableAnnyang } from "../Annyang";
 import { documentToTheme, setTheme } from "../../Theme";
 import { extract, getUserSettings, getUserTheme } from "../../User";
+import { getDocument, initApp } from "../../../packages/firebase-helpers";
 import { handleNavigation, setPortal, setRoutes } from "../../Router";
 
 import GlobalStyle from "../../GlobalStyle";
@@ -18,27 +17,15 @@ import componentStyle from "./AppStyle";
 import { config } from "../../../config";
 import { connect } from "pwa-helpers/connect-mixin.js";
 import { debug } from "../../Debug";
+import { getUser } from "../../Firebase";
 import { installOfflineWatcher } from "pwa-helpers/network.js";
 import { installRouter } from "pwa-helpers/router.js";
 import { routes } from "./Routes";
 import { setState } from "../../../packages/state-helpers/state-helpers";
 import { store } from "../../Store";
 import template from "./AppComponentTemplate";
-import { getUser } from "../../Firebase";
 
 import(/* webpackChunkName: "Imports" */ "./Imports");
-
-const getAppSettings = (callback: any) => {
-  return new Promise((resolve: any) =>
-    getDocument({
-      callback: (document: any) => {
-        resolve(document ? callback(document) : false);
-      },
-      path: "app/settings",
-      watch: true
-    })
-  );
-};
 
 export class AppComponent extends Mixin(connect(store)(LitElement), [
   HelperMixin,
@@ -178,6 +165,16 @@ export class AppComponent extends Mixin(connect(store)(LitElement), [
     menu.close();
   }
 
+  public applyShadows() {
+    const state = store.getState();
+    if (state.settings.shadows)
+      this.style.setProperty(
+        "--box-shadow",
+        "0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23)"
+      );
+    else this.style.setProperty("--box-shadow", "initial");
+  }
+
   public async beforeRender() {
     return true;
   }
@@ -187,21 +184,20 @@ export class AppComponent extends Mixin(connect(store)(LitElement), [
   }
 
   public render() {
-    const state = store.getState();
-    return html`
-      ${state.settings.shadows
-        ? html`
-            <style>
-              :host {
-                --box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16),
-                  0 3px 6px rgba(0, 0, 0, 0.23);
-              }
-            </style>
-          `
-        : ""}
-      ${template.bind(this)(this.state)}
-    `;
+    this.applyShadows();
+    return template.bind(this)(this.state);
   }
 }
-
 window.customElements.define("app-component", AppComponent);
+
+const getAppSettings = (callback: any) => {
+  return new Promise((resolve: any) =>
+    getDocument({
+      callback: (document: any) => {
+        resolve(document ? callback(document) : false);
+      },
+      path: "app/settings",
+      watch: true
+    })
+  );
+};
