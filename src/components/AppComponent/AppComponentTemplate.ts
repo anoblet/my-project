@@ -39,9 +39,9 @@ export default function({ router, settings, user }: any) {
           id="drawer"
           opened=${this.drawerOpened}
         ></drawer-component>
-        <my-flex id="content" grow scroll>
+        <div id="content" grow scroll>
           <my-card full-height grow no-inside-border no-outside-border no-title>
-            <my-flex slot="content">
+            <div slot="content">
               <grid-component style="margin: 1em;">
                 ${settings.breadcrumbs
                   ? html`
@@ -62,9 +62,9 @@ export default function({ router, settings, user }: any) {
                   : ""}
                   <!-- <span id="made-width">Made with ♥ by Andrew Noblet -->
               </grid-component>
-            </my-flex>
+            </div>
           </my-card>
-        </my-flex>
+        </div>
       </my-grid>
     </div>
     <app-footer id="bottom"></app-footer>
