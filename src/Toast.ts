@@ -12,6 +12,7 @@ class ToastComponent extends LitElement {
         text-align: center;
         color: var(--text-color);
         border: 1px solid var(--border-color);
+        border-radius: 0 0 var(--border-radius) var(--border-radius);
         border-top: 0;
         left: 50%;
         -webkit-transform: translateX(-50%);
