@@ -3,7 +3,7 @@ import { LitElement, customElement, html } from "lit-element";
 import GlobalStyle from "../../GlobalStyle";
 import Style from "./Style";
 import template from "./ContactTemplate";
-import { toast } from "../../Toast";
+import { toast } from "../Toast/Toast";
 
 @customElement("contact-component")
 export class Contact extends LitElement {

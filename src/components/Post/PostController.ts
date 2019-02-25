@@ -8,18 +8,13 @@ import { LitElement, html, property } from "lit-element";
 import { FirebaseMixin } from "../../../packages/FirebaseMixin";
 import { Mixin } from "../../../packages/Mixin";
 import { StateMixin } from "../../../packages/StateMixin";
-import { connect } from "pwa-helpers/connect-mixin.js";
-import { model } from "./PostModel";
 import { navigate } from "../../Router";
-import navigation from "./NavigationTemplate";
 import { store } from "../../Store";
-import { until } from "lit-html/directives/until";
-
 import { getCollection } from "../../../packages/firebase-helpers";
 import { deleteDocument } from "../../../packages/firebase-helpers";
 
 import { debug } from "../../Debug";
-import { toast } from "../../Toast";
+import { toast } from "../Toast/Toast";
 
 export interface PostController {
   [key: string]: any; // Add index signature

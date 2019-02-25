@@ -4,7 +4,7 @@ import {
 } from "../../../packages/firebase-helpers";
 
 import { html } from "lit-element";
-import { toast } from "../../Toast";
+import { toast } from "../Toast/Toast";
 import { until } from "lit-html/directives/until";
 
 const getThemes = () => {

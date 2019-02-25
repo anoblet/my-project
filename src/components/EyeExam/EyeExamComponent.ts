@@ -1,7 +1,7 @@
 import { html, LitElement, property } from "lit-element";
 import style from "./EyeExamStyle";
 import template from "./EyeExamTemplate";
-import { toast } from "../../Toast";
+import { toast } from "../Toast/Toast";
 import { renderForm } from "../PropertyEditor/PropertyEditor";
 import globalStyle from "../../GlobalStyle";
 
