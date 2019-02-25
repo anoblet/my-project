@@ -2,8 +2,7 @@ import { config } from "../../../config";
 import { html } from "lit-element";
 import { isSignedIn } from "../../User";
 
-export default function({ router, settings, user }: any) {
-  // console.log(!!user);
+export default function({ settings }: any) {
   return html`
     <app-header>
       <mwc-fab icon="menu" id="menu" mini @click="${this._toggleDrawer}"
