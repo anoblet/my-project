@@ -12,8 +12,8 @@ import { HelperMixin } from "../../../packages/HelperMixin";
 import { MediaMixin } from "../../../packages/MediaMixin";
 import { Mixin } from "../../../packages/Mixin";
 import { StateMixin } from "../../../packages/StateMixin";
+import Style from "./AppStyle";
 import { TaskMixin } from "../../../packages/TaskMixin";
-import componentStyle from "./AppStyle";
 import { config } from "../../../config";
 import { connect } from "pwa-helpers/connect-mixin.js";
 import { debug } from "../../Debug";
@@ -25,7 +25,6 @@ import { setState } from "../../../packages/state-helpers/state-helpers";
 import { store } from "../../Store";
 import template from "./AppComponentTemplate";
 
-// import(/* webpackChunkName: "Imports" */ "./Imports");
 import(/* webpackChunkName: "Imports" */ /* webpackPreload: true */ "./Imports");
 
 export class AppComponent extends Mixin(connect(store)(LitElement), [
@@ -144,11 +143,11 @@ export class AppComponent extends Mixin(connect(store)(LitElement), [
     });
   }
 
+  // Handlers
   public _closeDrawer() {
     this.drawerOpened = false;
   }
 
-  // Handlers
   public _toggleDrawer() {
     const drawer = this.shadowRoot.querySelector("drawer-component");
     if (drawer) drawer.toggle();
@@ -181,7 +180,7 @@ export class AppComponent extends Mixin(connect(store)(LitElement), [
   }
 
   static get styles() {
-    return [GlobalStyle, componentStyle];
+    return [GlobalStyle, Style];
   }
 
   public render() {
