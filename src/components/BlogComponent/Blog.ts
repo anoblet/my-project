@@ -8,8 +8,8 @@ import "../LoadingComponent";
 
 @customElement("blog-component")
 export class Blog extends LitElement {
-  @property() public taskPending = true;
   @property() public posts: any = [];
+  @property() public taskPending = true;
 
   public async beforeRender() {
     await getCollection({
