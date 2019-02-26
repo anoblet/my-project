@@ -2,12 +2,13 @@ import { html, LitElement, property } from "lit-element";
 import style from "./EyeExamStyle";
 import template from "./EyeExamTemplate";
 import { toast } from "../Toast/Toast";
-import { renderForm } from "../PropertyEditor/PropertyEditor";
 import globalStyle from "../../GlobalStyle";
 
 import { WebSpeech } from "../WebSpeech/WebSpeech";
 
 const WebSpeechInstance: any = new WebSpeech();
+
+import("@material/mwc-icon");
 
 const checkDuplicate: any = (input: any, criteria: string) => {
   const result = input();
@@ -15,30 +16,21 @@ const checkDuplicate: any = (input: any, criteria: string) => {
   else return result;
 };
 
-export interface config {}
+// export interface Config {}
 
-export interface exam {
-  lines: line[];
+export interface Exam {
+  lines: Line[];
 }
 
-export interface line {
+export interface Line {
   size: string;
-  results: result[];
+  results: Result[];
 }
 
-export interface result {
+export interface Result {
   question: string;
   answer: string;
 }
-
-const log = [];
-
-const debug = (message: string) => {
-  log.push(message);
-};
-
-// [ Properties] is now going to be an object, lets roll with that
-const properties = {};
 
 const validateResult = (e: any, expectation: string) => {
   const currentIndex = e.results.length - 1;
@@ -182,7 +174,9 @@ export class EyeExamComponent extends LitElement {
    * */
 
   public setSize(size: string) {
-    const character = this.renderRoot.querySelector("#character") as HTMLElement;
+    const character = this.renderRoot.querySelector(
+      "#character"
+    ) as HTMLElement;
     character.style.fontSize = size;
   }
 

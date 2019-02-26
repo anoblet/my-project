@@ -47,6 +47,7 @@ export class PostComponent extends Mixin(LitElement, [TemplateMixin]) {
           this.shadowRoot.querySelector(`[name=${key}]`).value,
           10
         );
+      else data[key] = this.shadowRoot.querySelector(`[name=${key}]`).value;
     });
 
     if (this.create)
