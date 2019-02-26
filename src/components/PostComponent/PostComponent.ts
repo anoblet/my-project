@@ -20,12 +20,10 @@ export interface PostComponent {
 }
 
 export class PostComponent extends Mixin(LitElement, [TemplateMixin]) {
-  @property({ type: Boolean }) public editable: boolean;
   @property({ type: String }) public content: string;
   @property({ type: Boolean }) public create: boolean;
-
-  public template = template;
   @property({ type: Boolean }) public taskPending = true;
+  public template = template;
 
   public async beforeRender() {
     return await getDocument({
@@ -38,54 +36,30 @@ export class PostComponent extends Mixin(LitElement, [TemplateMixin]) {
     });
   }
 
-  public text({ field, value }: any) {
-    return html`
-      <label>${field.label}</label>:
-      <input
-        name="${field.name}"
-        label="${field.label}"
-        type="text"
-        value="${value ? value : ""}"
-      />
-    `;
-  }
-
-  public textarea({ field, value }: any) {
-    return html`
-      <textarea name="${field.name}">${value}</textarea>
-    `;
-  }
-
   public submitForm(e: any) {
     e.preventDefault();
-    const title = this.shadowRoot.querySelector("[name='title']").value;
-    const author = this.shadowRoot.querySelector("[name='author']").value;
-    const body = this.shadowRoot.querySelector("[name='body']").value;
-    let sortOrder = this.shadowRoot.querySelector("[name='sortOrder']").value;
-    sortOrder = parseInt(sortOrder, 10);
-    const data: any = {
-      title,
-      author,
-      body,
-      sortOrder
-    };
+    const data: any = {};
+    const constructor: any = this.constructor;
+    const properties = constructor.properties;
+    Object.keys(properties).map((key: any) => {
+      if (properties[key].type === Number)
+        data[key] = parseInt(
+          this.shadowRoot.querySelector(`[name=${key}]`).value,
+          10
+        );
+    });
 
-    if (this.create) {
+    if (this.create)
       addDocument({ path: "posts", data })
-        .then((result: any) => toast("Document added"))
-        .catch((error: any) => toast("Error"));
-    } else {
+        .then(() => toast("Document added"))
+        .catch(() => toast("Error: Document not added"));
+    else
       updateDocument({ path: `posts/${this.id}`, data })
-        .then((result: any) => {
+        .then(() => {
           this.editable = !this.editable;
         })
         .then(() => toast("Document updated"))
-        .catch((error: any) =>
-          toast(
-            "Error, could not update the document. Maybe you do not have the right permissions?"
-          )
-        );
-    }
+        .catch(() => toast("Error: Document not updated"));
   }
 
   public connectedCallback() {
