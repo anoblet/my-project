@@ -23,24 +23,39 @@ import { toast } from "../Toast/Toast";
 
 import(/* webpackChunkName: "Imports" */ /* webpackPreload: true */ "./Imports");
 
+const reducers = () => {
+  addReducer({ type: "app", store });
+  addReducer({ type: "user", store });
+  addReducer({ type: "theme", store });
+  addReducer({ type: "settings", store });
+};
+
 @customElement("app-component")
 export class AppComponent extends connect(store)(LitElement) {
   @property({ type: Boolean, reflect: true, attribute: "drawer-opened" })
   public drawerOpened = false;
   @property({ type: Boolean }) public taskPending = true;
 
-  // Lifecycle
-  constructor() {
-    super();
-    debug("App is constructing");
-    addReducer({ type: "app", store });
-    addReducer({ type: "user", store });
-    addReducer({ type: "theme", store });
-    addReducer({ type: "settings", store });
+  public media() {
     subscribe((mediaSize: string) => {
       if (mediaSize === "small") this.drawerOpened = false;
       if (mediaSize === "large") this.drawerOpened = true;
     });
+  }
+
+  public reducers() {
+    addReducer({ type: "app", store });
+    addReducer({ type: "user", store });
+    addReducer({ type: "theme", store });
+    addReducer({ type: "settings", store });
+  }
+
+  // Lifecycle
+  constructor() {
+    super();
+    debug("Constructor");
+    this.reducers();
+    this.media();
     if (config.staticTheme) {
       const theme = documentToTheme(config.theme);
       setTheme(theme, this);
@@ -98,19 +113,6 @@ export class AppComponent extends connect(store)(LitElement) {
   public registerlisteners() {
     this.addEventListener("close-drawer", this._closeDrawer);
     this.addEventListener("drawer-toggled", this._toggleDrawer);
-  }
-
-  public shouldUpdate(changedProperties: any) {
-    if (this.taskPending) return false;
-    return super.shouldUpdate(changedProperties);
-  }
-
-  public firstUpdated() {
-    debug("First updated");
-    this.registerRouter();
-    installOfflineWatcher((offline: boolean) => {
-      if (offline) toast("Offline");
-    });
   }
 
   public async registerRouter() {
@@ -173,6 +175,19 @@ export class AppComponent extends connect(store)(LitElement) {
 
   public async beforeRender() {
     return true;
+  }
+
+  public shouldUpdate(changedProperties: any) {
+    if (this.taskPending) return false;
+    return super.shouldUpdate(changedProperties);
+  }
+
+  public firstUpdated() {
+    debug("First updated");
+    this.registerRouter();
+    installOfflineWatcher((offline: boolean) => {
+      if (offline) toast("Offline");
+    });
   }
 
   static get styles() {
