@@ -42,10 +42,6 @@ export class AppComponent extends LitElement {
     addReducer({ type: "settings", store });
   }
 
-  public handleAnnyang(document: any) {
-    document.annyangEnabled ? enableAnnyang() : disableAnnyang();
-  }
-
   public registerlisteners() {
     this.addEventListener("close-drawer", this._closeDrawer);
     this.addEventListener("drawer-toggled", this._toggleDrawer);
