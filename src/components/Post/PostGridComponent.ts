@@ -15,30 +15,17 @@ export class PostGridComponent extends LitElement {
 
   public deleteItem(index: number) {
     const items = this.items;
-    const item = items.splice(index, 1);
-    this.items = [...items];
-    console.log(index);
-    console.log(item.id);
+    const item = items.splice(index, 1)[0];
     deleteDocument({ path: `posts/${item.id}` })
-      .then((result: any) => {
-        console.log(result);
-        toast("Item deleted");
-      })
-      .catch((error: any) => toast("Missing or insufficient permission"));
-    this.dispatchEvent(
-      new CustomEvent("item-deleted", {
-        composed: true,
-        detail: item[0]
-      })
-    );
+      .then((result: any) => toast("Item deleted"))
+      .catch((error: any) => toast("Missing or insufficient permissions"));
+    this.items = [...items];
   }
 
   public async beforeRender() {
     await getCollection({
       path: "posts"
-    }).then((collection: any) => {
-      this.items = collection;
-    });
+    }).then((collection: any) => (this.items = collection));
   }
 
   static get styles() {
