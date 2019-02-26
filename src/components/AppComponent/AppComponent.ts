@@ -111,10 +111,7 @@ export class AppComponent extends LitElement {
     debug("Constructor");
     this.reducers();
     this.media();
-    if (config.staticTheme) {
-      const theme = documentToTheme(config.theme);
-      setTheme(theme, this);
-    }
+    if (config.staticTheme) setTheme(documentToTheme(config.theme), this);
   }
 
   public connectedCallback() {
@@ -146,8 +143,7 @@ export class AppComponent extends LitElement {
           debug("Finished getting user settings");
           debug("Getting user theme");
           await getUserTheme((document: any) => {
-            const theme = documentToTheme(document);
-            setTheme(theme, this);
+            setTheme(documentToTheme(document), this);
           });
           debug("Finished getting user theme");
         } else {
