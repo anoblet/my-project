@@ -1,4 +1,4 @@
-import { LitElement, property } from "lit-element";
+import { LitElement, customElement, property } from "lit-element";
 import { disableAnnyang, enableAnnyang } from "../Annyang";
 import { documentToTheme, setTheme } from "../../Theme";
 import { extract, getUserSettings, getUserTheme } from "../../User";
@@ -7,6 +7,7 @@ import { handleNavigation, setPortal, setRoutes } from "../../Router";
 
 import GlobalStyle from "../../GlobalStyle";
 import Style from "./AppStyle";
+import { addReducer } from "../../State";
 import { config } from "../../../config";
 import { connect } from "pwa-helpers/connect-mixin.js";
 import { debug } from "../../Debug";
@@ -16,13 +17,13 @@ import { installRouter } from "pwa-helpers/router.js";
 import { routes } from "./Routes";
 import { setState } from "../../../packages/state-helpers/state-helpers";
 import { store } from "../../Store";
+import { subscribe } from "../../Media";
 import template from "./AppComponentTemplate";
 import { toast } from "../Toast/Toast";
-import { addReducer } from "../../State";
-import { subscribe } from "../../Media";
 
 import(/* webpackChunkName: "Imports" */ /* webpackPreload: true */ "./Imports");
 
+@customElement("app-component")
 export class AppComponent extends connect(store)(LitElement) {
   @property({ type: Boolean, reflect: true, attribute: "drawer-opened" })
   public drawerOpened = false;
@@ -32,7 +33,6 @@ export class AppComponent extends connect(store)(LitElement) {
   constructor() {
     super();
     debug("App is constructing");
-    // this.setStore(store);
     addReducer({ type: "app", store });
     addReducer({ type: "user", store });
     addReducer({ type: "theme", store });
@@ -184,7 +184,6 @@ export class AppComponent extends connect(store)(LitElement) {
     return template.bind(this)();
   }
 }
-window.customElements.define("app-component", AppComponent);
 
 const getAppSettings = (callback: any) => {
   return new Promise((resolve: any) =>
