@@ -2,7 +2,6 @@ import { html } from "lit-element";
 import { editTheme } from "./EditTheme";
 import { setTheme } from "./SetTheme";
 import { store } from "../../Store";
-import { setState } from "../../../packages/state-helpers/state-helpers";
 
 export default function() {
   const state = store.getState();
