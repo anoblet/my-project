@@ -157,7 +157,7 @@ export default css`
     border: 1px solid var(--border-color);
     border-top: 0;
     border-right: 0;
-    padding: 1em 2em 2em 2em;
+    padding: 1em 2em 2em 1em;
     position: absolute;
     right: 0;
     z-index: 1;
