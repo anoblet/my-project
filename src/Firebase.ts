@@ -16,12 +16,15 @@ export const authRedirect = async () => {
   return run(["auth"]).then((firebase: any) => {
     const auth = firebase.auth();
     return auth.getRedirectResult().then((result: any) => {
-      const user = result.user;
-      return user;
+      return result.user;
     });
   });
 };
 
+/**
+ * Gets user from Firebase if it exists
+ * @return Promise
+ */
 export const getUser = async () => {
   return run(["auth"]).then((firebase: any) => {
     return new Promise((resolve: any) => {
