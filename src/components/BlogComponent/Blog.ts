@@ -1,4 +1,4 @@
-import { LitElement, customElement, html, property } from "lit-element";
+import { LitElement, customElement, property } from "lit-element";
 
 import { getCollection } from "../../../packages/firebase-helpers";
 import GlobalStyle from "../../GlobalStyle";
@@ -38,5 +38,3 @@ export class Blog extends LitElement {
     return Template.bind(this)();
   }
 }
-
-// window.customElements.define("blog-component", Blog);
