@@ -48,14 +48,12 @@ export class AppComponent extends LitElement {
   }
 
   public async registerRouter() {
-    setPortal(this.renderRoot.querySelector("#portal"));
-    setRoutes(routes);
     await new Promise((resolve: any) => {
       installRouter(async (location: any) => {
         await handleNavigation({
           location,
           routes,
-          portal: this.renderRoot.querySelector("#portal")
+          portal: this.shadowRoot.querySelector("#portal")
         });
         this.dispatchEvent(
           new CustomEvent("route-changed", {
