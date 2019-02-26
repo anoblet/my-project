@@ -3,6 +3,7 @@ import style from "./EyeExamStyle";
 import template from "./EyeExamTemplate";
 import { toast } from "../Toast/Toast";
 import globalStyle from "../../GlobalStyle";
+import { debug } from "../../Debug"
 
 import { WebSpeech } from "../WebSpeech/WebSpeech";
 
