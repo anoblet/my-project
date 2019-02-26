@@ -23,13 +23,6 @@ import { toast } from "../Toast/Toast";
 
 import(/* webpackChunkName: "Imports" */ /* webpackPreload: true */ "./Imports");
 
-const reducers = () => {
-  addReducer({ type: "app", store });
-  addReducer({ type: "user", store });
-  addReducer({ type: "theme", store });
-  addReducer({ type: "settings", store });
-};
-
 @customElement("app-component")
 export class AppComponent extends connect(store)(LitElement) {
   @property({ type: Boolean, reflect: true, attribute: "drawer-opened" })
@@ -200,14 +193,22 @@ export class AppComponent extends connect(store)(LitElement) {
   }
 }
 
+// Utility function
 const getAppSettings = (callback: any) => {
-  return new Promise((resolve: any) =>
+  return new Promise((resolve: any, reject: any) =>
     getDocument({
       callback: (document: any) => {
-        resolve(document ? callback(document) : false);
+        document ? resolve(callback(document)) : reject(new Error("Could not retrieve document"));
       },
       path: "app/settings",
       watch: true
     })
   );
+};
+
+const reducers = () => {
+  addReducer({ type: "app", store });
+  addReducer({ type: "user", store });
+  addReducer({ type: "theme", store });
+  addReducer({ type: "settings", store });
 };
