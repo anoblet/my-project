@@ -25,9 +25,10 @@ export class PellComponent extends LitElement {
           width: fit-content;
         }
         .pell-content {
-          margin-top: 1em;
           min-height: 128px;
+          margin-top: 1em;
           border: 1px solid var(--border-color);
+          padding: 1em;
         }
       `
     ];
