@@ -18,7 +18,7 @@ import { routes } from "./Routes";
 import { setState } from "../../../packages/state-helpers/state-helpers";
 import { store } from "../../Store";
 import { subscribe } from "../../Media";
-import template from "./AppComponentTemplate";
+import template from "./AppTemplate";
 import { toast } from "../Toast/Toast";
 
 import(/* webpackChunkName: "Imports" */ /* webpackPreload: true */ "./Imports");
