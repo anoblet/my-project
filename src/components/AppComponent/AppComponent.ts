@@ -116,54 +116,50 @@ export class AppComponent extends LitElement {
 
   public connectedCallback() {
     super.connectedCallback();
-    (async () => {
-      await initApp(config.firebase);
-      if (config.globalSettings) {
-        debug("Getting app settings");
-        await getAppSettings((document: any) => {
-          setState({ data: { settings: document }, store, type: "app" });
-          if (!config.staticTheme) {
-            const theme = documentToTheme(document.defaultTheme);
-            setTheme(theme, this);
-          }
-        });
-        debug("Finished gettings app settings");
-      }
-      debug("Getting user state");
-      await getUser().then(async (user: any) => {
-        if (user) {
-          debug("User logged in");
-          const userData = extract(user);
-          setState({ data: userData, store, type: "user" });
-          debug("Getting user settings");
-          await getUserSettings((document: any) => {
-            setState({ data: document, store, type: "settings" });
-            this.handleAnnyang(document);
-          });
-          debug("Finished getting user settings");
-          debug("Getting user theme");
-          await getUserTheme((document: any) => {
-            setTheme(documentToTheme(document), this);
-          });
-          debug("Finished getting user theme");
-        } else {
-          debug("User not logged in");
-        }
-      });
-      // document.querySelector("body #loading").setAttribute("hidden", "");
-      this.taskPending = false;
-    })();
+    this.beforeRender().then(() => (this.taskPending = false));
+
     // Register drawer listeners
     this.registerlisteners();
   }
 
   public async beforeRender() {
-    return true;
+    await initApp(config.firebase);
+    if (config.globalSettings) {
+      debug("Getting app level settings");
+      await getAppSettings((document: any) => {
+        setState({ data: { settings: document }, store, type: "app" });
+        if (!config.staticTheme) {
+          const theme = documentToTheme(document.defaultTheme);
+          setTheme(theme, this);
+        }
+      });
+      debug("Finished gettings app settings");
+    }
+    debug("Getting user level settings");
+    await getUser().then(async (user: any) => {
+      if (user) {
+        debug("User logged in");
+        const userData = extract(user);
+        setState({ data: userData, store, type: "user" });
+        debug("Getting user settings");
+        await getUserSettings((document: any) => {
+          setState({ data: document, store, type: "settings" });
+        });
+        debug("Finished getting user settings");
+        debug("Getting user theme");
+        await getUserTheme((document: any) => {
+          setTheme(documentToTheme(document), this);
+        });
+        debug("Finished getting user theme");
+      } else {
+        debug("User not logged in");
+      }
+    });
+    debug("Finished getting user");
   }
 
   public shouldUpdate(changedProperties: any) {
-    if (this.taskPending) return false;
-    return super.shouldUpdate(changedProperties);
+    return !this.taskPending && super.shouldUpdate(changedProperties);
   }
 
   public firstUpdated() {
