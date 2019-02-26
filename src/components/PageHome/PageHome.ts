@@ -1,9 +1,7 @@
-import { css, html, property, LitElement } from "lit-element";
+import { css, LitElement } from "lit-element";
 import template from "./PageHomeTemplate";
-import "../BlogComponent/Blog";
 
 import(/* webpackChunkName: "GridComponent" */ "../GridComponent/GridComponent");
-import(/* webpackChunkName: "BlogComponent" */ "../BlogComponent/Blog");
 
 export class PageHome extends LitElement {
   static get styles() {
