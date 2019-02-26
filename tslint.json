@@ -12,6 +12,7 @@
     "member-ordering": false,
     "no-console": false,
     "object-literal-sort-keys": false,
+    "only-arrow-functions": false,
     "ordered-imports": false,
     "quotemark": [true, "double"],
     "trailing-comma": false,

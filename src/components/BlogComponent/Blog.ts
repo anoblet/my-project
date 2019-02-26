@@ -1,30 +1,20 @@
 import { LitElement, customElement, html, property } from "lit-element";
 
-import { BaseElement } from "../../BaseElement";
-import { Mixin } from "../../../packages/Mixin";
 import { getCollection } from "../../../packages/firebase-helpers";
-import globalStyle from "../../GlobalStyle";
-import style from "./BlogStyle";
-import template from "./BlogTemplate";
+import GlobalStyle from "../../GlobalStyle";
+import Style from "./BlogStyle";
+import Template from "./BlogTemplate";
 import "../LoadingComponent";
 
-// @customElement("blog-component")
-export class Blog extends Mixin(BaseElement, []) {
-  // @property({ reflect: true, attribute: "task-pending" })
-  public taskPending = true;
+@customElement("blog-component")
+export class Blog extends LitElement {
+  @property() public taskPending = true;
   @property() public posts: any = [];
 
-  // constructor() {
-  //   super();
-  //   this.beforeRender();
-  // }
-
   public async beforeRender() {
-    console.log("hi");
     await getCollection({
       path: "posts",
       orderBy: "sortOrder",
-      watch: false,
       where: {
         property: "featured",
         operator: "===",
@@ -37,23 +27,16 @@ export class Blog extends Mixin(BaseElement, []) {
   }
 
   public shouldUpdate(changedProperties: any) {
-    if (this.taskPending)
-      this.template = function() {
-        return html`
-          <!-- <loading-component></loading-component> -->
-        `;
-      };
-    else this.template = template;
-    return super.shouldUpdate(changedProperties);
+    return !this.taskPending && super.shouldUpdate(changedProperties);
   }
 
   static get styles() {
-    return [globalStyle, style];
+    return [GlobalStyle, Style];
   }
 
   public render() {
-    return this.template.bind(this)();
+    return Template.bind(this)();
   }
 }
 
-window.customElements.define("blog-component", Blog);
+// window.customElements.define("blog-component", Blog);
