@@ -79,19 +79,19 @@ export class AppComponent extends LitElement {
   }
 
   public _toggleDrawer() {
-    const drawer: any = this.shadowRoot.querySelector("drawer-component");
+    const drawer: any = this.renderRoot.querySelector("drawer-component");
     if (drawer) drawer.toggle();
     this.drawerOpened = !this.drawerOpened;
   }
 
   public _toggleProfile() {
-    const menu: any = this.shadowRoot.querySelector("#profile-menu");
+    const menu: any = this.renderRoot.querySelector("#profile-menu");
     menu.hidden ? menu.open() : menu.close();
   }
 
   public closeMenus() {
     this.drawerOpened = false;
-    const menu: any = this.shadowRoot.querySelector("#profile-menu");
+    const menu: any = this.renderRoot.querySelector("#profile-menu");
     menu.close();
   }
 
