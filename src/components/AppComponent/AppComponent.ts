@@ -19,7 +19,7 @@ import { subscribe } from "../../Media";
 import template from "./AppTemplate";
 import { toast } from "../Toast/Toast";
 
-import(/* webpackChunkName: "Imports" */ /* webpackPreload: true */ "./Imports");
+import "./Imports";
 
 @customElement("app-component")
 export class AppComponent extends LitElement {
@@ -59,7 +59,11 @@ export class AppComponent extends LitElement {
           routes,
           portal: this.shadowRoot.querySelector("#portal")
         });
-        setState({ type: "app", data: { activeRoute: location.pathname }, store });
+        setState({
+          type: "app",
+          data: { activeRoute: location.pathname },
+          store
+        });
         resolve();
       });
     });
