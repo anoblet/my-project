@@ -1,4 +1,4 @@
-import("./ToastComponent");
+import "./ToastComponent";
 /**
  * Fire a toast
  * @param  message [description]
