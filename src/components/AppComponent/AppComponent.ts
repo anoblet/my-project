@@ -110,7 +110,10 @@ export class AppComponent extends LitElement {
 
   public connectedCallback() {
     super.connectedCallback();
-    this.beforeRender().then(() => (this.taskPending = false));
+    this.beforeRender().then(() => {
+      document.querySelector("#loading").removeAttribute("enabled");
+      this.taskPending = false;
+    });
 
     // Register drawer listeners
     this.registerlisteners();
