@@ -18,11 +18,6 @@ export class Drawer extends Mixin(LitElement, [MediaMixin]) {
     super();
     if (this.mediaSize === "mobile") this.hidden = true;
     if (this.mediaSize === "desktop") this.hidden = false;
-
-    // watchMediaSize((mediaSize: string) => {
-    //   if (mediaSize === "mobile") this.hidden = true;
-    //   if (mediaSize === "desktop") this.hidden = false;
-    // });
   }
 
   set opened(value: any) {

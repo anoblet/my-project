@@ -25,13 +25,18 @@ import(/* webpackChunkName: "Imports" */ /* webpackPreload: true */ "./Imports")
 @customElement("app-component")
 export class AppComponent extends LitElement {
   @property({ type: Boolean, reflect: true, attribute: "drawer-opened" })
+  @property({ type: Boolean })
+  public taskPending = true;
+  @property({ reflect: true, attribute: "drawer-opened", type: Boolean })
   public drawerOpened = false;
-  @property({ type: Boolean }) public taskPending = true;
+  @property() public mediaSize: string;
 
   public media() {
     subscribe((mediaSize: string) => {
+      if (!this.taskPending) toast(mediaSize);
       if (mediaSize === "mobile") this.drawerOpened = false;
       if (mediaSize === "desktop") this.drawerOpened = true;
+      this.mediaSize = mediaSize;
     });
   }
 
