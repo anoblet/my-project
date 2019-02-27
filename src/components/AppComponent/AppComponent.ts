@@ -30,8 +30,8 @@ export class AppComponent extends LitElement {
 
   public media() {
     subscribe((mediaSize: string) => {
-      if (mediaSize === "small") this.drawerOpened = false;
-      if (mediaSize === "large") this.drawerOpened = true;
+      if (mediaSize === "mobile") this.drawerOpened = false;
+      if (mediaSize === "desktop") this.drawerOpened = true;
     });
   }
 

@@ -8,16 +8,16 @@ describe("<drawer-component>", () => {
     expect(!!el.mediaSize).to.equal(true);
   });
 
-  // it("drawer is closed on small screens", async () => {
+  // it("drawer is closed on mobile screens", async () => {
   //   const el = await fixture(
-  //     "<drawer-component media-size='small'></drawer-component>"
+  //     "<drawer-component media-size='mobile'></drawer-component>"
   //   );
   //   expect(el.hidden).to.equal(true);
   // });
 
-  it("drawer is displayed by default on large screens", async () => {
+  it("drawer is displayed by default on desktop screens", async () => {
     const el = await fixture(
-      "<drawer-component media-size='large'></drawer-component>"
+      "<drawer-component media-size='desktop'></drawer-component>"
     );
     expect(el.hidden).to.equal(false);
   });

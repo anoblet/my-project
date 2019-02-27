@@ -50,7 +50,7 @@ export default css`
     box-shadow: var(--box-shadow);
   }
 
-  #drawer[media-size="small"] {
+  #drawer[media-size="mobile"] {
     position: absolute;
     background: var(--background-color);
     height: 100%;
@@ -71,7 +71,7 @@ export default css`
     display: none;
   }
 
-  :host([drawer-opened]) #drawer-container:not([media-size="small"]) {
+  :host([drawer-opened]) #drawer-container:not([media-size="mobile"]) {
     grid-template-columns: minmax(min-content, auto) 4fr;
   }
 
@@ -167,7 +167,7 @@ export default css`
     padding-bottom: 0.25em;
   }
 
-  #drawer[media-size="small"] {
+  #drawer[media-size="mobile"] {
     border: 0;
     border-right: 1px solid var(--border-color);
   }

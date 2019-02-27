@@ -12,9 +12,9 @@ export function MediaMixin<B extends Constructor<HTMLElement>>(baseClass: B) {
       const myListener = (media: any) => {
         let mediaSize;
         if (media.matches) {
-          mediaSize = "small";
+          mediaSize = "mobile";
         } else {
-          mediaSize = "large";
+          mediaSize = "desktop";
         }
         this.mediaSize = mediaSize;
         document.dispatchEvent(
