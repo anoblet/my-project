@@ -11,7 +11,8 @@ const HtmlLoader = require("html-loader");
 const WebpackLighthousePlugin = require("webpack-lighthouse-plugin");
 const SpeedMeasurePlugin = require("speed-measure-webpack-plugin");
 const smp = new SpeedMeasurePlugin();
-var Visualizer = require('webpack-visualizer-plugin');
+var Visualizer = require("webpack-visualizer-plugin");
+const PreloadWebpackPlugin = require("preload-webpack-plugin");
 
 // const commonConfig =
 
@@ -83,9 +84,11 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: "./index.html",
       favicon: "src/assets/icon_18dp.png",
-      filename: "index.html",
-      minify: true
+      filename: "index.html"
     }),
+    // new PreloadWebpackPlugin({
+    //   rel: "prefetch"
+    // }),
     new WebpackPwaManifest({
       filename: "manifest.json",
       name: "Andrew Noblet",
