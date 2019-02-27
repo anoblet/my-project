@@ -3,11 +3,11 @@ export const run = async (packages: any) => {
   imports.push(import(/* webpackChunkName: "Firebase" */ "firebase/app"));
   if (packages.includes("auth"))
     imports.push(
-      import(/* webpackChunkName: "Firebase" */ "firebase/auth")
+      import(/* webpackChunkName: "FirebaseAuth" */ "firebase/auth")
     );
   if (packages.includes("firestore"))
     imports.push(
-      import(/* webpackChunkName: "Firebase" */ "firebase/firestore")
+      import(/* webpackChunkName: "FirebaseFirestore" */ "firebase/firestore")
     );
   return Promise.all(imports).then(([firebase]) => firebase);
 };
@@ -50,7 +50,7 @@ export const getUser = async () => {
 export const getCollection = ({ path, callback, watch, orderBy }: any) => {
   return Promise.all([
     import(/* webpackChunkName: "Firebase" */ "firebase/app"), // @ts-ignore
-    import(/* webpackChunkName: "Firebase" */ "firebase/firestore")
+    import(/* webpackChunkName: "FirebaseFirestore" */ "firebase/firestore")
   ]).then(([firebase, firestore]) => {
     const collection = firebase.firestore().collection(path);
     if (orderBy) collection.orderBy(orderBy);
