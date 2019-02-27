@@ -1,19 +1,21 @@
 import { LitElement, customElement, html, property } from "lit-element";
 
 import GlobalStyle from "../../GlobalStyle";
-import { connect } from "pwa-helpers/connect-mixin.js";
-import { store } from "../../Store";
 import style from "./BreadcrumbStyle";
 
 @customElement("breadcrumb-component")
-export class BreadcrumbComponent extends connect(store)(LitElement) {
+export class BreadcrumbComponent extends LitElement {
   @property() public activeRoute: string = "/";
   @property({ type: Boolean }) public hidden: boolean = false;
 
+  public constructor() {
+    super();
+    this.routeChanged = this.routeChanged.bind(this);
+  }
+
   public connectedCallback() {
-    console.log("hi");
     super.connectedCallback();
-    document.addEventListener("route-changed", this.routeChanged.bind(this));
+    document.addEventListener("route-changed", this.routeChanged);
   }
 
   public routeChanged(e: any) {
@@ -33,26 +35,22 @@ export class BreadcrumbComponent extends connect(store)(LitElement) {
     // Remove first entry if just '/'
     parts.shift();
     // Declare an empty base
-    let base = "";
+    let baseLink = "";
     const formattedRoute = html`
       ${parts.map((part: string, index: number) => {
-        base += `/${part}`;
+        baseLink += `/${part}`;
         return html`
           <span
             >${index
               ? html`
                   /
                 `
-              : ""} <a class="primary" href="${base}">${part}</a></span
+              : ""} <a class="primary" href="${baseLink}">${part}</a></span
           >
         `;
       })}
     `;
     return formattedRoute;
-  }
-
-  public stateChanged(state: any) {
-    // this.activeRoute = state.router.activeRoute;
   }
 
   public render() {
@@ -61,5 +59,3 @@ export class BreadcrumbComponent extends connect(store)(LitElement) {
     `;
   }
 }
-
-window.customElements.define("breadcrumb-component", BreadcrumbComponent);
