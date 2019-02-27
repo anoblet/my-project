@@ -60,13 +60,6 @@ export class AppComponent extends LitElement {
           portal: this.shadowRoot.querySelector("#portal")
         });
         setState({ type: "app", data: { activeRoute: location.pathname }, store });
-        // this.dispatchEvent(
-        //   new CustomEvent("route-changed", {
-        //     bubbles: true,
-        //     composed: true,
-        //     detail: location.pathname
-        //   })
-        // );
         resolve();
       });
     });
