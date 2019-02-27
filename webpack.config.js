@@ -18,7 +18,7 @@ const PreloadWebpackPlugin = require("preload-webpack-plugin");
 
 module.exports = {
   mode: "production",
-  entry: "./src/components/AppComponent/AppComponent",
+  entry: "./src/index",
   output: {
     path: path.resolve(__dirname, "dist"),
     publicPath: "/",
