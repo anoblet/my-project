@@ -9,7 +9,6 @@ import "../BreadcrumbComponent/Breadcrumb";
 import "../MenuComponent/MenuComponent";
 import "../CardComponent/CardComponent";
 import "../GridComponent/GridComponent";
-// import(/* webpackChunkName: "MediaQuery" */ "../../../packages/MediaQuery");
-// import(/* webpackChunkName: "LoadingComponent" */ "../LoadingComponent");
-
+import(/* webpackChunkName: "Firebase" */ "firebase/app");
+import(/* webpackChunkName: "FirebaseAuth" */ "firebase/auth");
 export default true;
