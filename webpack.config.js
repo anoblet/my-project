@@ -83,7 +83,8 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: "./index.html",
       favicon: "src/assets/icon_18dp.png",
-      filename: "index.html"
+      filename: "index.html",
+      minify: true
     }),
     new WebpackPwaManifest({
       filename: "manifest.json",

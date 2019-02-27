@@ -1,4 +1,4 @@
-import { html, LitElement, customElement, property } from "lit-element";
+import { html, LitElement, customElement } from "lit-element";
 import * as style from "./Grid.scss";
 import template from "./GridTemplate";
 
