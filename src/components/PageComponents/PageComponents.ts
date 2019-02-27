@@ -3,7 +3,6 @@ import { unsafeHTML } from "lit-html/directives/unsafe-html";
 import style from "./PageComponentsStyle";
 import template from "./PageComponentsTemplate";
 import GlobalStyle from "../../GlobalStyle";
-import { mdToHtml } from "../../../packages/Showdown/Showdown";
 
 import(/* webpackChunkName: "EyeChart" */ "../EyeChart/EyeChartComponent");
 import(/* webpackChunkName: "EyeExam" */ "../EyeExam/EyeExamComponent");
