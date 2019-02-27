@@ -3,8 +3,8 @@ import { LitElement, customElement, css } from "lit-element";
 import GlobalStyle from "../../GlobalStyle";
 import template from "./AdminTemplate";
 
-import(/* webpackChunkName: "CardComponent" */ "../CardComponent/CardComponent");
-import(/* webpackChunkName: "GridComponent" */ "../GridComponent/GridComponent");
+// import(/* webpackChunkName: "CardComponent" */ "../CardComponent/CardComponent");
+// import(/* webpackChunkName: "GridComponent" */ "../GridComponent/GridComponent");
 
 @customElement("admin-component")
 export class AdminComponent extends LitElement {
