@@ -76,20 +76,18 @@ export const handleNavigation = async ({ location, portal, routes }: any) => {
 
   // Check if the portal exists
   if (!portal) throw new Error("Could not find portal");
-  // End heck if the portal exists
-
-  // Replace children
-  while (portal.firstChild) {
-    portal.removeChild(portal.firstChild);
-  }
-
+  // End check if the portal exists
   const element = document.createElement(matchedRoute.component);
+  if (element.beforeRender) await element.beforeRender();
   // Map properties
   matchedRoute.keys.map((key: any) => {
     element[key.name] = matchedRoute.data[key.name];
   });
   // End map properties
-  if (element.beforeRender) await element.beforeRender();
+  // Replace children
+  while (portal.firstChild) {
+    portal.removeChild(portal.firstChild);
+  }
   portal.appendChild(element);
   // End replace children
 };
