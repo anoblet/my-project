@@ -83,7 +83,6 @@ module.exports = {
     new CleanWebpackPlugin(["dist"]),
     new HtmlWebpackPlugin({
       template: "./index.html",
-      favicon: "src/assets/icon_18dp.png",
       filename: "index.html"
     }),
     // new PreloadWebpackPlugin({
@@ -96,13 +95,6 @@ module.exports = {
       description: "Andrew Noblet",
       background_color: "#000000",
       crossorigin: "use-credentials", //can be null, use-credentials or anonymous
-      icons: [
-        {
-          src: path.resolve("src/assets/icon_18dp.png"),
-          sizes: [96, 128, 192, 256, 384, 512], // multiple sizes
-          destination: "icons"
-        }
-      ],
       theme_color: "#000000",
       inject: true
     }),
@@ -117,7 +109,7 @@ module.exports = {
         flatten: true
       },
       {
-        from: "src/assets/*.css",
+        from: "src/assets/*",
         to: "./",
         flatten: true
       }
