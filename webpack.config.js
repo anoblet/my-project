@@ -83,6 +83,7 @@ module.exports = {
     new CleanWebpackPlugin(["dist"]),
     new HtmlWebpackPlugin({
       template: "./index.html",
+      favicon: "src/assets/icon_18dp.png",
       filename: "index.html"
     }),
     // new PreloadWebpackPlugin({
