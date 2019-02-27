@@ -1,9 +1,8 @@
 import { LitElement, customElement, property } from "lit-element";
-import { disableAnnyang, enableAnnyang } from "../Annyang";
 import { documentToTheme, setTheme } from "../../Theme";
 import { extract, getUserSettings, getUserTheme } from "../../User";
 import { getDocument, initApp } from "../../../packages/firebase-helpers";
-import { handleNavigation, setPortal, setRoutes } from "../../Router";
+import { handleNavigation } from "../../Router";
 
 import GlobalStyle from "../../GlobalStyle";
 import Style from "./AppStyle";
@@ -60,13 +59,14 @@ export class AppComponent extends LitElement {
           routes,
           portal: this.shadowRoot.querySelector("#portal")
         });
-        this.dispatchEvent(
-          new CustomEvent("route-changed", {
-            bubbles: true,
-            composed: true,
-            detail: location.pathname
-          })
-        );
+        setState({ type: "app", data: { activeRoute: location.pathname }, store });
+        // this.dispatchEvent(
+        //   new CustomEvent("route-changed", {
+        //     bubbles: true,
+        //     composed: true,
+        //     detail: location.pathname
+        //   })
+        // );
         resolve();
       });
     });

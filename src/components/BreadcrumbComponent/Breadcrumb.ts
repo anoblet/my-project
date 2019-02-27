@@ -1,4 +1,5 @@
 import { LitElement, customElement, html, property } from "lit-element";
+import { store } from "../../Store";
 
 import GlobalStyle from "../../GlobalStyle";
 import style from "./BreadcrumbStyle";
@@ -10,16 +11,15 @@ export class BreadcrumbComponent extends LitElement {
 
   public constructor() {
     super();
-    this.routeChanged = this.routeChanged.bind(this);
+    store.subscribe(() => {
+      const state = store.getState();
+      this.activeRoute = state.app.activeRoute;
+
+    });
   }
 
-  public connectedCallback() {
-    super.connectedCallback();
-    document.addEventListener("route-changed", this.routeChanged);
-  }
-
-  public routeChanged(e: any) {
-    this.activeRoute = e.detail;
+  public routeChanged(route: string) {
+    this.activeRoute = route;
   }
 
   static get styles() {
