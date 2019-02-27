@@ -5,10 +5,13 @@ import Style from "./Style";
 import template from "./DrawerTemplate";
 import { Mixin } from "../../../packages/Mixin";
 import { MediaMixin } from "../../../packages/MediaMixin";
+import { subscribe } from "../../Media";
 
 // @customElement("drawer-component")
-export class Drawer extends Mixin(LitElement, [MediaMixin]) {
+export class Drawer extends LitElement {
   @property({ type: Boolean, reflect: true }) public hidden: boolean = true;
+  @property({ reflect: true, attribute: "media-size" })
+  public mediaSize: string = "true";
 
   public toggle() {
     this.hidden = !this.hidden;
@@ -16,8 +19,11 @@ export class Drawer extends Mixin(LitElement, [MediaMixin]) {
 
   constructor() {
     super();
-    if (this.mediaSize === "mobile") this.hidden = true;
-    if (this.mediaSize === "desktop") this.hidden = false;
+    subscribe((mediaSize: string) => {
+      if (mediaSize === "mobile") this.hidden = true;
+      if (mediaSize === "desktop") this.hidden = false;
+      this.mediaSize = mediaSize;
+    });
   }
 
   set opened(value: any) {

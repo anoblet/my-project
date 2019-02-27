@@ -32,7 +32,7 @@ export class AppComponent extends LitElement {
 
   public media() {
     subscribe((mediaSize: string) => {
-      if (!this.taskPending) toast(mediaSize);
+      // if (!this.taskPending) toast(mediaSize);
       if (mediaSize === "mobile") this.drawerOpened = false;
       if (mediaSize === "desktop") this.drawerOpened = true;
       this.mediaSize = mediaSize;

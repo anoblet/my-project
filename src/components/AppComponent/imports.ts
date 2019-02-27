@@ -1,15 +1,15 @@
-import(/* webpackChunkName: "AppHeader" */ "../AppHeader/AppHeader");
-import(/* webpackChunkName: "AppHeader" */ "../PageStatic");
-import(/* webpackChunkName: "AppFooter" */ "../AppFooter/AppFooter");
-import(/* webpackChunkName: "MWCButton" */ "@material/mwc-button");
-import(/* webpackChunkName: "MWCFab" */ "@material/mwc-fab");
-import(/* webpackChunkName: "Drawer" */ "../DrawerComponent/Drawer");
-import(/* webpackChunkName: "ProfileMenu" */ "../ProfileMenu/ProfileMenu"); // @deprecated
-import(/* webpackChunkName: "Breadcrumb" */ "../BreadcrumbComponent/Breadcrumb");
-import(/* webpackChunkName: "MediaQuery" */ "../../../packages/MediaQuery");
-import(/* webpackChunkName: "MenuComponent" */ "../MenuComponent/MenuComponent");
+import "../AppHeader/AppHeader";
+import "../AppFooter/AppFooter";
+import "../PageStatic";
+import "@material/mwc-button";
+import "@material/mwc-fab";
+import "../DrawerComponent/Drawer";
+import "../ProfileMenu/ProfileMenu"; // @deprecated
+import "../BreadcrumbComponent/Breadcrumb";
+import "../MenuComponent/MenuComponent";
+import "../CardComponent/CardComponent";
+import "../GridComponent/GridComponent";
+// import(/* webpackChunkName: "MediaQuery" */ "../../../packages/MediaQuery");
 // import(/* webpackChunkName: "LoadingComponent" */ "../LoadingComponent");
-import(/* webpackChunkName: "CardComponent" */ "../CardComponent/CardComponent");
-import(/* webpackChunkName: "GridComponent" */ "../GridComponent/GridComponent");
 
 export default true;

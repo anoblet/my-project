@@ -5,7 +5,7 @@ import Style from "./Style";
 import { store } from "../../Store";
 import template from "./AppHeaderTemplate";
 
-import(/* webpackChunkName: "MWCFab" */ "@material/mwc-fab");
+// import(/* webpackChunkName: "MWCFab" */ "@material/mwc-fab");
 
 export class AppHeader extends LitElement {
   public firstUpdated() {
