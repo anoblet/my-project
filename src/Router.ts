@@ -44,6 +44,7 @@ export const handleNavigation = async ({ location, portal, routes }: any) => {
   let matchedRoute: any;
   portal = portal || globalPortal;
   routes = routes || globalRoutes;
+  // Find matched route
   routes.map((route: any) => {
     const keys: any = [];
     const regex = pathToRegexp(route.path, keys);
@@ -59,23 +60,29 @@ export const handleNavigation = async ({ location, portal, routes }: any) => {
       matchedRoute.data = data;
     }
   });
+  // End find matched route
   if (!matchedRoute) throw new Error("Could not find route");
+  // Guard
   const guard = matchedRoute.guard;
-  if (guard) {
-    if (!guard()) return;
-  }
+  if (guard) if (!guard()) throw new Error("Guard not satisfied");
+  // End guard
+  // Src
   if (matchedRoute.src) await matchedRoute.src();
+  // End src
   const element = document.createElement(matchedRoute.component);
+  // Map properties
   matchedRoute.keys.map((key: any) => {
     element[key.name] = matchedRoute.data[key.name];
   });
+  // End map properties
   if (element.beforeRender) await element.beforeRender();
-  if (portal) {
-    while (portal.firstChild) {
-      portal.removeChild(portal.firstChild);
-    }
-    portal.appendChild(element);
-  } else {
-    throw new Error("Could not find portal");
+  // Check if the portal exists
+  if (!portal) throw new Error("Could not find portal");
+  // End heck if the portal exists
+  // Replace children
+  while (portal.firstChild) {
+    portal.removeChild(portal.firstChild);
   }
+  portal.appendChild(element);
+  // End replace children
 };
