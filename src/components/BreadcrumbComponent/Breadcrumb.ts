@@ -1,11 +1,11 @@
-import { css, customElement, html, LitElement, property } from "lit-element";
-import style from "./BreadcrumbStyle";
+import { LitElement, customElement, html, property } from "lit-element";
+
 import GlobalStyle from "../../GlobalStyle";
-import template from "./BreadcrumbTemplate";
 import { connect } from "pwa-helpers/connect-mixin.js";
 import { store } from "../../Store";
+import style from "./BreadcrumbStyle";
 
-// @customElement("breadcrumb-component")
+@customElement("breadcrumb-component")
 export class BreadcrumbComponent extends connect(store)(LitElement) {
   @property() public activeRoute: string = "/";
   @property({ type: Boolean }) public hidden: boolean = false;
