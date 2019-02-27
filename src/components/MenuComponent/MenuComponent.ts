@@ -1,5 +1,3 @@
-import "@material/mwc-fab";
-
 import * as style from "./MenuComponent.scss";
 
 import { LitElement, html, property } from "lit-element";
@@ -10,7 +8,6 @@ import { StateMixin } from "../../../packages/StateMixin";
 import template from "./MenuTemplate";
 import { connect } from "pwa-helpers/connect-mixin.js";
 import { store } from "../../Store";
-import { until } from "lit-html/directives/until";
 import GlobalStyle from "../../GlobalStyle";
 
 export class MenuComponent extends Mixin(connect(store)(LitElement), [
