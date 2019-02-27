@@ -19,7 +19,7 @@ import { subscribe } from "../../Media";
 import template from "./AppTemplate";
 import { toast } from "../Toast/Toast";
 
-import "./Imports";
+import(/* webpackChunkName: "Imports" */ /* webpackPreload: true */ "./Imports");
 
 @customElement("app-component")
 export class AppComponent extends LitElement {

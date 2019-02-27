@@ -15,7 +15,7 @@ import { toggleDark } from "./ToggleDark";
 import { toggleShadow } from "./ToggleShadow";
 import GlobalStyle from "../../GlobalStyle";
 
-import(/* webpackChunkName: "MWCSwitch" */ "@material/mwc-switch");
+// import(/* webpackChunkName: "MWCSwitch" */ "@material/mwc-switch");
 
 const getThemePath = () => {
   const state = store.getState();

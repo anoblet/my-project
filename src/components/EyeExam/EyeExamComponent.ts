@@ -9,7 +9,7 @@ import { WebSpeech } from "../WebSpeech/WebSpeech";
 
 const WebSpeechInstance: any = new WebSpeech();
 
-import("@material/mwc-icon");
+// import("@material/mwc-icon");
 
 const checkDuplicate: any = (input: any, criteria: string) => {
   const result = input();
