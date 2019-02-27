@@ -35,17 +35,17 @@ export class BreadcrumbComponent extends LitElement {
     // Remove first entry if just '/'
     parts.shift();
     // Declare an empty base
-    let baseLink = "";
+    let baseHref = "";
     const formattedRoute = html`
       ${parts.map((part: string, index: number) => {
-        baseLink += `/${part}`;
+        baseHref += `/${part}`;
         return html`
           <span
             >${index
               ? html`
                   /
                 `
-              : ""} <a class="primary" href="${baseLink}">${part}</a></span
+              : ""} <a class="primary" href="${baseHref}">${part}</a></span
           >
         `;
       })}
