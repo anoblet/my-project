@@ -97,10 +97,6 @@ module.exports = {
         minifyURLs: true
       }
     }),
-    new PreloadWebpackPlugin({
-      rel: "preload",
-      include: "initial"
-    }),
     new WebpackPwaManifest({
       filename: "manifest.json",
       name: "Andrew Noblet",
