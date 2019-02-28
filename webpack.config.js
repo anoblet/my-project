@@ -85,9 +85,10 @@ module.exports = {
       template: "./index.html",
       filename: "index.html"
     }),
-    // new PreloadWebpackPlugin({
-    //   rel: "prefetch"
-    // }),
+    new PreloadWebpackPlugin({
+      rel: "preload",
+      include: "initial"
+    }),
     new WebpackPwaManifest({
       filename: "manifest.json",
       name: "Andrew Noblet",
