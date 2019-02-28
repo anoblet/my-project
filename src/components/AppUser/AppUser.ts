@@ -21,7 +21,7 @@ export const getForm = () =>
   });
 
 export class AppUser extends LitElement {
-  public getForm() {
+  public async getForm() {
     return Promise.all([
       import(/* webpackChunkName: "Firebase" */ "firebase/app"),
       import(/* webpackChunkName: "FirebaseUI" */ "firebaseui")
