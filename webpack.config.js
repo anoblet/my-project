@@ -85,7 +85,16 @@ module.exports = {
       template: "./index.html",
       filename: "index.html",
       minify: {
-        collapseWhitespace: true
+        removeComments: true,
+        collapseWhitespace: true,
+        removeRedundantAttributes: true,
+        useShortDoctype: true,
+        removeEmptyAttributes: true,
+        removeStyleLinkTypeAttributes: true,
+        keepClosingSlash: true,
+        minifyJS: true,
+        minifyCSS: true,
+        minifyURLs: true
       }
     }),
     new PreloadWebpackPlugin({
