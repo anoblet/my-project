@@ -6,5 +6,7 @@ import "../ProfileMenu/ProfileMenu";
 import "../MenuComponent/MenuComponent";
 import "../CardComponent/CardComponent";
 import "../GridComponent/GridComponent";
+import(/* webpackChunkName: "Firebase" */ /* webpackPreload: true */ "firebase/app");
+import(/* webpackChunkName: "Firebase" */ /* webpackPreload: true */ "firebase/auth");
 
 export default true;

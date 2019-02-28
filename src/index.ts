@@ -1,2 +1,13 @@
-import(/* webpackChunkName: "App" */ /* webpackPreload: true */ "./components/AppComponent/AppComponent");
-// import "./components/AppComponent/AppComponent";
+// import(/* webpackChunkName: "App" */ /* webpackPreload: true */ "./components/AppComponent/AppComponent");
+import "./components/AppComponent/AppComponent";
+import "./components/AppHeader/AppHeader";
+import "./components/AppFooter/AppFooter";
+import "./components/PageStatic";
+import "./components/DrawerComponent/Drawer";
+import "./components/ProfileMenu/ProfileMenu";
+import "./components/MenuComponent/MenuComponent";
+import "./components/CardComponent/CardComponent";
+import "./components/GridComponent/GridComponent";
+// import(/* webpackChunkName: "Firebase" */ /* webpackPreload: true */ "firebase/app");
+import "firebase/app";
+import "firebase/auth";
