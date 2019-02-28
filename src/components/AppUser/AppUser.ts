@@ -7,7 +7,7 @@ import uiStyle from "./FirebaseUIStyle";
 export const getForm = () =>
   Promise.all([
     import(/* webpackChunkName: "Firebase" */ "firebase/app"),
-    import(/* webpackChunkName: "Firebase" */ "firebaseui")
+    import(/* webpackChunkName: "FirebaseUI" */ "firebaseui")
   ]).then(async ([firebase, firebaseui]) => {
     const el = document.createElement("div");
     const ui =
@@ -24,7 +24,7 @@ export class AppUser extends LitElement {
   public getForm() {
     return Promise.all([
       import(/* webpackChunkName: "Firebase" */ "firebase/app"),
-      import(/* webpackChunkName: "Firebase" */ "firebaseui")
+      import(/* webpackChunkName: "FirebaseUI" */ "firebaseui")
     ]).then(async ([firebase, firebaseui]) => {
       const el = document.createElement("div");
       const ui =
