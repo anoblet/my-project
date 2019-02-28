@@ -2,6 +2,7 @@ import { config } from "../../../config";
 import { html } from "lit-element";
 import { isSignedIn } from "../../User";
 import { store } from "../../Store";
+import "../ButtonComponent/ButtonComponent";
 
 export default function() {
   const state = store.getState();
@@ -23,7 +24,9 @@ export default function() {
             >
           `
         : html`
-            <a href="/user/signin"><mwc-button>Sign in</mwc-button></a>
+            <a href="/user/signin"
+              ><button-component label="Sign in">Sign in</button-component></a
+            >
             <!-- <mwc-fab
               icon="account_circle"
               id="userProfile"
