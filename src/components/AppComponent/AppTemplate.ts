@@ -15,13 +15,14 @@ export default function() {
       <span id="title"><a href="/">${config.site.title}</a></span>
       ${isSignedIn()
         ? html`
-            <mwc-fab
+            <span
+              class="circle"
               id="userProfile"
               mini
               label="Account"
               @click="${() => this._toggleProfile()}"
-              >Profile</mwc-fab
-            >
+              >&nbsp;
+            </span>
           `
         : html`
             <a href="/user/signin"

@@ -15,8 +15,9 @@ export class AppHeader extends LitElement {
   }
 
   public setButtonBackground(user: any = false) {
-    const fab = this.querySelector("#userProfile");
-    const button = fab.shadowRoot.querySelector("button");
+    const button: any = this.querySelector("#userProfile");
+    // const fab = this.querySelector("#userProfile");
+    // const button = fab.shadowRoot.querySelector("button");
     if (button)
       if (user.photo) {
         button.style.background = `url('${user.photo}')`;

@@ -16,4 +16,14 @@ export default css`
     right: 25%;
     text-align: center;
   }
+
+  ::slotted(.circle) {
+    display: flex;
+    background: var(--secondary-color);
+    color: var(--background-color);
+    border-radius: 50%;
+    margin: 1em;
+    width: 32px;
+    height: 32px;
+  }
 `;
