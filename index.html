@@ -33,7 +33,8 @@ body{display:flex;margin:0;height:100vh;font-family:"Roboto", sans-serif;backgro
 if("serviceWorker"in navigator){window.addEventListener("load",()=>{navigator.serviceWorker.register("/service-worker.js").then(registration=>{console.log("SW registered: ",registration);}).catch(registrationError=>{console.log("SW registration failed: ",registrationError);});});}</script>
 <meta name=viewport content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes"/>
 <meta name=Description content="Andrew Noblet"/>
-<link rel=icon href="/favicon.ico"/>
+<!-- <link rel=icon href="/favicon.ico"/> -->
+<link href="data:image/x-icon;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQEAYAAABPYyMiAAAABmJLR0T///////8JWPfcAAAACXBIWXMAAABIAAAASABGyWs+AAAAF0lEQVRIx2NgGAWjYBSMglEwCkbBSAcACBAAAeaR9cIAAAAASUVORK5CYII=" rel="icon" type="image/x-icon" />
 <link rel=preload href="/font/MaterialIcons-Regular.woff2" as=font type="font/woff2" crossorigin=anonymous />
 <style>@font-face{font-family:"Material Icons";font-style:normal;font-weight:400;font-display:auto;src:url(/font/MaterialIcons-Regular.eot);src:local("Material Icons"), local("MaterialIcons-Regular"),
 url(/font/MaterialIcons-Regular.woff2) format("woff2"),
