@@ -22,12 +22,21 @@ export default css`
   }
 
   .item:not(#home) {
+    padding: 0.75em;
     margin: 0.5em;
     opacity: 0.33;
   }
 
+  .item:not(#home) i {
+    /* font-size: 18px; */
+  }
+
   .item:not(#home):hover {
     opacity: 1;
+  }
+
+  .item:not(#home):hover i {
+    /* font-size: 24px; */
   }
 
   mwc-fab {
