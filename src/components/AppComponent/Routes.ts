@@ -4,7 +4,7 @@ export const routes = [
   {
     name: "Home",
     path: "",
-    component: "page-static",
+    component: "page-static"
     // src: () =>
     //   import(/* webpackChunkName: "PageStatic" */ /* webpackPrefetch: true */ "../PageStatic")
   },
@@ -82,9 +82,9 @@ export const routes = [
   },
   {
     path: "/readme",
-    component: "readme-component"
-    // src: () =>
-    //   import(/* webpackChunkName: "ReadmeComponent" */ "../Readme/ReadmeComponent")
+    component: "readme-component",
+    src: () =>
+      import(/* webpackChunkName: "ReadmeComponent" */ "../Readme/ReadmeComponent")
   },
   {
     path: "/sitemap",
