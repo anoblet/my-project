@@ -1,3 +1,5 @@
+import { run } from "../../src/Firebase";
+
 /**
  * Utility functions for Firebase
  **/
@@ -9,7 +11,7 @@
  * @return Promise
  **/
 export const initApp = (config: any) => {
-  run(["firebase/app"], (firebase: any) => {
+  run([]).then((firebase: any) => {
     if (firebase.apps.length === 0) firebase.initializeApp(config);
   });
 };
@@ -21,7 +23,7 @@ export const initApp = (config: any) => {
  **/
 
 export const initStore = () => {
-  run(["firebase/app"], (firebase: any) => {
+  run([]).then((firebase: any) => {
     firebase.firestore().settings({ timestampsInSnapshots: true });
   });
 };
@@ -59,9 +61,7 @@ export const checkRedirect = async () => {
  **/
 export const getUser = ({ callback }: any) => {
   return new Promise((resolve: any) => {
-    return Promise.all([
-      import(/* webpackChunkName: "Firebase" */ "firebase/app") // @ts-ignore
-    ]).then(async ([firebase]) => {
+    run(["auth"]).then(async (firebase: any) => {
       const _pendingRedirect = await pendingRedirect();
       if (_pendingRedirect) resolve(false);
       firebase.auth().onAuthStateChanged((user: any) => {
@@ -84,10 +84,7 @@ export const getUser = ({ callback }: any) => {
  * getCollection({callback: (collection)=> console.log(collection), path: "posts", orderBy: "date", watch: true})
  **/
 export const getCollection = ({ path, callback, watch, orderBy }: any) => {
-  return Promise.all([
-    import(/* webpackChunkName: "Firebase" */ "firebase/app"), // @ts-ignore
-    import(/* webpackChunkName: "FirebaseFirestore" */ "firebase/firestore")
-  ]).then(([firebase, firestore]) => {
+  return run(["firestore"]).then((firebase: any) => {
     let collection = firebase.firestore().collection(path);
     // @ts-ignore
     if (orderBy) collection = collection.orderBy(orderBy);
@@ -123,10 +120,7 @@ export const getCollection = ({ path, callback, watch, orderBy }: any) => {
  * Example: addDocument("posts", { title: "Sample title" })
  **/
 export const addDocument = ({ path, data }: any) => {
-  return Promise.all([
-    import(/* webpackChunkName: "Firebase" */ "firebase/app"), // @ts-ignore
-    import(/* webpackChunkName: "FirebaseFirestore" */ "firebase/firestore")
-  ]).then(([firebase]) => {
+  return run(["firestore"]).then((firebase: any) => {
     return firebase
       .firestore()
       .collection(path)
@@ -147,10 +141,7 @@ export const addDocument = ({ path, data }: any) => {
 
 export const updateDocument = ({ data, path }: any) => {
   // console.log("Updating document");
-  return Promise.all([
-    import(/* webpackChunkName: "Firebase" */ "firebase/app"), // @ts-ignore
-    import(/* webpackChunkName: "FirebaseFirestore" */ "firebase/firestore")
-  ]).then(([firebase]) => {
+  return run(["firestore"]).then((firebase: any) => {
     return firebase
       .firestore()
       .doc(path)
@@ -162,10 +153,7 @@ export const updateDocument = ({ data, path }: any) => {
  * Returns a promise/document, or calls a callback depending on the watch property
  **/
 export const getDocument = ({ callback, path, watch }: any) => {
-  return Promise.all([
-    import(/* webpackChunkName: "Firebase" */ "firebase/app"), // @ts-ignore
-    import(/* webpackChunkName: "FirebaseFirestore" */ "firebase/firestore")
-  ]).then(([firebase]) => {
+  return run(["firestore"]).then((firebase: any) => {
     const document = firebase.firestore().doc(path);
     return watch
       ? document.onSnapshot((doc: any) => {
@@ -184,36 +172,12 @@ export const getDocument = ({ callback, path, watch }: any) => {
  * @return      Promise
  **/
 export const deleteDocument = ({ path }: any) => {
-  return Promise.all([
-    import(/* webpackChunkName: "Firebase" */ "firebase/app"), // @ts-ignore
-    import(/* webpackChunkName: "FirebaseFirestore" */ "firebase/firestore")
-  ]).then(([firebase]) => {
+  return run(["firestore"]).then((firebase: any) => {
     return firebase
       .firestore()
       .doc(path)
       .delete();
   });
-};
-
-/**
- * Deprecated function that was supposed to be use to act as a provider for Firbase. May still be useful.
- * @param depends: ...["auth", "firestore", "ui"]
- * Provides Firebase app + modules you specify from a callback
- **/
-
-const run = (modules: any = [], callback: any) => {
-  const imports: any = [];
-  imports.push(import(/* webpackChunkName: "Firebase" */ "firebase/app"));
-  if (modules.includes("auth"))
-    imports.push(
-      import(/* webpackChunkName: "FirebaseAuth" */ "firebase/auth")
-    );
-  if (modules.includes("firestore"))
-    imports.push(
-      import(/* webpackChunkName: "FirebaseFirestore" */ "firebase/firestore")
-    );
-
-  return Promise.all(imports).then(([firebase]) => callback(firebase));
 };
 
 const pendingRedirect = async () => {
