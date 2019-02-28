@@ -9,9 +9,9 @@ export default function() {
   const settings = state.settings;
   return html`
     <app-header>
-      <mwc-fab icon="menu" id="menu" mini @click="${this._toggleDrawer}"
-        >menu</mwc-fab
-      >
+      <span id="menu">
+        <i class="material-icons" @click="${this._toggleDrawer}">menu</i>
+      </span>
       <span id="title"><a href="/">${config.site.title}</a></span>
       ${isSignedIn()
         ? html`
