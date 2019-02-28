@@ -113,6 +113,11 @@ module.exports = {
         from: "src/assets/*",
         to: "./",
         flatten: true
+      },
+      {
+        from: "node_modules/material-design-icons/iconfont/*",
+        to: "./font",
+        flatten: true
       }
     ]),
     new RobotstxtPlugin(),

@@ -119,20 +119,25 @@
     <!-- End Meta -->
     <link rel="icon" href="/favicon.ico" />
     <link
-      href="https://fonts.googleapis.com/icon?family=Material+Icons"
       rel="preload"
-      as="style"
-      onload="this.rel = 'stylesheet'"
+      href="/font/MaterialIcons-Regular.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin="anonymous"
     />
-    <!-- <style>
+    <style>
       @font-face {
-        font-family: "Arvo";
+        font-family: "Material Icons";
+        font-style: normal;
+        font-weight: 400;
         font-display: auto;
-        src: local("Arvo"),
-          url(https://fonts.gstatic.com/s/materialicons/v43/flUhRq6tzZclQEJ-Vdg-IuiaDsNc.woff2)
-            format("woff2");
+        src: url(/font/MaterialIcons-Regular.eot); /* For IE6-8 */
+        src: local("Material Icons"), local("MaterialIcons-Regular"),
+          url(/font/MaterialIcons-Regular.woff2) format("woff2"),
+          url(/font/MaterialIcons-Regular.woff) format("woff"),
+          url(/font/MaterialIcons-Regular.ttf) format("truetype");
       }
-    </style> -->
+    </style>
   </head>
   <body>
     <noscript>Please enable javascript</noscript>
