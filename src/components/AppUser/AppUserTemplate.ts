@@ -1,5 +1,3 @@
-import "@material/mwc-button";
-
 import { html } from "lit-element";
 import { isSignedIn } from "../../User";
 import { signOut } from "../../User";
