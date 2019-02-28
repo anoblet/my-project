@@ -90,7 +90,7 @@
       }
     </style>
     <title>Andrew Noblet</title>
-    <script type="text/javascript">
+    <script type="text/javascript" defer>
       if (location.hostname !== "localhost")
         if ("serviceWorker" in navigator) {
           window.addEventListener("load", function() {
@@ -136,6 +136,11 @@
           url(/font/MaterialIcons-Regular.ttf) format("truetype");
       }
     </style>
+    <link
+      rel="preload"
+      href="/js/webcomponentsjs/webcomponents-loader.js"
+      as="script"
+    />
   </head>
   <body>
     <noscript>Please enable javascript</noscript>
@@ -143,11 +148,6 @@
       <div class="loader"></div>
     </div>
     <app-component></app-component>
-    <link
-      rel="preload"
-      href="/js/webcomponentsjs/webcomponents-loader.js"
-      as="script"
-    />
     <script src="/js/webcomponentsjs/webcomponents-loader.js"></script>
   </body>
 </html>
