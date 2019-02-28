@@ -37,7 +37,7 @@ export const checkRedirect = async () => {
   return new Promise((resolve: any) => {
     return Promise.all([
       import(/* webpackChunkName: "Firebase" */ "firebase/app"),
-      import(/* webpackChunkName: "FirebaseAuth" */ "firebase/auth"),
+      import(/* webpackChunkName: "Firebase" */ "firebase/auth"),
       import(/* webpackChunkName: "FirebaseUI" */ "firebaseui")
     ]).then(async ([firebase, auth, firebaseui]) => {
       const instance =
@@ -183,7 +183,7 @@ export const deleteDocument = ({ path }: any) => {
 const pendingRedirect = async () => {
   return Promise.all([
     import(/* webpackChunkName: "Firebase" */ "firebase/app"), // @ts-ignore
-    import(/* webpackChunkName: "FirebaseAuth" */ "firebase/auth"),
+    import(/* webpackChunkName: "Firebase" */ "firebase/auth"),
     import(/* webpackChunkName: "FirebaseUI" */ "firebaseui")
   ]).then(([firebase, auth, firebaseui]) => {
     const instance =
