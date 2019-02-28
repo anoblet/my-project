@@ -83,7 +83,10 @@ module.exports = {
     new CleanWebpackPlugin(["dist"]),
     new HtmlWebpackPlugin({
       template: "./index.html",
-      filename: "index.html"
+      filename: "index.html",
+      minify: {
+        collapseWhitespace: true
+      }
     }),
     new PreloadWebpackPlugin({
       rel: "preload",
