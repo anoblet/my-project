@@ -2,20 +2,6 @@
  * Utility functions for Firebase
  **/
 
-// import { run } from "../../src/Firebase";
-
-declare global {
-  interface Window {
-    firebaseui: any;
-  }
-}
-
-/**
- * Kinda lazy so I'm grabbing firebaseui from the window
- **/
-
-// const firebaseui = window.firebaseui;
-
 /**
  * Should be run once and only once since it instantiates Firebase
  *  - Should be of type <firebaseConfig> (How the hell would I type that anyways :P)
@@ -23,15 +9,9 @@ declare global {
  * @return Promise
  **/
 export const initApp = (config: any) => {
-  // run(["firebase/app"], (firebase: any) => {
-  //   console.log(firebase);
-  //   if (firebase.apps.length === 0) firebase.initializeApp(config);
-  // })
-  return import(/* webpackChunkName: "Firebase" */ "firebase/app").then(
-    (firebase: any) => {
-      if (firebase.apps.length === 0) firebase.initializeApp(config);
-    }
-  );
+  run(["firebase/app"], (firebase: any) => {
+    if (firebase.apps.length === 0) firebase.initializeApp(config);
+  });
 };
 
 /**
@@ -41,10 +21,7 @@ export const initApp = (config: any) => {
  **/
 
 export const initStore = () => {
-  return Promise.all([
-    import(/* webpackChunkName: "Firebase" */ "firebase/app"), // @ts-ignore
-    import(/* webpackChunkName: "FirebaseFirestore" */ "firebase/firestore")
-  ]).then(([firebase, firestore]) => {
+  run(["firebase/app"], (firebase: any) => {
     firebase.firestore().settings({ timestampsInSnapshots: true });
   });
 };
