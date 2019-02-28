@@ -7,11 +7,13 @@ export default function() {
       rel="noreferrer"
       target="_blank"
     >
-      <mwc-fab id="github" icon="code" label="placeholder" mini></mwc-fab>
+      <i class="material-icons" @click="${this._toggleDrawer}">code</i>
     </a>
-    <a href="/"> <mwc-fab id="home" icon="home" label="Home"></mwc-fab> </a>
+    <a href="/">
+      <i class="material-icons" @click="${this._toggleDrawer}">home</i>
+    </a>
     <a href="mailto: andrewbnoblet@gmail.com">
-      <mwc-fab icon="mail_outline" label="placeholder" mini></mwc-fab>
+      <i class="material-icons" @click="${this._toggleDrawer}">mail_outline</i>
     </a>
   `;
 }

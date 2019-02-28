@@ -8,6 +8,10 @@ export default css`
     align-items: center;
   }
 
+  :host > * {
+    padding: 1em;
+  }
+
   mwc-fab {
     --mdc-theme-on-secondary: var(--background-color);
   }
