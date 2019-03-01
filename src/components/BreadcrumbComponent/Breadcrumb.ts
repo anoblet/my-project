@@ -55,7 +55,7 @@ export class BreadcrumbComponent extends LitElement {
 
   public render() {
     return html`
-      <div>${this.formatRoute(this.activeRoute)}/</div>
+      <div><a href="home">home</a>/${this.formatRoute(this.activeRoute)}/</div>
     `;
   }
 }

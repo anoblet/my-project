@@ -47,7 +47,7 @@ export default function() {
         ></drawer-component>
         <div id="content" grow scroll>
           <grid-component style="margin: 1em;">
-            ${settings.breadcrumbs
+            ${state.user.settings.breadcrumbs
               ? html`
                   <card-component>
                     <breadcrumb-component></breadcrumb-component
