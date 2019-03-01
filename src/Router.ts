@@ -41,6 +41,7 @@ export const navigate = (path: string) => {
 };
 
 export const handleNavigation = async ({ location, portal, routes }: any) => {
+  console.log(location.pathname);
   let matchedRoute: any;
   portal = portal || globalPortal;
   routes = routes || globalRoutes;
@@ -63,7 +64,8 @@ export const handleNavigation = async ({ location, portal, routes }: any) => {
   });
   // End find matched route
 
-  if (!matchedRoute) throw new Error("Could not find route");
+  if (!matchedRoute)
+    throw new Error(`Could not find route: ${location.pathname}`);
 
   // Guard
   const guard = matchedRoute.guard;

@@ -5,6 +5,11 @@ export const routes = [
     component: "page-static"
   },
   {
+    name: "Home",
+    path: "/",
+    component: "page-static"
+  },
+  {
     path: "/admin",
     component: "admin-component",
     src: () =>
