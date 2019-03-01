@@ -63,7 +63,7 @@ export class SettingsComponent extends Mixin(connect(store)(LitElement), [
                 return html`
                   <label>${setting.label} (${setting.description})</label
                   ><input
-                    ?checked="${this.state.settings[setting.name]}"
+                    ?checked="${this.state.user.settings[setting.name]}"
                     name="${setting.name}"
                     type="checkbox"
                     @click="${(e: any) => {
@@ -79,7 +79,7 @@ export class SettingsComponent extends Mixin(connect(store)(LitElement), [
                 return html`
                   <label>${setting.label} (${setting.description})</label
                   ><input
-                    value="${this.state.settings[setting.name]}"
+                    value="${this.state.user.settings[setting.name]}"
                     name="${setting.name}"
                     type="text"
                     @change="${(e: any) => {
@@ -95,7 +95,7 @@ export class SettingsComponent extends Mixin(connect(store)(LitElement), [
                 return html`
                   <label>${setting.label} (${setting.description})</label
                   ><input
-                    ?checked="${this.state.settings[setting.name]}"
+                    ?checked="${this.state.user.settings[setting.name]}"
                     name="${setting.name}"
                     type="number"
                     @input="${(e: any) => {
@@ -125,7 +125,7 @@ export class SettingsComponent extends Mixin(connect(store)(LitElement), [
                       (option: any) =>
                         html`
                           <option
-                            ?selected="${state.settings[setting.name] ==
+                            ?selected="${state.user.settings[setting.name] ==
                               option.value}"
                             value="${option.value}"
                             >${option.label}</option
