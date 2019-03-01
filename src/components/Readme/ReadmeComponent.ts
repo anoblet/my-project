@@ -9,8 +9,10 @@ class Readme extends LitElement {
   @property() public html: string;
 
   public async beforeRender() {
-    const data = await fetch(this.path).then((response: any) => response.text());
-    this.html = mdToHtml(data)
+    const data = await fetch(this.path).then((response: any) =>
+      response.text()
+    );
+    this.html = mdToHtml(data);
   }
 
   public render() {
