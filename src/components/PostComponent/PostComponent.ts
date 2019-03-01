@@ -88,7 +88,6 @@ export class PostComponent extends Mixin(LitElement, [TemplateMixin]) {
   }
 
   public render() {
-    console.log("render");
     return html`
       <card-component>
         ${renderForm(
