@@ -1,11 +1,10 @@
-// import(/* webpackChunkName: "MWCFab" */ "@material/mwc-fab");
-
-import { LitElement} from "lit-element";
+import { LitElement, customElement } from "lit-element";
 
 import GlobalStyle from "../../GlobalStyle";
 import Style from "./Style";
 import Template from "./AppFooterTemplate";
 
+@customElement("app-footer")
 export class AppFooter extends LitElement {
   public template = Template;
   static get styles() {
@@ -16,5 +15,3 @@ export class AppFooter extends LitElement {
     return Template.bind(this)();
   }
 }
-
-window.customElements.define("app-footer", AppFooter);
