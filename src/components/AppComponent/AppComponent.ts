@@ -18,6 +18,7 @@ import { store } from "../../Store";
 import { subscribe } from "../../Media";
 import template from "./AppTemplate";
 import { toast } from "../Toast/Toast";
+import { voice } from "../../Voice";
 
 // import(/* webpackChunkName: "Imports" */ /* webpackPreload: true */ "./Imports");
 // import "./Imports";
@@ -110,6 +111,11 @@ export class AppComponent extends LitElement {
     this.media();
     if (config.staticTheme) setTheme(documentToTheme(config.theme), this);
     store.subscribe(() => {
+      const state = store.getState();
+      if (state.user.settings) {
+        const _voice = state.user.settings.annyangEnabled;
+        _voice ? voice.enable() : voice.disable();
+      }
       this.applyShadows();
     });
   }
@@ -146,7 +152,8 @@ export class AppComponent extends LitElement {
         setState({ data: userData, store, type: "user" });
         debug("Getting user settings");
         await getUserSettings((document: any) => {
-          setState({ data: document, store, type: "settings" });
+          setState({ data: { settings: document }, store, type: "user" });
+          // setState({ data: document, store, type: "settings" });
         });
         debug("Finished getting user settings");
         debug("Getting user theme");
