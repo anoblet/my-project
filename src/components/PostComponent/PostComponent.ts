@@ -28,15 +28,19 @@ export class PostComponent extends Mixin(LitElement, [TemplateMixin]) {
   public template = template;
 
   public async beforeRender() {
-    if (!this.id) return;
-    return await getDocument({
-      path: `posts/${this.id}`
-    }).then((document: any) => {
-      if (document) {
-        Object.keys(document).map((key: any) => (this[key] = document[key]));
-        this.taskPending = false;
-      }
-    });
+    console.log(this.id);
+    if (this.id)
+      return await getDocument({
+        path: `posts/${this.id}`
+      }).then((document: any) => {
+        if (document) {
+          Object.keys(document).map((key: any) => (this[key] = document[key]));
+          this.taskPending = false;
+        }
+      });
+    else {
+      this.taskPending = false;
+    }
   }
 
   public submitForm(e: any) {

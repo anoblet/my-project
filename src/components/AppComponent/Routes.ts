@@ -1,4 +1,4 @@
-import { Route } from "../../Router";
+// import { Route } from "../../Router";
 
 export const routes = [
   {
@@ -50,12 +50,12 @@ export const routes = [
     src: () =>
       import(/* webpackChunkName: "PostGridComponent" */ "../Post/PostGridComponent")
   },
-  // {
-  //   path: "/post/:action/:id?",
-  //   component: "post-controller",
-  //   src: () =>
-  //     import(/* webpackChunkName: "PostController" */ /* webpackPrefetch: true */ "../Post/PostController")
-  // },
+  {
+    path: "/post/create",
+    component: "post-component",
+    src: () =>
+      import(/* webpackChunkName: "PostComponent" */ "../PostComponent/PostComponent")
+  },
   {
     path: "/user/:action?",
     component: "user-controller",
