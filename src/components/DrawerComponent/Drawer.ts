@@ -3,11 +3,10 @@ import { LitElement, customElement, property } from "lit-element";
 import GlobalStyle from "../../GlobalStyle";
 import Style from "./Style";
 import template from "./DrawerTemplate";
-import { Mixin } from "../../../packages/Mixin";
-import { MediaMixin } from "../../../packages/MediaMixin";
 import { subscribe } from "../../Media";
+import { store } from "../../Store";
 
-// @customElement("drawer-component")
+@customElement("drawer-component")
 export class Drawer extends LitElement {
   @property({ type: Boolean, reflect: true }) public hidden: boolean = true;
   @property({ reflect: true, attribute: "media-size" })
@@ -24,6 +23,7 @@ export class Drawer extends LitElement {
       if (mediaSize === "desktop") this.hidden = false;
       this.mediaSize = mediaSize;
     });
+    store.subscribe(() => this.requestUpdate());
   }
 
   set opened(value: any) {
@@ -39,5 +39,3 @@ export class Drawer extends LitElement {
     return template.bind(this)();
   }
 }
-
-window.customElements.define("drawer-component", Drawer);

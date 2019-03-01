@@ -51,6 +51,12 @@ export const signOut = async (redirect: any = "/") => {
         config: { merge: false },
         data: {},
         store,
+        type: "settings"
+      });
+      setState({
+        config: { merge: false },
+        data: {},
+        store,
         type: "user"
       });
       setDefaultTheme();

@@ -109,6 +109,9 @@ export class AppComponent extends LitElement {
     this.reducers();
     this.media();
     if (config.staticTheme) setTheme(documentToTheme(config.theme), this);
+    store.subscribe(() => {
+      this.applyShadows();
+    });
   }
 
   public connectedCallback() {
