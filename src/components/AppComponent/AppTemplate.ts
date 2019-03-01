@@ -47,12 +47,14 @@ export default function() {
         ></drawer-component>
         <div id="content" grow scroll>
           <grid-component style="margin: 1em;">
-            ${state.user.settings.breadcrumbs
-              ? html`
-                  <card-component>
-                    <breadcrumb-component></breadcrumb-component
-                  ></card-component>
-                `
+            ${state.user.settings
+              ? state.user.settings.breadcrumbs
+                ? html`
+                    <card-component>
+                      <breadcrumb-component></breadcrumb-component
+                    ></card-component>
+                  `
+                : ""
               : ""}
             <div id="portal" style="display: flex;"></div>
             ${settings.displayLog

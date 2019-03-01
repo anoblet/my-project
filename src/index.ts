@@ -8,6 +8,7 @@ import "./components/ProfileMenu/ProfileMenu";
 import "./components/MenuComponent/MenuComponent";
 import "./components/CardComponent/CardComponent";
 import "./components/GridComponent/GridComponent";
+import "./components/BreadcrumbComponent/Breadcrumb";
 // import(/* webpackChunkName: "Firebase" */ /* webpackPreload: true */ "firebase/app");
 import "firebase/app";
 import "firebase/auth";

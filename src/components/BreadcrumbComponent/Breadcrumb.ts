@@ -6,7 +6,7 @@ import style from "./BreadcrumbStyle";
 
 @customElement("breadcrumb-component")
 export class BreadcrumbComponent extends LitElement {
-  @property() public activeRoute: string = "/";
+  @property() public activeRoute: string;
   @property({ type: Boolean }) public hidden: boolean = false;
 
   public constructor() {
@@ -14,7 +14,7 @@ export class BreadcrumbComponent extends LitElement {
     store.subscribe(() => {
       const state = store.getState();
       this.activeRoute = state.app.activeRoute;
-
+      this.requestUpdate();
     });
   }
 
@@ -27,6 +27,7 @@ export class BreadcrumbComponent extends LitElement {
   }
 
   public formatRoute(route: string) {
+    if (!route) return;
     if (route === "/") this.hidden = true;
     else {
       this.hidden = false;
@@ -55,7 +56,7 @@ export class BreadcrumbComponent extends LitElement {
 
   public render() {
     return html`
-      <div><a href="home">home</a>/${this.formatRoute(this.activeRoute)}/</div>
+      <div>${this.formatRoute(this.activeRoute)}/</div>
     `;
   }
 }
