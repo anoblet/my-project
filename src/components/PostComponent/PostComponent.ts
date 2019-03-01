@@ -22,10 +22,13 @@ export interface PostComponent {
 export class PostComponent extends Mixin(LitElement, [TemplateMixin]) {
   @property({ type: String }) public content: string;
   @property({ type: Boolean }) public create: boolean;
-  @property({ type: Boolean }) public taskPending = true;
+  @property({ type: Boolean, reflect: true, attribute: "hidden" })
+  @property()
+  public taskPending = true;
   public template = template;
 
   public async beforeRender() {
+    if (!this.id) return;
     return await getDocument({
       path: `posts/${this.id}`
     }).then((document: any) => {
@@ -63,15 +66,8 @@ export class PostComponent extends Mixin(LitElement, [TemplateMixin]) {
         .catch(() => toast("Error: Document not updated"));
   }
 
-  public connectedCallback() {
-    super.connectedCallback();
-    if (this.id) this.beforeRender();
-    else this.taskPending = false;
-  }
-
   public shouldUpdate(changedProperties: any) {
-    if (this.taskPending) return false;
-    else return super.shouldUpdate(changedProperties);
+    return !this.taskPending && super.shouldUpdate(changedProperties);
   }
 
   // Property editor respects this order...
@@ -92,6 +88,7 @@ export class PostComponent extends Mixin(LitElement, [TemplateMixin]) {
   }
 
   public render() {
+    console.log("render");
     return html`
       <card-component>
         ${renderForm(
