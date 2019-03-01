@@ -10,7 +10,6 @@ import { TemplateMixin } from "../../../packages/TemplateMixin";
 import globalStyle from "../../GlobalStyle";
 import { renderForm } from "../PropertyEditor/PropertyEditor";
 import style from "./PostStyle";
-import template from "./PostTemplate";
 import { toast } from "../Toast/Toast";
 
 import("../../../packages/PellComponent/PellComponent");
@@ -25,10 +24,8 @@ export class PostComponent extends Mixin(LitElement, [TemplateMixin]) {
   @property({ type: Boolean, reflect: true, attribute: "hidden" })
   @property()
   public taskPending = true;
-  public template = template;
 
   public async beforeRender() {
-    console.log(this.id);
     if (this.id)
       return await getDocument({
         path: `posts/${this.id}`
