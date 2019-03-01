@@ -32,5 +32,4 @@ export const setDefaultTheme = async () => {
     const theme = documentToTheme(settings.defaultTheme);
     setTheme(theme, document.querySelector("app-component"));
   }
-
 };
