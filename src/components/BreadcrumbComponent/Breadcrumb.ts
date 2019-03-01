@@ -11,52 +11,39 @@ export class BreadcrumbComponent extends LitElement {
 
   public constructor() {
     super();
+    this.syncActiveRoute();
     store.subscribe(() => {
-      const state = store.getState();
-      this.activeRoute = state.app.activeRoute;
-      this.requestUpdate();
+      this.syncActiveRoute();
     });
   }
 
-  public routeChanged(route: string) {
-    this.activeRoute = route;
+  public syncActiveRoute() {
+    const state = store.getState();
+    this.activeRoute = state.app.activeRoute;
+  }
+
+  public format(route: string) {
+    if (!route) return;
+    const parts = route.split("/");
+    parts.shift();
+    let href = "";
+    return html`
+      ${parts.map((part: string) => {
+        if (part) href += `/${part}`;
+        return html`
+          <a class="primary" href="${href}">${part}</a> /
+        `;
+      })}
+    `;
   }
 
   static get styles() {
     return [GlobalStyle, style];
   }
 
-  public formatRoute(route: string) {
-    if (!route) return;
-    if (route === "/") this.hidden = true;
-    else {
-      this.hidden = false;
-    }
-    const parts = route.split("/");
-    // Remove first entry if just '/'
-    parts.shift();
-    // Declare an empty base
-    let baseHref = "";
-    const formattedRoute = html`
-      ${parts.map((part: string, index: number) => {
-        baseHref += `/${part}`;
-        return html`
-          <span
-            >${index
-              ? html`
-                  /
-                `
-              : ""} <a class="primary" href="${baseHref}">${part}</a></span
-          >
-        `;
-      })}
-    `;
-    return formattedRoute;
-  }
-
   public render() {
     return html`
-      <div>${this.formatRoute(this.activeRoute)}/</div>
+      <div>${this.format(this.activeRoute)}</div>
     `;
   }
 }
