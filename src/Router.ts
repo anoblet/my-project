@@ -65,7 +65,8 @@ export const handleNavigation = async ({ location, portal, routes }: any) => {
   // End find matched route
 
   if (!matchedRoute)
-    throw new Error(`Could not find route: ${location.pathname}`);
+    // throw new Error(`Could not find route: ${location.pathname}`);
+    return;
 
   // Guard
   const guard = matchedRoute.guard;
