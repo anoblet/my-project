@@ -5,10 +5,6 @@ export default css`
     display: none;
   }
 
-  [hidden] {
-    display: none;
-  }
-
   a {
     color: var(--secondary-color);
     /* font-weight: 550; */
