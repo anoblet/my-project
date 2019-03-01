@@ -17,7 +17,7 @@ export default function() {
                 ${setTheme()}
               </div>
             </card-component>
-            <card-component collapsible collapsed title="Edit theme">
+            <card-component collapsible collapsed hidden title="Edit theme">
               <div slot="content">
                 ${editTheme(_theme)}
               </div>
