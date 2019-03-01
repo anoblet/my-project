@@ -1,12 +1,8 @@
-// import { Route } from "../../Router";
-
 export const routes = [
   {
     name: "Home",
     path: "",
     component: "page-static"
-    // src: () =>
-    //   import(/* webpackChunkName: "PageStatic" */ /* webpackPrefetch: true */ "../PageStatic")
   },
   {
     path: "/admin",
