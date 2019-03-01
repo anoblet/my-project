@@ -54,7 +54,7 @@ export default css`
     position: absolute;
     background: var(--background-color);
     height: 100%;
-    z-index: 1;
+    z-index: 3;
   }
 
   #drawer-container {
