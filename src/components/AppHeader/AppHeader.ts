@@ -1,12 +1,10 @@
-import { LitElement } from "lit-element";
-
 import GlobalStyle from "../../GlobalStyle";
+import { LitElement, customElement } from "lit-element";
 import Style from "./Style";
 import { store } from "../../Store";
 import template from "./AppHeaderTemplate";
 
-// import(/* webpackChunkName: "MWCFab" */ "@material/mwc-fab");
-
+@customElement("app-header")
 export class AppHeader extends LitElement {
   public firstUpdated() {
     const state = store.getState();
@@ -16,22 +14,11 @@ export class AppHeader extends LitElement {
 
   public setButtonBackground(user: any = false) {
     const button: any = this.querySelector("#userProfile");
-    // const fab = this.querySelector("#userProfile");
-    // const button = fab.shadowRoot.querySelector("button");
     if (button)
       if (user.photo) {
         button.style.background = `url('${user.photo}')`;
         button.style.backgroundSize = "contain";
       }
-  }
-
-  public resetButton() {
-    const fab = this.querySelector("#userProfile");
-    const button = fab.shadowRoot.querySelector("button");
-    if (button) {
-      button.style.background = `var(--secondary-color)`;
-      button.style.backgroundSize = "initial";
-    }
   }
 
   static get styles() {
@@ -42,5 +29,3 @@ export class AppHeader extends LitElement {
     return template.bind(this)();
   }
 }
-
-window.customElements.define("app-header", AppHeader);
