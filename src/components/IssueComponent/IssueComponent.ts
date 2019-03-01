@@ -44,7 +44,7 @@ export class IssueComponent extends LitElement {
   public render() {
     return html`
       <card-component title="Create a Github issue">
-        <div slot="content">
+        <div slot="content" style="padding: 0;">
           <grid-component>
             <card-component id="form">
               ${renderForm(
