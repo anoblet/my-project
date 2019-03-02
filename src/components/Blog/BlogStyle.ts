@@ -6,8 +6,6 @@ export default css`
   }
 
   :host {
-    display: grid;
-    grid-gap: 1em;
     flex: 1;
     position: relative;
   }
