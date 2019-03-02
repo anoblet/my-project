@@ -191,4 +191,8 @@ export default css`
     cursor: pointer;
     padding: 1em;
   }
+
+  #userProfile {
+    cursor: pointer;
+  }
 `;

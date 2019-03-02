@@ -1,50 +1,43 @@
-import * as style from "./SettingsComponent.scss";
+import { LitElement, html } from "lit-element";
 
-import { LitElement, html, property } from "lit-element";
-
-import { Mixin } from "../../../packages/Mixin";
-import { FirebaseMixin } from "../../../packages/FirebaseMixin";
-import { StateMixin } from "../../../packages/StateMixin";
-import { connect } from "pwa-helpers/connect-mixin.js";
 import { settings } from "./Settings";
 import { store } from "../../Store";
-import { until } from "lit-html/directives/until";
-import { getDocument, updateDocument } from "../../../packages/firebase-helpers";
+import {
+  getDocument,
+  updateDocument
+} from "../../../packages/firebase-helpers";
+import { addReducer } from "../../State";
+import { setState } from "../../../packages/state-helpers/state-helpers";
+import { renderForm } from "../PropertyEditor/PropertyEditor";
 
-const find = (path: string, object: any) => {
-  const parts = path.split("/");
-  let value = object;
-  try {
-    parts.map((part: string) => {
-      if (!value[part]) throw false;
-      value = value[part];
-    });
-  } catch (error) {
-    console.log("Could not find", path);
-    value = error;
+const properties = {
+  breadcrumbs : {
+    type: Boolean,
+    description: "Breadcrumbs",
+    label: "Breadcrumbs"
   }
-  return value;
-};
+}
 
-export class SettingsComponent extends Mixin(connect(store)(LitElement), [
-  FirebaseMixin,
-  StateMixin
-]) {
+export interface SettingsComponent {
+  [key: string]: any; // Add index signature
+}
+
+export class SettingsComponent extends LitElement {
+  public state: any;
+
   constructor() {
     super();
-    this.setStore(store);
-    this.addReducer("settings");
+    addReducer({ type: "settings", store });
   }
 
   public firstUpdated() {
-    super.firstUpdated();
     if (this.state) {
       if (this.state.user.signedIn) {
         getDocument({
           path: `users/${this.state.user.uid}/settings/default`,
           callback: (document: any) => {
             if (document) {
-              this.setState(document, "settings");
+              setState({ data: document, type: "settings", store });
             }
           }
         });
@@ -101,7 +94,7 @@ export class SettingsComponent extends Mixin(connect(store)(LitElement), [
                     @input="${(e: any) => {
                       const state: any = {};
                       state[setting.name] = e.target.value;
-                      this.setState(state, "settings");
+                      setState({ data: state, type: "settings", store });
                     }}"
                   />
                 `;
@@ -142,27 +135,12 @@ export class SettingsComponent extends Mixin(connect(store)(LitElement), [
     `;
   }
 
-  public stateChanged(state: any) {
-    super.stateChanged(state);
-    if (state.user.signedIn) {
-      if (state.settings) {
-        // Updates a document too many times
-        // updateDocument({
-        //   path: `users/${state.user.uid}/settings/default`,
-        //   data: state.settings
-        // });
-      }
-    }
-  }
-
   public render() {
-    return html`
-      ${until(
-        import("./SettingsComponentTemplate.ts").then((module) =>
-          module.default.bind(this)()
-        )
-      )}
-    `;
+    return renderForm(
+      this,
+      properties,
+      (_property: string, value: any) => (this[_property] = value)
+    );
   }
 }
 

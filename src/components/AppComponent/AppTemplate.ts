@@ -21,7 +21,7 @@ export default function() {
               mini
               label="Account"
               @click="${() => this._toggleProfile()}"
-              >&nbsp;
+            >
             </span>
           `
         : html`
