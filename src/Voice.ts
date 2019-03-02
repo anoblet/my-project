@@ -1,4 +1,5 @@
 import { navigate } from "./Router";
+import { routes } from "./components/AppComponent/Routes";
 
 const annyang = require("annyang");
 
