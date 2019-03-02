@@ -113,8 +113,7 @@ export class AppComponent extends LitElement {
     store.subscribe(() => {
       const state = store.getState();
       if (state.user.settings) {
-        const _voice = state.user.settings.annyangEnabled;
-        _voice ? voice.enable() : voice.disable();
+        state.user.settings.voice ? voice.enable() : voice.disable();
       }
       this.applyShadows();
     });
