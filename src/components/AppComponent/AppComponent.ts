@@ -110,13 +110,13 @@ export class AppComponent extends LitElement {
     this.reducers();
     this.media();
     if (config.staticTheme) setTheme(documentToTheme(config.theme), this);
-    store.subscribe(() => {
-      const state = store.getState();
-      if (state.user.settings) {
-        state.user.settings.voice ? voice.enable() : voice.disable();
-      }
-      this.applyShadows();
-    });
+    // store.subscribe(() => {
+    //   const state = store.getState();
+    //   if (state.user.settings) {
+    //     state.user.settings.voice ? voice.enable() : voice.disable();
+    //   }
+    //   this.applyShadows();
+    // });
   }
 
   public connectedCallback() {

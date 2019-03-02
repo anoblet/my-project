@@ -2,6 +2,7 @@ import { navigate } from "./Router";
 import { routes } from "./components/AppComponent/Routes";
 
 const annyang = require("annyang");
+annyang.debug();
 
 // Let's define a command.
 const commands: any = {
@@ -22,15 +23,16 @@ const commands: any = {
 annyang.addCommands(commands);
 
 // Start listening
-export const enableAnnyang = () => {
+export const enable = () => {
+  disable();
   annyang.start();
 };
 
-export const disableAnnyang = () => {
+export const disable = () => {
   annyang.abort();
 };
 
 export const voice = {
-  enable: enableAnnyang,
-  disable: disableAnnyang
+  enable,
+  disable
 };
