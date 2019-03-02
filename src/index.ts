@@ -13,7 +13,11 @@ import "./components/BreadcrumbComponent/Breadcrumb";
 import "firebase/app";
 import "firebase/auth";
 
-const galite = require("ga-lite");
+// const galite = require("ga-lite");
 
-galite("create", "UA-63899225-2", "auto");
-galite("send", "pageview");
+// @ts-ignore
+import("ga-lite").then((module: any) => {
+  const galite = module.default;
+  galite("create", "UA-63899225-2", "auto");
+  galite("send", "pageview");
+});
