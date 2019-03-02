@@ -4,17 +4,17 @@ import { routes } from "./components/AppComponent/Routes";
 const annyang = require("annyang");
 
 // Let's define a command.
-const commands = {
-  "home"() {
+const commands: any = {
+  home: () => {
     navigate("/");
   },
-  "eye exam"() {
+  "eye exam": () => {
     navigate("/components/eye-exam");
   },
-  "settings"() {
+  settings: () => {
     navigate("/user-settings");
   },
-  "theme"() {
+  theme: () => {
     navigate("/user-theme");
   }
 };
