@@ -2,7 +2,7 @@ import { LitElement, customElement, property } from "lit-element";
 import { documentToTheme, setTheme } from "../../Theme";
 import { extract, getUserSettings, getUserTheme } from "../../User";
 import { getDocument, initApp } from "../../../packages/firebase-helpers";
-import { handleNavigation } from "../../Router";
+import { handleNavigation, setPortal, setRoutes } from "../../Router";
 
 import GlobalStyle from "../../GlobalStyle";
 import Style from "./AppStyle";
@@ -54,6 +54,8 @@ export class AppComponent extends LitElement {
   }
 
   public async registerRouter() {
+    setRoutes(routes);
+    setPortal(this.shadowRoot.querySelector("#portal"));
     await new Promise((resolve: any) => {
       installRouter(async (location: any) => {
         await handleNavigation({

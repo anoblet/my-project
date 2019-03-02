@@ -73,5 +73,6 @@ export default function() {
     </div>
     <app-footer id="bottom"></app-footer>
     <menu-component></menu-component>
+    <voice-component></voice-component>
   `;
 }

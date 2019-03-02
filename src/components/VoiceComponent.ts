@@ -19,6 +19,6 @@ export class VoiceComponent extends LitElement {
   public updated(changedProperties: any) {
     if (changedProperties.has("voice"))
       this.voice ? voice.enable() : voice.disable();
-    super.updated(changedProperties);
+    return super.updated(changedProperties);
   }
 }
