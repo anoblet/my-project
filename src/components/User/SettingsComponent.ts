@@ -1,145 +1,56 @@
-import { LitElement, html } from "lit-element";
-
-import { settings } from "./Settings";
-import { store } from "../../Store";
 import {
   getDocument,
   updateDocument
 } from "../../../packages/firebase-helpers";
-import { addReducer } from "../../State";
-import { setState } from "../../../packages/state-helpers/state-helpers";
+
+import { LitElement } from "lit-element";
 import { renderForm } from "../PropertyEditor/PropertyEditor";
+import { store } from "../../Store";
+import { toast } from "../Toast/Toast";
 
 const properties = {
-  breadcrumbs : {
+  breadcrumbs: {
     type: Boolean,
     description: "Breadcrumbs",
     label: "Breadcrumbs"
   }
-}
+};
 
 export interface SettingsComponent {
   [key: string]: any; // Add index signature
 }
 
 export class SettingsComponent extends LitElement {
-  public state: any;
+  public values: any;
 
   constructor() {
     super();
-    addReducer({ type: "settings", store });
+    this.beforeRenderComplete = false;
+    this.beforeRender().then(() => (this.beforeRenderComplete = true));
   }
 
-  public firstUpdated() {
-    if (this.state) {
-      if (this.state.user.signedIn) {
-        getDocument({
-          path: `users/${this.state.user.uid}/settings/default`,
-          callback: (document: any) => {
-            if (document) {
-              setState({ data: document, type: "settings", store });
-            }
-          }
-        });
-      }
-    }
-  }
-
-  public form() {
+  public async beforeRender() {
     const state = store.getState();
-    return html`
-      <form>
-        <grid-component style="grid-template-columns: 1fr 1fr;">
-          ${settings.map((setting: any) => {
-            switch (setting.type) {
-              case Boolean:
-                return html`
-                  <label>${setting.label} (${setting.description})</label
-                  ><input
-                    ?checked="${this.state.user.settings[setting.name]}"
-                    name="${setting.name}"
-                    type="checkbox"
-                    @click="${(e: any) => {
-                      const state = store.getState();
-                      const path = `users/${state.user.uid}/settings/default`;
-                      const data: any = {};
-                      data[setting.name] = e.target.checked;
-                      updateDocument({ path, data });
-                    }}"
-                  />
-                `;
-              case String:
-                return html`
-                  <label>${setting.label} (${setting.description})</label
-                  ><input
-                    value="${this.state.user.settings[setting.name]}"
-                    name="${setting.name}"
-                    type="text"
-                    @change="${(e: any) => {
-                      const state = store.getState();
-                      const path = `users/${state.user.uid}/settings/default`;
-                      const data: any = {};
-                      data[setting.name] = e.target.value;
-                      updateDocument({ path, data });
-                    }}"
-                  />
-                `;
-              case Number: {
-                return html`
-                  <label>${setting.label} (${setting.description})</label
-                  ><input
-                    ?checked="${this.state.user.settings[setting.name]}"
-                    name="${setting.name}"
-                    type="number"
-                    @input="${(e: any) => {
-                      const state: any = {};
-                      state[setting.name] = e.target.value;
-                      setState({ data: state, type: "settings", store });
-                    }}"
-                  />
-                `;
-              }
-              case "select": {
-                return html`
-                <label>${setting.label} (${setting.description})</label
-                  <select
-                    name="${setting.name}"
-                    @input="${(e: any) => {
-                      const data: any = {
-                        [setting.name]:
-                          e.target.options[e.target.selectedIndex].value
-                      };
-                      const state = store.getState();
-                      const path = `users/${state.user.uid}/settings/default`;
-                      updateDocument({ path, data });
-                      // this.setState(state, "settings");
-                    }}"
-                    >${setting.options.map(
-                      (option: any) =>
-                        html`
-                          <option
-                            ?selected="${state.user.settings[setting.name] ==
-                              option.value}"
-                            value="${option.value}"
-                            >${option.label}</option
-                          >
-                        `
-                    )}</select
-                  >
-                `;
-              }
-            }
-          })}
-        </grid-component>
-      </form>
-    `;
+    await getDocument({
+      path: `users/${state.user.uid}/settings/default`
+    }).then((document: any) => {
+      this.values = document;
+    });
   }
 
   public render() {
+    const state = store.getState();
     return renderForm(
-      this,
+      this.values,
       properties,
-      (_property: string, value: any) => (this[_property] = value)
+      (_property: string, value: any) => {
+        updateDocument({
+          path: `users/${state.user.uid}/settings/default`,
+          data: { [_property]: value }
+        })
+          .then(() => toast("Settings updated"))
+          .catch(() => toast("Error: Settings not updated"));
+      }
     );
   }
 }
