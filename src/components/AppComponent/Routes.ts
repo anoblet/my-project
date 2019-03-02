@@ -1,25 +1,23 @@
 export const routes = [
   {
     name: "Home",
-    path: "",
-    component: "page-static"
-  },
-  {
-    name: "Home",
     path: "/",
-    component: "page-static"
+    component: "page-static",
+    voice: "home"
   },
   {
     path: "/admin",
     component: "admin-component",
     src: () =>
-      import(/* webpackChunkName: "AdminComponent" */ "../AdminComponent/AdminComponent")
+      import(/* webpackChunkName: "AdminComponent" */ "../AdminComponent/AdminComponent"),
+    voice: "admin"
   },
   {
     path: "/contact",
     component: "contact-component",
     src: () =>
-      import(/* webpackChunkName: "PageContact" */ "../Contact/Contact")
+      import(/* webpackChunkName: "PageContact" */ "../Contact/Contact"),
+    voice: "contact"
   },
   {
     path: "/components/:component?",
@@ -49,7 +47,8 @@ export const routes = [
     path: "/post/list",
     component: "post-grid-component",
     src: () =>
-      import(/* webpackChunkName: "PostGridComponent" */ "../Post/PostGridComponent")
+      import(/* webpackChunkName: "PostGridComponent" */ "../Post/PostGridComponent"),
+    voice: "posts"
   },
   {
     path: "/post/create",
@@ -67,7 +66,8 @@ export const routes = [
     path: "/user-settings",
     component: "settings-component",
     src: () =>
-      import(/* webpackChunkName: "SettingsComponent" */ "../User/SettingsComponent")
+      import(/* webpackChunkName: "SettingsComponent" */ "../User/SettingsComponent"),
+    voice: "settings"
   },
   {
     path: "/user-theme",

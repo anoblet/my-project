@@ -4,21 +4,26 @@ import { routes } from "./components/AppComponent/Routes";
 const annyang = require("annyang");
 annyang.debug();
 
+const commands: any = {};
+routes.map((route: any) => {
+  if (route.voice) commands[route.voice] = () => navigate(route.path);
+});
+
 // Let's define a command.
-const commands: any = {
-  home: () => {
-    navigate("/");
-  },
-  "eye exam": () => {
-    navigate("/components/eye-exam");
-  },
-  settings: () => {
-    navigate("/user-settings");
-  },
-  theme: () => {
-    navigate("/user-theme");
-  }
-};
+// const commands: any = {
+//   home: () => {
+//     navigate("/");
+//   },
+//   "eye exam": () => {
+//     navigate("/components/eye-exam");
+//   },
+//   settings: () => {
+//     navigate("/user-settings");
+//   },
+//   theme: () => {
+//     navigate("/user-theme");
+//   }
+// };
 
 annyang.addCommands(commands);
 
