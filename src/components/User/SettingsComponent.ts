@@ -13,6 +13,11 @@ const properties = {
     type: Boolean,
     description: "Breadcrumbs",
     label: "Breadcrumbs"
+  },
+  voice: {
+    type: Boolean,
+    description: "Voice",
+    label: "Voice"
   }
 };
 
