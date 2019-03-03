@@ -51,7 +51,7 @@ export const getCollection = async ({ path, callback, watch, orderBy }: any) => 
   return Promise.all([
     import(/* webpackChunkName: "Firebase" */ "firebase/app"), // @ts-ignore
     import(/* webpackChunkName: "FirebaseFirestore" */ "firebase/firestore")
-  ]).then(([firebase, firestore]) => {
+  ]).then(async ([firebase, firestore]) => {
     const collection = firebase.firestore().collection(path);
     if (orderBy) collection.orderBy(orderBy);
     // Watch is enabled, let's use a callback
