@@ -2,13 +2,14 @@ import { LitElement, customElement, html, property } from "lit-element";
 
 import GlobalStyle from "../GlobalStyle";
 import { setTheme } from "../Theme";
+import { BeforeRender } from "../mixins/BeforeRender";
 
 @customElement("color-picker")
-export class ColorPicker extends LitElement {
+export class ColorPicker extends BeforeRender(LitElement) {
   @property() public color: string;
 
   static get styles() {
-    return [GlobalStyle];
+    return GlobalStyle;
   }
 
   public render() {
