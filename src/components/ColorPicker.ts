@@ -10,6 +10,7 @@ export class ColorPicker extends LitElement {
   static get styles() {
     return [GlobalStyle];
   }
+  
   public render() {
     return html`
       <input type="color" @input=${this.colorChanged} />
