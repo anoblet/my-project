@@ -12,6 +12,7 @@ export default function() {
               ? html`
                   <a href="/components/eye-exam"><li>Eye Exam</li></a>
                   <a href="/components/collection-list"><li>Collection list</li></a>
+                  <a href="/components/color-picker"><li>Color</li></a>
                 `
               : ""}
             <!-- <a href="/components/web-speech"> <li>Web Speech API</li></a> -->

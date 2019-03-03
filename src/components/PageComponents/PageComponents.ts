@@ -9,6 +9,7 @@ import(/* webpackChunkName: "EyeExam" */ "../EyeExam/EyeExamComponent");
 import(/* webpackChunkName: "WebSpeech" */ "../WebSpeech/WebSpeechComponent");
 import(/* webpackChunkName: "PropertyEditor" */ "../PropertyEditor/PropertyEditor");
 import "../Collection/CollectionList";
+import "../ColorPicker";
 
 export class PageComponents extends LitElement {
   @property() public component: string;
