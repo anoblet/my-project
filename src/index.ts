@@ -7,7 +7,7 @@ import "./components/ProfileMenu/ProfileMenu";
 import "./components/MenuComponent/MenuComponent";
 import "./components/CardComponent/CardComponent";
 import "./components/GridComponent/GridComponent";
-import "./components/BreadcrumbComponent/Breadcrumb";
+import "./components/Breadcrumb/BreadcrumbComponent";
 import "./components/VoiceComponent";
 import "firebase/app";
 import "firebase/auth";
