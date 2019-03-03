@@ -18,7 +18,7 @@ export class Collection extends LitElement {
   public async beforeRender() {
     await getCollection({
       path: this.path,
-      orderBy: "sortOrder",
+      orderBy: "sortOrder"
     }).then((collection: any) => {
       this.collection = collection;
     });
@@ -33,6 +33,6 @@ export class Collection extends LitElement {
   }
 
   public render() {
-    return html``;
+    throw Error("Please define a render prop");
   }
 }
