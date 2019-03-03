@@ -1,12 +1,10 @@
 import { LitElement, css, html, property } from "lit-element";
 import { store } from "../../Store";
 import {
-  addDocument,
   getCollection,
   getDocument,
   updateDocument
 } from "../../../packages/firebase-helpers/firebase-helpers";
-import { setState } from "../../../packages/state-helpers/state-helpers";
 import themeEdit from "./ThemeEdit";
 import listThemes from "./ListThemes";
 import saveThemeTemplate from "./SaveTheme";
@@ -89,11 +87,11 @@ export class ThemeComponent extends LitElement {
     return html`
       <grid-component>
         <card-component title="Random theme">
-          <mwc-button
+          <button-component
             label="Random theme"
             outlined
             @click="${randomTheme}"
-          ></mwc-button>
+          ></button-component>
         </card-component>
         <card-component title="Toggles">
           ${toggleDark()} ${toggleShadow()}
