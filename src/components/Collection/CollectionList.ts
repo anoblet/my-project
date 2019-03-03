@@ -7,7 +7,7 @@ import { getCollection } from "../../Firebase";
 export class Collection extends LitElement {
   @property() public beforeRenderComplete: boolean;
   @property() public collection: any;
-  @property() public orderyBy: any = "sortOrder";
+  @property() public orderBy: any = "sortOrder";
   @property() public path: string = "/posts";
 
   constructor() {
@@ -18,8 +18,8 @@ export class Collection extends LitElement {
 
   public async beforeRender() {
     await getCollection({
-      path: this.path,
-      orderBy: "sortOrder"
+      orderBy: this.orderBy,
+      path: this.path
     }).then((collection: any) => {
       this.collection = collection;
     });
@@ -29,9 +29,9 @@ export class Collection extends LitElement {
     return this.beforeRenderComplete && super.shouldUpdate(changedProperties);
   }
 
-  static get itemRenderer() {
+  public itemRenderer(item: any) {
     return html`
-      Hi
+      ${JSON.stringify(item)}
     `;
   }
 
@@ -41,9 +41,7 @@ export class Collection extends LitElement {
 
   public render() {
     return html`
-      ${this.collection.map((item: any) => {
-        return html``;
-      })}
+      ${this.collection.map((item: any) => this.itemRenderer(item))}
     `;
   }
 }
