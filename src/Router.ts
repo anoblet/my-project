@@ -41,7 +41,6 @@ export const navigate = (path: string) => {
 };
 
 export const handleNavigation = async ({ location, portal, routes }: any) => {
-  console.log(location.pathname);
   let matchedRoute: any;
   portal = portal || globalPortal;
   routes = routes || globalRoutes;
