@@ -1,10 +1,9 @@
 import { LitElement, customElement, property } from "lit-element";
 
-import { getCollection } from "../../../packages/firebase-helpers";
 import GlobalStyle from "../../GlobalStyle";
 import Style from "./BlogStyle";
 import Template from "./BlogTemplate";
-import "../LoadingComponent";
+import { getCollection } from "../../../packages/firebase-helpers";
 
 @customElement("blog-component")
 export class Blog extends LitElement {
