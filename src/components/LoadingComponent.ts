@@ -1,6 +1,5 @@
 import { LitElement, css, customElement, html } from "lit-element";
 
-import GlobalStyle from "../GlobalStyle";
 import spinner from "./Loading/Spinner2";
 
 @customElement("loading-component")

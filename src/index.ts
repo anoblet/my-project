@@ -8,6 +8,7 @@ import "./components/MenuComponent/MenuComponent";
 import "./components/CardComponent/CardComponent";
 import "./components/GridComponent/GridComponent";
 import "./components/Breadcrumb/BreadcrumbComponent";
+import "./components/LoadingComponent";
 import "./components/VoiceComponent";
 import "firebase/app";
 import "firebase/auth";

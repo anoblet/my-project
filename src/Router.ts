@@ -40,7 +40,15 @@ export const navigate = (path: string) => {
   routeChanged({ location: window.location });
 };
 
-export const handleNavigation = async ({ location, portal, routes }: any) => {
+/**
+ * Route changed
+ * @param  {location pathname
+ * @param  portal    Outlet to serve results
+ * @param  routes}   Our route definition file to parse
+ * @return
+ */
+
+export const routeChanged = async ({ location, portal, routes }: any) => {
   let matchedRoute: any;
   portal = portal || globalPortal;
   routes = routes || globalRoutes;
@@ -87,21 +95,16 @@ export const handleNavigation = async ({ location, portal, routes }: any) => {
     element[key.name] = matchedRoute.data[key.name];
   });
   // End map properties
-  if (element.beforeRender) await element.beforeRender();
-  // Replace children
+  const loading = document.createElement("loading-component");
+  // Remove children
   while (portal.firstChild) {
     portal.removeChild(portal.firstChild);
   }
+  portal.appendChild(loading);
+  if (element.beforeRender) await element.beforeRender();
+  portal.removeChild(loading);
   portal.appendChild(element);
   // End replace children
 };
 
-/**
- * Route changed
- * @param  {location pathname
- * @param  portal    Outlet to serve results
- * @param  routes}   Our route definition file to parse
- * @return
- */
-
-export const routeChanged = handleNavigation;
+export const handleNavigation = routeChanged;
