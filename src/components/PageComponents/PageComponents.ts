@@ -14,10 +14,6 @@ const components = ["eye-chart"];
 export class PageComponents extends LitElement {
   @property() public component: string;
 
-  public firstUpdated() {
-    // if(this.component)
-  }
-
   static get styles() {
     return [GlobalStyle, style];
   }
