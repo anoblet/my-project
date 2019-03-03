@@ -2,7 +2,7 @@ import { LitElement, customElement, html, property } from "lit-element";
 import { store } from "../../Store";
 
 import GlobalStyle from "../../GlobalStyle";
-import style from "./BreadcrumbStyle";
+import Style from "./BreadcrumbStyle";
 
 @customElement("breadcrumb-component")
 export class BreadcrumbComponent extends LitElement {
@@ -11,10 +11,10 @@ export class BreadcrumbComponent extends LitElement {
 
   public constructor() {
     super();
-    this.syncActiveRoute();
     store.subscribe(() => {
       this.syncActiveRoute();
     });
+    this.syncActiveRoute();
   }
 
   public syncActiveRoute() {
@@ -38,12 +38,10 @@ export class BreadcrumbComponent extends LitElement {
   }
 
   static get styles() {
-    return [GlobalStyle, style];
+    return [GlobalStyle, Style];
   }
 
   public render() {
-    return html`
-      <div>${this.format(this.activeRoute)}</div>
-    `;
+    return this.format(this.activeRoute)
   }
 }
