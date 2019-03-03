@@ -3,7 +3,7 @@ import { LitElement, customElement, html, property } from "lit-element";
 import GlobalStyle from "../../GlobalStyle";
 import { getCollection } from "../../Firebase";
 
-@customElement("collection-list-component")
+@customElement("collection-list")
 export class Collection extends LitElement {
   @property() public beforeRenderComplete: boolean;
   @property() public collection: any;
