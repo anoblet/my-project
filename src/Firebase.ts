@@ -47,7 +47,7 @@ export const getUser = async () => {
  * Multi-use callback
  * getCollection({callback: (collection)=> console.log(collection), path: "posts", orderBy: "date", watch: true})
  **/
-export const getCollection = ({ path, callback, watch, orderBy }: any) => {
+export const getCollection = async ({ path, callback, watch, orderBy }: any) => {
   return Promise.all([
     import(/* webpackChunkName: "Firebase" */ "firebase/app"), // @ts-ignore
     import(/* webpackChunkName: "FirebaseFirestore" */ "firebase/firestore")
