@@ -107,14 +107,15 @@ export class AppComponent extends LitElement {
     debug("Constructor");
     this.reducers();
     this.media();
-    if (config.staticTheme) setTheme(documentToTheme(config.theme), this);
-    // store.subscribe(() => {
-    //   const state = store.getState();
-    //   if (state.user.settings) {
-    //     state.user.settings.voice ? voice.enable() : voice.disable();
-    //   }
-    //   this.applyShadows();
-    // });
+
+    if (config.staticTheme) {
+      setTheme(documentToTheme(config.theme), this);
+      setState({
+        type: "app",
+        data: { settings: { theme: config.theme } },
+        store
+      });
+    }
   }
 
   public connectedCallback() {
