@@ -1,37 +1,38 @@
-import { LitElement, customElement, property } from "lit-element";
+import { LitElement, customElement, html, property } from "lit-element";
 
 import GlobalStyle from "../../GlobalStyle";
-import { getCollection } from "../../../packages/firebase-helpers";
+import { getCollection } from "../../Firebase";
 
 @customElement("collection-list-component")
 export class Collection extends LitElement {
-  @property() public posts: any = [];
-  @property() public taskPending = true;
+  @property() public beforeRenderComplete: boolean;
+  @property() public collection: any;
+  @property() public path: string;
+
+  constructor() {
+    super();
+    this.beforeRenderComplete = false;
+    this.beforeRender().then(() => (this.beforeRenderComplete = true));
+  }
 
   public async beforeRender() {
     await getCollection({
-      path: "posts",
+      path: this.path,
       orderBy: "sortOrder",
-      where: {
-        property: "featured",
-        operator: "===",
-        value: true
-      }
     }).then((collection: any) => {
-      this.posts = collection;
-      this.taskPending = false;
+      this.collection = collection;
     });
   }
 
   public shouldUpdate(changedProperties: any) {
-    return !this.taskPending && super.shouldUpdate(changedProperties);
+    return !this.beforeRenderComplete && super.shouldUpdate(changedProperties);
   }
 
   static get styles() {
-    return [GlobalStyle, Style];
+    return [GlobalStyle];
   }
 
   public render() {
-    return Template.bind(this)();
+    return html``;
   }
 }
