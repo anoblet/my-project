@@ -45,7 +45,7 @@ export const handleNavigation = async ({ location, portal, routes }: any) => {
   portal = portal || globalPortal;
   routes = routes || globalRoutes;
 
-  // Find matched route
+  // Find a matched route
   routes.map((route: any) => {
     const keys: any = [];
     const regex = pathToRegexp(route.path, keys);
@@ -95,3 +95,13 @@ export const handleNavigation = async ({ location, portal, routes }: any) => {
   portal.appendChild(element);
   // End replace children
 };
+
+/**
+ * Route changed
+ * @param  {location pathname
+ * @param  portal    Outlet to serve results
+ * @param  routes}   Our route definition file to parse
+ * @return
+ */
+
+export const routeChanged = handleNavigation;
