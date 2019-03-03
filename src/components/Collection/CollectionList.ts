@@ -7,6 +7,7 @@ import { getCollection } from "../../Firebase";
 export class Collection extends LitElement {
   @property() public beforeRenderComplete: boolean;
   @property() public collection: any;
+  @property() public orderyBy: any = "sortOrder";
   @property() public path: string = "/posts";
 
   constructor() {
