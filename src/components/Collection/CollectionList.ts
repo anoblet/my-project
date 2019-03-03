@@ -7,7 +7,7 @@ import { getCollection } from "../../Firebase";
 export class Collection extends LitElement {
   @property() public beforeRenderComplete: boolean;
   @property() public collection: any;
-  @property() public path: string;
+  @property() public path: string = "/posts";
 
   constructor() {
     super();
@@ -25,7 +25,13 @@ export class Collection extends LitElement {
   }
 
   public shouldUpdate(changedProperties: any) {
-    return !this.beforeRenderComplete && super.shouldUpdate(changedProperties);
+    return this.beforeRenderComplete && super.shouldUpdate(changedProperties);
+  }
+
+  static get itemRenderer() {
+    return html`
+      Hi
+    `;
   }
 
   static get styles() {
@@ -33,6 +39,10 @@ export class Collection extends LitElement {
   }
 
   public render() {
-    throw Error("Please define a render prop");
+    return html`
+      ${this.collection.map((item: any) => {
+        return html``;
+      })}
+    `;
   }
 }
