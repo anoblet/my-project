@@ -37,7 +37,7 @@ export const setPortal = (portal: any) => {
 
 export const navigate = (path: string) => {
   window.history.pushState({}, "", path);
-  handleNavigation({ location: window.location });
+  routeChanged({ location: window.location });
 };
 
 export const handleNavigation = async ({ location, portal, routes }: any) => {
