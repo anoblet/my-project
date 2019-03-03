@@ -14,18 +14,22 @@ export const subscribe = (listener: any) => {
   subscribers.push(listener);
 };
 
-export const filterByMode = (mode: number) => {
-  const state = store.getState();
-  if (state.app.settings) return state.app.settings.mode >= mode;
-  else return true;
-};
-
 const start = (key: string) => {
   return true;
 };
 
+const stop = (key: string) => {
+  return true;
+};
+
 const debugObject = {
-  // history: [],
   pointer: "/",
-  start
+  start,
+  stop
+};
+
+export const filterByMode = (mode: number) => {
+  const state = store.getState();
+  if (state.app.settings) return state.app.settings.mode >= mode;
+  else return true;
 };
