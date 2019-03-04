@@ -1,7 +1,7 @@
 import {
   getCollection,
   updateDocument
-} from "../../../packages/firebase-helpers";
+} from "../../Firebase";
 
 import { html } from "lit-element";
 import { toast } from "../Toast/Toast";

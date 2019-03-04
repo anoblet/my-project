@@ -1,7 +1,7 @@
 import { LitElement, customElement, property } from "lit-element";
 import { documentToTheme, setTheme } from "../../Theme";
 import { extract, getUserSettings, getUserTheme } from "../../User";
-import { getDocument, initApp } from "../../../packages/firebase-helpers";
+import { getDocument, getUser, initApp } from "../../Firebase";
 import { routeChanged, setPortal, setRoutes } from "../../Router";
 
 import GlobalStyle from "../../GlobalStyle";
@@ -9,11 +9,10 @@ import Style from "./AppStyle";
 import { addReducer } from "../../State";
 import { config } from "../../../config";
 import { debug } from "../../Debug";
-import { getUser } from "../../Firebase";
 import { installOfflineWatcher } from "pwa-helpers/network.js";
 import { installRouter } from "pwa-helpers/router.js";
 import { routes } from "./Routes";
-import { setState } from "../../../packages/state-helpers/state-helpers";
+import { setState } from "../../State";
 import { store } from "../../Store";
 import { subscribe } from "../../Media";
 import template from "./AppTemplate";

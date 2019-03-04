@@ -78,3 +78,50 @@ export const getCollection = async ({ path, callback, watch, orderBy }: any) => 
       });
   });
 };
+
+/**
+ * Update or create a document
+ *
+ * Example:
+ * updateDocument({ path: "posts/<postId>", { title: "Sample title" } })
+ * @return
+ **/
+
+export const updateDocument = ({ data, path }: any) => {
+  // console.log("Updating document");
+  return run(["firestore"]).then((firebase: any) => {
+    return firebase
+      .firestore()
+      .doc(path)
+      .set(data, { merge: true });
+  });
+};
+
+/**
+ * Returns a promise/document, or calls a callback depending on the watch property
+ **/
+export const getDocument = ({ callback, path, watch }: any) => {
+  return run(["firestore"]).then((firebase: any) => {
+    const document = firebase.firestore().doc(path);
+    return watch
+      ? document.onSnapshot((doc: any) => {
+          const source = doc.metadata.hasPendingWrites ? "local" : "remote";
+          callback(doc.data());
+        })
+      : document.get().then((doc: any) => {
+          return doc.data();
+        });
+  });
+};
+
+/**
+ * Should be run once and only once since it instantiates Firebase
+ *  - Should be of type <firebaseConfig> (How the hell would I type that anyways :P)
+ * @param  config
+ * @return Promise
+ **/
+export const initApp = (config: any) => {
+  run([]).then((firebase: any) => {
+    if (firebase.apps.length === 0) firebase.initializeApp(config);
+  });
+};
