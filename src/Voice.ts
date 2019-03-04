@@ -1,7 +1,6 @@
 import { navigate } from "./Router";
 import { routes } from "./components/AppComponent/Routes";
 
-//const annyang = require("annyang");
 // @ts-ignore
 import annyang from "annyang";
 
