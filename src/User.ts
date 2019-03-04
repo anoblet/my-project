@@ -66,7 +66,7 @@ export const onUserLoggedIn = () => {
 };
 
 export const getUser = (options: any) => {
-  const user = _getUser(options);
+  const user = _getUser();
   return extract(user);
 };
 
