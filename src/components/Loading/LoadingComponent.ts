@@ -1,6 +1,6 @@
 import { LitElement, css, customElement, html } from "lit-element";
 
-import spinner from "./Loading/Spinner2";
+import spinner from "./Spinner2";
 
 @customElement("loading-component")
 export class LoadingComponent extends LitElement {
