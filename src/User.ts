@@ -31,7 +31,7 @@ export const isSignedIn = () => {
  * @return void
  */
 
-export const signOut = async (redirect: any = "/") => {
+export const signOut = async () => {
   const _redirect = "/";
   return run(["auth"])
     .then((firebase: any) => {
