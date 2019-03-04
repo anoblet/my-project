@@ -1,7 +1,4 @@
-import {
-  getDocument,
-  updateDocument
-} from "../../Firebase";
+import { getDocument, updateDocument } from "../../Firebase";
 
 import { LitElement, css } from "lit-element";
 import { renderForm } from "../PropertyEditor/PropertyEditor";
@@ -24,6 +21,11 @@ const properties = {
     type: Boolean,
     description: "Voice",
     label: "Voice"
+  },
+  rightClick: {
+    description: "Enable the right-click of the mouse to toggle the main menu",
+    label: "Right click",
+    type: Boolean
   }
 };
 
