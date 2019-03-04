@@ -25,16 +25,6 @@ export const isSignedIn = () => {
   return state.user.signedIn;
 };
 
-// export const isSignedIn = async () => {
-//   await run(["auth"], (firebase: any) => {
-//     new Promise(resolve => {
-//       firebase.auth().onAuthStateChanged((user: any) => {
-//         resolve(!!user);
-//       });
-//     });
-//   });
-// };
-
 /**
  * Sign out clear /user in state and redirect to /
  * @param redirect - URL to redirect to after sign out. Defaults to "/"
