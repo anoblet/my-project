@@ -1,7 +1,7 @@
 import {
   getDocument,
   updateDocument
-} from "../../../packages/firebase-helpers";
+} from "../../Firebase";
 
 import { LitElement, css } from "lit-element";
 import { renderForm } from "../PropertyEditor/PropertyEditor";

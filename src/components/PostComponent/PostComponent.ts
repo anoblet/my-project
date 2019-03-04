@@ -3,7 +3,7 @@ import {
   addDocument,
   getDocument,
   updateDocument
-} from "../../../packages/firebase-helpers";
+} from "../../Firebase";
 
 import { Mixin } from "../../../packages/Mixin";
 import { TemplateMixin } from "../../../packages/TemplateMixin";

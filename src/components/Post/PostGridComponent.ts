@@ -5,7 +5,7 @@ import Style from "./PostGridStyle";
 import {
   deleteDocument,
   getCollection
-} from "../../../packages/firebase-helpers";
+} from "../../Firebase";
 import template from "./PostGridComponentTemplate";
 import { toast } from "../Toast/Toast";
 

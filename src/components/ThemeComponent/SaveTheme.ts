@@ -3,7 +3,7 @@ import { setTheme } from "./ThemeComponent";
 import {
   addDocument,
   getDocument
-} from "../../../packages/firebase-helpers/firebase-helpers";
+} from "../../Firebase";
 import { store } from "../../Store";
 import { toast } from "../Toast/Toast";
 

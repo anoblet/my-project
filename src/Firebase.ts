@@ -2,9 +2,7 @@ export const run = async (packages: any) => {
   const imports: any = [];
   imports.push(import(/* webpackChunkName: "Firebase" */ "firebase/app"));
   if (packages.includes("auth"))
-    imports.push(
-      import(/* webpackChunkName: "Firebase" */ "firebase/auth")
-    );
+    imports.push(import(/* webpackChunkName: "Firebase" */ "firebase/auth"));
   if (packages.includes("firestore"))
     imports.push(
       import(/* webpackChunkName: "FirebaseFirestore" */ "firebase/firestore")
@@ -47,7 +45,12 @@ export const getUser = async () => {
  * Multi-use callback
  * getCollection({callback: (collection)=> console.log(collection), path: "posts", orderBy: "date", watch: true})
  **/
-export const getCollection = async ({ path, callback, watch, orderBy }: any) => {
+export const getCollection = async ({
+  path,
+  callback,
+  watch,
+  orderBy
+}: any) => {
   return Promise.all([
     import(/* webpackChunkName: "Firebase" */ "firebase/app"), // @ts-ignore
     import(/* webpackChunkName: "FirebaseFirestore" */ "firebase/firestore")
@@ -123,5 +126,37 @@ export const getDocument = ({ callback, path, watch }: any) => {
 export const initApp = (config: any) => {
   run([]).then((firebase: any) => {
     if (firebase.apps.length === 0) firebase.initializeApp(config);
+  });
+};
+
+/**
+ * Delete document
+ * @param  path Document path inside of Firebase
+ * @return      Promise
+ **/
+export const deleteDocument = ({ path }: any) => {
+  return run(["firestore"]).then((firebase: any) => {
+    return firebase
+      .firestore()
+      .doc(path)
+      .delete();
+  });
+};
+
+/**
+ * Add a document to a collection
+ * @return The document ID
+ * @todo Return DocRef
+ * Example: addDocument("posts", { title: "Sample title" })
+ **/
+export const addDocument = ({ path, data }: any) => {
+  return run(["firestore"]).then((firebase: any) => {
+    return firebase
+      .firestore()
+      .collection(path)
+      .add(data)
+      .then((docRef: any) => {
+        return docRef.id;
+      });
   });
 };

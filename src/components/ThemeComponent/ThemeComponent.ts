@@ -3,7 +3,7 @@ import {
   getCollection,
   getDocument,
   updateDocument
-} from "../../../packages/firebase-helpers/firebase-helpers";
+} from "../../Firebase";
 
 import GlobalStyle from "../../GlobalStyle";
 import listThemes from "./ListThemes";

@@ -1,5 +1,5 @@
 import { html } from "lit-element";
-import { updateDocument } from "../../../packages/firebase-helpers/firebase-helpers";
+import { updateDocument } from "../../Firebase";
 import { store } from "../../Store";
 import { toast } from "../Toast/Toast";
 

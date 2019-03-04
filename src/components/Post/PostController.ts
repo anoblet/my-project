@@ -10,8 +10,7 @@ import { Mixin } from "../../../packages/Mixin";
 import { StateMixin } from "../../../packages/StateMixin";
 import { navigate } from "../../Router";
 import { store } from "../../Store";
-import { getCollection } from "../../../packages/firebase-helpers";
-import { deleteDocument } from "../../../packages/firebase-helpers";
+import { getCollection, deleteDocument } from "../../Firebase";
 
 import { debug } from "../../Debug";
 import { toast } from "../Toast/Toast";

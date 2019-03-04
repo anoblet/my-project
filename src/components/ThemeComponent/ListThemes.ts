@@ -1,7 +1,7 @@
 import { html } from "lit-element";
 import { setTheme } from "./ThemeComponent";
 import { store } from "../../Store";
-import { deleteDocument } from "../../../packages/firebase-helpers";
+import { deleteDocument } from "../../Firebase";
 import { toast } from "../Toast/Toast";
 
 export default function(themes: any) {

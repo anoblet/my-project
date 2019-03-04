@@ -1,7 +1,7 @@
 import { html, LitElement, property } from "lit-element";
 
 import { store } from "../../Store";
-import { updateDocument } from "../../../packages/firebase-helpers/firebase-helpers";
+import { updateDocument } from "../../Firebase";
 
 export const toggleShadow = () => {
   const state = store.getState();

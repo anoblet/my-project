@@ -1,5 +1,4 @@
-import { getUser as _getUser } from "../packages/firebase-helpers";
-import { getDocument } from "../packages/firebase-helpers/firebase-helpers";
+import { getUser as _getUser, getDocument } from "./Firebase";
 import { navigate } from "./Router";
 import { run } from "./Firebase";
 import { setDefaultTheme } from "./Theme";
