@@ -4,6 +4,8 @@ import { routes } from "./components/AppComponent/Routes";
 // @ts-ignore
 import annyang from "annyang";
 
+annyang.debug();
+
 const commands: any = {};
 routes.map((route: any) => {
   if (route.voice) commands[route.voice] = () => navigate(route.path);

@@ -32,7 +32,7 @@ export interface SettingsComponent {
 }
 
 export class SettingsComponent extends BeforeRender(LitElement) {
-  public values: any;
+  public values: any = {};
 
   static get styles() {
     return [
