@@ -35,12 +35,7 @@ export const setTheme = (theme: any) => {
 };
 
 const randomColor = () => {
-  const letters = "0123456789ABCDEF";
-  let color = "#";
-  for (let i = 0; i < 6; i++) {
-    color += letters[Math.floor(Math.random() * 16)];
-  }
-  return color;
+  return randomMC.getColor();
 };
 
 const randomTheme = () => {
@@ -59,8 +54,8 @@ export class ThemeComponent extends LitElement {
   public firstUpdated() {
     const state = store.getState();
     getDocument({
-      callback: (theme: any) => {
-        this.currentTheme = theme.currentTheme;
+      callback: (_theme: any) => {
+        this.currentTheme = _theme.currentTheme;
       },
       path: `/users/${state.user.uid}/settings/theme`,
       watch: true
