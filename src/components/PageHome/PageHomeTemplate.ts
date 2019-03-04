@@ -1,5 +1,4 @@
-import { css, html } from "lit-element";
-import { getReadme } from "../Readme/Readme";
+import { html } from "lit-element";
 
 export default function() {
   return html`
