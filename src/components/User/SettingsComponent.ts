@@ -3,12 +3,18 @@ import {
   updateDocument
 } from "../../../packages/firebase-helpers";
 
-import { LitElement } from "lit-element";
+import { LitElement, css } from "lit-element";
 import { renderForm } from "../PropertyEditor/PropertyEditor";
 import { store } from "../../Store";
 import { toast } from "../Toast/Toast";
+import { BeforeRender } from "../../mixins/BeforeRender";
 
 const properties = {
+  username: {
+    description: "username",
+    label: "Username",
+    type: String
+  },
   breadcrumbs: {
     type: Boolean,
     description: "Breadcrumbs",
@@ -25,13 +31,30 @@ export interface SettingsComponent {
   [key: string]: any; // Add index signature
 }
 
-export class SettingsComponent extends LitElement {
+export class SettingsComponent extends BeforeRender(LitElement) {
   public values: any;
 
-  constructor() {
-    super();
-    this.beforeRenderComplete = false;
-    this.beforeRender().then(() => (this.beforeRenderComplete = true));
+  static get styles() {
+    return [
+      css`
+        :host {
+          flex: 1;
+        }
+
+        grid-component {
+          flex: 1;
+        }
+
+        .field {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+        }
+
+        .field input {
+          margin: 0 auto;
+        }
+      `
+    ];
   }
 
   public async beforeRender() {
