@@ -1,19 +1,21 @@
 import { LitElement, css, html, property } from "lit-element";
-import { store } from "../../Store";
 import {
   getCollection,
   getDocument,
   updateDocument
 } from "../../../packages/firebase-helpers/firebase-helpers";
-import themeEdit from "./ThemeEdit";
+
+import GlobalStyle from "../../GlobalStyle";
 import listThemes from "./ListThemes";
 import saveThemeTemplate from "./SaveTheme";
+import { store } from "../../Store";
+import themeEdit from "./ThemeEdit";
 import { themeStructure } from "./ThemeStructure";
 import { toggleDark } from "./ToggleDark";
 import { toggleShadow } from "./ToggleShadow";
-import GlobalStyle from "../../GlobalStyle";
 
-// import(/* webpackChunkName: "MWCSwitch" */ "@material/mwc-switch");
+// @ts-ignore
+const randomMC = require('random-material-color');
 
 const getThemePath = () => {
   const state = store.getState();
