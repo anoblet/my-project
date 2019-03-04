@@ -3,7 +3,7 @@ import { getDocument } from "../packages/firebase-helpers/firebase-helpers";
 import { navigate } from "./Router";
 import { run } from "./Firebase";
 import { setDefaultTheme } from "./Theme";
-import { setState } from "../packages/state-helpers/state-helpers";
+import { setState } from "./State";
 import { store } from "./Store";
 import { toast } from "./components/Toast/Toast";
 
