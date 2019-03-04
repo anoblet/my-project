@@ -13,6 +13,7 @@ const SpeedMeasurePlugin = require("speed-measure-webpack-plugin");
 const smp = new SpeedMeasurePlugin();
 var Visualizer = require("webpack-visualizer-plugin");
 const PreloadWebpackPlugin = require("preload-webpack-plugin");
+const { UnusedFilesWebpackPlugin } = require("unused-files-webpack-plugin");
 
 // const commonConfig =
 
@@ -129,10 +130,7 @@ module.exports = {
       }
     ]),
     new RobotstxtPlugin(),
+    new UnusedFilesWebpackPlugin({ patterns: ["src/**/*.*"] }),
     new Visualizer()
-    // new WebpackLighthousePlugin({
-    //   url: "http://localhost:8080/",
-    //   perf: true
-    // })
   ]
 };
