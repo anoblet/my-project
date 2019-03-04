@@ -5,7 +5,8 @@ import { voice } from "../Voice";
 
 @customElement("voice-component")
 export class VoiceComponent extends LitElement {
-  @property() public voice: boolean;
+  @property() public voice: boolean = false;
+
   constructor() {
     super();
     store.subscribe(() => {

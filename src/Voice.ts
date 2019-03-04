@@ -1,7 +1,9 @@
 import { navigate } from "./Router";
 import { routes } from "./components/AppComponent/Routes";
 
-const annyang = require("annyang");
+//const annyang = require("annyang");
+// @ts-ignore
+import annyang from "annyang";
 
 const commands: any = {};
 routes.map((route: any) => {
@@ -12,7 +14,6 @@ annyang.addCommands(commands);
 
 // Start listening
 export const enable = () => {
-  disable();
   annyang.start();
 };
 
