@@ -1,6 +1,6 @@
 import { getDocument, updateDocument } from "../../Firebase";
 
-import { LitElement, css } from "lit-element";
+import { LitElement, css, customElement } from "lit-element";
 import { renderForm } from "../PropertyEditor/PropertyEditor";
 import { store } from "../../Store";
 import { toast } from "../Toast/Toast";
@@ -33,6 +33,7 @@ export interface SettingsComponent {
   [key: string]: any; // Add index signature
 }
 
+@customElement("settings-component")
 export class SettingsComponent extends BeforeRender(LitElement) {
   public values: any = {};
 
@@ -84,5 +85,3 @@ export class SettingsComponent extends BeforeRender(LitElement) {
     );
   }
 }
-
-window.customElements.define("settings-component", SettingsComponent);
