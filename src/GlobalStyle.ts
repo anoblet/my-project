@@ -6,7 +6,7 @@ export default css`
   }
 
   a {
-    color: var(--secondary-color);
+    color: var(--link-color);
     /* font-weight: 550; */
     text-decoration: none;
   }
