@@ -14,12 +14,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@material/mwc-button": "^0.3.6",
-    "@material/mwc-checkbox": "^0.3.6",
-    "@material/mwc-fab": "^0.3.6",
-    "@material/mwc-formfield": "^0.3.6",
     "@material/mwc-icon": "^0.3.6",
-    "@material/mwc-switch": "^0.3.6",
     "@types/node": "^10.12.26",
     "@types/node-sass": "^3.10.32",
     "@webcomponents/webcomponentsjs": "^2.2.7",
