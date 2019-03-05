@@ -36,6 +36,12 @@ export class AppComponent extends LitElement {
     });
   }
 
+  public reducers() {
+    addReducer({ type: "app", store });
+    addReducer({ type: "user", store });
+    addReducer({ type: "settings", store });
+  }
+
   public registerlisteners() {
     this.addEventListener("close-drawer", this._closeDrawer);
     this.addEventListener("drawer-toggled", this._toggleDrawer);
@@ -97,7 +103,7 @@ export class AppComponent extends LitElement {
   constructor() {
     super();
     debug("Constructor");
-    reducers();
+    this.reducers();
     this.media();
 
     if (config.staticTheme) {
