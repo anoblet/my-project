@@ -14,7 +14,7 @@ export default function() {
               `
             : ""}
           <li><a href="/contact">Contact</a></li>
-          <li><a href="/timings">Timings</a></li>
+          <li><a href="/performance">Performance</a></li>
           <li><a href="/readme">Readme</a></li>
           ${isAdmin()
             ? html`
