@@ -5,7 +5,7 @@ type Constructor<T = {}> = new (...args: any[]) => T;
 export function BeforeRender<BaseType extends Constructor<LitElement>>(
   BaseClass: BaseType
 ) {
-  class Mixin extends BaseClass {
+  class MixinClass extends BaseClass {
     @property({ type: Boolean })
     public beforeRenderComplete: boolean;
 
@@ -24,5 +24,5 @@ export function BeforeRender<BaseType extends Constructor<LitElement>>(
     }
   }
 
-  return Mixin;
+  return MixinClass;
 }
