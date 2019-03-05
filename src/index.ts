@@ -10,9 +10,9 @@ import "./components/GridComponent/GridComponent";
 import "./components/Breadcrumb/BreadcrumbComponent";
 import "./components/Loading/LoadingComponent";
 import "./components/VoiceComponent";
+// Firebase
 import "firebase/app";
 import "firebase/auth";
-
 // @ts-ignore
 import galite from "ga-lite";
 galite("create", "UA-63899225-2", "auto");
