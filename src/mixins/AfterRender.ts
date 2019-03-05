@@ -10,11 +10,11 @@ export function AfterRender<BaseType extends Constructor<LitElement>>(
     public afterRenderComplete: boolean;
     constructor(...args: any[]) {
       super(...args);
+      this.afterRenderComplete = false;
     }
 
     public firstUpdated(changedProperties: any) {
       super.firstUpdated(changedProperties);
-      this.afterRenderComplete = false;
       this.afterRender().then(() => (this.afterRenderComplete = true));
     }
 
