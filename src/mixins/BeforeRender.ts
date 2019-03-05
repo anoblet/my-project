@@ -2,10 +2,10 @@ import { LitElement, property } from "lit-element";
 
 type Constructor<T = {}> = new (...args: any[]) => T;
 
-export function BeforeRender<Base extends Constructor<LitElement>>(
-  base: Base
+export function BeforeRender<BaseType extends Constructor<LitElement>>(
+  BaseClass: BaseType
 ) {
-  class Mixin extends base {
+  class Mixin extends BaseClass {
     @property({ type: Boolean })
     public beforeRenderComplete: boolean;
 
