@@ -42,7 +42,7 @@ export const navigate = (path: string) => {
 
 /**
  * Route changed
- * @param  {location pathname
+ * @param  location
  * @param  portal    Outlet to serve results
  * @param  routes}   Our route definition file to parse
  * @return
