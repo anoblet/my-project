@@ -1,6 +1,6 @@
 export const components = [
   {
-    src: "./Blog/BlogComponent",
-    tag: "blog-component"
+    src: "./VoiceComponent",
+    tag: "voice-component"
   }
 ];
