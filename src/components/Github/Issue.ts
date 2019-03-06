@@ -1,4 +1,4 @@
-export interface issue {
+export interface Issue {
   title: "";
   comment: "";
 }
