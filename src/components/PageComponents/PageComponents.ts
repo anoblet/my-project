@@ -33,7 +33,6 @@ export class PageComponents extends LitElement {
     super();
     components.map((component: any) => {
       console.log(component.src);
-      // import(`../${component.src}`);
     });
   }
 
