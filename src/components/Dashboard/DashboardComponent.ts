@@ -5,11 +5,4 @@ const Template = html``;
 @customElement("dasboard-component")
 export class Dashboard extends LitElement {
   public template = Template;
-  static get styles() {
-    return [GlobalStyle, Style];
-  }
-
-  public render() {
-    return Template.bind(this)();
-  }
 }
