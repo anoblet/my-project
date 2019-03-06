@@ -4,7 +4,6 @@ import { store } from "../../Store";
 
 export default function() {
   const state = store.getState();
-  const app = state.app;
   return html`
     <grid-component gap="1em">
       <card-component collapsible collapsed title="Global Scope">
