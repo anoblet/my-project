@@ -4,9 +4,8 @@ interface IssueRequest {
   data: { title: string; body: string };
 }
 
-const repo = "my-project";
-
 // github
+const repo = "my-project";
 const username = config.github.username;
 const password = config.github.password;
 
