@@ -20,6 +20,7 @@ export const enable = () => {
 
 export const disable = () => {
   annyang.abort();
+  annyang.getSpeechRecognizer().stop();
 };
 
 export const voice = {
