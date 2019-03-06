@@ -1,9 +1,7 @@
 import { html } from "lit-element";
-import { setTheme } from "./SetTheme";
-import { store } from "../../Store";
+import { assignTheme } from "./AssignThemeTemplate";
 
 export default function() {
-  const state = store.getState();
   return html`
     <grid-component gap="1em">
       <card-component collapsible collapsed title="Global Scope">
@@ -11,7 +9,7 @@ export default function() {
           <grid-component>
             <card-component collapsible collapsed title="Assign theme">
               <div slot="content">
-                ${setTheme()}
+                ${assignTheme()}
               </div>
             </card-component>
           </grid-component>
