@@ -4,7 +4,6 @@ interface IssueRequest {
   data: { title: string; body: string };
 }
 
-const user = "anoblet";
 const repo = "my-project";
 
 // github
@@ -16,7 +15,7 @@ const password = config.github.password;
  * @return Promise
  * */
 export const createIssue = ({ data }: IssueRequest) => {
-  const endpoint = `https://api.github.com/repos/${user}/${repo}/issues`;
+  const endpoint = `https://api.github.com/repos/${username}/${repo}/issues`;
   return fetch(endpoint, {
     method: "POST",
     headers: {
