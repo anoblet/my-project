@@ -1,12 +1,10 @@
 import { html } from "lit-element";
-import { editTheme } from "./EditTheme";
 import { setTheme } from "./SetTheme";
 import { store } from "../../Store";
 
 export default function() {
   const state = store.getState();
   const app = state.app;
-  const _theme = {};
   return html`
     <grid-component gap="1em">
       <card-component collapsible collapsed title="Global Scope">
