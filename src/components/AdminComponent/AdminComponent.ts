@@ -1,7 +1,7 @@
 import { LitElement, customElement, css } from "lit-element";
 
 import GlobalStyle from "../../GlobalStyle";
-import template from "./AdminTemplate";
+import Template from "./AdminTemplate";
 
 @customElement("admin-component")
 export class AdminComponent extends LitElement {
@@ -17,6 +17,6 @@ export class AdminComponent extends LitElement {
   }
 
   public render() {
-    return template.bind(this)();
+    return Template.bind(this)();
   }
 }
