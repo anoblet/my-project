@@ -2,7 +2,7 @@ import { LitElement, customElement, html, property } from "lit-element";
 import { BeforeRender } from "../../mixins/BeforeRender";
 
 const beforeRender = async () => {
-  await import("../GridComponent/GridComponent");
+  await import("../Grid/GridComponent");
 };
 
 export interface DashboardComponent {
