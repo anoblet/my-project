@@ -4,11 +4,11 @@ import "./components/AppFooter/AppFooter";
 import "./components/PageStatic";
 import "./components/DrawerComponent/Drawer";
 import "./components/ProfileMenu/ProfileMenu";
-import "./components/MenuComponent/MenuComponent";
 import "./components/CardComponent/CardComponent";
 import "./components/GridComponent/GridComponent";
-import "./components/Breadcrumb/BreadcrumbComponent";
 import "./components/Loading/LoadingComponent";
+import "./components/MenuComponent/MenuComponent";
+import "./components/Breadcrumb/BreadcrumbComponent";
 import "./components/VoiceComponent";
 // Firebase
 import "firebase/app";
