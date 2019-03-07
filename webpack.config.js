@@ -10,7 +10,6 @@ const UglifyJsPlugin = require("uglifyjs-webpack-plugin");
 const HtmlLoader = require("html-loader");
 const WebpackLighthousePlugin = require("webpack-lighthouse-plugin");
 const SpeedMeasurePlugin = require("speed-measure-webpack-plugin");
-const smp = new SpeedMeasurePlugin();
 var Visualizer = require("webpack-visualizer-plugin");
 const PreloadWebpackPlugin = require("preload-webpack-plugin");
 const { UnusedFilesWebpackPlugin } = require("unused-files-webpack-plugin");
