@@ -1,4 +1,5 @@
 import { LitElement, customElement, html, property } from "lit-element";
+import { BeforeRender } from "../../mixins/BeforeRender";
 
 const beforeRender = async () => {
   await import("../GridComponent/GridComponent");
@@ -16,8 +17,11 @@ export interface DashboardComponent {
  */
 
 @customElement("dasboard-component")
-export class Dashboard extends LitElement {
+export class Dashboard extends BeforeRender(LitElement) {
   @property() public itemArray: any;
+
+  public beforeRender = beforeRender;
+
   public render() {
     return html`
       <grid-component
