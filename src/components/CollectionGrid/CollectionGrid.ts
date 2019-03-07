@@ -70,20 +70,6 @@ export class CollectionGrid extends LitElement {
     this._template = template.bind(this);
   }
 
-  // public read(id: string) {
-  //   import("./FirebaseDocument");
-  //   this.watchDocumentNew({
-  //     path: `${this.path}/${id}`,
-  //     callback: (document: any) => {
-  //       this.document = document;
-  //       this.requestUpdate();
-  //     }
-  //   });
-  //   this._template = () => html`
-  //     <firebase-document .path="${`${this.path}/${id}`}"></firebase-document>
-  //   `;
-  // }
-
   public delete(index: number) {
     const item = this._collection[index];
     deleteDocument({ path: `${this.path}/${item.id}` });
