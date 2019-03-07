@@ -31,7 +31,9 @@ export class Collection extends LitElement {
 
   public itemRenderer(item: any) {
     return html`
-      ${JSON.stringify(item)}
+      <card-component>
+        ${JSON.stringify(item)}
+      </card-component>
     `;
   }
 
