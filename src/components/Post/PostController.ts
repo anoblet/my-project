@@ -38,7 +38,7 @@ export class PostController extends Mixin(LitElement, [
     if (super.firstUpdated) super.firstUpdated();
     this.action = this.action || "index";
     debug(this.action);
-    if (this.action == "index") {
+    if (this.action === "index") {
       navigate("/post/read");
     } else {
       if (this[this.action]) this[this.action](this.id);
