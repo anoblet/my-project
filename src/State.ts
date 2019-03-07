@@ -29,3 +29,8 @@ export const setState = ({
     merge: config.merge
   });
 };
+
+export const state = {
+  addReducer,
+  set: setState
+};
