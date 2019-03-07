@@ -12,6 +12,7 @@ import(/* webpackChunkName: "WebSpeech" */ "../WebSpeech/WebSpeechComponent");
 import(/* webpackChunkName: "PropertyEditor" */ "../PropertyEditor/PropertyEditor");
 import("../Collection/CollectionList");
 import("../ColorPicker");
+import("../Dashboard/DashboardComponent")
 
 export class PageComponents extends LitElement {
   @property() public component: string;
