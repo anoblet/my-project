@@ -1,5 +1,8 @@
 import { LitElement, customElement, html, property } from "lit-element";
-// import "../GridComponent/GridComponent";
+
+const beforeRender = async () => {
+  await import("../GridComponent/GridComponent");
+};
 
 export interface DashboardComponent {
   src: string;
