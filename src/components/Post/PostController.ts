@@ -1,10 +1,8 @@
 import("../PostComponent/PostComponent");
 import("./PostGridComponent");
 
-import * as style from "./PostController.scss";
-
-import { LitElement, html, property } from "lit-element";
-import { addDocument, deleteDocument, getCollection } from "../../Firebase";
+import { LitElement, css, html, property } from "lit-element";
+import { deleteDocument, getCollection } from "../../Firebase";
 
 import { debug } from "../../Debug";
 import { navigate } from "../../Router";
@@ -85,34 +83,31 @@ export class PostController extends LitElement {
     });
   }
 
-  public submitForm(e: any) {
-    e.preventDefault();
-    const data: any = {};
-    data.title = (this.shadowRoot.querySelector(
-      "[name='title']"
-    ) as HTMLInputElement).value;
-    data.author = (this.shadowRoot.querySelector(
-      "[name='author']"
-    ) as HTMLInputElement).value;
-    data.content = (this.shadowRoot.querySelector(
-      "[name='content']"
-    ) as HTMLInputElement).value;
-    addDocument({ path: "posts", data }).then((result: any) => {
-      this.shadowRoot.querySelector(
-        "#result"
-      ).innerHTML = `Document created: ${result}. Waitng 2 seconds for a redirect to your post.`;
-      setTimeout(
-        () => this.store.dispatch(navigate(`/post/read/${result}`)),
-        2000
-      );
-    });
+  static get styles() {
+    return css`
+      :host {
+        display: flex;
+        flex: 1;
+        flex-direction: column;
+      }
+
+      #navigation {
+        display: grid;
+        grid-gap: 1em;
+        grid-template-columns: repeat(2, 1fr);
+        margin: 0 auto;
+        margin-bottom: 1em;
+        width: min-content;
+      }
+
+      #table {
+        grid-template-columns: min-content 1fr !important;
+      }
+    `;
   }
 
   public render() {
     return html`
-      <style>
-        ${style}
-      </style>
       ${this.template}
     `;
   }
