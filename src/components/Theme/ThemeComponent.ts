@@ -1,9 +1,5 @@
 import { LitElement, css, customElement, html, property } from "lit-element";
-import {
-  getCollection,
-  getDocument,
-  updateDocument
-} from "../../Firebase";
+import { getCollection, getDocument, updateDocument } from "../../Firebase";
 
 import GlobalStyle from "../../GlobalStyle";
 import listThemes from "./ListThemes";
@@ -26,11 +22,11 @@ const theme = async () => {
   return await getDocument({ path: getThemePath() });
 };
 
-export const setTheme = (theme: any) => {
+export const setTheme = (_theme: any) => {
   const state = store.getState();
   return updateDocument({
     path: `users/${state.user.uid}/settings/theme`,
-    data: { currentTheme: theme }
+    data: { currentTheme: _theme }
   });
 };
 
@@ -40,11 +36,11 @@ const randomColor = () => {
 
 const randomTheme = () => {
   const state = store.getState();
-  const theme: any = {};
+  const _theme: any = {};
   themeStructure.map((field: any) => {
-    if (field.type === "color") theme[field.property] = randomColor();
+    if (field.type === "color") _theme[field.property] = randomColor();
   });
-  setTheme(theme);
+  setTheme(_theme);
 };
 
 @customElement("theme-component")
