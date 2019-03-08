@@ -16,7 +16,9 @@ export class ProfileMenu extends Mixin(connect(store)(LitElement), [
 
   public connectedCallback() {
     super.connectedCallback();
-    this.handler = (e: any) => {};
+    this.handler = (e: any) => {
+      return;
+    };
   }
 
   public firstUpdated() {
