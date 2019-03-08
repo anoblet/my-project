@@ -1,6 +1,6 @@
 import { html, fixture, expect } from "@open-wc/testing";
 
-import "../Drawer";
+import "../DrawerComponent";
 
 describe("<drawer-component>", () => {
   it("media size is determined, what to do next?", async () => {
