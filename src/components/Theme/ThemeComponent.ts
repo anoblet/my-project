@@ -1,4 +1,4 @@
-import { LitElement, css, html, property } from "lit-element";
+import { LitElement, css, customElement, html, property } from "lit-element";
 import {
   getCollection,
   getDocument,
@@ -47,6 +47,7 @@ const randomTheme = () => {
   setTheme(theme);
 };
 
+@customElement("theme-component")
 export class ThemeComponent extends LitElement {
   @property({ type: Array }) public currentTheme: any = {};
   @property({ type: Array }) public savedThemes: any;
@@ -112,5 +113,3 @@ export class ThemeComponent extends LitElement {
     `;
   }
 }
-
-window.customElements.define("theme-component", ThemeComponent);

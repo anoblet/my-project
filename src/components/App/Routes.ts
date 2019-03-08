@@ -73,7 +73,7 @@ export const routes = [
     path: "/user-theme",
     component: "theme-component",
     src: () =>
-      import(/* webpackChunkName: "ThemeComponent" */ "../ThemeComponent/ThemeComponent")
+      import(/* webpackChunkName: "ThemeComponent" */ "../Theme/ThemeComponent")
   },
   {
     path: "/issue",
