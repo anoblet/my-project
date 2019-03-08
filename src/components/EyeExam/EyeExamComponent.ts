@@ -9,7 +9,6 @@ import { WebSpeech } from "../WebSpeech/WebSpeech";
 
 const WebSpeechInstance: any = new WebSpeech();
 
-
 const checkDuplicate: any = (input: any, criteria: string) => {
   const result = input();
   if (result === criteria) return checkDuplicate(input, criteria);
