@@ -61,9 +61,15 @@ export class WebSpeech {
     this.result = event.results[currentIndex][0].transcript;
   }
 
-  public onEnd(event: any) {}
+  public onEnd(event: any) {
+    return;
+  }
 
-  public onError(event: any) {}
+  public onError(event: any) {
+    return;
+  }
 
-  public onNoMatch(event: any) {}
+  public onNoMatch(event: any) {
+    return;
+  }
 }
