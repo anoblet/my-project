@@ -9,6 +9,7 @@
     "curly": false,
     "interface-name": false,
     "jsdoc-format": false,
+    "max-line-length": false,
     "member-ordering": false,
     "no-console": false,
     "no-var-requires": false,
