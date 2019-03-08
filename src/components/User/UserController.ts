@@ -36,7 +36,7 @@ export class UserController extends Mixin(connect(store)(LitElement), [
       super.firstUpdated();
     }
 
-    if (this.action == "index") {
+    if (this.action === "index") {
       const signedIn = this.state.user.signedIn;
       // signedIn
       //   ? store.dispatch(navigate("/user/account"))

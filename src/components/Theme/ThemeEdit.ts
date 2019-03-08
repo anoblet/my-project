@@ -9,7 +9,9 @@ const updateField = (field: string, value: string) => {
     path: `users/${state.user.uid}/settings/theme`,
     data: { currentTheme: { [field]: value } }
   })
-    .then(() => {})
+    .then(() => {
+      return;
+    })
     .catch((error: any) => {
       toast("Error");
     });
