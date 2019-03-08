@@ -4,25 +4,18 @@ import("./PostGridComponent");
 import * as style from "./PostController.scss";
 
 import { LitElement, html, property } from "lit-element";
-
-import { FirebaseMixin } from "../../../packages/FirebaseMixin";
-import { Mixin } from "../../../packages/Mixin";
-import { StateMixin } from "../../../packages/StateMixin";
-import { navigate } from "../../Router";
-import { store } from "../../Store";
-import { getCollection, deleteDocument } from "../../Firebase";
+import { addDocument, deleteDocument, getCollection } from "../../Firebase";
 
 import { debug } from "../../Debug";
+import { navigate } from "../../Router";
+import { store } from "../../Store";
 import { toast } from "../Toast/Toast";
 
 export interface PostController {
   [key: string]: any; // Add index signature
 }
 
-export class PostController extends Mixin(LitElement, [
-  FirebaseMixin,
-  StateMixin
-]) {
+export class PostController extends LitElement {
   @property({ type: String }) public action: string = "index";
   public template: any;
 
@@ -35,7 +28,7 @@ export class PostController extends Mixin(LitElement, [
   }
 
   public firstUpdated() {
-    if (super.firstUpdated) super.firstUpdated();
+    // if (super.firstUpdated) super.firstUpdated();
     this.action = this.action || "index";
     debug(this.action);
     if (this.action === "index") {
@@ -61,9 +54,9 @@ export class PostController extends Mixin(LitElement, [
   }
 
   public itemDeleted(item: any) {
-    deleteDocument({ path: `posts/${item.id}` }).then(() =>
-      toast("Item deleted")
-    ).catch((error: any) => toast("Missing or insufficient permission"));
+    deleteDocument({ path: `posts/${item.id}` })
+      .then(() => toast("Item deleted"))
+      .catch((error: any) => toast("Missing or insufficient permission"));
   }
 
   public read(id: any) {
@@ -95,10 +88,16 @@ export class PostController extends Mixin(LitElement, [
   public submitForm(e: any) {
     e.preventDefault();
     const data: any = {};
-    data.title = this.shadowRoot.querySelector("[name='title']").value;
-    data.author = this.shadowRoot.querySelector("[name='author']").value;
-    data.content = this.shadowRoot.querySelector("[name='content']").value;
-    this.addDocument({ path: "posts", data }).then((result: any) => {
+    data.title = (this.shadowRoot.querySelector(
+      "[name='title']"
+    ) as HTMLInputElement).value;
+    data.author = (this.shadowRoot.querySelector(
+      "[name='author']"
+    ) as HTMLInputElement).value;
+    data.content = (this.shadowRoot.querySelector(
+      "[name='content']"
+    ) as HTMLInputElement).value;
+    addDocument({ path: "posts", data }).then((result: any) => {
       this.shadowRoot.querySelector(
         "#result"
       ).innerHTML = `Document created: ${result}. Waitng 2 seconds for a redirect to your post.`;
