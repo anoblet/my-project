@@ -58,7 +58,7 @@ export class PostController extends LitElement {
   }
 
   public read(id: any) {
-    return id && id != "undefined" ? this.readSingle(id) : this.readMulti();
+    return id && id !== "undefined" ? this.readSingle(id) : this.readMulti();
   }
 
   public readSingle(id: string) {
