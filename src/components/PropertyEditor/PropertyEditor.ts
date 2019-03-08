@@ -2,12 +2,14 @@
 import { html } from "lit-element";
 import { renderNumber, renderText } from "../Form/Form";
 
-export interface property {
+export interface Property {
   label?: string;
   type: any;
 }
 
-export const PropertyEditor = () => {};
+export const PropertyEditor = () => {
+  return;
+};
 
 const merge = (
   property: string,
