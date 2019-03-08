@@ -15,7 +15,7 @@ import { toggleDark } from "./ToggleDark";
 import { toggleShadow } from "./ToggleShadow";
 
 // @ts-ignore
-const randomMC = require('random-material-color');
+const randomMC = require("random-material-color");
 
 const getThemePath = () => {
   const state = store.getState();
