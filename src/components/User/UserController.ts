@@ -111,7 +111,7 @@ export class UserController extends Mixin(connect(store)(LitElement), [
     // user.signOut();
     signOut();
     this.setState({}, "user", { merge: false });
-    this.setState(config.defaultTheme, "theme");
+    // this.setState(config.defaultTheme, "theme");
     navigate("/");
   }
 
