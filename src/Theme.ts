@@ -1,5 +1,6 @@
 import { getDocument } from "./Firebase";
 import { config } from "../config";
+
 export const setTheme = (theme: any, element: any) => {
   theme.map((propertyMap: any) => {
     element.style.setProperty(propertyMap.property, propertyMap.value);
