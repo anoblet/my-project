@@ -7,12 +7,14 @@ export const run = async (packages: any) => {
     imports.push(
       import(/* webpackChunkName: "FirebaseFirestore" */ "firebase/firestore")
     );
-  return Promise.all(imports).then(([firebase]) => firebase);
+  return Promise.all(imports).then(([_firebase]) => _firebase);
 };
 
+export const firebase = run;
+
 export const authRedirect = async () => {
-  return run(["auth"]).then((firebase: any) => {
-    const auth = firebase.auth();
+  return run(["auth"]).then((_firebase: any) => {
+    const auth = _firebase.auth();
     return auth.getRedirectResult().then((result: any) => {
       return result.user;
     });
@@ -24,9 +26,9 @@ export const authRedirect = async () => {
  * @return Promise
  */
 export const getUser = async () => {
-  return run(["auth"]).then((firebase: any) => {
+  return run(["auth"]).then((_firebase: any) => {
     return new Promise((resolve: any) => {
-      firebase.auth().onAuthStateChanged((user: any) => {
+      _firebase.auth().onAuthStateChanged((user: any) => {
         resolve(user);
       });
     });
@@ -54,8 +56,8 @@ export const getCollection = async ({
   return Promise.all([
     import(/* webpackChunkName: "Firebase" */ "firebase/app"), // @ts-ignore
     import(/* webpackChunkName: "FirebaseFirestore" */ "firebase/firestore")
-  ]).then(async ([firebase, firestore]) => {
-    const collection = firebase.firestore().collection(path);
+  ]).then(async ([_firebase]) => {
+    const collection = _firebase.firestore().collection(path);
     if (orderBy) collection.orderBy(orderBy);
     // Watch is enabled, let's use a callback
     if (watch)
@@ -92,8 +94,8 @@ export const getCollection = async ({
 
 export const updateDocument = ({ data, path }: any) => {
   // console.log("Updating document");
-  return run(["firestore"]).then((firebase: any) => {
-    return firebase
+  return run(["firestore"]).then((_firebase: any) => {
+    return _firebase
       .firestore()
       .doc(path)
       .set(data, { merge: true });
@@ -104,8 +106,8 @@ export const updateDocument = ({ data, path }: any) => {
  * Returns a promise/document, or calls a callback depending on the watch property
  **/
 export const getDocument = ({ callback, path, watch }: any) => {
-  return run(["firestore"]).then((firebase: any) => {
-    const document = firebase.firestore().doc(path);
+  return run(["firestore"]).then((_firebase: any) => {
+    const document = _firebase.firestore().doc(path);
     return watch
       ? document.onSnapshot((doc: any) => {
           const source = doc.metadata.hasPendingWrites ? "local" : "remote";
@@ -124,8 +126,8 @@ export const getDocument = ({ callback, path, watch }: any) => {
  * @return Promise
  **/
 export const initApp = (config: any) => {
-  run([]).then((firebase: any) => {
-    if (firebase.apps.length === 0) firebase.initializeApp(config);
+  run([]).then((_firebase: any) => {
+    if (_firebase.apps.length === 0) _firebase.initializeApp(config);
   });
 };
 
@@ -135,8 +137,8 @@ export const initApp = (config: any) => {
  * @return      Promise
  **/
 export const deleteDocument = ({ path }: any) => {
-  return run(["firestore"]).then((firebase: any) => {
-    return firebase
+  return run(["firestore"]).then((_firebase: any) => {
+    return _firebase
       .firestore()
       .doc(path)
       .delete();
@@ -150,8 +152,8 @@ export const deleteDocument = ({ path }: any) => {
  * Example: addDocument("posts", { title: "Sample title" })
  **/
 export const addDocument = ({ path, data }: any) => {
-  return run(["firestore"]).then((firebase: any) => {
-    return firebase
+  return run(["firestore"]).then((_firebase: any) => {
+    return _firebase
       .firestore()
       .collection(path)
       .add(data)
