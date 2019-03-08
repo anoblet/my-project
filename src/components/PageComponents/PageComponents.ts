@@ -6,7 +6,6 @@ import style from "./PageComponentsStyle";
 import template from "./PageComponentsTemplate";
 import { unsafeHTML } from "lit-html/directives/unsafe-html";
 
-import(/* webpackChunkName: "EyeChart" */ "../EyeChart/EyeChartComponent");
 import(/* webpackChunkName: "EyeExam" */ "../EyeExam/EyeExamComponent");
 import(/* webpackChunkName: "WebSpeech" */ "../WebSpeech/WebSpeechComponent");
 import(/* webpackChunkName: "PropertyEditor" */ "../PropertyEditor/PropertyEditor");
