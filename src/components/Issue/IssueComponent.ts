@@ -50,8 +50,8 @@ export class IssueComponent extends LitElement {
               ${renderForm(
                 this,
                 null,
-                (property: string, value: any) =>
-                  (this._data = { ...this._data, ...{ [property]: value } })
+                (_property: string, value: any) =>
+                  (this._data = { ...this._data, ...{ [_property]: value } })
               )}
             </card-component>
             ${false
