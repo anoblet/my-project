@@ -119,7 +119,9 @@ export class EyeExamComponent extends LitElement {
     return letters.charAt(Math.floor(Math.random() * letters.length));
   }
 
-  public start() {}
+  public start() {
+    return;
+  }
 
   public next() {
     if (this.currentIndex !== -1)
