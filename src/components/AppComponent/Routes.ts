@@ -79,7 +79,7 @@ export const routes = [
     path: "/issue",
     component: "issue-component",
     src: () =>
-      import(/* webpackChunkName: "IssueComponent" */ "../IssueComponent/IssueComponent")
+      import(/* webpackChunkName: "IssueComponent" */ "../Issue/IssueComponent")
   },
   {
     path: "/readme",
