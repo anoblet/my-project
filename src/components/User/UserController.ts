@@ -47,15 +47,13 @@ export class UserController extends Mixin(connect(store)(LitElement), [
   }
 
   public index() {
-    alert("Hi");
+    return;
   }
 
   public account() {
     this._template = html`
       ${until(
-        import("./PageAccount").then(({ default: template }) =>
-          template()
-        )
+        import("./PageAccount").then(({ default: template }) => template())
       )}
     `;
     this.requestUpdate();
