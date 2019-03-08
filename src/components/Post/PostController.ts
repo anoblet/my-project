@@ -54,7 +54,7 @@ export class PostController extends LitElement {
   public itemDeleted(item: any) {
     deleteDocument({ path: `posts/${item.id}` })
       .then(() => toast("Item deleted"))
-      .catch((error: any) => toast("Missing or insufficient permission"));
+      .catch(() => toast("Missing or insufficient permission"));
   }
 
   public read(id: any) {
