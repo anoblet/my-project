@@ -10,11 +10,7 @@ export default css`
     position: relative;
   }
 
-  /* grid-component {
-    grid-gap: 0;
-  } */
-
-  /* div[slot=content] {
-    padding: 1em 0 0 0;
-  } */
+  grid-component {
+    grid-gap: var(--grid-gap);
+  }
 `;
