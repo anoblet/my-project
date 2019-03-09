@@ -58,5 +58,11 @@ export const themeStructure = [
     property: "cardInnerPadding",
     varName: "--card-inner-padding",
     type: "size"
+  },
+  {
+    label: "Grid Gap",
+    property: "gridGap",
+    varName: "--grid-gap",
+    type: "size"
   }
 ];
