@@ -14,7 +14,7 @@ export default css`
     grid-gap: 0;
   }
 
-  div[slot=content] {
+  /* div[slot=content] {
     padding: 1em 0 0 0;
-  }
+  } */
 `;
