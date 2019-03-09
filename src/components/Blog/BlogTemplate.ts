@@ -1,5 +1,4 @@
 import { html } from "lit-element";
-import { until } from "lit-html/directives/until";
 import { unsafeHTML } from "lit-html/directives/unsafe-html";
 import { isAdmin } from "../../User";
 import { store } from "../../Store";
