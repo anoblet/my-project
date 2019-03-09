@@ -6,7 +6,7 @@ import { isAdmin } from "../../User"; // isAdmin is a function not a property an
 import { references } from "./References";
 
 // Components
-import(/* webpackChunkName: "ButtonComponent" */ "../ButtonComponent/ButtonComponent");
+import(/* webpackChunkName: "ButtonComponent" */ "../Button/ButtonComponent");
 import(/* webpackChunkName: "ReportComponent" */ "./ReportComponent");
 
 export default function() {

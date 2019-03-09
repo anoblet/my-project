@@ -2,7 +2,7 @@ import { config } from "../../../config";
 import { html } from "lit-element";
 import { isSignedIn } from "../../User";
 import { store } from "../../Store";
-import "../ButtonComponent/ButtonComponent";
+import "../Button/ButtonComponent";
 
 export default function() {
   const state = store.getState();
