@@ -1,12 +1,9 @@
 import { html } from "lit-element";
 import { renderForm } from "../PropertyEditor/PropertyEditor";
-import { properties } from "./Properties";
 import { filterByMode } from "../../Debug";
-import { isAdmin } from "../../User"; // isAdmin is a function not a property and may be re-evaluate on each render
 import { references } from "./References";
 
 // Components
-import(/* webpackChunkName: "ButtonComponent" */ "../Button/ButtonComponent");
 import(/* webpackChunkName: "ReportComponent" */ "./ReportComponent");
 
 export default function() {
