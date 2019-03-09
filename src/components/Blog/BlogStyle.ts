@@ -1,27 +1,20 @@
-backgroundColor
-"#2d2d35"
-(string)
-borderColor
-"#808080"
-borderRadius
-".25em"
-borderSize
-"1px"
-card-inner-padding
-"1em"
-cardInnerPadding
-"1em"
-id
-"U37IuS2hx33YLB20LYms"
-linkColor
-"#15b4ff"
-name
-"Bluue"
-padding
-"1em"
-primaryColor
-"#00ffff"
-secondaryColor
-"#00ffff"
-textColor
-"#D5F0EE"
+import { css } from "lit-element";
+
+export default css`
+  * {
+    box-sizing: border-box;
+  }
+
+  :host {
+    flex: 1;
+    position: relative;
+  }
+
+  /* grid-component {
+    grid-gap: 0;
+  } */
+
+  /* div[slot=content] {
+    padding: 1em 0 0 0;
+  } */
+`;
