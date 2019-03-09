@@ -10,7 +10,7 @@ const Style = css`
 `;
 
 @customElement("page-static")
-class PageStatic extends LitElement {
+export class PageStatic extends LitElement {
   @property() public template: any;
 
   static get styles() {
