@@ -103,6 +103,6 @@ export const routes = [
     path: "/performance",
     component: "log-component",
     src: () =>
-      import(/* webpackChunkName: "LogComponent" */ "../LogComponent/LogComponent")
+      import(/* webpackChunkName: "LogComponent" */ "../Log/LogComponent")
   }
 ];
