@@ -3,7 +3,7 @@ import { LitElement, customElement, property } from "lit-element";
 import GlobalStyle from "../../GlobalStyle";
 import Style from "./Style";
 import template from "./DrawerTemplate";
-import { subscribe } from "../../Media";
+import { media } from "../../Media";
 import { store } from "../../Store";
 
 @customElement("drawer-component")
@@ -18,7 +18,7 @@ export class Drawer extends LitElement {
 
   constructor() {
     super();
-    subscribe((mediaSize: string) => {
+    media.subscribe((mediaSize: string) => {
       if (mediaSize === "mobile") this.hidden = true;
       if (mediaSize === "desktop") this.hidden = false;
       this.mediaSize = mediaSize;

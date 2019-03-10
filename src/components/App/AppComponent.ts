@@ -14,7 +14,7 @@ import { installRouter } from "pwa-helpers/router.js";
 import { routes } from "./Routes";
 import { setState } from "../../State";
 import { store } from "../../Store";
-import { subscribe } from "../../Media";
+import { media } from "../../Media";
 import template from "./AppTemplate";
 import { toast } from "../Toast/Toast";
 
@@ -28,7 +28,7 @@ export class AppComponent extends LitElement {
   @property() public mediaSize: string;
 
   public media() {
-    subscribe((mediaSize: string) => {
+    media.subscribe((mediaSize: string) => {
       // if (!this.taskPending) toast(mediaSize);
       if (mediaSize === "mobile") this.drawerOpened = false;
       if (mediaSize === "desktop") this.drawerOpened = true;
