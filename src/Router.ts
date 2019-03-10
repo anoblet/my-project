@@ -1,5 +1,5 @@
 import pathToRegexp from "path-to-regexp";
-
+import { store } from "./Store"
 /*
   Example:
   export const routes = [
@@ -108,3 +108,9 @@ export const routeChanged = async ({ location, portal, routes }: any) => {
 };
 
 export const handleNavigation = routeChanged;
+
+export const router = {
+  subscribe: () => store.subscribe(() => {
+
+  })
+};
