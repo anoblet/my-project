@@ -11,7 +11,7 @@ const mediaChanged = (_media: any) => {
 observer.addListener(mediaChanged);
 mediaChanged(observer);
 
-export const subscribe = (callback: any) => {
+const subscribe = (callback: any) => {
   subscribers.push(callback);
   mediaChanged(observer);
 };
