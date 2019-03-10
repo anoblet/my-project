@@ -29,14 +29,13 @@ export class Dashboard extends BeforeRender(LitElement) {
     console.log(this.shadowRoot.querySelector(".grid"));
     // @ts-ignore
     var grid = new muuri(this.shadowRoot.querySelector(".grid"), {
-      dragEnabled: true, // See Muuri's documentation for other option overrides.
+      dragEnabled: true,
       layout: {
         fillGaps: true
       }
     });
-    window.addEventListener("load", function() {
+    window.addEventListener("drawer-toggled", function() {
       grid.refreshItems().layout();
-      document.body.classList.add("images-loaded");
     });
   }
 
