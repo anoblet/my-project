@@ -35,7 +35,7 @@ export class Dashboard extends BeforeRender(LitElement) {
       }
     });
     window.addEventListener("drawer-toggled", function() {
-      grid.refreshItems().layout();
+      setTimeout(() => grid.refreshItems().layout(), 0);
     });
   }
 

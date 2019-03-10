@@ -76,6 +76,11 @@ export class AppComponent extends LitElement {
     const drawer: any = this.renderRoot.querySelector("drawer-component");
     if (drawer) drawer.toggle();
     this.drawerOpened = !this.drawerOpened;
+    window.dispatchEvent(
+      new CustomEvent("drawer-toggled", {
+        composed: true,
+      })
+    );
   }
 
   public _toggleProfile() {

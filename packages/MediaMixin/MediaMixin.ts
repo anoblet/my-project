@@ -17,7 +17,7 @@ export function MediaMixin<B extends Constructor<HTMLElement>>(baseClass: B) {
           mediaSize = "desktop";
         }
         this.mediaSize = mediaSize;
-        document.dispatchEvent(
+        window.dispatchEvent(
           new CustomEvent("media-changed", {
             composed: true,
             detail: mediaSize
