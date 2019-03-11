@@ -41,10 +41,6 @@ export class Light extends BeforeRender(LitElement) {
     this.refreshState();
   }
 
-  firstUpdated() {
-    this.refreshState();
-  }
-
   render() {
     return html`
       ${this.name} ${this.on} <button @click=${this.turnOn}>Turn on</button
