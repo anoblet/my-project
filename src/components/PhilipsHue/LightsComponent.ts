@@ -1,6 +1,6 @@
 import { customElement, html, LitElement, property } from "lit-element";
 import { getLights } from "./PhilipsHue";
-import { BeforeRender } from "../../mixins/BeforeRender"
+import { BeforeRender } from "../../mixins/BeforeRender";
 
 @customElement("lights-component")
 export class Lights extends BeforeRender(LitElement) {
@@ -16,10 +16,19 @@ export class Lights extends BeforeRender(LitElement) {
       user: "mWHCs99pkPAniHe0lsSG8ES7qG1xDF8qDQw0h0dN",
       id: 4
     });
+    const keys = Object.keys(lights);
+    const lightArray: any = [];
+    keys.map((key: any) => {
+      lightArray.push(lights[key]);
+    });
+    this.lights = lightArray;
   }
 
   render() {
     return html`
+      ${this.lights.map((light: any) => html`
+<light-component id></light-component>
+        `)}
     `;
   }
 }
