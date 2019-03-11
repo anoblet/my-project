@@ -1,4 +1,4 @@
-import { LitElement, css, customElement, html, property } from "lit-element";
+import { LitElement, customElement, property } from "lit-element";
 import { BeforeRender } from "../../mixins/BeforeRender";
 // @ts-ignore
 import muuri from "muuri";
