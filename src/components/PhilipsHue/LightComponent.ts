@@ -3,8 +3,6 @@ import { isOn, turnOff, turnOn } from "./PhilipsHue";
 
 import { BeforeRender } from "../../mixins/BeforeRender";
 
-import("./ListLights");
-
 @customElement("light-component")
 export class Light extends BeforeRender(LitElement) {
   @property() on: boolean;

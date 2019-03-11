@@ -12,7 +12,7 @@ import(/* webpackChunkName: "PropertyEditor" */ "../PropertyEditor/PropertyEdito
 import("../Collection/CollectionList");
 import("../ColorPicker");
 import("../Dashboard/DashboardComponent");
-import("../PhilipsHue/LightComponent");
+import("../PhilipsHue/LightsComponent");
 
 export class PageComponents extends LitElement {
   @property() public component: string;

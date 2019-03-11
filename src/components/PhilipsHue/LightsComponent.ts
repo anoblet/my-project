@@ -26,9 +26,11 @@ export class Lights extends BeforeRender(LitElement) {
 
   render() {
     return html`
-      ${this.lights.map((light: any) => html`
-<light-component id></light-component>
-        `)}
+      ${this.lights.map(
+        (light: any) => html`
+          <light-component id></light-component>
+        `
+      )}
     `;
   }
 }
