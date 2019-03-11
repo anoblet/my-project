@@ -9,7 +9,7 @@ export function BeforeRender<BaseType extends Constructor<LitElement>>(
     @property({ type: Boolean })
     public beforeRenderComplete: boolean = false;
 
-    connectedCallback() {
+    public connectedCallback() {
       super.connectedCallback();
       if (!this.beforeRenderComplete)
         this.beforeRender().then(() => (this.beforeRenderComplete = true));
