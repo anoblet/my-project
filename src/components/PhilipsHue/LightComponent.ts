@@ -1,5 +1,7 @@
 import { LitElement, customElement, html, property } from "lit-element";
 import { isOn, turnOff, turnOn } from "./PhilipsHue";
+import("./ListLights");
+
 @customElement("light-component")
 export class Light extends LitElement {
   @property() on: boolean;
@@ -47,6 +49,7 @@ export class Light extends LitElement {
     return html`
       ${this.on} <button @click=${this.turnOn}>Turn on</button
       ><button @click=${this.turnOff}>Turn off</button>
+      <lights-component></lights-component>
     `;
   }
 }

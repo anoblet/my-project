@@ -3,7 +3,7 @@ const user = "mWHCs99pkPAniHe0lsSG8ES7qG1xDF8qDQw0h0dN";
 export default async () => {
   const ip = await findBridge();
   isOn({ ip, user, id: 2 });
-  const lights = listLights({ ip, user});
+  const lights = getLights({ ip, user});
   console.log(lights);
 };
 
@@ -34,8 +34,6 @@ const status = async ({ ip, user, id }: any) => {
 };
 
 export const isOn = async (options: any) => {
-  const lights = listLights(options);
-  console.log(lights);
   const _status = await status(options);
   return _status.state.on;
 };
@@ -60,7 +58,7 @@ export const turnOff = async ({ ip, id, user }: any) => {
   });
 };
 
-export const listLights = async ({ ip, id, user }: any) => {
+export const getLights = async ({ ip, id, user }: any) => {
   const body = { on: true };
   return await fetch(`http://${ip}/api/${user}/lights`, {
     method: "GET"
