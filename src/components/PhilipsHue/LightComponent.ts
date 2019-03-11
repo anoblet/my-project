@@ -6,16 +6,17 @@ import { BeforeRender } from "../../mixins/BeforeRender";
 @customElement("light-component")
 export class Light extends BeforeRender(LitElement) {
   @property() on: boolean;
+  @property() lightId: any;
 
   async beforeRender() {
-    await this.refreshState();
+    if (this.lightId) await this.refreshState();
   }
 
   async refreshState() {
     this.on = await isOn({
       ip: "192.168.43.221",
       user: "mWHCs99pkPAniHe0lsSG8ES7qG1xDF8qDQw0h0dN",
-      id: 4
+      id: this.lightId
     });
   }
 
@@ -23,7 +24,7 @@ export class Light extends BeforeRender(LitElement) {
     await turnOn({
       ip: "192.168.43.221",
       user: "mWHCs99pkPAniHe0lsSG8ES7qG1xDF8qDQw0h0dN",
-      id: 4
+      id: this.lightId
     });
     this.refreshState();
   }
@@ -32,7 +33,7 @@ export class Light extends BeforeRender(LitElement) {
     await turnOff({
       ip: "192.168.43.221",
       user: "mWHCs99pkPAniHe0lsSG8ES7qG1xDF8qDQw0h0dN",
-      id: 4
+      id: this.lightId
     });
     this.refreshState();
   }
@@ -41,7 +42,6 @@ export class Light extends BeforeRender(LitElement) {
     return html`
       ${this.on} <button @click=${this.turnOn}>Turn on</button
       ><button @click=${this.turnOff}>Turn off</button>
-      <lights-component></lights-component>
     `;
   }
 }

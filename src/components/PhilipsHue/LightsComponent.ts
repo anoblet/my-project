@@ -2,6 +2,8 @@ import { customElement, html, LitElement, property } from "lit-element";
 import { getLights } from "./PhilipsHue";
 import { BeforeRender } from "../../mixins/BeforeRender";
 
+import("./LightComponent");
+
 @customElement("lights-component")
 export class Lights extends BeforeRender(LitElement) {
   @property() lights: any;
@@ -19,18 +21,20 @@ export class Lights extends BeforeRender(LitElement) {
     const keys = Object.keys(lights);
     const lightArray: any = [];
     keys.map((key: any) => {
-      lightArray.push(lights[key]);
+      lightArray.push({ lightId: key, ...lights[key] });
     });
     this.lights = lightArray;
+    console.log(lightArray);
   }
 
   render() {
     return html`
-      ${this.lights.map(
-        (light: any) => html`
-          <light-component id></light-component>
-        `
-      )}
+      ${this.lights.map((light: any) => {
+        console.log(light.lightId);
+        return html`
+          <light-component .lightId=${light.lightId}></light-component>
+        `;
+      })}
     `;
   }
 }
