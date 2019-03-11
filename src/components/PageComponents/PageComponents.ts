@@ -12,6 +12,7 @@ import(/* webpackChunkName: "PropertyEditor" */ "../PropertyEditor/PropertyEdito
 import("../Collection/CollectionList");
 import("../ColorPicker");
 import("../Dashboard/DashboardComponent");
+import hue from "../PhilipsHue/PhilipsHue";
 
 export class PageComponents extends LitElement {
   @property() public component: string;
@@ -34,6 +35,7 @@ export class PageComponents extends LitElement {
     components.map((component: any) => {
       console.log(component.src);
     });
+    hue(); 
   }
 
   public render() {

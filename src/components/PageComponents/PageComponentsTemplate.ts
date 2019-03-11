@@ -17,6 +17,9 @@ export default function() {
                   <a href="/components/dasboard-component"
                     ><li>Dashboard component</li></a
                   >
+                  <a href="/components/philips-hue"
+                    ><li>Philips Hue</li></a
+                  >
                 `
               : ""}
           </ul>
