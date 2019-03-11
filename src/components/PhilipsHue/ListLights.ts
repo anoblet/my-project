@@ -1,13 +1,13 @@
 import { customElement, html, LitElement, property } from "lit-element";
 import { getLights } from "./PhilipsHue";
+import { BeforeRender } from "../../mixins/BeforeRender"
 
 @customElement("lights-component")
-export class Lights extends LitElement {
+export class Lights extends BeforeRender(LitElement) {
   @property() lights: any;
 
   constructor() {
     super();
-    this.beforeRender();
   }
 
   async beforeRender() {
