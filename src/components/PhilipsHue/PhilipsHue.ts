@@ -18,11 +18,12 @@ const auth = async (ip: string) => {
     method: "GET",
     mode: "no-cors"
   })
-    .then(function(response) {
+    .then((response: any) => {
+      if(response.body) return response.json();
       // const result = response ? response.json() : false;
       // return result;
     })
-    .then(function(myJson) {
+    .then((myJson) => {
       return myJson;
     });
 };
