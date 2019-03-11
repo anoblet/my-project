@@ -30,7 +30,6 @@ export class Lights extends BeforeRender(LitElement) {
   render() {
     return html`
       ${this.lights.map((light: any) => {
-        console.log(light.lightId);
         return html`
           <light-component .lightId=${light.lightId}></light-component>
         `;

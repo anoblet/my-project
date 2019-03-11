@@ -10,7 +10,7 @@ export class Light extends BeforeRender(LitElement) {
   @property() name: any;
 
   async beforeRender() {
-    if (this.lightId) await this.refreshState();
+    await this.refreshState();
   }
 
   async refreshState() {
