@@ -26,7 +26,7 @@ const auth = async (ip: string) => {
   });
 };
 
-const status = async ({ ip, user, id }: any) => {
+export const status = async ({ ip, user, id }: any) => {
   const url = `http://${ip}/api/${user}/lights/${id}`;
   return await fetch(url).then((response: any) => {
     return response.json();

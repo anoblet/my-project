@@ -1,23 +1,26 @@
 import { LitElement, customElement, html, property } from "lit-element";
-import { isOn, turnOff, turnOn } from "./PhilipsHue";
+import { status, turnOff, turnOn } from "./PhilipsHue";
 
 import { BeforeRender } from "../../mixins/BeforeRender";
 
 @customElement("light-component")
 export class Light extends BeforeRender(LitElement) {
   @property() on: boolean;
-  @property() lightId: any;
+  @property() lightId: string;
+  @property() name: any;
 
   async beforeRender() {
     if (this.lightId) await this.refreshState();
   }
 
   async refreshState() {
-    this.on = await isOn({
+    const _status = await status({
       ip: "192.168.43.221",
       user: "mWHCs99pkPAniHe0lsSG8ES7qG1xDF8qDQw0h0dN",
       id: this.lightId
     });
+    this.name = _status.name;
+    this.on = _status.state.on;
   }
 
   async turnOn() {
@@ -38,9 +41,13 @@ export class Light extends BeforeRender(LitElement) {
     this.refreshState();
   }
 
+  firstUpdated() {
+    this.refreshState();
+  }
+
   render() {
     return html`
-      ${this.on} <button @click=${this.turnOn}>Turn on</button
+      ${this.name} ${this.on} <button @click=${this.turnOn}>Turn on</button
       ><button @click=${this.turnOff}>Turn off</button>
     `;
   }
