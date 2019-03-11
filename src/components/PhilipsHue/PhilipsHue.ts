@@ -50,6 +50,16 @@ export const turnOn = async ({ ip, id, user }: any) => {
   });
 };
 
+export const turnOff = async ({ ip, id, user }: any) => {
+  const body = { on: false };
+  return await fetch(`http://${ip}/api/${user}/lights/${id}/state`, {
+    body: JSON.stringify(body),
+    method: "PUT"
+  }).then((response: any) => {
+    if (response.body) return response.json();
+  });
+};
+
 export const listLights = async ({ ip, id, user }: any) => {
   const body = { on: true };
   return await fetch(`http://${ip}/api/${user}/lights`, {
