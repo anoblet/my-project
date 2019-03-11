@@ -7,12 +7,12 @@ export function BeforeRender<BaseType extends Constructor<LitElement>>(
 ) {
   class MixinClass extends BaseClass {
     @property({ type: Boolean })
-    public beforeRenderComplete: boolean;
+    public beforeRenderComplete: boolean = false;
 
     connectedCallback() {
       super.connectedCallback();
-      this.beforeRenderComplete = false;
-      this.beforeRender().then(() => (this.beforeRenderComplete = true));
+      if (!this.beforeRenderComplete)
+        this.beforeRender().then(() => (this.beforeRenderComplete = true));
     }
 
     public async beforeRender() {
