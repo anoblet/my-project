@@ -1,6 +1,10 @@
 // Consider a change to component-editor
 import { html } from "lit-element";
-import { renderNumber, renderText } from "../Form/Form";
+import {
+  renderForm as _renderForm,
+  renderNumber,
+  renderText
+} from "../Form/Form";
 
 export interface Property {
   label?: string;
@@ -9,20 +13,6 @@ export interface Property {
 
 export const PropertyEditor = () => {
   return;
-};
-
-const merge = (
-  property: string,
-  _properties: any,
-  component: any,
-  onChange: any
-) => {
-  return {
-    property,
-    ..._properties[property],
-    value: component.value,
-    onChange
-  };
 };
 
 export interface FormField {
@@ -48,133 +38,5 @@ export const renderForm = (
     ? properties
     : component.constructor.properties;
 
-  return html`
-  <grid-component>
-    ${Object.keys(_properties).map((property: any) => {
-      if (property.startsWith("_")) return;
-      const field = {
-        disabled: _properties[property].disabled,
-        name: property,
-        onChange,
-        value: component[property]
-      };
-      return html`
-        ${_properties[property].inputType !== "pell"
-          ? html`
-              <div class="field">
-                <label>${_properties[property].label}</label>
-                ${_properties[property].inputType
-                  ? html`
-                      ${_properties[property].inputType === "text"
-                        ? renderText(field)
-                        : ""}
-                      ${_properties[property].inputType === "textarea"
-                        ? renderTextarea(property, component, onChange)
-                        : ""}
-                      ${_properties[property].inputType === "pell"
-                        ? html`
-                            <card-component>
-                              <pell-component
-                                name=${property}
-                                .input=${component[property]}
-                              ></pell-component>
-                            </card-component>
-                          `
-                        : ""}
-                    `
-                  : html`
-                      ${_properties[property].type === Boolean
-                        ? renderCheckbox(property, component, onChange)
-                        : // renderSwitch(field)
-                          ""}
-                      ${_properties[property].type === Number
-                        ? renderNumber(field)
-                        : ""}
-                      ${_properties[property].type === String
-                        ? renderText(field)
-                        : ""}
-                    `}
-              </div>
-            `
-          : html`
-              <div class="field" pell>
-                <card-component>
-                  <label>${_properties[property].label}</label>
-                  <pell-component
-                    name=${property}
-                    .input=${component[property]}
-                  ></pell-component>
-                </card-component>
-              </div>
-            `}
-      `;
-    })}
-    </grid-component
-  `;
-};
-
-// values
-const renderTextField = (field: any, component: any, onChange: any) => {
-  const value = component[field] || "";
-  return html`
-    <input
-      name="${field}"
-      type="text"
-      value=${value}
-      @change=${(e: any) => onChange(field, e.target.value)}
-    />
-  `;
-};
-
-const renderTextarea = (field: any, component: any, onChange: any) => {
-  return html`
-    <textarea
-      name=${field}
-      @change=${(e: any) => onChange(field, e.target.value)}
-    >
-${component[field]}</textarea
-    >
-  `;
-};
-
-const renderNumberField = (field: any, component: any, onChange: any) => {
-  return html`
-    <input
-      name=${field}
-      type="number"
-      value=${component[field]}
-      @change=${(e: any) => onChange(field, e.target.value)}
-    />
-  `;
-};
-
-const renderCheckbox = (field: any, component: any, onChange: any) => {
-  return html`
-    <input
-      name=${field}
-      type="checkbox"
-      ?checked=${component[field]}
-      @change="${(e: any) => onChange(field, e.target.checked)}}"
-    />
-  `;
-};
-
-/**
- * Renders a toggle switch
- * @param  field
- * @return HTMLTemplateResult
- *
- * Broken
- */
-const renderSwitch = ({ property, value, onChange }: any) => {
-  return html`
-    <mwc-switch
-      name=${name}
-      ?checked=${value}
-      @change=${(e: any) => {
-        console.log(e);
-        onChange(property, e.target.checked);
-      }}
-    ></mwc-switch>
-  `;
+  return _renderForm({ structure: _properties, values: component, onChange });
 };
