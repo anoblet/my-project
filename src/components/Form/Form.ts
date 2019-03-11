@@ -26,16 +26,6 @@ export const renderForm = ({ onChange, structure, values }: any) => {
                         ${structure[property].inputType === "textarea"
                           ? renderTextarea(property, values, onChange)
                           : ""}
-                        ${structure[property].inputType === "pell"
-                          ? html`
-                              <card-component>
-                                <pell-component
-                                  name=${property}
-                                  .input=${values[property]}
-                                ></pell-component>
-                              </card-component>
-                            `
-                          : ""}
                       `
                     : html`
                         ${structure[property].type === Boolean
