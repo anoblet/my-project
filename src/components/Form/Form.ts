@@ -28,12 +28,12 @@ export const renderForm = ({ onChange, structure, values }: any) => {
                           : ""}
                         ${structure[property].inputType === "pell"
                           ? html`
-                              <card-values>
-                                <pell-values
+                              <card-component>
+                                <pell-component
                                   name=${property}
                                   .input=${values[property]}
-                                ></pell-values>
-                              </card-values>
+                                ></pell-component>
+                              </card-component>
                             `
                           : ""}
                       `
@@ -53,13 +53,13 @@ export const renderForm = ({ onChange, structure, values }: any) => {
               `
             : html`
                 <div class="field" pell>
-                  <card-values>
+                  <card-component>
                     <label>${structure[property].label}</label>
-                    <pell-values
+                    <pell-component
                       name=${property}
                       .input=${values[property]}
-                    ></pell-values>
-                  </card-values>
+                    ></pell-component>
+                  </card-component>
                 </div>
               `}
         `;
