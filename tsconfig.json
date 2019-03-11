@@ -5,6 +5,7 @@
     "noImplicitAny": true,
     "module": "esnext",
     "moduleResolution": "node",
+    "noImplicitAny": false,
     "noUnusedLocals": false,
     "target": "esnext",
     "experimentalDecorators": true,

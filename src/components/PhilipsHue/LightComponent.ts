@@ -1,5 +1,5 @@
 import { LitElement, customElement, html, property } from "lit-element";
-import { isOn } from "./PhilipsHue";
+import { isOn, turnOn } from "./PhilipsHue";
 @customElement("light-component")
 export class Light extends LitElement {
   @property() on: boolean;
@@ -7,6 +7,11 @@ export class Light extends LitElement {
   constructor() {
     super();
     this.beforeRender();
+    turnOn({
+      ip: "192.168.43.221",
+      user: "mWHCs99pkPAniHe0lsSG8ES7qG1xDF8qDQw0h0dN",
+      id: 4
+    });
   }
 
   async beforeRender() {
