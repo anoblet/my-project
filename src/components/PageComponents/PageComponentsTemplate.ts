@@ -20,6 +20,9 @@ export default function() {
                   <a href="/components/lights-component"
                     ><li>Philips Hue</li></a
                   >
+                  <a href="/components/philips-hue-demo"
+                    ><li>Philips Hue Demo</li></a
+                  >
                 `
               : ""}
           </ul>

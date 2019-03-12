@@ -13,6 +13,7 @@ import("../Collection/CollectionList");
 import("../ColorPicker");
 import("../Dashboard/DashboardComponent");
 import("../PhilipsHue/LightsComponent");
+import("../PhilipsHue/Demo");
 
 export class PageComponents extends LitElement {
   @property() public component: string;
