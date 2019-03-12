@@ -24,17 +24,16 @@ export class Lights extends BeforeRender(LitElement) {
       lightArray.push({ lightId: key, ...lights[key] });
     });
     this.lights = lightArray;
-    console.log(lightArray);
   }
 
   render() {
     return html`
-    <grid-component>
-      ${this.lights.map((light: any) => {
-        return html`
-          <light-component .lightId=${light.lightId}></light-component>
-        `;
-      })}
+      <grid-component>
+        ${this.lights.map((light: any) => {
+          return html`
+            <light-component .lightId=${light.lightId}></light-component>
+          `;
+        })}
       </grid-component>
     `;
   }
