@@ -7,7 +7,6 @@ export class Auth extends BeforeRender(LitElement) {
   @property() ip: any;
 
   async beforeRender() {
-    console.log(auth())
     return;
   }
 
