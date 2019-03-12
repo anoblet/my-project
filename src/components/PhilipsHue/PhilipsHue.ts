@@ -1,13 +1,14 @@
+const devicetype = "anoblet";
 const user = "mWHCs99pkPAniHe0lsSG8ES7qG1xDF8qDQw0h0dN";
 
 export default async () => {
   const ip = await findBridge();
   isOn({ ip, user, id: 2 });
-  const lights = getLights({ ip, user});
+  const lights = getLights({ ip, user });
   console.log(lights);
 };
 
-const findBridge = async () => {
+export const findBridge = async () => {
   return await fetch("https://discovery.meethue.com/")
     .then(function(response) {
       return response.json();
@@ -17,9 +18,9 @@ const findBridge = async () => {
     });
 };
 
-const auth = async (ip: string) => {
+export const auth = async (ip: string) => {
   return await fetch(`http://${ip}/api`, {
-    body: JSON.stringify({ devicetype: "my_hue_app#iphone peter" }),
+    body: JSON.stringify({ devicetype }),
     method: "POST"
   }).then((response: any) => {
     if (response.body) return response.json();
