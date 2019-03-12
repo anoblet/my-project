@@ -1,6 +1,6 @@
 import { LitElement, css, customElement } from "lit-element";
 
-import template from "./GridTemplate";
+import Template from "./GridTemplate";
 
 @customElement("grid-component")
 export class GridComponent extends LitElement {
@@ -13,6 +13,6 @@ export class GridComponent extends LitElement {
     `;
   }
   public render() {
-    return template.bind(this)();
+    return Template.bind(this)();
   }
 }
