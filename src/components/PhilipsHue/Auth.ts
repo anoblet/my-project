@@ -9,6 +9,7 @@ export class Auth extends BeforeRender(LitElement) {
   // 0 = No interraction,
   // 1 = User pressed connect, and needs to press physical button,
   // 2 = User pressed physical button and we need a username
+  @property() response: any;
 
   async beforeRender() {
     return;
@@ -19,6 +20,7 @@ export class Auth extends BeforeRender(LitElement) {
       ${!this.status()
         ? html`
             <button @click=${this.auth}>Auth</button>
+            ${this.response}
           `
         : ""}
     `;
@@ -33,7 +35,8 @@ export class Auth extends BeforeRender(LitElement) {
       .then(function(response) {
         return response.json();
       })
-      .then(function(json) {
+      .then(json => {
+        this.response = JSON.stringify(json);
         const body = json[0];
         if (body.error)
           if (body.error.type === 101) {
@@ -44,7 +47,6 @@ export class Auth extends BeforeRender(LitElement) {
 
   status() {
     const user = localStorage.getItem("user");
-    console.log(user ? true : false);
     return user ? true : false;
   }
 }

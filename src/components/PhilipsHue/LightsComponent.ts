@@ -29,11 +29,13 @@ export class Lights extends BeforeRender(LitElement) {
 
   render() {
     return html`
+    <grid-component>
       ${this.lights.map((light: any) => {
         return html`
           <light-component .lightId=${light.lightId}></light-component>
         `;
       })}
+      </grid-component>
     `;
   }
 }

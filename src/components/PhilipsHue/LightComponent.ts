@@ -1,7 +1,17 @@
-import { LitElement, customElement, html, property } from "lit-element";
+import { LitElement, css, customElement, html, property } from "lit-element";
 import { status, turnOff, turnOn } from "./PhilipsHue";
+import GlobalStyle from "../../GlobalStyle";
 
 import { BeforeRender } from "../../mixins/BeforeRender";
+
+const Style = css`
+  :host {
+  }
+
+  span {
+    text-align: center;
+  }
+`;
 
 @customElement("light-component")
 export class Light extends BeforeRender(LitElement) {
@@ -41,10 +51,28 @@ export class Light extends BeforeRender(LitElement) {
     this.refreshState();
   }
 
+  static get styles() {
+    return [GlobalStyle, Style];
+  }
+
   render() {
     return html`
-      ${this.name} ${this.on} <button @click=${this.turnOn}>Turn on</button
-      ><button @click=${this.turnOff}>Turn off</button>
+      <grid-component>
+        <span>
+          ${this.on
+            ? html`
+                <i class="material-icons">brightness_high</i>
+              `
+            : html`
+                <i class="material-icons">brightness_low</i>
+              `}
+        </span>
+        <span>${this.name}</span>
+        <span>
+          <button @click=${this.turnOn}>Turn on</button
+          ><button @click=${this.turnOff}>Turn off</button>
+        </span>
+      </grid-component>
     `;
   }
 }

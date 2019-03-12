@@ -18,10 +18,12 @@ export class Demo extends BeforeRender(LitElement) {
 
   render() {
     return html`
-      <card-component>${until(bridge.ip())}</card-component>
-      <card-component
-        ><philips-hue-auth ip=${until(bridge.ip())}></philips-hue-auth
-      ></card-component>
+      <grid-component>
+        <card-component>Bridge IP: ${until(bridge.ip())}</card-component>
+        <card-component
+          ><philips-hue-auth ip=${until(bridge.ip())}></philips-hue-auth
+        ></card-component>
+      </grid-component>
     `;
   }
 }
