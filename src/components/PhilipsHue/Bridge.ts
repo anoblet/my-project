@@ -1,4 +1,4 @@
-export const ip = async () => {
+const ip = async () => {
   return await fetch("https://discovery.meethue.com/").then(
     async (response: any) => {
       const json = await response.json();
