@@ -34,7 +34,7 @@ export class PageComponents extends LitElement {
   public constructor() {
     super();
     components.map((component: any) => {
-      console.log(component.src);
+      // console.log(component.src);
     });
   }
 
