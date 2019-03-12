@@ -1,4 +1,3 @@
-
 import { LitElement, property } from "lit-element";
 
 export class Bridge extends LitElement {
