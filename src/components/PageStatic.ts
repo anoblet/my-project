@@ -1,7 +1,6 @@
 import { LitElement, css, customElement, html, property } from "lit-element";
 import GlobalStyle from "../GlobalStyle";
 import "./PatreonComponent";
-import "./Chart/ChartComponent";
 
 const Style = css`
   :host {
@@ -11,8 +10,6 @@ const Style = css`
 
 @customElement("page-static")
 export class PageStatic extends LitElement {
-  @property() public template: any;
-
   static get styles() {
     return [GlobalStyle, Style];
   }
