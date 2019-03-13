@@ -1,4 +1,4 @@
-import { LitElement, css, customElement, html, property } from "lit-element";
+import { LitElement, css, customElement, html } from "lit-element";
 import GlobalStyle from "../GlobalStyle";
 import "./PatreonComponent";
 
