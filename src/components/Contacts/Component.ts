@@ -12,4 +12,8 @@ export class Contact extends LitElement {
   public render() {
     return Template.bind(this)();
   }
+
+  public in() {}
+
+  public out() {}
 }

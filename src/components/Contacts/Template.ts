@@ -3,22 +3,9 @@ import { render } from "lit-html";
 
 export default function() {
   return html`
-    <card-component title="Contact">
-      <div slot="content">
-        <form>
-          <grid-component>
-            <label>Email</label
-            ><input name="email" type="email" placeholder="john@example.com" />
-            <label>Subject</label
-            ><input name="subject" type="text" placeholder="Subject" />
-            <label>Message</label
-            ><textarea name="message" placeholder="Message"></textarea>
-          </grid-component>
-        </form>
-      </div>
-      <div slot="actions">
-        <mwc-button @click="${this.send}">Send</mwc-button>
-      </div>
+    <card-component title="Contacts">
+      <button-component label="In" @click=${this.in}></button-component>
+      <button-component label="Out" @click=${this.out}></button-component>
     </card-component>
   `;
 }
