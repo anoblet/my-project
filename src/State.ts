@@ -1,3 +1,5 @@
+import { store } from "./Store";
+
 export const addReducer = ({ store, type, customFunction = false }: any) => {
   const defaultFunction = (_state = {}, action: any) => {
     switch (action.type) {
@@ -30,7 +32,10 @@ export const setState = ({
   });
 };
 
+export const get = () => store.getState();
+
 export const state = {
   addReducer,
+  get,
   set: setState
 };
