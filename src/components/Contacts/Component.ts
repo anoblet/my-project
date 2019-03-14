@@ -37,13 +37,23 @@ export class Contacts extends LitElement {
       type: "in",
       time: new Date().getTime()
     };
-    this.data.log.push(item);
+    this.add(item);
+  }
+
+  public out() {
+    const item = {
+      type: "out",
+      time: new Date().getTime()
+    };
+    this.add(item);
+  }
+
+  add(data) {
+    this.data.log.push(data);
     const _user = user.get().uid;
     firebase.update({
       path: `users/${_user}/contacts/timesheet`,
       data: this.data
     });
   }
-
-  public out() {}
 }
