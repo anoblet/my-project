@@ -10,8 +10,6 @@ export const run = async (packages: any) => {
   return Promise.all(imports).then(([_firebase]) => _firebase);
 };
 
-export const firebase = run;
-
 export const authRedirect = async () => {
   return run(["auth"]).then((_firebase: any) => {
     const auth = _firebase.auth();
@@ -162,3 +160,5 @@ export const addDocument = ({ path, data }: any) => {
       });
   });
 };
+
+export const firebase = { run, update: updateDocument };
