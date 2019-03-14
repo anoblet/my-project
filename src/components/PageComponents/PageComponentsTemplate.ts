@@ -23,6 +23,7 @@ export default function() {
                   <a href="/components/philips-hue-demo"
                     ><li>Philips Hue Demo</li></a
                   >
+                  <a href="/components/contacts-component"><li>Contacts</li></a>
                 `
               : ""}
           </ul>

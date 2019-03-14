@@ -14,6 +14,7 @@ import("../ColorPicker");
 import("../Dashboard/DashboardComponent");
 import("../PhilipsHue/LightsComponent");
 import("../PhilipsHue/Demo");
+import("../Contacts/Component");
 
 export class PageComponents extends LitElement {
   @property() public component: string;
