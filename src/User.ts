@@ -105,3 +105,12 @@ export const extract = (user: any) => {
     uid: user.uid
   };
 };
+
+export const get = () => {
+  return store.getState().user;
+};
+
+export const user = {
+  get,
+  isAdmin
+};
