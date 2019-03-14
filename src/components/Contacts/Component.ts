@@ -4,8 +4,8 @@ import GlobalStyle from "../../GlobalStyle";
 import Style from "./Style";
 import Template from "./Template";
 
-@customElement("contact-component")
-export class Contact extends LitElement {
+@customElement("contacts-component")
+export class Contacts extends LitElement {
   static get styles() {
     return [GlobalStyle, Style];
   }

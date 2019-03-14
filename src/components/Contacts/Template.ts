@@ -1,11 +1,13 @@
 import { html } from "lit-element";
-import { render } from "lit-html";
+import("../Button/ButtonComponent");
 
 export default function() {
   return html`
     <card-component title="Contacts">
-      <button-component label="In" @click=${this.in}></button-component>
-      <button-component label="Out" @click=${this.out}></button-component>
+      <grid-component>
+        <button-component label="In" @click=${this.in}></button-component>
+        <button-component label="Out" @click=${this.out}></button-component>
+      </grid-component>
     </card-component>
   `;
 }

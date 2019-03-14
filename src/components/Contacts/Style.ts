@@ -1,20 +1,12 @@
 import { css } from "lit-element";
 
 export default css`
-  * {
-    box-sizing: border-box;
+  grid-component {
+    grid-template-columns: repeat(2, 1fr);
   }
 
-  :host {
+  button-component {
     display: flex;
-    flex-direction: column;
     flex: 1;
-    position: relative;
-  }
-
-  .card-actions {
-    grid-column: 1/-1;
-    display: flex;
-    justify-content: flex-end;
   }
 `;
