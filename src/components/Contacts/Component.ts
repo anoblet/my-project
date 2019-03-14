@@ -1,4 +1,4 @@
-import { LitElement, customElement } from "lit-element";
+import { LitElement, customElement, property } from "lit-element";
 
 import GlobalStyle from "../../GlobalStyle";
 import Style from "./Style";
@@ -6,6 +6,8 @@ import Template from "./Template";
 
 @customElement("contacts-component")
 export class Contacts extends LitElement {
+  @property() history = [];
+
   static get styles() {
     return [GlobalStyle, Style];
   }
@@ -13,7 +15,9 @@ export class Contacts extends LitElement {
     return Template.bind(this)();
   }
 
-  public in() {}
+  public in() {
+    firebase.update({path: "", data})
+  }
 
   public out() {}
 }

@@ -8,6 +8,7 @@ export default function() {
         <button-component label="In" @click=${this.in}></button-component>
         <button-component label="Out" @click=${this.out}></button-component>
       </grid-component>
+      ${this.history}
     </card-component>
   `;
 }
