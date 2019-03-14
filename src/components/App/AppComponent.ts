@@ -1,5 +1,5 @@
 import { LitElement, customElement, property } from "lit-element";
-import { documentToTheme, setTheme } from "../../Theme";
+import { theme } from "../../Theme";
 import { extract, getUserSettings, getUserTheme } from "../../User";
 import { getDocument, getUser, initApp } from "../../Firebase";
 import { routeChanged, setPortal, setRoutes } from "../../Router";
@@ -112,7 +112,7 @@ export class AppComponent extends LitElement {
     this.media();
 
     if (config.staticTheme) {
-      setTheme(documentToTheme(config.theme), this);
+      theme.set(theme.convert(config.theme), this);
       setState({
         type: "app",
         data: { settings: { theme: config.theme } },
@@ -139,8 +139,8 @@ export class AppComponent extends LitElement {
       await getAppSettings((document: any) => {
         setState({ data: { settings: document }, store, type: "app" });
         if (!config.staticTheme) {
-          const theme = documentToTheme(document.defaultTheme);
-          setTheme(theme, this);
+          const _theme = theme.convert(document.defaultTheme);
+          theme.set(_theme, this);
         }
       });
       debug("Finished gettings app settings");
@@ -159,7 +159,7 @@ export class AppComponent extends LitElement {
         debug("Finished getting user settings");
         debug("Getting user theme");
         await getUserTheme((document: any) => {
-          setTheme(documentToTheme(document), this);
+          theme.set(theme.convert(document), this);
         });
         debug("Finished getting user theme");
       } else {

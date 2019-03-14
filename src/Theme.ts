@@ -7,6 +7,8 @@ export const setTheme = (theme: any, element: any) => {
   });
 };
 
+export const set = setTheme;
+
 export const documentToTheme = (document: any) => {
   const styles: any = [];
   Object.keys(document).map((style: any) => {
@@ -22,6 +24,8 @@ export const documentToTheme = (document: any) => {
   return styles;
 };
 
+export const convert = documentToTheme;
+
 export const setDefaultTheme = async () => {
   if (config.staticTheme) {
     const theme = documentToTheme(config.theme);
@@ -33,4 +37,9 @@ export const setDefaultTheme = async () => {
     const theme = documentToTheme(settings.defaultTheme);
     setTheme(theme, document.querySelector("app-component"));
   }
+};
+
+export const theme = {
+  convert,
+  set
 };
