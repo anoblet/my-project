@@ -161,4 +161,4 @@ export const addDocument = ({ path, data }: any) => {
   });
 };
 
-export const firebase = { run, update: updateDocument };
+export const firebase = { getDocument, run, update: updateDocument };

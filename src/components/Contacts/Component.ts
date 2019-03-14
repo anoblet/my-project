@@ -9,7 +9,7 @@ import { user } from "../../User";
 
 @customElement("contacts-component")
 export class Contacts extends LitElement {
-  @property() data = [];
+  @property() timesheet = { data: [] };
 
   static get styles() {
     return [GlobalStyle, Style];
@@ -19,14 +19,20 @@ export class Contacts extends LitElement {
   }
 
   async beforeRender() {
-    // firebase.getDocument({ path: `` });
+    const _user = user.get().uid;
+    firebase.getDocument({
+      path: `users/${_user}/contacts/timesheet`,
+      callback: document => (this.timesheet = document),
+      watch: true
+    });
   }
 
   public in() {
+    this.timesheet.data.push()
     const _user = user.get().uid;
     firebase.update({
       path: `users/${_user}/contacts/timesheet`,
-      data: this.data
+      data: this.timesheet
     });
   }
 
