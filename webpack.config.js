@@ -116,7 +116,7 @@ module.exports = {
     }),
     new CopyWebpackPlugin([
       {
-        from: "node_modules/@webcomponents/webcomponentsjs/*.js",
+        from: "node_modules/@webcomponents/webcomponentsjs/*",
         to: "js/webcomponentsjs",
         flatten: true
       },
