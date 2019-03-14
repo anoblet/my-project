@@ -16,7 +16,7 @@ export class Contacts extends LitElement {
   }
 
   public in() {
-    firebase.update({path: "", data})
+    // firebase.update({ path: "", data });
   }
 
   public out() {}
