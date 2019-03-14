@@ -2,7 +2,7 @@ import { getUser as _getUser, getDocument } from "./Firebase";
 import { navigate } from "./Router";
 import { run } from "./Firebase";
 import { setDefaultTheme } from "./Theme";
-import { setState } from "./State";
+import { setState, state } from "./State";
 import { store } from "./Store";
 import { toast } from "./components/Toast/Toast";
 
@@ -15,13 +15,25 @@ export const isAdmin = () => {
   return state.user.uid === "m42gwHOSlbUniorNjigqa1nnHIE3";
 };
 
+/**
+ * Reset user Redux info
+ * @param  {config [description]
+ * @param  data    [description]
+ * @param  store   [description]
+ * @param  type    [description]
+ * @return         [description]
+ */
 export const resetState = () => {
   setState({ config: { merge: false }, data: {}, store, type: "app" });
 };
 
+/**
+ * Check if the user is signed in
+ * @return [description]
+ */
+
 export const isSignedIn = () => {
-  const state = store.getState();
-  return state.user.signedIn;
+  return user.get().signedIn;
 };
 
 /**
@@ -107,7 +119,7 @@ export const extract = (user: any) => {
 };
 
 export const get = () => {
-  return store.getState().user;
+  return state.get().user;
 };
 
 export const user = {
