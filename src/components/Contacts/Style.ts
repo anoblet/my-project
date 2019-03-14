@@ -1,7 +1,7 @@
 import { css } from "lit-element";
 
 export default css`
-  grid-component {
+  #buttons {
     grid-template-columns: repeat(2, 1fr);
   }
 
