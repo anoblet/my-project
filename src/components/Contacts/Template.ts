@@ -1,5 +1,6 @@
 import { html } from "lit-element";
 import("../Button/ButtonComponent");
+import { printContent } from "../../Utility";
 
 export default function() {
   return html`
@@ -22,6 +23,10 @@ export default function() {
               `
             )}
           </grid-component>
+          <button-component
+            label="Print"
+            @click=${() => printContent(this)}
+          ></button-component>
         </card-component>
       </grid-component>
     </card-component>

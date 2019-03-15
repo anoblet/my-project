@@ -32,7 +32,8 @@ const randomColor = () => {
   return color;
 };
 
-function printContent(div) {
+export const printContent = div => {
+  console.log(div);
   var html =
     "<html><head>" +
     "" +
@@ -50,4 +51,4 @@ function printContent(div) {
   WindowObject.focus();
   WindowObject.print();
   WindowObject.close();
-}
+};
