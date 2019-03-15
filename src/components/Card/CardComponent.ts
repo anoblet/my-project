@@ -11,6 +11,7 @@ export class CardComponent extends LitElement {
   @property({ type: Boolean, reflect: true }) public shadow: boolean = true;
 
   public firstUpdated(changedProperties: any) {
+    super.firstUpdated(changedProperties);
     this.addListeners();
   }
 
