@@ -7,7 +7,6 @@ import { getForm } from "./AppUser";
 export default () => {
   return html`
     <card-component collapsible grow>
-      <h3 slot="title">User</h3>
       <div slot="content">
         ${isSignedIn()
           ? html`

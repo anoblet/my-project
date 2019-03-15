@@ -1,0 +1,126 @@
+[debug] [2019-03-15T14:06:16.782Z] ----------------------------------------------------------------------
+[debug] [2019-03-15T14:06:16.785Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\Andrew\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js deploy
+[debug] [2019-03-15T14:06:16.786Z] CLI Version:   6.3.1
+[debug] [2019-03-15T14:06:16.786Z] Platform:      win32
+[debug] [2019-03-15T14:06:16.786Z] Node Version:  v10.15.1
+[debug] [2019-03-15T14:06:16.787Z] Time:          Fri Mar 15 2019 10:06:16 GMT-0400 (Eastern Daylight Time)
+[debug] [2019-03-15T14:06:16.787Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2019-03-15T14:06:16.802Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2019-03-15T14:06:16.803Z] > authorizing via signed-in user
+[debug] [2019-03-15T14:06:16.803Z] [iam] checking project my-project-75792 for permissions ["firebase.projects.get","firebasedatabase.instances.update","firebasehosting.sites.update"]
+[debug] [2019-03-15T14:06:16.805Z] > refreshing access token with scopes: ["email","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","openid"]
+[debug] [2019-03-15T14:06:16.805Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
+ <request body omitted>
+[debug] [2019-03-15T14:06:17.176Z] <<< HTTP RESPONSE 200
+[debug] [2019-03-15T14:06:17.192Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects/my-project-75792:testIamPermissions  
+
+[debug] [2019-03-15T14:06:17.708Z] <<< HTTP RESPONSE 200
+[debug] [2019-03-15T14:06:17.712Z] >>> HTTP REQUEST GET https://firebase.googleapis.com/v1beta1/projects/my-project-75792  
+ 
+[debug] [2019-03-15T14:06:18.294Z] <<< HTTP RESPONSE 200
+[info] 
+[info] === Deploying to 'my-project-75792'...
+[info] 
+[info] i  deploying database, hosting
+[info] i  database: checking rules syntax...
+[debug] [2019-03-15T14:06:18.349Z] >>> HTTP REQUEST PUT https://my-project-75792.firebaseio.com/.settings/rules.json?dryRun=true  
+ {
+  "rules": {
+    ".read": true,
+    ".write": true,
+    "posts": {
+      ".write": "auth.uid === 'm42gwHOSlbUniorNjigqa1nnHIE3'"
+    },
+    "users": {
+      "$user_id": {
+        ".read": "auth != null && auth.uid == $user_id",
+        ".write": "$user_id === auth.uid"
+      }
+    }
+  }
+}
+
+[debug] [2019-03-15T14:06:18.729Z] <<< HTTP RESPONSE 200
+[info] +  database: rules syntax for database my-project-75792 is valid
+[debug] [2019-03-15T14:06:18.739Z] >>> HTTP REQUEST POST https://firebasehosting.googleapis.com/v1beta1/sites/my-project-75792/versions  
+
+[debug] [2019-03-15T14:06:20.076Z] <<< HTTP RESPONSE 200
+[info] i  hosting[my-project-75792]: beginning deploy...
+[info] i  hosting[my-project-75792]: found 61 files in dist
+[debug] [2019-03-15T14:06:20.186Z] [hosting] hash cache [ZGlzdA] load error: lines is not defined
+[debug] [2019-03-15T14:06:21.053Z] [hosting] hash cache [ZGlzdA] stored for 61 files
+[debug] [2019-03-15T14:06:21.053Z] [hosting][hash queue][FINAL]
+[debug] [2019-03-15T14:06:21.053Z] >>> HTTP REQUEST POST https://firebasehosting.googleapis.com/v1beta1/sites/my-project-75792/versions/c08255cc438eaeab:populateFiles  
+ <request body omitted>
+[debug] [2019-03-15T14:06:24.868Z] <<< HTTP RESPONSE 200
+[debug] [2019-03-15T14:06:24.888Z] [hosting][populate queue][FINAL]
+[debug] [2019-03-15T14:06:24.889Z] [hosting] uploads queued: 26
+[debug] [2019-03-15T14:06:33.237Z] [hosting][upload] stats.html (1449f89f1c3713be0b816c0e2aee18198f69c89b59b3a803d408e58ad2db5fd6) HTTP ERROR 400 : { 'x-guploader-uploadid':
+   'AEnB2Upm5fcWkJUp1Cj9s9UzNL-F2dztMT8nE5_ux5BlLrXenW0_XLWCMiq5dx4xPx1Po4yVbsXSSqhDWCPDoPkgr9ae6XSqJA',
+  'content-length': '37',
+  date: 'Fri, 15 Mar 2019 14:06:32 GMT',
+  server: 'UploadServer',
+  'content-type': 'text/html; charset=UTF-8',
+  'alt-svc': 'quic=":443"; ma=2592000; v="46,44,43,39"',
+  connection: 'close' } Couldn't process request (status=400)
+[debug] [2019-03-15T14:06:33.647Z] [uploadQueue] Retrying task 1449f89f1c3713be0b816c0e2aee18198f69c89b59b3a803d408e58ad2db5fd6
+[debug] [2019-03-15T14:06:42.599Z] [hosting][upload] stats.html (1449f89f1c3713be0b816c0e2aee18198f69c89b59b3a803d408e58ad2db5fd6) HTTP ERROR 400 : { 'x-guploader-uploadid':
+   'AEnB2UoaNl6O2Pdx95CIwGU3isBJ9b77E61fezLDc4qDy3xh_LzaKRBp6Qo_r038zgcd42RjcERFisnqiuSa8AXPANL5IT1rJA',
+  'content-length': '37',
+  date: 'Fri, 15 Mar 2019 14:06:41 GMT',
+  server: 'UploadServer',
+  'content-type': 'text/html; charset=UTF-8',
+  'alt-svc': 'quic=":443"; ma=2592000; v="46,44,43,39"',
+  connection: 'close' } Couldn't process request (status=400)
+[debug] [2019-03-15T14:06:43.399Z] [uploadQueue] Retrying task 1449f89f1c3713be0b816c0e2aee18198f69c89b59b3a803d408e58ad2db5fd6
+[debug] [2019-03-15T14:06:53.422Z] [hosting][upload] stats.html (1449f89f1c3713be0b816c0e2aee18198f69c89b59b3a803d408e58ad2db5fd6) HTTP ERROR 400 : { 'x-guploader-uploadid':
+   'AEnB2UpBWJ4NvAR-72f5u7VmWtbzH2bEIR8LxGAct_GnSv3Fw6C6kNxZ8ejT40K7bSV_3URCD07ShjO5cyd4I6zUpJ_8n261vw',
+  'content-length': '37',
+  date: 'Fri, 15 Mar 2019 14:06:52 GMT',
+  server: 'UploadServer',
+  'content-type': 'text/html; charset=UTF-8',
+  'alt-svc': 'quic=":443"; ma=2592000; v="46,44,43,39"',
+  connection: 'close' } Couldn't process request (status=400)
+[debug] [2019-03-15T14:06:55.024Z] [uploadQueue] Retrying task 1449f89f1c3713be0b816c0e2aee18198f69c89b59b3a803d408e58ad2db5fd6
+[debug] [2019-03-15T14:07:05.017Z] [hosting][upload] stats.html (1449f89f1c3713be0b816c0e2aee18198f69c89b59b3a803d408e58ad2db5fd6) HTTP ERROR 400 : { 'x-guploader-uploadid':
+   'AEnB2UpMPLgJQPPd2nGfd_EqzOtRb5qEL4XVcxgLztgiFj88O9GrJGdDoSTw4Lpcyyo2kpnomD_h9S-Q2tVo1lQQfoN_exjfMg',
+  'content-length': '37',
+  date: 'Fri, 15 Mar 2019 14:07:03 GMT',
+  server: 'UploadServer',
+  'content-type': 'text/html; charset=UTF-8',
+  'alt-svc': 'quic=":443"; ma=2592000; v="46,44,43,39"',
+  connection: 'close' } Couldn't process request (status=400)
+[debug] [2019-03-15T14:07:08.218Z] [uploadQueue] Retrying task 1449f89f1c3713be0b816c0e2aee18198f69c89b59b3a803d408e58ad2db5fd6
+[debug] [2019-03-15T14:07:16.378Z] [hosting][upload] stats.html (1449f89f1c3713be0b816c0e2aee18198f69c89b59b3a803d408e58ad2db5fd6) HTTP ERROR 400 : { 'x-guploader-uploadid':
+   'AEnB2UrcvXS-iEanM2TQvxND-5CTyTKzYemq1WT-3AmXmjG2gXPGIagYKQv_6zTZwYe87Jn-lQzpyCb5bdyoL_vWtLQw6Aajxw',
+  'content-length': '37',
+  date: 'Fri, 15 Mar 2019 14:07:15 GMT',
+  server: 'UploadServer',
+  'content-type': 'text/html; charset=UTF-8',
+  'alt-svc': 'quic=":443"; ma=2592000; v="46,44,43,39"',
+  connection: 'close' } Couldn't process request (status=400)
+[debug] [2019-03-15T14:07:22.845Z] [uploadQueue] Retrying task 1449f89f1c3713be0b816c0e2aee18198f69c89b59b3a803d408e58ad2db5fd6
+[debug] [2019-03-15T14:07:33.294Z] [hosting][upload] stats.html (1449f89f1c3713be0b816c0e2aee18198f69c89b59b3a803d408e58ad2db5fd6) HTTP ERROR 400 : { 'x-guploader-uploadid':
+   'AEnB2Uo37iTsz_HpZKXQLWTcKzDYUn5l2SlZfCjAVGPN2HumFjuMmgFwZ7xjVHdOTKaa4P9Hjz4GMreqlBEsNHrAK5IzaRJYUg',
+  'content-length': '37',
+  date: 'Fri, 15 Mar 2019 14:07:32 GMT',
+  server: 'UploadServer',
+  'content-type': 'text/html; charset=UTF-8',
+  'alt-svc': 'quic=":443"; ma=2592000; v="46,44,43,39"',
+  connection: 'close' } Couldn't process request (status=400)
+[debug] [2019-03-15T14:07:33.295Z] [uploadQueue] Retries exhausted for task 1449f89f1c3713be0b816c0e2aee18198f69c89b59b3a803d408e58ad2db5fd6:
+[debug] [2019-03-15T14:07:33.296Z] [hosting][upload queue][FINAL]
+[debug] [2019-03-15T14:07:33.497Z] Error: Unexpected error while uploading file.
+    at Request._callback (C:\Users\Andrew\AppData\Roaming\npm\node_modules\firebase-tools\lib\deploy\hosting\uploader.js:197:39)
+    at Request.self.callback (C:\Users\Andrew\AppData\Roaming\npm\node_modules\firebase-tools\node_modules\request\request.js:185:22)
+    at Request.emit (events.js:189:13)
+    at Request.EventEmitter.emit (domain.js:441:20)
+    at Request.<anonymous> (C:\Users\Andrew\AppData\Roaming\npm\node_modules\firebase-tools\node_modules\request\request.js:1161:10)
+    at Request.emit (events.js:189:13)
+    at Request.EventEmitter.emit (domain.js:441:20)
+    at IncomingMessage.<anonymous> (C:\Users\Andrew\AppData\Roaming\npm\node_modules\firebase-tools\node_modules\request\request.js:1083:12)
+    at Object.onceWrapper (events.js:277:13)
+    at IncomingMessage.emit (events.js:194:15)
+[error] 
+[error] Error: An unexpected error has occurred.
