@@ -27,7 +27,7 @@ export class Contacts extends LitElement {
     const _user = user.get().uid;
     firebase.getDocument({
       path: `users/${_user}/contacts/timesheet`,
-      callback: document => (this.data = document),
+      callback: (document: any) => (this.data = document),
       watch: true
     });
   }
@@ -48,7 +48,7 @@ export class Contacts extends LitElement {
     this.add(item);
   }
 
-  add(data) {
+  add(data: { type: string; time: number }) {
     this.data.log.push(data);
     const _user = user.get().uid;
     firebase.update({
