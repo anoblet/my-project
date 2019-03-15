@@ -15,7 +15,7 @@ export default function() {
         <card-component>
           <grid-component id="log">
             ${this.data.log.map(
-              entry => html`
+              (entry: any) => html`
                 <div>
                   ${entry.type}
                 </div>
@@ -23,10 +23,10 @@ export default function() {
               `
             )}
           </grid-component>
-          <button-component
+          <!-- <button-component
             label="Print"
             @click=${() => printContent(this)}
-          ></button-component>
+          ></button-component> -->
         </card-component>
       </grid-component>
     </card-component>
