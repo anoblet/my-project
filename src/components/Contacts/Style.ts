@@ -9,4 +9,8 @@ export default css`
     display: flex;
     flex: 1;
   }
+
+  #log {
+    grid-template-columns: repeat(2, 1fr);
+  }
 `;

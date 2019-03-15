@@ -16,8 +16,9 @@ export default function() {
             ${this.data.log.map(
               entry => html`
                 <div>
-                  ${entry.type} ${new Date(entry.time).toLocaleString()}
+                  ${entry.type}
                 </div>
+                <div>${new Date(entry.time).toLocaleString()}</div>
               `
             )}
           </grid-component>

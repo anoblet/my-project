@@ -34,7 +34,7 @@ export class Contacts extends LitElement {
 
   public in() {
     const item = {
-      type: "in",
+      type: "In",
       time: new Date().getTime()
     };
     this.add(item);
@@ -42,7 +42,7 @@ export class Contacts extends LitElement {
 
   public out() {
     const item = {
-      type: "out",
+      type: "Out",
       time: new Date().getTime()
     };
     this.add(item);
