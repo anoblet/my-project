@@ -31,3 +31,23 @@ const randomColor = () => {
   }
   return color;
 };
+
+function printContent(div) {
+  var html =
+    "<html><head>" +
+    "" +
+    '</head><body style="background:#ffffff;">' +
+    div.innerHTML +
+    "</body></html>";
+
+  var WindowObject = window.open(
+    "",
+    "PrintWindow",
+    "width=750,height=650,top=50,left=50,toolbars=no,scrollbars=yes,status=no,resizable=yes"
+  );
+  WindowObject.document.writeln(html);
+  WindowObject.document.close();
+  WindowObject.focus();
+  WindowObject.print();
+  WindowObject.close();
+}
