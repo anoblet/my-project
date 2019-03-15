@@ -13,15 +13,6 @@ import { toggleShadow } from "./ToggleShadow";
 // @ts-ignore
 const randomMC = require("random-material-color");
 
-const getThemePath = () => {
-  const state = store.getState();
-  return `users/${state.user.uid}/settings/theme`;
-};
-
-const theme = async () => {
-  return await getDocument({ path: getThemePath() });
-};
-
 export const setTheme = (_theme: any) => {
   const state = store.getState();
   return updateDocument({
@@ -35,7 +26,6 @@ const randomColor = () => {
 };
 
 const randomTheme = () => {
-  const state = store.getState();
   const _theme: any = {};
   themeStructure.map((field: any) => {
     if (field.type === "color") _theme[field.property] = randomColor();
@@ -72,6 +62,11 @@ export class ThemeComponent extends LitElement {
       css`
         :host {
           flex: 1;
+        }
+
+        label {
+          display: flex;
+          align-items: center;
         }
       `
     ];
