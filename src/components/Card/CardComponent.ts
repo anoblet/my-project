@@ -2,6 +2,7 @@ import { LitElement, css, html, customElement, property } from "lit-element";
 import * as style from "./Card.scss";
 import template from "./CardTemplate";
 import GlobalStyle from "../../GlobalStyle";
+import Style from "./Style";
 
 @customElement("card-component")
 export class CardComponent extends LitElement {
@@ -27,19 +28,10 @@ export class CardComponent extends LitElement {
   static get styles() {
     return [
       GlobalStyle,
-      css`
-        :host {
-          padding: var(--padding, 1em);
-        }
-      `
+      Style
     ];
   }
   public render() {
-    return html`
-      <style>
-        ${style}
-      </style>
-      ${template.bind(this)()}
-    `;
+    return template.bind(this)();
   }
 }
