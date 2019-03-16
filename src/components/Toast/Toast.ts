@@ -12,6 +12,8 @@ export const toast = (message: string) => {
   element.content = message;
   const container = document
     .querySelector("app-component")
-;  container.shadowRoot.appendChild(element);
+    .shadowRoot.querySelector("#content");
+
+  container.appendChild(element);
   setTimeout(() => element.parentNode.removeChild(element), 2500);
 };

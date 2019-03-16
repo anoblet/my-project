@@ -113,6 +113,7 @@ export default css`
     display: flex;
     flex: 1;
     overflow: auto;
+    position: relative;
   }
 
   #drawer-container[opened] {
