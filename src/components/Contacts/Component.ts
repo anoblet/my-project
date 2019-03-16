@@ -50,9 +50,6 @@ export class Contacts extends LitElement {
   }
 
   add(data: { type: string; time: number }) {
-    if(data)
-    this.data.log.push(data);
-    return;
     const _user = user.get().uid;
     if (!_user) toast("User is not logged in");
     _user
