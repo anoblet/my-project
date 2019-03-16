@@ -6,7 +6,6 @@ import Template from "./Template";
 
 import { database as db } from "../../Database";
 import { user } from "../../User";
-import { toast } from "../Toast/Toast";
 
 @customElement("contacts-component")
 export class Contacts extends LitElement {
@@ -51,12 +50,12 @@ export class Contacts extends LitElement {
   }
 
   add(data: { type: string; time: number }) {
-    const _log = [...this.data.log, data];
+    const _data = { log: [...this.data.log, data] };
     const _user = user.get().uid;
-    if (!_user) return;
+    if (!_user) this.data = _data;
     db.update({
       path: `users/${_user}/contacts/timesheet`,
-      data: { log: _log }
+      data: _data
     });
   }
 }
