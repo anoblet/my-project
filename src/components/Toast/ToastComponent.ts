@@ -19,6 +19,7 @@ class ToastComponent extends LitElement {
         transform: translateX(-50%);
         min-width: 50%;
         padding: 0 1em 1em 1em;
+        top: 0;
       }
     `;
   }

@@ -1,5 +1,4 @@
 import "./ToastComponent";
-
 /**
  * Fire a toast
  * @param  message [description]
@@ -13,7 +12,6 @@ export const toast = (message: string) => {
   const container = document
     .querySelector("app-component")
     .shadowRoot.querySelector("#content");
-
   container.appendChild(element);
   setTimeout(() => element.parentNode.removeChild(element), 2500);
 };
