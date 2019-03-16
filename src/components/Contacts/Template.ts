@@ -1,5 +1,5 @@
 import { html } from "lit-element";
-import("../Button/ButtonComponent");
+import("../Button/Component");
 import { printContent } from "../../Utility";
 
 export default function() {
