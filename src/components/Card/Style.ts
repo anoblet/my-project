@@ -10,9 +10,6 @@ export default css`
     border: var(--border-size) solid var(--border-color);
     border-radius: var(--border-radius);
     padding: var(--padding, 1em);
-  }
-
-  :host([shadow]) {
     box-shadow: var(--box-shadow);
   }
 

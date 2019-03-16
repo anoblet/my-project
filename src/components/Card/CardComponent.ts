@@ -1,4 +1,4 @@
-import { LitElement, customElement, property } from "lit-element";
+import { LitElement, customElement, property, query } from "lit-element";
 
 import GlobalStyle from "../../GlobalStyle";
 import Style from "./Style";
@@ -8,22 +8,12 @@ import Template from "./Template";
 export class CardComponent extends LitElement {
   @property({ type: Boolean }) public collapsible: boolean = false;
   @property({ type: Boolean, reflect: true }) public collapsed: boolean = false;
-  @property({ type: Boolean, reflect: true }) public shadow: boolean = true;
+
+  @query("#title") _title: Element;
 
   public firstUpdated(changedProperties: any) {
     super.firstUpdated(changedProperties);
     this.addListeners();
-  }
-
-  public toggle() {
-    this.collapsed = !this.collapsed;
-  }
-
-  public addListeners() {
-    if (this.collapsible) {
-      const title = this.shadowRoot.querySelector("#title");
-      if (title) title.addEventListener("click", () => this.toggle());
-    }
   }
 
   static get styles() {
@@ -31,5 +21,13 @@ export class CardComponent extends LitElement {
   }
   public render() {
     return Template.bind(this)();
+  }
+
+  public addListeners() {
+    this._title.addEventListener("click", () => this.toggle());
+  }
+
+  public toggle() {
+    this.collapsed = !this.collapsed;
   }
 }
