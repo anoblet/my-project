@@ -15,7 +15,7 @@ export default function() {
         </card-component>
         <card-component>
           <grid-component id="log">
-            ${this.data.log.map(
+            ${this.data && this.data.log.map(
               (entry: any) => html`
                 <div>
                   ${entry.type}
