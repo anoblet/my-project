@@ -8,7 +8,7 @@ import Template from "./Template";
 import("../muuri/component");
 
 const beforeRender = async () => {
-  await import("../Grid/GridComponent");
+  await import("../Grid/Component");
 };
 
 export interface DashboardComponent {

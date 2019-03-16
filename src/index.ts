@@ -5,7 +5,7 @@ import "./components/PageStatic";
 import "./components/Drawer/DrawerComponent";
 import "./components/ProfileMenu/ProfileMenu";
 import "./components/Card/CardComponent";
-import "./components/Grid/GridComponent";
+import "./components/Grid/Component";
 import "./components/Loading/LoadingComponent";
 import "./components/ContextMenu/MenuComponent";
 import "./components/Breadcrumb/BreadcrumbComponent";
