@@ -4,7 +4,7 @@ import GlobalStyle from "../../GlobalStyle";
 import Style from "./Style";
 import Template from "./Template";
 
-import { firebase } from "../../Firebase";
+import { database as db } from "../../Database";
 import { user } from "../../User";
 import { toast } from "../Toast/Toast";
 
@@ -26,7 +26,7 @@ export class Contacts extends LitElement {
 
   async beforeRender() {
     const _user = user.get().uid;
-    firebase.getDocument({
+    db.getDocument({
       path: `users/${_user}/contacts/timesheet`,
       callback: (document: any) => (this.data = document),
       watch: true
@@ -53,7 +53,7 @@ export class Contacts extends LitElement {
     const _user = user.get().uid;
     if (!_user) toast("User is not logged in");
     _user
-      ? firebase.update({
+      ? db.update({
           path: `users/${_user}/contacts/timesheet`,
           data: this.data
         })
