@@ -13,7 +13,7 @@ export class Muuri extends LitElement {
   }
 
   firstUpdated() {
-    var grid = new muuri(this.shadowRoot.querySelector(".grid"), {
+    this.grid = new muuri(this.shadowRoot.querySelector(".grid"), {
       dragEnabled: true,
       layout: {
         fillGaps: true
