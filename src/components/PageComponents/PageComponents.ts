@@ -15,6 +15,7 @@ import("../Dashboard/DashboardComponent");
 import("../PhilipsHue/LightsComponent");
 import("../PhilipsHue/Demo");
 import("../Contacts/Component");
+import("../muuri/component");
 
 export class PageComponents extends LitElement {
   @property() public component: string;

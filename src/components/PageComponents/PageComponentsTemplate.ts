@@ -24,6 +24,7 @@ export default function() {
                     ><li>Philips Hue Demo</li></a
                   >
                   <a href="/components/contacts-component"><li>Contacts</li></a>
+                  <a href="/components/muuri-component"><li>muuri</li></a>
                 `
               : ""}
           </ul>
