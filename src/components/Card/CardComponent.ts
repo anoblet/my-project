@@ -1,8 +1,8 @@
-import { LitElement, css, html, customElement, property } from "lit-element";
-import * as style from "./Card.scss";
-import template from "./CardTemplate";
+import { LitElement, customElement, property } from "lit-element";
+
 import GlobalStyle from "../../GlobalStyle";
 import Style from "./Style";
+import Template from "./Template";
 
 @customElement("card-component")
 export class CardComponent extends LitElement {
@@ -27,12 +27,9 @@ export class CardComponent extends LitElement {
   }
 
   static get styles() {
-    return [
-      GlobalStyle,
-      Style
-    ];
+    return [GlobalStyle, Style];
   }
   public render() {
-    return template.bind(this)();
+    return Template.bind(this)();
   }
 }
