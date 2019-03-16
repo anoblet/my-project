@@ -1,5 +1,8 @@
 import { LitElement, css, customElement, html } from "lit-element";
+
+import Style from "./Style";
 import muuri from "muuri";
+import template from "./template";
 
 @customElement("muuri-component")
 export class Muuri extends LitElement {
@@ -7,7 +10,10 @@ export class Muuri extends LitElement {
 
   connectedCallback() {
     super.connectedCallback();
-    this.grid = new muuri(this, {
+  }
+
+  firstUpdated() {
+    var grid = new muuri(this.shadowRoot.querySelector(".grid"), {
       dragEnabled: true,
       layout: {
         fillGaps: true
@@ -15,12 +21,12 @@ export class Muuri extends LitElement {
     });
   }
 
-  public static get styles() {
-    return css``;
+  static get styles() {
+    return Style;
   }
 
   public render() {
-    return html``;
+    return template.bind(this)();
   }
 
   reset() {
