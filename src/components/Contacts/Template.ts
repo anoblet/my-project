@@ -6,7 +6,7 @@ export default function() {
   return html`
     <card-component title="Contacts">
       <grid-component>
-        <card-component>Monitor eye-contact usage</card-component>
+        <card-component>Monitor eye-contacts (RGP or rigid gas permeable lens) usage</card-component>
         <card-component>
           <grid-component id="buttons">
             <button-component label="In" @click=${this.in}></button-component>
