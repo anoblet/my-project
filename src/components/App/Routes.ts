@@ -41,7 +41,7 @@ export const routes = [
     path: "/post/read/:id?",
     component: "post-component",
     src: () =>
-      import(/* webpackChunkName: "PostComponent" */ "../PostComponent/PostComponent")
+      import(/* webpackChunkName: "PostComponent" */ "../Post/PostComponent")
   },
   {
     path: "/post/list",
@@ -54,7 +54,7 @@ export const routes = [
     path: "/post/create",
     component: "post-component",
     src: () =>
-      import(/* webpackChunkName: "PostComponent" */ "../PostComponent/PostComponent")
+      import(/* webpackChunkName: "PostComponent" */ "../Post/PostComponent")
   },
   {
     path: "/user/:action?",

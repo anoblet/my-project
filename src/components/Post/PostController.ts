@@ -1,4 +1,4 @@
-import("../PostComponent/PostComponent");
+import("../Post/PostComponent");
 import("./PostGridComponent");
 
 import { LitElement, css, html, property } from "lit-element";
