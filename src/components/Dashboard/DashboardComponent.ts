@@ -5,6 +5,8 @@ import muuri from "muuri";
 import Style from "./Style";
 import Template from "./Template";
 
+import("../muuri/component");
+
 const beforeRender = async () => {
   await import("../Grid/GridComponent");
 };
