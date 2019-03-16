@@ -6,6 +6,7 @@ import Template from "./Template";
 
 import { firebase } from "../../Firebase";
 import { user } from "../../User";
+import { toast } from "../Toast/Toast";
 
 @customElement("contacts-component")
 export class Contacts extends LitElement {
@@ -49,11 +50,13 @@ export class Contacts extends LitElement {
   }
 
   add(data: { type: string; time: number }) {
-    this.data.log.push(data);
     const _user = user.get().uid;
-    firebase.update({
-      path: `users/${_user}/contacts/timesheet`,
-      data: this.data
-    });
+    if (!_user) toast("User is not logged in");
+    _user
+      ? firebase.update({
+          path: `users/${_user}/contacts/timesheet`,
+          data: this.data
+        })
+      : toast("Not signed in");
   }
 }
