@@ -23,14 +23,14 @@ export class ButtonComponent extends LitElement {
 
   public render() {
     return html`
-      ${this.theme === "material"
-        ? html`
-            <mwc-button label=${this.label}></mwc-button>
-          `
-        : ""}
       ${this.theme === "native"
         ? html`
             <button>${this.label}</button>
+          `
+        : ""}
+      ${this.theme === "material"
+        ? html`
+            <mwc-button label=${this.label}></mwc-button>
           `
         : ""}
     `;
