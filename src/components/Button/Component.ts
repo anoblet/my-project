@@ -22,6 +22,7 @@ export class ButtonComponent extends LitElement {
   }
 
   public render() {
+    // return Template.bind(this)();
     return html`
       ${this.theme === "native"
         ? html`
