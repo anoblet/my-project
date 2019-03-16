@@ -24,7 +24,7 @@ export class CardComponent extends LitElement {
   }
 
   public addListeners() {
-    this._title.addEventListener("click", () => this.toggle());
+    if (this._title) this._title.addEventListener("click", () => this.toggle());
   }
 
   public toggle() {

@@ -2,6 +2,7 @@ import { css } from "lit-element";
 
 export default css`
   :host {
+    --card-padding: var(--padding, 1em);
     display: grid;
     grid-gap: 1em;
     flex-direction: column;
@@ -9,7 +10,7 @@ export default css`
     position: relative;
     border: var(--border-size) solid var(--border-color);
     border-radius: var(--border-radius);
-    padding: var(--padding, 1em);
+    padding: var(--card-padding);
     box-shadow: var(--box-shadow);
   }
 
