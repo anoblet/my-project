@@ -26,11 +26,12 @@ export class Contacts extends LitElement {
 
   async beforeRender() {
     const _user = user.get().uid;
-    db.getDocument({
-      path: `users/${_user}/contacts/timesheet`,
-      callback: (document: any) => (this.data = document),
-      watch: true
-    });
+    if (_user)
+      db.getDocument({
+        path: `users/${_user}/contacts/timesheet`,
+        callback: (document: any) => (this.data = document),
+        watch: true
+      });
   }
 
   public in() {
@@ -50,13 +51,12 @@ export class Contacts extends LitElement {
   }
 
   add(data: { type: string; time: number }) {
+    const _log = [...this.data.log, data];
     const _user = user.get().uid;
-    if (!_user) toast("User is not logged in");
-    _user
-      ? db.update({
-          path: `users/${_user}/contacts/timesheet`,
-          data: this.data
-        })
-      : toast("Not signed in");
+    if (!_user) return;
+    db.update({
+      path: `users/${_user}/contacts/timesheet`,
+      data: { log: _log }
+    });
   }
 }
