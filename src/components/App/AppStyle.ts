@@ -112,6 +112,7 @@ export default css`
   #center {
     display: flex;
     flex: 1;
+    overflow: auto;
   }
 
   #drawer-container[opened] {
