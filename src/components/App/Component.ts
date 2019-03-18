@@ -15,7 +15,7 @@ import { routes } from "./Routes";
 import { setState } from "../../State";
 import { store } from "../../Store";
 import { media } from "../../Media";
-import template from "./AppTemplate";
+import template from "./Template";
 import { toast } from "../Toast/Toast";
 
 @customElement("app-component")

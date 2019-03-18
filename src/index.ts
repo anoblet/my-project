@@ -1,4 +1,4 @@
-import "./components/App/AppComponent";
+import "./components/App/Component";
 import "./components/AppHeader/AppHeader";
 import "./components/AppFooter/AppFooter";
 import "./components/PageStatic";
