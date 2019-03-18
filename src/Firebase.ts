@@ -1,3 +1,5 @@
+import { _console } from "./Debug";
+
 export const run = async (packages: any) => {
   const imports: any = [];
   imports.push(import(/* webpackChunkName: "Firebase" */ "firebase/app"));
@@ -90,8 +92,8 @@ export const getCollection = async ({
  * @return
  **/
 
-export const updateDocument = ({ data, path }: any) => {
-  // console.log("Updating document");
+export const updateDocument = async ({ data, path }: any) => {
+  debug.console("Updating document");
   return run(["firestore"]).then((_firebase: any) => {
     return _firebase
       .firestore()

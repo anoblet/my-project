@@ -33,3 +33,11 @@ export const filterByMode = (mode: number) => {
   if (state.app.settings) return state.app.settings.mode >= mode;
   else return true;
 };
+
+export const _console = message => {
+  return console.log(message);
+};
+
+export const debug = {
+  _console
+};
