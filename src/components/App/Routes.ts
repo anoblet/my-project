@@ -9,7 +9,7 @@ export const routes = [
     path: "/admin",
     component: "admin-component",
     src: () =>
-      import(/* webpackChunkName: "AdminComponent" */ "../Admin/AdminComponent"),
+      import(/* webpackChunkName: "AdminComponent" */ "../Admin/Component"),
     voice: "admin"
   },
   {

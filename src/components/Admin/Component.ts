@@ -1,7 +1,7 @@
 import { LitElement, customElement, css } from "lit-element";
 
 import GlobalStyle from "../../GlobalStyle";
-import Template from "./AdminTemplate";
+import Template from "./Template";
 
 @customElement("admin-component")
 export class AdminComponent extends LitElement {
