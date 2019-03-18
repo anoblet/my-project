@@ -34,6 +34,7 @@ export class AppComponent extends LitElement {
     this.reducers();
     this.media();
 
+    // Global theme
     if (config.staticTheme) {
       theme.set(theme.convert(config.theme), this);
       setState({
