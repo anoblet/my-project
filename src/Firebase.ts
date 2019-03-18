@@ -93,7 +93,7 @@ export const getCollection = async ({
  **/
 
 export const updateDocument = async ({ data, path }: any) => {
-  debug.console("Updating document");
+  _console("Updating document");
   return run(["firestore"]).then((_firebase: any) => {
     return _firebase
       .firestore()

@@ -78,7 +78,7 @@ export class AppComponent extends LitElement {
     this.drawerOpened = !this.drawerOpened;
     window.dispatchEvent(
       new CustomEvent("drawer-toggled", {
-        composed: true,
+        composed: true
       })
     );
   }
@@ -107,7 +107,7 @@ export class AppComponent extends LitElement {
   // Lifecycle
   constructor() {
     super();
-    debug("Constructor");
+    debug.log("Constructor");
     this.reducers();
     this.media();
 
@@ -135,7 +135,7 @@ export class AppComponent extends LitElement {
   public async beforeRender() {
     await initApp(config.firebase);
     if (config.globalSettings) {
-      debug("Getting app level settings");
+      debug.log("Getting app level settings");
       await getAppSettings((document: any) => {
         setState({ data: { settings: document }, store, type: "app" });
         if (!config.staticTheme) {
@@ -143,30 +143,30 @@ export class AppComponent extends LitElement {
           theme.set(_theme, this);
         }
       });
-      debug("Finished gettings app settings");
+      debug.log("Finished gettings app settings");
     }
-    debug("Getting user level settings");
+    debug.log("Getting user level settings");
     await getUser().then(async (user: any) => {
       if (user) {
-        debug("User logged in");
+        debug.log("User logged in");
         const userData = extract(user);
         setState({ data: userData, store, type: "user" });
-        debug("Getting user settings");
+        debug.log("Getting user settings");
         await getUserSettings((document: any) => {
           setState({ data: { settings: document }, store, type: "user" });
           // setState({ data: document, store, type: "settings" });
         });
-        debug("Finished getting user settings");
-        debug("Getting user theme");
+        debug.log("Finished getting user settings");
+        debug.log("Getting user theme");
         await getUserTheme((document: any) => {
           theme.set(theme.convert(document), this);
         });
-        debug("Finished getting user theme");
+        debug.log("Finished getting user theme");
       } else {
-        debug("User not logged in");
+        debug.log("User not logged in");
       }
     });
-    debug("Finished getting user");
+    debug.log("Finished getting user");
   }
 
   public shouldUpdate(changedProperties: any) {
@@ -174,7 +174,7 @@ export class AppComponent extends LitElement {
   }
 
   public firstUpdated() {
-    debug("First updated");
+    debug.log("First updated");
     store.subscribe(() => this.requestUpdate());
     this.registerRouter();
     installOfflineWatcher((offline: boolean) => {

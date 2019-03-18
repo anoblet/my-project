@@ -3,7 +3,7 @@ import { store } from "./Store";
 const history: any = [];
 const subscribers: any = [];
 
-export const debug = (message: string) => {
+export const log = (message: string) => {
   history.push({ message, time: performance.now() });
   subscribers.map((listener: any) => listener(history));
 };
@@ -39,5 +39,6 @@ export const _console = message => {
 };
 
 export const debug = {
-  _console
+  _console,
+  log
 };

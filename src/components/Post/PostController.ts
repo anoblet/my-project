@@ -28,7 +28,7 @@ export class PostController extends LitElement {
   public firstUpdated() {
     // if (super.firstUpdated) super.firstUpdated();
     this.action = this.action || "index";
-    debug(this.action);
+    debug._console(this.action);
     if (this.action === "index") {
       navigate("/post/read");
     } else {
