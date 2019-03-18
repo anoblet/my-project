@@ -5,7 +5,7 @@ import { getDocument, getUser, initApp } from "../../Firebase";
 import { routeChanged, setPortal, setRoutes } from "../../Router";
 
 import GlobalStyle from "../../GlobalStyle";
-import Style from "./AppStyle";
+import Style from "./Style";
 import { addReducer } from "../../State";
 import { config } from "../../../config";
 import { debug } from "../../Debug";
