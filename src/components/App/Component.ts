@@ -27,83 +27,6 @@ export class AppComponent extends LitElement {
   public drawerOpened = false;
   @property() public mediaSize: string;
 
-  public media() {
-    media.subscribe((mediaSize: string) => {
-      // if (!this.taskPending) toast(mediaSize);
-      if (mediaSize === "mobile") this.drawerOpened = false;
-      if (mediaSize === "desktop") this.drawerOpened = true;
-      this.mediaSize = mediaSize;
-    });
-  }
-
-  public reducers() {
-    addReducer({ type: "app", store });
-    addReducer({ type: "user", store });
-    addReducer({ type: "settings", store });
-  }
-
-  public registerlisteners() {
-    this.addEventListener("close-drawer", this._closeDrawer);
-    this.addEventListener("drawer-toggled", this._toggleDrawer);
-  }
-
-  public async registerRouter() {
-    setRoutes(routes);
-    setPortal(this.shadowRoot.querySelector("#portal"));
-    await new Promise((resolve: any) => {
-      installRouter(async (location: any) => {
-        await routeChanged({
-          location,
-          routes,
-          portal: this.shadowRoot.querySelector("#portal")
-        });
-        setState({
-          type: "app",
-          data: { activeRoute: location.pathname },
-          store
-        });
-        resolve();
-      });
-    });
-  }
-
-  // Handlers
-  public _closeDrawer() {
-    this.drawerOpened = false;
-  }
-
-  public _toggleDrawer() {
-    const drawer: any = this.renderRoot.querySelector("drawer-component");
-    if (drawer) drawer.toggle();
-    this.drawerOpened = !this.drawerOpened;
-    window.dispatchEvent(
-      new CustomEvent("drawer-toggled", {
-        composed: true
-      })
-    );
-  }
-
-  public _toggleProfile() {
-    const menu: any = this.renderRoot.querySelector("#profile-menu");
-    menu.hidden ? menu.open() : menu.close();
-  }
-
-  public closeMenus() {
-    this.drawerOpened = false;
-    const menu: any = this.renderRoot.querySelector("#profile-menu");
-    menu.close();
-  }
-
-  public applyShadows() {
-    const state = store.getState();
-    if (state.settings.shadows)
-      this.style.setProperty(
-        "--box-shadow",
-        "0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23)"
-      );
-    else this.style.setProperty("--box-shadow", "initial");
-  }
-
   // Lifecycle
   constructor() {
     super();
@@ -189,6 +112,83 @@ export class AppComponent extends LitElement {
   public render() {
     this.applyShadows();
     return template.bind(this)();
+  }
+
+  public media() {
+    media.subscribe((mediaSize: string) => {
+      // if (!this.taskPending) toast(mediaSize);
+      if (mediaSize === "mobile") this.drawerOpened = false;
+      if (mediaSize === "desktop") this.drawerOpened = true;
+      this.mediaSize = mediaSize;
+    });
+  }
+
+  public reducers() {
+    addReducer({ type: "app", store });
+    addReducer({ type: "user", store });
+    addReducer({ type: "settings", store });
+  }
+
+  public registerlisteners() {
+    this.addEventListener("close-drawer", this._closeDrawer);
+    this.addEventListener("drawer-toggled", this._toggleDrawer);
+  }
+
+  public async registerRouter() {
+    setRoutes(routes);
+    setPortal(this.shadowRoot.querySelector("#portal"));
+    await new Promise((resolve: any) => {
+      installRouter(async (location: any) => {
+        await routeChanged({
+          location,
+          routes,
+          portal: this.shadowRoot.querySelector("#portal")
+        });
+        setState({
+          type: "app",
+          data: { activeRoute: location.pathname },
+          store
+        });
+        resolve();
+      });
+    });
+  }
+
+  // Handlers
+  public _closeDrawer() {
+    this.drawerOpened = false;
+  }
+
+  public _toggleDrawer() {
+    const drawer: any = this.renderRoot.querySelector("drawer-component");
+    if (drawer) drawer.toggle();
+    this.drawerOpened = !this.drawerOpened;
+    window.dispatchEvent(
+      new CustomEvent("drawer-toggled", {
+        composed: true
+      })
+    );
+  }
+
+  public _toggleProfile() {
+    const menu: any = this.renderRoot.querySelector("#profile-menu");
+    menu.hidden ? menu.open() : menu.close();
+  }
+
+  public closeMenus() {
+    this.drawerOpened = false;
+    const menu: any = this.renderRoot.querySelector("#profile-menu");
+    menu.close();
+  }
+
+  public applyShadows() {
+    const state = store.getState();
+    if (state.settings.shadows)
+      this.style.setProperty(
+        "--box-shadow",
+        "0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23)"
+      );
+    else this.style.setProperty("--box-shadow", "initial");
   }
 }
 
