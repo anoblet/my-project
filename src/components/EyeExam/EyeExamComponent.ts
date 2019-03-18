@@ -68,7 +68,7 @@ export class EyeExamComponent extends LitElement {
   }
 
   public onEnd(e: any) {
-    debug("On end");
+    debug._console("On end");
     if (this.history[this.currentIndex - 1])
       if (!this.history[this.currentIndex - 1].answer) {
         toast("Error");
@@ -155,7 +155,7 @@ export class EyeExamComponent extends LitElement {
       return;
     }
     if (this.currentIndex < 1) {
-      toast("Beyondd range");
+      toast("Beyond range");
       return;
     }
     this.character = this.history[this.currentIndex - 1].expectation;
