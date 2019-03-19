@@ -22,19 +22,13 @@ const stop = (key: string) => {
   return true;
 };
 
-const debugObject = {
-  pointer: "/",
-  start,
-  stop
-};
-
 export const filterByMode = (mode: number) => {
   const state = store.getState();
   if (state.app.settings) return state.app.settings.mode >= mode;
   else return true;
 };
 
-export const _console = message => {
+export const _console = (message: unknown) => {
   return console.log(message);
 };
 
