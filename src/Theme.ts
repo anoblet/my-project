@@ -1,8 +1,8 @@
 import { getDocument } from "./Firebase";
 import { config } from "../config";
 
-export const setTheme = (theme: any, element: any) => {
-  theme.map((propertyMap: any) => {
+export const setTheme = (_theme: any, element: any) => {
+  _theme.map((propertyMap: any) => {
     element.style.setProperty(propertyMap.property, propertyMap.value);
   });
 };
@@ -28,14 +28,14 @@ export const convert = documentToTheme;
 
 export const setDefaultTheme = async () => {
   if (config.staticTheme) {
-    const theme = documentToTheme(config.theme);
-    setTheme(theme, document.querySelector("app-component"));
+    const _theme = documentToTheme(config.theme);
+    setTheme(_theme, document.querySelector("app-component"));
   } else {
     const settings = await getDocument({
       path: `app/settings`
     });
-    const theme = documentToTheme(settings.defaultTheme);
-    setTheme(theme, document.querySelector("app-component"));
+    const _theme = documentToTheme(settings.defaultTheme);
+    setTheme(_theme, document.querySelector("app-component"));
   }
 };
 
