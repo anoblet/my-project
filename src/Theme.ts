@@ -9,7 +9,7 @@ export const setTheme = (_theme: any, element: any) => {
 
 export const set = setTheme;
 
-export const documentToTheme = (document: any) => {
+export const convert = (document: any) => {
   const styles: any = [];
   Object.keys(document).map((style: any) => {
     const parts = style.split(/(?=[A-Z])/);
@@ -24,17 +24,17 @@ export const documentToTheme = (document: any) => {
   return styles;
 };
 
-export const convert = documentToTheme;
+// export const documentToTheme = convert;
 
 export const setDefaultTheme = async () => {
   if (config.staticTheme) {
-    const _theme = documentToTheme(config.theme);
+    const _theme = convert(config.theme);
     setTheme(_theme, document.querySelector("app-component"));
   } else {
     const settings = await getDocument({
       path: `app/settings`
     });
-    const _theme = documentToTheme(settings.defaultTheme);
+    const _theme = convert(settings.defaultTheme);
     setTheme(_theme, document.querySelector("app-component"));
   }
 };
