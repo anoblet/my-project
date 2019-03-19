@@ -1,6 +1,6 @@
 import { store } from "./Store";
 
-export const addReducer = ({ _store, type, customFunction = false }: any) => {
+export const addReducer = ({ store, type, customFunction = false }: any) => {
   const defaultFunction = (_state = {}, action: any) => {
     switch (action.type) {
       case `${type}`:
@@ -14,18 +14,18 @@ export const addReducer = ({ _store, type, customFunction = false }: any) => {
         return _state;
     }
   };
-  _store.addReducers({
+  store.addReducers({
     [type]: customFunction ? customFunction : defaultFunction
   });
 };
 
 export const setState = ({
   data,
-  _store,
+  store,
   type,
   config = { merge: true }
 }: any) => {
-  _store.dispatch({
+  store.dispatch({
     type,
     state: data,
     merge: config.merge

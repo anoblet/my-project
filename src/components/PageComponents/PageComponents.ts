@@ -33,10 +33,10 @@ export class PageComponents extends LitElement {
     }
   }
 
-  public constructor() {
-    super();
+  public connectedCallback() {
+    super.connectedCallback();
     components.map((component: any) => {
-      // console.log(component.src);
+      if (component.tag === this.component) component.src();
     });
   }
 
