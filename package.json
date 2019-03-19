@@ -8,6 +8,7 @@
     "start": "webpack-dev-server",
     "save": "git add . && git commit -m \"Chore: Save\"",
     "dev": "webpack-dev-server --mode development",
+    "lint": "tslint -c tslint.json 'src/**/*.ts' > tslint.log",
     "test": "karma start",
     "test:watch": "karma start --auto-watch=true --single-run=false"
   },
