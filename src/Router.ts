@@ -110,5 +110,5 @@ export const routeChanged = async ({ location, portal, routes }: any) => {
 export const handleNavigation = routeChanged;
 
 export const router = {
-  subscribe: () => store.subscribe(() => {})
+  subscribe: () => store.subscribe(() => {return})
 };
