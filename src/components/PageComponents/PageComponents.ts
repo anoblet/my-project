@@ -19,6 +19,7 @@ import("../muuri/component");
 
 export class PageComponents extends LitElement {
   @property() public component: string;
+  @property() public components: unknown;
 
   static get styles() {
     return [GlobalStyle, style];
@@ -35,6 +36,7 @@ export class PageComponents extends LitElement {
 
   public connectedCallback() {
     super.connectedCallback();
+    this.components = components;
     components.map((component: any) => {
       if (component.tag === this.component) component.src();
     });

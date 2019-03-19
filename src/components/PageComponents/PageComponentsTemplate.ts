@@ -7,6 +7,11 @@ export default function() {
       <card-component title="Components">
         <div slot="content">
           <ul>
+            ${this.components.map(
+              (component: any) => html`
+                <li><a href="/components/${component.tag}">Test</a></li>
+              `
+            )}
             ${true // isAdmin()
               ? html`
                   <a href="/components/eye-exam"><li>Eye Exam</li></a>
