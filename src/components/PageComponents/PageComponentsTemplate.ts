@@ -9,7 +9,9 @@ export default function() {
           <ul>
             ${this.components.map(
               (component: any) => html`
-                <li><a href="/components/${component.tag}">Test</a></li>
+                <li>
+                  <a href="/components/${component.tag}">${component.name}</a>
+                </li>
               `
             )}
             ${true // isAdmin()
