@@ -13,16 +13,6 @@ export default function() {
                 </li>
               `
             )}
-            ${true // isAdmin()
-              ? html`
-                  <a href="/components/color-picker"><li>Color</li></a>
-                  <a href="/components/dasboard-component"
-                    ><li>Dashboard</li></a
-                  >
-                  <a href="/components/contacts-component"><li>Contacts</li></a>
-                  <a href="/components/muuri-component"><li>muuri</li></a>
-                `
-              : ""}
           </ul>
         </div></card-component
       >

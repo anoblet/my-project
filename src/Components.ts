@@ -23,5 +23,25 @@ export const components = [
     name: "Eye Exam",
     src: () => import("./components/EyeExam/EyeExamComponent"),
     tag: "eye-exam"
+  },
+  {
+    name: "Color Picker",
+    src: () => import("./components/ColorPicker"),
+    tag: "color-picker"
+  },
+  {
+    name: "Dashboard",
+    src: () => import("./components/Dashboard/Component"),
+    tag: "dashboard-component"
+  },
+  {
+    name: "Contacts",
+    src: () => import("./components/Contacts/Component"),
+    tag: "contacts-component"
+  },
+  {
+    name: "Muuri",
+    src: () => import("./components/muuri/component"),
+    tag: "muuri-component"
   }
 ];
