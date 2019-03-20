@@ -121,7 +121,7 @@ export class AppComponent extends LitElement {
     });
   }
 
-  public addRweducers() {
+  public addReducers() {
     addReducer({ type: "app", store });
     addReducer({ type: "user", store });
     addReducer({ type: "settings", store });
