@@ -116,10 +116,6 @@ export default css`
     position: relative;
   }
 
-  #drawer-container[opened] {
-    /* grid-template-columns: minmax(128px,1fr) 4fr; */
-  }
-
   #container {
     grid-template-rows: min-content 1fr min-content;
   }
@@ -130,10 +126,6 @@ export default css`
   }
 
   #content {
-    /*
-    border: 1px solid var(--border-color);
-    border-radius: var(--border-radius) 0 0 var(--border-radius);
-    */
     flex-direction: column;
   }
 
@@ -172,9 +164,6 @@ export default css`
   #drawer[media-size="mobile"] {
     border: 0;
     border-right: 1px solid var(--border-color);
-  }
-
-  breadcrumb-component {
   }
 
   breadcrumb-component a {
