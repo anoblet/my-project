@@ -30,8 +30,7 @@ export const renderForm = ({ onChange, structure, values }: any) => {
                     : html`
                         ${structure[property].type === Boolean
                           ? renderCheckbox(property, values, onChange)
-                          : // renderSwitch(field)
-                            ""}
+                          : ""}
                         ${structure[property].type === Number
                           ? renderNumber(field)
                           : ""}
