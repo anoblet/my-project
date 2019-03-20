@@ -3,7 +3,6 @@ import { LitElement, customElement, property } from "lit-element";
 import GlobalStyle from "../../GlobalStyle";
 import Style from "./Style";
 import Template from "./Template";
-import { addReducer } from "../../State";
 import { config } from "../../../config";
 import { db } from "../../Database";
 import { debug } from "../../Debug";
@@ -12,7 +11,7 @@ import { installRouter } from "pwa-helpers/router.js";
 import { media } from "../../Media";
 import { router } from "../../Router";
 import { routes } from "./Routes";
-import { setState } from "../../State";
+import { addReducer, setState } from "../../State";
 import { store } from "../../Store";
 import { theme } from "../../Theme";
 import { toast } from "../Toast/Toast";
@@ -31,7 +30,7 @@ export class AppComponent extends LitElement {
   constructor() {
     super();
     debug.log("Constructor");
-    this.reducers();
+    this.addReducers();
     this.media();
 
     // Global theme
@@ -122,7 +121,7 @@ export class AppComponent extends LitElement {
     });
   }
 
-  public reducers() {
+  public addReducers() {
     addReducer({ type: "app", store });
     addReducer({ type: "user", store });
     addReducer({ type: "settings", store });
