@@ -1,10 +1,6 @@
 // Consider a change to component-editor
 import { html } from "lit-element";
-import {
-  renderForm as _renderForm,
-  renderNumber,
-  renderText
-} from "../Form/Form";
+import { renderForm as _renderForm } from "../Form/Form";
 
 export interface Property {
   label?: string;
