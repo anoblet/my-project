@@ -6,21 +6,6 @@ export default css`
   }
 
   :host {
-    --background-color: #fff;
-    --text-color: #242424;
-    --border-color: #9e9e9e;
-    --primary-color: #00ff00;
-    --secondary-color: #ff0080;
-    --debug-padding: 0;
-    --debug-border: 0;
-    --padding: 1em;
-    --button-color: var(--primary-color);
-
-    --background-color-elevated: var(--primary-color);
-
-    --mdc-theme-primary: var(--primary-color);
-    --mdc-theme-secondary: var(--secondary-color);
-
     display: flex;
     flex: 1;
     flex-direction: column;
