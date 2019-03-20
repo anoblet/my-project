@@ -204,10 +204,3 @@ const getAppSettings = (callback: any) => {
     })
   );
 };
-
-const reducers = () => {
-  addReducer({ type: "app", store });
-  addReducer({ type: "user", store });
-  addReducer({ type: "theme", store });
-  addReducer({ type: "settings", store });
-};
