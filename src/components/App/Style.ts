@@ -11,7 +11,7 @@ export default css`
     flex-direction: column;
     background: var(--background-color);
     color: var(--text-color);
-    font-family: "Roboto", sans-serif;
+    font-family: Roboto, sans-serif;
   }
 
   :host([dark]) {
@@ -40,6 +40,8 @@ export default css`
     background: var(--background-color);
     height: 100%;
     z-index: 3;
+    border: 0;
+    border-right: 1px solid var(--border-color);
   }
 
   #drawer-container {
@@ -49,7 +51,7 @@ export default css`
   }
 
   [full-height] {
-    // height: 100%;
+    height: 100%;
   }
 
   #drawer[hidden] {
@@ -62,6 +64,7 @@ export default css`
 
   #container {
     flex: 1;
+    grid-template-rows: min-content 1fr min-content;
   }
 
   #top,
@@ -71,27 +74,23 @@ export default css`
   }
 
   #top {
-    padding: 1em 1.25em 1em 1.25em !important;
+    padding: 1em 1.25em !important;
   }
 
   #bottom {
     position: fixed;
     bottom: 0;
-    padding: 0 1em 0.5em 1em !important;
-    /* Weird hack */
     left: 50%;
     -webkit-transform: translateX(-50%);
     transform: translateX(-50%);
-    /**/
     z-index: 2;
+    align-items: center;
+    justify-content: center;
+    padding: 0 1em 0.5em !important;
   }
 
   #content-grid {
     padding-right: 1em;
-  }
-
-  #menu:hover {
-    cursor: pointer;
   }
 
   #center {
@@ -99,15 +98,6 @@ export default css`
     flex: 1;
     overflow: auto;
     position: relative;
-  }
-
-  #container {
-    grid-template-rows: min-content 1fr min-content;
-  }
-
-  #bottom {
-    align-items: center;
-    justify-content: center;
   }
 
   #content {
@@ -136,31 +126,22 @@ export default css`
     border: 1px solid var(--border-color);
     border-top: 0;
     border-right: 0;
-    padding: 1em 2em 2em 1em;
     position: absolute;
     right: 0;
     z-index: 1;
+    padding: 1em 2em 2em 1em;
   }
 
   #profile-menu li {
     padding-bottom: 0.25em;
   }
 
-  #drawer[media-size="mobile"] {
-    border: 0;
-    border-right: 1px solid var(--border-color);
-  }
-
   breadcrumb-component a {
     display: block;
   }
 
-  #made-width {
+  #made-with {
     text-align: center;
-  }
-
-  mwc-fab {
-    --mdc-theme-secondary: var(--background-color);
   }
 
   #menu {
@@ -168,6 +149,7 @@ export default css`
     padding: 1em;
   }
 
+  #menu:hover,
   #userProfile {
     cursor: pointer;
   }
