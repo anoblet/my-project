@@ -22,7 +22,7 @@ export interface DashboardComponent {
  * @return                      [description]
  */
 
-@customElement("dasboard-component")
+@customElement("dashboard-component")
 export class Dashboard extends BeforeRender(LitElement) {
   @property() public itemArray: any;
 
