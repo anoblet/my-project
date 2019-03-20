@@ -1,6 +1,6 @@
 import { LitElement, customElement, property } from "lit-element";
 import { theme } from "../../Theme";
-import { extract, getUserSettings, getUserTheme } from "../../User";
+import { user } from "../../User";
 import { db } from "../../Database";
 import { routeChanged, setPortal, setRoutes } from "../../Router";
 
@@ -73,16 +73,16 @@ export class AppComponent extends LitElement {
     await db.getUser().then(async (user: any) => {
       if (user) {
         debug.log("User logged in");
-        const userData = extract(user);
+        const userData = user.extract(user);
         setState({ data: userData, store, type: "user" });
         debug.log("Getting user settings");
-        await getUserSettings((document: any) => {
+        await user.getUserSettings((document: any) => {
           setState({ data: { settings: document }, store, type: "user" });
           // setState({ data: document, store, type: "settings" });
         });
         debug.log("Finished getting user settings");
         debug.log("Getting user theme");
-        await getUserTheme((document: any) => {
+        await user.getUserTheme((document: any) => {
           theme.set(theme.convert(document), this);
         });
         debug.log("Finished getting user theme");

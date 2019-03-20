@@ -123,6 +123,9 @@ export const get = () => {
 };
 
 export const user = {
+  extract,
   get,
+  getUserSettings,
+  getUserTheme,
   isAdmin
 };
