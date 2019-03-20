@@ -2,6 +2,7 @@ import { LitElement, customElement, property } from "lit-element";
 
 import GlobalStyle from "../../GlobalStyle";
 import Style from "./Style";
+import Template from "./Template";
 import { addReducer } from "../../State";
 import { config } from "../../../config";
 import { db } from "../../Database";
@@ -13,7 +14,6 @@ import { router } from "../../Router";
 import { routes } from "./Routes";
 import { setState } from "../../State";
 import { store } from "../../Store";
-import Template from "./Template";
 import { theme } from "../../Theme";
 import { toast } from "../Toast/Toast";
 import { user } from "../../User";
