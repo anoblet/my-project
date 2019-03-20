@@ -11,7 +11,7 @@ import(/* webpackChunkName: "WebSpeech" */ "../WebSpeech/WebSpeechComponent");
 import(/* webpackChunkName: "PropertyEditor" */ "../PropertyEditor/PropertyEditor");
 import("../Collection/CollectionList");
 import("../ColorPicker");
-import("../Dashboard/DashboardComponent");
+import("../Dashboard/Component");
 import("../PhilipsHue/LightsComponent");
 import("../PhilipsHue/Demo");
 import("../Contacts/Component");
