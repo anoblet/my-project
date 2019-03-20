@@ -1,22 +1,22 @@
 import { LitElement, customElement, property } from "lit-element";
-import { theme } from "../../Theme";
-import { user } from "../../User";
-import { db } from "../../Database";
-import { routeChanged, setPortal, setRoutes } from "../../Router";
 
 import GlobalStyle from "../../GlobalStyle";
 import Style from "./Style";
 import { addReducer } from "../../State";
 import { config } from "../../../config";
+import { db } from "../../Database";
 import { debug } from "../../Debug";
 import { installOfflineWatcher } from "pwa-helpers/network.js";
 import { installRouter } from "pwa-helpers/router.js";
+import { media } from "../../Media";
+import { router } from "../../Router";
 import { routes } from "./Routes";
 import { setState } from "../../State";
 import { store } from "../../Store";
-import { media } from "../../Media";
 import template from "./Template";
+import { theme } from "../../Theme";
 import { toast } from "../Toast/Toast";
+import { user } from "../../User";
 
 @customElement("app-component")
 export class AppComponent extends LitElement {
@@ -70,15 +70,14 @@ export class AppComponent extends LitElement {
       debug.log("Finished gettings app settings");
     }
     debug.log("Getting user level settings");
-    await db.getUser().then(async (user: any) => {
-      if (user) {
+    await db.getUser().then(async (_user: any) => {
+      if (_user) {
         debug.log("User logged in");
-        const userData = user.extract(user);
+        const userData = user.extract(_user);
         setState({ data: userData, store, type: "user" });
         debug.log("Getting user settings");
         await user.getUserSettings((document: any) => {
           setState({ data: { settings: document }, store, type: "user" });
-          // setState({ data: document, store, type: "settings" });
         });
         debug.log("Finished getting user settings");
         debug.log("Getting user theme");
@@ -136,11 +135,11 @@ export class AppComponent extends LitElement {
   }
 
   public async registerRouter() {
-    setRoutes(routes);
-    setPortal(this.shadowRoot.querySelector("#portal"));
+    router.setRoutes(routes);
+    router.setPortal(this.shadowRoot.querySelector("#portal"));
     await new Promise((resolve: any) => {
       installRouter(async (location: any) => {
-        await routeChanged({
+        await router.routeChanged({
           location,
           routes,
           portal: this.shadowRoot.querySelector("#portal")

@@ -113,5 +113,8 @@ export const router = {
   subscribe: () =>
     store.subscribe(() => {
       return;
-    })
+    }),
+  routeChanged,
+  setPortal,
+  setRoutes
 };
