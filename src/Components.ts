@@ -19,32 +19,38 @@ export const components = [
   },
   {
     name: "Philips Hue Demo",
-    src: () => import(/* webpackChunkName: "PhilipsHueDemo" */ "./components/PhilipsHue/Demo"),
+    src: () =>
+      import(/* webpackChunkName: "PhilipsHueDemo" */ "./components/PhilipsHue/Demo"),
     tag: "philips-hue-demo"
   },
   {
     name: "Eye Exam",
-    src: () => import(/* webpackChunkName: "EyeExam" */ "./components/EyeExam/EyeExamComponent"),
+    src: () =>
+      import(/* webpackChunkName: "EyeExam" */ "./components/EyeExam/EyeExamComponent"),
     tag: "eye-exam"
   },
   {
     name: "Color Picker",
-    src: () => import(/* webpackChunkName: "ColorPicker" */ "./components/ColorPicker"),
+    src: () =>
+      import(/* webpackChunkName: "ColorPicker" */ "./components/ColorPicker"),
     tag: "color-picker"
   },
   {
     name: "Dashboard",
-    src: () => import(/* webpackChunkName: "Dashboard" */ "./components/Dashboard/Component"),
+    src: () =>
+      import(/* webpackChunkName: "Dashboard" */ "./components/Dashboard/Component"),
     tag: "dashboard-component"
   },
   {
     name: "Contacts",
-    src: () => import(/* webpackChunkName: "Contacts" */ "./components/Contacts/Component"),
+    src: () =>
+      import(/* webpackChunkName: "Contacts" */ "./components/Contacts/Component"),
     tag: "contacts-component"
   },
   {
     name: "Muuri",
-    src: () => import(/* webpackChunkName: "Muuri" */ "./components/muuri/component"),
+    src: () =>
+      import(/* webpackChunkName: "Muuri" */ "./components/muuri/component"),
     tag: "muuri-component"
   }
 ];

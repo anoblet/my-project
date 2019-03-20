@@ -1,6 +1,10 @@
 import { css } from "lit-element";
 
 export default css`
+  * {
+    /* contain: layout; */
+  }
+
   :host([hidden]) {
     display: none;
   }
