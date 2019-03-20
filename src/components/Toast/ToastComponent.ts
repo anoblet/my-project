@@ -1,7 +1,7 @@
 import { LitElement, css, customElement, html, property } from "lit-element";
 
 @customElement("toast-component")
-class ToastComponent extends LitElement {
+export class ToastComponent extends LitElement {
   @property() public content: string;
 
   public static get styles() {
