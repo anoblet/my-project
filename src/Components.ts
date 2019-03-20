@@ -1,47 +1,50 @@
 export const components = [
   {
     name: "Voice",
-    src: () => import("./components/VoiceComponent"),
+    src: () =>
+      import(/* webpackChunkName: Voice*/ "./components/VoiceComponent"),
     tag: "voice-component"
   },
   {
     name: "Collection List",
-    src: () => import("./components/Collection/CollectionList"),
+    src: () =>
+      import(/* webpackChunkName: ComponentList*/ "./components/Collection/CollectionList"),
     tag: "collection-list"
   },
   {
     name: "Philips Hue",
-    src: () => import("./components/PhilipsHue/LightsComponent"),
+    src: () =>
+      import(/* webpackChunkName: PhilipsHue */ "./components/PhilipsHue/LightsComponent"),
     tag: "lights-component"
   },
   {
     name: "Philips Hue Demo",
-    src: () => import("./components/PhilipsHue/Demo"),
+    src: () => import(/* webpackChunkName: PhilipsHueDemo */ "./components/PhilipsHue/Demo"),
     tag: "philips-hue-demo"
   },
   {
     name: "Eye Exam",
-    src: () => import("./components/EyeExam/EyeExamComponent"),
+    src: () => import(/* webpackChunkName: EyeExam */ "./components/EyeExam/EyeExamComponent"),
     tag: "eye-exam"
   },
   {
     name: "Color Picker",
-    src: () => import("./components/ColorPicker"),
+    src: () => import(/* webpackChunkName: ColorPicker */ "./components/ColorPicker"),
     tag: "color-picker"
   },
   {
     name: "Dashboard",
-    src: () => import("./components/Dashboard/Component"),
+    src: () => import(/* webpackChunkName: Dashboard */ "./components/Dashboard/Component"),
     tag: "dashboard-component"
   },
   {
     name: "Contacts",
-    src: () => import("./components/Contacts/Component"),
+    src: () => import(/* webpackChunkName: Contacts */ "./components/Contacts/Component"),
     tag: "contacts-component"
   },
   {
     name: "Muuri",
-    src: () => import("./components/muuri/component"),
+    src: () => import(/* webpackChunkName: Muuri */ "./components/muuri/component"),
     tag: "muuri-component"
   }
 ];
