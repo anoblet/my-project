@@ -13,7 +13,7 @@ import { router } from "../../Router";
 import { routes } from "./Routes";
 import { setState } from "../../State";
 import { store } from "../../Store";
-import template from "./Template";
+import Template from "./Template";
 import { theme } from "../../Theme";
 import { toast } from "../Toast/Toast";
 import { user } from "../../User";
@@ -111,7 +111,7 @@ export class AppComponent extends LitElement {
 
   public render() {
     this.applyShadows();
-    return template.bind(this)();
+    return Template.bind(this)();
   }
 
   public media() {
