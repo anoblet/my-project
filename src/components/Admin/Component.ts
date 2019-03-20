@@ -1,19 +1,13 @@
-import { LitElement, customElement, css } from "lit-element";
+import { LitElement, customElement } from "lit-element";
 
 import GlobalStyle from "../../GlobalStyle";
+import Style from "./Style";
 import Template from "./Template";
 
 @customElement("admin-component")
 export class AdminComponent extends LitElement {
   static get styles() {
-    return [
-      GlobalStyle,
-      css`
-        :host {
-          flex: 1;
-        }
-      `
-    ];
+    return [GlobalStyle, Style];
   }
 
   public render() {
