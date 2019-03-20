@@ -1,5 +1,4 @@
 import { html } from "lit-element";
-import { isAdmin } from "../../User";
 
 export default function() {
   return html`
@@ -16,7 +15,6 @@ export default function() {
             )}
             ${true // isAdmin()
               ? html`
-                  <a href="/components/eye-exam"><li>Eye Exam</li></a>
                   <a href="/components/color-picker"><li>Color</li></a>
                   <a href="/components/dasboard-component"
                     ><li>Dashboard</li></a

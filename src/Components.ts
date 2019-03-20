@@ -13,5 +13,10 @@ export const components = [
     name: "Philips Hue",
     src: () => import("./components/PhilipsHue/LightsComponent"),
     tag: "lights-component"
+  },
+  {
+    name: "Eye Exam",
+    src: () => import("./components/EyeExam/EyeExamComponent"),
+    tag: "eye-exam"
   }
 ];
