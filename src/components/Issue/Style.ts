@@ -1,8 +1,8 @@
 import { css } from "lit-element";
-import globalStyle from "../../GlobalStyle";
+import GlobalStyle from "../../GlobalStyle";
 
 export default [
-  globalStyle,
+  GlobalStyle,
   css`
     :host {
       flex: 1;
