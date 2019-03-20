@@ -17,15 +17,9 @@ export default function() {
             ${true // isAdmin()
               ? html`
                   <a href="/components/eye-exam"><li>Eye Exam</li></a>
-                  <a href="/components/collection-list"
-                    ><li>Collection list</li></a
-                  >
                   <a href="/components/color-picker"><li>Color</li></a>
                   <a href="/components/dasboard-component"
                     ><li>Dashboard</li></a
-                  >
-                  <a href="/components/lights-component"
-                    ><li>Philips Hue</li></a
                   >
                   <a href="/components/philips-hue-demo"
                     ><li>Philips Hue Demo</li></a

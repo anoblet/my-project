@@ -8,5 +8,10 @@ export const components = [
     name: "Collection List",
     src: () => import("./components/Collection/CollectionList"),
     tag: "collection-list"
+  },
+  {
+    name: "Philips Hue",
+    src: () => import("./components/PhilipsHue/LightsComponent"),
+    tag: "lights-component"
   }
 ];
