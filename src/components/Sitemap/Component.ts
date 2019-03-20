@@ -1,19 +1,16 @@
-import { LitElement, css, customElement, html, property } from "lit-element";
+import { LitElement, customElement, html, property } from "lit-element";
 
 import { generateSitemap } from "./Sitemap";
 import { routes } from "../App/Routes";
 import GlobalStyle from "../../GlobalStyle";
+import Style from "./Style";
 
 @customElement("sitemap-component")
-class Sitemap extends LitElement {
+export class Sitemap extends LitElement {
   @property() public template: any;
 
   static get styles() {
-    return [GlobalStyle, css`
-      :host {
-        flex: 1;
-      }
-    `];
+    return [GlobalStyle, Style];
   }
 
   public render() {
