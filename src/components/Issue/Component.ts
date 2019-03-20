@@ -1,6 +1,7 @@
 import { LitElement, customElement, property } from "lit-element";
 import { createIssue } from "../Github/CreateIssue";
 import Style from "./Style";
+import GlobalStyle from "../../GlobalStyle";
 import Template from "./Template";
 import { toast } from "../Toast/Toast";
 
@@ -31,7 +32,7 @@ export class IssueComponent extends LitElement {
   }
 
   static get styles() {
-    return Style;
+    return [GlobalStyle, Style];
   }
 
   public render() {
