@@ -19,9 +19,6 @@ export default function() {
                   <a href="/components/dasboard-component"
                     ><li>Dashboard</li></a
                   >
-                  <a href="/components/philips-hue-demo"
-                    ><li>Philips Hue Demo</li></a
-                  >
                   <a href="/components/contacts-component"><li>Contacts</li></a>
                   <a href="/components/muuri-component"><li>muuri</li></a>
                 `
