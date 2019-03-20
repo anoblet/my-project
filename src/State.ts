@@ -1,9 +1,13 @@
 import { store } from "./Store";
 
+const defaultReducer = (state, action, type) => {
+
+}
+
 export const addReducer = ({ store, type, customFunction = false }: any) => {
   const defaultFunction = (_state = {}, action: any) => {
     switch (action.type) {
-      case `${type}`:
+      case type:
         return action.merge
           ? {
               ..._state,
@@ -15,7 +19,7 @@ export const addReducer = ({ store, type, customFunction = false }: any) => {
     }
   };
   store.addReducers({
-    [type]: customFunction ? customFunction : defaultFunction
+    [type]: customFunction || defaultFunction
   });
 };
 
