@@ -163,4 +163,4 @@ export const addDocument = ({ path, data }: any) => {
   });
 };
 
-export const firebase = { getDocument, run, update: updateDocument };
+export const firebase = { getDocument, getUser, initApp, run, update: updateDocument };

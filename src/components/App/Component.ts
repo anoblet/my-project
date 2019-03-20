@@ -1,7 +1,7 @@
 import { LitElement, customElement, property } from "lit-element";
 import { theme } from "../../Theme";
 import { extract, getUserSettings, getUserTheme } from "../../User";
-import { getDocument, getUser, initApp } from "../../Firebase";
+import { db } from "../../Database";
 import { routeChanged, setPortal, setRoutes } from "../../Router";
 
 import GlobalStyle from "../../GlobalStyle";
@@ -57,7 +57,7 @@ export class AppComponent extends LitElement {
   }
 
   public async beforeRender() {
-    await initApp(config.firebase);
+    await db.initApp(config.firebase);
     if (config.globalSettings) {
       debug.log("Getting app level settings");
       await getAppSettings((document: any) => {
@@ -70,7 +70,7 @@ export class AppComponent extends LitElement {
       debug.log("Finished gettings app settings");
     }
     debug.log("Getting user level settings");
-    await getUser().then(async (user: any) => {
+    await db.getUser().then(async (user: any) => {
       if (user) {
         debug.log("User logged in");
         const userData = extract(user);
@@ -196,7 +196,7 @@ export class AppComponent extends LitElement {
 // Utility function
 const getAppSettings = (callback: any) => {
   return new Promise((resolve: any, reject: any) =>
-    getDocument({
+    db.getDocument({
       callback: (document: any) => {
         document
           ? resolve(callback(document))
