@@ -17,7 +17,7 @@ export interface FormField {
 }
 
 /**
- * [keys description]
+ * Render form
  * @param  component [description]
  * @param  properties [description]
  * @param  onChange [description]
