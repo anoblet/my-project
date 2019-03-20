@@ -9,13 +9,6 @@ import { toast } from "../Toast/Toast";
 export class IssueComponent extends LitElement {
   @property({ type: Object }) public _data: any = {};
 
-  // What if saveForm didn't rely on this but took an argument?
-  public saveForm() {
-    createIssue({ data: this._data })
-      .then(() => toast("Issue created"))
-      .catch((response: any) => toast(`Could not create issue: ${response}`));
-  }
-
   static get properties() {
     return {
       title: {
@@ -43,5 +36,12 @@ export class IssueComponent extends LitElement {
 
   public render() {
     return Template.bind(this)();
+  }
+
+  // What if saveForm didn't rely on this but took an argument?
+  public saveForm() {
+    createIssue({ data: this._data })
+      .then(() => toast("Issue created"))
+      .catch((response: any) => toast(`Could not create issue: ${response}`));
   }
 }
