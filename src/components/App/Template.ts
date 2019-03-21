@@ -62,7 +62,7 @@ export default function() {
         </div>
       </grid-component>
     </div>
-    <footer-component> id="bottom"></footer-component>
+    <footer-component id="bottom"></footer-component>
     <menu-component></menu-component>
     <voice-component></voice-component>
   `;
