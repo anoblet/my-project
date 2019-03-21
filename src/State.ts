@@ -1,17 +1,20 @@
 import { store } from "./Store";
 
 export const addReducer = ({ store, type, customFunction = false }: any) => {
-  const defaultFunction = (_state = {}, action: any) => {
+  const defaultFunction = (
+    state = {},
+    action: { merge: true; state: any; type: string }
+  ) => {
     switch (action.type) {
       case type:
         return action.merge
           ? {
-              ..._state,
+              ...state,
               ...action.state
             }
           : action.state;
       default:
-        return _state;
+        return state;
     }
   };
   store.addReducers({
