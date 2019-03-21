@@ -10,6 +10,7 @@ import "./components/Loading/LoadingComponent";
 import "./components/ContextMenu/MenuComponent";
 import "./components/Breadcrumb/BreadcrumbComponent";
 import "./components/VoiceComponent";
+import "./components/Button/Component";
 // Firebase
 import "firebase/app";
 import "firebase/auth";
