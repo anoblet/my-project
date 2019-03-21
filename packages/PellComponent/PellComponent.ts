@@ -1,7 +1,6 @@
 import { LitElement, css, customElement, html, property } from "lit-element";
 
-import globalStyle from "../../src/GlobalStyle";
-// @ts-ignore
+import GlobalStyle from "../../src/GlobalStyle";
 import pell from "pell";
 
 @customElement("pell-component")
@@ -10,7 +9,7 @@ export class PellComponent extends LitElement {
   @property() public value: string;
   static get styles() {
     return [
-      globalStyle,
+      GlobalStyle,
       css`
         button {
           background: inherit;
@@ -20,8 +19,6 @@ export class PellComponent extends LitElement {
         }
         .pell-actionbar {
           margin-top: 1em;
-          /* display: grid;
-          grid-template-columns: 1fr 1fr 1fr 1fr 1fr; */
           width: fit-content;
         }
         .pell-content {
@@ -46,21 +43,8 @@ export class PellComponent extends LitElement {
     pell.init({
       element: editor,
       onChange: (_html: any) => (this.value = _html),
-      // <string>, optional, default = 'div'
-      // Instructs the editor which element to inject via the return key
       defaultParagraphSeparator: "div",
-      // <boolean>, optional, default = false
-      // Outputs <span style="font-weight: bold;"></span> instead of <b></b>
       styleWithCSS: false,
-      // <Array[string | Object]>, string if overwriting, object if customizing/creating
-      // action.name<string> (only required if overwriting)
-      // action.icon<string> (optional if overwriting, required if custom action)
-      // action.title<string> (optional)
-      // action.result<Function> (required)
-      // Specify the actions you specifically want (in order)
-
-      // classes<Array[string]> (optional)
-      // Choose your custom class names
       classes: {
         actionbar: "pell-actionbar",
         button: "pell-button",
