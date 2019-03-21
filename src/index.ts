@@ -1,5 +1,5 @@
 import "./components/App/Component";
-import "./components/AppHeader/AppHeader";
+import "./components/Header/Component";
 import "./components/Footer/Footer";
 import "./components/PageStatic";
 import "./components/Drawer/DrawerComponent";

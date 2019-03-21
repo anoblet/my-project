@@ -2,7 +2,7 @@ import GlobalStyle from "../../GlobalStyle";
 import { LitElement, customElement } from "lit-element";
 import Style from "./Style";
 import { store } from "../../Store";
-import template from "./AppHeaderTemplate";
+import Template from "./Template";
 
 @customElement("app-header")
 export class AppHeader extends LitElement {
@@ -26,6 +26,6 @@ export class AppHeader extends LitElement {
   }
 
   public render() {
-    return template.bind(this)();
+    return Template.bind(this)();
   }
 }
