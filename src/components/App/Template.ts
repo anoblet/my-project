@@ -27,14 +27,6 @@ export default function() {
             <a href="/user/signin"
               ><button-component label="Sign in">Sign in</button-component></a
             >
-            <!-- <mwc-fab
-              icon="account_circle"
-              id="userProfile"
-              mini
-              label="Account"
-              @click="${() => this._toggleProfile()}"
-              >Profile</mwc-fab
-            > -->
           `}
     </app-header>
     <div id="center" style="position: relative;">
