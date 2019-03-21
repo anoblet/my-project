@@ -8,4 +8,4 @@ declare module "*.json" {
   export default value;
 }
 
-declare module "ga-lite"
+declare module "ga-lite";
