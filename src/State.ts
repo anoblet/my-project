@@ -6,12 +6,13 @@ const genericReducer = (type: string) => (
 ) => {
   switch (action.type) {
     case type:
-      return action.merge
-        ? {
+      return !action.merge
+        ? action.state
+        : {
             ...state,
             ...action.state
-          }
-        : action.state;
+          };
+
     default:
       return state;
   }
