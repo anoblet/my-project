@@ -14,7 +14,6 @@ import "./components/Button/Component";
 // Firebase
 import "firebase/app";
 import "firebase/auth";
-// @ts-ignore
 import galite from "ga-lite";
 galite("create", "UA-63899225-2", "auto");
 galite("send", "pageview");
