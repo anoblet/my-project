@@ -3,15 +3,13 @@ import { LitElement, html, property } from "lit-element";
 import { FirebaseMixin } from "../../../packages/FirebaseMixin";
 import { Mixin } from "../../../packages/Mixin";
 import { StateMixin } from "../../../packages/StateMixin";
-import { config } from "../../../config";
 import { connect } from "pwa-helpers/connect-mixin.js";
 import { navigate } from "../../Router";
 import { signOut } from "../../User";
 import { store } from "../../Store";
-import structure from "../../components/Post/PostModel";
 import { until } from "lit-html/directives/until";
 
-import("..//AppUser/AppUser");
+import("..//User/Component");
 
 export interface UserController {
   [key: string]: any; // Add index signature
