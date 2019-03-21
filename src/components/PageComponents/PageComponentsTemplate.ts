@@ -9,7 +9,7 @@ export default function() {
             ${this.components.map(
               (component: any) => html`
                 <li>
-                  <a href="/components/${component.tag}">${component.name}</a>
+                  <a href="/components/${component.tag}">${component.label}</a>
                 </li>
               `
             )}

@@ -1,56 +1,56 @@
 export const components = [
   {
-    name: "Voice",
+    label: "Voice",
     src: () =>
-      import(/* webpackChunkName: "Voice" */ "./components/VoiceComponent"),
+      import(/* webpackChunklabel: "Voice" */ "./components/VoiceComponent"),
     tag: "voice-component"
   },
   {
-    name: "Collection List",
+    label: "Collection List",
     src: () =>
-      import(/* webpackChunkName: "ComponentList" */ "./components/Collection/CollectionList"),
+      import(/* webpackChunklabel: "ComponentList" */ "./components/Collection/CollectionList"),
     tag: "collection-list"
   },
   {
-    name: "Philips Hue",
+    label: "Philips Hue",
     src: () =>
-      import(/* webpackChunkName: "PhilipsHue" */ "./components/PhilipsHue/LightsComponent"),
+      import(/* webpackChunklabel: "PhilipsHue" */ "./components/PhilipsHue/LightsComponent"),
     tag: "lights-component"
   },
   {
-    name: "Philips Hue Demo",
+    label: "Philips Hue Demo",
     src: () =>
-      import(/* webpackChunkName: "PhilipsHueDemo" */ "./components/PhilipsHue/Demo"),
+      import(/* webpackChunklabel: "PhilipsHueDemo" */ "./components/PhilipsHue/Demo"),
     tag: "philips-hue-demo"
   },
   {
-    name: "Eye Exam",
+    label: "Eye Exam",
     src: () =>
-      import(/* webpackChunkName: "EyeExam" */ "./components/EyeExam/EyeExamComponent"),
+      import(/* webpackChunklabel: "EyeExam" */ "./components/EyeExam/EyeExamComponent"),
     tag: "eye-exam"
   },
   {
-    name: "Color Picker",
+    label: "Color Picker",
     src: () =>
-      import(/* webpackChunkName: "ColorPicker" */ "./components/ColorPicker"),
+      import(/* webpackChunklabel: "ColorPicker" */ "./components/ColorPicker"),
     tag: "color-picker"
   },
   {
-    name: "Dashboard",
+    label: "Dashboard",
     src: () =>
-      import(/* webpackChunkName: "Dashboard" */ "./components/Dashboard/Component"),
+      import(/* webpackChunklabel: "Dashboard" */ "./components/Dashboard/Component"),
     tag: "dashboard-component"
   },
   {
-    name: "Contacts",
+    label: "Contacts",
     src: () =>
-      import(/* webpackChunkName: "Contacts" */ "./components/Contacts/Component"),
+      import(/* webpackChunklabel: "Contacts" */ "./components/Contacts/Component"),
     tag: "contacts-component"
   },
   {
-    name: "Muuri",
+    label: "Muuri",
     src: () =>
-      import(/* webpackChunkName: "Muuri" */ "./components/muuri/component"),
+      import(/* webpackChunklabel: "Muuri" */ "./components/muuri/component"),
     tag: "muuri-component"
   }
 ];
