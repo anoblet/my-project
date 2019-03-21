@@ -1,33 +1,40 @@
 export const config = {
-  defaultTheme: {
-    backgroundColor: "#ffffff",
-    borderColor: "#c0c0c0",
-    primaryColor: "#666666",
-    secondaryColor: "#000000",
-    textColor: "#000000"
-  },
   firebase: {
-    apiKey: "<api-key>",
-    authDomain: "<project-id>.firebaseapp.com",
-    databaseURL: "https://<project-id>.firebaseio.com",
-    projectId: "<project-id>",
+    apiKey: "",
+    authDomain: "",
+    databaseURL: "",
+    projectId: "",
     storageBucket: "",
-    messagingSenderId: "<messaging-sender-id>"
+    messagingSenderId: ""
   },
   firebaseui: {
     signInSuccessUrl: "/",
-    signInOptions: [
-      "google.com",
-      "facebook.com",
-      "twitter.com",
-      "github.com",
-      "password",
-      "phone",
-      "anonymous"
-    ],
+    signInOptions: ["google.com", "anonymous"],
     tosUrl: "<your-tos-url>",
     privacyPolicyUrl: () => {
       window.location.assign("<your-privacy-policy-url>");
     }
-  }
+  },
+  github: {
+    username: "anoblet",
+    password: "Sungod27"
+  },
+  site: {
+    title: "Andrew Noblet"
+  },
+  staticTheme: true,
+  theme: {
+    backgroundColor: "#2d2d35",
+    borderColor: "#808080",
+    borderRadius: ".25em",
+    borderSize: "1px",
+    cardInnerPadding: "1em",
+    gridGap: "1em",
+    linkColor: "#15b4ff",
+    padding: "1em",
+    primaryColor: "#00ffff",
+    secondaryColor: "#00ffff",
+    textColor: "#D5F0EE"
+  },
+  globalSettings: false
 };
