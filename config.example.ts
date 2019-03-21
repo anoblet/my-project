@@ -16,8 +16,8 @@ export const config = {
     }
   },
   github: {
-    username: "anoblet",
-    password: "Sungod27"
+    username: "",
+    password: ""
   },
   site: {
     title: "Andrew Noblet"
