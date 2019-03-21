@@ -49,13 +49,13 @@ export const signOut = async () => {
       firebase.auth().signOut();
       // Reset state
       setState({
-        config: { merge: false },
+        merge: false,
         data: {},
         store,
         type: "settings"
       });
       setState({
-        config: { merge: false },
+        merge: false,
         data: {},
         store,
         type: "user"

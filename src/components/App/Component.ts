@@ -109,7 +109,7 @@ export class AppComponent extends LitElement {
   }
 
   public render() {
-    this.applyShadows();
+    // this.applyShadows();
     return Template.bind(this)();
   }
 
