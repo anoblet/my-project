@@ -4,8 +4,8 @@ import GlobalStyle from "../../GlobalStyle";
 import Style from "./Style";
 import Template from "./Template";
 
-@customElement("app-footer")
-export class AppFooter extends LitElement {
+@customElement("footer-component")
+export class Footer extends LitElement {
   static get styles() {
     return [GlobalStyle, Style];
   }
