@@ -1,6 +1,6 @@
 import "./components/App/Component";
 import "./components/Header/Component";
-import "./components/Footer/Footer";
+import "./components/Footer/Component";
 import "./components/PageStatic";
 import "./components/Drawer/DrawerComponent";
 import "./components/ProfileMenu/ProfileMenu";
