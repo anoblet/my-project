@@ -57,7 +57,7 @@ export default function() {
                   ></card-component>
                 `
               : ""}
-            <!-- <span id="made-width">Made with ♥ by Andrew Noblet -->
+            <!-- <span id="made-with">Made with ♥ by Andrew Noblet -->
           </grid-component>
         </div>
       </grid-component>
