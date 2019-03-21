@@ -2,7 +2,7 @@ import { LitElement, customElement } from "lit-element";
 
 import GlobalStyle from "../../GlobalStyle";
 import Style from "./Style";
-import Template from "./AppFooterTemplate";
+import Template from "./Template";
 
 @customElement("app-footer")
 export class AppFooter extends LitElement {
