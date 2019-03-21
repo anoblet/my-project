@@ -14,8 +14,6 @@ var Visualizer = require("webpack-visualizer-plugin");
 const PreloadWebpackPlugin = require("preload-webpack-plugin");
 const { UnusedFilesWebpackPlugin } = require("unused-files-webpack-plugin");
 
-// const commonConfig =
-
 module.exports = {
   mode: "production",
   entry: "./src/index",
