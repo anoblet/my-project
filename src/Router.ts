@@ -24,7 +24,7 @@ let globalPortal: any;
 export interface Route {
   path: string;
   component: string;
-  src?: Promise<any>;
+  src?: any;
 }
 
 export const setRoutes = (routes: any) => {
