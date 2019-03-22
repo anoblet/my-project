@@ -1,4 +1,4 @@
-import { html, LitElement, property } from "lit-element";
+import { LitElement, property } from "lit-element";
 import style from "./EyeExamStyle";
 import template from "./EyeExamTemplate";
 import { toast } from "../Toast/Toast";
@@ -100,7 +100,6 @@ export class EyeExamComponent extends LitElement {
     this.history[index].answer = answer;
     this.history[index].result = result;
 
-    console.log(this.history.length - 1);
     if (this.currentIndex < this.perLine - 1) this.next();
     else {
       this.report.push({ fontSize: this.fontSize, history: this.history });
