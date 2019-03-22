@@ -1,21 +1,4 @@
 import pathToRegexp from "path-to-regexp";
-import { store } from "./Store";
-/*
-  Example:
-  export const routes = [
-    {
-      path: "",
-      component: "page-home",
-      src: () => import("../PageHome/PageHome")
-    },
-    {
-      path: "/post/:action/:id?",
-      component: "post-controller",
-      src: () =>
-        import("../../post/PostController")
-    },
-  ];
-*/
 
 // Set a default route array, and portal
 let globalRoutes: any = [];
@@ -37,6 +20,7 @@ export const setPortal = (portal: any) => {
 
 export const navigate = (path: string) => {
   window.history.pushState({}, "", path);
+  console.log(path); 
   routeChanged({ location: window.location });
 };
 
@@ -54,7 +38,7 @@ export const routeChanged = async ({ location, portal, routes }: any) => {
   routes = routes || globalRoutes;
 
   // Find a matched route
-  routes.map((route: any) => {
+  routes.map((route: Route) => {
     const keys: any = [];
     const regex = pathToRegexp(route.path, keys);
     const match = regex.exec(location.pathname);
@@ -110,10 +94,10 @@ export const routeChanged = async ({ location, portal, routes }: any) => {
 export const handleNavigation = routeChanged;
 
 export const router = {
-  subscribe: () =>
-    store.subscribe(() => {
-      return;
-    }),
+  subscribe: (callback) =>
+  {
+    // callback(activeRoute);
+  },
   routeChanged,
   setPortal,
   setRoutes
