@@ -25,7 +25,7 @@ export const routes = [
     path: "/components/:component?",
     component: "page-components",
     src: () =>
-      import(/* webpackChunkName: "PageComponents" */ "../PageComponents/PageComponents")
+      import(/* webpackChunkName: "PageComponents" */ "../PageComponents/Component")
   },
   <Route>{
     path: "/post",
