@@ -6,6 +6,7 @@ import globalStyle from "../../GlobalStyle";
 import { debug } from "../../Debug";
 
 import { WebSpeech } from "../WebSpeech/WebSpeech";
+import "../Chart/ChartComponent";
 
 const WebSpeechInstance: any = new WebSpeech();
 
