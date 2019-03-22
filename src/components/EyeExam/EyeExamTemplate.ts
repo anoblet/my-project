@@ -130,7 +130,7 @@ export default function() {
                       return valid;
                     })(this.report)
                   ],
-                  ["False", 1]
+                  ["False", this.perline - getTrue(this.report)]
                 ]}"
               ></chart-component>
             </card-component>
@@ -142,3 +142,12 @@ export default function() {
     </grid-component>
   `;
 }
+
+const getTrue = (report: any) => {
+  let valid = 0;
+  if (report[0])
+    report[0].history.map((letter: any) => {
+      if (letter.result) valid++;
+    });
+  return valid;
+};
