@@ -1,6 +1,6 @@
 import { html, fixture, expect } from "@open-wc/testing";
 
-import "../DrawerComponent";
+import "../Component";
 
 describe("<drawer-component>", () => {
   it("drawer shows up", async () => {

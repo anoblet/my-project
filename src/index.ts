@@ -2,7 +2,7 @@ import "./components/App/Component";
 import "./components/Header/Component";
 import "./components/Footer/Component";
 import "./components/PageStatic";
-import "./components/Drawer/DrawerComponent";
+import "./components/Drawer/Component";
 import "./components/ProfileMenu/ProfileMenu";
 import "./components/Card/CardComponent";
 import "./components/Grid/Component";
