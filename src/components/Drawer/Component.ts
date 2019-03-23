@@ -2,7 +2,7 @@ import { LitElement, customElement, property } from "lit-element";
 
 import GlobalStyle from "../../GlobalStyle";
 import Style from "./Style";
-import template from "./DrawerTemplate";
+import Template from "./Template";
 import { media } from "../../Media";
 import { store } from "../../Store";
 
@@ -36,6 +36,6 @@ export class Drawer extends LitElement {
   }
 
   public render() {
-    return template.bind(this)();
+    return Template.bind(this)();
   }
 }
