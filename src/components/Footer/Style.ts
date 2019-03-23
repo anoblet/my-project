@@ -27,28 +27,7 @@ export default css`
     opacity: 0.33;
   }
 
-  .item:not(#home) i {
-    /* font-size: 18px; */
-  }
-
   .item:not(#home):hover {
-    opacity: 1;
-  }
-
-  .item:not(#home):hover i {
-    /* font-size: 24px; */
-  }
-
-  mwc-fab {
-    --mdc-theme-on-secondary: var(--background-color);
-  }
-
-  mwc-fab:not(#home) {
-    margin: 0.5em;
-    opacity: 0.33;
-  }
-
-  mwc-fab:not(#home):hover {
     opacity: 1;
   }
 `;
