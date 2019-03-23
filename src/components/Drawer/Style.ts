@@ -3,9 +3,9 @@ import { css } from "lit-element";
 export default css`
   :host {
     --drawer-background-color: var(--background-color);
+    --card-inner-padding: 0;
     flex: 1;
     position: relative;
-    --card-inner-padding: 0;
     overflow: auto;
     background: var(--drawer-background-color);
   }
