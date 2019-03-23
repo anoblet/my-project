@@ -1,7 +1,7 @@
 {
   "rules": {
-    ".read": true,
-    ".write": true,
+    ".read": false,
+    ".write": false,
     "posts": {
       ".write": "auth.uid === 'm42gwHOSlbUniorNjigqa1nnHIE3'"
     },
