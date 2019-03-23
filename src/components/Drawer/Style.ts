@@ -2,11 +2,12 @@ import { css } from "lit-element";
 
 export default css`
   :host {
+    --drawer-background-color: var(--background-color);
     flex: 1;
     position: relative;
     --card-inner-padding: 0;
-    background: var(--background-color);
     overflow: auto;
+    background: var(--drawer-background-color);
   }
 
   :host > * {
