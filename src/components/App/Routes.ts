@@ -99,7 +99,7 @@ export const routes = [
     path: "/blog",
     component: "blog-component",
     src: () =>
-      import(/* webpackChunkName: "BlogComponent" */ "../Blog/BlogComponent")
+      import(/* webpackChunkName: "BlogComponent" */ "../Blog/Component")
   },
   {
     path: "/performance",
