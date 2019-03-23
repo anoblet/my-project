@@ -2,13 +2,12 @@ import { LitElement, customElement, property } from "lit-element";
 
 import GlobalStyle from "../../GlobalStyle";
 import Style from "./BlogStyle";
-import Template from "./BlogTemplate";
+import Template from "./Template";
 import { getCollection } from "../../Firebase";
 
 @customElement("blog-component")
 export class Blog extends LitElement {
   @property() public posts: any = [];
-  @property() public taskPending = true;
 
   public async beforeRender() {
     await getCollection({
@@ -21,12 +20,7 @@ export class Blog extends LitElement {
       }
     }).then((collection: any) => {
       this.posts = collection;
-      this.taskPending = false;
     });
-  }
-
-  public shouldUpdate(changedProperties: any) {
-    return !this.taskPending && super.shouldUpdate(changedProperties);
   }
 
   static get styles() {
