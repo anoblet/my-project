@@ -8,11 +8,7 @@ export default function() {
         <ul>
           <li><a href="/">Home</a></li>
           <li><a href="/blog">Blog</a></li>
-          ${true // isAdmin()
-            ? html`
                 <li><a href="/components">Components</a></li>
-              `
-            : ""}
           <li><a href="/contact">Contact</a></li>
           <li><a href="/performance">Performance</a></li>
           <li><a href="/readme">Readme</a></li>
