@@ -28,7 +28,6 @@ export default css`
   }
 
   li:hover {
-    /* background: var(--primary-color); */
     border-bottom: 1px solid var(--primary-color);
   }
 
