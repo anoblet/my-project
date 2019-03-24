@@ -9,5 +9,6 @@ export default css`
     border: 1px solid var(--primary-color);
     padding: var(--padding);
     color: var(--button-color);
+    border-radius: var(--border-radius);
   }
 `;
