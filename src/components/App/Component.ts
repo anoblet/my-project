@@ -3,6 +3,7 @@ import { LitElement, customElement, property } from "lit-element";
 import GlobalStyle from "../../GlobalStyle";
 import Style from "./Style";
 import Template from "./Template";
+import Properties from "./Properties";
 import { config } from "../../../config";
 import { db } from "../../Database";
 import { debug } from "../../Debug";
@@ -19,7 +20,6 @@ import { user } from "../../User";
 
 @customElement("app-component")
 export class AppComponent extends LitElement {
-  @property({ type: Boolean, reflect: true, attribute: "drawer-opened" })
   @property({ type: Boolean })
   public taskPending = true;
   @property({ reflect: true, attribute: "drawer-opened", type: Boolean })
@@ -102,6 +102,10 @@ export class AppComponent extends LitElement {
     installOfflineWatcher((offline: boolean) => {
       if (offline) toast("Offline");
     });
+  }
+
+  static get properties() {
+    return Properties;
   }
 
   static get styles() {
