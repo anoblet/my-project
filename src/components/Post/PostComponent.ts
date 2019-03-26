@@ -1,15 +1,11 @@
 import { LitElement, html, property } from "lit-element";
-import {
-  addDocument,
-  getDocument,
-  updateDocument
-} from "../../Firebase";
+import { addDocument, getDocument, updateDocument } from "../../Firebase";
 
 import { Mixin } from "../../../packages/Mixin";
 import { TemplateMixin } from "../../../packages/TemplateMixin";
-import globalStyle from "../../GlobalStyle";
+import GlobalStyle from "../../GlobalStyle";
 import { renderForm } from "../PropertyEditor/PropertyEditor";
-import style from "./PostStyle";
+import Style from "./PostStyle";
 import { toast } from "../Toast/Toast";
 
 import("../../../packages/PellComponent/PellComponent");
@@ -84,9 +80,7 @@ export class PostComponent extends Mixin(LitElement, [TemplateMixin]) {
     };
   }
 
-  static get styles() {
-    return [globalStyle, style];
-  }
+  static styles = [GlobalStyle, Style];
 
   public render() {
     return html`

@@ -1,8 +1,8 @@
 import { LitElement, property } from "lit-element";
-import style from "./EyeExamStyle";
+import Style from "./EyeExamStyle";
 import template from "./EyeExamTemplate";
 import { toast } from "../Toast/Toast";
-import globalStyle from "../../GlobalStyle";
+import GlobalStyle from "../../GlobalStyle";
 import { debug } from "../../Debug";
 import { properties } from "./Properties";
 
@@ -191,9 +191,7 @@ export class EyeExamComponent extends LitElement {
     return properties;
   }
 
-  static get styles() {
-    return [globalStyle, style];
-  }
+  static styles = [GlobalStyle, Style];
 
   get template() {
     return template.bind(this)();
