@@ -10,9 +10,7 @@ const Style = css`
 
 @customElement("page-static")
 export class PageStatic extends LitElement {
-  static get styles() {
-    return [GlobalStyle, Style];
-  }
+  static styles = [GlobalStyle, Style];
 
   public render() {
     return html`

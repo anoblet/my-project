@@ -51,9 +51,7 @@ export class Light extends BeforeRender(LitElement) {
     this.refreshState();
   }
 
-  static get styles() {
-    return [GlobalStyle, Style];
-  }
+  static styles = [GlobalStyle, Style];
 
   render() {
     return html`

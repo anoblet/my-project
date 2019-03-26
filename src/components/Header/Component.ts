@@ -21,9 +21,7 @@ export class AppHeader extends LitElement {
       }
   }
 
-  static get styles() {
-    return [GlobalStyle, Style];
-  }
+  static styles = [GlobalStyle, Style];
 
   public render() {
     return Template.bind(this)();
