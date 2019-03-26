@@ -47,9 +47,7 @@ export class MenuComponent extends LitElement {
     }
   }
 
-  static get styles() {
-    return GlobalStyle;
-  }
+  static styles = GlobalStyle;
 
   public render() {
     return html`

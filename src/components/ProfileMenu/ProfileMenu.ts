@@ -42,9 +42,7 @@ export class ProfileMenu extends Mixin(connect(store)(LitElement), [
     this.hidden = true;
   }
 
-  static get styles() {
-    return GlobalStyle;
-  }
+  static styles = GlobalStyle;
 
   public render() {
     return html`

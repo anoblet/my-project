@@ -4,9 +4,7 @@ import GlobalStyle from "../GlobalStyle";
 
 @customElement("patreon-component")
 export class PatreonComponent extends LitElement {
-  static get styles() {
-    return GlobalStyle;
-  }
+  static styles = GlobalStyle;
 
   public render() {
     return html`
