@@ -2,10 +2,7 @@ import { LitElement, customElement, property } from "lit-element";
 
 import GlobalStyle from "../../GlobalStyle";
 import Style from "./PostGridStyle";
-import {
-  deleteDocument,
-  getCollection
-} from "../../Firebase";
+import { deleteDocument, getCollection } from "../../Firebase";
 import template from "./PostGridComponentTemplate";
 import { toast } from "../Toast/Toast";
 
@@ -28,9 +25,7 @@ export class PostGridComponent extends LitElement {
     }).then((collection: any) => (this.items = collection));
   }
 
-  static get styles() {
-    return [GlobalStyle, Style];
-  }
+  static styles = [GlobalStyle, Style];
 
   public render() {
     return template.bind(this)();
