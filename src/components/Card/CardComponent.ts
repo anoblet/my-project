@@ -16,9 +16,8 @@ export class CardComponent extends LitElement {
     this.addListeners();
   }
 
-  static get styles() {
-    return [GlobalStyle, Style];
-  }
+  static styles = [GlobalStyle, Style];
+
   public render() {
     return Template.bind(this)();
   }

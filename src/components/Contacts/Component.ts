@@ -11,9 +11,8 @@ import { user } from "../../User";
 export class Contacts extends LitElement {
   @property() data = { log: [] };
 
-  static get styles() {
-    return [GlobalStyle, Style];
-  }
+  static styles = [GlobalStyle, Style];
+
   public render() {
     return Template.bind(this)();
   }
