@@ -1,7 +1,7 @@
 import { LitElement, customElement, property } from "lit-element";
 
 import GlobalStyle from "../../GlobalStyle";
-import Style from "./BlogStyle";
+import Style from "./Style";
 import Template from "./Template";
 import { getCollection } from "../../Firebase";
 
