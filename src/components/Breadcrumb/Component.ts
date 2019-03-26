@@ -2,7 +2,7 @@ import { LitElement, customElement, html, property } from "lit-element";
 import { store } from "../../Store";
 
 import GlobalStyle from "../../GlobalStyle";
-import Style from "./BreadcrumbStyle";
+import Style from "./Style";
 
 @customElement("breadcrumb-component")
 export class BreadcrumbComponent extends LitElement {
