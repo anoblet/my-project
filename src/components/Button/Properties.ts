@@ -1,4 +1,4 @@
 export default {
-  label: {},
-  theme: {}
+  label: { type: String },
+  theme: { type: String }
 };
