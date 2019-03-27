@@ -123,5 +123,6 @@ export const user = {
   get,
   getUserSettings,
   getUserTheme,
-  isAdmin
+  isAdmin,
+  reset: resetState
 };
