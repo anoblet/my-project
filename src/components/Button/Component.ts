@@ -10,12 +10,6 @@ export class ButtonComponent extends LitElement {
   static properties = Properties;
   static styles = Style;
 
-  public get properties() {
-    return {
-      theme: { type: String }
-    };
-  }
-
   public render() {
     return Template.bind(this)();
   }
