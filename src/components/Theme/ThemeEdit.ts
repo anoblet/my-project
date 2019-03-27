@@ -12,7 +12,7 @@ const updateField = (field: string, value: string) => {
     .then(() => {
       return;
     })
-    .catch((error: any) => {
+    .catch(() => {
       toast("Error");
     });
 };
