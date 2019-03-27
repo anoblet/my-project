@@ -20,7 +20,7 @@ export const isAdmin = () => {
  * @return void
  */
 export const resetState = () => {
-  setState({ config: { merge: false }, data: {}, store, type: "app" });
+  setState({ config: { merge: false }, data: {}, store, type: "user" });
 };
 
 /**
