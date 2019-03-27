@@ -17,11 +17,7 @@ export const isAdmin = () => {
 
 /**
  * Reset user Redux info
- * @param  {config [description]
- * @param  data    [description]
- * @param  store   [description]
- * @param  type    [description]
- * @return         [description]
+ * @return void
  */
 export const resetState = () => {
   setState({ config: { merge: false }, data: {}, store, type: "app" });
