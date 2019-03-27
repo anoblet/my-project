@@ -75,9 +75,11 @@ export const onUserLoggedIn = () => {
 
 export const getUser = () => {
   const stateUser = store.getState().user;
-  if(stateUser) return stateUser;
-  const user = _getUser();
-  return extract(user);
+  if (stateUser) return stateUser;
+  else {
+    const user = _getUser();
+    return extract(user);
+  }
 };
 
 export const getUserTheme = (callback: any) => {
