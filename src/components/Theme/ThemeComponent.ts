@@ -1,3 +1,5 @@
+import * as randomMC from "random-material-color"
+
 import { LitElement, css, customElement, html, property } from "lit-element";
 import { getCollection, getDocument, updateDocument } from "../../Firebase";
 
@@ -9,9 +11,6 @@ import themeEdit from "./ThemeEdit";
 import { themeStructure } from "./ThemeStructure";
 import { toggleDark } from "./ToggleDark";
 import { toggleShadow } from "./ToggleShadow";
-
-// @ts-ignore
-const randomMC = require("random-material-color");
 
 export const setTheme = (_theme: any) => {
   const state = store.getState();

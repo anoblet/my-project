@@ -9,3 +9,4 @@ declare module "*.json" {
 }
 
 declare module "ga-lite";
+declare module "random-material-color"
