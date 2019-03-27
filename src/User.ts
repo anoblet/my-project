@@ -74,6 +74,8 @@ export const onUserLoggedIn = () => {
 };
 
 export const getUser = () => {
+  const stateUser = store.getState().user;
+  if(stateUser) return stateUser;
   const user = _getUser();
   return extract(user);
 };
