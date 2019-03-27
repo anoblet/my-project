@@ -6,14 +6,14 @@ import Properties from "./Properties";
 @customElement("button-component")
 export class ButtonComponent extends LitElement {
   @property() public theme: string = "native";
+  static properties = Properties;
+  static styles = Style;
 
-  static get properties() {
-    return Properties
+  public constructor() {
+    super();
+    this.theme = "native";
   }
 
-  static get styles() {
-    return [Style];
-  }
   public render() {
     return Template.bind(this)();
   }
