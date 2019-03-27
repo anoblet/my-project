@@ -1,16 +1,15 @@
 import { html } from "lit-element";
 
 export default function() {
-  return html`
-    ${this.theme === "native"
-      ? html`
-          <button>${this.label}</button>
-        `
-      : ""}
-    ${this.theme === "material"
-      ? html`
-          <mwc-button label=${this.label}></mwc-button>
-        `
-      : ""}
-  `;
+  switch (this.theme) {
+    case "material":
+      return html`
+        <mwc-button label=${this.label}></mwc-button>
+      `;
+      break;
+    default:
+      return html`
+        <button>${this.label}</button>
+      `;
+  }
 }
