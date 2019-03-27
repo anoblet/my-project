@@ -17,7 +17,10 @@ const updateField = (field: string, value: string) => {
     });
 };
 
-const renderField = (field: any, theme: any) => html`
+const renderField = (
+  field: { label: string; name: string; property: string; type: string },
+  theme: any
+) => html`
   <label>${field.label}</label>
   ${field.type === "color"
     ? html`
