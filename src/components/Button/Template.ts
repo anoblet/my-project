@@ -6,7 +6,6 @@ export default function() {
       return html`
         <mwc-button label=${this.label}></mwc-button>
       `;
-      break;
     default:
       return html`
         <button>${this.label}</button>
