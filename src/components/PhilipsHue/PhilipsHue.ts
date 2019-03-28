@@ -1,13 +1,9 @@
 const devicetype = "anoblet";
-const user = "mWHCs99pkPAniHe0lsSG8ES7qG1xDF8qDQw0h0dN";
 
-export default async () => {
-  const ip = await findBridge();
-  isOn({ ip, user, id: 2 });
-  const lights = getLights({ ip, user });
-  console.log(lights);
-};
-
+/**
+ * Finds a bridge
+ * @return [description]
+ */
 export const findBridge = async () => {
   return await fetch("https://discovery.meethue.com/")
     .then(function(response) {
