@@ -19,6 +19,3 @@ export class Light {
     return await request(url, body);
   }
 }
-
-@customElement("light-component")
-class Component extends LitElement {};
