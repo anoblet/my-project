@@ -31,7 +31,7 @@ export class Lights extends BeforeRender(LitElement) {
       <grid-component>
         ${this.lights.map((light: any) => {
           return html`
-            <light-component ._id=${light.id}></light-component>
+            <light-component .lightId=${light.id}></light-component>
           `;
         })}
       </grid-component>
