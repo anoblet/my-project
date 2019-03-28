@@ -64,14 +64,11 @@ export const getLights = async ({ ip, user }: any) => {
   });
 };
 
-export const request = async ({ body, url }) => {
-  return await fetch(
-    url,
-    {
-      body: JSON.stringify(body),
-      method: "PUT"
-    }
-  ).then((response: any) => {
+export const request = async (url, body) => {
+  return await fetch(url, {
+    body: JSON.stringify(body),
+    method: "PUT"
+  }).then((response: any) => {
     if (response.body) return response.json();
   });
 };

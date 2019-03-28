@@ -1,8 +1,9 @@
 import { LitElement, css, customElement, html, property } from "lit-element";
 import { status, turnOff, turnOn } from "./PhilipsHue";
-import GlobalStyle from "../../GlobalStyle";
 
 import { BeforeRender } from "../../mixins/BeforeRender";
+import GlobalStyle from "../../GlobalStyle";
+import { Light } from "./Light";
 
 const Style = css`
   :host {
@@ -14,7 +15,8 @@ const Style = css`
 `;
 
 @customElement("light-component")
-export class Light extends BeforeRender(LitElement) {
+export class Component extends BeforeRender(LitElement) {
+  public light: Light;
   @property() public on: boolean;
   @property() public lightId: string;
   @property() public name: any;
@@ -45,10 +47,15 @@ export class Light extends BeforeRender(LitElement) {
   public async turnOff() {
     await turnOff({
       ip: "192.168.43.221",
-      user: "mWHCs99pkPAniHe0lsSG8ES7qG1xDF8qDQw0h0dN",
       id: this.lightId
     });
     this.refreshState();
+  }
+
+  construcor() {
+    this.light = new Light();
+    this.light.ip = "192.168.43.221";
+    this.light.id = "mWHCs99pkPAniHe0lsSG8ES7qG1xDF8qDQw0h0dN";
   }
 
   public static styles = [GlobalStyle, Style];

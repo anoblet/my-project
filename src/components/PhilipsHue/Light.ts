@@ -1,4 +1,4 @@
-import { LitElement } from "lit-element";
+import { LitElement, customElement } from "lit-element";
 import { request } from "./PhilipsHue";
 
 export class Light {
@@ -16,8 +16,9 @@ export class Light {
   public async on() {
     const url = `http://${this.ip}/api/${this.user}/lights/${this.id}/state`;
     const body = { on: true };
-    return await request({ body, url });
+    return await request(url, body);
   }
 }
 
-const component = class Component extends LitElement {};
+@customElement("light-component")
+class Component extends LitElement {};
