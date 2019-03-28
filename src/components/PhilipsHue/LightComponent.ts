@@ -15,15 +15,15 @@ const Style = css`
 
 @customElement("light-component")
 export class Light extends BeforeRender(LitElement) {
-  @property() on: boolean;
-  @property() lightId: string;
-  @property() name: any;
+  @property() public on: boolean;
+  @property() public lightId: string;
+  @property() public name: any;
 
-  async beforeRender() {
+  public async beforeRender() {
     await this.refreshState();
   }
 
-  async refreshState() {
+  public async refreshState() {
     const _status = await status({
       ip: "192.168.43.221",
       user: "mWHCs99pkPAniHe0lsSG8ES7qG1xDF8qDQw0h0dN",
@@ -33,7 +33,7 @@ export class Light extends BeforeRender(LitElement) {
     this.on = _status.state.on;
   }
 
-  async turnOn() {
+  public async turnOn() {
     await turnOn({
       ip: "192.168.43.221",
       user: "mWHCs99pkPAniHe0lsSG8ES7qG1xDF8qDQw0h0dN",
@@ -42,7 +42,7 @@ export class Light extends BeforeRender(LitElement) {
     this.refreshState();
   }
 
-  async turnOff() {
+  public async turnOff() {
     await turnOff({
       ip: "192.168.43.221",
       user: "mWHCs99pkPAniHe0lsSG8ES7qG1xDF8qDQw0h0dN",
@@ -51,9 +51,9 @@ export class Light extends BeforeRender(LitElement) {
     this.refreshState();
   }
 
-  static styles = [GlobalStyle, Style];
+  public static styles = [GlobalStyle, Style];
 
-  render() {
+  public render() {
     return html`
       <grid-component>
         <span>

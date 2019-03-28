@@ -6,13 +6,13 @@ import("./LightComponent");
 
 @customElement("lights-component")
 export class Lights extends BeforeRender(LitElement) {
-  @property() lights: any;
+  @property() public lights: any;
 
   constructor() {
     super();
   }
 
-  async beforeRender() {
+  public async beforeRender() {
     const lights = await getLights({
       ip: "192.168.43.221",
       user: "mWHCs99pkPAniHe0lsSG8ES7qG1xDF8qDQw0h0dN",
@@ -26,7 +26,7 @@ export class Lights extends BeforeRender(LitElement) {
     this.lights = lightArray;
   }
 
-  render() {
+  public render() {
     return html`
       <grid-component>
         ${this.lights.map((light: any) => {

@@ -1,4 +1,4 @@
-import * as randomMC from "random-material-color"
+import * as randomMC from "random-material-color";
 
 import { LitElement, css, customElement, html, property } from "lit-element";
 import { getCollection, getDocument, updateDocument } from "../../Firebase";

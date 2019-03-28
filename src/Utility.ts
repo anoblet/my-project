@@ -32,16 +32,16 @@ const randomColor = () => {
   return color;
 };
 
-export const printContent = div => {
+export const printContent = (div) => {
   console.log(div);
-  var html =
+  const html =
     "<html><head>" +
     "" +
-    '</head><body style="background:#ffffff;">' +
+    "</head><body style=\"background:#ffffff;\">" +
     div.innerHTML +
     "</body></html>";
 
-  var WindowObject = window.open(
+  const WindowObject = window.open(
     "",
     "PrintWindow",
     "width=750,height=650,top=50,left=50,toolbars=no,scrollbars=yes,status=no,resizable=yes"

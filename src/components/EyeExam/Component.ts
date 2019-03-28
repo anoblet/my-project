@@ -191,7 +191,7 @@ export class EyeExamComponent extends LitElement {
     return properties;
   }
 
-  static styles = [GlobalStyle, Style];
+  public static styles = [GlobalStyle, Style];
 
   get template() {
     return template.bind(this)();

@@ -108,7 +108,7 @@ export class AppComponent extends LitElement {
     return Properties;
   }
 
-  static styles = [GlobalStyle, Style];
+  public static styles = [GlobalStyle, Style];
 
   public render() {
     return Template.bind(this)();

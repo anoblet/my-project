@@ -11,7 +11,7 @@ export class Contact extends LitElement {
     setTimeout(() => toast("Our email has not been set up yet :/"), 2000);
   }
 
-  static styles = [GlobalStyle, Style];
+  public static styles = [GlobalStyle, Style];
 
   public render() {
     return html`

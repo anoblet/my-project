@@ -25,7 +25,7 @@ export class PostGridComponent extends LitElement {
     }).then((collection: any) => (this.items = collection));
   }
 
-  static styles = [GlobalStyle, Style];
+  public static styles = [GlobalStyle, Style];
 
   public render() {
     return template.bind(this)();

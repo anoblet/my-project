@@ -31,7 +31,7 @@ export class Drawer extends LitElement {
     this.hidden = !value;
   }
 
-  static styles = [GlobalStyle, Style];
+  public static styles = [GlobalStyle, Style];
 
   public render() {
     return Template.bind(this)();

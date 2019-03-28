@@ -9,14 +9,14 @@ export class CardComponent extends LitElement {
   @property({ type: Boolean }) public collapsible: boolean = false;
   @property({ type: Boolean, reflect: true }) public collapsed: boolean = false;
 
-  @query("#title") _title: Element;
+  @query("#title") public _title: Element;
 
   public firstUpdated(changedProperties: any) {
     super.firstUpdated(changedProperties);
     this.addListeners();
   }
 
-  static styles = [GlobalStyle, Style];
+  public static styles = [GlobalStyle, Style];
 
   public render() {
     return Template.bind(this)();

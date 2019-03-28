@@ -10,7 +10,7 @@ export class PageComponents extends LitElement {
   @property() public component: string;
   @property() public components: unknown;
 
-  static styles = [GlobalStyle, Style];
+  public static styles = [GlobalStyle, Style];
 
   get template() {
     if (!this.component) return template.bind(this)();

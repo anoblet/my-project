@@ -14,7 +14,7 @@ export const findBridge = async () => {
       return response.json();
     })
     .then(function(myJson) {
-      return myJson[0]["internalipaddress"];
+      return myJson[0].internalipaddress;
     });
 };
 

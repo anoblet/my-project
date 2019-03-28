@@ -80,7 +80,7 @@ export class PostComponent extends Mixin(LitElement, [TemplateMixin]) {
     };
   }
 
-  static styles = [GlobalStyle, Style];
+  public static styles = [GlobalStyle, Style];
 
   public render() {
     return html`

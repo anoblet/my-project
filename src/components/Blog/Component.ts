@@ -23,7 +23,7 @@ export class Blog extends LitElement {
     });
   }
 
-  static styles = [GlobalStyle, Style];
+  public static styles = [GlobalStyle, Style];
 
   public render() {
     return Template.bind(this)();

@@ -28,8 +28,8 @@ export class Dashboard extends BeforeRender(LitElement) {
 
   public beforeRender = beforeRender;
 
-  firstUpdated() {
-    var grid = new muuri(this.shadowRoot.querySelector(".grid"), {
+  public firstUpdated() {
+    const grid = new muuri(this.shadowRoot.querySelector(".grid"), {
       dragEnabled: true,
       layout: {
         fillGaps: true

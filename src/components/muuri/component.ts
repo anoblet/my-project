@@ -6,13 +6,13 @@ import template from "./template";
 
 @customElement("muuri-component")
 export class Muuri extends LitElement {
-  grid: any;
+  public grid: any;
 
-  connectedCallback() {
+  public connectedCallback() {
     super.connectedCallback();
   }
 
-  firstUpdated() {
+  public firstUpdated() {
     this.grid = new muuri(this.shadowRoot.querySelector(".grid"), {
       dragEnabled: true,
       layout: {
@@ -29,7 +29,7 @@ export class Muuri extends LitElement {
     return template.bind(this)();
   }
 
-  reset() {
+  public reset() {
     this.grid.refreshItems().layout();
   }
 }

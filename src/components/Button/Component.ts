@@ -5,10 +5,10 @@ import Properties from "./Properties";
 
 @customElement("button-component")
 export class ButtonComponent extends LitElement {
-  @property({ type: String }) theme = "native";
+  @property({ type: String }) public theme = "native";
 
-  static properties = Properties;
-  static styles = Style;
+  public static properties = Properties;
+  public static styles = Style;
 
   public render() {
     return Template.bind(this)();

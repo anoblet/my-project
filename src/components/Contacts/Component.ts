@@ -9,9 +9,9 @@ import { user } from "../../User";
 
 @customElement("contacts-component")
 export class Contacts extends LitElement {
-  @property() data = { log: [] };
+  @property() public data = { log: [] };
 
-  static styles = [GlobalStyle, Style];
+  public static styles = [GlobalStyle, Style];
 
   public render() {
     return Template.bind(this)();
@@ -22,7 +22,7 @@ export class Contacts extends LitElement {
     this.beforeRender();
   }
 
-  async beforeRender() {
+  public async beforeRender() {
     const _user = user.get().uid;
     if (_user)
       db.getDocument({
@@ -48,7 +48,7 @@ export class Contacts extends LitElement {
     this.add(item);
   }
 
-  add(data: { type: string; time: number }) {
+  public add(data: { type: string; time: number }) {
     const _data = { log: [...this.data.log, data] };
     const _user = user.get().uid;
     if (!_user) this.data = _data;

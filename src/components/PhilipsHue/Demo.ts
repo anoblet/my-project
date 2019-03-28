@@ -16,7 +16,7 @@ export class Demo extends BeforeRender(LitElement) {
     `;
   }
 
-  render() {
+  public render() {
     return html`
       <grid-component>
         <card-component>Bridge IP: ${until(bridge.ip())}</card-component>

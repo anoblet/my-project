@@ -1,20 +1,20 @@
 import { LitElement, html, property } from "lit-element";
 
 export class Light extends LitElement {
-  @property() id: any;
-  @property() ip: any;
+  @property() public id: any;
+  @property() public ip: any;
 
-  status() {}
+  public status() {}
 
-  state() {}
+  public state() {}
 
   // Events
 
-  off() {}
+  public off() {}
 
-  on() {}
+  public on() {}
 
-  render() {
+  public render() {
     return html``;
   }
 }

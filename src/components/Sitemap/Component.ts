@@ -9,7 +9,7 @@ import Style from "./Style";
 export class Sitemap extends LitElement {
   @property() public template: any;
 
-  static styles = [GlobalStyle, Style];
+  public static styles = [GlobalStyle, Style];
 
   public render() {
     return html`

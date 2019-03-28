@@ -8,7 +8,7 @@ import { BeforeRender } from "../mixins/BeforeRender";
 export class ColorPicker extends BeforeRender(LitElement) {
   @property() public color: string;
 
-  static styles = GlobalStyle;
+  public static styles = GlobalStyle;
 
   public render() {
     return html`

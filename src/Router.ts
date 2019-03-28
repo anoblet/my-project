@@ -20,7 +20,7 @@ export const setPortal = (portal: any) => {
 
 export const navigate = (path: string) => {
   window.history.pushState({}, "", path);
-  console.log(path); 
+  console.log(path);
   routeChanged({ location: window.location });
 };
 
@@ -94,8 +94,7 @@ export const routeChanged = async ({ location, portal, routes }: any) => {
 export const handleNavigation = routeChanged;
 
 export const router = {
-  subscribe: (callback) =>
-  {
+  subscribe: (callback) => {
     // callback(activeRoute);
   },
   routeChanged,

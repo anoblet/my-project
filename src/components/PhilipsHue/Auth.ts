@@ -3,19 +3,19 @@ import { BeforeRender } from "../../mixins/BeforeRender";
 
 @customElement("philips-hue-auth")
 export class Auth extends BeforeRender(LitElement) {
-  @property() id: any;
-  @property() ip: any;
-  @property() state: any;
+  @property() public id: any;
+  @property() public ip: any;
+  @property() public state: any;
   // 0 = No interraction,
   // 1 = User pressed connect, and needs to press physical button,
   // 2 = User pressed physical button and we need a username
-  @property() response: any;
+  @property() public response: any;
 
-  async beforeRender() {
+  public async beforeRender() {
     return;
   }
 
-  render() {
+  public render() {
     return html`
       ${!this.status()
         ? html`
@@ -26,7 +26,7 @@ export class Auth extends BeforeRender(LitElement) {
     `;
   }
 
-  async auth() {
+  public async auth() {
     const devicetype = "anoblet";
     return await fetch(`http://${this.ip}/api`, {
       body: JSON.stringify({ devicetype }),
@@ -35,7 +35,7 @@ export class Auth extends BeforeRender(LitElement) {
       .then(function(response) {
         return response.json();
       })
-      .then(json => {
+      .then((json) => {
         this.response = JSON.stringify(json);
         const body = json[0];
         if (body.error)
@@ -45,7 +45,7 @@ export class Auth extends BeforeRender(LitElement) {
       });
   }
 
-  status() {
+  public status() {
     const user = localStorage.getItem("user");
     return user ? true : false;
   }
