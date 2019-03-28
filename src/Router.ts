@@ -20,7 +20,6 @@ export const setPortal = (portal: any) => {
 
 export const navigate = (path: string) => {
   window.history.pushState({}, "", path);
-  console.log(path);
   routeChanged({ location: window.location });
 };
 
