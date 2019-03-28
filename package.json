@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "build": "webpack --config webpack.config.js",
     "publish": "git push && webpack && firebase deploy",
     "start": "webpack-dev-server",
     "save": "git add . && git commit -m \"Chore: Save\"",
@@ -28,7 +29,6 @@
     "lit-element": "^2.0.1",
     "marked": "^0.6.0",
     "material-design-icons": "^3.0.1",
-    "muuri": "^0.7.1",
     "ngrok": "^3.1.1",
     "node-hue-api": "^2.4.4",
     "object-path": "^0.11.4",
