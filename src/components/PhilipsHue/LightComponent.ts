@@ -6,9 +6,6 @@ import GlobalStyle from "../../GlobalStyle";
 import { Light } from "./Light";
 
 const Style = css`
-  :host {
-  }
-
   span {
     text-align: center;
   }
