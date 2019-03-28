@@ -63,3 +63,15 @@ export const getLights = async ({ ip, user }: any) => {
     if (response.body) return response.json();
   });
 };
+
+export const request = async ({ body, url }) => {
+  return await fetch(
+    url,
+    {
+      body: JSON.stringify(body),
+      method: "PUT"
+    }
+  ).then((response: any) => {
+    if (response.body) return response.json();
+  });
+};
