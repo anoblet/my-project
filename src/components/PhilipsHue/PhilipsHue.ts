@@ -63,7 +63,7 @@ export const getLights = async ({ ip, user }: any) => {
   });
 };
 
-export const request = async (url, body) => {
+export const request = async (url: string, body: {}) => {
   return await fetch(url, {
     body: JSON.stringify(body),
     method: "PUT"
