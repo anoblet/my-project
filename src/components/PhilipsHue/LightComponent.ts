@@ -46,8 +46,9 @@ export class Component extends BeforeRender(LitElement) {
 
   public async turnOff() {
     await turnOff({
+      id: this.lightId,
       ip: "192.168.43.221",
-      id: this.lightId
+      user: "mWHCs99pkPAniHe0lsSG8ES7qG1xDF8qDQw0h0dN"
     });
     this.refreshState();
   }
