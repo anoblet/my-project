@@ -153,4 +153,8 @@ export default css`
   #userProfile {
     cursor: pointer;
   }
+
+  #content-grid {
+    margin-left: 1em;
+  }
 `;
