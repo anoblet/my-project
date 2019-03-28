@@ -56,7 +56,6 @@ export const turnOff = async ({ ip, id, user }: any) => {
 };
 
 export const getLights = async ({ ip, user }: any) => {
-  const body = { on: true };
   return await fetch(`http://${ip}/api/${user}/lights`, {
     method: "GET"
   }).then((response: any) => {

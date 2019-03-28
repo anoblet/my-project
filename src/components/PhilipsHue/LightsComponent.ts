@@ -21,7 +21,7 @@ export class Lights extends BeforeRender(LitElement) {
     const keys = Object.keys(lights);
     const lightArray: any = [];
     keys.map((key: any) => {
-      lightArray.push({ lightId: key, ...lights[key] });
+      lightArray.push({ id: key, ...lights[key] });
     });
     this.lights = lightArray;
   }
@@ -31,7 +31,7 @@ export class Lights extends BeforeRender(LitElement) {
       <grid-component>
         ${this.lights.map((light: any) => {
           return html`
-            <light-component .lightId=${light.lightId}></light-component>
+            <light-component ._id=${light.id}></light-component>
           `;
         })}
       </grid-component>

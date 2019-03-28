@@ -18,7 +18,7 @@ const Style = css`
 export class Component extends BeforeRender(LitElement) {
   public light: Light;
   @property() public on: boolean;
-  @property() public lightId: string;
+  @property() public _id: string;
   @property() public name: any;
 
   public async beforeRender() {
@@ -29,7 +29,7 @@ export class Component extends BeforeRender(LitElement) {
     const _status = await status({
       ip: "192.168.43.221",
       user: "mWHCs99pkPAniHe0lsSG8ES7qG1xDF8qDQw0h0dN",
-      id: this.lightId
+      id: this._id
     });
     this.name = _status.name;
     this.on = _status.state.on;
@@ -39,14 +39,14 @@ export class Component extends BeforeRender(LitElement) {
     await turnOn({
       ip: "192.168.43.221",
       user: "mWHCs99pkPAniHe0lsSG8ES7qG1xDF8qDQw0h0dN",
-      id: this.lightId
+      id: this._id
     });
     this.refreshState();
   }
 
   public async turnOff() {
     await turnOff({
-      id: this.lightId,
+      id: this._id,
       ip: "192.168.43.221",
       user: "mWHCs99pkPAniHe0lsSG8ES7qG1xDF8qDQw0h0dN"
     });
