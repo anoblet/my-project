@@ -94,9 +94,6 @@ export const routeChanged = async ({ location, portal, routes }: any) => {
 export const handleNavigation = routeChanged;
 
 export const router = {
-  subscribe: (callback) => {
-    // callback(activeRoute);
-  },
   routeChanged,
   setPortal,
   setRoutes
