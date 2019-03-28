@@ -8,5 +8,6 @@ const ip = async () => {
 };
 
 export const bridge = {
-  ip
+  ip,
+  user: ""
 };
