@@ -8,7 +8,10 @@ Scaffolding includes:
   * Separation of concerns -- seperate templates/styles
   * (100) score in all 5 Lighthouse scorings
 
-  @todo
-    - Testing (Code coverage)
+To do:
+- [x] css tag
+- [ ] rxfire
+- [x] load in 1 sec.
+- [x] 100% lighthouse score
 
   * How often should we adopt new features? (CSS tag, RxFire)
