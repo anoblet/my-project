@@ -2,13 +2,14 @@ import { LitElement, css, customElement, html } from "lit-element";
 import GlobalStyle from "../GlobalStyle";
 import "./PatreonComponent";
 
+const version = 2;
+
 const Style = css`
   :host {
     flex: 1;
   }
 
-  grid-component > div,
-  grid-component > span {
+  grid-component > .grid-item {
     display: flex;
     flex: 1;
     justify-content: center;
@@ -37,22 +38,33 @@ export class PageStatic extends LitElement {
   public static styles = [GlobalStyle, Style];
 
   public render() {
-    const version = 2;
     return html`
       ${version === 2
         ? html`
-            <grid-component style="grid-template-columns: repeat(2, 1fr)">
+            <grid-component style="grid-template-columns: repeat(3, 1fr)">
               <div class="grid-item">
-                <div class="item">
-                  <i class="material-icons">create</i
-                  ><span class="label">Blog</span>
-                </div>
+                <a href="/readme">
+                  <div class="item">
+                    <i class="material-icons">notes</i
+                    ><span class="label"><h1>Readme</h1></span>
+                  </div></a
+                >
               </div>
               <div class="grid-item">
-                <div class="item">
-                  <i class="material-icons">show_chart</i
-                  ><span class="label">Performance</span>
-                </div>
+                <a href="/blog">
+                  <div class="item">
+                    <i class="material-icons">create</i
+                    ><span class="label"><h1>Blog</h1></span>
+                  </div></a
+                >
+              </div>
+              <div class="grid-item">
+                <a href="/Performance">
+                  <div class="item">
+                    <i class="material-icons">show_chart</i
+                    ><span class="label"><h1>Performance</h1></span>
+                  </div></a
+                >
               </div>
             </grid-component>
           `
