@@ -156,6 +156,6 @@ export default css`
 
   #content-grid {
     margin-left: 1em;
-    height: 100%;
+    /* height: 100%; */
   }
 `;

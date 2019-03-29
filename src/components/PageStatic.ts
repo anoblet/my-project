@@ -2,8 +2,6 @@ import { LitElement, css, customElement, html } from "lit-element";
 import GlobalStyle from "../GlobalStyle";
 import "./PatreonComponent";
 
-const version = 2;
-
 const Style = css`
   :host {
     flex: 1;
@@ -41,6 +39,7 @@ export class PageStatic extends LitElement {
   public static styles = [GlobalStyle, Style];
 
   public render() {
+    let version = 1;
     return html`
       ${version === 2
         ? html`
@@ -72,7 +71,7 @@ export class PageStatic extends LitElement {
             </grid-component>
           `
         : ""}
-      ${version !== 2
+      ${version === 1
         ? html`
             <grid-component>
               <card-component title="Welcome">
