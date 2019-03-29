@@ -52,7 +52,6 @@
     "clean-webpack-plugin": "^0.1.19",
     "copy-webpack-plugin": "^4.6.0",
     "css-loader": "^1.0.0",
-    "firebase-cli": "^1.2.0",
     "ga-lite": "^2.0.1",
     "google-charts": "^2.0.0",
     "gulp": "^4.0.0",
