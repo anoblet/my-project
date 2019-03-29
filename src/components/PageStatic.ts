@@ -13,7 +13,6 @@ const Style = css`
     display: flex;
     flex: 1;
     justify-content: center;
-    align-items: center;
   }
 
   grid-component {
@@ -31,6 +30,10 @@ const Style = css`
     display: block;
     padding: var(--padding);
   }
+
+  .grid-item > a:hover !important {
+    text-decoration: none;
+  }
 `;
 
 @customElement("page-static")
@@ -43,28 +46,28 @@ export class PageStatic extends LitElement {
         ? html`
             <grid-component style="grid-template-columns: repeat(3, 1fr)">
               <div class="grid-item">
-                <a href="/readme">
-                  <div class="item">
-                    <i class="material-icons">notes</i
-                    ><span class="label"><h1>Readme</h1></span>
-                  </div></a
-                >
+                <div class="item">
+                  <span class="label"
+                    ><h1><a href="/readme">Readme</a></h1></span
+                  >
+                  <i class="material-icons">notes</i>
+                </div>
               </div>
               <div class="grid-item">
-                <a href="/blog">
-                  <div class="item">
-                    <i class="material-icons">create</i
-                    ><span class="label"><h1>Blog</h1></span>
-                  </div></a
-                >
+                <div class="item">
+                  <span class="label"
+                    ><h1><a href="/blog">Blog</a></h1></span
+                  >
+                  <i class="material-icons">create</i>
+                </div>
               </div>
               <div class="grid-item">
-                <a href="/Performance">
-                  <div class="item">
-                    <i class="material-icons">show_chart</i
-                    ><span class="label"><h1>Performance</h1></span>
-                  </div></a
-                >
+                <div class="item">
+                  <span class="label"
+                    ><h1><a href="/Performance">Performance</a></h1></span
+                  >
+                  <i class="material-icons">show_chart</i>
+                </div>
               </div>
             </grid-component>
           `
