@@ -10,10 +10,8 @@ export const config = {
   firebaseui: {
     signInSuccessUrl: "/",
     signInOptions: ["google.com", "anonymous"],
-    tosUrl: "<your-tos-url>",
-    privacyPolicyUrl: () => {
-      window.location.assign("<your-privacy-policy-url>");
-    }
+    tosUrl: "",
+    privacyPolicyUrl: ""
   },
   github: {
     username: "",
