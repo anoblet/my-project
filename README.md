@@ -1,6 +1,6 @@
 # my-app
-Init tasks:
-  npm i && lerna bootstrap
+Prelim tasks:
+  npm i
 
 Scaffolding includes:
   * Generic redux action/reducers
@@ -9,7 +9,7 @@ Scaffolding includes:
 
 To do:
 - [x] css tag
-- [x] load in 1 sec.
+- [x] 1 second load time
 - [x] 100% lighthouse score
 - [x] cms
 - [x] firebase auth
