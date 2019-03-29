@@ -13,5 +13,3 @@ To do:
 - [ ] rxfire
 - [x] load in 1 sec.
 - [x] 100% lighthouse score
-
-  * How often should we adopt new features? (CSS tag, RxFire)
