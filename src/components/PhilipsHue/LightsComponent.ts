@@ -29,6 +29,12 @@ export class Lights extends BeforeRender(LitElement) {
   public render() {
     return html`
       <grid-component>
+        <card-component
+          >This will enumerate lights on a hub. If accessed from a remote
+          client, the request will fail unless you allow scripts from unknown
+          sources. I'm not asking you to allow sciprt, it's just a requirement
+          unless you are on the same network as the hub.</card-component
+        >
         ${this.lights.map((light: any) => {
           return html`
             <light-component .lightId=${light.id}></light-component>
