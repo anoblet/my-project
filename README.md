@@ -10,6 +10,9 @@ Scaffolding includes:
 
 To do:
 - [x] css tag
-- [ ] rxfire
 - [x] load in 1 sec.
 - [x] 100% lighthouse score
+- [x] cms
+- [x] firebase auth
+- [ ] rxfire
+
