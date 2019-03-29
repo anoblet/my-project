@@ -13,6 +13,11 @@ const Style = css`
     justify-content: center;
     align-items: center;
   }
+
+  grid-component {
+    flex: 1;
+    height: 100%;
+  }
 `;
 
 @customElement("page-static")
