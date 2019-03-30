@@ -1,4 +1,4 @@
-import { LitElement, css } from "lit-element";
+import { LitElement, css, customElement } from "lit-element";
 
 import template from "./Template";
 import { config } from "../../../config";
@@ -20,7 +20,8 @@ export const getForm = () =>
     return el;
   });
 
-export class AppUser extends LitElement {
+@customElement("user-component")
+export class UserComponent extends LitElement {
   public async getForm() {
     return Promise.all([
       import(/* webpackChunkName: "Firebase" */ "firebase/app"),
@@ -78,5 +79,3 @@ export class AppUser extends LitElement {
     return template.bind(this)();
   }
 }
-
-window.customElements.define("app-user", AppUser);
