@@ -25,7 +25,7 @@ export const resetState = () => {
 
 /**
  * Check if the user is signed in
- * @return [description]
+ * @return Boolean
  */
 
 export const isSignedIn = () => {
