@@ -76,7 +76,7 @@ export class PageStatic extends LitElement {
             <grid-component>
               <card-component title="Welcome">
                 If you're looking for content go to
-                <a href="/blog">our blog</a>. To view the performance of the
+                <a href="/blog">my blog</a>. To view the performance of the
                 app, visit <a href="/performance">performance</a>.
               </card-component>
               <card-component title="Patreon">
