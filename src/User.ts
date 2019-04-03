@@ -11,8 +11,8 @@ import { toast } from "./components/Toast/Toast";
  * @return Boolean
  */
 export const isAdmin = () => {
-  const state = store.getState();
-  return state.user.uid === "m42gwHOSlbUniorNjigqa1nnHIE3";
+  const _state = store.getState();
+  return _state.user.uid === "m42gwHOSlbUniorNjigqa1nnHIE3";
 };
 
 /**
@@ -77,16 +77,16 @@ export const getUser = () => {
   const stateUser = store.getState().user;
   if (stateUser) return stateUser;
   else {
-    const user = _getUser();
-    return extract(user);
+    const _user = _getUser();
+    return extract(_user);
   }
 };
 
 export const getUserTheme = (callback: any) => {
-  const user = store.getState().user;
+  const _user = store.getState().user;
   return new Promise((resolve: any) => {
     return getDocument({
-      path: `users/${user.uid}/settings/theme`,
+      path: `users/${_user.uid}/settings/theme`,
       callback: (document: any) => {
         resolve(document ? callback(document.currentTheme) : false);
       },
@@ -96,10 +96,10 @@ export const getUserTheme = (callback: any) => {
 };
 
 export const getUserSettings = (callback: any) => {
-  const user = store.getState().user;
+  const _user = store.getState().user;
   return new Promise((resolve: any) =>
     getDocument({
-      path: `users/${user.uid}/settings/default`,
+      path: `users/${_user.uid}/settings/default`,
       callback: (document: any) => {
         document ? resolve(callback(document)) : resolve(false);
       },
@@ -108,13 +108,13 @@ export const getUserSettings = (callback: any) => {
   );
 };
 
-export const extract = (user: any) => {
+export const extract = (_user: any) => {
   return {
-    email: user.email,
-    name: user.displayName,
-    photo: user.photoURL,
+    email: _user.email,
+    name: _user.displayName,
+    photo: _user.photoURL,
     signedIn: true,
-    uid: user.uid
+    uid: _user.uid
   };
 };
 
