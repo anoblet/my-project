@@ -95,7 +95,8 @@ module.exports = {
         keepClosingSlash: true,
         minifyJS: true,
         minifyCSS: true,
-        minifyURLs: true
+        minifyURLs: true,
+        sourceMap: true
       }
     }),
     new WebpackPwaManifest({
