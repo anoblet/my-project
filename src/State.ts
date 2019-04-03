@@ -19,12 +19,14 @@ const genericReducer = (type: string) => (
 };
 
 export const addReducer = ({ _store, type, customFunction = false }: any) => {
+  _store = _store || store;
   _store.addReducers({
     [type]: customFunction || genericReducer(type)
   });
 };
 
 export const setState = ({ data, _store, type, merge = true }: any) => {
+  _store = _store || store;
   _store.dispatch({
     type,
     state: data,
