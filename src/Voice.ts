@@ -1,7 +1,6 @@
 import { navigate } from "./Router";
 import { routes } from "./components/App/Routes";
 
-// @ts-ignore
 import annyang from "annyang";
 
 annyang.debug();
