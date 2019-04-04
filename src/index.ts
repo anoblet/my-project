@@ -4,7 +4,7 @@ import "./components/Footer/Component";
 import "./components/PageStatic";
 import "./components/Drawer/Component";
 import "./components/ProfileMenu/ProfileMenu";
-import "./components/Card/CardComponent";
+import "./components/Card/Component";
 import "./components/Grid/Component";
 import "./components/Loading/LoadingComponent";
 import "./components/ContextMenu/MenuComponent";
