@@ -27,3 +27,5 @@ export const voice = {
   enable,
   disable
 };
+
+export default voice;
