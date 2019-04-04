@@ -6,8 +6,8 @@ import Template from "./Template";
 
 @customElement("card-component")
 export class CardComponent extends LitElement {
-  @property({ type: Boolean }) public collapsible: boolean = false;
   @property({ type: Boolean, reflect: true }) public collapsed: boolean = false;
+  @property({ type: Boolean }) public collapsible: boolean = false;
 
   @query("#title") public _title: Element;
 
