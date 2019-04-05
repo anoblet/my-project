@@ -14,4 +14,4 @@ To do:
 - [x] cms
 - [x] firebase auth
 - [ ] rxfire
-
+- [ ] achieve index.html entrypoint status (@open-wc)
