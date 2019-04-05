@@ -28,12 +28,6 @@ export const routes = [
       import(/* webpackChunkName: "PageComponents" */ "../PageComponents/Component")
   } as Route,
   {
-    path: "/post",
-    component: "post-controller",
-    src: () =>
-      import(/* webpackChunkName: "PostController" */ "../Post/PostController")
-  } as Route,
-  {
     path: "/post/:action?",
     component: "post-controller",
     src: () =>
