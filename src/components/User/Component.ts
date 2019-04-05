@@ -1,6 +1,7 @@
-import { LitElement, css, customElement } from "lit-element";
+import { LitElement, customElement } from "lit-element";
 
-import template from "./Template";
+import Template from "./Template";
+import Style from "./Style";
 import { config } from "../../../config";
 import uiStyle from "./FirebaseUIStyle";
 
@@ -23,59 +24,14 @@ export const getForm = () =>
 @customElement("user-component")
 export class UserComponent extends LitElement {
   public async getForm() {
-    return Promise.all([
-      import(/* webpackChunkName: "Firebase" */ "firebase/app"),
-      import(/* webpackChunkName: "FirebaseUI" */ "firebaseui")
-    ]).then(async ([firebase, firebaseui]) => {
-      const el = document.createElement("div");
-      const ui =
-        firebaseui.auth.AuthUI.getInstance() ||
-        new firebaseui.auth.AuthUI(firebase.auth());
-      ui.start(el, {
-        ...config.firebaseui,
-        ...{ credentialHelper: firebaseui.auth.CredentialHelper.NONE }
-      });
-      return el;
-    });
+    return getForm();
   }
 
   static get styles() {
-    return [
-      uiStyle,
-      css`
-        :host {
-          display: flex;
-          flex: 1;
-        }
-
-        .firebaseui-container {
-          background: none !important;
-        }
-
-        .mdl-shadow--2dp {
-          box-shadow: none;
-        }
-
-        .firebaseui-info-bar {
-          margin-top: 20px;
-        }
-
-        div.mdl-progress::after {
-          display: block;
-          color: var(--text-color);
-          content: "Authenticating";
-          margin: 20px auto;
-          text-align: center;
-        }
-
-        .mdl-progress {
-          height: 5px;
-        }
-      `
-    ];
+    return [uiStyle, Style];
   }
 
   public render() {
-    return template.bind(this)();
+    return Template.bind(this)();
   }
 }
