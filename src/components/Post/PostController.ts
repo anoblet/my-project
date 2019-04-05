@@ -22,18 +22,6 @@ export class PostController extends LitElement {
     this.addEventListener("item-deleted", (e: any) =>
       this.itemDeleted(e.detail)
     );
-    this.setStore(store);
-  }
-
-  public firstUpdated() {
-    // if (super.firstUpdated) super.firstUpdated();
-    // this.action = this.action || "index";
-    // if (this.action === "index") {
-    //   navigate("/post/read");
-    // } else {
-    //   if (this[this.action]) this[this.action](this.id);
-    // }
-    // if (this.action !== "read") this.requestUpdate();
   }
 
   public create() {
