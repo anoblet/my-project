@@ -3,7 +3,7 @@ import { until } from "lit-html/directives/until";
 
 export default function() {
   return html`
-    <button @click=${this.getLocation}>Refresh location</button>
+    <button-component> @click=${this.getLocation}>Get location</button-component>
     ${this.location
       ? html`
           <grid-component style="grid-template-columns: repeat(2, 1fr)">
