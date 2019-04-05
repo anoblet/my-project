@@ -1,4 +1,4 @@
-import { LitElement, customElement } from "lit-element";
+import { LitElement, customElement, property } from "lit-element";
 
 import Template from "./Template";
 import Style from "./Style";
@@ -8,6 +8,11 @@ import { getLocation } from "../../Location";
 
 @customElement("weather-component")
 export class Component extends LitElement {
+  @property() public latitude: string;
+  @property() public location: { latitude?: string; longitude?: string };
+  @property() public longitude: string;
+  @property() public temperature: string;
+
   static get styles() {
     return [GlobalStyle, Style];
   }
@@ -16,49 +21,35 @@ export class Component extends LitElement {
     return Template.bind(this)();
   }
 
-  public async getLocation() {
-    const location: any = await getLocation();
-    console.log(location);
-    const result = await fetch(
-      `https://api.weather.gov/points/${location.latitude},${
-        location.longitude
-      }`
-    ).then(function(response) {
+  public async getPoints() {
+    const url = `https://api.weather.gov/points/${this.location.latitude},${
+      this.location.longitude
+    }`;
+    return await fetch(url).then(function(response) {
       return response.json();
     });
-    const forecast = await fetch(result.properties.forecast)
-      .then((response: any) => {
-        return response.json();
-      })
-      .then((json: any) => {
-        return json.properties.periods[0].temperature;
-      });
-    console.log(forecast);
   }
 
-  public async getTemperature() {
-    const period = await this.getPeriod();
-    return period.temperature;
+  public async getForecast() {
+    const points = await this.getPoints();
+    return await fetch(points.properties.forecast).then(function(response) {
+      return response.json();
+    });
   }
 
   public async getPeriod() {
-    const location: any = await getLocation();
-    return await fetch(
-      `https://api.weather.gov/points/${location.latitude},${
-        location.longitude
-      }`
-    )
-      .then(function(response) {
-        return response.json();
-      })
-      .then(async (result: any) => {
-        return fetch(result.properties.forecast)
-          .then((response: any) => {
-            return response.json();
-          })
-          .then((json: any) => {
-            return json.properties.periods[0];
-          });
-      });
+    const forecast = await this.getForecast();
+    console.log(forecast);
+    return forecast.properties.periods[0];
+  }
+
+  public async getTemperature() {
+    if (!this.location) return;
+    const period = await this.getPeriod();
+    return { temperature: period.temperature, unit: period.temperatureUnit };
+  }
+
+  public async getLocation() {
+    this.location = await getLocation();
   }
 }
