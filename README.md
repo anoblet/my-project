@@ -13,5 +13,5 @@ To do:
 - [x] 100% lighthouse score
 - [x] cms
 - [x] firebase auth
-- [ ] rxfire // Delayed/deferred -ZZ Current implementation already achieves async
+- [ ] rxfire // Delayed/deferred - Current implementation already achieves async
 - [ ] achieve index.html entrypoint status (@open-wc)
