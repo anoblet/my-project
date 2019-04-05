@@ -2,7 +2,7 @@ import { css } from "lit-element";
 
 export default css`
   *, *::before, *::after {
-    contain: layout;
+    contain: content;
   }
 
   :host([hidden]) {
