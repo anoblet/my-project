@@ -23,11 +23,6 @@ export default css`
     color: var(--secondary-color);
   }
 
-  ::slotted([slot="title"]) a {
-    display: flex;
-    align-items: center;
-  }
-
   ::slotted([slot="content"]) {
     border: var(--border-size) solid var(--border-color);
     padding: var(--card-inner-padding, 0);
@@ -49,6 +44,7 @@ export default css`
 
   #title {
     display: flex;
+    align-items: center;
     justify-content: space-between;
   }
 `;

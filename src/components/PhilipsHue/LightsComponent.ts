@@ -10,6 +10,7 @@ export class Lights extends BeforeRender(LitElement) {
 
   constructor() {
     super();
+    alert("This component will break")
   }
 
   public async beforeRender() {
