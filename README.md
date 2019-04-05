@@ -10,7 +10,7 @@ Scaffolding includes:
 To do:
 - [x] css tag
 - [x] 1 second load time
-- [x] 100% lighthouse score
+- [x] 100% lighthouse score (Lost when you turn Google Analytics on as it's a network request)
 - [x] cms
 - [x] firebase auth
 - [ ] rxfire (Delayed/deferred - Current implementation already achieves async)
