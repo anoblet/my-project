@@ -99,6 +99,9 @@ export class ThemeComponent extends LitElement {
               </card-component>
             `
           : ""}
+        <card-component title="Export">
+          ${JSON.stringify(this.currentTheme)}
+        </card-component>
       </grid-component>
     `;
   }
