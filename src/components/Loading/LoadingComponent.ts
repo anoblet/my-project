@@ -18,6 +18,10 @@ export class LoadingComponent extends LitElement {
           display: flex;
           align-items: center;
         }
+
+        .loader {
+          contain: layout;
+        }
       `,
       spinner
     ];
