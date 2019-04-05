@@ -33,7 +33,8 @@ export class Dashboard extends BeforeRender(LitElement) {
       dragEnabled: true,
       layout: {
         fillGaps: true
-      }
+      },
+      layoutOnResize: 500,
     });
     window.addEventListener("drawer-toggled", function() {
       setTimeout(() => grid.refreshItems().layout(), 0);
