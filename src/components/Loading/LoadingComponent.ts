@@ -1,11 +1,13 @@
 import { LitElement, css, customElement, html } from "lit-element";
 
+import GlobalStyle from "../../GlobalStyle";
 import spinner from "./Spinner2";
 
 @customElement("loading-component")
 export class LoadingComponent extends LitElement {
   static get styles() {
     return [
+      GlobalStyle,
       css`
         :host {
           position: absolute;

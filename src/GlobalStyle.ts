@@ -1,8 +1,8 @@
 import { css } from "lit-element";
 
 export default css`
-  * {
-    /* contain: layout; */
+  *, *::before, *::after {
+    contain: layout;
   }
 
   :host([hidden]) {

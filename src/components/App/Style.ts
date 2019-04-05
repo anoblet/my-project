@@ -91,6 +91,7 @@ export default css`
 
   #content-grid {
     padding-right: 1em;
+    content: initial;
   }
 
   #center {
@@ -157,5 +158,9 @@ export default css`
   #content-grid {
     margin-left: 1em;
     /* height: 100%; */
+  }
+
+  #portal {
+    contain: initial;
   }
 `;
