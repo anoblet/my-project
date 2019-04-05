@@ -52,5 +52,11 @@ export const components = [
     src: () =>
       import(/* webpackChunkName: "Muuri" */ "./components/muuri/component"),
     tag: "muuri-component"
+  },
+  {
+    label: "Weather",
+    src: () =>
+      import(/* webpackChunkName: "Weather" */ "./components/Weather/component"),
+    tag: "weather-component"
   }
 ];
