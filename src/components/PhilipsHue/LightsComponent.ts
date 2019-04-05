@@ -10,7 +10,9 @@ export class Lights extends BeforeRender(LitElement) {
 
   constructor() {
     super();
-    alert("This component will break")
+    alert(
+      "This component will break on remote hosts unless you allow unsecure scripts. Otherwise it should find/use a hub on your local network."
+    );
   }
 
   public async beforeRender() {
@@ -33,8 +35,9 @@ export class Lights extends BeforeRender(LitElement) {
         <card-component
           >This will enumerate lights on a hub. If accessed from a remote
           client, the request will fail unless you allow scripts from unknown
-          sources. I'm not asking you to allow those scripts, it's just a requirement
-          unless you are on the same network as the hub.</card-component
+          sources. I'm not asking you to allow those scripts, it's just a
+          requirement unless you are on the same network as the
+          hub.</card-component
         >
         ${this.lights.map((light: any) => {
           return html`
