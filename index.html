@@ -1,14 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <!-- Pre-connect to resources -->
     <link rel="preconnect" href="https://www.googleapis.com" />
     <link rel="preconnect" href="https://firestore.googleapis.com" />
     <link rel="preconnect" href="https://www.google-analytics.com/" />
+    <!-- End pre-connect -->
     <style>
       *,
       html,
       body {
         box-sizing: border-box;
+        contain: layout;
       }
       body {
         display: flex;
@@ -90,6 +93,7 @@
       }
     </style>
     <title>Andrew Noblet</title>
+    <!-- Service worker -->
     <script type="text/javascript" defer>
       if (location.hostname !== "localhost")
         if ("serviceWorker" in navigator) {
@@ -105,6 +109,7 @@
           });
         }
     </script>
+    <!-- End service worker -->
     <meta name="Description" content="Andrew Noblet" />
     <link
       href="data:image/x-icon;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQEAYAAABPYyMiAAAABmJLR0T///////8JWPfcAAAACXBIWXMAAABIAAAASABGyWs+AAAAF0lEQVRIx2NgGAWjYBSMglEwCkbBSAcACBAAAeaR9cIAAAAASUVORK5CYII="

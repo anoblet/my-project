@@ -27,14 +27,13 @@ export class PostController extends LitElement {
 
   public firstUpdated() {
     // if (super.firstUpdated) super.firstUpdated();
-    this.action = this.action || "index";
-    debug._console(this.action);
-    if (this.action === "index") {
-      navigate("/post/read");
-    } else {
-      if (this[this.action]) this[this.action](this.id);
-    }
-    if (this.action !== "read") this.requestUpdate();
+    // this.action = this.action || "index";
+    // if (this.action === "index") {
+    //   navigate("/post/read");
+    // } else {
+    //   if (this[this.action]) this[this.action](this.id);
+    // }
+    // if (this.action !== "read") this.requestUpdate();
   }
 
   public create() {
