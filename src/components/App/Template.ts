@@ -25,7 +25,7 @@ export default function() {
           `
         : html`
             <a href="/user/signin"
-              ><button-component label="Sign in">Sign in</button-component></a
+              ><button-component>Sign in</button-component></a
             >
           `}
     </app-header>
