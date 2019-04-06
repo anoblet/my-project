@@ -39,9 +39,9 @@ export class Component extends LitElement {
     });
   }
 
-  public async getPeriod() {
+  public async getPeriod(index: number) {
     const forecast = await this.getForecast();
-    const period = forecast.properties.periods[0];
+    const period = forecast.properties.periods[index];
     const newPeriod = {
       temperature: period.temperature,
       temperatureUnit: period.temperatureUnit
@@ -51,7 +51,7 @@ export class Component extends LitElement {
 
   public async getTemperature() {
     if (!this.location) return;
-    const period = await this.getPeriod();
+    const period = await this.getPeriod(0);
     return { temperature: period.temperature, unit: period.temperatureUnit };
   }
 
