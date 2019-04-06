@@ -58,5 +58,11 @@ export const components = [
     src: () =>
       import(/* webpackChunkName: "Weather" */ "./components/Weather/component"),
     tag: "weather-component"
+  },
+  {
+    label: "Location",
+    src: () =>
+      import(/* webpackChunkName: "Location" */ "./components/Location/component"),
+    tag: "location-component"
   }
 ];

@@ -10,9 +10,21 @@ export default function() {
         ? html`
             <grid-component style="grid-template-columns: repeat(2, 1fr)">
               <div>Latitude:</div>
-              <div>${this.location.latitude}</div>
+              <div>
+                <input
+                  type="text"
+                  value=${this.location.latitude}
+                  @change=${this.latitudeChanged}
+                />
+              </div>
               <div>Longitude:</div>
-              <div>${this.location.longitude}</div>
+              <div>
+                <input
+                  type="text"
+                  value=${this.location.longitude}
+                  @change=${this.longitudeChanged}
+                />
+              </div>
             </grid-component>
           `
         : html``}

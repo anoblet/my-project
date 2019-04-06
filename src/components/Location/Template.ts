@@ -8,21 +8,9 @@ export default function() {
       ? html`
           <grid-component style="grid-template-columns: repeat(2, 1fr)">
             <div>Latitude:</div>
-            <div>${this.location.latitude}</div>
+            <div>${this.latitude}</div>
             <div>Longitude:</div>
-            <div>${this.location.longitude}</div>
-            <div>Temperature:</div>
-            <div>
-              ${until(
-                this.getTemperature().then(
-                  (result: any) =>
-                    html`
-                      ${result.temperature} ${result.unit}
-                    `
-                ),
-                html``
-              )}
-            </div>
+            <div>${this.longitude}</div>
           </grid-component>
         `
       : html``}

@@ -24,6 +24,7 @@ export class Component extends LitElement {
   }
 
   public async getPoints() {
+    if (!this.location) return;
     const url = `https://api.weather.gov/points/${this.location.latitude},${
       this.location.longitude
     }`;
@@ -66,5 +67,13 @@ export class Component extends LitElement {
       data: { location },
       store
     });
+  }
+
+  public latitudeChanged(e: any) {
+    this.latitude = e.target.value;
+  }
+
+  public longitudeChanged(e: any) {
+    this.longitude = e.target.value;
   }
 }
