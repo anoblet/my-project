@@ -4,9 +4,9 @@ import Template from "./Template";
 import Style from "./Style";
 import GlobalStyle from "../../GlobalStyle";
 
-import { getLocation } from "../Location/Lib";
 import { state } from "../../State";
 import { store } from "../../Store";
+import { getPosition, getPositionAsync } from "../Location/lib";
 
 @customElement("weather-component")
 export class Component extends LitElement {
@@ -42,9 +42,12 @@ export class Component extends LitElement {
   public async getPeriod(index: number) {
     const forecast = await this.getForecast();
     const period = forecast.properties.periods[index];
+    console.log(period);
     const newPeriod = {
       temperature: period.temperature,
-      temperatureUnit: period.temperatureUnit
+      temperatureUnit: period.temperatureUnit,
+      windDirection: period.windDirection,
+      windSpeed: period.windSpeed
     };
     return newPeriod;
   }
@@ -56,7 +59,7 @@ export class Component extends LitElement {
   }
 
   public async getLocation() {
-    const location = await getLocation();
+    const location = await getPositionAsync();
     this.location = location;
     state.set({
       type: "user",

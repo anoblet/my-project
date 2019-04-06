@@ -1,12 +1,11 @@
 import { html } from "lit-element";
 import { until } from "lit-html/directives/until";
+import { getPositionTemplate } from "../Location/Lib";
 
 export default function() {
   return html`
     <grid-component>
-      <button-component @click=${this.getLocation}
-        >Get location</button-component
-      >
+      ${getPositionTemplate((location: any) => (this.location = location))}
       ${this.location
         ? html`
             <grid-component style="grid-template-columns: repeat(2, 1fr)">
@@ -35,6 +34,7 @@ export default function() {
             </grid-component>
           `
         : html``}
+      ${until(this.getPeriod(0).then((result: any) => JSON.stringify(result)))}
     </grid-component>
   `;
 }

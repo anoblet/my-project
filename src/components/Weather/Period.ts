@@ -2,11 +2,11 @@ import { LitElement, css, customElement, html, property } from "lit-element";
 import GlobalStyle from "../../GlobalStyle";
 
 @customElement("period-component")
-export class Location extends LitElement {
-  @property() public latitude: string;
-  @property() public location: { latitude?: string; longitude?: string };
-  @property() public longitude: string;
+export class Period extends LitElement {
   @property() public temperature: string;
+  @property() public temperatureUnit: string;
+  @property() public windDirection: string;
+  @property() public windSpeed: string;
 
   static get styles() {
     return [GlobalStyle, css``];
@@ -16,3 +16,7 @@ export class Location extends LitElement {
     return html``;
   }
 }
+
+export const summary = (position: any) => html`
+  <grid-component> <span>label</span><span>value</span> </grid-component>
+`;
