@@ -4,7 +4,9 @@ import Template from "./Template";
 import Style from "./Style";
 import GlobalStyle from "../../GlobalStyle";
 
-import { getLocation } from "../../Location";
+import { getLocation } from "../Location/Lib";
+import { state } from "../../State";
+import { store } from "../../Store";
 
 @customElement("weather-component")
 export class Component extends LitElement {
@@ -54,6 +56,12 @@ export class Component extends LitElement {
   }
 
   public async getLocation() {
-    this.location = await getLocation();
+    const location = await getLocation();
+    this.location = location;
+    state.set({
+      type: "user",
+      data: { location },
+      store
+    });
   }
 }
