@@ -24,9 +24,8 @@ export class Component extends LitElement {
   }
 
   public async getPoints() {
-    if (!this.location) return;
-    const url = `https://api.weather.gov/points/${this.location.latitude},${
-      this.location.longitude
+    const url = `https://api.weather.gov/points/${this.latitude},${
+      this.longitude
     }`;
     return await fetch(url).then(function(response) {
       return response.json();
@@ -55,7 +54,6 @@ export class Component extends LitElement {
   }
 
   public async getTemperature() {
-    if (!this.location) return;
     const period = await this.getPeriod(0);
     return { temperature: period.temperature, unit: period.temperatureUnit };
   }
