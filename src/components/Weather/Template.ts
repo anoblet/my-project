@@ -6,18 +6,18 @@ export default function() {
   return html`
     <grid-component>
       ${getPositionTemplate(this.positionChanged.bind(this))}
+      <grid-component style="grid-template-columns: repeat(2, 1fr)">
+        <div>Latitude:</div>
+        <div>
+          ${this.latitude}
+        </div>
+        <div>Longitude:</div>
+        <div>
+          ${this.longitude}
+        </div>
+      </grid-component>
       ${this.latitude && this.longitude
         ? html`
-            <grid-component style="grid-template-columns: repeat(2, 1fr)">
-              <div>Latitude:</div>
-              <div>
-                ${this.latitude}
-              </div>
-              <div>Longitude:</div>
-              <div>
-                ${this.longitude}
-              </div>
-            </grid-component>
             ${until(
               this.getPeriod(0).then(
                 (period: any) =>
