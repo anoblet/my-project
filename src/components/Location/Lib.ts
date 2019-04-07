@@ -10,7 +10,6 @@ export const getPositionCallback = (
   failure?: () => any
 ) => {
   navigator.geolocation.getCurrentPosition((position: any) => {
-    console.log(position);
     success(map(position));
   }, failure);
 };
@@ -25,7 +24,15 @@ export const getPositionAsync = async () => {
 
 export const getPositionTemplate = (success: (position: any) => any) => {
   return html`
-    <button-component @click=${() => getPosition(success)}
+    <button-component
+      @click=${(e: any) => {
+        const button = e.target;
+        button.innerHTML = "Loading...";
+        getPosition((position: any) => {
+          success(position);
+          button.innerHTML = "Get location";
+        });
+      }}
       >Get location</button-component
     >
   `;
