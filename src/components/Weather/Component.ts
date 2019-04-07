@@ -28,7 +28,10 @@ export class Component extends LitElement {
   }
 
   public async getPeriod(index: number) {
-    const forecast = await this.getForecast();
+    const forecast = await getForecast({
+      latitude: this.latitude,
+      longitude: this.longitude
+    });
     const period = forecast.properties.periods[index];
     return {
       detailedForecast: period.detailedForecast,
@@ -75,4 +78,18 @@ export const getForecast = async (coordinates: {
   return await fetch(points.properties.forecast).then(function(response) {
     return response.json();
   });
+};
+
+export const getPeriod = async (coordinates: any, index: number) => {
+  const forecast = await getForecast(coordinates);
+  const period = forecast.properties.periods[index];
+  return {
+    detailedForecast: period.detailedForecast,
+    icon: period.icon,
+    shortForecast: period.shortForecast,
+    temperature: period.temperature,
+    temperatureUnit: period.temperatureUnit,
+    windDirection: period.windDirection,
+    windSpeed: period.windSpeed
+  };
 };
