@@ -13,11 +13,13 @@ export const getPositionCallback = (
   }, failure);
 };
 
-export const getPositionAsync = new Promise((resolve: any, reject: any) => {
-  navigator.geolocation.getCurrentPosition((position: any) => {
-    resolve(map(position));
-  }, reject);
-});
+export const getPositionAsync = async () => {
+  return new Promise((resolve: any, reject: any) => {
+    navigator.geolocation.getCurrentPosition((position: any) => {
+      resolve(map(position));
+    }, reject);
+  });
+};
 
 export const getPositionTemplate = (success: (position) => any) => {
   return html`
