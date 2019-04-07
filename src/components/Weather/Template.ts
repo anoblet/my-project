@@ -1,6 +1,7 @@
 import { html } from "lit-element";
 import { until } from "lit-html/directives/until";
 import { getPositionTemplate } from "../Location/Lib";
+import { periodTemplate } from "./PeriodTemplate";
 
 export default function() {
   return html`
@@ -18,29 +19,7 @@ export default function() {
       </grid-component>
       ${this.latitude && this.longitude
         ? html`
-            ${until(
-              this.getPeriod(0).then(
-                (period: any) =>
-                  html`
-                    <grid-component
-                      style="grid-template-columns: repeat(2, 1fr)"
-                    >
-                      <div>Temperature:</div>
-                      <div>${period.temperature} ${period.temperatureUnit}</div>
-                      <div>Icon:</div>
-                      <div><img src=${period.icon} /></div>
-                      <div>Wind direction:</div>
-                      <div>${period.windDirection}</div>
-                      <div>Wind speed:</div>
-                      <div>${period.windSpeed}</div>
-                      <div>Short forecast:</div>
-                      <div>${period.shortForecast}</div>
-                      <div>Detailed forecast:</div>
-                      <div>${period.detailedForecast}</div>
-                    </grid-component>
-                  `
-              )
-            )}
+            ${until(this.getPeriod(0).then(periodTemplate))}
           `
         : html``}
     </grid-component>
