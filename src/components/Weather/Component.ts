@@ -59,7 +59,6 @@ export class Component extends LitElement {
 
   public async getLocation() {
     const location = await getPositionAsync();
-    // this.location = location;
     state.set({
       type: "user",
       data: { location },
