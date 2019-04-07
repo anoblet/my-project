@@ -41,6 +41,7 @@ export class Component extends LitElement {
   public async getPeriod(index: number) {
     const forecast = await this.getForecast();
     const period = forecast.properties.periods[index];
+    console.log(period);
     const newPeriod = {
       temperature: period.temperature,
       temperatureUnit: period.temperatureUnit,

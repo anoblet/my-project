@@ -8,16 +8,24 @@ export const getPositionCallback = (
   success: (position: { latitude: string; longitude: string }) => any,
   failure?: () => any
 ) => {
-  navigator.geolocation.getCurrentPosition((position: any) => {
-    success(map(position));
-  }, failure);
+  navigator.geolocation.getCurrentPosition(
+    (position: any) => {
+      success(map(position));
+    },
+    failure,
+    { timeout: 10000 }
+  );
 };
 
 export const getPositionAsync = async () => {
   return new Promise((resolve: any, reject: any) => {
-    navigator.geolocation.getCurrentPosition((position: any) => {
-      resolve(map(position));
-    }, reject);
+    navigator.geolocation.getCurrentPosition(
+      (position: any) => {
+        resolve(map(position));
+      },
+      reject,
+      { timeout: 10000 }
+    );
   });
 };
 
