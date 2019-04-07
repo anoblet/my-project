@@ -11,19 +11,11 @@ export default function() {
             <grid-component style="grid-template-columns: repeat(2, 1fr)">
               <div>Latitude:</div>
               <div>
-                <input
-                  type="text"
-                  value=${this.latitude}
-                  @change=${this.latitudeChanged}
-                />
+                ${this.latitude}
               </div>
               <div>Longitude:</div>
               <div>
-                <input
-                  type="text"
-                  value=${this.longitude}
-                  @change=${this.longitudeChanged}
-                />
+                ${this.longitude}
               </div>
             </grid-component>
             <grid-component style="grid-template-columns: repeat(2, 1fr)">
