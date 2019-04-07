@@ -26,7 +26,7 @@ export const getPositionAsync = async () => {
 export const getPositionTemplate = (success: (position) => any) => {
   return html`
     <button-component @click=${() => getPosition(success)}
-      >Get</button-component
+      >Get location</button-component
     >
   `;
 };
