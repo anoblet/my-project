@@ -1,5 +1,5 @@
 Context/use cases:
-  - Weather component needs lat/long
+  - A weather component needs lat/long
   - Should we fire an event/or accept a callback?
 
 Objective:
