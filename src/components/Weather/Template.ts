@@ -33,7 +33,19 @@ export default function() {
               </div>
             </grid-component>
             ${until(
-              this.getPeriod(0).then((result: any) => JSON.stringify(result))
+              this.getPeriod(0).then(
+                (result: any) =>
+                  html`
+                    <grid-component
+                      style="grid-template-columns: repeat(2, 1fr)"
+                    >
+                      <div>Wind direction:</div>
+                      <div>${result.windDirection}</div>
+                      <div>Wind speed:</div>
+                      <div>${result.windSpeed}</div>
+                    </grid-component>
+                  `
+              )
             )}
           `
         : html``}
