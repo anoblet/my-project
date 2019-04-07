@@ -10,7 +10,7 @@ import { getPosition } from "./Lib";
 export class Location extends LitElement {
   @property() public latitude: string;
   @property() public longitude: string;
-  @property() public locationChanged: () => any;
+  @property() public locationChanged: ({ latitude, longitude }) => any;
 
   static get styles() {
     return [GlobalStyle, Style];
@@ -22,7 +22,10 @@ export class Location extends LitElement {
 
   public updated(changedProperties: any) {
     if (changedProperties.has("latitude") || changedProperties.has("longitude"))
-      this.locationChanged();
+      this.locationChanged({
+        latitude: this.latitude,
+        longitude: this.longitude
+      });
     return super.updated(changedProperties);
   }
 

@@ -1,3 +1,6 @@
 Objective: Ask for/provide latitude/longitude values
-  - Provide a button that asks for location access
-    - Should we ask for a call back function to be called once a position is available?
+
+  - getPosition
+    - Wrapper for the `navigator.geolocation.getCurrentPosition function`
+  - getPositionTemplate
+    - Pure function to provide a button template that takes a callback function to be called when a position is available or latitude/longitude changes;
