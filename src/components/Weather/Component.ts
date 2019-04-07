@@ -17,16 +17,6 @@ export class Component extends LitElement {
     return Template.bind(this)();
   }
 
-  public async getForecast() {
-    const points = await getPoints({
-      latitude: this.latitude,
-      longitude: this.longitude
-    });
-    return await fetch(points.properties.forecast).then(function(response) {
-      return response.json();
-    });
-  }
-
   public async getPeriod(index: number) {
     const forecast = await getForecast({
       latitude: this.latitude,
