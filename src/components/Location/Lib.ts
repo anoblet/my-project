@@ -10,7 +10,7 @@ export const getPositionCallback = (
 ) => {
   navigator.geolocation.getCurrentPosition((position: any) => {
     success(map(position));
-  }, failure());
+  }, failure);
 };
 
 export const getPositionAsync = async () => {
