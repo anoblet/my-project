@@ -77,4 +77,9 @@ export class Component extends LitElement {
   public longitudeChanged(e: any) {
     this.longitude = e.target.value;
   }
+
+  public locationChanged(position: any) {
+    this.latitude = position.latitude;
+    this.longitude = position.longitude;
+  }
 }

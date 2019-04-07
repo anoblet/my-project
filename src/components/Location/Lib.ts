@@ -1,6 +1,7 @@
 import { html } from "lit-element";
 
 export const getPosition = (success?: any, failure?: any) => {
+  console.log("1");
   return getPositionCallback(success, failure);
 };
 
@@ -9,6 +10,7 @@ export const getPositionCallback = (
   failure?: () => any
 ) => {
   navigator.geolocation.getCurrentPosition((position: any) => {
+    console.log(position);
     success(map(position));
   }, failure);
 };

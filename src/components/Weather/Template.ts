@@ -5,15 +5,18 @@ import { getPositionTemplate } from "../Location/Lib";
 export default function() {
   return html`
     <grid-component>
-      ${getPositionTemplate((location: any) => (this.location = location))}
-      ${this.location
+      ${getPositionTemplate(({ latitude, longitude }) => {
+        this.latitude = latitude;
+        this.longitude = longitude;
+      })}
+      ${this.latitude && this.longitude
         ? html`
             <grid-component style="grid-template-columns: repeat(2, 1fr)">
               <div>Latitude:</div>
               <div>
                 <input
                   type="text"
-                  value=${this.location.latitude}
+                  value=${this.latitude}
                   @change=${this.latitudeChanged}
                 />
               </div>
@@ -21,15 +24,11 @@ export default function() {
               <div>
                 <input
                   type="text"
-                  value=${this.location.longitude}
+                  value=${this.longitude}
                   @change=${this.longitudeChanged}
                 />
               </div>
             </grid-component>
-          `
-        : html``}
-      ${this.location
-        ? html`
             <grid-component style="grid-template-columns: repeat(2, 1fr)">
               <div>Temperature:</div>
               <div>
@@ -44,9 +43,11 @@ export default function() {
                 )}
               </div>
             </grid-component>
+            ${until(
+              this.getPeriod(0).then((result: any) => JSON.stringify(result))
+            )}
           `
         : html``}
-      ${until(this.getPeriod(0).then((result: any) => JSON.stringify(result)))}
     </grid-component>
   `;
 }
