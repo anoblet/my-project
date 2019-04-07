@@ -1,4 +1,7 @@
-Objective: Ask for/provide latitude/longitude values
+Objective:
+  - Ask for/provide latitude/longitude values
+  - We want to provide a function that returns a user's postion
+  - The function must by async or callback oriented since getCurrentPosition is async
 
   - getPosition
     - Wrapper for the `navigator.geolocation.getCurrentPosition function`
