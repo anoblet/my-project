@@ -2,8 +2,13 @@ import { html } from "lit-element";
 import { until } from "lit-html/directives/until";
 import { getPositionTemplate } from "../Location/Lib";
 import { periodTemplate } from "./PeriodTemplate";
+import { getPeriod } from "./Component";
 
 export default function() {
+  const coordinates = {
+    latitude: this.latitude,
+    longitude: this.longitude
+  };
   return html`
     <grid-component>
       ${getPositionTemplate(this.positionChanged.bind(this))}
@@ -19,7 +24,7 @@ export default function() {
       </grid-component>
       ${this.latitude && this.longitude
         ? html`
-            ${until(this.getPeriod(0).then(periodTemplate))}
+            ${until(getPeriod(coordinates, 0).then(periodTemplate))}
           `
         : html``}
     </grid-component>
