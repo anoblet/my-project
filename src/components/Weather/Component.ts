@@ -11,7 +11,7 @@ import { getPositionAsync } from "../Location/lib";
 @customElement("weather-component")
 export class Component extends LitElement {
   @property() public latitude: string;
-  @property() public location: { latitude?: string; longitude?: string };
+  // @property() public location: { latitude?: string; longitude?: string };
   @property() public longitude: string;
   @property() public temperature: string;
 
@@ -43,7 +43,6 @@ export class Component extends LitElement {
   public async getPeriod(index: number) {
     const forecast = await this.getForecast();
     const period = forecast.properties.periods[index];
-    console.log(period);
     const newPeriod = {
       temperature: period.temperature,
       temperatureUnit: period.temperatureUnit,
@@ -60,7 +59,7 @@ export class Component extends LitElement {
 
   public async getLocation() {
     const location = await getPositionAsync();
-    this.location = location;
+    // this.location = location;
     state.set({
       type: "user",
       data: { location },
