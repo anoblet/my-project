@@ -57,15 +57,6 @@ export class Component extends LitElement {
     return { temperature: period.temperature, unit: period.temperatureUnit };
   }
 
-  public async getLocation() {
-    const location = await getPositionAsync();
-    state.set({
-      type: "user",
-      data: { location },
-      store
-    });
-  }
-
   public latitudeChanged(e: any) {
     this.latitude = e.target.value;
   }
@@ -74,8 +65,13 @@ export class Component extends LitElement {
     this.longitude = e.target.value;
   }
 
-  public locationChanged(position: any) {
+  public positionChanged(position: any) {
     this.latitude = position.latitude;
     this.longitude = position.longitude;
+    state.set({
+      type: "user",
+      data: { location: position },
+      store
+    });
   }
 }

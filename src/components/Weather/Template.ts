@@ -5,10 +5,7 @@ import { getPositionTemplate } from "../Location/Lib";
 export default function() {
   return html`
     <grid-component>
-      ${getPositionTemplate(({ latitude, longitude }) => {
-        this.latitude = latitude;
-        this.longitude = longitude;
-      })}
+      ${getPositionTemplate(this.positionChanged.bind(this))}
       ${this.latitude && this.longitude
         ? html`
             <grid-component style="grid-template-columns: repeat(2, 1fr)">
