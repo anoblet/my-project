@@ -62,10 +62,5 @@ export class Component extends LitElement {
   public positionChanged(position: any) {
     this.latitude = position.latitude;
     this.longitude = position.longitude;
-    state.set({
-      type: "user",
-      data: { location: position },
-      store
-    });
   }
 }
