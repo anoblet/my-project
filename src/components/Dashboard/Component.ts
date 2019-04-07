@@ -1,6 +1,5 @@
 import { LitElement, customElement, property } from "lit-element";
 import { BeforeRender } from "../../mixins/BeforeRender";
-// @ts-ignore
 import muuri from "muuri";
 import Style from "./Style";
 import Template from "./Template";

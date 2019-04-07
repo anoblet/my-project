@@ -9,5 +9,6 @@ declare module "*.json" {
 }
 
 declare module "ga-lite";
+declare module "muuri";
 declare module "random-material-color";
 declare module "annyang";
