@@ -17,17 +17,11 @@ export class Component extends LitElement {
     return Template.bind(this)();
   }
 
-  public async getPoints() {
-    const url = `https://api.weather.gov/points/${this.latitude},${
-      this.longitude
-    }`;
-    return await fetch(url).then(function(response) {
-      return response.json();
-    });
-  }
-
   public async getForecast() {
-    const points = await this.getPoints();
+    const points = await getPoints({
+      latitude: this.latitude,
+      longitude: this.longitude
+    });
     return await fetch(points.properties.forecast).then(function(response) {
       return response.json();
     });
@@ -60,3 +54,25 @@ export class Component extends LitElement {
     this.longitude = position.longitude;
   }
 }
+
+export const getPoints = async (coordinates: {
+  latitude: string;
+  longitude: string;
+}) => {
+  const url = `https://api.weather.gov/points/${coordinates.latitude},${
+    coordinates.longitude
+  }`;
+  return await fetch(url).then(function(response) {
+    return response.json();
+  });
+};
+
+export const getForecast = async (coordinates: {
+  latitude: string;
+  longitude: string;
+}) => {
+  const points = await getPoints(coordinates);
+  return await fetch(points.properties.forecast).then(function(response) {
+    return response.json();
+  });
+};

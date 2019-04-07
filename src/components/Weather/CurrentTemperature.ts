@@ -1,3 +1,5 @@
 import { html } from "lit-element";
 
-export const periodTemplate = (period: any) => html``;
+export const currentTemperature = (coordinates: any) => {
+  return html``;
+};

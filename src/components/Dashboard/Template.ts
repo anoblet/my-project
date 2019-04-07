@@ -1,5 +1,5 @@
 import { html } from "lit-element";
-
+import { currentTemperature } from "../Weather/CurrentTemperature";
 export default function() {
   return html`
     <div class="grid">
@@ -86,11 +86,11 @@ export default function() {
       </div>
       <div class="item">
         <div class="item-content">
-          <img
-            src="https://placeimg.com/400/195/any?10"
-            width="400"
-            height="195"
-          />
+          <weather-component></weather-component>
+          ${currentTemperature({
+            latitude: "40.7666688",
+            longitude: "-73.961472"
+          })}
         </div>
       </div>
     </div>
