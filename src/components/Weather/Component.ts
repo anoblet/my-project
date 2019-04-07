@@ -17,23 +17,6 @@ export class Component extends LitElement {
     return Template.bind(this)();
   }
 
-  public async getPeriod(index: number) {
-    const forecast = await getForecast({
-      latitude: this.latitude,
-      longitude: this.longitude
-    });
-    const period = forecast.properties.periods[index];
-    return {
-      detailedForecast: period.detailedForecast,
-      icon: period.icon,
-      shortForecast: period.shortForecast,
-      temperature: period.temperature,
-      temperatureUnit: period.temperatureUnit,
-      windDirection: period.windDirection,
-      windSpeed: period.windSpeed
-    };
-  }
-
   public latitudeChanged(e: any) {
     this.latitude = e.target.value;
   }
