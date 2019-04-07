@@ -21,17 +21,13 @@ export const getPositionAsync = async () => {
   });
 };
 
-export const getPositionTemplate = (success: (position) => any) => {
+export const getPositionTemplate = (success: (position: any) => any) => {
   return html`
     <button-component @click=${() => getPosition(success)}
       >Get location</button-component
     >
   `;
 };
-
-export const summaryTemplate = (position: any) => html`
-  <grid-component> <span>label</span><span>value</span> </grid-component>
-`;
 
 const map = (position: any) => {
   return {
