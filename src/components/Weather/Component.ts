@@ -6,7 +6,7 @@ import GlobalStyle from "../../GlobalStyle";
 
 import { state } from "../../State";
 import { store } from "../../Store";
-import { getPosition, getPositionAsync } from "../Location/lib";
+import { getPositionAsync } from "../Location/lib";
 
 @customElement("weather-component")
 export class Component extends LitElement {
