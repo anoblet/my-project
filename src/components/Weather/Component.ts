@@ -6,12 +6,10 @@ import GlobalStyle from "../../GlobalStyle";
 
 import { state } from "../../State";
 import { store } from "../../Store";
-import { getPositionAsync } from "../Location/lib";
 
 @customElement("weather-component")
 export class Component extends LitElement {
   @property() public latitude: string;
-  // @property() public location: { latitude?: string; longitude?: string };
   @property() public longitude: string;
   @property() public temperature: string;
 
