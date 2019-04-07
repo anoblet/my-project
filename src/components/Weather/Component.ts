@@ -35,6 +35,7 @@ export class Component extends LitElement {
 
   public async getForecast() {
     const points = await this.getPoints();
+    if(!points) return;
     return await fetch(points.properties.forecast).then(function(response) {
       return response.json();
     });
