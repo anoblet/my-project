@@ -18,31 +18,25 @@ export default function() {
                 ${this.longitude}
               </div>
             </grid-component>
-            <grid-component style="grid-template-columns: repeat(2, 1fr)">
-              <div>Temperature:</div>
-              <div>
-                ${until(
-                  this.getTemperature().then(
-                    (result: any) =>
-                      html`
-                        ${result.temperature} ${result.unit}
-                      `
-                  ),
-                  html``
-                )}
-              </div>
-            </grid-component>
             ${until(
               this.getPeriod(0).then(
-                (result: any) =>
+                (period: any) =>
                   html`
                     <grid-component
                       style="grid-template-columns: repeat(2, 1fr)"
                     >
+                      <div>Temperature:</div>
+                      <div>${period.temperature} ${period.temperatureUnit}</div>
+                      <div>Icon:</div>
+                      <div><img src=${period.icon} /></div>
                       <div>Wind direction:</div>
-                      <div>${result.windDirection}</div>
+                      <div>${period.windDirection}</div>
                       <div>Wind speed:</div>
-                      <div>${result.windSpeed}</div>
+                      <div>${period.windSpeed}</div>
+                      <div>Short forecast:</div>
+                      <div>${period.shortForecast}</div>
+                      <div>Detailed forecast:</div>
+                      <div>${period.detailedForecast}</div>
                     </grid-component>
                   `
               )

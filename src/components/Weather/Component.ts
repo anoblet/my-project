@@ -32,7 +32,6 @@ export class Component extends LitElement {
 
   public async getForecast() {
     const points = await this.getPoints();
-    if (!points) return;
     return await fetch(points.properties.forecast).then(function(response) {
       return response.json();
     });
@@ -41,19 +40,15 @@ export class Component extends LitElement {
   public async getPeriod(index: number) {
     const forecast = await this.getForecast();
     const period = forecast.properties.periods[index];
-    console.log(period);
-    const newPeriod = {
+    return {
+      detailedForecast: period.detailedForecast,
+      icon: period.icon,
+      shortForecast: period.shortForecast,
       temperature: period.temperature,
       temperatureUnit: period.temperatureUnit,
       windDirection: period.windDirection,
       windSpeed: period.windSpeed
     };
-    return newPeriod;
-  }
-
-  public async getTemperature() {
-    const period = await this.getPeriod(0);
-    return { temperature: period.temperature, unit: period.temperatureUnit };
   }
 
   public latitudeChanged(e: any) {
