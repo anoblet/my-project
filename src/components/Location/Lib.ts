@@ -1,7 +1,7 @@
 import { html } from "lit-element";
 
 export const getPosition = (
-  success: (position) => any,
+  success: (position: { latitude: string; longitude: string }) => any,
   failure?: () => any
 ) => {
   navigator.geolocation.getCurrentPosition((position: any) => {
@@ -9,17 +9,17 @@ export const getPosition = (
       latitude: position.coords.latitude,
       longitude: position.coords.longitude
     });
-  });
+  }, failure());
 };
 
 export const getPositionAsync = async () => {
-  return new Promise((resolve: any) => {
+  return new Promise((resolve: any, reject: any) => {
     navigator.geolocation.getCurrentPosition((position: any) => {
       resolve({
         latitude: position.coords.latitude,
         longitude: position.coords.longitude
       });
-    });
+    }, reject());
   });
 };
 
