@@ -6,7 +6,7 @@ import { getForm } from "./Component";
 
 export default () => {
   return html`
-    <card-component collapsible grow>
+    <card-component grow>
       <div slot="content">
         ${isSignedIn()
           ? html`
