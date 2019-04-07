@@ -13,7 +13,7 @@ export default function() {
       ${this.collapsible
         ? html`
             <i class="material-icons"
-              >${this.collapsed ? "expand_less" : "expand_more"}</i
+              >${this.collapsed ? "expand_more" : "expand_less"}</i
             >
           `
         : ""}
