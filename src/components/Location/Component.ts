@@ -22,7 +22,7 @@ export class Location extends LitElement {
 
   public updated(changedProperties: any) {
     if (changedProperties.has("latitude") || changedProperties.has("longitude"))
-      this.locationChanged()
+      this.locationChanged();
     return super.updated(changedProperties);
   }
 
