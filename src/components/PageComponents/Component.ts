@@ -26,16 +26,15 @@ export class PageComponents extends BeforeRender(LitElement) {
   public render() {
     const element: any = document.createElement(this.component);
     this.renderRoot.appendChild(element);
-    const properties = element.properties;
-    return this.component && properties
+    const form = renderForm({
+      structure: element.constructor.properties,
+      values: this,
+      onChange: () => {
+        return;
+      }
+    });
+    return this.component
       ? html`
-          ${renderForm({
-            structure: element.constructor.properties,
-            values: this,
-            onChange: () => {
-              return;
-            }
-          })}
           ${unsafeHTML(`<${this.component}></${this.component}>`)}
         `
       : Template.bind(this)();
