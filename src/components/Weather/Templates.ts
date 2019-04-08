@@ -85,3 +85,24 @@ export const windDirection = (coordinates: any) => {
     </card-component>
   `;
 };
+
+export const windSpeed = (coordinates: any) => {
+  return html`
+    <card-component style="display: flex; flex: 1;">
+      <div slot="title">Wind speed</div>
+      <div
+        slot="content"
+        style="display: flex; align-items: center; justify-content: center;"
+      >
+        ${until(
+          getPeriod(coordinates, 0).then(
+            (period: any) =>
+              html`
+                ${period.windSpeed}
+              `
+          )
+        )}
+      </div>
+    </card-component>
+  `;
+};

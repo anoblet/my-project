@@ -2,17 +2,37 @@ import { html } from "lit-element";
 import {
   currentTemperature,
   detailedForecast,
-  shortForecast
+  shortForecast,
+  windDirection,
+  windSpeed
 } from "../Weather/Templates";
 
 export default function() {
   return html`
+    <style>
+      card-component {
+        border: 1px solid var(--border-color);
+        /* background: var(--background-color); */
+      }
+
+      .tall,
+      .wide {
+        display: flex;
+      }
+
+      .tall {
+        width: 195px;
+        height: 400px;
+      }
+
+      .wide {
+        width: 400px;
+        height: 195px;
+      }
+    </style>
     <div class="grid">
       <div class="item">
-        <div
-          class="item-content"
-          style="display: flex; width: 195px; height: 400px"
-        >
+        <div class="item-content tall">
           ${currentTemperature({
             latitude: "40.7666688",
             longitude: "-73.961472"
@@ -20,21 +40,30 @@ export default function() {
         </div>
       </div>
       <div class="item">
-        <div
-          class="item-content"
-          style="display: flex; width: 400px; height: 195px"
-        >
+        <div class="item-content wide">
+          <img src="https://placeimg.com/400/195/any?4" />
+        </div>
+      </div>
+      <div class="item">
+        <div class="item-content wide">
           ${shortForecast({
             latitude: "40.7666688",
             longitude: "-73.961472"
           })}
         </div>
       </div>
+
       <div class="item">
-        <div
-          class="item-content"
-          style="display: flex; width: 195px; height: 400px"
-        >
+        <div class="item-content tall">
+          ${windDirection({
+            latitude: "40.7666688",
+            longitude: "-73.961472"
+          })}
+        </div>
+      </div>
+
+      <div class="item">
+        <div class="item-content wide">
           ${detailedForecast({
             latitude: "40.7666688",
             longitude: "-73.961472"
@@ -42,66 +71,16 @@ export default function() {
         </div>
       </div>
       <div class="item">
-        <div class="item-content">
-          <img
-            src="https://placeimg.com/195/400/any?3"
-            width="195"
-            height="400"
-          />
+        <div class="item-content wide">
+          ${windSpeed({
+            latitude: "40.7666688",
+            longitude: "-73.961472"
+          })}
         </div>
       </div>
       <div class="item">
-        <div class="item-content">
-          <img
-            src="https://placeimg.com/400/195/any?4"
-            width="400"
-            height="195"
-          />
-        </div>
-      </div>
-      <div class="item">
-        <div class="item-content">
-          <img
-            src="https://placeimg.com/195/400/any?5"
-            width="195"
-            height="400"
-          />
-        </div>
-      </div>
-      <div class="item">
-        <div class="item-content">
-          <img
-            src="https://placeimg.com/400/195/any?6"
-            width="400"
-            height="195"
-          />
-        </div>
-      </div>
-      <div class="item">
-        <div class="item-content">
-          <img
-            src="https://placeimg.com/195/400/any?7"
-            width="195"
-            height="400"
-          />
-        </div>
-      </div>
-      <div class="item">
-        <div class="item-content">
-          <img
-            src="https://placeimg.com/400/195/any?8"
-            width="400"
-            height="195"
-          />
-        </div>
-      </div>
-      <div class="item">
-        <div class="item-content">
-          <img
-            src="https://placeimg.com/195/400/any?9"
-            width="195"
-            height="400"
-          />
+        <div class="item-content tall">
+          <img src="https://placeimg.com/195/400/any?4" />
         </div>
       </div>
     </div>
