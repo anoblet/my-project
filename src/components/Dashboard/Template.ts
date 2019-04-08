@@ -4,12 +4,11 @@ export default function() {
   return html`
     <div class="grid">
       <div class="item">
-        <div class="item-content">
-          <img
-            src="https://placeimg.com/195/400/any?1"
-            width="195"
-            height="400"
-          />
+        <div class="item-content" style="width: 195px; height: 400px">
+          ${currentTemperature({
+            latitude: "40.7666688",
+            longitude: "-73.961472"
+          })}
         </div>
       </div>
       <div class="item">
@@ -82,14 +81,6 @@ export default function() {
             width="195"
             height="400"
           />
-        </div>
-      </div>
-      <div class="item">
-        <div class="item-content">
-          ${currentTemperature({
-            latitude: "40.7666688",
-            longitude: "-73.961472"
-          })}
         </div>
       </div>
     </div>
