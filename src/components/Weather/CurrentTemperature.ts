@@ -4,13 +4,17 @@ import { getPeriod } from "./Component";
 
 export const currentTemperature = (coordinates: any) => {
   return html`
-    ${until(
-      getPeriod(coordinates, 0).then(
-        (period: any) =>
-          html`
-            ${period.temperature}
-          `
-      )
-    )}
+    <card-component style="display: block;">
+      <div slot="content">
+        ${until(
+          getPeriod(coordinates, 0).then(
+            (period: any) =>
+              html`
+                ${period.temperature}&#176; ${period.temperatureUnit}
+              `
+          )
+        )}
+      </div>
+    </card-component>
   `;
 };

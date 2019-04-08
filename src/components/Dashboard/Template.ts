@@ -86,7 +86,6 @@ export default function() {
       </div>
       <div class="item">
         <div class="item-content">
-          <weather-component></weather-component>
           ${currentTemperature({
             latitude: "40.7666688",
             longitude: "-73.961472"
