@@ -3,6 +3,7 @@ import { html } from "lit-element";
 const defaultOnChange = (e: any) => (this._data[name] = e.detail.value);
 
 export const renderForm = ({ onChange, structure, values }: any) => {
+  console.log(structure);
   return html`
     <grid-component>
       ${Object.keys(structure).map((property: any) => {

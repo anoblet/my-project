@@ -9,6 +9,21 @@ export class Component extends LitElement {
   @property() public latitude: string;
   @property() public longitude: string;
 
+  public static get properties() {
+    return {
+      latitude: {
+        inputType: "text",
+        label: "Latitude",
+        type: String
+      },
+      longitude: {
+        inputType: "text",
+        label: "Longitude",
+        type: String
+      }
+    };
+  }
+
   static get styles() {
     return [GlobalStyle, Style];
   }
