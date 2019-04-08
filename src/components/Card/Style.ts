@@ -24,8 +24,6 @@ export default css`
   }
 
   ::slotted([slot="content"]) {
-    display: flex;
-    flex: 1;
     border: var(--border-size) solid var(--border-color);
     padding: var(--card-inner-padding, 0);
     overflow-x: auto;
@@ -44,18 +42,9 @@ export default css`
     display: none;
   }
 
-  #content {
-    display: flex;
-    flex: 1;
-  }
-
   #title {
     display: flex;
     align-items: center;
     justify-content: space-between;
-  }
-
-  slot {
-    display: block;
   }
 `;
