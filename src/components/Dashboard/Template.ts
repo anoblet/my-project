@@ -32,6 +32,11 @@ export default function() {
     </style>
     <div class="grid">
       <div class="item">
+        <div class="item-content wide">
+          <img src="https://placeimg.com/400/195/any?3" />
+        </div>
+      </div>
+      <div class="item">
         <div class="item-content tall">
           ${currentTemperature({
             latitude: "40.7666688",
@@ -39,11 +44,7 @@ export default function() {
           })}
         </div>
       </div>
-      <div class="item">
-        <div class="item-content wide">
-          <img src="https://placeimg.com/400/195/any?4" />
-        </div>
-      </div>
+
       <div class="item">
         <div class="item-content wide">
           ${shortForecast({
@@ -52,7 +53,11 @@ export default function() {
           })}
         </div>
       </div>
-
+      <div class="item">
+        <div class="item-content tall">
+          <img src="https://placeimg.com/195/400/any?2" />
+        </div>
+      </div>
       <div class="item">
         <div class="item-content tall">
           ${windDirection({
@@ -61,7 +66,11 @@ export default function() {
           })}
         </div>
       </div>
-
+      <div class="item">
+        <div class="item-content wide">
+          <img src="https://placeimg.com/400/195/any?2" />
+        </div>
+      </div>
       <div class="item">
         <div class="item-content wide">
           ${detailedForecast({
@@ -71,7 +80,12 @@ export default function() {
         </div>
       </div>
       <div class="item">
-        <div class="item-content wide">
+        <div class="item-content tall">
+          <img src="https://placeimg.com/195/400/any?3" />
+        </div>
+      </div>
+      <div class="item">
+        <div class="item-content tall">
           ${windSpeed({
             latitude: "40.7666688",
             longitude: "-73.961472"
@@ -79,7 +93,7 @@ export default function() {
         </div>
       </div>
       <div class="item">
-        <div class="item-content tall">
+        <div class="item-content wide">
           <img src="https://placeimg.com/195/400/any?4" />
         </div>
       </div>
