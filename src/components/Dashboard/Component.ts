@@ -41,9 +41,7 @@ export class Dashboard extends BeforeRender(LitElement) {
     });
   }
 
-  static get styles() {
-    return Style;
-  }
+  public static styles = [Style];
 
   public render() {
     return Template.bind(this)();
