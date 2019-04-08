@@ -56,13 +56,19 @@ export const components = [
   {
     label: "Weather",
     src: () =>
-      import(/* webpackChunkName: "Weather" */ "./components/Weather/component"),
+      import(/* webpackChunkName: "Weather" */ "./components/Weather/Component"),
     tag: "weather-component"
   },
   {
     label: "Location",
     src: () =>
-      import(/* webpackChunkName: "Location" */ "./components/Location/component"),
+      import(/* webpackChunkName: "Location" */ "./components/Location/Component"),
     tag: "location-component"
+  },
+  {
+    label: "Clock",
+    src: () =>
+      import(/* webpackChunkName: "Clock" */ "./components/Clock/Component"),
+    tag: "clock-component"
   }
 ];
