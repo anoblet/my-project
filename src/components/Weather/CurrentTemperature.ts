@@ -4,8 +4,11 @@ import { getPeriod } from "./Component";
 
 export const currentTemperature = (coordinates: any) => {
   return html`
-    <card-component style="display: block;">
-      <div slot="content">
+    <card-component style="display: block; height: 100%;">
+      <div
+        slot="content"
+        style="display: flex; align-items: center; justify-content: center;"
+      >
         ${until(
           getPeriod(coordinates, 0).then(
             (period: any) =>
