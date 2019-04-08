@@ -54,4 +54,8 @@ export default css`
     align-items: center;
     justify-content: space-between;
   }
+
+  slot {
+    display: block;
+  }
 `;
