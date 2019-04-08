@@ -70,5 +70,11 @@ export const components = [
     src: () =>
       import(/* webpackChunkName: "Clock" */ "./components/Clock/Component"),
     tag: "clock-component"
+  },
+  {
+    label: "Playground",
+    src: () =>
+      import(/* webpackChunkName: "Playground" */ "./components/Playground/Component"),
+    tag: "playground-component"
   }
 ];
