@@ -4,7 +4,7 @@ export default function() {
   return html`
     <div class="grid">
       <div class="item">
-        <div class="item-content" style="width: 195px; height: 400px">
+        <div class="item-content" style="display: flex; width: 195px; height: 400px">
           ${currentTemperature({
             latitude: "40.7666688",
             longitude: "-73.961472"
