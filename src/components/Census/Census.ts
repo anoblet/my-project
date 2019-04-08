@@ -2,6 +2,7 @@
 import census from "citysdk";
 
 export const getFIPS = ({ latitude, longitude }) => {
+  // @todo Fix browser/node irregularities
   // census(
   //   {
   //     vintage: 2015,
