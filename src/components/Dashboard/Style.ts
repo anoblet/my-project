@@ -46,4 +46,8 @@ export default css`
   .images-loaded .loading {
     opacity: 0;
   }
+
+  card-component ::slotted(#content) {
+    flex: 1;
+  }
 `;
