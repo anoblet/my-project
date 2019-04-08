@@ -5,7 +5,9 @@ import GlobalStyle from "../../GlobalStyle";
 import Style from "./PageComponentsStyle";
 import Template from "./PageComponentsTemplate";
 import { components } from "../../Components";
+import { renderForm } from "../Form/Form";
 import { unsafeHTML } from "lit-html/directives/unsafe-html";
+import { Weather } from "../Weather/Component";
 
 @customElement("page-components")
 export class PageComponents extends BeforeRender(LitElement) {
@@ -22,8 +24,18 @@ export class PageComponents extends BeforeRender(LitElement) {
   }
 
   public render() {
+    const element: any = document.createElement(this.component);
+    this.renderRoot.appendChild(element);
+    console.log(element.properties);
     return this.component
       ? html`
+          ${renderForm({
+            structure: element.constructor.properties,
+            values: this,
+            onChange: () => {
+              return;
+            }
+          })}
           ${unsafeHTML(`<${this.component}></${this.component}>`)}
         `
       : Template.bind(this)();

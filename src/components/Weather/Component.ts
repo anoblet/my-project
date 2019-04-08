@@ -5,11 +5,11 @@ import Style from "./Style";
 import GlobalStyle from "../../GlobalStyle";
 
 @customElement("weather-component")
-export class Component extends LitElement {
+export class Weather extends LitElement {
   @property() public latitude: string;
   @property() public longitude: string;
 
-  public static get properties() {
+  public get properties() {
     return {
       latitude: {
         inputType: "text",
