@@ -26,8 +26,8 @@ export class PageComponents extends BeforeRender(LitElement) {
   public render() {
     const element: any = document.createElement(this.component);
     this.renderRoot.appendChild(element);
-    console.log(element.properties);
-    return this.component
+    const properties = element.properties;
+    return this.component && properties
       ? html`
           ${renderForm({
             structure: element.constructor.properties,
