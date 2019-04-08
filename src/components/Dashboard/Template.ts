@@ -1,10 +1,15 @@
 import { html } from "lit-element";
 import { currentTemperature } from "../Weather/CurrentTemperature";
+import { shortForecast } from "../Weather/ShortForecast";
+
 export default function() {
   return html`
     <div class="grid">
       <div class="item">
-        <div class="item-content" style="display: flex; width: 195px; height: 400px">
+        <div
+          class="item-content"
+          style="display: flex; width: 195px; height: 400px"
+        >
           ${currentTemperature({
             latitude: "40.7666688",
             longitude: "-73.961472"
@@ -12,12 +17,14 @@ export default function() {
         </div>
       </div>
       <div class="item">
-        <div class="item-content">
-          <img
-            src="https://placeimg.com/400/195/any?2"
-            width="400"
-            height="195"
-          />
+        <div
+          class="item-content"
+          style="display: flex; width: 400px; height: 195px"
+        >
+          ${shortForecast({
+            latitude: "40.7666688",
+            longitude: "-73.961472"
+          })}
         </div>
       </div>
       <div class="item">

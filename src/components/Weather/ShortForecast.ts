@@ -2,7 +2,7 @@ import { html } from "lit-element";
 import { until } from "lit-html/directives/until";
 import { getPeriod } from "./Component";
 
-export const currentTemperature = (coordinates: any) => {
+export const shortForecast = (coordinates: any) => {
   return html`
     <card-component style="display: flex; flex: 1;">
       <div slot="title">Short forecast</div>
