@@ -1,6 +1,9 @@
 import { html } from "lit-element";
-import { currentTemperature } from "../Weather/CurrentTemperature";
-import { shortForecast } from "../Weather/ShortForecast";
+import {
+  currentTemperature,
+  detailedForecast,
+  shortForecast
+} from "../Weather/Templates";
 
 export default function() {
   return html`
@@ -22,6 +25,17 @@ export default function() {
           style="display: flex; width: 400px; height: 195px"
         >
           ${shortForecast({
+            latitude: "40.7666688",
+            longitude: "-73.961472"
+          })}
+        </div>
+      </div>
+      <div class="item">
+        <div
+          class="item-content"
+          style="display: flex; width: 195px; height: 400px"
+        >
+          ${detailedForecast({
             latitude: "40.7666688",
             longitude: "-73.961472"
           })}
