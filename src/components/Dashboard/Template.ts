@@ -94,7 +94,7 @@ export default function() {
       </div>
       <div class="item">
         <div class="item-content wide">
-          <img src="https://placeimg.com/195/400/any?4" />
+          <img src="https://placeimg.com/400/195/any?4" />
         </div>
       </div>
     </div>
