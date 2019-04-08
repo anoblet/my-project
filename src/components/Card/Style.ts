@@ -49,6 +49,7 @@ export default css`
   }
 
   #content {
+    flex-direction: column;
     flex: 1;
   }
 `;

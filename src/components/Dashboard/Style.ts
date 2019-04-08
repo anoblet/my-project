@@ -50,4 +50,7 @@ export default css`
   card-component [slot="content"] {
     flex: 1;
   }
+  card-component::part(content-container) {
+    display: flex;
+  }
 `;
