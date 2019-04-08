@@ -9,27 +9,6 @@ import {
 
 export default function() {
   return html`
-    <style>
-      card-component {
-        border: 1px solid var(--border-color);
-        /* background: var(--background-color); */
-      }
-
-      .tall,
-      .wide {
-        display: flex;
-      }
-
-      .tall {
-        width: 195px;
-        height: 400px;
-      }
-
-      .wide {
-        width: 400px;
-        height: 195px;
-      }
-    </style>
     <div class="grid">
       <div class="item">
         <div class="item-content wide">

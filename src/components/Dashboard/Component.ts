@@ -1,8 +1,9 @@
 import { LitElement, customElement, property } from "lit-element";
+
 import { BeforeRender } from "../../mixins/BeforeRender";
-import muuri from "muuri";
 import Style from "./Style";
 import Template from "./Template";
+import muuri from "muuri";
 
 import("../muuri/component");
 
@@ -33,7 +34,7 @@ export class Dashboard extends BeforeRender(LitElement) {
       layout: {
         fillGaps: true
       },
-      layoutOnResize: 500,
+      layoutOnResize: 250
     });
     window.addEventListener("drawer-toggled", function() {
       setTimeout(() => grid.refreshItems().layout(), 0);

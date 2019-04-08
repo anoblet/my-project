@@ -45,4 +45,24 @@ export default css`
   card-component [slot="content"] {
     flex: 1;
   }
+
+  card-component {
+    border: 1px solid var(--border-color);
+    /* background: var(--background-color); */
+  }
+
+  .tall,
+  .wide {
+    display: flex;
+  }
+
+  .tall {
+    width: 195px;
+    height: 400px;
+  }
+
+  .wide {
+    width: 400px;
+    height: 195px;
+  }
 `;
