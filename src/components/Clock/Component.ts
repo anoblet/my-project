@@ -1,11 +1,11 @@
-import { LitElement, customElement, property } from "lit-element";
+import { LitElement, customElement, property, html } from "lit-element";
 
 import Style from "./Style";
 import Template from "./Template";
 
 @customElement("clock-component")
 export class Clock extends LitElement {
-  @property() public time: string;
+  @property() public time: any;
 
   public static styles = [Style];
 
@@ -45,5 +45,5 @@ export const setTime = () => {
   m = m < 10 ? "0" + m : m;
   s = s < 10 ? "0" + s : s;
 
-  return h + ":" + m + ":" + s + " " + session;
+  return html`${h}:${m}:${s} ${session}`;
 };
