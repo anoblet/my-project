@@ -15,10 +15,10 @@ export class PageComponents extends BeforeRender(LitElement) {
   public static styles = [GlobalStyle, Style];
 
   public async beforeRender() {
-    if (!this.component) return;
-    components.map((component: any) => {
-      if (component.tag === this.component) component.src();
-    });
+    if (this.component)
+      components.map((component: any) => {
+        if (component.tag === this.component) component.src();
+      });
   }
 
   public render() {
