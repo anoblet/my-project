@@ -13,10 +13,11 @@ const Style = css`
     justify-content: center;
   }
 
+  /*
   grid-component {
     flex: 1;
     height: 100%;
-  }
+  } */
 
   .material-icons {
     display: block;
@@ -76,8 +77,8 @@ export class PageStatic extends LitElement {
             <grid-component>
               <card-component title="Welcome">
                 If you're looking for content go to the
-                <a href="/blog">blog</a>. To view the performance of the
-                app, visit <a href="/performance">performance</a>.
+                <a href="/blog">blog</a>. To view the performance of the app,
+                visit <a href="/performance">performance</a>.
               </card-component>
               <card-component title="Patreon">
                 <patreon-component></patreon-component>

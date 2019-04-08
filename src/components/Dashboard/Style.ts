@@ -47,7 +47,7 @@ export default css`
     opacity: 0;
   }
 
-  card-component ::slotted(#content) {
+  card-component [slot="content"] {
     flex: 1;
   }
 `;

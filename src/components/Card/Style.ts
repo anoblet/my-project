@@ -42,28 +42,13 @@ export default css`
     display: none;
   }
 
-  #content {
-    display: flex;
-    flex-direction: column;
-    flex: 1;
-  }
-
-  ::slotted([slot="content"]) {
-    flex: 1;
-  }
-
   #title {
     display: flex;
     align-items: center;
     justify-content: space-between;
   }
 
-  slot {
-    display: block;
-  }
-
-  slot[name="content"] {
-    display: flex;
+  #content {
     flex: 1;
   }
 `;
