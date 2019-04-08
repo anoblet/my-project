@@ -47,7 +47,7 @@ export const shortForecast = (coordinates: any) => {
 export const detailedForecast = (coordinates: any) => {
   return html`
     <card-component style="display: flex; flex: 1;">
-      <div slot="title">Short forecast</div>
+      <div slot="title">Detailed forecast</div>
       <div
         slot="content"
         style="display: flex; align-items: center; justify-content: center;"
@@ -56,7 +56,28 @@ export const detailedForecast = (coordinates: any) => {
           getPeriod(coordinates, 0).then(
             (period: any) =>
               html`
-                ${period.shortForecast}
+                ${period.detailedForecast}
+              `
+          )
+        )}
+      </div>
+    </card-component>
+  `;
+};
+
+export const windDirection = (coordinates: any) => {
+  return html`
+    <card-component style="display: flex; flex: 1;">
+      <div slot="title">Wind direction</div>
+      <div
+        slot="content"
+        style="display: flex; align-items: center; justify-content: center;"
+      >
+        ${until(
+          getPeriod(coordinates, 0).then(
+            (period: any) =>
+              html`
+                ${period.windDirection}
               `
           )
         )}
