@@ -2,6 +2,7 @@ import { config } from "../../../config";
 import { html } from "lit-element";
 import { isSignedIn } from "../../User";
 import { store } from "../../Store";
+import { primaryColorSelect } from "../Theme/PrimaryColorSelect";
 
 export default function() {
   const state = store.getState();
@@ -12,6 +13,7 @@ export default function() {
         <i class="material-icons" @click="${this._toggleDrawer}">menu</i>
       </span>
       <span id="title"><a href="/">${config.site.title}</a></span>
+      ${primaryColorSelect}
       ${isSignedIn()
         ? html`
             <span
