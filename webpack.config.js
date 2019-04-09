@@ -134,9 +134,6 @@ module.exports = {
     new UnusedFilesWebpackPlugin({ patterns: ["src/**/*.*"] }),
     new Visualizer()
   ],
-  node: {
-    fs: "empty"
-  },
   externals: [
     {
       xmlhttprequest: "{XMLHttpRequest:XMLHttpRequest}"

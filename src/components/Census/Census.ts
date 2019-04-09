@@ -27,7 +27,7 @@ const test = () => {
       },
       sourcePath: ["acs", "acs5"],
       values: ["B19083_001E"], // GINI index
-      statsKey: "<your key here>",
+      statsKey: "c97423c3f598951d2138d69861730b9154cd7230",
       geoResolution: "500k"
     },
     (err: any, res: any) => console.log(res, err)
