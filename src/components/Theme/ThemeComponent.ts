@@ -83,7 +83,9 @@ export class ThemeComponent extends LitElement {
           ></button-component>
         </card-component>
         <card-component title="Toggles">
-          <grid-component style="grid-template-columns: repeat(3, 1fr)">
+          <grid-component
+            style="grid-template-columns: min-content max-content 1fr"
+          >
             ${toggleDark()} (Broken) ${toggleShadow()} (Broken)
           </grid-component>
         </card-component>
