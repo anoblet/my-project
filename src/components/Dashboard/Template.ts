@@ -6,10 +6,20 @@ import {
   windDirection,
   windSpeed
 } from "../Weather/Templates";
+import "../Clock/Component";
 
 export default function() {
   return html`
     <div class="grid">
+      <div class="item">
+        <div class="item-content tall">
+          <card-component>
+            <div slot="content">
+              <clock-component></clock-component>
+            </div>
+          </card-component>
+        </div>
+      </div>
       <div class="item">
         <div class="item-content wide">
           <img src="https://placeimg.com/400/195/any?3" />
