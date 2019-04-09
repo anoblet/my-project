@@ -45,15 +45,15 @@ export const populationByState = async () => {
   return states;
 };
 
-const populationByCountry = async () => {
+export const populationByCountry = async () => {
   const result: any = await censusAsync({
     vintage: "2017",
     geoHierarchy: {
-      state: "0"
+      us: "*"
     },
-    sourcePath: ["acs", "acs5"],
-    values: ["B00001_001E"],
-    geoResolution: "500k"
+    sourcePath: ["acs", "acs1"],
+    values: ["B01001_001E"],
+    statsKey: "c97423c3f598951d2138d69861730b9154cd7230"
   });
-  console.log(result);
+  return result;
 };

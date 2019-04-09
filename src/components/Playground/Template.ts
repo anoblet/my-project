@@ -1,24 +1,32 @@
 import { html } from "lit-element";
 import { until } from "lit-html/directives/until";
-import { getFIPS, populationByState } from "../Census/Census";
+import { populationByCountry, populationByState } from "../Census/Census";
 
 export default function() {
   return html`
-    <card-component>
-      <grid-component columns="2">
+    <grid-component columns="1">
+      <card-component title="US Population">
         ${until(
-          populationByState().then((states: any) => {
-            return states.map((state: any) => {
-              return html`
-                <span>${state.name}</span><span>${state.population}</span>
-              `;
-            });
-          }),
-          html`
-            Loading
-          `
+          populationByCountry().then((result: any) =>
+            result[0]["B01001_001E"].toLocaleString()
+          )
         )}
-      </grid-component>
-    </card-component>
+      </card-component>
+      <card-component title="Population by state">
+        <grid-component columns="2">
+          ${until(
+            populationByState().then((states: any) =>
+              states.map(
+                (state: any) =>
+                  html`
+                    <span>${state.name}</span
+                    ><span>${state.population.toLocaleString()}</span>
+                  `
+              )
+            )
+          )}
+        </grid-component>
+      </card-component>
+    </grid-component>
   `;
 }
