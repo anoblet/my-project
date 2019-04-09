@@ -46,7 +46,7 @@ module.exports = {
     extensions: [".js", ".ts"]
   },
   devServer: {
-    https: true,
+    // https: true,
     compress: true,
     contentBase: path.resolve(__dirname, "dist"),
     open: true,
