@@ -6,12 +6,7 @@ import { store } from "../../Store";
 import { GoogleCharts } from "google-charts";
 @customElement("chart-component")
 export class ChartComponent extends LitElement {
-  @property() public data: any = [
-    ["Chart thing", "Chart amount"],
-    ["Lorem ipsum", 60],
-    ["Dolor sit", 22],
-    ["Sit amet", 18]
-  ];
+  @property() public data: any;
 
   public draw() {
     const state = store.getState();
