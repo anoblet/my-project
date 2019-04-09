@@ -1,7 +1,10 @@
+import "../Chart/ChartComponent";
+
+import { populationByCountry, populationByState } from "../CitySDK/CitySDK";
+
 import { html } from "lit-element";
 import { until } from "lit-html/directives/until";
-import { populationByCountry, populationByState } from "../Census/Census";
-import "../Chart/ChartComponent";
+
 export default function() {
   return html`
     <grid-component columns="1">
