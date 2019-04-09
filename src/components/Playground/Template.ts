@@ -17,6 +17,7 @@ export default function() {
         )}
       </card-component>
       <card-component>
+        <h3 slot="title">Population by state (Bar chart)</h3>
         ${until(
           populationByState().then((states: any) => {
             const mapArray = states.map(function(obj) {
@@ -30,7 +31,10 @@ export default function() {
             return html`
               <chart-component .data=${newArray}></chart-component>
             `;
-          })
+          }),
+          html`
+            Loading...
+          `
         )}
       </card-component>
       <card-component>
@@ -44,11 +48,16 @@ export default function() {
                     (state: any) =>
                       html`
                         <span>${state.name}</span
-                        ><span style="text-align: center;">${state.population.toLocaleString()}</span>
+                        ><span style="text-align: center;"
+                          >${state.population.toLocaleString()}</span
+                        >
                       `
                   )}
                 `
-            )
+            ),
+            html`
+              Loading...
+            `
           )}
         </grid-component>
       </card-component>
