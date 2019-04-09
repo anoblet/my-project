@@ -1,9 +1,9 @@
 import { LitElement, css, customElement } from "lit-element";
 
 import { GoogleCharts } from "google-charts";
-import { style } from "./Style";
 import Template from "./Template";
 import { properties } from "./Properties";
+import { style } from "./Style";
 
 @customElement("google-chart")
 export class GoogleChart extends LitElement {
