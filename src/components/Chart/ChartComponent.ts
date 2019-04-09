@@ -1,7 +1,8 @@
 // @ts-ignore-start
-import { LitElement, customElement, html, property } from "lit-element";
+import { LitElement, css, customElement, html, property } from "lit-element";
+import { store } from "../../Store";
 
-import GlobalStyle from "../../GlobalStyle";
+// import GlobalStyle from "../../GlobalStyle";
 import { GoogleCharts } from "google-charts";
 @customElement("chart-component")
 export class ChartComponent extends LitElement {
@@ -13,13 +14,22 @@ export class ChartComponent extends LitElement {
   ];
 
   public draw() {
+    const state = store.getState();
+    const theme = state.app.settings.theme;
     // @ts-ignore
     const data = GoogleCharts.api.visualization.arrayToDataTable(this.data);
     // @ts-ignore
-    const pie_1_chart = new GoogleCharts.api.visualization.PieChart(
+    const chart = new GoogleCharts.api.visualization.BarChart(
       this.shadowRoot.getElementById("chart1")
     );
-    pie_1_chart.draw(data);
+    const options = {
+      backgroundColor: theme.backgroundColor,
+      colors: [theme.primaryColor, theme.linkColor],
+      legend: {
+        textStyle: { color: theme.textColor }
+      }
+    };
+    chart.draw(data, options);
   }
 
   public load() {
@@ -36,7 +46,13 @@ export class ChartComponent extends LitElement {
   }
 
   static get styles() {
-    return [GlobalStyle];
+    return [
+      css`
+        :host {
+          color: #fff;
+        }
+      `
+    ];
   }
 
   public render() {
