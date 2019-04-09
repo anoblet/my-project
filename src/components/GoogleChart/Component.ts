@@ -7,9 +7,9 @@ import { properties } from "./Properties";
 
 @customElement("google-chart")
 export class GoogleChart extends LitElement {
-  public template = Template;
-  public static properties = properties;
   public static styles = [style];
+  public static properties = properties;
+  public template = Template;
 
   public render() {
     return this.template.bind(this)();
