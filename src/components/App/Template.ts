@@ -25,10 +25,18 @@ export default function() {
             </span>
           `
         : html`
-            <a href="/user/signin"
-              ><button-component>Sign in</button-component></a
-            >
+            <div id="right">
+              <grid-component style="grid-template-columns: repeat(2, 1fr)">
+                <div style="display: flex; align-items: center;">
+                  ${primaryColorSelect}
+                </div>
+                <a href="/user/signin"
+                  ><button-component>Sign in</button-component></a
+                >
+              </grid-component>
+            </div>
           `}
+      <div slot="choose-theme">1</div>
     </app-header>
     <div id="center" style="position: relative;">
       <profile-menu id="profile-menu"></profile-menu>
