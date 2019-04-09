@@ -15,21 +15,33 @@ export const getFIPS = ({ latitude, longitude }) => {
     },
     (err: any, res: any) => console.log(res, err)
   );
-  test();
+  populationByState();
 };
 
-const test = () => {
-  census(
-    {
-      vintage: "2017",
-      geoHierarchy: {
-        county: "*"
+const populationByState = () => {
+  const states = [];
+  return new Promise((resolve, reject) => {
+    census(
+      {
+        vintage: "2017",
+        geoHierarchy: {
+          state: "*"
+        },
+        sourcePath: ["acs", "acs5"],
+        values: ["B00001_001E"],
+        geoResolution: "500k"
       },
-      sourcePath: ["acs", "acs5"],
-      values: ["B19083_001E"], // GINI index
-      statsKey: "c97423c3f598951d2138d69861730b9154cd7230",
-      geoResolution: "500k"
-    },
-    (err: any, res: any) => console.log(res, err)
-  );
+      (error, result) => {
+        result.features.map((feature: any) => {
+          const properties = feature.properties;
+          const state = {
+            name: properties.NAME,
+            population: properties["B00001_001E"]
+          };
+          states.push(state);
+        });
+        resolve(states);
+      }
+    );
+  });
 };
