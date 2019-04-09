@@ -136,5 +136,10 @@ module.exports = {
   ],
   node: {
     fs: "empty"
-  }
+  },
+  externals: [
+    {
+      xmlhttprequest: "{XMLHttpRequest:XMLHttpRequest}"
+    }
+  ]
 };

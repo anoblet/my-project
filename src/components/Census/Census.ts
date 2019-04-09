@@ -15,4 +15,21 @@ export const getFIPS = ({ latitude, longitude }) => {
     },
     (err: any, res: any) => console.log(res, err)
   );
+  test();
+};
+
+const test = () => {
+  census(
+    {
+      vintage: "2017",
+      geoHierarchy: {
+        county: "*"
+      },
+      sourcePath: ["acs", "acs5"],
+      values: ["B19083_001E"], // GINI index
+      statsKey: "<your key here>",
+      geoResolution: "500k"
+    },
+    (err: any, res: any) => console.log(res, err)
+  );
 };
