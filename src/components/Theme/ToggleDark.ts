@@ -1,4 +1,4 @@
-import { html, LitElement, property } from "lit-element";
+import { html } from "lit-element";
 
 import { store } from "../../Store";
 import { updateDocument } from "../../Firebase";
@@ -6,7 +6,6 @@ import { updateDocument } from "../../Firebase";
 export const toggleDark = () => {
   const state = store.getState();
   return html`
-    <label>Toggle dark</label>
     <input
       type="checkbox"
       ?checked=${state.settings.dark}
@@ -36,5 +35,6 @@ export const toggleDark = () => {
         });
       }}
     />
+    <label>Toggle dark</label>
   `;
 };

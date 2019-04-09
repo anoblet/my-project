@@ -47,13 +47,13 @@ export class ThemeComponent extends LitElement {
     //   path: `/users/${state.user.uid}/settings/theme`,
     //   watch: true
     // });
-    getCollection({
-      callback: (themes: any) => {
-        this.savedThemes = themes;
-      },
-      path: `/users/${state.user.uid}/settings/theme/savedThemes`,
-      watch: true
-    });
+    // getCollection({
+    //   callback: (themes: any) => {
+    //     this.savedThemes = themes;
+    //   },
+    //   path: `/users/${state.user.uid}/settings/theme/savedThemes`,
+    //   watch: true
+    // });
   }
 
   static get styles() {
@@ -83,7 +83,9 @@ export class ThemeComponent extends LitElement {
           ></button-component>
         </card-component>
         <card-component title="Toggles">
-          ${toggleDark()} ${toggleShadow()}
+          <grid-component style="grid-template-columns: repeat(3, 1fr)">
+            ${toggleDark()} (Broken) ${toggleShadow()} (Broken)
+          </grid-component>
         </card-component>
         <card-component title="Current theme">
           ${themeEdit({ fields: themeStructure, theme: this.currentTheme })}
@@ -100,7 +102,7 @@ export class ThemeComponent extends LitElement {
               </card-component>
             `
           : ""}
-        <card-component title="Export">
+        <card-component title="Export" style="word-break: break-word;">
           ${JSON.stringify(this.currentTheme)}
         </card-component>
       </grid-component>
