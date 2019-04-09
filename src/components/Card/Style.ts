@@ -43,7 +43,7 @@ export default css`
   }
 
   #title {
-    display: flex;
+    display: contents;
     align-items: center;
     justify-content: space-between;
   }
