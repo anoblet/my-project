@@ -12,3 +12,4 @@ declare module "ga-lite";
 declare module "muuri";
 declare module "random-material-color";
 declare module "annyang";
+declare module "google-charts";

@@ -76,5 +76,11 @@ export const components = [
     src: () =>
       import(/* webpackChunkName: "Playground" */ "./components/Playground/Component"),
     tag: "playground-component"
+  },
+  {
+    label: "Google Chart",
+    src: () =>
+      import(/* webpackChunkName: "GoogleChart" */ "./components/GoogleChart/Component"),
+    tag: "google-chart"
   }
 ];

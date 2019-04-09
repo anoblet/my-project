@@ -11,11 +11,9 @@ export class ChartComponent extends LitElement {
   public draw() {
     const state = store.getState();
     const theme = state.app.settings.theme;
-    // @ts-ignore
     const data = GoogleCharts.api.visualization.arrayToDataTable(this.data);
-    // @ts-ignore
-    const chart = new GoogleCharts.api.visualization.BarChart(
-      this.shadowRoot.getElementById("chart1")
+    const chart = new GoogleCharts.api.visualization.ColumnChart(
+      this.shadowRoot.getElementById("chart")
     );
     const options = {
       backgroundColor: theme.backgroundColor,
@@ -40,19 +38,17 @@ export class ChartComponent extends LitElement {
     super.updated(changedProperties);
   }
 
-  static get styles() {
-    return [
-      css`
-        :host {
-          color: #fff;
-        }
-      `
-    ];
-  }
+  public static styles = [
+    css`
+      :host {
+        flex: 1;
+      }
+    `
+  ];
 
   public render() {
     return html`
-      <div id="chart1"></div>
+      <div id="chart"></div>
     `;
   }
 }
