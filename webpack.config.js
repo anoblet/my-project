@@ -133,5 +133,8 @@ module.exports = {
     new RobotstxtPlugin(),
     new UnusedFilesWebpackPlugin({ patterns: ["src/**/*.*"] }),
     new Visualizer()
-  ]
+  ],
+  node: {
+    fs: "empty"
+  }
 };
