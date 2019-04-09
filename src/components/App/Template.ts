@@ -13,23 +13,25 @@ export default function() {
         <i class="material-icons" @click="${this._toggleDrawer}">menu</i>
       </span>
       <span id="title"><a href="/">${config.site.title}</a></span>
-      ${primaryColorSelect}
-      ${isSignedIn()
-        ? html`
-            <span
-              class="circle"
-              id="userProfile"
-              mini
-              label="Account"
-              @click="${() => this._toggleProfile()}"
-            >
-            </span>
-          `
-        : html`
-            <a href="/user/signin"
-              ><button-component>Sign in</button-component></a
-            >
-          `}
+      <div style="display: flex;">
+        ${primaryColorSelect}
+        ${isSignedIn()
+          ? html`
+              <span
+                class="circle"
+                id="userProfile"
+                mini
+                label="Account"
+                @click="${() => this._toggleProfile()}"
+              >
+              </span>
+            `
+          : html`
+              <a href="/user/signin"
+                ><button-component>Sign in</button-component></a
+              >
+            `}
+      </div>
     </app-header>
     <div id="center" style="position: relative;">
       <profile-menu id="profile-menu"></profile-menu>
