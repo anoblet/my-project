@@ -18,7 +18,7 @@ export const getFIPS = ({ latitude, longitude }) => {
   populationByState();
 };
 
-const populationByState = () => {
+export const populationByState = () => {
   const states = [];
   return new Promise((resolve, reject) => {
     census(
