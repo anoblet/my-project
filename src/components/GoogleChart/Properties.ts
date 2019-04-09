@@ -1,5 +1,5 @@
 export const properties = {
-  config: { label: "Config", type: Object },
+  options: { label: "Options", type: Object },
   data: { label: "Data", type: Array },
   type: { label: "Type", type: String }
 };
