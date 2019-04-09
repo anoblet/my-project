@@ -34,6 +34,8 @@ export default function() {
             )
           )}
         </grid-component>
+      </card-component>
+      <card-component>
         ${until(
           populationByState().then((states: any) => {
             const mapArray = states.map(function(obj) {
