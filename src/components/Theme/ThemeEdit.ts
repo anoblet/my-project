@@ -4,8 +4,10 @@ import { store } from "../../Store";
 import { toast } from "../Toast/Toast";
 import { setState } from "../../State";
 import { convert, setTheme } from "../../Theme";
+import { isSignedIn } from "../../User";
 
 const updateField = (field: string, value: string) => {
+  const state = store.getState();
   setTheme(
     convert({ [field]: value }),
     document.querySelector("app-component")
@@ -15,16 +17,17 @@ const updateField = (field: string, value: string) => {
   //   data: { settings: { theme: { [field]: value } } },
   //   store
   // });
-  // updateDocument({
-  //   path: `users/${state.user.uid}/settings/theme`,
-  //   data: { currentTheme: { [field]: value } }
-  // })
-  //   .then(() => {
-  //     return;
-  //   })
-  //   .catch(() => {
-  //     toast("Error");
-  //   });
+  if (isSignedIn())
+    updateDocument({
+      path: `users/${state.user.uid}/settings/theme`,
+      data: { currentTheme: { [field]: value } }
+    })
+      .then(() => {
+        return;
+      })
+      .catch(() => {
+        toast("Error");
+      });
 };
 
 const renderField = (

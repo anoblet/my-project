@@ -11,6 +11,7 @@ import themeEdit from "./ThemeEdit";
 import { themeStructure } from "./ThemeStructure";
 import { toggleDark } from "./ToggleDark";
 import { toggleShadow } from "./ToggleShadow";
+import { isSignedIn } from "../../User";
 
 export const setTheme = (_theme: any) => {
   const state = store.getState();
@@ -40,20 +41,22 @@ export class ThemeComponent extends LitElement {
   public firstUpdated() {
     const state = store.getState();
     this.currentTheme = state.app.settings.theme;
-    // getDocument({
-    //   callback: (_theme: any) => {
-    //     this.currentTheme = _theme.currentTheme;
-    //   },
-    //   path: `/users/${state.user.uid}/settings/theme`,
-    //   watch: true
-    // });
-    // getCollection({
-    //   callback: (themes: any) => {
-    //     this.savedThemes = themes;
-    //   },
-    //   path: `/users/${state.user.uid}/settings/theme/savedThemes`,
-    //   watch: true
-    // });
+    if (isSignedIn()) {
+      getDocument({
+        callback: (_theme: any) => {
+          this.currentTheme = _theme.currentTheme;
+        },
+        path: `/users/${state.user.uid}/settings/theme`,
+        watch: true
+      });
+      getCollection({
+        callback: (themes: any) => {
+          this.savedThemes = themes;
+        },
+        path: `/users/${state.user.uid}/settings/theme/savedThemes`,
+        watch: true
+      });
+    }
   }
 
   static get styles() {
