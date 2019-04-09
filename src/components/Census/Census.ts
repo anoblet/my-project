@@ -40,6 +40,7 @@ export const populationByState = () => {
           };
           states.push(state);
         });
+        states.sort((a, b) => (a.name > b.name ? 1 : -1));
         resolve(states);
       }
     );
