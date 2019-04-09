@@ -108,7 +108,7 @@ export class ThemeComponent extends LitElement {
             `
           : ""}
         <card-component title="Export" style="word-break: break-word;">
-          ${JSON.stringify(this.currentTheme)}
+          <pre>${JSON.stringify(this.currentTheme, null, 2)}</pre>
         </card-component>
       </grid-component>
     `;

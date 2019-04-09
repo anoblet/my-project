@@ -71,7 +71,7 @@ const renderField = (
 
 export default ({ fields, theme }: any) =>
   html`
-    <grid-component style="grid-template-columns: auto 1fr">
+    <grid-component style="grid-template-columns: auto max-content">
       ${fields.map((field: any) => renderField(field, theme))}
     </grid-component>
   `;
