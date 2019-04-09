@@ -8,6 +8,10 @@ export default css`
     align-items: center;
   }
 
+  a:hover {
+    text-decoration: none;
+  }
+
   .material-icons {
     display: flex;
     color: var(--background-color);
