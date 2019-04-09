@@ -2,19 +2,29 @@ import { html } from "lit-element";
 import { updateDocument } from "../../Firebase";
 import { store } from "../../Store";
 import { toast } from "../Toast/Toast";
+import { setState } from "../../State";
+import { convert, setTheme } from "../../Theme";
 
 const updateField = (field: string, value: string) => {
-  const state = store.getState();
-  updateDocument({
-    path: `users/${state.user.uid}/settings/theme`,
-    data: { currentTheme: { [field]: value } }
-  })
-    .then(() => {
-      return;
-    })
-    .catch(() => {
-      toast("Error");
-    });
+  setTheme(
+    convert({ [field]: value }),
+    document.querySelector("app-component")
+  );
+  // setState({
+  //   type: "app",
+  //   data: { settings: { theme: { [field]: value } } },
+  //   store
+  // });
+  // updateDocument({
+  //   path: `users/${state.user.uid}/settings/theme`,
+  //   data: { currentTheme: { [field]: value } }
+  // })
+  //   .then(() => {
+  //     return;
+  //   })
+  //   .catch(() => {
+  //     toast("Error");
+  //   });
 };
 
 const renderField = (

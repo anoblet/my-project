@@ -39,13 +39,14 @@ export class ThemeComponent extends LitElement {
 
   public firstUpdated() {
     const state = store.getState();
-    getDocument({
-      callback: (_theme: any) => {
-        this.currentTheme = _theme.currentTheme;
-      },
-      path: `/users/${state.user.uid}/settings/theme`,
-      watch: true
-    });
+    this.currentTheme = state.app.settings.theme;
+    // getDocument({
+    //   callback: (_theme: any) => {
+    //     this.currentTheme = _theme.currentTheme;
+    //   },
+    //   path: `/users/${state.user.uid}/settings/theme`,
+    //   watch: true
+    // });
     getCollection({
       callback: (themes: any) => {
         this.savedThemes = themes;
