@@ -2,7 +2,7 @@ import { html } from "lit-element";
 
 export default function() {
   return html`
-    <div id="title">
+    <div id="title" part="title">
       ${this.title
         ? html`
             <h3>${this.title}</h3>
