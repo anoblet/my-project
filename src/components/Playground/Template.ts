@@ -4,7 +4,7 @@ import { getFIPS, populationByState } from "../Census/Census";
 
 export default function() {
   return html`
-    <grid-component>
+    <grid-component columns="2">
       ${until(
         populationByState().then((states: any) => {
           return states.map((state: any) => {
