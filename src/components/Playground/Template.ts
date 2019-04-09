@@ -17,25 +17,6 @@ export default function() {
         )}
       </card-component>
       <card-component>
-        <h3 slot="title">Population by state</h3>
-        <grid-component columns="2">
-          ${until(
-            populationByState().then(
-              (states: any) =>
-                html`
-                  ${states.map(
-                    (state: any) =>
-                      html`
-                        <span>${state.name}</span
-                        ><span>${state.population.toLocaleString()}</span>
-                      `
-                  )}
-                `
-            )
-          )}
-        </grid-component>
-      </card-component>
-      <card-component>
         ${until(
           populationByState().then((states: any) => {
             const mapArray = states.map(function(obj) {
@@ -51,6 +32,25 @@ export default function() {
             `;
           })
         )}
+      </card-component>
+      <card-component>
+        <h3 slot="title">Population by state</h3>
+        <grid-component columns="2">
+          ${until(
+            populationByState().then(
+              (states: any) =>
+                html`
+                  ${states.map(
+                    (state: any) =>
+                      html`
+                        <span>${state.name}</span
+                        ><span style="text-align: center;">${state.population.toLocaleString()}</span>
+                      `
+                  )}
+                `
+            )
+          )}
+        </grid-component>
       </card-component>
     </grid-component>
   `;
