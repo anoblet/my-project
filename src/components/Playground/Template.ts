@@ -38,7 +38,7 @@ export default function() {
         )}
       </card-component>
       <card-component>
-        <h3 slot="title">Population by state</h3>
+        <h3 slot="title">Population by state (table)</h3>
         <grid-component columns="2">
           ${until(
             populationByState().then(
