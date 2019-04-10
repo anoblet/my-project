@@ -12,7 +12,13 @@ export class GoogleChart extends LitElement {
   public static properties = properties;
   public template = Template;
   public options = {};
-  public data = [];
+  public data = [
+    ["Column 1", "Column 2"],
+    ["name", 10],
+    ["name", 10],
+    ["name", 10],
+    ["name", 10]
+  ];
   public type = "bar";
 
   public firstUpdated() {
