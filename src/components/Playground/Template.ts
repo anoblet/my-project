@@ -4,12 +4,8 @@ import { populationByCountry, populationByState } from "../CitySDK/CitySDK";
 
 import { html } from "lit-element";
 import { until } from "lit-html/directives/until";
-import { store } from "../../Store";
 
 export default function() {
-  const state = store.getState();
-  const theme = state.app.settings.theme;
-  console.log(theme);
   return html`
     <grid-component columns="1">
       <card-component>
@@ -33,16 +29,7 @@ export default function() {
             });
             const newArray = [["State", "Population"], ...mapArray];
             return html`
-              <chart-component
-                .data=${newArray}
-                .options=${{
-                  backgroundColor: theme.backgroundColor,
-                  colors: [theme.primaryColor, theme.linkColor],
-                  legend: {
-                    textStyle: { color: theme.textColor }
-                  }
-                }}
-              ></chart-component>
+              <chart-component .data=${newArray}></chart-component>
             `;
           }),
           html`
