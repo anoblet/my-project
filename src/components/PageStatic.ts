@@ -83,9 +83,9 @@ export class PageStatic extends LitElement {
               <card-component title="Patreon">
                 <patreon-component></patreon-component>
               </card-component>
-              <card-component title="Components">
+              <card-component title="Open WC">
                 Best guys in the game:
-                <a href="https://open-wc.org/">open-wc</a>
+                <a href="https://open-wc.org/">Open WC</a>
               </card-component>
             </grid-component>
           `
