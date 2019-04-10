@@ -11,6 +11,10 @@ export class GoogleChart extends LitElement {
   public static properties = properties;
   public template = Template;
 
+  public constructor() {
+    super();
+  }
+
   public render() {
     return this.template.bind(this)();
   }
