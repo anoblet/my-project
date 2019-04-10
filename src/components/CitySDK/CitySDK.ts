@@ -2,13 +2,13 @@ import census from "citysdk";
 
 const censusAsync = async (options: any) => {
   return new Promise((resolve, reject) => {
-    census(options, (error, result) => {
-      result ? resolve(result) : reject(error);
-    });
+    census(options, (error: any, result: any) =>
+      result ? resolve(result) : reject(error)
+    );
   });
 };
 
-export const getFIPS = ({ latitude, longitude }) => {
+export const getFIPS = ({ latitude, longitude }) =>
   censusAsync({
     vintage: 2015,
     geoHierarchy: {
@@ -18,7 +18,6 @@ export const getFIPS = ({ latitude, longitude }) => {
       }
     }
   });
-};
 
 export const populationByState = async () => {
   const states = [];
