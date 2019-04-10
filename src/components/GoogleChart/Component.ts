@@ -3,7 +3,6 @@ import { LitElement, customElement } from "lit-element";
 import { GoogleCharts } from "google-charts";
 import Template from "./Template";
 import { properties } from "./Properties";
-import { store } from "../../Store";
 import { style } from "./Style";
 
 @customElement("google-chart")
@@ -11,7 +10,7 @@ export class GoogleChart extends LitElement {
   public static styles = [style];
   public static properties = properties;
   public template = Template;
-  public options = {};
+  public options: any;
   public data = [
     ["Column 1", "Column 2"],
     ["name", 10],
@@ -22,8 +21,7 @@ export class GoogleChart extends LitElement {
   public type = "bar";
 
   public firstUpdated() {
-    const state = store.getState();
-    const theme = state.app.settings.theme;
+    console.log(this.options);
     GoogleCharts.load(() => {
       const data = GoogleCharts.api.visualization.arrayToDataTable(this.data);
       const chart = new GoogleCharts.api.visualization.ColumnChart(

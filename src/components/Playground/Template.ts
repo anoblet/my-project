@@ -9,6 +9,7 @@ import { store } from "../../Store";
 export default function() {
   const state = store.getState();
   const theme = state.app.settings.theme;
+  console.log(theme);
   return html`
     <grid-component columns="1">
       <card-component>
