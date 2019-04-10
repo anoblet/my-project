@@ -28,7 +28,7 @@ export default function() {
             <div id="right">
               <grid-component style="grid-template-columns: repeat(2, 1fr)">
                 <div style="display: flex; align-items: center;">
-                  ${primaryColorSelect}
+                  ${false ? primaryColorSelect : html``}
                 </div>
                 <a href="/user/signin"
                   ><button-component>Sign in</button-component></a
