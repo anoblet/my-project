@@ -76,15 +76,13 @@ export class PageStatic extends LitElement {
         ? html`
             <grid-component>
               <card-component title="Components">
+                Best guys in the game:
                 <a href="https://open-wc.org/">open-wc</a>
               </card-component>
               <card-component title="Welcome">
                 If you're looking for content go to the
                 <a href="/blog">blog</a>. To view the performance of the app,
                 visit <a href="/performance">performance</a>.
-              </card-component>
-              <card-component title="Web components">
-                <patreon-component></patreon-component>
               </card-component>
               <card-component title="Patreon">
                 <patreon-component></patreon-component>
