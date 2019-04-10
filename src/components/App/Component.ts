@@ -82,6 +82,11 @@ export class AppComponent extends LitElement {
         debug.log("Getting user theme");
         await user.getUserTheme((document: any) => {
           theme.set(theme.convert(document), this);
+          setState({
+            type: "app",
+            data: { settings: { theme: document } },
+            store
+          });
         });
         debug.log("Finished getting user theme");
       } else {
