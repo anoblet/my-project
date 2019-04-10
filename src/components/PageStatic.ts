@@ -35,12 +35,13 @@ const Style = css`
   }
 `;
 
+let version = 1;
+
 @customElement("page-static")
 export class PageStatic extends LitElement {
   public static styles = [GlobalStyle, Style];
 
   public render() {
-    let version = 1;
     return html`
       ${version === 2
         ? html`
