@@ -17,7 +17,7 @@ export default function() {
         )}
       </card-component>
       <card-component>
-        <h3 slot="title">Population by state (Bar chart)</h3>
+        <h3 slot="title">Population by state (Bar)</h3>
         ${until(
           populationByState().then((states: any) => {
             const mapArray = states.map(function(obj) {
