@@ -17,12 +17,15 @@ export class GoogleChart extends LitElement {
   private _chart: any;
 
   public firstUpdated() {
+    window.addEventListener("drawer-toggled", () => {
+      this.draw();
+    });
+    // Resize observer
     const resizeObserver = new ResizeObserver((entries: any) => {
-      for (const entry of entries) {
-        this.draw();
-      }
+      this.draw();
     });
     resizeObserver.observe(this.shadowRoot.querySelector("#chart"));
+    // Draw the chart
     this.draw();
   }
 
