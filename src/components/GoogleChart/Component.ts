@@ -42,7 +42,7 @@ export class GoogleChart extends LitElement {
       const chartContainer = new GoogleCharts.api.visualization.ColumnChart(
         chart
       );
-      setTimeout(() => chartContainer.draw(data, this.options), 0);
+      // setTimeout(() => chartContainer.draw(data, this.options), 0);
       chartContainer.draw(data, this.options);
     });
   }
@@ -64,5 +64,7 @@ export class GoogleChart extends LitElement {
     })();
   }
 
-  public create() {}
+  public create() {
+    return;
+  }
 }
