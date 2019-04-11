@@ -14,7 +14,6 @@ export class GoogleChart extends LitElement {
   public options: any;
   public data = [["Column 1", "Column 2"], ["name", 10]];
   public type = "bar";
-  // @query("#chart") public _chart: any;
   public _chart: HTMLElement;
 
   public firstUpdated() {
@@ -22,12 +21,9 @@ export class GoogleChart extends LitElement {
     window.addEventListener("drawer-toggled", () => {
       this.draw();
     });
-    // Resize observer
-    const resizeObserver = new ResizeObserver(() => {
+    window.addEventListener("resize", () => {
       this.draw();
     });
-    resizeObserver.observe(this);
-    // Draw the chart
     this.draw();
   }
 
@@ -37,14 +33,36 @@ export class GoogleChart extends LitElement {
 
   public draw() {
     GoogleCharts.load(() => {
-      const _chart = this.shadowRoot.querySelector("#chart");
-      this.shadowRoot.removeChild(_chart);
-      const div = document.createElement("div");
-      div.setAttribute("id", "chart");
-      this.shadowRoot.appendChild(div);
+      const chart = this.shadowRoot.querySelector("#chart");
+      // this.shadowRoot.removeChild(chart);
+      // const element = document.createElement("div");
+      // element.setAttribute("id", "chart");
+      // this.shadowRoot.appendChild(element);
       const data = GoogleCharts.api.visualization.arrayToDataTable(this.data);
-      const chart = new GoogleCharts.api.visualization.ColumnChart(div);
-      chart.draw(data, this.options);
+      const chartContainer = new GoogleCharts.api.visualization.ColumnChart(
+        chart
+      );
+      setTimeout(() => chartContainer.draw(data, this.options), 0);
+      chartContainer.draw(data, this.options);
     });
   }
+
+  public observeResize() {
+    const delay = 100;
+    (() => {
+      let timer = null;
+      const resizeObserver = new ResizeObserver(() => {
+        if (timer !== null) {
+          clearTimeout(timer);
+        }
+        timer = setTimeout(() => {
+          timer = null;
+          this.draw();
+        }, delay);
+      });
+      resizeObserver.observe(this);
+    })();
+  }
+
+  public create() {}
 }

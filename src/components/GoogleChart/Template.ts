@@ -6,6 +6,6 @@ export default function() {
     ${false
       ? renderForm({ structure: this.constructor.properties, values: this })
       : undefined}
-    <div id="chart"></div>
+    <div class="absolute"><div id="chart"></div></div>
   `;
 }
