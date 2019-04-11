@@ -13,7 +13,8 @@ const options = {
   colors: [theme.primaryColor, theme.linkColor],
   legend: {
     textStyle: { color: theme.textColor }
-  }
+  },
+  width: "100%"
 };
 
 export default function() {

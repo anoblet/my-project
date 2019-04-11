@@ -22,6 +22,7 @@ export class GoogleChart extends LitElement {
       this.draw();
     });
     window.addEventListener("resize", () => {
+      console.log("resize");
       this.draw();
     });
     this.draw();
