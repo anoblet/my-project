@@ -23,13 +23,7 @@ export class GoogleChart extends LitElement {
       this.draw();
     });
     // Resize observer
-    const that = this;
-    const resizeObserver = new ResizeObserver((entries: any) => {
-      console.log("resize");
-      // that.shadowRoot.removeChild(this._chart);
-      // const div = document.createElement("div");
-      // div.setAttribute("id", "chart");
-      // this.shadowRoot.appendChild(div);
+    const resizeObserver = new ResizeObserver(() => {
       this.draw();
     });
     resizeObserver.observe(this);
@@ -43,8 +37,13 @@ export class GoogleChart extends LitElement {
 
   public draw() {
     GoogleCharts.load(() => {
+      const _chart = this.shadowRoot.querySelector("#chart");
+      this.shadowRoot.removeChild(_chart);
+      const div = document.createElement("div");
+      div.setAttribute("id", "chart");
+      this.shadowRoot.appendChild(div);
       const data = GoogleCharts.api.visualization.arrayToDataTable(this.data);
-      const chart = new GoogleCharts.api.visualization.ColumnChart(this._chart);
+      const chart = new GoogleCharts.api.visualization.ColumnChart(div);
       chart.draw(data, this.options);
     });
   }
