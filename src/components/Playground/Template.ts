@@ -1,4 +1,3 @@
-import "../Chart/ChartComponent";
 import "../GoogleChart/Component";
 
 import { populationByCountry, populationByState } from "../CitySDK/CitySDK";
