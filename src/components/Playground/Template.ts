@@ -30,27 +30,29 @@ export default function() {
       </card-component>
       <card-component>
         <h3 slot="title">Population by state (bar)</h3>
-        ${until(
-          populationByState().then((states: any) => {
-            const mapArray = states.map(function(obj) {
-              return Object.keys(obj)
-                .sort()
-                .map(function(key) {
-                  return obj[key];
-                });
-            });
-            const newArray = [["State", "Population"], ...mapArray];
-            return html`
-              <google-chart
-                .data=${newArray}
-                .options=${options}
-              ></google-chart>
-            `;
-          }),
-          html`
-            Loading...
-          `
-        )}
+        <div slot="content">
+          ${until(
+            populationByState().then((states: any) => {
+              const mapArray = states.map(function(obj) {
+                return Object.keys(obj)
+                  .sort()
+                  .map(function(key) {
+                    return obj[key];
+                  });
+              });
+              const newArray = [["State", "Population"], ...mapArray];
+              return html`
+                <google-chart
+                  .data=${newArray}
+                  .options=${options}
+                ></google-chart>
+              `;
+            }),
+            html`
+              Loading...
+            `
+          )}
+        </div>
       </card-component>
       <card-component>
         <h3 slot="title">Population by state (table)</h3>

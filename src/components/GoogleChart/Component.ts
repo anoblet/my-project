@@ -22,7 +22,7 @@ export class GoogleChart extends LitElement {
     });
     // Resize observer
     const resizeObserver = new ResizeObserver((entries: any) => {
-      this.draw();
+      this.requestUpdate();
     });
     resizeObserver.observe(this.shadowRoot.querySelector("#chart"));
     // Draw the chart
