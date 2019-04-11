@@ -1,4 +1,4 @@
-import { LitElement, customElement } from "lit-element";
+import { LitElement, customElement, query } from "lit-element";
 
 import { GoogleCharts } from "google-charts";
 import { ResizeObserver } from "resize-observer";
@@ -14,17 +14,25 @@ export class GoogleChart extends LitElement {
   public options: any;
   public data = [["Column 1", "Column 2"], ["name", 10]];
   public type = "bar";
-  private _chart: any;
+  // @query("#chart") public _chart: any;
+  public _chart: HTMLElement;
 
   public firstUpdated() {
+    this._chart = this.shadowRoot.querySelector("#chart");
     window.addEventListener("drawer-toggled", () => {
       this.draw();
     });
     // Resize observer
+    const that = this;
     const resizeObserver = new ResizeObserver((entries: any) => {
-      this.requestUpdate();
+      console.log("resize");
+      // that.shadowRoot.removeChild(this._chart);
+      // const div = document.createElement("div");
+      // div.setAttribute("id", "chart");
+      // this.shadowRoot.appendChild(div);
+      this.draw();
     });
-    resizeObserver.observe(this.shadowRoot.querySelector("#chart"));
+    resizeObserver.observe(this);
     // Draw the chart
     this.draw();
   }
@@ -36,10 +44,8 @@ export class GoogleChart extends LitElement {
   public draw() {
     GoogleCharts.load(() => {
       const data = GoogleCharts.api.visualization.arrayToDataTable(this.data);
-      this._chart = new GoogleCharts.api.visualization.ColumnChart(
-        this.shadowRoot.querySelector("#chart")
-      );
-      this._chart.draw(data, this.options);
+      const chart = new GoogleCharts.api.visualization.ColumnChart(this._chart);
+      chart.draw(data, this.options);
     });
   }
 }
