@@ -45,6 +45,9 @@ export class GoogleChart extends LitElement {
       );
       // setTimeout(() => chartContainer.draw(data, this.options), 0);
       chartContainer.draw(data, this.options);
+      const height = window.getComputedStyle(chart).height;
+      console.log(height);
+      this.style.setProperty("height", height);
     });
   }
 
