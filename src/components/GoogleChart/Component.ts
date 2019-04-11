@@ -35,18 +35,12 @@ export class GoogleChart extends LitElement {
   public draw() {
     GoogleCharts.load(() => {
       const chart = this.shadowRoot.querySelector("#chart");
-      // this.shadowRoot.removeChild(chart);
-      // const element = document.createElement("div");
-      // element.setAttribute("id", "chart");
-      // this.shadowRoot.appendChild(element);
       const data = GoogleCharts.api.visualization.arrayToDataTable(this.data);
       const chartContainer = new GoogleCharts.api.visualization.ColumnChart(
         chart
       );
-      // setTimeout(() => chartContainer.draw(data, this.options), 0);
       chartContainer.draw(data, this.options);
       const height = window.getComputedStyle(chart).height;
-      console.log(height);
       this.style.setProperty("height", height);
     });
   }
