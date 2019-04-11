@@ -1,4 +1,4 @@
-import { LitElement, customElement, query } from "lit-element";
+import { LitElement, customElement } from "lit-element";
 
 import { GoogleCharts } from "google-charts";
 import { ResizeObserver } from "resize-observer";
