@@ -13,3 +13,9 @@ declare module "muuri";
 declare module "random-material-color";
 declare module "annyang";
 declare module "google-charts";
+
+// interface ResizeObserver {
+//   observe(target: Element): void;
+//   unobserve(target: Element): void;
+//   disconnect(): void;
+// }

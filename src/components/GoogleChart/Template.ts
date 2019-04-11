@@ -3,7 +3,9 @@ import { renderForm } from "../Form/Form";
 
 export default function() {
   return html`
-    ${renderForm({ structure: this.constructor.properties, values: this })}
+    ${false
+      ? renderForm({ structure: this.constructor.properties, values: this })
+      : undefined}
     <div id="chart"></div>
   `;
 }

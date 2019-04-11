@@ -1,9 +1,21 @@
 import "../Chart/ChartComponent";
+import "../GoogleChart/Component";
 
 import { populationByCountry, populationByState } from "../CitySDK/CitySDK";
 
 import { html } from "lit-element";
+import { store } from "../../Store";
 import { until } from "lit-html/directives/until";
+
+const state = store.getState();
+const theme = state.app.settings.theme;
+const options = {
+  backgroundColor: theme.backgroundColor,
+  colors: [theme.primaryColor, theme.linkColor],
+  legend: {
+    textStyle: { color: theme.textColor }
+  }
+};
 
 export default function() {
   return html`
@@ -29,7 +41,10 @@ export default function() {
             });
             const newArray = [["State", "Population"], ...mapArray];
             return html`
-              <chart-component .data=${newArray}></chart-component>
+              <google-chart
+                .data=${newArray}
+                .options=${options}
+              ></google-chart>
             `;
           }),
           html`
