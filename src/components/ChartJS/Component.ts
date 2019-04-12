@@ -1,5 +1,6 @@
 import { LitElement, customElement } from "lit-element";
 
+import Chart from "chart.js";
 import GlobalStyle from "../../GlobalStyle";
 import Style from "./Style";
 import Template from "./Template";
