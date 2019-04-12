@@ -76,17 +76,16 @@ export class ChartJS extends LitElement {
   public observeResize() {
     const delay = 1000;
     (() => {
-      let timer = null;
+      // let timer = null;
       const resizeObserver = new ResizeObserver(() => {
         if (this.chart) this.chart.resize();
-        console.log("resize");
-        if (timer !== null) {
-          clearTimeout(timer);
-        }
-        timer = setTimeout(() => {
-          timer = null;
-          if (this.chart) setTimeout(() => this.chart.resize(), 0);
-        }, delay);
+        // if (timer !== null) {
+        //   clearTimeout(timer);
+        // }
+        // timer = setTimeout(() => {
+        //   timer = null;
+        //   if (this.chart) setTimeout(() => this.chart.resize(), 0);
+        // }, delay);
       });
       resizeObserver.observe(this.shadowRoot.querySelector("#container"));
     })();
