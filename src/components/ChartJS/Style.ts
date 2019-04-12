@@ -9,11 +9,5 @@ export default css`
 
   #container {
     position: relative;
-    overflow: auto;
-  }
-
-  .absolute {
-    left: 0;
-    right: 0;
   }
 `;
