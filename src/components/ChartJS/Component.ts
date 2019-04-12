@@ -1,9 +1,11 @@
 import { LitElement, customElement } from "lit-element";
-import { populationByState } from "../CitySDK/CitySDK";
+
 import Chart from "chart.js";
 import GlobalStyle from "../../GlobalStyle";
+import { ResizeObserver } from "resize-observer";
 import Style from "./Style";
 import Template from "./Template";
+import { populationByState } from "../CitySDK/CitySDK";
 
 @customElement("chart-js")
 export class ChartJS extends LitElement {
@@ -16,6 +18,7 @@ export class ChartJS extends LitElement {
 
   public firstUpdated() {
     this.createChart();
+    this.observeResize();
   }
 
   public async getData() {
@@ -64,8 +67,28 @@ export class ChartJS extends LitElement {
             }
           ]
         },
-        responsive: true
+        maintainAspectRatio: false,
+        aspectRatio: 1
       }
     });
+  }
+
+  public observeResize() {
+    const delay = 1000;
+    (() => {
+      let timer = null;
+      const resizeObserver = new ResizeObserver(() => {
+        if (this.chart) this.chart.resize();
+        console.log("resize");
+        if (timer !== null) {
+          clearTimeout(timer);
+        }
+        timer = setTimeout(() => {
+          timer = null;
+          if (this.chart) setTimeout(() => this.chart.resize(), 0);
+        }, delay);
+      });
+      resizeObserver.observe(this.shadowRoot.querySelector("#container"));
+    })();
   }
 }
