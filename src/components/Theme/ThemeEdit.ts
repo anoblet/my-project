@@ -8,12 +8,14 @@ import { isSignedIn } from "../../User";
 
 const updateField = (field: string, value: string) => {
   const state = store.getState();
-  const theme = state.settings.theme;
+  const theme = state.app.settings.theme;
   const newTheme = { ...theme, ...{ [field]: value } };
   setTheme(
     convert({ [field]: value }),
     document.querySelector("app-component")
   );
+
+  console.log(newTheme);
   setState({
     type: "app",
     data: { settings: { theme: newTheme } },
