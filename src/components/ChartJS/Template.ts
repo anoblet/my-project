@@ -2,7 +2,7 @@ import { html } from "lit-element";
 
 export default function() {
   return html`
-    <div>
+    <div class="grow">
       <canvas id="myChart" width="400" height="400"></canvas>
     </div>
   `;
