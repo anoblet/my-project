@@ -2,7 +2,7 @@ import { css } from "lit-element";
 
 export default css`
   :host {
-    display: flex;
+    display: block;
     flex-direction: column;
     flex: 1;
   }
