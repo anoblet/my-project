@@ -82,5 +82,11 @@ export const components = [
     src: () =>
       import(/* webpackChunkName: "GoogleChart" */ "./components/GoogleChart/Component"),
     tag: "google-chart"
+  },
+  {
+    label: "Chart JS",
+    src: () =>
+      import(/* webpackChunkName: "ChartJS" */ "./components/ChartJS/Component"),
+    tag: "chart-js"
   }
 ];
