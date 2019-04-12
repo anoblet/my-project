@@ -4,7 +4,7 @@ import GlobalStyle from "../../GlobalStyle";
 import Style from "./Style";
 import Template from "./Template";
 
-@customElement("chartjs-component")
+@customElement("chart-js")
 export class ChartJS extends LitElement {
   public static styles = [GlobalStyle, Style];
 
