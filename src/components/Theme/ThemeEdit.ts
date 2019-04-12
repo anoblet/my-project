@@ -12,11 +12,11 @@ const updateField = (field: string, value: string) => {
     convert({ [field]: value }),
     document.querySelector("app-component")
   );
-  // setState({
-  //   type: "app",
-  //   data: { settings: { theme: { [field]: value } } },
-  //   store
-  // });
+  setState({
+    type: "app",
+    data: { settings: { theme: { [field]: value } } },
+    store
+  });
   if (isSignedIn())
     updateDocument({
       path: `users/${state.user.uid}/settings/theme`,
