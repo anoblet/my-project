@@ -2,11 +2,18 @@ import { css } from "lit-element";
 
 export default css`
   :host {
+    display: flex;
+    flex-direction: column;
     flex: 1;
   }
 
   #container {
     position: relative;
-    flex: 1;
+    overflow: auto;
+  }
+
+  .absolute {
+    left: 0;
+    right: 0;
   }
 `;

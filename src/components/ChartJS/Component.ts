@@ -7,6 +7,7 @@ import Template from "./Template";
 
 @customElement("chart-js")
 export class ChartJS extends LitElement {
+  public chart: Chart;
   public static styles = [GlobalStyle, Style];
 
   public render() {
@@ -25,8 +26,6 @@ export class ChartJS extends LitElement {
       labels.push(state.name);
       data.push(state.population);
     });
-    console.log(labels);
-    console.log(data);
     return { labels, data };
   }
 
@@ -34,7 +33,7 @@ export class ChartJS extends LitElement {
     const { data, labels } = await this.getData();
     const chart: any = this.shadowRoot.querySelector("#myChart");
     const ctx = chart.getContext("2d");
-    const myChart = new Chart(ctx, {
+    this.chart = new Chart(ctx, {
       type: "bar",
       data: {
         labels,
@@ -65,7 +64,7 @@ export class ChartJS extends LitElement {
             }
           ]
         },
-        responsive: true,
+        responsive: true
       }
     });
   }
