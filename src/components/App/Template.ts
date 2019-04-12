@@ -45,7 +45,7 @@ export default function() {
           id="drawer"
           opened=${this.drawerOpened}
         ></drawer-component>
-        <div id="content" grow scroll>
+        <div id="content" grow>
           <grid-component id="content-grid" style="contain: initial;">
             ${state.user.settings
               ? state.user.settings.breadcrumbs

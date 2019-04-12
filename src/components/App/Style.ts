@@ -162,5 +162,10 @@ export default css`
 
   #portal {
     contain: initial;
+    overflow-x: hidden;
+  }
+
+  #content {
+    overflow-y: auto;
   }
 `;
