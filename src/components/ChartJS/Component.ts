@@ -64,7 +64,8 @@ export class ChartJS extends LitElement {
               }
             }
           ]
-        }
+        },
+        responsive: true,
       }
     });
   }
