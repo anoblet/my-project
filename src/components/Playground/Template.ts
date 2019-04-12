@@ -6,18 +6,16 @@ import { html } from "lit-element";
 import { store } from "../../Store";
 import { until } from "lit-html/directives/until";
 
-const state = store.getState();
-const theme = state.app.settings.theme;
-const options = {
-  backgroundColor: theme.backgroundColor,
-  colors: [theme.primaryColor, theme.linkColor],
-  legend: {
-    textStyle: { color: theme.textColor }
-  },
-  width: "100%"
-};
-
 export default function() {
+  const theme = this.getTheme();
+  const options = {
+    backgroundColor: theme.backgroundColor,
+    colors: [theme.primaryColor, theme.linkColor],
+    legend: {
+      textStyle: { color: theme.textColor }
+    },
+    width: "100%"
+  };
   return html`
     <grid-component columns="1">
       <card-component>

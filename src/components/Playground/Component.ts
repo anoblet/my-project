@@ -1,4 +1,5 @@
 import { LitElement, customElement, property } from "lit-element";
+import { store } from "../../Store";
 
 import Style from "./Style";
 import Template from "./Template";
@@ -11,5 +12,10 @@ export class Playground extends LitElement {
 
   public render() {
     return this.template.bind(this)();
+  }
+
+  public getTheme() {
+    const state = store.getState();
+    return state.app.settings.theme;
   }
 }
