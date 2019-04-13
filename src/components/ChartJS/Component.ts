@@ -10,6 +10,7 @@ import { BeforeRender } from "../../mixins/BeforeRender";
 
 @customElement("chart-js")
 export class ChartJS extends BeforeRender(LitElement) {
+  public data: any;
   public chart: Chart;
   public static styles = [GlobalStyle, Style];
 
@@ -18,7 +19,7 @@ export class ChartJS extends BeforeRender(LitElement) {
   }
 
   public async beforeRender() {
-    return;
+    this.data = await populationByState();
   }
 
   public firstUpdated() {
