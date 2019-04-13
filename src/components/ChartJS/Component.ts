@@ -6,20 +6,15 @@ import { ResizeObserver } from "resize-observer";
 import Style from "./Style";
 import Template from "./Template";
 import { populationByState } from "../CitySDK/CitySDK";
-import { BeforeRender } from "../../mixins/BeforeRender";
 
 @customElement("chart-js")
-export class ChartJS extends BeforeRender(LitElement) {
+export class ChartJS extends LitElement {
   public data: any;
   public chart: Chart;
   public static styles = [GlobalStyle, Style];
 
   public render() {
     return Template.bind(this)();
-  }
-
-  public async beforeRender() {
-    this.data = await populationByState();
   }
 
   public firstUpdated() {
