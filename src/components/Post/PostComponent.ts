@@ -1,7 +1,6 @@
 import { LitElement, html, property } from "lit-element";
 import { addDocument, getDocument, updateDocument } from "../../Firebase";
 
-import { Mixin } from "../../../packages/Mixin";
 import { TemplateMixin } from "../../../packages/TemplateMixin";
 import GlobalStyle from "../../GlobalStyle";
 import { renderForm } from "../PropertyEditor/PropertyEditor";
@@ -14,7 +13,7 @@ export interface PostComponent {
   [key: string]: any; // Add index signature
 }
 
-export class PostComponent extends Mixin(LitElement, [TemplateMixin]) {
+export class PostComponent extends TemplateMixin(LitElement) {
   @property({ type: String }) public content: string;
   @property({ type: Boolean }) public create: boolean;
   @property({ type: Boolean, reflect: true, attribute: "hidden" })
