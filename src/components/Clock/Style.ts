@@ -5,7 +5,7 @@ export default css`
     display: flex;
     flex: 1;
   }
-  
+
   #clock {
     display: flex;
     flex: 1;
