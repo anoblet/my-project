@@ -12,4 +12,8 @@ export default css`
     justify-content: center;
     align-items: center;
   }
+
+  card-component::slotted([slot="content"]) {
+    display: flex;
+  }
 `;

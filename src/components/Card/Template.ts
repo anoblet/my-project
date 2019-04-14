@@ -19,7 +19,7 @@ export default function() {
         : ""}
     </div>
     <div id="content" part="content-container">
-      <slot name="content"> </slot><slot> </slot>
+      <slot name="content" part="content"> </slot><slot> </slot>
     </div>
     <slot name="actions"></slot>
   `;
