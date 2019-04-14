@@ -9,6 +9,10 @@ export const run = async (packages: any) => {
     imports.push(
       import(/* webpackChunkName: "FirebaseFirestore" */ "firebase/firestore")
     );
+  if (packages.includes("performance"))
+    imports.push(
+      import(/* webpackChunkName: "FirebasePerformance" */ "@firebase/performance")
+    );
   return Promise.all(imports).then(([_firebase]) => _firebase);
 };
 
@@ -123,8 +127,9 @@ export const getDocument = ({ callback, path, watch }: any) => {
  * @return Promise
  **/
 export const initApp = (config: any) => {
-  run([]).then((_firebase: any) => {
-    if (_firebase.apps.length === 0) _firebase.initializeApp(config);
+  run(["performance"]).then((_firebase: any) => {
+    if (_firebase.apps.length === 0)
+      _firebase.initializeApp(config).performance();
   });
 };
 
@@ -160,4 +165,10 @@ export const addDocument = ({ path, data }: any) => {
   });
 };
 
-export const firebase = { getDocument, getUser, initApp, run, update: updateDocument };
+export const firebase = {
+  getDocument,
+  getUser,
+  initApp,
+  run,
+  update: updateDocument
+};
