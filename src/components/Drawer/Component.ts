@@ -6,6 +6,8 @@ import Template from "./Template";
 import { media } from "../../Media";
 import { store } from "../../Store";
 
+import { App } from "../App/Component";
+
 @customElement("drawer-component")
 export class Drawer extends LitElement {
   @property({ type: Boolean, reflect: true }) public hidden: boolean = true;
@@ -14,6 +16,10 @@ export class Drawer extends LitElement {
 
   public toggle() {
     this.hidden = !this.hidden;
+  }
+
+  public close() {
+    this.hidden = true;
   }
 
   constructor() {
@@ -35,5 +41,15 @@ export class Drawer extends LitElement {
 
   public render() {
     return Template.bind(this)();
+  }
+
+  public firstUpdated() {
+    const links = [...this.shadowRoot.querySelectorAll("a")];
+    links.map((link: HTMLElement) =>
+      link.addEventListener("click", () => {
+        const el: App = document.querySelector("app-component");
+        if (this.mediaSize === "mobile") el._toggleDrawer();
+      })
+    );
   }
 }

@@ -19,7 +19,7 @@ import { toast } from "../Toast/Toast";
 import { user } from "../../User";
 
 @customElement("app-component")
-export class AppComponent extends LitElement {
+export class App extends LitElement {
   @property({ type: Boolean })
   public taskPending = true;
   @property({ reflect: true, attribute: "drawer-opened", type: Boolean })
