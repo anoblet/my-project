@@ -88,5 +88,11 @@ export const components = [
     src: () =>
       import(/* webpackChunkName: "ChartJS" */ "./components/ChartJS/Demo"),
     tag: "demo-component"
+  },
+  {
+    label: "City SDK",
+    src: () =>
+      import(/* webpackChunkName: "CitySDK" */ "./components/CitySDK/Component"),
+    tag: "city-sdk"
   }
 ];
