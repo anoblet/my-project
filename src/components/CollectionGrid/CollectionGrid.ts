@@ -1,8 +1,9 @@
-import * as style from "./CollectionGrid.scss";
+// import * as style from "./CollectionGrid.scss";
 
 import { LitElement, html, property } from "lit-element";
 import { addDocument, deleteDocument, getCollection } from "../../Firebase";
 
+import Style from "./Style";
 import template from "./CollectionGridTemplate";
 
 export interface CollectionGrid {
@@ -20,6 +21,8 @@ export class CollectionGrid extends LitElement {
   @property({ type: String }) public path: string; // The path to the Firebase collection
   @property({ type: String }) public route: string = "index"; // A request path (for sub-routes)
   @property({ type: Boolean }) public dialogOpened: boolean;
+
+  public static styles = [Style];
 
   /**
    * Function that returns a TemplateResult
