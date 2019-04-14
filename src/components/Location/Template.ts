@@ -4,7 +4,7 @@ export default function() {
   return html`
     <grid-component>
       <button-component @click=${this.getLocation}
-        >Get location</button-component
+        >Request permission</button-component
       >
       <grid-component style="grid-template-columns: repeat(2, 1fr)">
         <div>Latitude:</div>
