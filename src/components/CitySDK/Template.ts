@@ -1,7 +1,8 @@
 import { html } from "lit-element";
+import { renderForm } from "../Form/Form";
 
 export default function() {
   return html`
-    <div id="clock">${this.time}</div>
+    ${renderForm({structure, values: this, onChange})}
   `;
 }
