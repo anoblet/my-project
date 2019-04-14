@@ -29,4 +29,8 @@ export default css`
   .mdl-progress {
     height: 5px;
   }
+
+  [slot="content"] {
+    justify-content: center;
+  }
 `;
