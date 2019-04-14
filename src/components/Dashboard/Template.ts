@@ -14,7 +14,7 @@ export default function() {
       <div class="item">
         <div class="item-content tall">
           <card-component>
-            <div slot="content">
+            <div slot="content" style="display: flex;">
               <clock-component></clock-component>
             </div>
           </card-component>
