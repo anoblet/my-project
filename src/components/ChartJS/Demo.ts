@@ -2,23 +2,23 @@ import { LitElement, customElement, html } from "lit-element";
 
 import { populationByState } from "../CitySDK/CitySDK";
 import { until } from "lit-html/directives/until";
+import "./Component";
 
 @customElement("demo-component")
 export class Demo extends LitElement {
   public render() {
     return html`
       ${until(
-        populationByState().then((data: any) => {
+        populationByState().then((result: any) => {
           const labels = [];
           const values = [];
-          data.map((state: any) => {
+          result.map((state: any) => {
             labels.push(state.name);
             values.push(state.population);
           });
-          const _data = { labels, values };
-          console.log(_data);
+          const data = { data: values, labels };
           return html`
-            <chart-js .data=${_data}></chart-js>
+            <chart-js .data=${data}></chart-js>
           `;
         })
       )}
