@@ -89,8 +89,12 @@ export class PageStatic extends LitElement {
               <card-component title="Outstanding issues">
                 <ul>
                   <li>
-                    [ ] If a client is not logged and visits "/user-settings" it
+                    [ ] If the user is not logged, visits "/user-settings" it
                     goes into an indefinate loading screen
+                  </li>
+                  <li>
+                    [ ] If the user is not logged in, random theme on
+                    /user-theme won't work
                   </li>
                 </ul>
               </card-component>
