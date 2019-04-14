@@ -6,9 +6,9 @@ export function Template<BaseType extends Constructor<LitElement>>(
   BaseClass: BaseType
 ) {
   class MixinClass extends BaseClass {
-    public template = html``;
+    public template = () => html``;
     public render() {
-      return this.template;
+      return this.template.bind(this)();
     }
   }
 
