@@ -26,6 +26,7 @@ export default css`
   ::slotted([slot="content"]) {
     border: var(--border-size) solid var(--border-color);
     padding: var(--card-inner-padding, 0);
+    display: flex;
   }
 
   ::slotted([slot="actions"]) {
