@@ -86,6 +86,14 @@ export class PageStatic extends LitElement {
                 Best guys in the game:
                 <a href="https://open-wc.org/">Open WC</a>
               </card-component>
+              <card-component title="Outstanding issues">
+                <ul>
+                  <li>
+                    [ ] If a client is not logged and visits "/user-settings" it
+                    goes into an indefinate loading screen
+                  </li>
+                </ul>
+              </card-component>
             </grid-component>
           `
         : ""}
