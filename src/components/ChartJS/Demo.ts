@@ -14,6 +14,10 @@ export class Demo extends BeforeRender(LitElement) {
 
   public async beforeRender() {
     this.data = await populationByState();
+    await new Promise((resolve: any) => {
+      console.log("test");
+      // resolve();
+    });
   }
 
   public render() {
