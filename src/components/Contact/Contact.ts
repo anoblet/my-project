@@ -2,7 +2,7 @@ import { LitElement, customElement, html } from "lit-element";
 
 import GlobalStyle from "../../GlobalStyle";
 import Style from "./Style";
-import template from "./ContactTemplate";
+import Template from "./Template";
 import { toast } from "../Toast/Toast";
 
 @customElement("contact-component")
@@ -14,8 +14,6 @@ export class Contact extends LitElement {
   public static styles = [GlobalStyle, Style];
 
   public render() {
-    return html`
-      ${template.bind(this)()}
-    `;
+    return Template.bind(this)()
   }
 }
