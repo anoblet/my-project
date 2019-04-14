@@ -3,11 +3,19 @@ import { store } from "../../Store";
 
 import GlobalStyle from "../../GlobalStyle";
 import Style from "./Style";
+import Template from "./Template";
 
 @customElement("breadcrumb-component")
 export class BreadcrumbComponent extends LitElement {
   @property() public activeRoute: string;
   @property({ type: Boolean }) public hidden: boolean = false;
+  public template = Template;
+
+  public static styles = [GlobalStyle, Style];
+
+  public render() {
+    return this.template.bind(this)();
+  }
 
   public constructor() {
     super();
@@ -37,11 +45,5 @@ export class BreadcrumbComponent extends LitElement {
     `;
   }
 
-  public static styles = [GlobalStyle, Style];
 
-  public render() {
-    return html`
-      ${this.format(this.activeRoute)}
-    `;
-  }
 }
