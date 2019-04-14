@@ -20,7 +20,7 @@ export default css`
 
   div.mdl-progress::after {
     display: block;
-    color: var(--primary-color);
+    color: var(--text-color);
     content: "Authenticating";
     margin: 20px auto;
     text-align: center;
