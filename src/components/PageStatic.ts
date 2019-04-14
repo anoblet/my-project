@@ -96,6 +96,9 @@ export class PageStatic extends LitElement {
                     [ ] If the user is not logged in, random theme on
                     /user-theme won't work
                   </li>
+                  <li>
+                    [ ] Fix collapse/expand arrows on card (/components/eye-exam)
+                  </li>
                 </ul>
               </card-component>
             </grid-component>
