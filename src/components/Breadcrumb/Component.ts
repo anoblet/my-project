@@ -44,6 +44,4 @@ export class BreadcrumbComponent extends LitElement {
       })}
     `;
   }
-
-
 }
