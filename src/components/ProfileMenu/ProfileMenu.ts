@@ -14,9 +14,7 @@ export class ProfileMenu extends Mixin(connect(store)(LitElement), [
   public hidden: boolean = true;
   public handler: any;
 
-  static get styles() {
-    return [Style];
-  }
+  public static styles = [GlobalStyle, Style];
 
   public connectedCallback() {
     super.connectedCallback();
@@ -46,15 +44,8 @@ export class ProfileMenu extends Mixin(connect(store)(LitElement), [
     this.hidden = true;
   }
 
-  public static styles = GlobalStyle;
-
   public render() {
-    return html`
-      <style>
-        ${style}
-      </style>
-      ${template.bind(this)(this.state)}
-    `;
+    return template.bind(this)(this.state);
   }
 }
 
