@@ -13,6 +13,7 @@ export const getForm = () =>
     const el = document.createElement("div");
     const ui =
       firebaseui.auth.AuthUI.getInstance() ||
+      // @ts-ignore
       new firebaseui.auth.AuthUI(firebase.auth());
     ui.start(el, {
       ...config.firebaseui,
