@@ -37,10 +37,10 @@ export const getPositionTemplate = (success: (position: any) => any) => {
         button.innerHTML = "Loading...";
         getPosition((position: any) => {
           success(position);
-          button.innerHTML = "Get location";
+          button.innerHTML = "Success";
         });
       }}
-      >Get location</button-component
+      >Request permission</button-component
     >
   `;
 };
