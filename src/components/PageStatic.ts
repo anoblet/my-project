@@ -13,12 +13,6 @@ const Style = css`
     justify-content: center;
   }
 
-  /*
-  grid-component {
-    flex: 1;
-    height: 100%;
-  } */
-
   .material-icons {
     display: block;
     padding: 1em;
@@ -32,6 +26,10 @@ const Style = css`
 
   .grid-item > a:hover !important {
     text-decoration: none;
+  }
+
+  li {
+    padding: 0.5em 0px;
   }
 `;
 
@@ -77,9 +75,9 @@ export class PageStatic extends LitElement {
         ? html`
             <grid-component>
               <card-component title="Welcome">
-                If you're looking for content go to the
-                <a href="/blog">blog</a>. To view the performance of the app,
-                visit <a href="/performance">performance</a>.
+                Check out our <a href="/components">Components</a> See what's
+                new on our <a href="/blog">Blog</a> See the
+                <a href="/performance">Performance</a>
               </card-component>
               <card-component title="Patreon">
                 <patreon-component></patreon-component>
