@@ -35,7 +35,6 @@ export class ChartJS extends LitElement {
 
   public async createChart() {
     const { data, labels } = this.data;
-    console.log(this.data);
     const chart: any = this.shadowRoot.querySelector("#myChart");
     const ctx = chart.getContext("2d");
     this.chart = new Chart(ctx, {

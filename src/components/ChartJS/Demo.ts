@@ -20,7 +20,10 @@ export class Demo extends LitElement {
           return html`
             <chart-js .data=${data}></chart-js>
           `;
-        })
+        }),
+        html`
+          Please be patient while the data is being loaded
+        `
       )}
     `;
   }
