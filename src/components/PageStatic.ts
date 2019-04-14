@@ -79,29 +79,28 @@ export class PageStatic extends LitElement {
                 new on our <a href="/blog">Blog</a> See the
                 <a href="/performance">Performance</a>
               </card-component>
-              <card-component title="Patreon">
-                <patreon-component></patreon-component>
-              </card-component>
               <card-component title="Open WC">
                 Best guys in the game:
                 <a href="https://open-wc.org/">Open WC</a>
               </card-component>
-              <card-component title="Outstanding issues">
-                <ul>
-                  <li>
-                    [ ] If the user is not logged, visits "/user-settings" it
-                    goes into an indefinate loading screen
-                  </li>
-                  <li>
-                    [ ] If the user is not logged in, random theme on
-                    /user-theme won't work
-                  </li>
-                  <li>
-                    [ ] Fix collapse/expand arrows on card (/components/eye-exam)
-                  </li>
-                </ul>
+              <card-component title="Patreon">
+                <patreon-component></patreon-component>
               </card-component>
             </grid-component>
+            <card-component title="Outstanding issues">
+              <ul>
+                <li>
+                  [ ] Route "/user-settings" is broken for anonymous/guest
+                </li>
+                <li>
+                  [ ] Function /user-theme/randomTheme" Is broken for
+                  anonymous/guest
+                </li>
+                <li>
+                  [ ] Fix collapse/expand arrows on card (/components/eye-exam)
+                </li>
+              </ul>
+            </card-component>
           `
         : ""}
     `;
