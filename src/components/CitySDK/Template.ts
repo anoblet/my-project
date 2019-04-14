@@ -4,6 +4,12 @@ import { properties } from "./Properties";
 
 export default function() {
   return html`
-    ${renderForm({ structure: properties, values: this })}
+    ${renderForm({
+      structure: properties,
+      values: this,
+      onChange: (e: any) => {
+        this[e.target.getAttribute("name")] = e.target.value;
+      }
+    })}
   `;
 }
