@@ -127,9 +127,9 @@ export const getDocument = ({ callback, path, watch }: any) => {
  * @return Promise
  **/
 export const initApp = (config: any) => {
-  run(["performance"]).then((_firebase: any) => {
+  return run(["performance"]).then((_firebase: any) => {
     if (_firebase.apps.length === 0)
-      _firebase.initializeApp(config).performance();
+      return _firebase.initializeApp(config).performance();
   });
 };
 

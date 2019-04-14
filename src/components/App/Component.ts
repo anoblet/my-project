@@ -56,7 +56,8 @@ export class App extends LitElement {
   }
 
   public async beforeRender() {
-    await db.initApp(config.firebase);
+    const test = await db.initApp(config.firebase);
+    console.log(test);
     if (config.globalSettings) {
       debug.log("Getting app level settings");
       await getAppSettings((document: any) => {
