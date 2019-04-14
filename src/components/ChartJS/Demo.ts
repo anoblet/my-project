@@ -29,7 +29,7 @@ export class Demo extends BeforeRender(LitElement) {
           `;
         }),
         html`
-          Please wait for data to load...
+          Please wait for the data to load...
         `
       )}
     `;
