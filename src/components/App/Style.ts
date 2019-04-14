@@ -42,6 +42,7 @@ export default css`
     z-index: 3;
     border: 0;
     border-right: 1px solid var(--border-color);
+    padding-right: 1.20em;
   }
 
   #drawer-container {
