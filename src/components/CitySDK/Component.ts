@@ -4,13 +4,20 @@ import GlobalStyle from "../../GlobalStyle";
 import Style from "./Style";
 import Template from "./Template";
 
-@customElement("clock-component")
-export class Clock extends LitElement {
-  @property() public time: any;
+@customElement("city-sdk")
+export class CitySDK extends LitElement {
+  @property() public vintage: string;
+  @property() public geoHierarchy: {};
+  @property() public sourcePath: [];
+  @property() public values: [];
+  @property() public geoResolution: string;
+  @property() public predicates: {};
+  @property() public statsKey: string;
+  public template = Template;
 
   public static styles = [GlobalStyle, Style];
 
   public render() {
-    return Template.bind(this)();
+    return this.template.bind(this)();
   }
 }
