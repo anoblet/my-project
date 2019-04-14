@@ -1,4 +1,4 @@
-import { html, LitElement, property } from "lit-element";
+import { LitElement, property } from "lit-element";
 import { connect } from "pwa-helpers/connect-mixin.js";
 import { Mixin } from "../../../packages/Mixin";
 import { store } from "../../Store";
