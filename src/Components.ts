@@ -26,7 +26,7 @@ export const components = [
   {
     label: "Eye Exam",
     src: () =>
-      import(/* webpackChunkName: "EyeExam" */ "./components/EyeExam/EyeExamComponent"),
+      import(/* webpackChunkName: "EyeExam" */ "./components/EyeExam/Component"),
     tag: "eye-exam"
   },
   {
