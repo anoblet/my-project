@@ -2,7 +2,7 @@ export const components = [
   {
     label: "Voice",
     src: () =>
-      import(/* webpackChunkName: "Voice" */ "./components/VoiceComponent"),
+      import(/* webpackChunkName: "Voice" */ "./components/Voice/Component"),
     tag: "voice-component"
   },
   {
