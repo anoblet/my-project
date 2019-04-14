@@ -15,12 +15,13 @@ export class Demo extends LitElement {
             labels.push(state.name);
             values.push(state.population);
           });
-          const _data =  { labels, values };
+          const _data = { labels, values };
+          console.log(_data);
           return html`
             <chart-js .data=${_data}></chart-js>
           `;
         })
-      )})
+      )}
     `;
   }
 }
