@@ -14,6 +14,6 @@ export class Contact extends LitElement {
   public static styles = [GlobalStyle, Style];
 
   public render() {
-    return Template.bind(this)()
+    return Template.bind(this)();
   }
 }
