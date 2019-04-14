@@ -13,7 +13,7 @@ export default css`
     align-items: center;
   }
 
-  card-component::slotted([slot="content"]) {
+  card-component::part(content) {
     display: flex;
   }
 `;
