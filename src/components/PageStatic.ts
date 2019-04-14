@@ -33,7 +33,7 @@ const Style = css`
   }
 `;
 
-let version = 1;
+const version = () => 1;
 
 @customElement("page-static")
 export class PageStatic extends LitElement {
@@ -41,7 +41,7 @@ export class PageStatic extends LitElement {
 
   public render() {
     return html`
-      ${version === 2
+      ${version() === 2
         ? html`
             <grid-component style="grid-template-columns: repeat(3, 1fr)">
               <div class="grid-item">
@@ -71,7 +71,7 @@ export class PageStatic extends LitElement {
             </grid-component>
           `
         : ""}
-      ${version === 1
+      ${version() === 1
         ? html`
             <grid-component>
               <card-component title="Welcome">
