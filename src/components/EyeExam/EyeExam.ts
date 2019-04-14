@@ -1,3 +1,3 @@
-export { EyeExamComponent } from "./EyeExamComponent";
+export { EyeExamComponent } from "./Component";
 
 export class EyeExam {}
