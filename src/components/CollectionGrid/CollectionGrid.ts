@@ -80,9 +80,6 @@ export class CollectionGrid extends LitElement {
 
   public render() {
     return html`
-      <style>
-        ${style}
-      </style>
       ${this._template()}
     `;
   }

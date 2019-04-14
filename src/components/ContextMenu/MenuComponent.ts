@@ -1,14 +1,17 @@
-import * as style from "./MenuComponent.scss";
+// import * as style from "./MenuComponent.scss";
 
 import { LitElement, html, property } from "lit-element";
 
 import GlobalStyle from "../../GlobalStyle";
+import Style from "./Style";
 import { store } from "../../Store";
 import template from "./MenuTemplate";
 
 export class MenuComponent extends LitElement {
   @property({ type: Boolean, reflect: true }) public hidden = true;
   public boundListener: any;
+
+  public static styles = [Style];
 
   constructor() {
     super();
@@ -47,15 +50,8 @@ export class MenuComponent extends LitElement {
     }
   }
 
-  public static styles = GlobalStyle;
-
   public render() {
-    return html`
-      <style>
-        ${style}
-      </style>
-      ${template()}
-    `;
+    return template();
   }
 }
 
