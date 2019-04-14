@@ -94,5 +94,11 @@ export const routes = [
     component: "log-component",
     src: () =>
       import(/* webpackChunkName: "LogComponent" */ "../Log/LogComponent")
+  },
+  {
+    path: "/performance",
+    component: "log-component",
+    src: () =>
+      import(/* webpackChunkName: "LogComponent" */ "../Log/LogComponent")
   }
 ];
