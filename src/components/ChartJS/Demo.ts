@@ -9,8 +9,8 @@ import { populationByState } from "../CitySDK/CitySDK";
 
 @customElement("demo-component")
 export class Demo extends BeforeRender(LitElement) {
-  public data: any;
   public static styles = [GlobalStyle, Style];
+  public data: any;
 
   public async beforeRender() {
     this.data = await populationByState();
