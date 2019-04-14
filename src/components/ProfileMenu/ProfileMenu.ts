@@ -2,10 +2,10 @@ import { html, LitElement, property } from "lit-element";
 import { connect } from "pwa-helpers/connect-mixin.js";
 import { Mixin } from "../../../packages/Mixin";
 import { store } from "../../Store";
-import * as style from "./ProfileMenu.scss";
 import template from "./ProfileMenuTemplate";
 import { StateMixin } from "../../../packages/StateMixin";
 import GlobalStyle from "../../GlobalStyle";
+import Style from "./Style";
 
 export class ProfileMenu extends Mixin(connect(store)(LitElement), [
   StateMixin
@@ -13,6 +13,10 @@ export class ProfileMenu extends Mixin(connect(store)(LitElement), [
   @property({ type: Boolean, reflect: true })
   public hidden: boolean = true;
   public handler: any;
+
+  static get styles() {
+    return [Style];
+  }
 
   public connectedCallback() {
     super.connectedCallback();
