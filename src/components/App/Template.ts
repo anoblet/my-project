@@ -73,6 +73,5 @@ export default function() {
     </div>
     <footer-component id="bottom"></footer-component>
     <menu-component></menu-component>
-    <voice-component></voice-component>
   `;
 }
