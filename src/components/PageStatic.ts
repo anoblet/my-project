@@ -97,7 +97,7 @@ export class PageStatic extends LitElement {
                   anonymous/guest
                 </li>
                 <li>
-                  [ ] Fix collapse/expand arrows on card (/components/eye-exam)
+                  [x] Fix collapse/expand arrows on card (/components/eye-exam)
                 </li>
               </ul>
             </card-component>
