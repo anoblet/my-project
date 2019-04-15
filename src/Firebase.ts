@@ -106,12 +106,12 @@ export const updateDocument = async ({ data, path }: any) => {
 /**
  * Returns a promise/document, or calls a callback depending on the watch property
  **/
-export const getDocument = ({ callback, path, watch }: any) => {
+export const getDocument = async ({ callback, path, watch }: any) => {
   return run(["firestore"]).then((_firebase: any) => {
     const document = _firebase.firestore().doc(path);
     return watch
       ? document.onSnapshot((doc: any) => {
-          const source = doc.metadata.hasPendingWrites ? "local" : "remote";
+          // const source = doc.metadata.hasPendingWrites ? "local" : "remote";
           callback(doc.data());
         })
       : document.get().then((doc: any) => {
@@ -126,7 +126,7 @@ export const getDocument = ({ callback, path, watch }: any) => {
  * @param  config
  * @return Promise
  **/
-export const initApp = (config: any) => {
+export const initApp = async (config: any) => {
   return run(["performance"]).then((_firebase: any) => {
     if (_firebase.apps.length === 0)
       return _firebase.initializeApp(config).performance();
@@ -138,7 +138,7 @@ export const initApp = (config: any) => {
  * @param  path Document path inside of Firebase
  * @return      Promise
  **/
-export const deleteDocument = ({ path }: any) => {
+export const deleteDocument = async ({ path }: any) => {
   return run(["firestore"]).then((_firebase: any) => {
     return _firebase
       .firestore()
@@ -153,7 +153,7 @@ export const deleteDocument = ({ path }: any) => {
  * @todo Return DocRef
  * Example: addDocument("posts", { title: "Sample title" })
  **/
-export const addDocument = ({ path, data }: any) => {
+export const addDocument = async ({ path, data }: any) => {
   return run(["firestore"]).then((_firebase: any) => {
     return _firebase
       .firestore()
