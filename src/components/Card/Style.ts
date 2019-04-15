@@ -42,7 +42,6 @@ export default css`
   }
 
   #title {
-    display: contents;
     align-items: center;
     justify-content: space-between;
   }
