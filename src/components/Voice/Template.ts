@@ -8,6 +8,6 @@ export default function() {
 
 export const requestPermission = function() {
   return html`
-    <button @click=${this.requestPermission}
+    <button @click=${this.requestPermission}>Request permission</button>
   `;
 };
