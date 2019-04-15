@@ -37,7 +37,7 @@ export const getPositionTemplate = (success: (position: any) => any) => {
         button.innerHTML = "Loading...";
         getPosition((position: any) => {
           success(position);
-          button.innerHTML = "Success";
+          button.innerHTML = "Request permission";
         });
       }}
       >Request permission</button-component
