@@ -1,3 +1,5 @@
+import { html } from "lit-element";
+
 export const listIssues = () => {
-  return;
+  return html``;
 };
