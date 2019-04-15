@@ -7,6 +7,7 @@ import { BeforeRender } from "../../mixins/BeforeRender";
 import GlobalStyle from "../../GlobalStyle";
 import Style from "./Style";
 import { populationByState } from "../CitySDK/CitySDK";
+import MaterialColor from "random-material-color";
 
 @customElement("demo-component")
 export class Demo extends BeforeRender(LitElement) {
@@ -16,14 +17,16 @@ export class Demo extends BeforeRender(LitElement) {
   public render() {
     return html`
       ${until(
-        populationByState().then((_data) => {
+        populationByState().then((_data: any) => {
           const labels = [];
           const values = [];
           _data.map((state: any) => {
             labels.push(state.name);
             values.push(state.population);
           });
-          const data = { data: values, labels };
+          const colors = [];
+          labels.map(() => colors.push(MaterialColor.getColor()));
+          const data = { data: values, labels, backgroundColor: colors };
           return html`
             <chart-js .data=${data}></chart-js>
           `;

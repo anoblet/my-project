@@ -34,7 +34,7 @@ export class ChartJS extends LitElement {
   }
 
   public async createChart() {
-    const { data, labels } = this.data;
+    const { backgroundColor, data, labels } = this.data;
     const chart: any = this.shadowRoot.querySelector("#myChart");
     const ctx = chart.getContext("2d");
     this.chart = new Chart(ctx, {
@@ -45,9 +45,7 @@ export class ChartJS extends LitElement {
           {
             label: "Population",
             data,
-            backgroundColor: "rgba(255, 99, 132, 1)",
-            borderColor: "rgba(255, 159, 64, 1)",
-            borderWidth: 1
+            backgroundColor
           }
         ]
       },
