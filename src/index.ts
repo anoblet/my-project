@@ -9,7 +9,7 @@ import "./components/Grid/Component";
 import "./components/Loading/Component";
 import "./components/ContextMenu/MenuComponent";
 import "./components/Breadcrumb/Component";
-import "./components/VoiceComponent";
+import "./components/Voice/Component";
 import "./components/Button/Component";
 // Firebase
 import "@firebase/app";
