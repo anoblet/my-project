@@ -99,6 +99,9 @@ export class PageStatic extends LitElement {
                 <li>
                   [x] Fix collapse/expand arrows on card (/components/eye-exam)
                 </li>
+                <li>
+                  [] Add featured themes
+                </li>
               </ul>
             </card-component>
           `
