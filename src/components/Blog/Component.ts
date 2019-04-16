@@ -21,7 +21,6 @@ export class Blog extends LitElement {
     }).then((collection: any) => {
       this.posts = collection;
     });
-    // await new Promise((resolve: any) => console.log("hi"));
   }
 
   public static styles = [GlobalStyle, Style];
