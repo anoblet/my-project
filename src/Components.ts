@@ -94,5 +94,11 @@ export const components = [
     src: () =>
       import(/* webpackChunkName: "CitySDK" */ "./components/CitySDK/Component"),
     tag: "city-sdk"
+  },
+  {
+    label: "JSON Editor",
+    src: () =>
+      import(/* webpackChunkName: "JSONEditor" */ "./components/JSONEditor/Component"),
+    tag: "json-editor"
   }
 ];
