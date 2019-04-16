@@ -1,9 +1,8 @@
 import { LitElement, customElement, property } from "lit-element";
 
-import Template from "./Template";
-import Style from "./Style";
 import GlobalStyle from "../../GlobalStyle";
-
+import Style from "./Style";
+import Template from "./Template";
 import { getPosition } from "./Lib";
 
 @customElement("location-component")
@@ -12,12 +11,11 @@ export class Location extends LitElement {
   @property() public longitude: string;
   @property() public locationChanged: ({ latitude, longitude }) => any;
 
-  static get styles() {
-    return [GlobalStyle, Style];
-  }
+  public static styles = [GlobalStyle, Style];
+  public template = Template;
 
   public render() {
-    return Template.bind(this)();
+    return this.template.bind(this)();
   }
 
   public updated(changedProperties: any) {
