@@ -4,14 +4,14 @@ export default css`
   .loader,
   .loader:before,
   .loader:after {
-    background: var(--secondary-color);
+    background: var(--link-color);
     -webkit-animation: load1 1s infinite ease-in-out;
     animation: load1 1s infinite ease-in-out;
     width: 1em;
     height: 4em;
   }
   .loader {
-    color: var(--secondary-color);
+    color: var(--link-color);
     text-indent: -9999em;
     margin: 88px auto;
     position: relative;

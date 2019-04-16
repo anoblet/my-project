@@ -29,7 +29,7 @@ export class LoadingComponent extends LitElement {
 
   public render() {
     return html`
-      <div class="loader">Test</div>
+      <div class="loader"></div>
     `;
   }
 }
