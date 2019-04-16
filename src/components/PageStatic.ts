@@ -86,24 +86,25 @@ export class PageStatic extends LitElement {
               <card-component title="Patreon">
                 <patreon-component></patreon-component>
               </card-component>
+              <card-component title="Outstanding issues">
+                <ul>
+                  <li>
+                    [ ] Route "/user-settings" is broken for anonymous/guest
+                  </li>
+                  <li>
+                    [ ] Function /user-theme/randomTheme" Is broken for
+                    anonymous/guest
+                  </li>
+                  <li>
+                    [x] Fix collapse/expand arrows on card
+                    (/components/eye-exam)
+                  </li>
+                  <li>
+                    [] Add featured themes
+                  </li>
+                </ul>
+              </card-component>
             </grid-component>
-            <card-component title="Outstanding issues">
-              <ul>
-                <li>
-                  [ ] Route "/user-settings" is broken for anonymous/guest
-                </li>
-                <li>
-                  [ ] Function /user-theme/randomTheme" Is broken for
-                  anonymous/guest
-                </li>
-                <li>
-                  [x] Fix collapse/expand arrows on card (/components/eye-exam)
-                </li>
-                <li>
-                  [] Add featured themes
-                </li>
-              </ul>
-            </card-component>
           `
         : ""}
     `;
