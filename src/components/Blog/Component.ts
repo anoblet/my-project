@@ -9,8 +9,10 @@ import { getCollection } from "../../Firebase";
 export class Blog extends LitElement {
   @property() public posts: any = [];
   public static styles = [GlobalStyle, Style];
+  public template = Template;
+
   public render() {
-    return Template.bind(this)();
+    return this.template.bind(this)();
   }
 
   public async beforeRender() {
