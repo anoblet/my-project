@@ -131,4 +131,8 @@ export default css`
     /* Support for IE. */
     font-feature-settings: "liga";
   }
+
+  h3 {
+    color: var(--h3-color);
+  }
 `;

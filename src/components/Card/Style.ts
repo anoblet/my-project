@@ -20,7 +20,6 @@ export default css`
     align-items: center;
     margin-block-start: 0;
     margin-block-end: 0;
-    color: var(--secondary-color);
   }
 
   ::slotted([slot="content"]) {

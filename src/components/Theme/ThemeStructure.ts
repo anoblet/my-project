@@ -64,5 +64,11 @@ export const themeStructure = [
     property: "gridGap",
     varName: "--grid-gap",
     type: "size"
+  },
+  {
+    label: "H3 color",
+    property: "h3Color",
+    varName: "--h3-color",
+    type: "color"
   }
 ];
