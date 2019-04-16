@@ -80,7 +80,7 @@ export class PageStatic extends LitElement {
                 <a href="/performance">Performance</a>
               </card-component>
               <card-component title="Heroes">
-                @justin @bennyp @lars @westbrook @john @captaincodeman
+                @justin @bennyp @dakMoR @lars @westbrook @john @captaincodeman
               </card-component>
               <card-component title="Open WC">
                 Best guys in the game:
