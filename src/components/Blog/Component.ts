@@ -8,9 +8,13 @@ import { getCollection } from "../../Firebase";
 @customElement("blog-component")
 export class Blog extends LitElement {
   @property() public posts: any = [];
+  public static styles = [GlobalStyle, Style];
+  public render() {
+    return Template.bind(this)();
+  }
 
   public async beforeRender() {
-    await getCollection({
+    this.posts = await getCollection({
       path: "posts",
       orderBy: "sortOrder",
       where: {
@@ -18,14 +22,6 @@ export class Blog extends LitElement {
         operator: "===",
         value: true
       }
-    }).then((collection: any) => {
-      this.posts = collection;
     });
-  }
-
-  public static styles = [GlobalStyle, Style];
-
-  public render() {
-    return Template.bind(this)();
   }
 }
