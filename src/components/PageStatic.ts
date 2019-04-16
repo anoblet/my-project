@@ -79,6 +79,9 @@ export class PageStatic extends LitElement {
                 new on our <a href="/blog">Blog</a> See the
                 <a href="/performance">Performance</a>
               </card-component>
+              <card-component title="Heroes">
+                @justin @bennyp @lars @westbrook @john
+              </card-component>
               <card-component title="Open WC">
                 Best guys in the game:
                 <a href="https://open-wc.org/">Open WC</a>
