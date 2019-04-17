@@ -19,6 +19,7 @@ export const enable = () => {
 
 export const disable = () => {
   annyang.abort();
+  // This does not work on current versions of Chrome
   annyang.getSpeechRecognizer().stop();
 };
 
