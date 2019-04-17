@@ -77,17 +77,8 @@ export class PageStatic extends LitElement {
               <card-component title="Welcome">
                 Check out our <a href="/components">Components</a> See what's
                 new on our <a href="/blog">Blog</a> See the
-                <a href="/performance">Performance</a> Empty cache and hard reload is needed to see new content
-              </card-component>
-              <card-component title="Heroes">
-                @justin @bennyp @dakMoR @lars @westbrook @john @captaincodeman
-              </card-component>
-              <card-component title="Open WC">
-                Best guys in the game:
-                <a href="https://open-wc.org/">Open WC</a>
-              </card-component>
-              <card-component title="Patreon">
-                <patreon-component></patreon-component>
+                <a href="/performance">Performance</a> Empty cache and hard
+                reload is needed to see new content
               </card-component>
               <card-component title="Outstanding issues">
                 <ul>
@@ -106,6 +97,16 @@ export class PageStatic extends LitElement {
                     [] Add featured themes
                   </li>
                 </ul>
+              </card-component>
+              <card-component title="Open WC">
+                Best guys in the game:
+                <a href="https://open-wc.org/">Open WC</a>
+              </card-component>
+              <card-component title="Hero's (Plural)">
+                @justin @bennyp @dakMoR @lars @westbrook @john @captaincodeman
+              </card-component>
+              <card-component title="Patreon">
+                <patreon-component></patreon-component>
               </card-component>
             </grid-component>
           `
