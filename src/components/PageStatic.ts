@@ -77,7 +77,7 @@ export class PageStatic extends LitElement {
               <card-component title="Welcome">
                 Check out our <a href="/components">Components</a> See what's
                 new on our <a href="/blog">Blog</a> See the
-                <a href="/performance">Performance</a>
+                <a href="/performance">Performance</a> Empty cache and hard reload is needed to see new content
               </card-component>
               <card-component title="Heroes">
                 @justin @bennyp @dakMoR @lars @westbrook @john @captaincodeman
