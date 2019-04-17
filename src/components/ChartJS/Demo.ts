@@ -16,25 +16,28 @@ export class Demo extends BeforeRender(LitElement) {
 
   public render() {
     return html`
-      ${until(
-        populationByState().then((_data: any) => {
-          const labels = [];
-          const values = [];
-          _data.map((state: any) => {
-            labels.push(state.name);
-            values.push(state.population);
-          });
-          const colors = [];
-          labels.map(() => colors.push(MaterialColor.getColor()));
-          const data = { data: values, labels, backgroundColor: colors };
-          return html`
-            <chart-js .data=${data}></chart-js>
-          `;
-        }),
-        html`
-          Please wait for the data to load...
-        `
-      )}
+      <card-component>
+        <div slot="title">Population by state</div>
+        ${until(
+          populationByState().then((_data: any) => {
+            const labels = [];
+            const values = [];
+            _data.map((state: any) => {
+              labels.push(state.name);
+              values.push(state.population);
+            });
+            const colors = [];
+            labels.map(() => colors.push(MaterialColor.getColor()));
+            const data = { data: values, labels, backgroundColor: colors };
+            return html`
+              <chart-js .data=${data}></chart-js>
+            `;
+          }),
+          html`
+            Please wait for the data to load...
+          `
+        )}
+      </card-component>
     `;
   }
 }
