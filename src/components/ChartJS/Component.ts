@@ -12,9 +12,10 @@ export class ChartJS extends LitElement {
   public data: any;
   public chart: Chart;
   public static styles = [GlobalStyle, Style];
+  public template = Template;
 
   public render() {
-    return Template.bind(this)();
+    return this.template.bind(this)();
   }
 
   public firstUpdated() {
