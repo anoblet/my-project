@@ -101,11 +101,10 @@ export class PageStatic extends LitElement {
               <card-component title="Open WC">
                 Best guys in the game:
                 <a href="https://open-wc.org/">Open WC</a>
-              </card-component
-              <card-component title="Heroes">
-                The starlight(lit*) team
-                @justin @bennyp @dakMoR @lars @westbrook @john @captaincodeman
               </card-component>
+              <!-- <card-component title="Heroes"> -->
+                <!-- @justin @bennyp @dakMoR @lars @westbrook @john @captaincodeman -->
+              <!-- </card-component> -->
               <card-component title="Patreon">
                 <patreon-component></patreon-component>
               </card-component>

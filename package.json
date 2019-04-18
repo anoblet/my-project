@@ -29,6 +29,7 @@
     "html-loader": "^0.5.5",
     "jsoneditor": "^5.32.4",
     "lit-element": "^2.0.1",
+    "markdown-loader": "^5.0.0",
     "marked": "^0.6.0",
     "material-design-icons": "^3.0.1",
     "object-path": "^0.11.4",
