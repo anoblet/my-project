@@ -1,6 +1,8 @@
 import { LitElement, css, customElement, html } from "lit-element";
+import { unsafeHTML } from "lit-html/directives/unsafe-html";
 import GlobalStyle from "../GlobalStyle";
 import "./PatreonComponent";
+const readme = require("../../README.md");
 
 const Style = css`
   :host {
@@ -33,7 +35,7 @@ const Style = css`
   }
 `;
 
-const version = () => 1;
+const version = () => 3;
 
 @customElement("page-static")
 export class PageStatic extends LitElement {
@@ -41,6 +43,7 @@ export class PageStatic extends LitElement {
 
   public render() {
     return html`
+      ${unsafeHTML(readme)}
       ${version() === 2
         ? html`
             <grid-component style="grid-template-columns: repeat(3, 1fr)">
@@ -103,7 +106,7 @@ export class PageStatic extends LitElement {
                 <a href="https://open-wc.org/">Open WC</a>
               </card-component>
               <!-- <card-component title="Heroes"> -->
-                <!-- @justin @bennyp @dakMoR @lars @westbrook @john @captaincodeman -->
+              <!-- @justin @bennyp @dakMoR @lars @westbrook @john @captaincodeman -->
               <!-- </card-component> -->
               <card-component title="Patreon">
                 <patreon-component></patreon-component>
