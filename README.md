@@ -1,4 +1,5 @@
-# my-app
+# my-project
+
 Prelim tasks:
   npm i
 
