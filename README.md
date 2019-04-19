@@ -28,3 +28,6 @@ npm i
 - [x] themes
 - [ ] rxfire (Delayed/deferred - Current implementation already achieves async)
 - [ ] achieve index.html entrypoint status (@open-wc)
+
+### Shoutouts
+@justin @open-wc @bennyp @dakMoR @lars @westbrook @john @captaincodeman
