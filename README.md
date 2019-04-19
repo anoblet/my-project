@@ -28,7 +28,7 @@ npm i
 - [x] themes
 - [ ] index.html entrypoint
 - [ ] Add in-line icons to external links
-- [ ] rxfire (Delayed/deferred - Already have async / merging streams isn't needed)
+- [ ] rxfire (Delayed/deferred - Async / merging streams isn't needed)
 
 ### Special thanks to
 
