@@ -27,7 +27,8 @@ npm i
 - [x] firebase auth
 - [x] themes
 - [ ] rxfire (Delayed/deferred - Current implementation already achieves async)
-- [ ] achieve index.html entrypoint status (@open-wc)
+- [ ] index.html entrypoint
+- [ ] Add in-line icons to external links
 
 ### [Open-WC](https://open-wc.org)
 
