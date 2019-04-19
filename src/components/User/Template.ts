@@ -9,7 +9,9 @@ export default () => {
       <div slot="content">
         ${false && isSignedIn()
           ? html`
-              <button-component> raised @click="${signOut}">Sign out</button-component>
+              <button-component>
+                raised @click="${signOut}">Sign out</button-component
+              >
             `
           : html`
               ${until(getForm())}

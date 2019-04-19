@@ -1,7 +1,9 @@
 import { css } from "lit-element";
 
 export default css`
-  *, *::before, *::after {
+  *,
+  *::before,
+  *::after {
     contain: content;
   }
 
@@ -134,5 +136,9 @@ export default css`
 
   h3 {
     color: var(--h3-color);
+  }
+
+  h3 a {
+    color: var(--link-color);
   }
 `;
