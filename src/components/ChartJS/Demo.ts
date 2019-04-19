@@ -1,6 +1,6 @@
 import "./Component";
 
-import { LitElement, customElement, html } from "lit-element";
+import { LitElement, css, customElement, html } from "lit-element";
 import { until } from "lit-html/directives/until";
 
 import { BeforeRender } from "../../mixins/BeforeRender";
@@ -11,7 +11,15 @@ import MaterialColor from "random-material-color";
 
 @customElement("demo-component")
 export class Demo extends BeforeRender(LitElement) {
-  public static styles = [GlobalStyle, Style];
+  public static styles = [
+    GlobalStyle,
+    Style,
+    css`
+      ::part(content-container) {
+        overflow-x: hidden;
+      }
+    `
+  ];
   public data: any;
 
   public render() {
