@@ -3,7 +3,7 @@ import { LitElement, customElement } from "lit-element";
 import Template from "./Template";
 import Style from "./Style";
 import { config } from "../../../config";
-import uiStyle from "./FirebaseUIStyle";
+import FirebaseUIStyle from "./FirebaseUIStyle";
 
 export const getForm = () =>
   Promise.all([
@@ -24,15 +24,13 @@ export const getForm = () =>
 
 @customElement("user-component")
 export class UserComponent extends LitElement {
-  public async getForm() {
-    return getForm();
-  }
-
-  static get styles() {
-    return [uiStyle, Style];
-  }
-
+  public static styles = [FirebaseUIStyle, Style];
+  public template = Template;
   public render() {
-    return Template.bind(this)();
+    return this.template.bind(this)();
+  }
+
+  public async getForm() {
+    return await getForm();
   }
 }
