@@ -8,7 +8,8 @@ Install
 
 ```
 git clone https://github.com/anoblet/my-project
-cd my-project && npm i
+cd my-project
+npm i
 ```
 
 Scaffolding includes:
