@@ -30,8 +30,6 @@ npm i
 - [ ] Add in-line icons to external links
 - [ ] rxfire (Delayed/deferred - Already have async / merging streams isn't needed)
 
-### [Open-WC](https://open-wc.org)
+### Special thanks to
 
-### Shoutouts
-
-@justin @open-wc @bennyp @dakMoR @lars @westbrook @john @captaincodeman
+@justin @open-wc @bennyp @dakMoR @lars @westbrook @john @captaincodeman  [Polymer Slack](https://polymer.slack.com/messages/general/), [Open-WC](https://open-wc.org) and the whole polymer community!
