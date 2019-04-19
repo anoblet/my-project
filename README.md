@@ -32,4 +32,6 @@ npm i
 
 ### Special thanks to
 
-@justin @open-wc @bennyp @dakMoR @lars @westbrook @john @captaincodeman  [Polymer Slack](https://polymer.slack.com/messages/general/), [Open-WC](https://open-wc.org) and the whole polymer community!
+  [Polymer Slack](https://polymer.slack.com/messages/general/), [Open-WC](https://open-wc.org) and the whole polymer community!
+
+  @justin @open-wc @bennyp @dakMoR @lars @westbrook @john @captaincodeman
