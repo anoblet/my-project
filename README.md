@@ -32,8 +32,6 @@ npm i
 
 ### [Open-WC](https://open-wc.org)
 
-@justin @open-wc @bennyp @dakMoR @lars @westbrook @john @captaincodeman
-
 ### Shoutouts
 
 @justin @open-wc @bennyp @dakMoR @lars @westbrook @john @captaincodeman
