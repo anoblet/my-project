@@ -9,7 +9,7 @@ export default () => {
       <div slot="content">
         ${false && isSignedIn()
           ? html`
-              <mwc-button raised @click="${signOut}">Sign out</mwc-button>
+              <button-component> raised @click="${signOut}">Sign out</button-component>
             `
           : html`
               ${until(getForm())}
