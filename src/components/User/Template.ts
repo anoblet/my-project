@@ -1,12 +1,12 @@
-import { html } from "lit-element";
-import { isSignedIn } from "../../User";
-import { signOut } from "../../User";
-import { until } from "lit-html/directives/until";
+import { isSignedIn, signOut } from "../../User";
+
 import { getForm } from "./Component";
+import { html } from "lit-element";
+import { until } from "lit-html/directives/until";
 
 export default () => {
   return html`
-    <card-component grow>
+    <card-component>
       <div slot="content">
         ${isSignedIn()
           ? html`
