@@ -1,10 +1,6 @@
 # my-project
 
-- [Components](https://my-project-75792.firebaseapp.com/components)
-- [Performance](https://my-project-75792.firebaseapp.com/performance)
-- [Blog](https://my-project-75792.firebaseapp.com/blog)
-
-Install
+### Install
 
 ```
 git clone https://github.com/anoblet/my-project
@@ -12,13 +8,19 @@ cd my-project
 npm i
 ```
 
-Scaffolding includes:
+### Links
+
+- [Components](https://my-project-75792.firebaseapp.com/components)
+- [Performance](https://my-project-75792.firebaseapp.com/performance)
+- [Blog](https://my-project-75792.firebaseapp.com/blog)
+
+### Scaffolding includes:
 
 - Generic redux action/reducers
 - Installable as an app
 - Separation of concerns -- seperate templates/styles
 
-To do:
+### To do:
 
 - [x] css tag
 - [x] < 1 second load time
