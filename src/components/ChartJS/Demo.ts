@@ -12,9 +12,11 @@ import MaterialColor from "random-material-color";
 @customElement("demo-component")
 export class Demo extends BeforeRender(LitElement) {
   public static styles = [
-    GlobalStyle,
-    Style,
     css`
+      :host {
+        flex: 1;
+      }
+
       ::part(content-container) {
         overflow-x: hidden;
       }
