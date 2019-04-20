@@ -5,7 +5,7 @@ export default css`
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 1em;
+    padding: .5em;
     box-shadow: var(--box-shadow);
   }
 
