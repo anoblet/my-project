@@ -100,5 +100,11 @@ export const components = [
     src: () =>
       import(/* webpackChunkName: "JSONEditor" */ "./components/JSONEditor/Component"),
     tag: "json-editor"
+  },
+  {
+    label: "Pomodoro",
+    src: () =>
+      import(/* webpackChunkName: "Pomodoro" */ "./components/Pomodoro/Component"),
+    tag: "pomodoro-editor"
   }
 ];
