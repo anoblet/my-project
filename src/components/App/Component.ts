@@ -20,13 +20,11 @@ import { user } from "../../User";
 
 @customElement("app-component")
 export class App extends LitElement {
-  public static styles = [GlobalStyle, Style];
   public static properties = Properties;
+  public static styles = [GlobalStyle, Style];
   public template = Template;
+  public render = this.template.bind(this);
 
-  public render() {
-    return this.template.bind(this)();
-  }
   @property({ type: Boolean })
   public taskPending = true;
   @property({ reflect: true, attribute: "drawer-opened", type: Boolean })
@@ -63,8 +61,7 @@ export class App extends LitElement {
   }
 
   public async beforeRender() {
-    const test = await db.initApp(config.firebase);
-    console.log(test);
+    await db.initApp(config.firebase);
     if (config.globalSettings) {
       debug.log("Getting app level settings");
       await getAppSettings((document: any) => {
