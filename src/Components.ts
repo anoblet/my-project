@@ -105,6 +105,6 @@ export const components = [
     label: "Pomodoro",
     src: () =>
       import(/* webpackChunkName: "Pomodoro" */ "./components/Pomodoro/Component"),
-    tag: "pomodoro-editor"
+    tag: "pomodoro-component"
   }
 ];
