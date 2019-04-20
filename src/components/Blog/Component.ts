@@ -7,13 +7,13 @@ import { getCollection } from "../../Firebase";
 
 @customElement("blog-component")
 export class Blog extends LitElement {
-  @property() public posts: any = [];
   public static styles = [GlobalStyle, Style];
   public template = Template;
-
   public render() {
     return this.template.bind(this)();
   }
+
+  @property() public posts: any = [];
 
   public async beforeRender() {
     this.posts = await getCollection({
