@@ -8,7 +8,7 @@ import listThemes from "./ListThemes";
 import saveThemeTemplate from "./SaveTheme";
 import { store } from "../../Store";
 import themeEdit from "./ThemeEdit";
-import { themeStructure } from "./ThemeStructure";
+import { themeStructure } from "./Structure";
 import { toggleDark } from "./ToggleDark";
 import { toggleShadow } from "./ToggleShadow";
 import { isSignedIn } from "../../User";
