@@ -8,18 +8,19 @@ import Template from "./Template";
 export class CardComponent extends LitElement {
   @property({ type: Boolean, reflect: true }) public collapsed: boolean = false;
   @property({ type: Boolean }) public collapsible: boolean = false;
+  public template = Template;
 
   @query("#title") public _title: Element;
-
-  public firstUpdated(changedProperties: any) {
-    super.firstUpdated(changedProperties);
-    this.addListeners();
-  }
 
   public static styles = [GlobalStyle, Style];
 
   public render() {
-    return Template.bind(this)();
+    return this.template.bind(this)();
+  }
+
+  public firstUpdated(changedProperties: any) {
+    super.firstUpdated(changedProperties);
+    this.addListeners();
   }
 
   protected addListeners() {
