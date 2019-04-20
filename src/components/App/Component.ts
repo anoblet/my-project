@@ -20,6 +20,13 @@ import { user } from "../../User";
 
 @customElement("app-component")
 export class App extends LitElement {
+  public static styles = [GlobalStyle, Style];
+  public static properties = Properties;
+  public template = Template;
+
+  public render() {
+    return this.template.bind(this)();
+  }
   @property({ type: Boolean })
   public taskPending = true;
   @property({ reflect: true, attribute: "drawer-opened", type: Boolean })
@@ -108,16 +115,6 @@ export class App extends LitElement {
     installOfflineWatcher((offline: boolean) => {
       if (offline) toast("Offline");
     });
-  }
-
-  static get properties() {
-    return Properties;
-  }
-
-  public static styles = [GlobalStyle, Style];
-
-  public render() {
-    return Template.bind(this)();
   }
 
   public media() {
