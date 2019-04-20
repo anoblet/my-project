@@ -21,6 +21,7 @@ export class Demo extends BeforeRender(LitElement) {
     `
   ];
   @property() public vintage: string = "2017";
+  @property() public type: string = "bar";
 
   public render() {
     return html`
@@ -30,6 +31,12 @@ export class Demo extends BeforeRender(LitElement) {
           value=${this.vintage}
           @input=${(e: any) => {
             this.vintage = e.target.value;
+          }}
+        />
+        <input
+          value=${this.type}
+          @input=${(e: any) => {
+            this.type = e.target.value;
           }}
         />
         ${until(
@@ -44,7 +51,7 @@ export class Demo extends BeforeRender(LitElement) {
             labels.map(() => colors.push(MaterialColor.getColor()));
             const data = { data: values, labels, backgroundColor: colors };
             return html`
-              <chart-js .data=${data}></chart-js>
+              <chart-js .data=${data} .type=${this.type}></chart-js>
             `;
           }),
           html`
