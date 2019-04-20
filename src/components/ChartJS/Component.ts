@@ -1,4 +1,4 @@
-import { LitElement, customElement } from "lit-element";
+import { LitElement, customElement, property } from "lit-element";
 
 import Chart from "chart.js";
 import GlobalStyle from "../../GlobalStyle";
@@ -13,6 +13,7 @@ export class ChartJS extends LitElement {
   public chart: Chart;
   public static styles = [GlobalStyle, Style];
   public template = Template;
+  @property() public type = "bar";
 
   public render() {
     return this.template.bind(this)();
@@ -39,7 +40,7 @@ export class ChartJS extends LitElement {
     const chart: any = this.shadowRoot.querySelector("#myChart");
     const ctx = chart.getContext("2d");
     this.chart = new Chart(ctx, {
-      type: "bar",
+      type: this.type,
       data: {
         labels,
         datasets: [
