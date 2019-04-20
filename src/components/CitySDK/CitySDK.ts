@@ -19,10 +19,10 @@ export const getFIPS = ({ latitude, longitude }) =>
     }
   });
 
-export const populationByState = async () => {
+export const populationByState = async (vintage: string) => {
   const states = [];
   const result: any = await censusAsync({
-    vintage: "2017",
+    vintage,
     geoHierarchy: {
       state: "*"
     },

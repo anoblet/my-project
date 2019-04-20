@@ -4,8 +4,6 @@ import { LitElement, css, customElement, html } from "lit-element";
 import { until } from "lit-html/directives/until";
 
 import { BeforeRender } from "../../mixins/BeforeRender";
-import GlobalStyle from "../../GlobalStyle";
-import Style from "./Style";
 import { populationByState } from "../CitySDK/CitySDK";
 import MaterialColor from "random-material-color";
 
@@ -22,14 +20,15 @@ export class Demo extends BeforeRender(LitElement) {
       }
     `
   ];
-  public data: any;
+  public vintage: any;
 
   public render() {
     return html`
       <card-component>
         <div slot="title">Population by state</div>
+        Vintage: <input />
         ${until(
-          populationByState().then((_data: any) => {
+          populationByState(this.vintage).then((_data: any) => {
             const labels = [];
             const values = [];
             _data.map((state: any) => {

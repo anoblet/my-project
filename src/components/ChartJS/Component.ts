@@ -24,7 +24,7 @@ export class ChartJS extends LitElement {
   }
 
   public async getData() {
-    const _data = await populationByState();
+    const _data = await populationByState("2017");
     const labels = [];
     const data = [];
     _data.map((state: any) => {
