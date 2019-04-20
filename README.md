@@ -19,9 +19,9 @@ npm i
 
 ### Uses:
 
-- <a href="/" target="_blank">lit-html</a>
-- <a href="/" target="_blank">lit-element</a>
-- <a href="/" target="_blank">firebase</a>
+- <a href="https://lit-html.polymer-project.org/" target="_blank">lit-html</a>
+- <a href="https://lit-element.polymer-project.org/" target="_blank">lit-element</a>
+- <a href="https://firebase.google.com/" target="_blank">firebase</a>
 
 ### To do:
 
