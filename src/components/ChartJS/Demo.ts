@@ -1,6 +1,6 @@
 import "./Component";
 
-import { LitElement, css, customElement, html } from "lit-element";
+import { LitElement, css, customElement, html, property } from "lit-element";
 import { until } from "lit-html/directives/until";
 
 import { BeforeRender } from "../../mixins/BeforeRender";
@@ -20,13 +20,18 @@ export class Demo extends BeforeRender(LitElement) {
       }
     `
   ];
-  public vintage: any;
+  @property() public vintage: string = "2017";
 
   public render() {
     return html`
       <card-component>
         <div slot="title">Population by state</div>
-        Vintage: <input />
+        <input
+          value=${this.vintage}
+          @input=${(e: any) => {
+            this.vintage = e.target.value;
+          }}
+        />
         ${until(
           populationByState(this.vintage).then((_data: any) => {
             const labels = [];

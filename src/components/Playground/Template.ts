@@ -30,7 +30,7 @@ export default function() {
         <h3 slot="title">Population by state (bar)</h3>
         <div slot="content">
           ${until(
-            populationByState().then((states: any) => {
+            populationByState("2017").then((states: any) => {
               const mapArray = states.map(function(obj) {
                 return Object.keys(obj)
                   .sort()
@@ -56,7 +56,7 @@ export default function() {
         <h3 slot="title">Population by state (table)</h3>
         <grid-component columns="2">
           ${until(
-            populationByState().then(
+            populationByState("2017").then(
               (states: any) =>
                 html`
                   ${states.map(
