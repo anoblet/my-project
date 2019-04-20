@@ -7,7 +7,7 @@ export default css`
     justify-content: center;
     background: inherit;
     border: 1px solid var(--primary-color);
-    padding: var(--padding);
+    padding: var(--button-padding, 1em);
     color: var(--button-color);
     border-radius: var(--border-radius);
   }
