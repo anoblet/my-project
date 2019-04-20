@@ -8,8 +8,5 @@ export class ButtonComponent extends LitElement {
   public static properties = Properties;
   public static styles = Style;
   public template = Template;
-
-  public render() {
-    return this.template.bind(this)();
-  }
+  public render = this.template.bind(this);
 }
