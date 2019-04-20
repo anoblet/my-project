@@ -4,7 +4,7 @@ import Template from "./Template";
 import Properties from "./Properties";
 
 @customElement("pomodoro-component")
-export class ButtonComponent extends LitElement {
+export class Component extends LitElement {
   public static properties = Properties;
   public static styles = Style;
   public template = Template;
