@@ -27,18 +27,19 @@ export class Demo extends BeforeRender(LitElement) {
     return html`
       <card-component>
         <div slot="title">Population by state</div>
-        <input
-          value=${this.vintage}
-          @input=${(e: any) => {
-            this.vintage = e.target.value;
+        <select
+          name="type"
+          @change=${(e: any) => {
+            console.log(e.target.name);
+            console.log(e.target.value);
+            this[e.target.name] = e.target.value;
           }}
-        />
-        <input
-          value=${this.type}
-          @input=${(e: any) => {
-            this.type = e.target.value;
-          }}
-        />
+        >
+          <option value="bar">Bar</option>
+          <option value="line">Line</option>
+          <option value="pie">Pie</option>
+          <option value="radar">Radar</option>
+        </select>
         ${until(
           populationByState(this.vintage).then((_data: any) => {
             const labels = [];
@@ -60,5 +61,9 @@ export class Demo extends BeforeRender(LitElement) {
         )}
       </card-component>
     `;
+  }
+
+  public handleChange(e: any) {
+    this[e.target.name] = e.target.value;
   }
 }
