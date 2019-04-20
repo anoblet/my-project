@@ -17,6 +17,12 @@ npm i
 - Generic Redux actions/reducers
 - Separation of concerns -- seperate templates/styles
 
+### Uses:
+
+- <a href="/" target="_blank">lit-html</a>
+- <a href="/" target="_blank">lit-element</a>
+- <a href="/" target="_blank">firebase</a>
+
 ### To do:
 
 - [x] pwa
