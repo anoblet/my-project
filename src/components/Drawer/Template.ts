@@ -8,6 +8,11 @@ export default function() {
         <ul>
           <li><a href="/">Home</a></li>
           <li><a href="/blog">Blog</a></li>
+          <li>
+            <a href="https://github.com/anoblet/docs" target="_blank"
+              >Documentation</a
+            >
+          </li>
           <li><a href="/components">Components</a></li>
           <li><a href="/contact">Contact</a></li>
           <li><a href="/performance">Performance</a></li>
