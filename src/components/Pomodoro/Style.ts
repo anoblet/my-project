@@ -6,8 +6,25 @@ export default css`
     flex-direction: column;
   }
 
-  :host #input {
+  :host > grid-component > * {
     display: flex;
     justify-content: center;
+  }
+
+  :host #input {
+    justify-content: center;
+  }
+
+  input {
+    border: 0;
+    border-bottom: 1px solid #fff;
+    background: inherit;
+    padding: 1em;
+    color: var(--text-color);
+    text-align: center;
+  }
+
+  input:focus {
+    outline: none;
   }
 `;
