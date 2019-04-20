@@ -1,4 +1,4 @@
-import { LitElement, customElement, property } from "lit-element";
+import { LitElement, customElement } from "lit-element";
 import Style from "./Style";
 import Template from "./Template";
 import Properties from "./Properties";
