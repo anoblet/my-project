@@ -8,9 +8,9 @@ npm i
 
 ### Links
 
-- [Components](https://my-project-75792.firebaseapp.com/components)
-- [Performance](https://my-project-75792.firebaseapp.com/performance)
-- [Blog](https://my-project-75792.firebaseapp.com/blog)
+- [Components](/components)
+- [Performance](/performance)
+- [Blog](/blog)
 
 ### Scaffolding:
 
