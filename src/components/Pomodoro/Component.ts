@@ -29,4 +29,9 @@ export class Component extends LitElement {
     clearInterval(this._interval);
     this._interval = false;
   }
+
+  public reset() {
+    clearInterval(this._interval);
+    this.timeleft = 1200;
+  }
 }

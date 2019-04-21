@@ -12,6 +12,9 @@ export default function() {
       <button-component @click=${this._interval ? this.stop : this.start}
         >Start</button-component
       >
+      <button-component @click=${this.reset}
+        >Reset</button-component
+      >
     </div>
     ${this.timeleft}
   `;
