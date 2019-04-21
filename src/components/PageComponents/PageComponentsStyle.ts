@@ -4,5 +4,6 @@ export default css`
   :host {
     flex: 1;
     overflow-x: hidden;
+    contain: initial;
   }
 `;
