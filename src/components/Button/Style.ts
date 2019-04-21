@@ -11,4 +11,8 @@ export default css`
     color: var(--button-color);
     border-radius: var(--border-radius);
   }
+
+  button:hover {
+    color: var(--primary-color);
+  }
 `;
