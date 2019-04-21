@@ -104,6 +104,7 @@ export default css`
 
   #content {
     flex-direction: column;
+    position: relative;
   }
 
   mwc-icon {
