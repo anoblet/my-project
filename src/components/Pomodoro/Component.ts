@@ -9,4 +9,19 @@ export class Component extends LitElement {
   public static styles = Style;
   public template = Template;
   public render = this.template.bind(this);
+
+  public timeleft = 1200;
+
+  public getMinutes() {
+    return Math.floor(this.timeleft / 60);
+  }
+
+  public getSeconds() {
+    const minutes = this.getMinutes();
+    return this.timeleft - minutes * 60;
+  }
+
+  public start() {
+    setInterval(() => this.timeleft--, 1000);
+  }
 }
