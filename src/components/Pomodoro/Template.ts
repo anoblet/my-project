@@ -2,7 +2,9 @@ import { html } from "lit-element";
 
 export default function() {
   return html`
-    ${steps.bind(this)()}
+    <div>
+      ${steps.bind(this)()}
+    </div>
     <div id="input">
       <grid-component columns="2">
         <input name="minutes" type="text" value=${this._minutes} />
@@ -25,7 +27,9 @@ const steps = function() {
     ${this.steps.map(
       (step: any, index: number) =>
         html`
-          ${step.label}
+          <span class=${index === this._currentStep ? "active" : ""}
+            >${step.label}</span
+          >
         `
     )}
   `;

@@ -22,6 +22,7 @@ export class Component extends LitElement {
     { label: "focus", length: 1200 },
     { label: "break", length: 300 }
   ];
+  protected _currentStep: number = 0;
 
   public get _minutes() {
     return Math.floor(this.timeleft / 60);
