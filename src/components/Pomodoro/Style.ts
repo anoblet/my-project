@@ -62,4 +62,8 @@ export default css`
     display: flex;
     align-items: center;
   }
+
+  [active] {
+    color: var(--primary-color);
+  }
 `;

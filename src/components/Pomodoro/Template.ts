@@ -47,8 +47,16 @@ const modes = function() {
   console.log(this);
   return html`
     <grid-component columns="2">
-      <span ?active=${this._currentMode === "focus"} @click=${() => this.selectMode("focus")}>Focus</span>
-      <span ?active=${this._currentMode === "break"} @click=${() => this.selectMode("break")}>Break</span>
+      <span
+        ?active=${this._currentMode === "focus"}
+        @click=${() => this.selectMode("focus")}
+        >Focus</span
+      >
+      <span
+        ?active=${this._currentMode === "break"}
+        @click=${() => this.selectMode("break")}
+        >Break</span
+      >
     </grid-component>
   `;
 };
