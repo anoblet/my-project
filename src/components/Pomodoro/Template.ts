@@ -47,7 +47,7 @@ const modes = function() {
   return html`
     <grid-component columns="2">
       <span @click=${() => this.setMode("focus")}>Focus</span>
-      <span @click=${() => this.selectStep("break")}>Break</span>
+      <span @click=${() => this.setMode("break")}>Break</span>
     </grid-component>
   `;
 };
