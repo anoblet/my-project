@@ -2,13 +2,17 @@ import { html } from "lit-element";
 
 export default function() {
   return html`
-    <div>
+    <div id="modes">
       ${modes.bind(this)()}
     </div>
     <div flex-grow>
       <grid-component columns="2">
-        <input name="minutes" type="text" value=${this._minutes} />
-        <input name="seconds" type="text" value=${this._seconds} />
+        <span
+          ><input name="minutes" type="text" value="${this._minutes}"
+        /></span>
+        <span
+          ><input name="seconds" type="text" value="${this._seconds}"
+        /></span>
       </grid-component>
     </div>
     <div flex-grow>

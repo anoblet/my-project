@@ -52,6 +52,14 @@ export default css`
   }
 
   grid-component {
-    flex: 1;
+  }
+
+  #modes grid-component > * {
+    text-align: center;
+  }
+
+  span {
+    display: flex;
+    align-items: center;
   }
 `;
