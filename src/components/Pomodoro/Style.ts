@@ -42,4 +42,8 @@ export default css`
   input:focus {
     outline: none;
   }
+
+  .active {
+    color: var(--primary-color);
+  }
 `;
