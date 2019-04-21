@@ -9,6 +9,7 @@ export default function() {
       </grid-component>
     </div>
     <div>
+    <grid-component columns="2">
       <button-component @click=${this._interval ? this.stop : this.start}
         >Start</button-component
       >
@@ -16,6 +17,7 @@ export default function() {
         >Reset</button-component
       >
     </div>
+    </grid-component>
     ${this.timeleft}
   `;
 }
