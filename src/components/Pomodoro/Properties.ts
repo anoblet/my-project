@@ -1,4 +1,1 @@
-export default {
-  label: { type: String },
-  theme: { type: String }
-};
+export default {};
