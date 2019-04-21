@@ -66,4 +66,8 @@ export default css`
   [active] {
     color: var(--primary-color);
   }
+
+  button-component {
+    --border-color: var(--background-color);
+  }
 `;
