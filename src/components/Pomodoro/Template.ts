@@ -18,7 +18,13 @@ export default function() {
     <div flex-grow>
       <grid-component>
         <button-component @click=${this._interval ? this.stop : this.start}
-          >${this._interval ? html`Pause` : html`Start`}</button-component
+          >${this._interval
+            ? html`
+                Pause
+              `
+            : html`
+                Start
+              `}</button-component
         >
       </grid-component>
     </div>
