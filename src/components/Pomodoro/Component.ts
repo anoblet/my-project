@@ -12,6 +12,16 @@ export class Component extends LitElement {
 
   public timeleft = 1200;
   public _interval: any;
+  public steps = [
+    { label: "focus", length: 1200 },
+    { label: "break", length: 300 },
+    { label: "focus", length: 1200 },
+    { label: "break", length: 300 },
+    { label: "focus", length: 1200 },
+    { label: "break", length: 300 },
+    { label: "focus", length: 1200 },
+    { label: "break", length: 300 }
+  ];
 
   public get _minutes() {
     return Math.floor(this.timeleft / 60);
@@ -31,7 +41,7 @@ export class Component extends LitElement {
   }
 
   public reset() {
-    clearInterval(this._interval);
+    this.stop();
     this.timeleft = 1200;
   }
 }
