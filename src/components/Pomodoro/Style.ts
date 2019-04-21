@@ -71,7 +71,7 @@ export default css`
     --border-color: var(--background-color);
   }
 
-  button-component::part(button):focus {
+  button-component::part(button) {
     outline: none;
   }
 `;
