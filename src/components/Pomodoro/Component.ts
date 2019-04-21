@@ -43,5 +43,11 @@ export class Component extends LitElement {
 
   public selectMode(mode: number) {
     this._currentMode = mode;
+    switch (this._currentMode) {
+      case 0:
+        this._timeleft = 1200;
+      case 1:
+        this._timeleft = 300;
+    }
   }
 }
