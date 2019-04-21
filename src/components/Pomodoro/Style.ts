@@ -2,9 +2,23 @@ import { css } from "lit-element";
 
 export default css`
   :host {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
     display: flex;
     flex-direction: column;
-    height: 100%;
+  }
+
+  :host > * {
+    display: flex;
+    flex: 1;
+    justify-content: center;
+  }
+
+  :host > #input {
+    align-items: center;
   }
 
   :host > grid-component > * {
