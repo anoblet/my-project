@@ -14,9 +14,8 @@ export default function() {
             >
           </li>
           <li><a href="/components">Components</a></li>
-          <li><a href="/contact">Contact</a></li>
           <li><a href="/performance">Performance</a></li>
-          <li><a href="/readme">Readme</a></li>
+          <li><a href="/contact">Contact</a></li>
           ${isAdmin()
             ? html`
                 <a href="/admin"><li>Admin</li></a>
