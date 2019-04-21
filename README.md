@@ -5,6 +5,7 @@ git clone https://github.com/anoblet/my-project
 cd my-project
 npm i
 ```
+Copy config.example.ts to config.ts and add Firebase information
 
 ### Links
 
