@@ -45,4 +45,8 @@ export class Component extends LitElement {
     this.stop();
     this.timeleft = 1200;
   }
+
+  public selectStep(step: number) {
+    this._currentStep = step;
+  }
 }

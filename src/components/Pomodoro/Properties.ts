@@ -1,4 +1,5 @@
 export default {
   _interval: {},
-  timeleft: { type: Number }
+  timeleft: { type: Number },
+  _currentStep: { type: Number }
 };

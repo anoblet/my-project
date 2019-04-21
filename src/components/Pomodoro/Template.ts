@@ -28,8 +28,10 @@ const steps = function() {
       ${this.steps.map(
         (step: any, index: number) =>
           html`
-            <span class=${index === this._currentStep ? "active" : ""}
-              @click=${this.selectStep(index)}>${step.label}</span
+            <span
+              class=${index === this._currentStep ? "active" : ""}
+              @click=${() => this.selectStep(index)}
+              >${step.label}</span
             >
           `
       )}
