@@ -13,7 +13,7 @@ export class Component extends LitElement {
   protected _timeleft = 1200;
   protected _interval: any;
   protected _currentStep: number = 0;
-  protected _currentMode: string = "focus";
+  protected _currentMode: number = 0;
 
   public get _minutes() {
     return Math.floor(this._timeleft / 60);
@@ -41,7 +41,7 @@ export class Component extends LitElement {
     this._currentStep = step;
   }
 
-  public selectMode(mode: string) {
+  public selectMode(mode: number) {
     this._currentMode = mode;
   }
 }

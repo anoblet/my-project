@@ -48,13 +48,13 @@ const modes = function() {
   return html`
     <grid-component columns="2">
       <button-component
-        ?active=${this._currentMode === "focus"}
-        @click=${() => this.selectMode("focus")}
+        ?active=${this._currentMode === 0}
+        @click=${() => this.selectMode(0)}
         >Focus</button-component
       >
       <button-component
-        ?active=${this._currentMode === "break"}
-        @click=${() => this.selectMode("break")}
+        ?active=${this._currentMode === 1}
+        @click=${() => this.selectMode(1)}
         >Break</button-component
       >
     </grid-component>
