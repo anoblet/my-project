@@ -13,11 +13,11 @@ export default css`
 
   :host > * {
     display: flex;
-    flex: 1;
     justify-content: center;
   }
 
   :host > #input {
+    flex: 1;
     align-items: center;
   }
 
@@ -45,5 +45,9 @@ export default css`
 
   .active {
     color: var(--primary-color);
+  }
+
+  [flex-grow] {
+    flex: 1;
   }
 `;
