@@ -50,4 +50,8 @@ export default css`
   [flex-grow] {
     flex: 1;
   }
+
+  grid-component {
+    flex: 1;
+  }
 `;
