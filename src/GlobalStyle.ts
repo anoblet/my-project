@@ -1,9 +1,7 @@
 import { css } from "lit-element";
 
 export default css`
-  *,
-  *::before,
-  *::after {
+  :host {
     contain: content;
   }
 
