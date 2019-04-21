@@ -10,18 +10,8 @@ export class Component extends LitElement {
   public template = Template;
   public render = this.template.bind(this);
 
-  public timeleft = 1200;
-  public _interval: any;
-  public steps = [
-    { label: "focus", length: 1200 },
-    { label: "break", length: 300 },
-    { label: "focus", length: 1200 },
-    { label: "break", length: 300 },
-    { label: "focus", length: 1200 },
-    { label: "break", length: 300 },
-    { label: "focus", length: 1200 },
-    { label: "break", length: 300 }
-  ];
+  protected timeleft = 1200;
+  protected _interval: any;
   protected _currentStep: number = 0;
   protected _currentMode: string = "focus";
 
