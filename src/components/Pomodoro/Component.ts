@@ -49,7 +49,6 @@ export class Component extends LitElement {
         break;
       case 1:
         this._timeleft = 300;
-        break;
     }
     console.log(this._timeleft);
   }
