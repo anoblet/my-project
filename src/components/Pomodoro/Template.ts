@@ -44,7 +44,6 @@ const steps = function() {
 };
 
 const modes = function() {
-  console.log(this);
   return html`
     <grid-component columns="2">
       <button-component

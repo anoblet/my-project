@@ -46,8 +46,11 @@ export class Component extends LitElement {
     switch (this._currentMode) {
       case 0:
         this._timeleft = 1200;
+        break;
       case 1:
         this._timeleft = 300;
+        break;
     }
+    console.log(this._timeleft);
   }
 }
