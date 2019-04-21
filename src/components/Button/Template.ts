@@ -8,7 +8,7 @@ export default function() {
       `;
     default:
       return html`
-        <button>${this.label}<slot></slot></button>
+        <button part="button">${this.label}<slot></slot></button>
       `;
   }
 }
