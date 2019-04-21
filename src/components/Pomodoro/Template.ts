@@ -16,11 +16,10 @@ export default function() {
       </grid-component>
     </div>
     <div flex-grow>
-      <grid-component columns="2">
+      <grid-component>
         <button-component @click=${this._interval ? this.stop : this.start}
-          >Start</button-component
+          >${this._interval ? html`Pause` : html`Start`}</button-component
         >
-        <button-component @click=${this.reset}>Reset</button-component>
       </grid-component>
     </div>
   `;
