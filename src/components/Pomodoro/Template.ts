@@ -3,9 +3,9 @@ import { html } from "lit-element";
 export default function() {
   return html`
     <div>
-      ${steps.bind(this)()}
+      ${modes.bind(this)()}
     </div>
-    <div id="input">
+    <div flex-grow>
       <grid-component columns="2">
         <input name="minutes" type="text" value=${this._minutes} />
         <input name="seconds" type="text" value=${this._seconds} />
@@ -35,6 +35,15 @@ const steps = function() {
             >
           `
       )}
+    </grid-component>
+  `;
+};
+
+const modes = function() {
+  return html`
+    <grid-component columns="2">
+      <span @click=${() => this.setMode("focus")}>Focus</span>
+      <span @click=${() => this.selectStep("break")}>Break</span>
     </grid-component>
   `;
 };
