@@ -44,10 +44,11 @@ const steps = function() {
 };
 
 const modes = function() {
+  console.log(this);
   return html`
     <grid-component columns="2">
-      <span @click=${() => this.setMode("focus")}>Focus</span>
-      <span @click=${() => this.setMode("break")}>Break</span>
+      <span @click=${() => this.selectMode("focus")}>Focus</span>
+      <span @click=${() => this.selectMode("break")}>Break</span>
     </grid-component>
   `;
 };
