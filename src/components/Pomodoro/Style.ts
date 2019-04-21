@@ -70,4 +70,8 @@ export default css`
   button-component {
     --border-color: var(--background-color);
   }
+
+  button-component::part(button):focus {
+    outline: none;
+  }
 `;
