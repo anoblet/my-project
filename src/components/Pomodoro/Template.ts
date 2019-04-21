@@ -24,6 +24,7 @@ export default function() {
 
 const steps = function() {
   return html`
+    <grid-component columns="8">
     ${this.steps.map(
       (step: any, index: number) =>
         html`
@@ -32,5 +33,6 @@ const steps = function() {
           >
         `
     )}
+    </grid-component>
   `;
 };
