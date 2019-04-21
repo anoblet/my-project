@@ -5,11 +5,12 @@ export default function() {
     <div id="input">
       <grid-component columns="2">
         <input name="minutes" type="text" value=${this.getMinutes()} />
-        <input name="seconds" type="text" value="00" />
+        <input name="seconds" type="text" value=${this.getMinutes()} />
       </grid-component>
     </div>
     <div>
-      <button-component>Start</button-component>
+      <button-component @click=${this.start}>Start</button-component>
     </div>
+    ${this.timeleft}
   `;
 }
