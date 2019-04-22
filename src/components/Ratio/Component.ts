@@ -20,9 +20,11 @@ export class RatioComponent extends LitElement {
   public observeResize() {
     const resizeObserver = new ResizeObserver((entries: any) => {
       for (const entry of entries) {
-        this.style.setProperty("height", entry.contentRect.width + "px");
+        const width = entry.contentRect.width;
+        const height = width * 0.5;
+        this.style.setProperty("height", height + "px");
       }
     });
-    resizeObserver.observe(this.shadowRoot.querySelector("#container"));
+    resizeObserver.observe(this);
   }
 }
