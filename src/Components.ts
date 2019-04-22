@@ -106,5 +106,11 @@ export const components = [
     src: () =>
       import(/* webpackChunkName: "Pomodoro" */ "./components/Pomodoro/Component"),
     tag: "pomodoro-component"
+  },
+  {
+    label: "Ratio",
+    src: () =>
+      import(/* webpackChunkName: "Ratio" */ "./components/Ratio/Component"),
+    tag: "ratio-component"
   }
 ];
