@@ -1,7 +1,7 @@
 import { LitElement, css, customElement, html } from "lit-element";
 
 import GlobalStyle from "../../GlobalStyle";
-import spinner from "./Spinner2";
+import Spinner from "./Spinner";
 
 @customElement("loading-component")
 export class LoadingComponent extends LitElement {
@@ -23,7 +23,7 @@ export class LoadingComponent extends LitElement {
           contain: layout;
         }
       `,
-      spinner
+      Spinner
     ];
   }
 
