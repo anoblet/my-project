@@ -37,12 +37,13 @@ export class Component extends LitElement {
     this._timeleft = 1200;
   }
 
-  public selectStep(step: number) {
-    this._currentStep = step;
+  public selectMode(mode: number) {
+    this.stop();
+    this._currentMode = mode;
+    this.setTimeLeft();
   }
 
-  public selectMode(mode: number) {
-    this._currentMode = mode;
+  protected setTimeLeft() {
     switch (this._currentMode) {
       case 0:
         this._timeleft = 1200;
@@ -50,6 +51,5 @@ export class Component extends LitElement {
       case 1:
         this._timeleft = 300;
     }
-    console.log(this._timeleft);
   }
 }
