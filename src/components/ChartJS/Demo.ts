@@ -7,6 +7,8 @@ import { BeforeRender } from "../../mixins/BeforeRender";
 import { populationByState } from "../CitySDK/CitySDK";
 import MaterialColor from "random-material-color";
 
+import "../Ratio/Component";
+
 @customElement("demo-component")
 export class Demo extends BeforeRender(LitElement) {
   public static styles = [
@@ -50,7 +52,9 @@ export class Demo extends BeforeRender(LitElement) {
             labels.map(() => colors.push(MaterialColor.getColor()));
             const data = { data: values, labels, backgroundColor: colors };
             return html`
-              <chart-js .data=${data} .type=${this.type}></chart-js>
+              <ratio-component>
+                <chart-js .data=${data} .type=${this.type}></chart-js>
+              </ratio-component>
             `;
           }),
           html`
