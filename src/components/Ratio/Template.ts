@@ -1,5 +1,7 @@
 import { html } from "lit-element";
 
 export default function() {
-  return html`test`;
+  return html`
+    <slot></slot>
+  `;
 }
