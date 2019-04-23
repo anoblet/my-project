@@ -14,3 +14,4 @@ declare module "random-material-color";
 declare module "annyang";
 declare module "google-charts";
 // declare module "chart.js";
+declare module "jsoneditor";
