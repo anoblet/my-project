@@ -33,7 +33,7 @@ export default css`
 
   input {
     border: 0;
-    border-bottom: 1px solid #fff;
+    border-bottom: 1px solid var(--border-color);
     background: inherit;
     padding: 1em;
     color: var(--text-color);
@@ -44,15 +44,8 @@ export default css`
     outline: none;
   }
 
-  .active {
-    color: var(--primary-color);
-  }
-
   [flex-grow] {
     flex: 1;
-  }
-
-  grid-component {
   }
 
   #modes grid-component > * {
@@ -74,5 +67,9 @@ export default css`
 
   button-component::part(button) {
     outline: none;
+  }
+
+  button-component[active]::part(button) {
+    font-weight: bold;
   }
 `;
