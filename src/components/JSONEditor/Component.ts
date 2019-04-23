@@ -12,13 +12,12 @@ export class JSONEditorComponent extends LitElement {
   public render = this.template.bind(this);
 
   public editor: JSONEditor;
-  public options: {};
-  public json: {};
+  public options = {};
+  public json = { test: "test" };
 
   public firstUpdated() {
     const container = this.shadowRoot.querySelector("#jsoneditor");
-    this.editor = new JSONEditor(container, this.options);
-    this.editor.set(this.json);
+    this.editor = new JSONEditor(container, this.options, this.json);
   }
 
   public get() {
