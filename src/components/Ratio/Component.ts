@@ -10,7 +10,7 @@ export class RatioComponent extends LitElement {
   public template = Template;
   public render = this.template.bind(this);
 
-  @property() public size: number = 1;
+  @property() public ratio: number = 1;
 
   public connectedCallback() {
     super.connectedCallback();
@@ -21,7 +21,7 @@ export class RatioComponent extends LitElement {
     const resizeObserver = new ResizeObserver((entries: any) => {
       for (const entry of entries) {
         const width = entry.contentRect.width;
-        const height = width * this.size;
+        const height = width * this.ratio;
         this.style.setProperty("height", height + "px");
       }
     });
