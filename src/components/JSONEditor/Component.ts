@@ -9,7 +9,7 @@ import JSONEditor from "jsoneditor";
 export class JSONEditorComponent extends LitElement {
   public static styles = [Style];
   public template = Template;
-  public render = this.template.bind(this)();
+  public render = this.template.bind(this);
 
   public editor: JSONEditor;
   public options: {};
