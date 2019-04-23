@@ -1,5 +1,20 @@
 import pathToRegexp from "path-to-regexp";
 
+/*
+export const routes = [
+  {
+    path: "",
+    component: "page-home",
+    src: () => import("../PageHome/PageHome")
+  },
+  {
+    path: "/post/:action/:id?",
+    component: "post-controller",
+    src: () => import("../../post/PostController")
+  }
+];
+*/
+
 // Set a default route array, and portal
 let globalRoutes: any = [];
 let globalPortal: any;
