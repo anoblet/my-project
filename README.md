@@ -42,3 +42,7 @@ Copy config.example.ts to config.ts and add Firebase information
 <a href="https://polymer.slack.com/messages/general/" target="_blank">Polymer Slack</a>, <a href="https://open-wc.org/" target="_blank">Open-WC</a>
 
 @justin @open-wc @bennyp @dakMoR @lars @westbrook @john @captaincodeman
+
+Browserstack for cross-browser testing:
+
+![alt text](https://raw.githubusercontent.com/anoblet/my-project/master/src/assets/Browserstack-logo@2x.png)
