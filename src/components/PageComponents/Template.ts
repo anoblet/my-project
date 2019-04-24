@@ -5,15 +5,19 @@ export default function() {
     <grid-component id="content-grid">
       <card-component title="Components">
         <div slot="content">
-          <ul>
+          <grid-component columns="2">
             ${this.components.map(
               (component: any) => html`
-                <li>
-                  <a href="/components/${component.tag}">${component.label}</a>
-                </li>
+                <card-component>
+                  <div class="center">
+                    <a href="/components/${component.tag}"
+                      >${component.label}</a
+                    >
+                  </div>
+                </card-component>
               `
             )}
-          </ul>
+          </grid-component>
         </div></card-component
       >
     </grid-component>
