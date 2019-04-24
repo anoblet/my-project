@@ -12,6 +12,7 @@ const SpeedMeasurePlugin = require("speed-measure-webpack-plugin");
 var Visualizer = require("webpack-visualizer-plugin");
 const PreloadWebpackPlugin = require("preload-webpack-plugin");
 const { UnusedFilesWebpackPlugin } = require("unused-files-webpack-plugin");
+const TerserPlugin = require('terser-webpack-plugin');
 
 module.exports = {
   mode: "production",
@@ -54,6 +55,13 @@ module.exports = {
     historyApiFallback: true
   },
   optimization: {
+    minimizer: [
+      new TerserPlugin({
+        cache: true,
+        parallel: true,
+        sourceMap: true
+      })
+    ],
     splitChunks: {
       chunks: "async",
       minSize: 30000,
