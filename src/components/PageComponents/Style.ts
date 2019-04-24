@@ -9,6 +9,7 @@ export default css`
 
   card-component {
     border: 1px solid var(--border-color);
+    display: flex;
   }
 
   card-component::part(title) {
