@@ -2,12 +2,10 @@ import { LitElement, customElement, html, property } from "lit-element";
 
 import { BeforeRender } from "../../mixins/BeforeRender";
 import GlobalStyle from "../../GlobalStyle";
-import Style from "./PageComponentsStyle";
-import Template from "./PageComponentsTemplate";
+import Style from "./Style";
+import Template from "./Template";
 import { components } from "../../Components";
-import { renderForm } from "../Form/Form";
 import { unsafeHTML } from "lit-html/directives/unsafe-html";
-import { Weather } from "../Weather/Component";
 
 @customElement("page-components")
 export class PageComponents extends BeforeRender(LitElement) {
