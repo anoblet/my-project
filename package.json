@@ -16,7 +16,6 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@firebase/performance": "file:firebase-performance-0.0.2.tgz",
     "@types/node": "^10.12.26",
     "@types/node-sass": "^3.10.32",
     "@webcomponents/webcomponentsjs": "^2.2.7",
