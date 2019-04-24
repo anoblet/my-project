@@ -6,7 +6,6 @@ const WebpackPwaManifest = require("webpack-pwa-manifest");
 const CopyWebpackPlugin = require("copy-webpack-plugin");
 const RobotstxtPlugin = require("robotstxt-webpack-plugin").default;
 const CleanWebpackPlugin = require("clean-webpack-plugin");
-const UglifyJsPlugin = require("uglifyjs-webpack-plugin");
 const HtmlLoader = require("html-loader");
 const WebpackLighthousePlugin = require("webpack-lighthouse-plugin");
 const SpeedMeasurePlugin = require("speed-measure-webpack-plugin");
