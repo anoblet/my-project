@@ -46,5 +46,4 @@ Copy config.example.ts to config.ts and add Firebase information
 
 Browserstack for cross-browser testing:
 
-
 [![Fibonacci RMI Java EE](https://raw.githubusercontent.com/anoblet/my-project/master/src/assets/Browserstack-logo@2x.png)](https://browserstack.com/)
