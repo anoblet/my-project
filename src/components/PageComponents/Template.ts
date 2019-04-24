@@ -8,13 +8,13 @@ export default function() {
           <grid-component columns="2">
             ${this.components.map(
               (component: any) => html`
-                <card-component>
-                  <div class="center">
-                    <a href="/components/${component.tag}"
-                      >${component.label}</a
-                    >
-                  </div>
-                </card-component>
+                <a href="/components/${component.tag}">
+                  <card-component>
+                    <div class="center">
+                      ${component.label}
+                    </div>
+                  </card-component></a
+                >
               `
             )}
           </grid-component>
