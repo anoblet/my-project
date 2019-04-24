@@ -7,7 +7,7 @@
     "moduleResolution": "node",
     "noImplicitAny": false,
     "noUnusedLocals": false,
-    "target": "es6",
+    "target": "es5",
     "experimentalDecorators": true,
     "allowJs": true,
     "alwaysStrict": true

@@ -44,8 +44,12 @@ export class Drawer extends LitElement {
   }
 
   public firstUpdated() {
-    const links = [...this.shadowRoot.querySelectorAll("a")];
-    links.map((link: HTMLElement) =>
+    const _links = [];
+    const links = this.shadowRoot.querySelectorAll("a");
+    for (const link of links as any) {
+      _links.push(link);
+    }
+    _links.map((link: HTMLElement) =>
       link.addEventListener("click", () => {
         const el: App = document.querySelector("app-component");
         if (this.mediaSize === "mobile") el._toggleDrawer();
