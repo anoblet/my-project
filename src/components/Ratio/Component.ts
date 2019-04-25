@@ -17,6 +17,10 @@ export class RatioComponent extends LitElement {
     this.observeResize();
   }
 
+  public updated(changedProperties) {
+    window.dispatchEvent(new Event("resize"));
+  }
+
   public observeResize() {
     const resizeObserver = new ResizeObserver((entries: any) => {
       for (const entry of entries) {
