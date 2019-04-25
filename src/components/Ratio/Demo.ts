@@ -4,7 +4,13 @@ import { LitElement, css, customElement, html, property } from "lit-element";
 
 @customElement("ratio-demo")
 export class Demo extends LitElement {
-  public static styles = [css``];
+  public static styles = [
+    css`
+      ratio-component {
+        padding: 1em;
+      }
+    `
+  ];
 
   public render() {
     return html`
