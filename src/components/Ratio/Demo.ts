@@ -8,8 +8,18 @@ export class Demo extends LitElement {
 
   public render() {
     return html`
-      <input name="ratio" type="text" value="1" @input=${this.handleChange} />
-      <ratio-component ratio=${this.ratio}>test</ratio-component>
+      <grid-component>
+        <div>
+          Ratio:
+          <input
+            name="ratio"
+            type="text"
+            value="1"
+            @input=${this.handleChange}
+          />
+        </div>
+        <ratio-component ratio=${this.ratio}>test</ratio-component>
+      </grid-component>
     `;
   }
 
