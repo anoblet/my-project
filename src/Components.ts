@@ -110,7 +110,7 @@ export const components = [
   {
     label: "Ratio",
     src: () =>
-      import(/* webpackChunkName: "Ratio" */ "./components/Ratio/Component"),
-    tag: "ratio-component"
+      import(/* webpackChunkName: "RatioDemo" */ "./components/Ratio/Demo"),
+    tag: "ratio-demo"
   }
 ];
