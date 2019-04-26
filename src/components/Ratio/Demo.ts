@@ -9,6 +9,11 @@ export class Demo extends LitElement {
       ratio-component {
         padding: 1em;
       }
+
+      input {
+        border: 0;
+        border-bottom: 1px solid var(--border-color);
+      }
     `
   ];
 
@@ -19,7 +24,8 @@ export class Demo extends LitElement {
           Ratio:
           <input
             name="ratio"
-            type="text"
+            type="number"
+            step="0.1"
             value="1"
             @input=${this.handleChange}
           />
