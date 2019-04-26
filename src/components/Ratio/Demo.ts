@@ -4,6 +4,7 @@ import { LitElement, css, customElement, html, property } from "lit-element";
 
 @customElement("ratio-demo")
 export class Demo extends LitElement {
+  @property() public ratio = 1;
   public static styles = [
     css`
       ratio-component {
@@ -30,12 +31,10 @@ export class Demo extends LitElement {
             @input=${this.handleChange}
           />
         </div>
-        <ratio-component ratio=${this.ratio}>test</ratio-component>
+        <ratio-component .ratio=${this.ratio}>test</ratio-component>
       </grid-component>
     `;
   }
-
-  @property() public ratio = 1;
 
   public handleChange(e: any) {
     this[e.target.name] = e.target.value;
