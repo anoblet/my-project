@@ -86,7 +86,7 @@ export const components = [
   {
     label: "Chart JS",
     src: () =>
-      import(/* webpackChunkName: "ChartJS" */ "./components/ChartJS/Demo"),
+      import(/* webpackChunkName: "ChartJSDemo" */ "./components/ChartJS/Demo"),
     tag: "demo-component"
   },
   {
