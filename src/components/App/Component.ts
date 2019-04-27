@@ -168,16 +168,6 @@ export class App extends BeforeRender(LitElement) {
     const menu: any = this.renderRoot.querySelector("#profile-menu");
     menu.close();
   }
-
-  public applyShadows() {
-    const state = store.getState();
-    if (state.settings.shadows)
-      this.style.setProperty(
-        "--box-shadow",
-        "0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23)"
-      );
-    else this.style.setProperty("--box-shadow", "initial");
-  }
 }
 
 // Utility function
