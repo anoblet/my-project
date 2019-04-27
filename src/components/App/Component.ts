@@ -17,16 +17,15 @@ import { store } from "../../Store";
 import { theme } from "../../Theme";
 import { toast } from "../Toast/Toast";
 import { user } from "../../User";
+import { BeforeRender } from "../../mixins/BeforeRender";
 
 @customElement("app-component")
-export class App extends LitElement {
+export class App extends BeforeRender(LitElement) {
   public static properties = Properties;
   public static styles = [GlobalStyle, Style];
   public template = Template;
   public render = this.template.bind(this);
 
-  @property({ type: Boolean })
-  public taskPending = true;
   @property({ reflect: true, attribute: "drawer-opened", type: Boolean })
   public drawerOpened = false;
   @property() public mediaSize: string;
@@ -53,7 +52,7 @@ export class App extends LitElement {
     super.connectedCallback();
     this.beforeRender().then(() => {
       document.querySelector("#loading").removeAttribute("enabled");
-      this.taskPending = false;
+      // this.taskPending = false;
     });
 
     // Register drawer listeners
@@ -99,10 +98,6 @@ export class App extends LitElement {
       }
     });
     debug.log("Finished getting user");
-  }
-
-  public shouldUpdate(changedProperties: any) {
-    return !this.taskPending && super.shouldUpdate(changedProperties);
   }
 
   public firstUpdated() {
