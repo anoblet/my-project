@@ -5,13 +5,6 @@ import Style from "./Style";
 import { config } from "../../../config";
 import FirebaseUIStyle from "./FirebaseUIStyle";
 
-@customElement("user-component")
-export class UserComponent extends LitElement {
-  public static styles = [FirebaseUIStyle, Style];
-  public template = Template;
-  public render = this.template.bind(this)();
-}
-
 export const getForm = async () =>
   Promise.all([
     import(/* webpackChunkName: "Firebase" */ "firebase/app"),
@@ -28,3 +21,14 @@ export const getForm = async () =>
     });
     return el;
   });
+
+@customElement("user-component")
+export class UserComponent extends LitElement {
+  public static styles = [FirebaseUIStyle, Style];
+  public template = Template;
+  public render = this.template.bind(this);
+
+  public async getForm() {
+    return getForm();
+  }
+}

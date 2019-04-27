@@ -3,7 +3,7 @@ import { isSignedIn, signOut } from "../../User";
 import { until } from "lit-html/directives/until";
 import { getForm } from "./Component";
 
-export default () => {
+export default function() {
   return html`
     <card-component grow>
       <div slot="content">
@@ -14,9 +14,9 @@ export default () => {
               >
             `
           : html`
-              ${until(getForm())}
+              ${until(this.getForm())}
             `}
       </div>
     </card-component>
   `;
-};
+}
