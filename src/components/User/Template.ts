@@ -14,7 +14,7 @@ export default function() {
               >
             `
           : html`
-              ${until(this.getForm())}
+              ${until(getForm())}
             `}
       </div>
     </card-component>
