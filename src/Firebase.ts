@@ -168,6 +168,7 @@ export const addDocument = async ({ path, data }: any) => {
 export const firebase = {
   getDocument,
   getUser,
+  init: initApp,
   initApp,
   run,
   update: updateDocument

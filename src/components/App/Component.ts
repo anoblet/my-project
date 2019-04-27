@@ -6,6 +6,7 @@ import Template from "./Template";
 import Properties from "./Properties";
 import { config } from "../../../config";
 import { db } from "../../Database";
+import { firebase } from "../../Firebase";
 import { debug } from "../../Debug";
 import { installOfflineWatcher } from "pwa-helpers/network.js";
 import { installRouter } from "pwa-helpers/router.js";
@@ -58,7 +59,7 @@ export class App extends BeforeRender(LitElement) {
   }
 
   public async beforeRender() {
-    await db.initApp(config.firebase);
+    await firebase.init(config.firebase);
     if (config.globalSettings) {
       debug.log("Getting app level settings");
       await getAppSettings((document: any) => {
