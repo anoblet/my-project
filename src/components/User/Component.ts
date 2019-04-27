@@ -10,10 +10,6 @@ export class UserComponent extends LitElement {
   public static styles = [FirebaseUIStyle, Style];
   public template = Template;
   public render = this.template.bind(this)();
-
-  public async getForm() {
-    return await getForm();
-  }
 }
 
 export const getForm = async () =>
