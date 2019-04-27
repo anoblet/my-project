@@ -31,6 +31,7 @@ export class App extends BeforeRender(LitElement) {
   @property({ reflect: true, attribute: "drawer-opened", type: Boolean })
   public drawerOpened = false;
   @property() public mediaSize: string;
+  private performance;
 
   // Lifecycle
   constructor() {
@@ -50,16 +51,13 @@ export class App extends BeforeRender(LitElement) {
 
   public connectedCallback() {
     super.connectedCallback();
-    // this.beforeRender().then(() => {
-    //   document.querySelector("#loading").removeAttribute("enabled");
-    // });
-
     // Register drawer listeners
     this.registerlisteners();
   }
 
   public async beforeRender() {
-    await firebase.init(config.firebase);
+    const _firebase = await firebase.init(config.firebase);
+    this.performance = _firebase.performance();
     if (config.globalSettings) {
       debug.log("Getting app level settings");
       await getAppSettings((document: any) => {

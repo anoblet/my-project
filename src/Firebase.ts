@@ -129,7 +129,7 @@ export const getDocument = async ({ callback, path, watch }: any) => {
 export const initApp = async (config: any) => {
   return run(["performance"]).then((_firebase: any) => {
     if (_firebase.apps.length === 0)
-      return _firebase.initializeApp(config).performance();
+      return _firebase.initializeApp(config);
   });
 };
 
