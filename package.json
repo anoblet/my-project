@@ -16,7 +16,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@firebase/performance": "https://fireperffw.firebaseapp.com/v002/firebase-performance-0.0.2.tgz",
+    "@firebase/performance": "https://fireperffw.firebaseapp.com/v003/firebase-performance-0.0.3.tgz",
     "@webcomponents/webcomponentsjs": "^2.2.7",
     "annyang": "^2.6.1",
     "chart.js": "^2.8.0",
