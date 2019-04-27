@@ -12,12 +12,13 @@ import { installRouter } from "pwa-helpers/router.js";
 import { media } from "../../Media";
 import { router } from "../../Router";
 import { routes } from "./Routes";
-import { addReducer, setState } from "../../State";
+import { setState } from "../../State";
 import { store } from "../../Store";
 import { theme } from "../../Theme";
 import { toast } from "../Toast/Toast";
 import { user } from "../../User";
 import { BeforeRender } from "../../mixins/BeforeRender";
+import { addReducers } from "./Helpers";
 
 @customElement("app-component")
 export class App extends BeforeRender(LitElement) {
@@ -34,10 +35,7 @@ export class App extends BeforeRender(LitElement) {
   constructor() {
     super();
     debug.log("Constructor");
-    this.addReducers();
-    this.media();
-
-    // Global theme
+    addReducers();
     if (config.staticTheme) {
       theme.set(theme.convert(config.theme), this);
       setState({
@@ -46,14 +44,14 @@ export class App extends BeforeRender(LitElement) {
         store
       });
     }
+    this.media();
   }
 
   public connectedCallback() {
     super.connectedCallback();
-    this.beforeRender().then(() => {
-      document.querySelector("#loading").removeAttribute("enabled");
-      // this.taskPending = false;
-    });
+    // this.beforeRender().then(() => {
+    //   document.querySelector("#loading").removeAttribute("enabled");
+    // });
 
     // Register drawer listeners
     this.registerlisteners();
@@ -98,6 +96,8 @@ export class App extends BeforeRender(LitElement) {
       }
     });
     debug.log("Finished getting user");
+
+    document.querySelector("#loading").removeAttribute("enabled");
   }
 
   public firstUpdated() {
@@ -115,12 +115,6 @@ export class App extends BeforeRender(LitElement) {
       if (mediaSize === "desktop") this.drawerOpened = true;
       this.mediaSize = mediaSize;
     });
-  }
-
-  public addReducers() {
-    addReducer({ type: "app", store });
-    addReducer({ type: "user", store });
-    addReducer({ type: "settings", store });
   }
 
   public registerlisteners() {
