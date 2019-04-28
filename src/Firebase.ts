@@ -136,7 +136,7 @@ export const getDocument = async ({ callback, path, watch }: any) => {
  * @param  config
  * @return Promise
  **/
-export const initApp = async (config: any) => {
+export const init = async (config: any) => {
   return run(["performance"]).then((_firebase: any) => {
     if (_firebase.apps.length === 0) _firebase.initializeApp(config);
     return _firebase;
@@ -178,8 +178,7 @@ export const addDocument = async ({ path, data }: any) => {
 export const firebase = {
   getDocument,
   getUser,
-  init: initApp,
-  initApp,
+  init,
   run,
   update: updateDocument
 };
