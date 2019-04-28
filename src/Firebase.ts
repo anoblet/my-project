@@ -3,7 +3,7 @@ import { _console } from "./Debug";
 /**
  * Utility function to import Firebase libraries asynchronously
  * @param  packages Array of strings that correspond to firebase package names
- * @return          An instance of Firebase with all of the packages loaded
+ * @return An instance of Firebase with all of the packages loaded
  */
 export const run = async (packages: any) => {
   const imports: any = [];
