@@ -164,7 +164,6 @@ export default css`
 
   #portal {
     contain: initial;
-    overflow-x: hidden;
   }
 
   #content {
