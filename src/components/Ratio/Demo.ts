@@ -27,7 +27,7 @@ export class Demo extends LitElement {
             name="ratio"
             type="number"
             step="0.1"
-            value="1"
+            value="0.25"
             @input=${this.handleChange}
           />
         </div>
