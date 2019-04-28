@@ -4,7 +4,7 @@ import { LitElement, css, customElement, html, property } from "lit-element";
 
 @customElement("ratio-demo")
 export class Demo extends LitElement {
-  @property() public ratio = 1;
+  @property() public ratio = 0.1;
   public static styles = [
     css`
       ratio-component {
@@ -27,7 +27,7 @@ export class Demo extends LitElement {
             name="ratio"
             type="number"
             step="0.1"
-            value="1"
+            value="0.1"
             @input=${this.handleChange}
           />
         </div>
