@@ -6,7 +6,10 @@ import "./ToastComponent";
  *
  * @todo Separate the helper from the ui
  */
-export const toast = (message: string, config: { timeout: 2500 }) => {
+export const toast = (
+  message: string,
+  config: { timeout: number } = { timeout: 0 }
+) => {
   const element: any = document.createElement("toast-component");
   element.content = message;
   const container = document
