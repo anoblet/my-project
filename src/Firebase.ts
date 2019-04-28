@@ -4,7 +4,7 @@ import { _console } from "./Debug";
  * Utility function to import Firebase libraries asynchronously.
  * Functions will only be loaded when needed.
  * @param  packages Array of strings that correspond to firebase package names
- * @return An instance of Firebase with all of the packages loaded
+ * @return object - An instance of Firebase with all of the packages loaded
  */
 export const run = async (packages: any) => {
   const imports: any = [];
@@ -22,6 +22,10 @@ export const run = async (packages: any) => {
   return Promise.all(imports).then(([_firebase]) => _firebase);
 };
 
+/**
+ * Not sure if this is used anymore. I'll document it anyways. Redirect result
+ * @return Boolean
+ */
 export const authRedirect = async () => {
   return run(["auth"]).then((_firebase: any) => {
     const auth = _firebase.auth();
