@@ -13,7 +13,7 @@
     "test": "karma start",
     "test:watch": "karma start --auto-watch=true --single-run=false"
   },
-  "author": "",
+  "author": "Andrew Noblet",
   "license": "ISC",
   "dependencies": {
     "@firebase/performance": "https://fireperffw.firebaseapp.com/v003/firebase-performance-0.0.3.tgz",
