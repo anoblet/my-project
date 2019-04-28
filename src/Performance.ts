@@ -1,6 +1,7 @@
 import { firebase } from "./Firebase";
 // Opinion
 import { config } from "../config";
+
 /**
  * Assume performance returns the performance object no matter the state of the app
  * @return firebase.performance
@@ -27,7 +28,7 @@ const start = (label: string) => {
 };
 
 /**
- * Wrapper for Firebase performance start
+ * Wrapper for Firebase performance stop
  */
 const stop = () => {
   return;
