@@ -18,8 +18,9 @@ export const performance = async () => {
  * This is going to be a factory
  */
 
-export const trace = () => {
-  return;
+export const trace = async (feature: string) => {
+  const _instance = await performance();
+  return _instance.trace(feature);
 };
 
 /**
@@ -32,6 +33,6 @@ const start = (label: string) => {
 /**
  * Wrapper for Firebase performance start
  */
-const stop = (label: string) => {
+const stop = () => {
   return;
 };
