@@ -1,6 +1,6 @@
 import { css } from "lit-element";
 
-export const fluidType = css`
+export const FluidType = css`
   /* https://andy-bell.design/wrote/custom-property-controlled-fluid-type-sizing/ */
   .fluid-type {
     --fluid-type-min-size: 1;

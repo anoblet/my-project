@@ -20,11 +20,12 @@ import { toast } from "../Toast/Toast";
 import { user } from "../../User";
 import { BeforeRender } from "../../mixins/BeforeRender";
 import { addReducers } from "./Helpers";
+import { FluidType } from "../../design-systems/fluid-type";
 
 @customElement("app-component")
 export class App extends BeforeRender(LitElement) {
   public static properties = Properties;
-  public static styles = [GlobalStyle, Style];
+  public static styles = [GlobalStyle, FluidType, Style];
   public template = Template;
   public render = this.template.bind(this);
 
