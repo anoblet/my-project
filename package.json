@@ -1,7 +1,7 @@
 {
-  "name": "my-app",
+  "name": "my-project",
   "version": "0.5.5",
-  "description": "",
+  "description": "my-project",
   "main": "index.js",
   "scripts": {
     "build": "webpack --config webpack.config.js",
