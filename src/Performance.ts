@@ -14,8 +14,11 @@ export const performance = async () => {
   return _instance.performance();
 };
 
+/**
+ * This is going to be a factory
+ */
+
 export const trace = () => {
-  // Kina weird but instance needs an instance of performance
   return;
 };
 
