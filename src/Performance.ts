@@ -2,8 +2,9 @@ import { firebase } from "./Firebase";
 // Opinion
 import { config } from "../config";
 
-export const performance = () => {
-  return;
+export const performance = async () => {
+  const _instance = await firebase.init(config.firebase);
+  return _instance.performance();
 };
 
 export const trace = () => {
@@ -11,5 +12,5 @@ export const trace = () => {
 };
 
 const start = () => {
-  const _firebase = firebase.init(config.firebase);
+  return;
 };
