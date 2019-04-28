@@ -1,6 +1,7 @@
 import { LitElement, css, customElement, html } from "lit-element";
 import { unsafeHTML } from "lit-html/directives/unsafe-html";
 import GlobalStyle from "../GlobalStyle";
+import FluidType from "../design-systems/fluid-type";
 import "./PatreonComponent";
 const readme = require("../../README.md");
 
@@ -39,7 +40,7 @@ const version = () => 3;
 
 @customElement("page-static")
 export class PageStatic extends LitElement {
-  public static styles = [GlobalStyle, Style];
+  public static styles = [GlobalStyle, FluidType, Style];
 
   public render() {
     return html`

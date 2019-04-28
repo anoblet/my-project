@@ -1,6 +1,6 @@
 import { css } from "lit-element";
 
-export const FluidType = css`
+export default css`
   /* https://andy-bell.design/wrote/custom-property-controlled-fluid-type-sizing/ */
   .fluid-type {
     --fluid-type-min-size: 1;
@@ -19,12 +19,12 @@ export const FluidType = css`
   /*
 * SET LOCKS ON ELEMENTS
 */
-  h1.fluid-type {
+  h1, h1.fluid-type {
     --fluid-type-min-size: 2;
     --fluid-type-max-size: 4;
   }
 
-  h2.fluid-type {
+  h2, h2.fluid-type {
     --fluid-type-min-size: 1.5;
     --fluid-type-max-size: 2.2;
   }
@@ -38,10 +38,6 @@ export const FluidType = css`
 * PRESENTATION STYLES
 */
   body {
-    font-family: "Source Sans Pro", sans-serif;
-    background: #f3f3f3;
-    color: #141414;
-    padding: 4rem 2rem;
     line-height: 1.4;
   }
 
@@ -56,12 +52,6 @@ export const FluidType = css`
     max-width: 75ch;
   }
 
-  h1,
-  h2,
-  h3,
-  blockquote {
-    font-family: "Libre Baskerville", serif;
-  }
 
   blockquote {
     font-weight: 400;
