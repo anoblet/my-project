@@ -48,7 +48,7 @@ export default css`
   }
 
   p {
-    font-size: 1.25rem;
+    /* font-size: 1.25rem; */
     max-width: 75ch;
   }
 
