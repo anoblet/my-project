@@ -1,6 +1,6 @@
 ### Install
 
-```js
+```
 git clone https://github.com/anoblet/my-project
 cd my-project
 npm i
