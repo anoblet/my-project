@@ -32,7 +32,7 @@ export class App extends BeforeRender(LitElement) {
   @property({ reflect: true, attribute: "drawer-opened", type: Boolean })
   public drawerOpened = false;
   @property() public mediaSize: string;
-  private performance;
+  private performance: any;
 
   // Lifecycle
   constructor() {
