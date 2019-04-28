@@ -19,6 +19,16 @@ export const trace = () => {
   return;
 };
 
+/**
+ * Wrapper for Firebase performance start
+ */
 const start = (label: string) => {
+  return;
+};
+
+/**
+ * Wrapper for Firebase performance start
+ */
+const stop = (label: string) => {
   return;
 };
