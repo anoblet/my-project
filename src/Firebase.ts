@@ -1,7 +1,8 @@
 import { _console } from "./Debug";
 
 /**
- * Utility function to import Firebase libraries asynchronously
+ * Utility function to import Firebase libraries asynchronously.
+ * Functions will only be loaded when needed.
  * @param  packages Array of strings that correspond to firebase package names
  * @return An instance of Firebase with all of the packages loaded
  */
