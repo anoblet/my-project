@@ -30,12 +30,6 @@ export const components = [
     tag: "eye-exam"
   },
   {
-    label: "Color Picker",
-    src: () =>
-      import(/* webpackChunkName: "ColorPicker" */ "./components/ColorPicker"),
-    tag: "color-picker"
-  },
-  {
     label: "Dashboard",
     src: () =>
       import(/* webpackChunkName: "Dashboard" */ "./components/Dashboard/Component"),
@@ -106,11 +100,5 @@ export const components = [
     src: () =>
       import(/* webpackChunkName: "Pomodoro" */ "./components/Pomodoro/Component"),
     tag: "pomodoro-component"
-  },
-  {
-    label: "Color Picker",
-    src: () =>
-      import(/* webpackChunkName: "ColorPicker" */ "./components/ColorPicker/Demo"),
-    tag: "color-picker"
   }
 ];
