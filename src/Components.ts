@@ -104,7 +104,7 @@ export const components = [
   {
     label: "ColorPicker",
     src: () =>
-      import(/* webpackChunkName: "ColorPicker" */ "./components/ColorPicker/Component"),
+      import(/* webpackChunkName: "ColorPicker" */ "./components/ColorPicker"),
     tag: "color-picker"
   }
 ];
