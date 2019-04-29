@@ -20,7 +20,6 @@ import { toast } from "../Toast/Toast";
 import { user } from "../../User";
 import { BeforeRender } from "../../mixins/BeforeRender";
 import { addReducers } from "./Helpers";
-import FluidType from "../../design-systems/FluidType";
 
 @customElement("app-component")
 export class App extends BeforeRender(LitElement) {

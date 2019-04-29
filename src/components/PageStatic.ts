@@ -40,7 +40,7 @@ const version = () => 3;
 
 @customElement("page-static")
 export class PageStatic extends LitElement {
-  public static styles = [GlobalStyle, FluidType, Style];
+  public static styles = [GlobalStyle, Style];
 
   public render() {
     return html`
