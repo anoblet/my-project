@@ -1,4 +1,5 @@
 import { css } from "lit-element";
+import FluidType from "./design-systems/FluidType";
 
 export default css`
   :host {
@@ -139,4 +140,6 @@ export default css`
   h3 a {
     color: var(--link-color);
   }
+
+  ${FluidType}
 `;
