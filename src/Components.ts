@@ -108,9 +108,9 @@ export const components = [
     tag: "pomodoro-component"
   },
   {
-    label: "Ratio",
+    label: "Color Picker",
     src: () =>
-      import(/* webpackChunkName: "RatioDemo" */ "./components/Ratio/Demo"),
-    tag: "ratio-demo"
+      import(/* webpackChunkName: "ColorPicker" */ "./components/ColorPicker/Demo"),
+    tag: "color-picker"
   }
 ];
