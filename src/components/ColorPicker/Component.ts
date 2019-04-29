@@ -2,7 +2,7 @@ import { LitElement, customElement } from "lit-element";
 import Style from "./Style";
 import Template from "./Template";
 
-import Pickr from "@simonwep/pickr/dist/pickr.es5.min";
+import Pickr from "@simonwep/pickr/dist/pickr.min";
 
 @customElement("color-picker")
 export class Component extends LitElement {
