@@ -20,6 +20,10 @@ export class Demo extends BeforeRender(LitElement) {
       ::part(content-container) {
         overflow-x: hidden;
       }
+
+      ratio-component {
+        border: 0;
+      }
     `
   ];
   @property() public vintage: string = "2017";
