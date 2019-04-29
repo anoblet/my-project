@@ -25,7 +25,7 @@ import FluidType from "../../design-systems/FluidType";
 @customElement("app-component")
 export class App extends BeforeRender(LitElement) {
   public static properties = Properties;
-  public static styles = [GlobalStyle, FluidType, Style];
+  public static styles = [GlobalStyle, Style];
   public template = Template;
   public render = this.template.bind(this);
 
