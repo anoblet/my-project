@@ -100,5 +100,11 @@ export const components = [
     src: () =>
       import(/* webpackChunkName: "Pomodoro" */ "./components/Pomodoro/Component"),
     tag: "pomodoro-component"
+  },
+  {
+    label: "ColorPicker",
+    src: () =>
+      import(/* webpackChunkName: "ColorPicker" */ "./components/ColorPicker/Component"),
+    tag: "color-picker"
   }
 ];
