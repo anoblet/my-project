@@ -63,8 +63,9 @@ export class Demo extends BeforeRender(LitElement) {
           </div>
           <div class="field">
             <label>Field</label>
-            <select name="type" @change=${this.handleChange}>
+            <select name="values" @change=${this.handleChange}>
               <option value="B01001_001E">Population</option>
+              <option value="B01001_002E">Sex by age</option>
             </select>
           </div>
         </div>
