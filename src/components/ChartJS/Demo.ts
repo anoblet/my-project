@@ -28,6 +28,7 @@ export class Demo extends BeforeRender(LitElement) {
   ];
   @property() public vintage: string = "2017";
   @property() public type: string = "bar";
+  @property() public values: string = "bar";
 
   public render() {
     return html`
@@ -44,9 +45,9 @@ export class Demo extends BeforeRender(LitElement) {
           <option value="radar">Radar</option>
           <option value="doughnut">Doughnut</option>
         </select>
-        Values: <input name="values" type="text" @change=${this.handleChange} />
+        Values: <input name="values" type="text" value="B01001_001E" @change=${this.handleChange} />
         ${until(
-          populationByState(this.vintage).then((_data: any) => {
+          populationByState(this.vintage, this.values).then((_data: any) => {
             const labels = [];
             const values = [];
             _data.map((state: any) => {
