@@ -15,9 +15,7 @@ export class ChartJS extends LitElement {
   public template = Template;
   @property() public type = "bar";
 
-  public render() {
-    return this.template.bind(this)();
-  }
+  public render = this.template.bind(this);
 
   public firstUpdated() {
     this.createChart();
