@@ -24,28 +24,49 @@ export class Demo extends BeforeRender(LitElement) {
       ratio-component {
         border: 0;
       }
+
+      .field {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+      }
     `
   ];
   @property() public vintage: string = "2017";
   @property() public type: string = "bar";
-  @property() public values: string = "bar";
+  @property() public values: string = "B00001_001E";
 
   public render() {
     return html`
       <card-component>
-        <div slot="title">Population by state</div>
-        <select name="vintage" @change=${this.handleChange}>
-          <option value="2017">2017</option>
-          <option value="2015">2015</option>
-        </select>
-        <select name="type" @change=${this.handleChange}>
-          <option value="bar">Bar</option>
-          <option value="line">Line</option>
-          <option value="pie">Pie</option>
-          <option value="radar">Radar</option>
-          <option value="doughnut">Doughnut</option>
-        </select>
-        Values: <input name="values" type="text" value="B01001_001E" @change=${this.handleChange} />
+        <div slot="title">Field by state</div>
+        <div id="options">
+          <div class="field">
+            <label>Vintage</label>
+            <select name="vintage" @change=${this.handleChange}>
+              <option value="2017">2017</option>
+              <option value="2015">2015</option>
+            </select>
+          </div>
+          <div class="field">
+            <label>Type</label>
+            <select name="type" @change=${this.handleChange}>
+              <option value="bar">Bar</option>
+              <option value="line">Line</option>
+              <option value="pie">Pie</option>
+              <option value="radar">Radar</option>
+              <option value="doughnut">Doughnut</option>
+            </select>
+          </div>
+          <div class="field">
+            <label>Values</label>
+            <input
+              name="values"
+              type="text"
+              value="B01001_001E"
+              @input=${this.handleChange}
+            />
+          </div>
+        </div>
         ${until(
           populationByState(this.vintage, this.values).then((_data: any) => {
             const labels = [];
