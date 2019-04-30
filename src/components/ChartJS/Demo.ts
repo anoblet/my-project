@@ -44,6 +44,7 @@ export class Demo extends BeforeRender(LitElement) {
           <option value="radar">Radar</option>
           <option value="doughnut">Doughnut</option>
         </select>
+        Values: <input name="values" type="text" @change=${this.handleChange} />
         ${until(
           populationByState(this.vintage).then((_data: any) => {
             const labels = [];
