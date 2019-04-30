@@ -38,56 +38,55 @@ export class Demo extends BeforeRender(LitElement) {
   public render() {
     return html`
       <card-component>
-        <div slot="title">Field by state</div>
-        <div id="options">
-          <div class="field">
-            <label>Vintage</label>
-            <select name="vintage" @change=${this.handleChange}>
-              <option value="2017">2017</option>
-              <option value="2015">2015</option>
-            </select>
+        <grid-component>
+          <div slot="title">Field by state</div>
+          <div id="options">
+            <div class="field">
+              <label>Vintage</label>
+              <select name="vintage" @change=${this.handleChange}>
+                <option value="2017">2017</option>
+                <option value="2015">2015</option>
+              </select>
+            </div>
+            <div class="field">
+              <label>Type</label>
+              <select name="type" @change=${this.handleChange}>
+                <option value="bar">Bar</option>
+                <option value="line">Line</option>
+                <option value="pie">Pie</option>
+                <option value="radar">Radar</option>
+                <option value="doughnut">Doughnut</option>
+              </select>
+            </div>
+            <div class="field">
+              <label>Field</label>
+              <select name="type" @change=${this.handleChange}>
+                <option value="B01001_001E">Population</option>
+              </select>
+            </div>
           </div>
-          <div class="field">
-            <label>Type</label>
-            <select name="type" @change=${this.handleChange}>
-              <option value="bar">Bar</option>
-              <option value="line">Line</option>
-              <option value="pie">Pie</option>
-              <option value="radar">Radar</option>
-              <option value="doughnut">Doughnut</option>
-            </select>
-          </div>
-          <div class="field">
-            <label>Values</label>
-            <input
-              name="values"
-              type="text"
-              value="B01001_001E"
-              @input=${this.handleChange}
-            />
-          </div>
-        </div>
-        ${until(
-          populationByState(this.vintage, this.values).then((_data: any) => {
-            const labels = [];
-            const values = [];
-            _data.map((state: any) => {
-              labels.push(state.name);
-              values.push(state.population);
-            });
-            const colors = [];
-            labels.map(() => colors.push(MaterialColor.getColor()));
-            const data = { data: values, labels, backgroundColor: colors };
-            return html`
-              <ratio-component ratio="1">
-                <chart-js .data=${data} .type=${this.type}></chart-js>
-              </ratio-component>
-            `;
-          }),
-          html`
-            Please wait for the data to load...
-          `
-        )}
+          ${until(
+            populationByState(this.vintage, this.values).then((_data: any) => {
+              const labels = [];
+              const values = [];
+              _data.map((state: any) => {
+                labels.push(state.name);
+                values.push(state.population);
+              });
+              const colors = [];
+              labels.map(() => colors.push(MaterialColor.getColor()));
+              const data = { data: values, labels, backgroundColor: colors };
+              return html`
+                <ratio-component ratio="1">
+                  <chart-js .data=${data} .type=${this.type}></chart-js>
+                </ratio-component>
+              `;
+            }),
+            html`
+              Please wait for the data to load...
+            `
+          )}
+        </grid-component>
       </card-component>
     `;
   }
