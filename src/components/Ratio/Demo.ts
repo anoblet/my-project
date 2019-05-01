@@ -9,6 +9,7 @@ export class Demo extends LitElement {
     css`
       ratio-component {
         padding: 1em;
+        border: 1px solid var(--border-color);
       }
 
       input {
