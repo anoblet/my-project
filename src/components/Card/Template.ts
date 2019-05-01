@@ -21,6 +21,6 @@ export default function() {
     <div id="content" part="content-container">
       <slot name="content" part="content"> </slot><slot> </slot>
     </div>
-    <slot name="actions"></slot>
+    <slot name="actions" part="actions"></slot>
   `;
 }
