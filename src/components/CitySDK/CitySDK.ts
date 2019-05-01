@@ -59,3 +59,16 @@ export const populationByCountry = async () => {
   });
   return result;
 };
+
+export const fieldByState = async () => {
+  const result: any = await censusAsync({
+    vintage: "2017",
+    geoHierarchy: {
+      us: "*"
+    },
+    sourcePath: ["acs", "acs1"],
+    values: ["B01001_001E"],
+    statsKey: "c97423c3f598951d2138d69861730b9154cd7230"
+  });
+  return result;
+};
