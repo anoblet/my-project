@@ -2,18 +2,16 @@ import "./Component";
 
 import { LitElement, css, customElement, html } from "lit-element";
 
+import { absolute } from "../../GlobalStyle";
+
 @customElement("clock-demo")
 export class Demo extends LitElement {
   public static styles = [
     css`
       :host {
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
         display: flex;
         flex: 1;
+        ${absolute}
       }
     `
   ];
