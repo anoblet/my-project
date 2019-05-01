@@ -19,6 +19,7 @@ export class PageComponents extends BeforeRender(LitElement) {
       components.map((component: any) => {
         if (component.tag === this.component) component.src();
       });
+    this.components.sort((a, b) => (a.label > b.label ? 1 : -1));
   }
 
   public render() {
