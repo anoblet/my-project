@@ -4,6 +4,7 @@ import { LitElement, css, customElement, html, property } from "lit-element";
 import { until } from "lit-html/directives/until";
 
 import { BeforeRender } from "../../mixins/BeforeRender";
+import GlobalStyle from "../../GlobalStyle";
 import { populationByState } from "../CitySDK/CitySDK";
 import MaterialColor from "random-material-color";
 
@@ -12,6 +13,7 @@ import "../Ratio/Component";
 @customElement("demo-component")
 export class Demo extends BeforeRender(LitElement) {
   public static styles = [
+    GlobalStyle,
     css`
       :host {
         flex: 1;
@@ -42,8 +44,8 @@ export class Demo extends BeforeRender(LitElement) {
   public render() {
     return html`
       <card-component>
-        <div slot="title">Field by state</div>
-        <div id="options">
+        <h3 slot="title">Field by state</h3>
+        <grid-component id="options">
           <div class="field">
             <label>Vintage</label>
             <select name="vintage" @change=${this.handleChange}>
@@ -68,7 +70,7 @@ export class Demo extends BeforeRender(LitElement) {
               <option value="B01001_002E">Sex by age</option>
             </select>
           </div>
-        </div>
+        </grid-component>
         ${until(
           populationByState(this.vintage, this.values).then((_data: any) => {
             const labels = [];
