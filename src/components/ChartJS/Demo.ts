@@ -83,9 +83,7 @@ export class Demo extends BeforeRender(LitElement) {
             labels.map(() => colors.push(MaterialColor.getColor()));
             const data = { data: values, labels, backgroundColor: colors };
             return html`
-              <ratio-component ratio="1">
-                <chart-js .data=${data} .type=${this.type}></chart-js>
-              </ratio-component>
+              <chart-js .data=${data} .type=${this.type}></chart-js>
             `;
           }),
           html`
