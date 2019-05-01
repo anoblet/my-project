@@ -12,10 +12,7 @@ export class CardComponent extends LitElement {
 
   public static styles = [GlobalStyle, Style];
   public template = Template;
-
-  public render() {
-    return this.template.bind(this)();
-  }
+  public render = this.template.bind(this);
 
   public firstUpdated(changedProperties: any) {
     super.firstUpdated(changedProperties);
