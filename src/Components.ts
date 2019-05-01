@@ -62,8 +62,8 @@ export const components = [
   {
     label: "Clock",
     src: () =>
-      import(/* webpackChunkName: "Clock" */ "./components/Clock/Component"),
-    tag: "clock-component"
+      import(/* webpackChunkName: "ClockDemo" */ "./components/Clock/Demo"),
+    tag: "clock-demo"
   },
   {
     label: "Playground",
@@ -106,5 +106,11 @@ export const components = [
     src: () =>
       import(/* webpackChunkName: "ColorPicker" */ "./components/ColorPicker/Component"),
     tag: "color-picker"
+  },
+  {
+    label: "Ratio",
+    src: () =>
+      import(/* webpackChunkName: "Ratio" */ "./components/Ratio/Component"),
+    tag: "ratio-component"
   }
 ];
