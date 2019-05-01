@@ -60,7 +60,10 @@ export class ChartJS extends LitElement {
           ]
         },
         maintainAspectRatio: false,
-        aspectRatio: 1
+        aspectRatio: 1,
+        legend: {
+          display: false
+        }
       }
     });
   }
