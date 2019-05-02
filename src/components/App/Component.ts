@@ -131,6 +131,7 @@ export class App extends BeforeRender(LitElement) {
           routes,
           portal: this.shadowRoot.querySelector("#portal")
         });
+        this.shadowRoot.querySelector("#content").scrollTo(0,0);
         setState({
           type: "app",
           data: { activeRoute: location.pathname },
