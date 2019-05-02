@@ -124,21 +124,18 @@ export class App extends BeforeRender(LitElement) {
   public async registerRouter() {
     router.setRoutes(routes);
     router.setPortal(this.shadowRoot.querySelector("#portal"));
-    await new Promise((resolve: any) => {
-      installRouter(async (location: any) => {
-        await router.routeChanged({
-          location,
-          routes,
-          portal: this.shadowRoot.querySelector("#portal")
-        });
-        const scrollTarget = this.shadowRoot.querySelector("#content");
-        scrollTarget.scrollTo(0, 0);
-        setState({
-          type: "app",
-          data: { activeRoute: location.pathname },
-          store
-        });
-        resolve();
+    installRouter((location: any) => {
+      router.routeChanged({
+        location,
+        routes,
+        portal: this.shadowRoot.querySelector("#portal")
+      });
+      const scrollTarget = this.shadowRoot.querySelector("#content");
+      scrollTarget.scrollTo(0, 0);
+      setState({
+        type: "app",
+        data: { activeRoute: location.pathname },
+        store
       });
     });
   }
