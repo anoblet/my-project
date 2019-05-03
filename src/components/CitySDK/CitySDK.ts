@@ -72,3 +72,22 @@ export const fieldByState = async () => {
   });
   return result;
 };
+
+export const getVintages = async () => {
+  const result: any = await fetch("https://api.census.gov/data/").then(function(
+    response
+  ) {
+    return response.json();
+  });
+  const unsortedArray = [];
+  result.dataset.map((data: any) => {
+    const vintage = data["c_vintage"];
+    if (vintage && !unsortedArray.includes(vintage))
+      unsortedArray.push(vintage);
+  });
+  return unsortedArray.sort((a, b) => a - b);
+};
+
+export const getDatabases = async () => {
+  const result = await fetch("");
+};

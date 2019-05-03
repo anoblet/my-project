@@ -5,7 +5,11 @@ import { until } from "lit-html/directives/until";
 
 import { BeforeRender } from "../../mixins/BeforeRender";
 import GlobalStyle from "../../GlobalStyle";
-import { populationByState } from "../CitySDK/CitySDK";
+import {
+  getDatabases,
+  getVintages,
+  populationByState
+} from "../CitySDK/CitySDK";
 import MaterialColor from "random-material-color";
 
 import "../Ratio/Component";
@@ -42,6 +46,9 @@ export class Demo extends BeforeRender(LitElement) {
   @property() public values: string = "B00001_001E";
 
   public render() {
+    const vintages = getVintages();
+    console.log(vintages);
+    const databases = getDatabases();
     return html`
       <card-component>
         <h3 slot="title">Field by state</h3>
