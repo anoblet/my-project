@@ -6,7 +6,7 @@ import { until } from "lit-html/directives/until";
 import { BeforeRender } from "../../mixins/BeforeRender";
 import GlobalStyle from "../../GlobalStyle";
 import {
-  getDatabases,
+  getPrograms,
   getVintages,
   populationByState
 } from "../CitySDK/CitySDK";
@@ -42,13 +42,16 @@ export class Demo extends BeforeRender(LitElement) {
     `
   ];
   @property() public vintage: string = "2017";
+  @property() public vintages: any;
   @property() public type: string = "bar";
   @property() public values: string = "B00001_001E";
 
+  public async beforeRender() {
+    this.vintages = await getVintages();
+    return;
+  }
+
   public render() {
-    const vintages = getVintages();
-    console.log(vintages);
-    const databases = getDatabases();
     return html`
       <card-component>
         <h3 slot="title">Field by state</h3>
@@ -56,8 +59,17 @@ export class Demo extends BeforeRender(LitElement) {
           <div class="field">
             <label>Vintage</label>
             <select name="vintage" @change=${this.handleChange}>
-              <option value="2017">2017</option>
-              <option value="2015">2015</option>
+              ${this.vintages.map(
+                vintage => html`
+                  <option value=${vintage}>${vintage}</option>
+                `
+              )}
+            </select>
+          </div>
+          <div class="field">
+            <label>Program</label>
+            <select name="vintage" @change=${this.handleChange}>
+              ${until(getPrograms(this.vintage), html``)}
             </select>
           </div>
           <div class="field">
@@ -102,6 +114,7 @@ export class Demo extends BeforeRender(LitElement) {
   }
 
   public handleChange(e: any) {
+    console.log(e.target.value);
     this[e.target.name] = e.target.value;
   }
 }

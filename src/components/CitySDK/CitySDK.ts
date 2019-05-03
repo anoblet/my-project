@@ -88,6 +88,16 @@ export const getVintages = async () => {
   return unsortedArray.sort((a, b) => a - b);
 };
 
-export const getDatabases = async () => {
-  const result = await fetch("");
+export const getPrograms = async (vintage: string) => {
+  const result: any = await fetch(
+    `https://api.census.gov/data/${vintage}`
+  ).then(function(response) {
+    return response.json();
+  });
+  console.log(result);
+  const unsortedArray = [];
+  result.dataset.map((data: any) => {
+    return;
+  });
+  return unsortedArray.sort((a, b) => a - b);
 };
