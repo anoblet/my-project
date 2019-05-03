@@ -1,5 +1,3 @@
-import "./Component";
-
 import { LitElement, css, customElement, html, property } from "lit-element";
 import { until } from "lit-html/directives/until";
 
@@ -12,7 +10,7 @@ import {
 } from "../CitySDK/CitySDK";
 import MaterialColor from "random-material-color";
 
-import "../Ratio/Component";
+import "../ChartJS/Component";
 
 @customElement("census-explorer")
 export class Demo extends BeforeRender(LitElement) {
@@ -25,10 +23,6 @@ export class Demo extends BeforeRender(LitElement) {
 
       ::part(content-container) {
         overflow-x: hidden;
-      }
-
-      ratio-component {
-        border: 0;
       }
 
       .field {
