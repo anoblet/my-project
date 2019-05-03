@@ -112,5 +112,11 @@ export const components = [
     src: () =>
       import(/* webpackChunkName: "RatioDemo" */ "./components/Ratio/Demo"),
     tag: "ratio-demo"
+  },
+  {
+    label: "Census Explorer",
+    src: () =>
+      import(/* webpackChunkName: "CensusExplorerDemo" */ "./components/CensusExplorer/Demo"),
+    tag: "census-explorer-demo"
   }
 ];

@@ -12,7 +12,7 @@ import MaterialColor from "random-material-color";
 
 import "../ChartJS/Component";
 
-@customElement("census-explorer")
+@customElement("census-explorer-demo")
 export class Demo extends BeforeRender(LitElement) {
   public static styles = [
     GlobalStyle,
