@@ -75,3 +75,7 @@ export default function() {
     <menu-component></menu-component>
   `;
 }
+
+const drawer = function() {
+  return html``;
+};
