@@ -8,3 +8,7 @@ export class Component extends LitElement {
   public template = Template;
   public render = this.template.bind(this);
 }
+
+const array = ["pep", "agesex"] === ["pep", "agesex"];
+
+console.log(array);
