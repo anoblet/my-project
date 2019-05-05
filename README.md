@@ -1,10 +1,14 @@
 ### Install
 
+<card-component>
+
 ```
 git clone https://github.com/anoblet/my-project
 cd my-project
 npm i
 ```
+
+</card-component>
 
 Copy config.example.ts to config.ts and add Firebase information
 
