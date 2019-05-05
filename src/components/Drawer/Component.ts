@@ -10,6 +10,9 @@ import { App } from "../App/Component";
 
 @customElement("drawer-component")
 export class Drawer extends LitElement {
+  public static styles = [GlobalStyle, Style];
+  public template = Template;
+  public render = this.template.bind(this)();
   @property({ type: Boolean, reflect: true }) public hidden: boolean = true;
   @property({ reflect: true, attribute: "media-size" })
   public mediaSize: string = "true";
@@ -35,12 +38,6 @@ export class Drawer extends LitElement {
   set opened(value: any) {
     this.opened = value;
     this.hidden = !value;
-  }
-
-  public static styles = [GlobalStyle, Style];
-
-  public render() {
-    return Template.bind(this)();
   }
 
   public firstUpdated() {
