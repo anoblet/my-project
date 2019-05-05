@@ -42,15 +42,13 @@ const links = [
 
 export const drawer = function() {
   return html`
-    <grid-component>
-      <ul>
-        ${links.map(
-          (link: any) =>
-            html`
-              <li><a href=${link.href}>${link.label}</a></li>
-            `
-        )}
-      </ul>
-    </grid-component>
+    <ul>
+      ${links.map(
+        (link: any) =>
+          html`
+            <li><a href=${link.href}>${link.label}</a></li>
+          `
+      )}
+    </ul>
   `;
 };
