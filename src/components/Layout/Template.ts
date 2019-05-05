@@ -4,7 +4,7 @@ export default function() {
   return html``;
 }
 
-const drawer = function() {
+export const drawer = function() {
   return html`
     <grid-component
       ><ul>
