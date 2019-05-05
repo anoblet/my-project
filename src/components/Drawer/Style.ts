@@ -23,8 +23,9 @@ export default css`
   }
 
   li {
-    padding: 0.75em 0;
+    padding: 0.75em .5em;
     border-bottom: 1px solid var(--background-color);
+    position: relative;
   }
 
   li:hover {
@@ -43,5 +44,17 @@ export default css`
     display: flex;
     flex: 1;
     padding-right: 3em;
+  }
+
+  li:hover > a:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0.05;
+    z-index: -1;
+    background: var(--primary-color);
   }
 `;
