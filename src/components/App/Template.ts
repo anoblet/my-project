@@ -1,42 +1,13 @@
-import { config } from "../../../config";
 import { html } from "lit-element";
-import { isSignedIn } from "../../User";
 import { store } from "../../Store";
-import { primaryColorSelect } from "../Theme/PrimaryColorSelect";
+import { header, navigation } from "../Layout/Template";
 
 export default function() {
   const state = store.getState();
   const settings = state.settings;
   return html`
     <app-header>
-      <span id="menu">
-        <i class="material-icons" @click="${this._toggleDrawer}">menu</i>
-      </span>
-      <span id="title"><a href="/">${config.site.title}</a></span>
-      ${isSignedIn()
-        ? html`
-            <span
-              class="circle"
-              id="userProfile"
-              mini
-              label="Account"
-              @click="${() => this._toggleProfile()}"
-            >
-            </span>
-          `
-        : html`
-            <div id="right">
-              <grid-component style="grid-template-columns: repeat(2, 1fr)">
-                <div style="display: flex; align-items: center;">
-                  ${false ? primaryColorSelect : html``}
-                </div>
-                <a href="/user/signin"
-                  ><button-component>Sign in</button-component></a
-                >
-              </grid-component>
-            </div>
-          `}
-      <div slot="choose-theme">1</div>
+      ${header.bind(this)()}
     </app-header>
     <div id="center" style="position: relative;">
       <profile-menu id="profile-menu"></profile-menu>
@@ -44,7 +15,7 @@ export default function() {
         <drawer-component
           id="drawer"
           opened=${this.drawerOpened}
-        ></drawer-component>
+        >${navigation()}</drawer-component>
         <div id="content" grow>
           <grid-component id="content-grid" style="contain: initial;">
             ${state.user.settings
