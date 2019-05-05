@@ -24,10 +24,15 @@ export class Drawer extends LitElement {
       if (mediaSize === "desktop") this.hidden = false;
       this.mediaSize = mediaSize;
     });
+    // Update on state change
     store.subscribe(() => this.requestUpdate());
   }
 
   public firstUpdated() {
+    this._handleClicked();
+  }
+
+  public _handleClicked() {
     const _links = [];
     const links = this.shadowRoot.querySelectorAll("a");
     for (const link of links as any) {
