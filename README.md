@@ -6,11 +6,12 @@
 git clone https://github.com/anoblet/my-project
 cd my-project
 npm i
+
+Copy config.example.ts to config.ts and add your Firebase information
+
+npm run dev
 ```
 
-</card-component>
-<card-component>
-Copy config.example.ts to config.ts and add Firebase information
 </card-component>
 
 ### Links
