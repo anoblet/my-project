@@ -9,14 +9,19 @@ npm i
 ```
 
 </card-component>
-
+<card-component>
 Copy config.example.ts to config.ts and add Firebase information
+</card-component>
 
 ### Links
+
+<card-component>
 
 - [Components](/components)
 - [Performance](/performance)
 - [Blog](/blog)
+
+</card-component>
 
 ### Scaffolding:
 
