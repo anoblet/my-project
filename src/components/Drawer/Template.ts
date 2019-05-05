@@ -1,8 +1,8 @@
 import { html } from "lit-element";
-import { drawer } from "../Layout/Template";
+import { navigation } from "../Layout/Template";
 
 export default function() {
   return html`
-    ${drawer()}
+    ${navigation()}
   `;
 }
