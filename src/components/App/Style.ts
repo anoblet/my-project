@@ -92,7 +92,6 @@ export default css`
 
   #content-grid {
     padding-right: 1em;
-    content: initial;
   }
 
   #center {
@@ -164,6 +163,7 @@ export default css`
 
   #portal {
     contain: initial;
+    overflow: hidden;
   }
 
   #content {
