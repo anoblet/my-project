@@ -44,9 +44,17 @@ export const drawer = function() {
   return html`
     <ul>
       ${links.map(
-        (link: any) =>
+        ({ href, label, external }) =>
           html`
-            <li><a href=${link.href}>${link.label}</a></li>
+            <li>
+              ${!external
+                ? html`
+                    <a href=${href}>${label}</a>
+                  `
+                : html`
+                    <a href=${href} target="_blank">${label}</a>
+                  `}
+            </li>
           `
       )}
     </ul>
