@@ -17,14 +17,6 @@ export class Drawer extends LitElement {
   @property({ reflect: true, attribute: "media-size" })
   public mediaSize: string = "true";
 
-  public toggle() {
-    this.hidden = !this.hidden;
-  }
-
-  public close() {
-    this.hidden = true;
-  }
-
   constructor() {
     super();
     media.subscribe((mediaSize: string) => {
@@ -35,22 +27,32 @@ export class Drawer extends LitElement {
     store.subscribe(() => this.requestUpdate());
   }
 
+
+    public firstUpdated() {
+      const _links = [];
+      const links = this.shadowRoot.querySelectorAll("a");
+      for (const link of links as any) {
+        _links.push(link);
+      }
+      _links.map((link: HTMLElement) =>
+        link.addEventListener("click", () => {
+          const el: App = document.querySelector("app-component");
+          if (this.mediaSize === "mobile") el._toggleDrawer();
+        })
+      );
+    }
+
+  public toggle() {
+    this.hidden = !this.hidden;
+  }
+
+  public close() {
+    this.hidden = true;
+  }
+
   set opened(value: any) {
     this.opened = value;
     this.hidden = !value;
   }
 
-  public firstUpdated() {
-    const _links = [];
-    const links = this.shadowRoot.querySelectorAll("a");
-    for (const link of links as any) {
-      _links.push(link);
-    }
-    _links.map((link: HTMLElement) =>
-      link.addEventListener("click", () => {
-        const el: App = document.querySelector("app-component");
-        if (this.mediaSize === "mobile") el._toggleDrawer();
-      })
-    );
-  }
 }
