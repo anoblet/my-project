@@ -12,7 +12,7 @@ import { App } from "../App/Component";
 export class Drawer extends LitElement {
   public static styles = [GlobalStyle, Style];
   public template = Template;
-  public render = this.template.bind(this)();
+  public render = this.template.bind(this);
   @property({ type: Boolean, reflect: true }) public hidden: boolean = true;
   @property({ reflect: true, attribute: "media-size" })
   public mediaSize: string = "true";
