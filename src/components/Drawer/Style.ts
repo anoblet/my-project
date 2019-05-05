@@ -38,4 +38,10 @@ export default css`
   card-component .content {
     padding: 0;
   }
+
+  li > a {
+    display: flex;
+    flex: 1;
+    padding-right: 3em;
+  }
 `;
