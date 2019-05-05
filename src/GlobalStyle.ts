@@ -142,6 +142,10 @@ export default css`
   }
 
   ${FluidType}
+
+  pre {
+    margin: 0;
+  }
 `;
 
 export const absolute = css`
