@@ -8,6 +8,7 @@ const readme = require("../../README.md");
 const Style = css`
   :host {
     flex: 1;
+    overflow: hidden;
   }
 
   grid-component > .grid-item {
