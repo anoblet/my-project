@@ -40,7 +40,7 @@ const links = [
   }
 ];
 
-export const drawer = function() {
+export const navigation = function() {
   return html`
     <ul>
       ${links.map(
