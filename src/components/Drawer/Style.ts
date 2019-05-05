@@ -23,7 +23,7 @@ export default css`
   }
 
   li {
-    padding: 0.5em 0;
+    padding: 0.75em 0;
     border-bottom: 1px solid var(--background-color);
   }
 
