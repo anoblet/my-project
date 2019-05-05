@@ -23,7 +23,6 @@ export default css`
   }
 
   li {
-    padding: 0.75em .5em;
     border-bottom: 1px solid var(--background-color);
     position: relative;
   }
@@ -43,6 +42,7 @@ export default css`
   li > a {
     display: flex;
     flex: 1;
+    padding: 0.75em 0.5em;
     padding-right: 3em;
   }
 
