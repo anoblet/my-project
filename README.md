@@ -1,6 +1,6 @@
 ### Install
 
-<div style="padding: 1em">
+<div style="padding: 0 1em">
 
 ```
 git clone https://github.com/anoblet/my-project
