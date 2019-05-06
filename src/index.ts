@@ -1,3 +1,4 @@
+import("../config").then((result) => console.log(result));
 import "./components/App/Component";
 import "./components/Header/Component";
 import "./components/Footer/Component";
