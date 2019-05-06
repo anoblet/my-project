@@ -1,6 +1,6 @@
 ### Install
 
-<card-component>
+<div style="padding: 1em">
 
 ```
 git clone https://github.com/anoblet/my-project
@@ -11,17 +11,13 @@ Copy config.example.ts to config.ts and add your Firebase information
 npm i && npm run dev
 ```
 
-</card-component>
+</div>
 
 ### Links
-
-<card-component>
 
 - [Components](/components)
 - [Performance](/performance)
 - [Blog](/blog)
-
-</card-component>
 
 ### Scaffolding:
 
