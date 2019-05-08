@@ -1,3 +1,4 @@
+import { config } from "../config";
 import "./components/App/Component";
 import "./components/Header/Component";
 import "./components/Footer/Component";
@@ -15,6 +16,10 @@ import "./components/Button/Component";
 import "@firebase/app";
 import "@firebase/auth";
 // Google analytics
-import galite from "ga-lite";
-galite("create", "UA-63899225-2", "auto");
-galite("send", "pageview");
+if (config.analytics) {
+  import("ga-lite").then((module: any) => {
+    const galite = module.default;
+    galite("create", "UA-63899225-2", "auto");
+    galite("send", "pageview");
+  });
+}
