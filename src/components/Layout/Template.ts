@@ -3,6 +3,7 @@ import { config } from "../../../config";
 import { isSignedIn } from "../../User";
 import { store } from "../../Store";
 import { primaryColorSelect } from "../Theme/PrimaryColorSelect";
+import { menu } from "../../assets/menu";
 
 export default function() {
   return html``;
