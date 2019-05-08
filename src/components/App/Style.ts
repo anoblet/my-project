@@ -42,7 +42,7 @@ export default css`
     z-index: 3;
     border: 0;
     border-right: 1px solid var(--border-color);
-    padding-right: 1.20em;
+    padding-right: 1.2em;
   }
 
   #drawer-container {
@@ -149,6 +149,7 @@ export default css`
   #menu {
     cursor: pointer;
     padding: 1em;
+    fill: currentColor;
   }
 
   #menu:hover,
