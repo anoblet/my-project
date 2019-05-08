@@ -20,7 +20,7 @@ import { toast } from "../Toast/Toast";
 import { user } from "../../User";
 import { BeforeRender } from "../../mixins/BeforeRender";
 import { addReducers } from "./Helpers";
-import { performance } from "../../Performance";
+// import { performance } from "../../Performance";
 
 @customElement("app-component")
 export class App extends BeforeRender(LitElement) {

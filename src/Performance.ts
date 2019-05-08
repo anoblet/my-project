@@ -6,7 +6,7 @@ import { config } from "../config";
  * Assume performance returns the performance object no matter the state of the app
  * @return firebase.performance
  */
-export const performance = async () => {
+const _performance = async () => {
   const _instance = await firebase.init(config.firebase);
   return _instance.performance();
 };
@@ -16,7 +16,7 @@ export const performance = async () => {
  */
 
 export const trace = async (feature: string) => {
-  const _instance = await performance();
+  const _instance = await _performance();
   return _instance.trace(feature);
 };
 
