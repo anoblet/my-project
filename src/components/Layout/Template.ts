@@ -72,8 +72,8 @@ export const navigation = function() {
 
 export const header = function() {
   return html`
-    <span id="menu">
-      <i class="material-icons" @click="${this._toggleDrawer}">menu</i>
+    <span id="menu" @click="${this._toggleDrawer}">
+      ${menu}
     </span>
     <span id="title"><a href="/">${config.site.title}</a></span>
     ${isSignedIn()
