@@ -146,6 +146,10 @@ export default css`
   pre {
     margin: 0;
   }
+
+  svg {
+    fill: currentColor;
+  }
 `;
 
 export const absolute = css`
