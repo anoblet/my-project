@@ -150,6 +150,10 @@ export default css`
   svg {
     fill: currentColor;
   }
+
+  .flex {
+    display: flex;
+  }
 `;
 
 export const absolute = css`
