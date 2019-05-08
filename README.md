@@ -19,7 +19,7 @@ npm i && npm run dev
 - [Performance](/performance)
 - [Blog](/blog)
 
-### Scaffolding:
+### Features:
 
 - Generic Redux actions/reducers
 - Separation of concerns -- seperate templates/styles
