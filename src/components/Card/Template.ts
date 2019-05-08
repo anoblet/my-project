@@ -1,4 +1,5 @@
 import { html } from "lit-element";
+import { expand_less, expand_more } from "../../Icons";
 
 export default function() {
   return html`
@@ -11,12 +12,10 @@ export default function() {
             <slot name="title"></slot>
           `}
       ${this.collapsible
-        ? html`
-            <i class="material-icons"
-              >${this.collapsed ? "expand_more" : "expand_less"}</i
-            >
-          `
-        : ""}
+        ? this.collapsed
+          ? expand_more
+          : expand_less
+        : html``}
     </div>
     <div id="content" part="content-container">
       <slot name="content" part="content"> </slot><slot> </slot>
