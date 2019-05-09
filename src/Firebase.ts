@@ -130,6 +130,8 @@ export const getDocument = async ({ callback, path, watch }: any) => {
   });
 };
 
+// Function assumes performance should be loaded
+
 /**
  * Should be run once and only once since it instantiates Firebase
  *  - Should be of type <firebaseConfig> (How the hell would I type that anyways :P)
