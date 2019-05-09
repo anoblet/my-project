@@ -13,7 +13,7 @@ export default function() {
       <drawer-component id="drawer" opened=${this.drawerOpened}
         >${navigation()}</drawer-component
       >
-      <grid-component id="content-grid">
+      <grid-component id="content">
         ${state.user.settings
           ? state.user.settings.breadcrumbs
             ? html`
@@ -23,7 +23,7 @@ export default function() {
               `
             : ""
           : ""}
-        <div id="portal" style="display: flex;"></div>
+        <div id="portal"></div>
         ${settings.displayLog
           ? html`
               <card-component

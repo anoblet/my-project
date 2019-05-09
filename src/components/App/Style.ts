@@ -143,17 +143,10 @@ export default css`
     cursor: pointer;
   }
 
-  #content-grid {
-    margin-left: 1em;
-    flex-direction: column;
-    position: relative;
-    padding-right: 1em;
-    contain: initial;
-  }
-
   #portal {
     contain: initial;
     overflow: hidden;
+    display: flex;
   }
 
   #content {
