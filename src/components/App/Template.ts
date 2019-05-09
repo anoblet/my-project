@@ -10,12 +10,10 @@ export default function() {
       ${header.bind(this)()}
     </app-header>
     <div id="center" style="position: relative;">
-      <profile-menu id="profile-menu"></profile-menu>
       <grid-component id="drawer-container" media-size="${this.mediaSize}">
-        <drawer-component
-          id="drawer"
-          opened=${this.drawerOpened}
-        >${navigation()}</drawer-component>
+        <drawer-component id="drawer" opened=${this.drawerOpened}
+          >${navigation()}</drawer-component
+        >
         <div id="content" grow>
           <grid-component id="content-grid" style="contain: initial;">
             ${state.user.settings
@@ -41,6 +39,7 @@ export default function() {
           </grid-component>
         </div>
       </grid-component>
+      <profile-menu id="profile-menu"></profile-menu>
     </div>
     <footer-component id="bottom"></footer-component>
     <menu-component></menu-component>
