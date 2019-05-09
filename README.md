@@ -26,9 +26,10 @@ npm i && npm run dev
 
 ### Uses:
 
-- <a href="https://lit-html.polymer-project.org/" target="_blank">lit-html</a>
-- <a href="https://lit-element.polymer-project.org/" target="_blank">lit-element</a>
-- <a href="https://firebase.google.com/" target="_blank">firebase</a>
+- <a href="https://lit-html.polymer-project.org/" rel="noreferrer" target="_blank">lit-html</a>
+- <a href="https://lit-element.polymer-project.org/"  rel="noreferrer" target="_blank">lit-element</a>
+- <a href="https://firebase.google.com/" rel="noreferrer" target="_blank">firebase</a>
+- <a href="https://www.talater.com/annyang/" rel="noreferrer" target="_blank">annyang</a>
 
 ### To do:
 
