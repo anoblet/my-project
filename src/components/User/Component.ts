@@ -15,7 +15,7 @@ export class UserComponent extends LitElement {
 export const getForm = async () =>
   Promise.all([
     import(/* webpackChunkName: "Firebase" */ "firebase/app"),
-    import(/* webpackChunkName: "Firebase" */ "firebaseui")
+    import(/* webpackChunkName: "FirebaseUI" */ "firebaseui")
   ]).then(async ([firebase, firebaseui]) => {
     const el = document.createElement("div");
     const ui =
