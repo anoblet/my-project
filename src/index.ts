@@ -23,3 +23,7 @@ if (config.analytics) {
     galite("send", "pageview");
   });
 }
+// Firebase performance
+if (config.performance) {
+  return;
+}
