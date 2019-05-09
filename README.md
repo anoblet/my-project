@@ -51,4 +51,4 @@ npm i && npm run dev
 
 Browserstack for cross-browser testing:
 
-[!Browserstack](https://raw.githubusercontent.com/anoblet/my-project/master/src/assets/Browserstack-logo@2x.png)](https://browserstack.com/)
+[![Browserstack](https://raw.githubusercontent.com/anoblet/my-project/master/src/assets/Browserstack-logo@2x.png)](https://browserstack.com/)
