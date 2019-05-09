@@ -61,7 +61,7 @@ export const navigation = function() {
                     <a href=${href}>${label}</a>
                   `
                 : html`
-                    <a href=${href} target="_blank">${label}</a>
+                    <a href=${href} rel="noreferrer" target="_blank">${label}</a>
                   `}
             </li>
           `
