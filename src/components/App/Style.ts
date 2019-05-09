@@ -49,6 +49,8 @@ export default css`
     flex: 1;
     position: relative;
     grid-gap: 0;
+    overflow: auto;
+    position: relative;
   }
 
   [full-height] {
@@ -92,13 +94,6 @@ export default css`
 
   #content-grid {
     padding-right: 1em;
-  }
-
-  #center {
-    display: flex;
-    flex: 1;
-    overflow: auto;
-    position: relative;
   }
 
   #content {
