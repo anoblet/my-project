@@ -8,7 +8,6 @@ import "./components/ProfileMenu/ProfileMenu";
 import "./components/Card/Component";
 import "./components/Grid/Component";
 import "./components/Loading/Component";
-import "./components/ContextMenu/MenuComponent";
 import "./components/Breadcrumb/Component";
 import "./components/Voice/Component";
 import "./components/Button/Component";
