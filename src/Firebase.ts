@@ -17,7 +17,7 @@ export const run = async (packages: any) => {
     );
   if (packages.includes("performance"))
     imports.push(
-      import(/* webpackChunkName: "FirebasePerformance" */ "@firebase/performance")
+      import(/* webpackChunkName: "Firebase" */ "@firebase/performance")
     );
   return Promise.all(imports).then(([_firebase]) => _firebase);
 };
