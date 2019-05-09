@@ -6,12 +6,11 @@ export default function() {
   const state = store.getState();
   const settings = state.settings;
   return html`
-    <app-header>
+    <header-component>
       ${header.bind(this)()}
-    </app-header>
+    </header-component>
     <grid-component
       id="drawer-container"
-      class="center"
       media-size="${this.mediaSize}"
     >
       <drawer-component id="drawer" opened=${this.drawerOpened}
