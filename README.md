@@ -54,8 +54,10 @@ Browserstack for cross-browser testing:
 
 <?xml version="1.0" encoding="utf-8"?>
 <!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+
 <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 	 viewBox="0 0 490.1 105.6" style="enable-background:new 0 0 490.1 105.6;" xml:space="preserve">
+
 <style type="text/css">
 	.st0{fill:#F4B960;}
 	.st1{fill:#E66F32;}
@@ -143,5 +145,4 @@ Browserstack for cross-browser testing:
 	c-0.1,0.1-0.2,0.1-0.3,0.1H482.8L482.8,73.3z"/>
 </svg>
 
-
-[![Browserstack](https://raw.githubusercontent.com/anoblet/my-project/master/src/assets/Browserstack-logo@2x.png)](https://browserstack.com/)
+[![Browserstack](https://raw.githubusercontent.com/anoblet/my-project/master/src/assets/Browserstack-logo.svg?sanitize=true)](https://browserstack.com/)
