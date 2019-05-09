@@ -3,8 +3,8 @@ import Style from "./Style";
 import { store } from "../../Store";
 import Template from "./Template";
 
-@customElement("app-header")
-export class AppHeader extends LitElement {
+@customElement("header-component")
+export class HeaderComponent extends LitElement {
   public static styles = Style;
   public template = Template;
   public render() {
