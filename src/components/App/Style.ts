@@ -92,20 +92,6 @@ export default css`
     padding: 0 1em 0.5em !important;
   }
 
-  #content-grid {
-    padding-right: 1em;
-  }
-
-  #content {
-    flex-direction: column;
-    position: relative;
-  }
-
-  .content {
-    flex-direction: column;
-    position: relative;
-  }
-
   mwc-icon {
     color: var(--mdc-theme-primary);
   }
@@ -159,7 +145,10 @@ export default css`
 
   #content-grid {
     margin-left: 1em;
-    /* height: 100%; */
+    flex-direction: column;
+    position: relative;
+    padding-right: 1em;
+    contain: initial;
   }
 
   #portal {

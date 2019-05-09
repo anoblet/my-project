@@ -9,18 +9,11 @@ export default function() {
     <header-component>
       ${header.bind(this)()}
     </header-component>
-    <grid-component
-      id="drawer-container"
-      media-size="${this.mediaSize}"
-    >
+    <grid-component id="drawer-container" media-size="${this.mediaSize}">
       <drawer-component id="drawer" opened=${this.drawerOpened}
         >${navigation()}</drawer-component
       >
-      <grid-component
-        id="content-grid"
-        class="content"
-        style="contain: initial;"
-      >
+      <grid-component id="content-grid">
         ${state.user.settings
           ? state.user.settings.breadcrumbs
             ? html`
