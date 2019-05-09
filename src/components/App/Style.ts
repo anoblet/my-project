@@ -101,6 +101,11 @@ export default css`
     position: relative;
   }
 
+  .content {
+    flex-direction: column;
+    position: relative;
+  }
+
   mwc-icon {
     color: var(--mdc-theme-primary);
   }
