@@ -25,5 +25,5 @@ if (config.analytics) {
 }
 // Firebase performance
 if (config.performance) {
-  return;
+  const _void = "";
 }
