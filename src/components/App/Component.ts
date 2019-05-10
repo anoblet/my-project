@@ -7,7 +7,7 @@ import Properties from "./Properties";
 import { config } from "../../../config";
 import { db } from "../../Database";
 import { firebase } from "../../Firebase";
-import { debug } from "../../Debug";
+import { debug, log } from "../../Debug";
 import { installOfflineWatcher } from "pwa-helpers/network.js";
 import { installRouter } from "pwa-helpers/router.js";
 import { media } from "../../Media";
@@ -37,7 +37,7 @@ export class App extends BeforeRender(LitElement) {
   // Lifecycle
   constructor() {
     super();
-    debug.log("Constructor");
+    log("Constructor");
     addReducers();
     if (config.staticTheme) {
       theme.set(theme.convert(config.theme), this);
@@ -60,7 +60,7 @@ export class App extends BeforeRender(LitElement) {
     const _firebase = await firebase.init(config.firebase);
     // this.performance = _firebase.performance();
     if (config.globalSettings) {
-      debug.log("Getting app level settings");
+      log("Getting app level settings");
       await getAppSettings((document: any) => {
         setState({ data: { settings: document }, store, type: "app" });
         if (!config.staticTheme) {
@@ -68,20 +68,20 @@ export class App extends BeforeRender(LitElement) {
           theme.set(_theme, this);
         }
       });
-      debug.log("Finished gettings app settings");
+      log("Finished gettings app settings");
     }
     debug.log("Getting user level settings");
     await db.getUser().then(async (_user: any) => {
       if (_user) {
-        debug.log("User logged in");
+        log("User logged in");
         const userData = user.extract(_user);
         setState({ data: userData, store, type: "user" });
-        debug.log("Getting user settings");
+        log("Getting user settings");
         await user.getUserSettings((document: any) => {
           setState({ data: { settings: document }, store, type: "user" });
         });
-        debug.log("Finished getting user settings");
-        debug.log("Getting user theme");
+        log("Finished getting user settings");
+        log("Getting user theme");
         await user.getUserTheme((document: any) => {
           theme.set(theme.convert(document), this);
           setState({
@@ -90,18 +90,18 @@ export class App extends BeforeRender(LitElement) {
             store
           });
         });
-        debug.log("Finished getting user theme");
+        log("Finished getting user theme");
       } else {
-        debug.log("User not logged in");
+        log("User not logged in");
       }
     });
-    debug.log("Finished getting user");
+    log("Finished getting user");
 
     document.querySelector("#loading").removeAttribute("enabled");
   }
 
   public firstUpdated() {
-    debug.log("First updated");
+    log("First updated");
     store.subscribe(() => this.requestUpdate());
     this.registerRouter();
     installOfflineWatcher((offline: boolean) => {
