@@ -21,6 +21,7 @@ import { user } from "../../User";
 import { BeforeRender } from "../../mixins/BeforeRender";
 import { addReducers } from "./Helpers";
 // import { performance } from "../../Performance";
+import { getAppSettings } from "./Utility";
 
 @customElement("app-component")
 export class App extends BeforeRender(LitElement) {
@@ -168,18 +169,3 @@ export class App extends BeforeRender(LitElement) {
     menu.close();
   }
 }
-
-// Utility function
-const getAppSettings = (callback: any) => {
-  return new Promise((resolve: any, reject: any) =>
-    database.getDocument({
-      callback: (document: any) => {
-        document
-          ? resolve(callback(document))
-          : reject(new Error("Could not retrieve document"));
-      },
-      path: "app/settings",
-      watch: true
-    })
-  );
-};
