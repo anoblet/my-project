@@ -41,6 +41,5 @@ export default function() {
       <profile-menu id="profile-menu"></profile-menu>
     </grid-component>
     <footer-component id="bottom"></footer-component>
-    <menu-component></menu-component>
   `;
 }
