@@ -13,7 +13,7 @@ import { installRouter } from "pwa-helpers/router.js";
 import { media } from "../../Media";
 import { router } from "../../Router";
 import { routes } from "./Routes";
-import { setState } from "../../State";
+import { setState, State } from "../../State";
 import { store } from "../../Store";
 import { theme } from "../../Theme";
 import { toast } from "../Toast/Toast";
@@ -41,7 +41,7 @@ export class App extends BeforeRender(LitElement) {
     addReducers();
     if (config.staticTheme) {
       theme.set(theme.convert(config.theme), this);
-      setState({
+      State.set({
         type: "app",
         data: { settings: { theme: config.theme } },
         store

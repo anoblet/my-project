@@ -41,3 +41,9 @@ export const state = {
   get,
   set: setState
 };
+
+export const State = {
+  addReducer,
+  get,
+  set: setState
+};
