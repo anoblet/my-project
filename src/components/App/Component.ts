@@ -57,7 +57,8 @@ export class App extends BeforeRender(LitElement) {
   }
 
   public async beforeRender() {
-    const _firebase = await firebase.init(config.firebase);
+    // const _firebase = await firebase.init(config.firebase);
+    await firebase.init(config.firebase);
     // this.performance = _firebase.performance();
     if (config.globalSettings) {
       log("Getting app level settings");
