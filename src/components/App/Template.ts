@@ -2,9 +2,13 @@ import { html } from "lit-element";
 import { store } from "../../Store";
 import { header, navigation } from "../Layout/Template";
 
-export default function() {
+const getSettings = () => {
   const state = store.getState();
-  const settings = state.settings;
+  return state.settings;
+};
+
+export default function() {
+  const settings = getSettings();
   return html`
     <header-component>
       ${header.bind(this)()}
@@ -14,15 +18,15 @@ export default function() {
         >${navigation()}</drawer-component
       >
       <grid-component id="content">
-        ${state.user.settings
-          ? state.user.settings.breadcrumbs
+        ${settings
+          ? settings.breadcrumbs
             ? html`
                 <card-component>
                   <breadcrumb-component></breadcrumb-component
                 ></card-component>
               `
-            : ""
-          : ""}
+            : html``
+          : html``}
         <div id="portal"></div>
         ${settings.displayLog
           ? html`
