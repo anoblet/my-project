@@ -1,4 +1,6 @@
+import { addReducer } from "../../State";
 import { database } from "../../Database";
+import { store } from "../../Store";
 
 export const getAppSettings = (callback: any) => {
   return new Promise((resolve: any, reject: any) =>
@@ -12,4 +14,10 @@ export const getAppSettings = (callback: any) => {
       watch: true
     })
   );
+};
+
+export const addDefaultReducers = () => {
+  addReducer({ type: "app", store });
+  addReducer({ type: "user", store });
+  addReducer({ type: "settings", store });
 };
