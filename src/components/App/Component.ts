@@ -19,9 +19,8 @@ import { theme } from "../../Theme";
 import { toast } from "../Toast/Toast";
 import { user } from "../../User";
 import { BeforeRender } from "../../mixins/BeforeRender";
-import { addReducers } from "./Helpers";
 // import { performance } from "../../Performance";
-import { getAppSettings } from "./Utility";
+import { addDefaultReducers, getAppSettings } from "./Utility";
 
 @customElement("app-component")
 export class App extends BeforeRender(LitElement) {
@@ -39,7 +38,7 @@ export class App extends BeforeRender(LitElement) {
   constructor() {
     super();
     log("Constructor");
-    addReducers();
+    addDefaultReducers();
     if (config.staticTheme) {
       theme.set(theme.convert(config.theme), this);
       state.set({
