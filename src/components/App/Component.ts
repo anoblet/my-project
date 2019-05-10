@@ -5,7 +5,7 @@ import Style from "./Style";
 import Template from "./Template";
 import Properties from "./Properties";
 import { config } from "../../../config";
-import { db } from "../../Database";
+import { database } from "../../Database";
 import { firebase } from "../../Firebase";
 import { debug, log } from "../../Debug";
 import { installOfflineWatcher } from "pwa-helpers/network.js";
@@ -13,7 +13,7 @@ import { installRouter } from "pwa-helpers/router.js";
 import { media } from "../../Media";
 import { router } from "../../Router";
 import { routes } from "./Routes";
-import { setState, State } from "../../State";
+import { state } from "../../State";
 import { store } from "../../Store";
 import { theme } from "../../Theme";
 import { toast } from "../Toast/Toast";
@@ -41,7 +41,7 @@ export class App extends BeforeRender(LitElement) {
     addReducers();
     if (config.staticTheme) {
       theme.set(theme.convert(config.theme), this);
-      State.set({
+      state.set({
         type: "app",
         data: { settings: { theme: config.theme } },
         store
@@ -62,7 +62,7 @@ export class App extends BeforeRender(LitElement) {
     if (config.globalSettings) {
       log("Getting app level settings");
       await getAppSettings((document: any) => {
-        setState({ data: { settings: document }, store, type: "app" });
+        state.set({ data: { settings: document }, store, type: "app" });
         if (!config.staticTheme) {
           const _theme = theme.convert(document.defaultTheme);
           theme.set(_theme, this);
@@ -71,20 +71,20 @@ export class App extends BeforeRender(LitElement) {
       log("Finished gettings app settings");
     }
     debug.log("Getting user level settings");
-    await db.getUser().then(async (_user: any) => {
+    await database.getUser().then(async (_user: any) => {
       if (_user) {
         log("User logged in");
         const userData = user.extract(_user);
-        setState({ data: userData, store, type: "user" });
+        state.set({ data: userData, store, type: "user" });
         log("Getting user settings");
         await user.getUserSettings((document: any) => {
-          setState({ data: { settings: document }, store, type: "user" });
+          state.set({ data: { settings: document }, store, type: "user" });
         });
         log("Finished getting user settings");
         log("Getting user theme");
         await user.getUserTheme((document: any) => {
           theme.set(theme.convert(document), this);
-          setState({
+          state.set({
             type: "app",
             data: { settings: { theme: document } },
             store
@@ -133,7 +133,7 @@ export class App extends BeforeRender(LitElement) {
       });
       const scrollTarget = this.shadowRoot.querySelector("#content");
       scrollTarget.scrollTo(0, 0);
-      setState({
+      state.set({
         type: "app",
         data: { activeRoute: location.pathname },
         store
@@ -172,7 +172,7 @@ export class App extends BeforeRender(LitElement) {
 // Utility function
 const getAppSettings = (callback: any) => {
   return new Promise((resolve: any, reject: any) =>
-    db.getDocument({
+    database.getDocument({
       callback: (document: any) => {
         document
           ? resolve(callback(document))

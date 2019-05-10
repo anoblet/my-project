@@ -42,8 +42,4 @@ export const state = {
   set: setState
 };
 
-export const State = {
-  addReducer,
-  get,
-  set: setState
-};
+export const State = state;
