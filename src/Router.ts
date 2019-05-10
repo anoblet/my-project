@@ -19,6 +19,8 @@ export const routes = [
 let globalRoutes: any = [];
 let globalPortal: any;
 
+const registry = {};
+
 export interface Route {
   path: string;
   component: string;
@@ -87,7 +89,10 @@ export const routeChanged = async ({ location, portal, routes }: any) => {
   // Check if the portal exists
   if (!portal) throw new Error("Could not find portal");
   // End check if the portal exists
-  const element = document.createElement(matchedRoute.component);
+  const element =
+    registry[location.pathname] ||
+    document.createElement(matchedRoute.component);
+  registry[location.pathname] = element;
   // Map properties
   matchedRoute.keys.map((key: any) => {
     element[key.name] = matchedRoute.data[key.name];
@@ -99,7 +104,8 @@ export const routeChanged = async ({ location, portal, routes }: any) => {
     portal.removeChild(portal.firstChild);
   }
   portal.appendChild(loading);
-  if (element.beforeRender) await element.beforeRender();
+  if (!registry[matchedRoute.component])
+    if (element.beforeRender) await element.beforeRender();
   portal.removeChild(loading);
   portal.appendChild(element);
   // End replace children
