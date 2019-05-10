@@ -39,8 +39,8 @@ export class App extends BeforeRender(LitElement) {
     super();
     log("Constructor");
     addDefaultReducers();
-    if (config.staticTheme) {
-      theme.set(theme.convert(config.theme), this);
+    if (config.theme) {
+      theme.set(theme.convert(config.theme), document.body);
       state.set({
         type: "app",
         data: { settings: { theme: config.theme } },
