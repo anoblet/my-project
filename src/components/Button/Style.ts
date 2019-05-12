@@ -15,4 +15,8 @@ export default css`
   button:hover {
     color: var(--primary-color);
   }
+
+  :host [outlined] {
+    border: 1px solid var(--border-color);
+  }
 `;
