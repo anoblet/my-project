@@ -1,3 +1,6 @@
+/**
+ * List of components. Used for drawer/routing
+ */
 export const components = [
   {
     label: "Voice",
