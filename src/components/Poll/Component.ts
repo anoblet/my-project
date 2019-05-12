@@ -12,4 +12,8 @@ export class Component extends LitElement {
   public static styles = Style;
   public template = Template;
   public render = this.template.bind(this);
+
+  public createDialog() {
+    this.shadowRoot.querySelector("#create-dialog").removeAttribute("hidden");
+  }
 }
