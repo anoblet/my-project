@@ -121,5 +121,11 @@ export const components = [
     src: () =>
       import(/* webpackChunkName: "CensusExplorerDemo" */ "./components/CensusExplorer/Demo"),
     tag: "census-explorer-demo"
+  },
+  {
+    label: "Poll",
+    src: () =>
+      import(/* webpackChunkName: "PollComponentDemo" */ "./components/Poll/Demo"),
+    tag: "poll-component"
   }
 ];
