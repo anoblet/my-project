@@ -30,7 +30,7 @@ export class Demo extends BeforeRender(LitElement) {
         ></button-component
       ></card-component>
       <dialog-component id="dialog" fixed
-        ><h3 slot="title">Title</h3>
+        ><span slot="title">Title</span>
         <div slot="content">
           This is my dialog
         </div>
