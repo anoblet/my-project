@@ -23,7 +23,7 @@ export class Demo extends BeforeRender(LitElement) {
   public render() {
     return html`
       <card-component
-        ><dialog-component id="dialog"></dialog-component
+        ><dialog-component id="dialog">This is my dialog</dialog-component
         ><button-component
           label="Open"
           @click=${this.openDialog}

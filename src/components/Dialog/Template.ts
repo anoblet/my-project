@@ -1,9 +1,7 @@
 import { html } from "lit-element";
 
 export default function() {
-  return html``;
+  return html`
+    <slot></slot>
+  `;
 }
-
-const createDialog = html`
-  <card-component title="Create">Test</card-component>
-`;

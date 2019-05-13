@@ -13,7 +13,7 @@ export class Component extends LitElement {
   public template = Template;
   public render = this.template.bind(this);
 
-  @property({ type: Boolean, reflect: true, attribute: "hidden" })
+  @property({ type: Boolean, reflect: true })
   public hidden = true;
 
   public open() {
