@@ -12,6 +12,7 @@ export class Demo extends BeforeRender(LitElement) {
     css`
       :host {
         flex: 1;
+        contain: initial;
       }
     `
   ];
