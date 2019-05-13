@@ -1,5 +1,7 @@
-import { html } from "lit-element";
 import "../Dialog/Component";
+
+import { close } from "../../Icons";
+import { html } from "lit-element";
 
 export default function() {
   return html`
@@ -33,7 +35,9 @@ const createDialog = function() {
                   .value=${item}
                   @input=${(e: any) => (this.items[index] = e.target.value)}
                 />
-                <a @click=${() => this.removeItem(index)}>X</a>
+                <span class="icon" @click=${() => this.removeItem(index)}
+                  >${close}</span
+                >
               `
           )}
         </grid-component>
