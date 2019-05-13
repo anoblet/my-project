@@ -4,7 +4,7 @@ import Template from "./Template";
 import Properties from "./Properties";
 
 /**
- * Poll component
+ * Dialog component
  */
 @customElement("dialog-component")
 export class Component extends LitElement {
