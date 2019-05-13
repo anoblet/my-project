@@ -24,7 +24,10 @@ export class Demo extends BeforeRender(LitElement) {
     return html`
       <card-component
         ><dialog-component id="dialog"></dialog-component
-        ><button-component label="Open"></button-component
+        ><button-component
+          label="Open"
+          @click=${this.openDialog}
+        ></button-component
       ></card-component>
     `;
   }
