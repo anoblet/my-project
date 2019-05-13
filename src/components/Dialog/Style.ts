@@ -28,4 +28,9 @@ export default css`
   svg {
     fill: currentColor;
   }
+
+  #close-button {
+    display: flex;
+    align-items: center;
+  }
 `;

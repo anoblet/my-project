@@ -1,4 +1,5 @@
 import { html } from "lit-element";
+import "../Dialog/Component";
 
 export default function() {
   return html`
@@ -7,8 +8,9 @@ export default function() {
       outlined
       @click=${this.createDialog}
     ></button-component>
-    <dialog-component id="create-dialog" title="Create"
-      ><div slot="content">${createDialog}</div></dialog-component
+    <dialog-component id="create-dialog"
+      ><div slot="title">Create</div>
+      <div slot="content">${createDialog}</div></dialog-component
     >
   `;
 }
