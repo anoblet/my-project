@@ -22,5 +22,10 @@ export default css`
   #title {
     display: flex;
     justify-content: space-between;
+    align-items: center;
+  }
+
+  svg {
+    fill: currentColor;
   }
 `;
