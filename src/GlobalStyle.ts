@@ -154,6 +154,10 @@ export default css`
   .flex {
     display: flex;
   }
+
+  .icon {
+    cursor: pointer;
+  }
 `;
 
 export const absolute = css`
