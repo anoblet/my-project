@@ -7,8 +7,9 @@ export default function() {
       outlined
       @click=${this.createDialog}
     ></button-component>
-    <dialog-component>${createDialog}</dialog-component>
-
+    <dialog-component id="create-dialog"
+      ><div slot="content">${createDialog}</div></dialog-component
+    >
   `;
 }
 
