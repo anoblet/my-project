@@ -20,9 +20,9 @@ const createDialog = function() {
     <form id="create">
       <label for="title"></label><input id="title" type="text" name="title" />
       ${this.items.map(
-        (item: any) =>
+        (item: any, index: number) =>
           html`
-            ${item}
+            #${index} <input type="text" value=${item} />
           `
       )}
       <button-component
