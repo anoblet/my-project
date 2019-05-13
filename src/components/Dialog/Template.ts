@@ -5,9 +5,10 @@ export default function() {
   return html`
     <card-component>
       <div id="title">
-        <slot name="title"></slot><span @click=${this.close}>${close}</span>
+        ${this.title}<slot name="title"></slot
+        ><span @click=${this.close}>${close}</span>
       </div>
-      <slot name="content"></slot>
+      <div id="content">${this.content}<slot name="content"></slot></div>
     </card-component>
   `;
 }
