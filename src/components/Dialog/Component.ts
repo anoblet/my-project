@@ -19,4 +19,8 @@ export class Component extends LitElement {
   public open() {
     this.hidden = false;
   }
+
+  public close() {
+    this.hidden = true;
+  }
 }
