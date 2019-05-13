@@ -19,6 +19,5 @@ export class Component extends LitElement {
   }
 
   public save(e: any) {
-    console.log(e.target.form);
   }
 }
