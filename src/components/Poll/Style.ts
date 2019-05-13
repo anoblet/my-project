@@ -10,4 +10,14 @@ export default css`
   #actions {
     display: flex;
   }
+
+  .icon {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+  }
+
+  svg {
+    fill: currentColor;
+  }
 `;
