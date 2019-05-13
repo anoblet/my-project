@@ -23,4 +23,8 @@ export default css`
     justify-content: center;
     align-items: center;
   }
+
+  #content-grid {
+    flex: 1;
+  }
 `;
