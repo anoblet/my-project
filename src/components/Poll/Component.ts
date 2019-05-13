@@ -17,4 +17,8 @@ export class Component extends LitElement {
     const dialog: any = this.shadowRoot.querySelector("#create-dialog");
     dialog.open();
   }
+
+  public save(e: any) {
+    console.log(e.target.form);
+  }
 }

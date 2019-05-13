@@ -10,11 +10,16 @@ export default function() {
     ></button-component>
     <dialog-component id="create-dialog" fixed
       ><div slot="title">Create</div>
-      <div slot="content">${createDialog}</div></dialog-component
+      <div slot="content">${createDialog.bind(this)()}</div></dialog-component
     >
   `;
 }
 
-const createDialog = html`
-  Test
-`;
+const createDialog = function() {
+  return html`
+    <form id="create">
+      <label for="title"></label><input id="title" type="text" name="title" />
+      <button-component label="save" @click=${this.save}></button-component>
+    </form>
+  `;
+};
