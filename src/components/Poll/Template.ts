@@ -19,7 +19,17 @@ const createDialog = function() {
   return html`
     <form id="create">
       <label for="title"></label><input id="title" type="text" name="title" />
-      <button-component label="save" @click=${this.save}></button-component>
+      ${this.items.map(
+        (item: any) =>
+          html`
+            ${item}
+          `
+      )}
+      <button-component
+        label="Add item"
+        @click=${this.addItem}
+      ></button-component>
+      <button-component label="Save" @click=${this.save}></button-component>
     </form>
   `;
 };
