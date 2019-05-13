@@ -1,4 +1,4 @@
-import { LitElement, customElement, property } from "lit-element";
+import { LitElement, customElement, property, query } from "lit-element";
 import Style from "./Style";
 import Template from "./Template";
 import Properties from "./Properties";
@@ -15,25 +15,24 @@ export class Component extends LitElement {
 
   @property({ type: Array }) public items = ["test"];
 
+  @query("#create-dialog") public dialog;
+
   public createDialog() {
     const dialog: any = this.shadowRoot.querySelector("#create-dialog");
-    dialog.open();
+    this.dialog.open();
   }
 
   public save(e: any) {
     const form = this.shadowRoot.querySelector("#create");
-    const inputs = form.querySelectorAll("input");
   }
 
-  public addItem(e: any) {
+  public addItem() {
     this.items = [...this.items, ""];
   }
 
   public removeItem(index: number) {
     const items = [...this.items];
-    console.log(items);
     items.splice(index, 1);
-    console.log(items);
     this.items = [...items];
   }
 }
