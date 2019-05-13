@@ -1,4 +1,4 @@
-import { LitElement, customElement } from "lit-element";
+import { LitElement, customElement, property } from "lit-element";
 import Style from "./Style";
 import Template from "./Template";
 import Properties from "./Properties";
@@ -12,6 +12,8 @@ export class Component extends LitElement {
   public static styles = Style;
   public template = Template;
   public render = this.template.bind(this);
+
+  @property({type: Boolean, reflect: true, attribute: "hidden"})
 
   public open() {
     this.hidden = false;
