@@ -18,18 +18,33 @@ export default function() {
 const createDialog = function() {
   return html`
     <form id="create">
-      <label for="title"></label><input id="title" type="text" name="title" />
-      ${this.items.map(
-        (item: any, index: number) =>
-          html`
-            #${index} <input type="text" value=${item} />
-          `
-      )}
-      <button-component
-        label="Add item"
-        @click=${this.addItem}
-      ></button-component>
-      <button-component label="Save" @click=${this.save}></button-component>
+      <grid-component>
+        <grid-component columns="2">
+          <label for="title">Title</label
+          ><input id="title" type="text" name="title" />
+        </grid-component>
+        <grid-component columns="3">
+          ${this.items.map(
+            (item: any, index: number) =>
+              html`
+                <label>#${index}</label>
+                <input
+                  type="text"
+                  value=${item}
+                  @input=${(e: any) => (this.items[index] = e.target.value)}
+                />
+                <a @click=${() => this.removeItem(index)}>X</a>
+              `
+          )}
+        </grid-component>
+        <div class="flex">
+          <button-component
+            label="Add item"
+            @click=${this.addItem}
+          ></button-component>
+          <button-component label="Save" @click=${this.save}></button-component>
+        </div>
+      </grid-component>
     </form>
   `;
 };

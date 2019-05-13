@@ -26,6 +26,15 @@ export class Component extends LitElement {
   }
 
   public addItem(e: any) {
-    this.items.push("");
+    this.items = [...this.items, ""];
+  }
+
+  public removeItem(index: number) {
+    const items = [...this.items];
+    console.log(items);
+    items.splice(index, 1);
+    console.log(items);
+    this.items = [...items];
+    this.requestUpdate("items");
   }
 }
