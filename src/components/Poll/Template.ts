@@ -30,7 +30,7 @@ const createDialog = function() {
                 <label>#${index}</label>
                 <input
                   type="text"
-                  value=${item}
+                  .value=${item}
                   @input=${(e: any) => (this.items[index] = e.target.value)}
                 />
                 <a @click=${() => this.removeItem(index)}>X</a>

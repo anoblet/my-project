@@ -35,6 +35,5 @@ export class Component extends LitElement {
     items.splice(index, 1);
     console.log(items);
     this.items = [...items];
-    this.requestUpdate("items");
   }
 }
