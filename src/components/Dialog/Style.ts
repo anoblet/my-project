@@ -9,4 +9,9 @@ export default css`
     bottom: 0;
     background: var(--background-color);
   }
+
+  #title {
+    display: flex;
+    justify-content: space-between;
+  }
 `;
