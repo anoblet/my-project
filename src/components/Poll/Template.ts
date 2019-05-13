@@ -37,7 +37,7 @@ const createDialog = function() {
               `
           )}
         </grid-component>
-        <div class="flex">
+        <div id="actions">
           <button-component
             label="Add item"
             @click=${this.addItem}

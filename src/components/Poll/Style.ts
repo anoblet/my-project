@@ -6,4 +6,8 @@ export default css`
     display: flex;
     flex: 1;
   }
+
+  #actions {
+    display: flex;
+  }
 `;
