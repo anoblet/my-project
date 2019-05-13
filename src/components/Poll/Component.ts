@@ -18,7 +18,6 @@ export class Component extends LitElement {
   @query("#create-dialog") public dialog;
 
   public createDialog() {
-    const dialog: any = this.shadowRoot.querySelector("#create-dialog");
     this.dialog.open();
   }
 
