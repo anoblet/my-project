@@ -127,12 +127,11 @@ export const components = [
     src: () =>
       import(/* webpackChunkName: "PollComponentDemo" */ "./components/Poll/Demo"),
     tag: "poll-component"
-  }
-  ,
+  },
   {
     label: "Dialog",
     src: () =>
       import(/* webpackChunkName: "DialogDemo" */ "./components/Dialog/Demo"),
-    tag: "dialog-component"
+    tag: "dialog-component-demo"
   }
 ];

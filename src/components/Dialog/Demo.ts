@@ -22,7 +22,15 @@ export class Demo extends BeforeRender(LitElement) {
 
   public render() {
     return html`
-      <card-component><dialog-component></dialog-component></card-component>
+      <card-component
+        ><dialog-component id="dialog"></dialog-component
+        ><button-component label="Open"></button-component
+      ></card-component>
     `;
+  }
+
+  public openDialog() {
+    const dialog: any = this.shadowRoot.querySelector("#dialog");
+    dialog.open();
   }
 }
