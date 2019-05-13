@@ -17,6 +17,7 @@ export default css`
     right: 5%;
     bottom: 5%;
     background: var(--background-color);
+    border: 1px solid var(--border-color);
   }
 
   #title {
