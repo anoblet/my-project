@@ -34,4 +34,8 @@ export default css`
     display: flex;
     align-items: center;
   }
+
+  .icon {
+    cursor: pointer;
+  }
 `;
