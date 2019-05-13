@@ -15,6 +15,10 @@ export class Component extends LitElement {
 
   @property({ type: Boolean, reflect: true })
   public hidden = true;
+  @property()
+  public title = "Sample title";
+  @property()
+  public content = "Sample content";
 
   public open() {
     this.hidden = false;
