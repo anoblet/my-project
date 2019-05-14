@@ -32,7 +32,7 @@ const createDialog = function() {
           ></button-component>
           <button-component label="Save" @click=${this.save}></button-component>
         </div>
-        <grid-component columns="3">
+        <grid-component id="item-container">
           ${this.items.map(
             (item: any, index: number) =>
               html`

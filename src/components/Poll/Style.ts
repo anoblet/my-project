@@ -23,4 +23,8 @@ export default css`
   svg {
     fill: currentColor;
   }
+
+  #title-container {
+    grid-template-columns: max-content max-content;
+  }
 `;
