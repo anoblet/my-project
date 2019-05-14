@@ -17,7 +17,7 @@ export class Component extends LitElement {
 
   @query("#create-dialog") public dialog;
 
-  public createDialog() {
+  public showCreateDialog() {
     this.dialog.open();
   }
 
@@ -31,7 +31,7 @@ export class Component extends LitElement {
     const data = {
       title,
       options
-    }
+    };
     console.log(data);
   }
 

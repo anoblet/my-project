@@ -8,7 +8,7 @@ export default function() {
     <button-component
       label="Create"
       outlined
-      @click=${this.createDialog}
+      @click=${this.showCreateDialog}
     ></button-component>
     <dialog-component id="create-dialog" fixed
       ><div slot="title">Create</div>
