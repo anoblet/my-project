@@ -25,7 +25,7 @@ export class Component extends LitElement {
     const form = this.shadowRoot.querySelector("#form-create");
     const titleElement: any = form.querySelector("#title");
     const title = titleElement.value;
-    const inputList = form.querySelectorAll("#item-container input");
+    const inputList = form.querySelectorAll("#option-container input");
     const inputArray = Array.from(inputList);
     const options = [];
     inputArray.map((input: any) => options.push(input.value));
