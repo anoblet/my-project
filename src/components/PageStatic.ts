@@ -7,7 +7,7 @@ const readme = require("../../README.md");
 const Style = css`
   :host {
     flex: 1;
-    padding-left: 2em;
+    padding-left: 1em;
     overflow-x: hidden;
   }
 
