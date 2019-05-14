@@ -22,7 +22,17 @@ export class Component extends LitElement {
   }
 
   public save(e: any) {
-    const form = this.shadowRoot.querySelector("#create");
+    const form = this.shadowRoot.querySelector("#form-create");
+    const titleElement: any = form.querySelector("#title");
+    const title = titleElement.value;
+    const inputs = Array.from(form.querySelectorAll("#item-container input"));
+    const options = [];
+    inputs.map((input: any) => options.push(input.value));
+    const data = {
+      title,
+      options
+    }
+    console.log(data);
   }
 
   public addItem() {

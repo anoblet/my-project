@@ -19,7 +19,7 @@ export default function() {
 
 const createDialog = function() {
   return html`
-    <form id="create">
+    <form id="form-create">
       <grid-component>
         <grid-component id="title-container">
           <label for="title">Title</label
