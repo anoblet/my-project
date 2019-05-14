@@ -25,6 +25,13 @@ const createDialog = function() {
           <label for="title">Title</label
           ><input id="title" type="text" name="title" />
         </grid-component>
+        <div id="actions">
+          <button-component
+            label="Add item"
+            @click=${this.addItem}
+          ></button-component>
+          <button-component label="Save" @click=${this.save}></button-component>
+        </div>
         <grid-component columns="3">
           ${this.items.map(
             (item: any, index: number) =>
@@ -41,13 +48,6 @@ const createDialog = function() {
               `
           )}
         </grid-component>
-        <div id="actions">
-          <button-component
-            label="Add item"
-            @click=${this.addItem}
-          ></button-component>
-          <button-component label="Save" @click=${this.save}></button-component>
-        </div>
       </grid-component>
     </form>
   `;

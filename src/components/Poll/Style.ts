@@ -8,7 +8,10 @@ export default css`
   }
 
   #actions {
-    display: flex;
+    display: grid;
+    grid-template-columns: repeat(2, max-content);
+    grid-gap: 1em;
+    justify-content: flex-end;
   }
 
   .icon {
