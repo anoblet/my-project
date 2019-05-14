@@ -1,6 +1,6 @@
 import "../Dialog/Component";
 
-import { close } from "../../Icons";
+import { delete_outline } from "../../Icons";
 import { html } from "lit-element";
 
 export default function() {
@@ -36,7 +36,7 @@ const createDialog = function() {
                   @input=${(e: any) => (this.items[index] = e.target.value)}
                 />
                 <span class="icon" @click=${() => this.removeItem(index)}
-                  >${close}</span
+                  >${delete_outline}</span
                 >
               `
           )}
