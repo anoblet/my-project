@@ -40,6 +40,7 @@ const createDialog = function() {
                 <input
                   type="text"
                   .value=${item}
+                  required
                   @input=${(e: any) => (this.items[index] = e.target.value)}
                 />
                 <span class="icon" @click=${() => this.removeItem(index)}
