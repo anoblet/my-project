@@ -25,6 +25,10 @@ export default css`
   }
 
   #title-container {
-    grid-template-columns: max-content max-content;
+    grid-template-columns: repeat(2, max-content);
+  }
+
+  #item-container {
+    grid-template-columns: max-content auto max-content
   }
 `;
