@@ -4,7 +4,7 @@ import { close } from "../../Icons";
 export default function() {
   return html`
     <card-component>
-      <div id="title">
+      <div id="title" slot="title">
         <slot name="title"></slot><span id="close-button" class="icon" @click=${this.close}>${close}</span>
       </div>
       <div id="content"><slot name="content"></slot></div>
