@@ -1,7 +1,6 @@
 import { LitElement, css, customElement, html } from "lit-element";
 import { unsafeHTML } from "lit-html/directives/unsafe-html";
 import GlobalStyle from "../GlobalStyle";
-import FluidType from "../design-systems/FluidType";
 import "./PatreonComponent";
 const readme = require("../../README.md");
 
