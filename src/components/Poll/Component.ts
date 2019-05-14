@@ -21,13 +21,14 @@ export class Component extends LitElement {
     this.dialog.open();
   }
 
-  public save(e: any) {
+  public save() {
     const form = this.shadowRoot.querySelector("#form-create");
     const titleElement: any = form.querySelector("#title");
     const title = titleElement.value;
-    const inputs = Array.from(form.querySelectorAll("#item-container input"));
+    const inputList = form.querySelectorAll("#item-container input");
+    const inputArray = Array.from(inputList);
     const options = [];
-    inputs.map((input: any) => options.push(input.value));
+    inputArray.map((input: any) => options.push(input.value));
     const data = {
       title,
       options
