@@ -35,6 +35,10 @@ const Style = css`
   li {
     padding: 0.5em 0px;
   }
+
+  pre {
+    overflow-x: auto;
+  }
 `;
 
 const version = () => 3;
