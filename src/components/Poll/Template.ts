@@ -21,7 +21,7 @@ const createDialog = function() {
   return html`
     <form id="create">
       <grid-component>
-        <grid-component columns="2">
+        <grid-component id="title-container">
           <label for="title">Title</label
           ><input id="title" type="text" name="title" />
         </grid-component>
