@@ -9,7 +9,7 @@ const Style = css`
   :host {
     flex: 1;
     overflow: hidden;
-    padding-left: 3em;
+    padding-left: 2em;
   }
 
   grid-component > .grid-item {
