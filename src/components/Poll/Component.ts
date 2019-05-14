@@ -26,7 +26,8 @@ export class Component extends LitElement {
   }
 
   public addItem() {
-    this.items = [...this.items, ""];
+    if (this.items[this.items.length - 1] !== "")
+      this.items = [...this.items, ""];
   }
 
   public removeItem(index: number) {
