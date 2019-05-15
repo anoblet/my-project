@@ -28,7 +28,7 @@ export default css`
     grid-template-columns: repeat(2, max-content);
   }
 
-  #item-container {
+  #option-container {
     grid-template-columns: max-content auto max-content
   }
 `;
