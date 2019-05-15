@@ -123,12 +123,6 @@ export const components = [
     tag: "census-explorer-demo"
   },
   {
-    label: "Poll",
-    src: () =>
-      import(/* webpackChunkName: "PollComponentDemo" */ "./components/Poll/Demo"),
-    tag: "poll-component"
-  },
-  {
     label: "Dialog",
     src: () =>
       import(/* webpackChunkName: "DialogDemo" */ "./components/Dialog/Demo"),
