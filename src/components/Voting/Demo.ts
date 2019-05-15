@@ -1,7 +1,7 @@
 import "../voting/Component";
 import GlobalStyle from "../../GlobalStyle";
 
-import { LitElement, css, customElement, html, property } from "lit-element";
+import { LitElement, css, customElement, html } from "lit-element";
 
 import { BeforeRender } from "../../mixins/BeforeRender";
 
@@ -22,7 +22,7 @@ export class Demo extends BeforeRender(LitElement) {
 
   public render() {
     return html`
-      <card-component><voting-component></voting-component></card-component>
+      <voting-component></voting-component>
     `;
   }
 
