@@ -9,7 +9,12 @@ export default css`
   }
 
   card-component {
+    border: 1px solid var(--border-color);
     display: flex;
+  }
+
+  card-component[title="Components"] {
+    border: 0;
   }
 
   card-component::part(title) {
