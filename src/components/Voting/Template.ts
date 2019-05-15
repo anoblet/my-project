@@ -23,7 +23,12 @@ const createDialog = function() {
       <grid-component>
         <grid-component id="title-container">
           <label for="title">Title</label
-          ><input id="title" type="text" name="title" />
+          ><input
+            id="title"
+            type="text"
+            name="title"
+            @input=${e => (this.title = e.target.value)}
+          />
         </grid-component>
         <div id="actions">
           <button-component
