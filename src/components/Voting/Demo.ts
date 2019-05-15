@@ -1,4 +1,4 @@
-import "../voting/Component";
+import "./Component";
 import GlobalStyle from "../../GlobalStyle";
 
 import { LitElement, css, customElement, html } from "lit-element";
