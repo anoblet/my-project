@@ -25,8 +25,4 @@ export class Demo extends BeforeRender(LitElement) {
       <voting-component></voting-component>
     `;
   }
-
-  public handleChange(e: any) {
-    this[e.target.name] = e.target.value;
-  }
 }
