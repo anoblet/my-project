@@ -14,6 +14,7 @@ export class Component extends LitElement {
   public render = this.template.bind(this);
 
   @property({ type: Array }) public items = ["test"];
+  @property({ type: Array }) public title = "";
 
   @query("#create-dialog") public dialog;
 
@@ -23,6 +24,7 @@ export class Component extends LitElement {
 
   public save() {
     const form = this.shadowRoot.querySelector("#form-create");
+    if (!form) return;
     const titleElement: any = form.querySelector("#title");
     const title = titleElement.value;
     const inputList = form.querySelectorAll("#option-container input");

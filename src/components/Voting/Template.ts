@@ -50,5 +50,8 @@ const createDialog = function() {
         </grid-component>
       </grid-component>
     </form>
+    <card-component title="Form data">
+      Title: ${JSON.stringify(this.title)} Items: ${JSON.stringify(this.items)}
+    </card-component>
   `;
 };
