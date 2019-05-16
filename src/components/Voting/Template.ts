@@ -17,7 +17,7 @@ export default function() {
           polls.map(
             poll =>
               html`
-                <span><a href="/polls/${poll.id}">${poll.title}</a></span>
+                <span><a href="/poll/${poll.id}">${poll.title}</a></span>
               `
           )
         )
