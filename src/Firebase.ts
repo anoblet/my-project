@@ -71,7 +71,7 @@ export const getCollection = async ({
     const collection = _firebase.firestore().collection(path);
     if (orderBy) collection.orderBy(orderBy);
     // Watch is enabled, let's use a callback
-    if (watch)
+    if (callback)
       collection.onSnapshot((querySnapshot: any) => {
         const result: any = [];
         querySnapshot.forEach((doc: any) => {
