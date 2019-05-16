@@ -6,23 +6,25 @@ import { until } from "lit-html/directives/until";
 
 export default function() {
   return html`
-    <button-component
-      label="Create"
-      outlined
-      @click=${this.showCreateDialog}
-    ></button-component>
-    <grid-component
-      >${until(
-        this.getPolls().then(polls =>
-          polls.map(
-            poll =>
-              html`
-                <span><a href="/poll/${poll.id}">${poll.title}</a></span>
-              `
+    <grid-component>
+      <button-component
+        label="Create"
+        outlined
+        @click=${this.showCreateDialog}
+      ></button-component>
+      <grid-component
+        >${until(
+          this.getPolls().then(polls =>
+            polls.map(
+              poll =>
+                html`
+                  <span><a href="/poll/${poll.id}">${poll.title}</a></span>
+                `
+            )
           )
-        )
-      )}</grid-component
-    >
+        )}</grid-component
+      >
+    </grid-component>
     <dialog-component id="create-dialog" fixed
       ><div slot="title">Create</div>
       <div slot="content">${createDialog.bind(this)()}</div></dialog-component

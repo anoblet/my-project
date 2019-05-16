@@ -64,7 +64,7 @@ export const getUser = async () => {
 export const getCollection = async ({
   path,
   callback,
-  watch,
+  watch = true,
   orderBy
 }: any) => {
   return run(["firestore"]).then((_firebase: any) => {
