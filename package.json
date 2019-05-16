@@ -22,6 +22,7 @@
     "annyang": "^2.6.1",
     "chart.js": "^2.8.0",
     "citysdk": "^2.0.8",
+    "comlink": "^4.0.1",
     "firebase": "^5.9.4",
     "firebaseui": "^3.5.2",
     "graphql": "^14.2.1",

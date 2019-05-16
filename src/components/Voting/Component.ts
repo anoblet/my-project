@@ -16,8 +16,14 @@ export class Component extends LitElement {
 
   @property({ type: Array }) public items = ["test"];
   @property({ type: Array }) public title = " ";
+  @property({ type: Array }) public polls = [];
 
   @query("#create-dialog") public dialog;
+
+  public constructor() {
+    super();
+    this.getPolls();
+  }
 
   public showCreateDialog() {
     this.dialog.open();
@@ -52,6 +58,12 @@ export class Component extends LitElement {
   }
 
   public async getPolls() {
-    return Firebase.getCollection({path: "/polls"});
+    return Firebase.getCollection({
+      path: "/polls",
+      callback: polls => {
+        console.log(polls);
+        this.polls = polls;
+      }
+    });
   }
 }
