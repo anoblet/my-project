@@ -50,4 +50,8 @@ export class Component extends LitElement {
     items.splice(index, 1);
     this.items = [...items];
   }
+
+  public async getPolls() {
+    return Firebase.getCollection({path: "/polls"});
+  }
 }

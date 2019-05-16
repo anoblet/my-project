@@ -2,6 +2,7 @@ import "../Dialog/Component";
 
 import { delete_outline } from "../../Icons";
 import { html } from "lit-element";
+import { until } from "lit-html/directives/until";
 
 export default function() {
   return html`
@@ -10,6 +11,18 @@ export default function() {
       outlined
       @click=${this.showCreateDialog}
     ></button-component>
+    <grid-component
+      >${until(
+        this.getPolls().then(polls =>
+          polls.map(
+            poll =>
+              html`
+                <span><a href="/polls/${poll.id}">${poll.title}</a></span>
+              `
+          )
+        )
+      )}</grid-component
+    >
     <dialog-component id="create-dialog" fixed
       ><div slot="title">Create</div>
       <div slot="content">${createDialog.bind(this)()}</div></dialog-component
