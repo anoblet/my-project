@@ -37,7 +37,7 @@ export class Component extends LitElement {
       options
     };
 
-    console.log(data);
+    Firebase.add({ path: "polls", data });
   }
 
   public addItem() {

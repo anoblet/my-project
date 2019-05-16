@@ -178,6 +178,7 @@ export const addDocument = async ({ path, data }: any) => {
 };
 
 export const firebase = {
+  add: addDocument,
   getDocument,
   getUser,
   init,

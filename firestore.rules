@@ -7,6 +7,11 @@ service cloud.firestore {
       allow read: if request.auth.uid == "m42gwHOSlbUniorNjigqa1nnHIE3";
       allow write: if request.auth.uid == "m42gwHOSlbUniorNjigqa1nnHIE3";
     }
+    match /polls {
+      match /{document=**} {
+        allow create, read, update, delete: if request.auth.uid != null;
+      }
+    }
     match /posts/{post} {
       allow read: if true;
       allow write: if request.auth.uid == "m42gwHOSlbUniorNjigqa1nnHIE3";
