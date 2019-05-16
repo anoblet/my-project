@@ -44,6 +44,9 @@ export class Component extends LitElement {
     };
 
     Firebase.add({ path: "polls", data });
+    this.dialog.close();
+    this.title = "";
+    this.items = [];
   }
 
   public addItem() {
