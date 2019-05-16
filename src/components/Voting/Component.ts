@@ -2,6 +2,7 @@ import { LitElement, customElement, property, query } from "lit-element";
 import Style from "./Style";
 import Template from "./Template";
 import Properties from "./Properties";
+import Firebase from "../../Firebase";
 
 /**
  * Voting component
@@ -35,6 +36,7 @@ export class Component extends LitElement {
       title,
       options
     };
+
     console.log(data);
   }
 

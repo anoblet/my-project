@@ -184,3 +184,5 @@ export const firebase = {
   run,
   update: updateDocument
 };
+
+export default firebase;
