@@ -61,7 +61,6 @@ export class Component extends LitElement {
     return Firebase.getCollection({
       path: "/polls",
       callback: polls => {
-        console.log(polls);
         this.polls = polls;
       }
     });
