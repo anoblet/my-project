@@ -65,7 +65,8 @@ export class Component extends LitElement {
       path: "/polls",
       callback: polls => {
         this.polls = polls;
-      }
+      },
+      watch: true
     });
   }
 }
