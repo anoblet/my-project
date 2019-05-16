@@ -64,14 +64,14 @@ export const getUser = async () => {
 export const getCollection = async ({
   path,
   callback,
-  watch = true,
+  watch,
   orderBy
 }: any) => {
   return run(["firestore"]).then((_firebase: any) => {
     const collection = _firebase.firestore().collection(path);
     if (orderBy) collection.orderBy(orderBy);
     // Watch is enabled, let's use a callback
-    if (callback)
+    if (watch)
       collection.onSnapshot((querySnapshot: any) => {
         const result: any = [];
         querySnapshot.forEach((doc: any) => {
