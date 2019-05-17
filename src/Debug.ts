@@ -2,6 +2,7 @@ import { store } from "./Store";
 
 const history: any = [];
 const subscribers: any = [];
+
 /**
  * Log a message
  * @param  {message [description]
