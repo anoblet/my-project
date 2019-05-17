@@ -1,6 +1,10 @@
 import { css } from "lit-element";
 
 export default css`
+  :host {
+    flex: 1;
+  }
+
   .grid {
     position: relative;
     transition: opacity 0.8s linear 1s;
