@@ -15,9 +15,9 @@ npm i && npm run dev
 
 ### Links
 
-- [Components](/components)
-- [Performance](/performance)
-- [Blog](/blog)
+- [Components](https://my-project-75792.firebaseapp.com/components)
+- [Performance](https://my-project-75792.firebaseapp.com/performance)
+- [Blog](https://my-project-75792.firebaseapp.com/blog)
 
 ### Features:
 
