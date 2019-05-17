@@ -27,7 +27,6 @@ export const resetState = () => {
  * Check if the user is signed in
  * @return Boolean
  */
-
 export const isSignedIn = () => {
   return user.get().signedIn;
 };
@@ -73,6 +72,10 @@ export const onUserLoggedIn = () => {
   return true;
 };
 
+/**
+ * Gets user object from Redux
+ * @return object
+ */
 export const getUser = () => {
   const stateUser = store.getState().user;
   if (stateUser) return stateUser;
