@@ -25,10 +25,20 @@ export const subscribe = (listener: any) => {
   subscribers.push(listener);
 };
 
+/**
+ * Start trace
+ * @param  message [description]
+ * @return         [description]
+ */
 const start = (key: string) => {
   return true;
 };
 
+/**
+ * Stop trace
+ * @param  message [description]
+ * @return         [description]
+ */
 const stop = (key: string) => {
   return true;
 };
