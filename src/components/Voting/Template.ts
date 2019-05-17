@@ -11,8 +11,8 @@ export default function() {
         outlined
         @click=${this.showCreateDialog}
       ></button-component>
-      <grid-component
-        >${this.polls.map(
+      <grid-component id="list"
+        ><span>Title</span> ${this.polls.map(
           poll =>
             html`
               <a href="/poll/${poll.id}">${poll.title}</a>

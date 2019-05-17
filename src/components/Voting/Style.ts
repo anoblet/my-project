@@ -29,6 +29,15 @@ export default css`
   }
 
   #option-container {
-    grid-template-columns: max-content auto max-content
+    grid-template-columns: max-content auto max-content;
+  }
+
+  grid-component {
+    flex: 1;
+  }
+
+  #list *:nth-child(n + 2) {
+    padding-top: 1em;
+    border-top: 1px solid var(--border-color);
   }
 `;
