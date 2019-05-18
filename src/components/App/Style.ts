@@ -147,6 +147,7 @@ export default css`
     contain: initial;
     display: flex;
     overflow-x: hidden;
+    padding: 1em;
   }
 
   #content {
