@@ -37,6 +37,7 @@ const createDialog = function() {
             id="title"
             type="text"
             name="title"
+            .value=${this.title}
             @input=${e => (this.title = e.target.value)}
           />
         </grid-component>
