@@ -7,9 +7,10 @@ export class Demo extends LitElement {
   @property() public ratio = 0.1;
   public static styles = [
     css`
-    :host {
-      flex: 1;
-    }
+      :host {
+        flex: 1;
+      }
+      
       ratio-component {
         padding: 1em;
         border: 1px solid var(--border-color);
