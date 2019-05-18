@@ -16,8 +16,8 @@ export class Component extends LitElement {
   public template = Template;
   public render = this.template.bind(this);
 
-  @property({ type: Array }) public items = ["test"];
-  @property({ type: Array }) public title = " ";
+  @property({ type: Array }) public items = ["Sample option #1", "Sample option #2"];
+  @property({ type: Array }) public title = "Sample title";
   @property({ type: Array }) public polls = [];
 
   @query("#create-dialog") public dialog;
