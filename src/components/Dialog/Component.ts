@@ -24,12 +24,7 @@ export class DialogComponent extends LitElement {
   }
 
   public onClick(e) {
-    if (e.composedPath().indexOf(this) === -1)
-      // do {
-      //   if (targetElement == this) return;
-      //   targetElement = targetElement.parentNode;
-      // } while (targetElement);
-      this.close();
+    if (e.composedPath().indexOf(this) === -1) this.close();
   }
 
   public open() {
