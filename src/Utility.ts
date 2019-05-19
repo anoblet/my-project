@@ -53,14 +53,11 @@ export const printContent = div => {
   WindowObject.close();
 };
 
-const detectClickOutside = (target, callback) =>
+export const detectClickOutside = (target, callback) =>
   document.addEventListener("click", evt => {
     let targetElement: any = evt.target; // clicked element
     do {
-      if (targetElement == target) {
-        return;
-      }
-      // Go up the DOM
+      if (targetElement == target) return;
       targetElement = targetElement.parentNode;
     } while (targetElement);
     callback();
