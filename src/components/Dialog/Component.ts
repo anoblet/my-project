@@ -2,7 +2,6 @@ import { LitElement, customElement, property } from "lit-element";
 import Style from "./Style";
 import Template from "./Template";
 import Properties from "./Properties";
-import { detectClickOutside } from "../../Utility";
 
 /**
  * Dialog component
@@ -24,11 +23,8 @@ export class DialogComponent extends LitElement {
     this.boundEventListener = this.onClick.bind(this);
   }
 
-  public onClick(evt) {
-    console.log("hi");
-    console.log(evt.target);
-    console.log(this);
-    let targetElement: any = evt.target;
+  public onClick(e) {
+    let targetElement: any = e.composedPath()[0];
     do {
       if (targetElement == this) return;
       targetElement = targetElement.parentNode;
