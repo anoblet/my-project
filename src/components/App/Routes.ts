@@ -98,7 +98,12 @@ export const routes = [
   {
     path: "/components/demo-component",
     component: "demo-component",
+    src: () => import(/* webpackChunkName: "ChartJS" */ "../ChartJS/Demo")
+  },
+  {
+    path: "/poll/:pollId?",
+    component: "view-poll",
     src: () =>
-    import(/* webpackChunkName: "ChartJS" */ "../ChartJS/Demo"),
-  }
+      import(/* webpackChunkName: "PollView" */ "../Voting/View")
+  } as Route
 ];

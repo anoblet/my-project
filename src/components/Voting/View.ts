@@ -1,10 +1,5 @@
 import { LitElement, css, customElement, html, property } from "lit-element";
 
-export const view = () =>
-  html`
-    Hi
-  `;
-
 /**
  * Voting component
  */
@@ -15,6 +10,8 @@ export class Component extends LitElement {
   @property() pollId: string;
 
   public render() {
-    return html`Hi`;
+    return html`
+      ${this.pollId}
+    `;
   }
 }
