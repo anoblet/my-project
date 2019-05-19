@@ -24,12 +24,12 @@ export class DialogComponent extends LitElement {
   }
 
   public onClick(e) {
-    let targetElement: any = e.composedPath()[0];
-    do {
-      if (targetElement == this) return;
-      targetElement = targetElement.parentNode;
-    } while (targetElement);
-    this.close();
+    if (e.composedPath().indexOf(this) === -1)
+      // do {
+      //   if (targetElement == this) return;
+      //   targetElement = targetElement.parentNode;
+      // } while (targetElement);
+      this.close();
   }
 
   public open() {
