@@ -6,9 +6,14 @@ import Firebase from "../../Firebase";
  */
 @customElement("view-poll")
 export class Component extends LitElement {
-  public static styles = css``;
+  public static styles = css`
+    .label {
+      display: flex;
+      align-items: center;
+    }
+  `;
 
-  @property() data: { title; options };
+  @property() data: { title; options; results };
   @property() pollId: string;
 
   connectedCallback() {
@@ -23,12 +28,28 @@ export class Component extends LitElement {
   public render() {
     return html`
       <h2>${this.data.title}</h2>
-      ${this.data.options.map(
-        option =>
-          html`
-            ${option}
-          `
-      )}
+      <grid-component columns="2">
+        ${this.data.options.map(
+          (option, index) =>
+            html`
+              <span class="label">${option}</span>
+              <button-component
+                label="Vote"
+                @click=${() => this.registerVote(index)}
+              ></button-component>
+            `
+        )}
+      </grid-component>
     `;
+  }
+
+  public registerVote(index) {
+    this.data.results = this.data.results || {};
+    this.data.results[index] = this.data.results[index] || 0;
+    this.data.results[index]++;
+    Firebase.update({
+      data: this.data,
+      path: `polls/${this.pollId}`
+    });
   }
 }
