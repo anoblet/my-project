@@ -39,4 +39,10 @@ export default css`
     padding-top: 1em;
     border-top: 1px solid var(--border-color);
   }
+
+  [slot="title"] {
+    line-height: 1;
+    margin-block-start: 0;
+    margin-block-end: 0;
+  }
 `;

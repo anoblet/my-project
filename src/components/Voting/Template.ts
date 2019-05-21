@@ -22,7 +22,7 @@ export default function() {
       >
     </grid-component>
     <dialog-component id="create-dialog" fixed
-      ><div slot="title">Create</div>
+      ><h3 slot="title">Create</h3>
       <div slot="content">${createDialog.bind(this)()}</div></dialog-component
     >
   `;
