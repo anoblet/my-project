@@ -1,19 +1,38 @@
 import { LitElement, css, customElement, html, property } from "lit-element";
 import Firebase from "../../Firebase";
 
-/**
- * Voting component
- */
+const Template = function() {
+  return html`
+    <h2>${this.data.title}</h2>
+    <grid-component columns="2">
+      ${this.data.options.map(
+        (option, index) =>
+          html`
+            <span class="label">${option}</span>
+            <button-component
+              label="Vote"
+              @click=${() => this.registerVote(index)}
+            ></button-component>
+          `
+      )}
+    </grid-component>
+  `;
+};
+
+const Style = css`
+  .label {
+    display: flex;
+    align-items: center;
+  }
+`;
+
 @customElement("view-poll")
 export class Component extends LitElement {
-  public static styles = css`
-    .label {
-      display: flex;
-      align-items: center;
-    }
-  `;
+  public static styles = Style;
+  public template = Template;
+  public render = this.template.bind(this);
 
-  @property() data: { title; options; results };
+  @property() data: { title: string; options: []; results: {} };
   @property() pollId: string;
 
   connectedCallback() {
@@ -25,25 +44,7 @@ export class Component extends LitElement {
     });
   }
 
-  public render() {
-    return html`
-      <h2>${this.data.title}</h2>
-      <grid-component columns="2">
-        ${this.data.options.map(
-          (option, index) =>
-            html`
-              <span class="label">${option}</span>
-              <button-component
-                label="Vote"
-                @click=${() => this.registerVote(index)}
-              ></button-component>
-            `
-        )}
-      </grid-component>
-    `;
-  }
-
-  public registerVote(index) {
+  public registerVote(index: number) {
     this.data.results = this.data.results || {};
     this.data.results[index] = this.data.results[index] || 0;
     this.data.results[index]++;
