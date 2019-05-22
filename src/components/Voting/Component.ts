@@ -9,7 +9,7 @@ import Template from "./Template";
 export interface Poll {
   title: string,
   options: string[],
-  result
+  result: {}
 }
 
 @customElement("voting-component")
@@ -68,7 +68,7 @@ export class Component extends LitElement {
   public async getPolls() {
     return Firebase.getCollection({
       path: "/polls",
-      callback: polls => {
+      callback: (polls: Poll[]) => {
         this.polls = polls;
       },
       watch: true
