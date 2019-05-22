@@ -1,5 +1,6 @@
 import { LitElement, css, customElement, html, property } from "lit-element";
 import Firebase from "../../Firebase";
+import { Poll } from "./Component"
 
 const Template = function() {
   return html`
@@ -32,22 +33,22 @@ export class Component extends LitElement {
   public template = Template;
   public render = this.template.bind(this);
 
-  @property() data: { title: string; options: []; results: {} };
+  @property() data: Poll;
   @property() pollId: string;
 
   connectedCallback() {
     super.connectedCallback();
     Firebase.getDocument({
       path: `polls/${this.pollId}`,
-      callback: data => (this.data = data),
+      callback: (data: Poll) => (this.data = data),
       watch: true
     });
   }
 
   public registerVote(index: number) {
-    this.data.results = this.data.results || {};
-    this.data.results[index] = this.data.results[index] || 0;
-    this.data.results[index]++;
+    this.data.result = this.data.result || {};
+    this.data.result[index] = this.data.result[index] || 0;
+    this.data.result[index]++;
     Firebase.update({
       data: this.data,
       path: `polls/${this.pollId}`
