@@ -6,7 +6,7 @@ const Template = function() {
     <h2>${this.data.title}</h2>
     <grid-component columns="2">
       ${this.data.options.map(
-        (option, index) =>
+        (option: string, index: number) =>
           html`
             <span class="label">${option}</span>
             <button-component

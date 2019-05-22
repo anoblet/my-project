@@ -6,6 +6,11 @@ import Properties from "./Properties";
 import Style from "./Style";
 import Template from "./Template";
 
+declare interface Poll {
+  title: string,
+  options: string[]
+}
+
 @customElement("voting-component")
 export class Component extends LitElement {
   public static properties = Properties;
