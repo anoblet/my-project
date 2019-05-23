@@ -5,7 +5,7 @@ import { Poll } from "./Component"
 const Template = function() {
   return html`
     <h2>${this.data.title}</h2>
-    <grid-component columns="2">
+    <grid-component columns="3">
       ${this.data.options.map(
         (option: string, index: number) =>
           html`
@@ -13,7 +13,7 @@ const Template = function() {
             <button-component
               label="Vote"
               @click=${() => this.registerVote(index)}
-            ></button-component> ${this.data.result[index]}
+            ></button-component> ${this.data.results[index]}
           `
       )}
     </grid-component>

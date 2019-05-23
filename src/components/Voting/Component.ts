@@ -45,7 +45,8 @@ export class Component extends LitElement {
     inputArray.map((input: any) => options.push(input.value));
     const data = {
       title,
-      options
+      options,
+      result: {}
     };
 
     Firebase.add({ path: "polls", data });
