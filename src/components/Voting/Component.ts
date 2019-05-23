@@ -5,12 +5,6 @@ import GlobalStyle from "../../GlobalStyle";
 import Style from "./Style";
 import Template from "./Template";
 
-export interface Poll {
-  title: string,
-  options: string[],
-  result: {}
-}
-
 import { Poll } from "./Types"
 
 @customElement("voting-component")

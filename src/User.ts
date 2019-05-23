@@ -125,10 +125,10 @@ export const get = () => {
   return state.get().user;
 };
 
-export const getIp =  () => {
-  return fetch("https://api.ipify.org").then(function(response) {
+export const getIp = async () => {
+  return fetch("https://api.ipify.org?format=json").then((response) => {
     return response.json();
-  });
+  }).then(data => data.ip);
 }
 
 export const user = {

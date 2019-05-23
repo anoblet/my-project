@@ -1,7 +1,7 @@
 import { LitElement, css, customElement, html, property } from "lit-element";
 import Firebase from "../../Firebase";
-import { Poll } from "./Component"
-import { getIp } from "../../User"
+import { Poll } from "./Types";
+import { getIp } from "../../User";
 
 const Template = function() {
   return html`
@@ -14,7 +14,8 @@ const Template = function() {
             <button-component
               label="Vote"
               @click=${() => this.registerVote(index)}
-            ></button-component> ${this.data.results[index]}
+            ></button-component>
+            ${this.data.results ? this.data.results[index] : ""}
           `
       )}
     </grid-component>
@@ -34,7 +35,7 @@ export class Component extends LitElement {
   public template = Template;
   public render = this.template.bind(this);
 
-  @property() data: Poll;
+  @property() data;
   @property() pollId: string;
 
   connectedCallback() {
@@ -47,6 +48,9 @@ export class Component extends LitElement {
   }
 
   public async registerVote(index: number) {
+    const ip = await getIp();
+    console.log(ip);
+    if (this.data.votedIps.includes(ip)) return;
     this.data.result = this.data.result || {};
     this.data.result[index] = this.data.result[index] || 0;
     this.data.result[index]++;
