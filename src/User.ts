@@ -125,6 +125,12 @@ export const get = () => {
   return state.get().user;
 };
 
+export const getIp =  () => {
+  return fetch("https://api.ipify.org").then(function(response) {
+    return response.json();
+  });
+}
+
 export const user = {
   extract,
   get,
