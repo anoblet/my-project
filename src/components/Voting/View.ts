@@ -55,6 +55,7 @@ export class Component extends LitElement {
     this.data.result = this.data.result || {};
     this.data.result[index] = this.data.result[index] || 0;
     this.data.result[index]++;
+    this.data.votedIps.push(ip);
     Firebase.update({
       data: this.data,
       path: `polls/${this.pollId}`
