@@ -1,5 +1,6 @@
 export interface Poll {
   title: string,
   options: string[],
-  result: {}
+  result: {},
+  votedIps: string[]
 }
