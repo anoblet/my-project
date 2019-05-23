@@ -2,10 +2,13 @@ import "../Dialog/Component";
 
 import { delete_outline } from "../../Icons";
 import { html } from "lit-element";
+const readme = require("./readme.md");
+import { unsafeHTML } from "lit-html/directives/unsafe-html"
 
 export default function() {
   return html`
     <grid-component>
+      ${unsafeHTML(readme)}
       <button-component
         label="Create"
         outlined
