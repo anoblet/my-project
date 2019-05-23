@@ -40,7 +40,8 @@ export class Component extends LitElement {
     const data = {
       title,
       options,
-      result: {}
+      result: {},
+      votedIps: []
     };
 
     Firebase.add({ path: "polls", data });
