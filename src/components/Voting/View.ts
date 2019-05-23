@@ -15,7 +15,7 @@ const Template = function() {
               label="Vote"
               @click=${() => this.registerVote(index)}
             ></button-component>
-            ${this.data.results ? this.data.results[index] : ""}
+            ${this.data.result ? this.data.result[index] : ""}
           `
       )}
     </grid-component>
@@ -51,6 +51,7 @@ export class Component extends LitElement {
     const ip = await getIp();
     console.log(ip);
     if (this.data.votedIps.includes(ip)) return;
+    console.log("Hi")
     this.data.result = this.data.result || {};
     this.data.result[index] = this.data.result[index] || 0;
     this.data.result[index]++;
