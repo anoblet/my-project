@@ -1,6 +1,7 @@
 import { LitElement, css, customElement, html, property } from "lit-element";
 import Firebase from "../../Firebase";
 import { Poll } from "./Component"
+import { getIp } from "../../User"
 
 const Template = function() {
   return html`
@@ -45,7 +46,7 @@ export class Component extends LitElement {
     });
   }
 
-  public registerVote(index: number) {
+  public async registerVote(index: number) {
     this.data.result = this.data.result || {};
     this.data.result[index] = this.data.result[index] || 0;
     this.data.result[index]++;
