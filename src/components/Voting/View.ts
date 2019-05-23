@@ -13,7 +13,7 @@ const Template = function() {
             <button-component
               label="Vote"
               @click=${() => this.registerVote(index)}
-            ></button-component>
+            ></button-component> ${this.data.result[index]}
           `
       )}
     </grid-component>

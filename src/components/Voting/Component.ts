@@ -2,7 +2,6 @@ import { LitElement, customElement, property, query } from "lit-element";
 
 import Firebase from "../../Firebase";
 import GlobalStyle from "../../GlobalStyle";
-import Properties from "./Properties";
 import Style from "./Style";
 import Template from "./Template";
 
@@ -12,9 +11,10 @@ export interface Poll {
   result: {}
 }
 
+import { Poll } from "./Types"
+
 @customElement("voting-component")
 export class Component extends LitElement {
-  public static properties = Properties;
   public static styles = [GlobalStyle, Style];
   public template = Template;
   public render = this.template.bind(this);
