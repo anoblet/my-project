@@ -19,6 +19,7 @@ const Template = function() {
           `
       )}
     </grid-component>
+    <div>Voted: ${this.didVote}</div>
   `;
 };
 
@@ -37,6 +38,7 @@ export class Component extends LitElement {
 
   @property() data;
   @property() pollId: string;
+  @property() didVote: boolean = false;
 
   connectedCallback() {
     super.connectedCallback();
@@ -45,13 +47,17 @@ export class Component extends LitElement {
       callback: (data: Poll) => (this.data = data),
       watch: true
     });
+    this._didVote();
+  }
+
+  async _didVote() {
+    const ip = await getIp();
+    this.didVote = this.data.votedIps.includes(ip) ? true : false
   }
 
   public async registerVote(index: number) {
     const ip = await getIp();
-    console.log(ip);
     if (this.data.votedIps.includes(ip)) return;
-    console.log("Hi")
     this.data.result = this.data.result || {};
     this.data.result[index] = this.data.result[index] || 0;
     this.data.result[index]++;
