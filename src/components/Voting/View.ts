@@ -42,17 +42,19 @@ export class Component extends LitElement {
 
   connectedCallback() {
     super.connectedCallback();
-    Firebase.getDocument({
-      path: `polls/${this.pollId}`,
-      callback: (data: Poll) => (this.data = data),
-      watch: true
+    this.beforeRender();
+  }
+
+  async beforeRender() {
+    this.data = await Firebase.getDocument({
+      path: `polls/${this.pollId}`
     });
-    this._didVote();
+    await this._didVote();
   }
 
   async _didVote() {
     const ip = await getIp();
-    this.didVote = this.data.votedIps.includes(ip) ? true : false
+    this.didVote = this.data.votedIps.includes(ip) ? true : false;
   }
 
   public async registerVote(index: number) {
