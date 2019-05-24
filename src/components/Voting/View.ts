@@ -1,6 +1,7 @@
 import { LitElement, css, customElement, html, property } from "lit-element";
 import Firebase from "../../Firebase";
 import { getIp } from "../../User";
+import { Poll } from "./Types";
 
 const Template = function() {
   return html`
@@ -22,7 +23,13 @@ const Template = function() {
           `
       )}
     </grid-component>
-    <div>${this.didVote ? html`You have already voted`: ""}</div>
+    <div>
+      ${this.didVote
+        ? html`
+            You have already voted
+          `
+        : ""}
+    </div>
   `;
 };
 
@@ -39,23 +46,25 @@ export class Component extends LitElement {
   public template = Template;
   public render = this.template.bind(this);
 
-  @property() data;
+  @property() data: Poll;
   @property() pollId: string;
   @property() didVote: boolean = false;
 
   connectedCallback() {
     super.connectedCallback();
     this.beforeRender();
-    Firebase.getDocument({
-      path: `polls/${this.pollId}`,
-      callback: (data) => this.data = data,
-      watch: true
-    });
   }
 
   async beforeRender() {
     this.data = await Firebase.getDocument({
       path: `polls/${this.pollId}`
+    });
+    Firebase.getDocument({
+      path: `polls/${this.pollId}`,
+      callback: (data: Poll) => {
+        this.data = data;
+      },
+      watch: true
     });
     await this._didVote();
   }
