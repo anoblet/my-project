@@ -19,8 +19,9 @@ const Template = function() {
                       @click=${() => this.registerVote(index)}
                     ></button-component>
                   `
-                : ""}
-              ${this.data.result[index] || "0"}
+                : html`
+                    ${this.data.result[index] || "0"}
+                  `}
             `
         )}
         <span>Total</span>

@@ -41,7 +41,9 @@ export class Component extends LitElement {
     const data = {
       title,
       options,
-      result: {},
+      result: {
+        total: 0
+      },
       votedIps: []
     };
 
