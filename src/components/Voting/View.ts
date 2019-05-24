@@ -46,6 +46,11 @@ export class Component extends LitElement {
   connectedCallback() {
     super.connectedCallback();
     this.beforeRender();
+    Firebase.getDocument({
+      path: `polls/${this.pollId}`,
+      callback: (data) => this.data = data,
+      watch: true
+    });
   }
 
   async beforeRender() {
