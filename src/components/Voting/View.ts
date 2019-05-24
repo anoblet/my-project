@@ -20,9 +20,11 @@ const Template = function() {
                     ></button-component>
                   `
                 : ""}
-              ${this.data.result ? this.data.result[index] : ""}
+              ${this.data.result[index] || "0"}
             `
         )}
+        <span>Total</span>
+        <div>${this.getTotal()}</div>
       </grid-component>
       <div>
         ${this.didVote
@@ -32,7 +34,6 @@ const Template = function() {
           : ""}
       </div>
     </grid-component>
-    ${this.getTotal()}
   `;
 };
 
@@ -87,7 +88,6 @@ export class Component extends LitElement {
 
   public async registerVote(index: number) {
     if (await this._didVote) return;
-    this.data.result = this.data.result || {};
     this.data.result[index] = this.data.result[index] || 0;
     this.data.result[index]++;
     this.data.votedIps.push(this.ip);

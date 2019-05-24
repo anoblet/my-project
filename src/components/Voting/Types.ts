@@ -1,6 +1,13 @@
 export interface Poll {
   title: string,
   options: string[],
-  result: {},
+  result: {
+    total: number;
+  },
   votedIps: string[]
+}
+
+export interface Option {
+  label: string,
+  value: number
 }
