@@ -90,6 +90,7 @@ export class Component extends LitElement {
     if (await this._didVote) return;
     this.data.result[index] = this.data.result[index] || 0;
     this.data.result[index]++;
+    this.data.result.total++;
     this.data.votedIps.push(this.ip);
     Firebase.update({
       data: this.data,
