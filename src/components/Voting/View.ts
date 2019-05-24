@@ -5,38 +5,48 @@ import { Poll } from "./Types";
 
 const Template = function() {
   return html`
-    <h2>${this.data.title}</h2>
-    <grid-component columns="2">
-      ${this.data.options.map(
-        (option: string, index: number) =>
-          html`
-            <span class="label">${option}</span>
-            ${!this.didVote
-              ? html`
-                  <button-component
-                    label="Vote"
-                    @click=${() => this.registerVote(index)}
-                  ></button-component>
-                `
-              : ""}
-            ${this.data.result ? this.data.result[index] : ""}
-          `
-      )}
+    <grid-component>
+      <h2>${this.data.title}</h2>
+      <grid-component id="options">
+        ${this.data.options.map(
+          (option: string, index: number) =>
+            html`
+              <span class="label">${option}</span>
+              ${!this.didVote
+                ? html`
+                    <button-component
+                      label="Vote"
+                      @click=${() => this.registerVote(index)}
+                    ></button-component>
+                  `
+                : ""}
+              ${this.data.result ? this.data.result[index] : ""}
+            `
+        )}
+      </grid-component>
+      <div>
+        ${this.didVote
+          ? html`
+              You have already voted
+            `
+          : ""}
+      </div>
     </grid-component>
-    <div>
-      ${this.didVote
-        ? html`
-            You have already voted
-          `
-        : ""}
-    </div>
+    ${this.getTotal()}
   `;
 };
 
 const Style = css`
+  :host {
+    flex: 1;
+  }
   .label {
     display: flex;
     align-items: center;
+  }
+
+  #options {
+    grid-template-columns: auto min-content;
   }
 `;
 
@@ -49,6 +59,7 @@ export class Component extends LitElement {
   @property() data: Poll;
   @property() pollId: string;
   @property() didVote: boolean = false;
+  @property() ip: string;
 
   connectedCallback() {
     super.connectedCallback();
@@ -66,24 +77,29 @@ export class Component extends LitElement {
       },
       watch: true
     });
-    await this._didVote();
+    this.ip = await getIp();
+    this.didVote = await this._didVote();
   }
 
   async _didVote() {
-    const ip = await getIp();
-    this.didVote = this.data.votedIps.includes(ip) ? true : false;
+    return this.data.votedIps.includes(this.ip) ? true : false;
   }
 
   public async registerVote(index: number) {
-    const ip = await getIp();
-    if (this.data.votedIps.includes(ip)) return;
+    if (await this._didVote) return;
     this.data.result = this.data.result || {};
     this.data.result[index] = this.data.result[index] || 0;
     this.data.result[index]++;
-    this.data.votedIps.push(ip);
+    this.data.votedIps.push(this.ip);
     Firebase.update({
       data: this.data,
       path: `polls/${this.pollId}`
     });
+  }
+
+  public getTotal() {
+    let count = 0;
+    Object.keys(this.data.result).map(key => (count += this.data.result[key]));
+    return count;
   }
 }
