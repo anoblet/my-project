@@ -7,7 +7,7 @@ import Properties from "./Properties";
  * Dialog component
  */
 @customElement("dialog-component")
-export class DialogComponent extends LitElement {
+export class Dialog extends LitElement {
   public static properties = Properties;
   public static styles = Style;
   public template = Template;

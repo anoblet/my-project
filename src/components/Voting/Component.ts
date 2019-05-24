@@ -5,7 +5,8 @@ import GlobalStyle from "../../GlobalStyle";
 import Style from "./Style";
 import Template from "./Template";
 
-import { Poll } from "./Types"
+import { Poll } from "./Types";
+import { Dialog } from "../Dialog/Component"
 
 @customElement("voting-component")
 export class Component extends LitElement {
@@ -17,7 +18,7 @@ export class Component extends LitElement {
   @property({ type: Array }) public title = "Sample title";
   @property({ type: Array }) public polls = [];
 
-  @query("#create-dialog") public dialog;
+  @query("#create-dialog") public dialog: Dialog;
 
   public constructor() {
     super();
