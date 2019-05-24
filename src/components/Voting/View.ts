@@ -1,25 +1,28 @@
 import { LitElement, css, customElement, html, property } from "lit-element";
 import Firebase from "../../Firebase";
-import { Poll } from "./Types";
 import { getIp } from "../../User";
 
 const Template = function() {
   return html`
     <h2>${this.data.title}</h2>
-    <grid-component columns="3">
+    <grid-component columns="2">
       ${this.data.options.map(
         (option: string, index: number) =>
           html`
             <span class="label">${option}</span>
-            <button-component
-              label="Vote"
-              @click=${() => this.registerVote(index)}
-            ></button-component>
+            ${!this.didVote
+              ? html`
+                  <button-component
+                    label="Vote"
+                    @click=${() => this.registerVote(index)}
+                  ></button-component>
+                `
+              : ""}
             ${this.data.result ? this.data.result[index] : ""}
           `
       )}
     </grid-component>
-    <div>Voted: ${this.didVote}</div>
+    <div>${this.didVote ? html`You have already voted`: ""}</div>
   `;
 };
 
