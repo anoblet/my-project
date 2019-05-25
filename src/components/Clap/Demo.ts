@@ -21,13 +21,7 @@ export class Demo extends BeforeRender(LitElement) {
 
   public render() {
     return html`
-      <component-clap
-        .styles=${css`
-          :host {
-            backround: red;
-          }
-        `}
-      ></component-clap>
+      <component-clap></component-clap>
     `;
   }
 }
