@@ -5,7 +5,7 @@ import { LitElement, css, customElement, html } from "lit-element";
 
 import { BeforeRender } from "../../mixins/BeforeRender";
 
-@customElement("voting-component-demo")
+@customElement("clap-component-demo")
 export class Demo extends BeforeRender(LitElement) {
   public static styles = [
     GlobalStyle,
@@ -23,7 +23,7 @@ export class Demo extends BeforeRender(LitElement) {
 
   public render() {
     return html`
-      <voting-component></voting-component>
+      <component-clap></component-clap>
     `;
   }
 }
