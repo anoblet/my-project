@@ -1,6 +1,6 @@
 {
   "name": "my-project",
-  "version": "0.5.13",
+  "version": "0.5.14",
   "description": "my-project",
   "main": "index.js",
   "scripts": {
@@ -85,7 +85,6 @@
     "workbox-webpack-plugin": "^3.6.3"
   },
   "husky": {
-    "hooks": {
-    }
+    "hooks": {}
   }
 }
