@@ -1,1 +1,7 @@
- - [x] One vote per ip
+ - [x] Create a poll
+   - [X] Create an option
+   - [X] Delete an option
+ - [x] View a poll
+   - [X] View option count
+   - [X] View total
+ - [x] Restrict per ip
