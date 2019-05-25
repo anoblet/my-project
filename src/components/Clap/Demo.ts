@@ -11,8 +11,6 @@ export class Demo extends BeforeRender(LitElement) {
     GlobalStyle,
     css`
       :host {
-        flex: 1;
-        contain: initial;
       }
     `
   ];
