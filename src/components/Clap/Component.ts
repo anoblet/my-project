@@ -6,10 +6,9 @@ import Template from "./Template";
 export class Clap extends LitElement {
   public static styles = css`
     :host {
-      background: blue;
     }
   `;
-  
+
   public render = Template.bind(this);
 
   @property({ type: Number }) public count = 0;
