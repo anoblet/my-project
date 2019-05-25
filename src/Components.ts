@@ -133,5 +133,11 @@ export const components = [
     src: () =>
       import(/* webpackChunkName: "VotingDemo" */ "./components/Voting/Demo"),
     tag: "voting-component-demo"
+  },
+  {
+    label: "Clap",
+    src: () =>
+      import(/* webpackChunkName: "ClapDemo" */ "./components/Clap/Demo"),
+    tag: "component-clap-demo"
   }
 ];
