@@ -1,23 +1,27 @@
-import { LitElement, customElement, property } from "lit-element";
+import { LitElement, css, customElement, property } from "lit-element";
 
-import GlobalStyle from "../../GlobalStyle";
-import Style from "./Style";
 import Template from "./Template";
 
 @customElement("component-clap")
 export class Clap extends LitElement {
-  public static styles = [GlobalStyle, Style];
-  public template = Template;
-  public render = this.template.bind(this);
+  public static styles = css`
+    :host {
+      background: blue;
+    }
+  `;
+  
+  public render = Template.bind(this);
 
   @property({ type: Number }) public count = 0;
 
-  public clap() {
+  public increaseCount() {
     this.count++;
-    this.dispatchEvent(new CustomEvent("count-changed", {
-      detail: {
-        count: this.count
-      }
-    }));
+    this.dispatchEvent(
+      new CustomEvent("count-changed", {
+        detail: {
+          count: this.count
+        }
+      })
+    );
   }
 }
