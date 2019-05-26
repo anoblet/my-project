@@ -64,7 +64,6 @@ export class Component extends LitElement {
   @property() public options = [];
 
   public addOption() {
-    // if (this.items[this.items.length - 1] !== "")
     this.options = [...this.options, ""];
   }
 
