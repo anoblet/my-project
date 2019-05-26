@@ -32,36 +32,7 @@ export class Component extends LitElement {
   public showCreateDialog() {
     this.dialog.open();
   }
-
-/**
- * Event handler for save
- *
- * @todo There's no need to reference dom as both title and options are available as properties
- */
-  public save() {
-    const form = this.shadowRoot.querySelector("#form-create");
-    if (!form) return;
-    const titleElement: any = form.querySelector("#title");
-    const title = titleElement.value;
-    const inputList = form.querySelectorAll("#option-container input");
-    const inputArray = Array.from(inputList);
-    const options = [];
-    inputArray.map((input: any) => options.push(input.value));
-    const data = {
-      title,
-      options,
-      result: {
-        total: 0
-      },
-      votedIps: []
-    };
-
-    Firebase.add({ path: "polls", data });
-    this.dialog.close();
-    this.title = "";
-    this.items = [];
-  }
-
+  
   public async getPolls() {
     return Firebase.getCollection({
       path: "/polls",
