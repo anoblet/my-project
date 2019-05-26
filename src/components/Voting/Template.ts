@@ -4,6 +4,7 @@ import { delete_outline } from "../../Icons";
 import { html } from "lit-element";
 const readme = require("./readme.md");
 import { unsafeHTML } from "lit-html/directives/unsafe-html"
+import { Poll } from "./Types"
 
 export default function() {
   return html`
@@ -17,7 +18,7 @@ export default function() {
       <h2>Polls</h2>
       <grid-component id="list"
         ><span>Title</span> ${this.polls.map(
-          poll =>
+          (poll: Poll) =>
             html`
               <a href="/poll/${poll.id}">${poll.title}</a>
             `
@@ -43,7 +44,7 @@ const createDialog = function() {
               type="text"
               name="title"
               .value=${this.title}
-              @input=${e => (this.title = e.target.value)}
+              @input=${(e: any) => (this.title = e.target.value)}
             />
           </grid-component>
           <div id="actions">

@@ -1,4 +1,5 @@
 export interface Poll {
+  id: string,
   title: string,
   options: string[],
   result: {
