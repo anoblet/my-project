@@ -29,12 +29,12 @@ const Template = function() {
           </div>
           <grid-component id="option-container">
             ${this.options.map(
-              (item: any, index: number) =>
+              (option: any, index: number) =>
                 html`
                   <label>#${index}</label>
                   <input
                     type="text"
-                    .value=${item}
+                    .value=${option}
                     @input=${(e: any) => (this.options[index] = e.target.value)}
                   />
                   <span class="icon" @click=${() => this.removeOption(index)}
