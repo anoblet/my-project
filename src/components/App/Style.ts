@@ -145,7 +145,6 @@ export default css`
 
   #portal {
     contain: initial;
-    display: flex;
     overflow-x: hidden;
     padding: 1em;
   }
