@@ -33,6 +33,11 @@ export class Component extends LitElement {
     this.dialog.open();
   }
 
+/**
+ * Event handler for save
+ *
+ * @todo There's no need to reference dom as both title and options are available as properties
+ */
   public save() {
     const form = this.shadowRoot.querySelector("#form-create");
     if (!form) return;
