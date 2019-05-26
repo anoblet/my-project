@@ -8,6 +8,11 @@ import Template from "./Template";
 import { Poll } from "./Types";
 import { Dialog } from "../Dialog/Component"
 
+/**
+ * Voting UI Component
+ *
+ * @todo this should just be a ui component
+ */
 @customElement("voting-component")
 export class Component extends LitElement {
   public static styles = [GlobalStyle, Style];
