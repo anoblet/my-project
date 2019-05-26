@@ -1,7 +1,9 @@
- - [x] Create a poll
-   - [X] Create an option
-   - [X] Delete an option
- - [x] View a poll
-   - [X] View option count
-   - [X] View total
+ - Poll
+   - [X] Create
+   - [ ] Delete
+    - Option
+      - [X] Create
+      - [X] Delete
+ - [x] View
+   - [X] Total votes
  - [x] Restrict per ip
