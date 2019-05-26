@@ -2,7 +2,9 @@ import { LitElement, css, customElement, html } from "lit-element";
 
 const Template = function() {
   return html`
-    <grid-component> </grid-component>
+    <grid-component>
+      <label>Title: </label><input type="text">
+    </grid-component>
   `;
 };
 
