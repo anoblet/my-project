@@ -3,8 +3,9 @@ import "../Dialog/Component";
 import { delete_outline } from "../../Icons";
 import { html } from "lit-element";
 const readme = require("./readme.md");
-import { unsafeHTML } from "lit-html/directives/unsafe-html"
-import { Poll } from "./Types"
+import { unsafeHTML } from "lit-html/directives/unsafe-html";
+import { Poll } from "./Types";
+import "./Create";
 
 export default function() {
   return html`
@@ -27,8 +28,8 @@ export default function() {
     </grid-component>
     <dialog-component id="create-dialog" fixed
       ><h3 slot="title">Create</h3>
-      <div slot="content">${createDialog.bind(this)()}</div></dialog-component
-    >
+      <div slot="content"><poll-create></poll-create></div
+    ></dialog-component>
   `;
 }
 

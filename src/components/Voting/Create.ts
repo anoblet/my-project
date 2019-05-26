@@ -16,8 +16,8 @@ const Template = function() {
               id="title"
               type="text"
               name="title"
-              .value=${this.title}
-              @input=${(e: any) => (this.title = e.target.value)}
+              .value=${poll.title}
+              @input=${(e: any) => (poll.title = e.target.value)}
             />
           </grid-component>
           <div id="actions">
@@ -31,14 +31,14 @@ const Template = function() {
             ></button-component>
           </div>
           <grid-component id="option-container">
-            ${this.items.map(
+            ${poll.options.map(
               (item: any, index: number) =>
                 html`
                   <label>#${index}</label>
                   <input
                     type="text"
                     .value=${item}
-                    @input=${(e: any) => (this.items[index] = e.target.value)}
+                    @input=${(e: any) => (poll.options[index] = e.target.value)}
                   />
                   <span class="icon" @click=${() => this.removeOption(index)}
                     >${delete_outline}</span
