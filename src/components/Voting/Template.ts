@@ -10,13 +10,12 @@ import "./Create";
 export default function() {
   return html`
     <grid-component>
-      ${unsafeHTML(readme)}
       <button-component
         label="Create"
         outlined
         @click=${this.showCreateDialog}
       ></button-component>
-      <h3>Polls</h3>
+      <h2>Polls</h2>
       <grid-component id="list"
         ><span>Title</span> ${this.polls.map(
           (poll: Poll) =>
