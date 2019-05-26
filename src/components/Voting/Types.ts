@@ -1,10 +1,10 @@
-export interface Poll {
-  id: string,
-  title: string,
-  options: string[],
+export class Poll {
+  id: string;
+  title: string;
+  options: string[];
   result: {
     total: number;
-  },
+  };
   votedIps: string[]
 }
 
