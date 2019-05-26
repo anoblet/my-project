@@ -57,17 +57,6 @@ export class Component extends LitElement {
     this.items = [];
   }
 
-  public addItem() {
-    // if (this.items[this.items.length - 1] !== "")
-    this.items = [...this.items, ""];
-  }
-
-  public removeItem(index: number) {
-    const items = [...this.items];
-    items.splice(index, 1);
-    this.items = [...items];
-  }
-
   public async getPolls() {
     return Firebase.getCollection({
       path: "/polls",
