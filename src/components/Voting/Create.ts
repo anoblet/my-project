@@ -1,5 +1,6 @@
 import { LitElement, css, customElement, html, property } from "lit-element";
 
+import Firebase from "../../Firebase";
 import { delete_outline } from "../../Icons";
 
 const Template = function() {
@@ -75,6 +76,21 @@ export class Component extends LitElement {
 
   @property() public title = "";
   @property() public options = [];
+
+  /**
+   * Event handler for save
+   *
+   * @todo There's no need to reference dom as both title and options are available as properties
+   */
+
+  public save() {
+    Firebase.add({
+      path: "polls",
+      data: { title: this.title, options: this.options }
+    });
+    this.title = "";
+    this.options = [];
+  }
 
   public addOption() {
     this.options = [...this.options, ""];
