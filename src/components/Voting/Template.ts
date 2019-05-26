@@ -24,6 +24,7 @@ export default function() {
             `
         )}</grid-component
       >
+      ${unsafeHTML(readme)}
     </grid-component>
     <dialog-component id="create-dialog" fixed
       ><h3 slot="title">Create</h3>
