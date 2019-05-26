@@ -11,8 +11,7 @@ import { Dialog } from "../Dialog/Component"
 @customElement("voting-component")
 export class Component extends LitElement {
   public static styles = [GlobalStyle, Style];
-  public template = Template;
-  public render = this.template.bind(this);
+  public render = Template.bind(this);
 
   @property({ type: Array }) public items = ["Sample option #1", "Sample option #2"];
   @property({ type: Array }) public title = "Sample title";
