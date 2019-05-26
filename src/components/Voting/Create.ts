@@ -1,9 +1,6 @@
-import { LitElement, css, customElement, html } from "lit-element";
+import { LitElement, css, customElement, html, property } from "lit-element";
 
-import { Poll } from "./Types";
 import { delete_outline } from "../../Icons";
-
-const poll = new Poll();
 
 const Template = function() {
   return html`
@@ -16,14 +13,14 @@ const Template = function() {
               id="title"
               type="text"
               name="title"
-              .value=${poll.title}
-              @input=${(e: any) => (poll.title = e.target.value)}
+              .value=${this.title}
+              @input=${(e: any) => (this.title = e.target.value)}
             />
           </grid-component>
           <div id="actions">
             <button-component
               label="Add item"
-              @click=${this.addItem}
+              @click=${this.addOption}
             ></button-component>
             <button-component
               label="Save"
@@ -31,14 +28,14 @@ const Template = function() {
             ></button-component>
           </div>
           <grid-component id="option-container">
-            ${poll.options.map(
+            ${this.options.map(
               (item: any, index: number) =>
                 html`
                   <label>#${index}</label>
                   <input
                     type="text"
                     .value=${item}
-                    @input=${(e: any) => (poll.options[index] = e.target.value)}
+                    @input=${(e: any) => (this.options[index] = e.target.value)}
                   />
                   <span class="icon" @click=${() => this.removeOption(index)}
                     >${delete_outline}</span
@@ -63,9 +60,17 @@ export class Component extends LitElement {
   public static styles = Style;
   public render = Template.bind(this);
 
+  @property() public title = "";
+  @property() public options = [];
+
+  public addOption() {
+    // if (this.items[this.items.length - 1] !== "")
+    this.options = [...this.options, ""];
+  }
+
   public removeOption(index: number) {
-    const options = [...poll.options];
+    const options = [...this.options];
     options.splice(index, 1);
-    poll.options = [...options];
+    this.options = [...options];
   }
 }

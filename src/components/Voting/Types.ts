@@ -1,7 +1,7 @@
 export class Poll {
   id: string;
-  title: string;
-  options: string[];
+  title: string = "";
+  options: string[] = [];
   result: {
     total: number;
   };
