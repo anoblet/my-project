@@ -7,6 +7,13 @@ import { BeforeRender } from "../../mixins/BeforeRender";
 const Template = function() {
   return html`
     <grid-component>
+      <div>
+        ${this.didVote
+          ? html`
+              You have already voted
+            `
+          : ""}
+      </div>
       <h2>${this.data.title}</h2>
       <grid-component id="options">
         ${this.data.options.map(
@@ -32,13 +39,6 @@ const Template = function() {
             `
           : ""}
       </grid-component>
-      <div>
-        ${this.didVote
-          ? html`
-              You have already voted
-            `
-          : ""}
-      </div>
     </grid-component>
   `;
 };
@@ -76,18 +76,17 @@ export class Component extends BeforeRender(LitElement) {
     Firebase.getDocument({
       path: `polls/${this.pollId}`,
       callback: async (data: Poll) => {
-        this.data = data
+        this.data = data;
         this.didVote = await this._didVote();
-
       },
       watch: true
     });
   }
 
-/**
- * Check if the user voted already based on ip
- * @return boolean
- */
+  /**
+   * Check if the user voted already based on ip
+   * @return boolean
+   */
   async _didVote() {
     return this.data.votedIps.includes(this.ip) ? true : false;
   }
