@@ -88,7 +88,7 @@ export class Component extends BeforeRender(LitElement) {
    * @return boolean
    */
   async _didVote() {
-    return this.data.votedIps.includes(this.ip) ? true : false;
+    return this.data.votedIps.includes(this.ip);
   }
 
 /**
