@@ -2,6 +2,7 @@ import { LitElement, css, customElement, html, property } from "lit-element";
 import Firebase from "../../Firebase";
 import { getIp } from "../../User";
 import { Poll } from "./Types";
+import { BeforeRender } from "../../mixins/BeforeRender";
 
 const Template = function() {
   return html`
@@ -57,7 +58,7 @@ const Style = css`
 `;
 
 @customElement("view-poll")
-export class Component extends LitElement {
+export class Component extends BeforeRender(LitElement) {
   public static styles = Style;
   public template = Template;
   public render = this.template.bind(this);
@@ -66,11 +67,6 @@ export class Component extends LitElement {
   @property() pollId: string;
   @property() didVote: boolean = false;
   @property() ip: string;
-
-  connectedCallback() {
-    super.connectedCallback();
-    this.beforeRender();
-  }
 
   async beforeRender() {
     this.data = await Firebase.getDocument({
@@ -89,13 +85,15 @@ export class Component extends LitElement {
     });
   }
 
+/**
+ * Check if the user voted already based on ip
+ * @return boolean
+ */
   async _didVote() {
     return this.data.votedIps.includes(this.ip) ? true : false;
   }
 
   public async registerVote(index: number) {
-    console.log("hi");
-    console.log(await this._didVote());
     if (await this._didVote()) return;
     this.data.result[index] = this.data.result[index] || 0;
     this.data.result[index]++;
