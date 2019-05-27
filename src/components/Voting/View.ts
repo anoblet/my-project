@@ -24,8 +24,12 @@ const Template = function() {
                   `}
             `
         )}
-        <span>Total</span>
-        <div>${this.getTotal()}</div>
+        ${this.didVote
+          ? html`
+              <span>Total</span>
+              <div>${this.getTotal()}</div>
+            `
+          : ""}
       </grid-component>
       <div>
         ${this.didVote
