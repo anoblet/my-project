@@ -92,7 +92,9 @@ export class Component extends LitElement {
   }
 
   public async registerVote(index: number) {
-    if (await this._didVote) return;
+    console.log("hi");
+    console.log(await this._didVote());
+    if (await this._didVote()) return;
     this.data.result[index] = this.data.result[index] || 0;
     this.data.result[index]++;
     this.data.result.total++;
