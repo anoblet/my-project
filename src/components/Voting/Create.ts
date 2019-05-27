@@ -7,16 +7,18 @@ const Template = function() {
   return html`
     <form id="form-create">
       <grid-component>
-        <grid-component id="title-container">
-          <label for="title">Title</label
-          ><input
-            id="title"
-            type="text"
-            name="title"
-            .value=${this.title}
-            @input=${(e: any) => (this.title = e.target.value)}
-          />
-        </grid-component>
+        <card-component>
+          <grid-component id="title-container">
+            <label for="title">Title</label
+            ><input
+              id="title"
+              type="text"
+              name="title"
+              .value=${this.title}
+              @input=${(e: any) => (this.title = e.target.value)}
+            />
+          </grid-component>
+        </card-component>
         <div id="actions">
           <button-component
             label="Add option"
@@ -66,6 +68,10 @@ const Style = css`
 
   svg {
     fill: currentColor;
+  }
+
+  #title-container {
+    grid-template-columns: max-content auto;
   }
 `;
 
