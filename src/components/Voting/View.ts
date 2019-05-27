@@ -28,7 +28,7 @@ const Template = function() {
         ${this.didVote
           ? html`
               <span>Total</span>
-              <div>${this.getTotal()}</div>
+              <div>${this.data.result.total}</div>
             `
           : ""}
       </grid-component>
@@ -60,8 +60,7 @@ const Style = css`
 @customElement("view-poll")
 export class Component extends BeforeRender(LitElement) {
   public static styles = Style;
-  public template = Template;
-  public render = this.template.bind(this);
+  public render = Template.bind(this);
 
   @property() data: Poll;
   @property() pollId: string;
