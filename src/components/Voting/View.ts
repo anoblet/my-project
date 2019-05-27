@@ -76,15 +76,17 @@ export class Component extends LitElement {
     this.data = await Firebase.getDocument({
       path: `polls/${this.pollId}`
     });
+    this.ip = await getIp();
+    this.didVote = await this._didVote();
     Firebase.getDocument({
       path: `polls/${this.pollId}`,
-      callback: (data: Poll) => {
-        this.data = data;
+      callback: async (data: Poll) => {
+        this.data = data
+        this.didVote = await this._didVote();
+
       },
       watch: true
     });
-    this.ip = await getIp();
-    this.didVote = await this._didVote();
   }
 
   async _didVote() {
