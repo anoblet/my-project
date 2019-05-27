@@ -86,7 +86,13 @@ export class Component extends LitElement {
   public save() {
     Firebase.add({
       path: "polls",
-      data: { title: this.title, options: this.options }
+      data: {
+        title: this.title,
+        options: this.options,
+        result: [],
+        total: 0,
+        votedIps: []
+      }
     });
     this.title = "";
     this.options = [];

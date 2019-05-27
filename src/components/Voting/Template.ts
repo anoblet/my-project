@@ -10,21 +10,28 @@ import "./Create";
 export default function() {
   return html`
     <grid-component>
-      <button-component
-        label="Create"
-        outlined
-        @click=${this.showCreateDialog}
-      ></button-component>
-      <h2>Polls</h2>
-      <grid-component id="list"
-        ><span>Title</span> ${this.polls.map(
-          (poll: Poll) =>
-            html`
-              <a href="/poll/${poll.id}">${poll.title}</a>
-            `
-        )}</grid-component
-      >
-      ${unsafeHTML(readme)}
+      <card-component title="List">
+        <grid-component>
+          <div id="actions">
+            <button-component
+              label="Create"
+              outlined
+              @click=${this.showCreateDialog}
+            ></button-component>
+          </div>
+          <grid-component id="list"
+            ><span>Title</span> ${this.polls.map(
+              (poll: Poll) =>
+                html`
+                  <a href="/poll/${poll.id}">${poll.title}</a>
+                `
+            )}</grid-component
+          >
+        </grid-component>
+      </card-component>
+      <card-component title="Readme">
+        ${unsafeHTML(readme)}
+      </card-component>
     </grid-component>
     <dialog-component id="create-dialog" fixed
       ><h3 slot="title">Create</h3>
