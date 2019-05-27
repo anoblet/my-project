@@ -23,7 +23,10 @@ export default function() {
             ><span>Title</span> ${this.polls.map(
               (poll: Poll) =>
                 html`
-                  <a href="/poll/${poll.id}">${poll.title}</a>
+                  <grid-component class="item">
+                    <a href="/poll/${poll.id}">${poll.title}</a>
+                    <span>${delete_outline}</span>
+                  </grid-component>
                 `
             )}</grid-component
           >

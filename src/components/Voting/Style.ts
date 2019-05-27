@@ -35,14 +35,23 @@ export default css`
     flex: 1;
   }
 
-  #list *:nth-child(n + 2) {
+  #list > s*:nth-child(n + 2) {
     padding-top: 1em;
     border-top: 1px solid var(--border-color);
+  }
+
+  #list a {
+    display: flex;
+    align-items: center;
   }
 
   [slot="title"] {
     line-height: 1;
     margin-block-start: 0;
     margin-block-end: 0;
+  }
+
+  .item {
+    grid-template-columns: auto max-content;
   }
 `;
