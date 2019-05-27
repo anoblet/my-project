@@ -91,6 +91,10 @@ export class Component extends BeforeRender(LitElement) {
     return this.data.votedIps.includes(this.ip) ? true : false;
   }
 
+/**
+ * Event handler to register a vote
+ * @param  index The option index
+ */
   public async registerVote(index: number) {
     if (await this._didVote()) return;
     this.data.result[index] = this.data.result[index] || 0;
@@ -103,6 +107,10 @@ export class Component extends BeforeRender(LitElement) {
     });
   }
 
+  /**
+   * Get total number of votes
+   * @return number;
+   */
   public getTotal() {
     let count = 0;
     Object.keys(this.data.result).map(key => (count += this.data.result[key]));
