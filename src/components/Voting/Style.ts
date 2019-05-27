@@ -35,6 +35,10 @@ export default css`
     flex: 1;
   }
 
+  #list {
+    grid-template-columns: auto max-content;
+  }
+
   #list *:nth-child(n + 2) {
     padding-top: 1em;
     border-top: 1px solid var(--border-color);
