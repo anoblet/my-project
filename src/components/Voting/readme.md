@@ -1,9 +1,9 @@
  - Poll
    - [X] Create
+     - [X] Option
+       - [X] Create
+       - [X] Delete
    - [X] Delete
-    - Option
-      - [X] Create
-      - [X] Delete
- - [x] View
+   - [X] View
    - [X] Total votes
  - [x] Restrict per ip
