@@ -21,11 +21,11 @@ export default function() {
           </div>
           <grid-component id="list"
             ><span>Title</span> ${this.polls.map(
-              (poll: Poll) =>
+              (poll: Poll, index: number) =>
                 html`
                   <grid-component class="item">
                     <a href="/poll/${poll.id}">${poll.title}</a>
-                    <span>${delete_outline}</span>
+                    <span @click=${() => this.deletePoll(index)}>${delete_outline}</span>
                   </grid-component>
                 `
             )}</grid-component
