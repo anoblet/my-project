@@ -1,6 +1,6 @@
  - Poll
    - [X] Create
-   - [ ] Delete
+   - [X] Delete
     - Option
       - [X] Create
       - [X] Delete
