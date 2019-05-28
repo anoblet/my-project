@@ -42,8 +42,7 @@ export class Component extends LitElement {
   }
 
   public async deletePoll(index: number) {
-    const polls = [...this.polls];
-    polls.splice(index, 1);
-    this.polls = [...polls];
+    const poll = this.polls[index];
+    Firebase.deleteDocument({ path: `/polls/${poll.id}` });
   }
 }
