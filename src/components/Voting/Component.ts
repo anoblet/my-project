@@ -6,7 +6,7 @@ import Style from "./Style";
 import Template from "./Template";
 
 import { Poll } from "./Types";
-import { Dialog } from "../Dialog/Component"
+import { Dialog } from "../Dialog/Component";
 
 /**
  * Voting UI Component
@@ -39,5 +39,11 @@ export class Component extends LitElement {
       },
       watch: true
     });
+  }
+
+  public async deletePoll(index: number) {
+    const polls = [...this.polls];
+    polls.splice(index, 1);
+    this.polls = [...polls];
   }
 }
