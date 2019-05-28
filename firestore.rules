@@ -8,10 +8,7 @@ service cloud.firestore {
       allow write: if request.auth.uid == "m42gwHOSlbUniorNjigqa1nnHIE3";
     }
     match /polls/{poll} {
-      match /{document=**} {
-        allow read: if true;
-        allow write: if request.auth.uid != null;
-      }
+      allow read, write: if true;
     }
     match /posts/{post} {
       allow read: if true;
