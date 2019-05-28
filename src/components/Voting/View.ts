@@ -91,11 +91,12 @@ export class Component extends BeforeRender(LitElement) {
     return this.data.votedIps.includes(this.ip);
   }
 
-/**
- * Event handler to register a vote
- * @param  index The option index
- */
+  /**
+   * Event handler to register a vote
+   * @param  index The option index
+   */
   public async registerVote(index: number) {
+    console.log(this.data.result.total);
     if (await this._didVote()) return;
     this.data.result[index] = this.data.result[index] || 0;
     this.data.result[index]++;

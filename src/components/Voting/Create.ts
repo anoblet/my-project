@@ -95,8 +95,9 @@ export class Component extends LitElement {
       data: {
         title: this.title,
         options: this.options,
-        result: [],
-        total: 0,
+        result: {
+          total: 0
+        },
         votedIps: []
       }
     });
