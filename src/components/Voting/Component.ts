@@ -20,15 +20,14 @@ export class Component extends LitElement {
 
   @property({ type: Array }) public polls = [];
 
-  @query("#create-dialog") public dialog: Dialog;
-
   public constructor() {
     super();
     this.getPolls();
   }
 
   public showCreateDialog() {
-    this.dialog.open();
+    const dialog: any = this.shadowRoot.querySelector("#create-dialog");
+    dialog.open();
   }
 
   public async getPolls() {
