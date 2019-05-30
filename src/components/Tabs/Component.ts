@@ -10,4 +10,12 @@ import Template from "./Template";
 export class Tabs extends LitElement {
   public static styles = [Style];
   public render = Template.bind(this);
+
+  public firstUpdated() {
+    const tabs = Array.from(this.shadowRoot.querySelectorAll("component-tab"));
+    tabs.map(tab => {
+      const label = tab.querySelector("[slot='label']");
+      label.addEventListener("click", () => {});
+    });
+  }
 }
