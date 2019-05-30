@@ -1,12 +1,12 @@
-import { LitElement, customElement, property, query } from "lit-element";
+import { LitElement, customElement, property } from "lit-element";
 
+import { BeforeRender } from "../../mixins/BeforeRender";
+import { Dialog } from "../Dialog/Component";
 import Firebase from "../../Firebase";
 import GlobalStyle from "../../GlobalStyle";
+import { Poll } from "./Types";
 import Style from "./Style";
 import Template from "./Template";
-
-import { Poll } from "./Types";
-import { Dialog } from "../Dialog/Component";
 
 /**
  * Voting UI Component
@@ -14,7 +14,7 @@ import { Dialog } from "../Dialog/Component";
  * @todo this should just be a ui component
  */
 @customElement("voting-component")
-export class Component extends LitElement {
+export class Component extends BeforeRender(LitElement) {
   public static styles = [GlobalStyle, Style];
   public render = Template.bind(this);
 
@@ -22,11 +22,17 @@ export class Component extends LitElement {
 
   public constructor() {
     super();
-    this.getPolls();
+  }
+
+  async beforeRender() {
+    this.polls = await Firebase.getCollection({
+      path: "/polls",
+    });
+    await this.getPolls();
   }
 
   public showCreateDialog() {
-    const dialog: any = this.shadowRoot.querySelector("#create-dialog");
+    const dialog: Dialog = this.shadowRoot.querySelector("#create-dialog");
     dialog.open();
   }
 
