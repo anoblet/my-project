@@ -13,6 +13,10 @@ export class Tabs extends LitElement {
 
   public firstUpdated() {
     const tabs = Array.from(this.shadowRoot.querySelectorAll("component-tab"));
+    const labels = [];
+    tabs.map((tab: any) => {
+      labels.push(tab.label);
+    });
     tabs.map(tab => {
       const label = tab.querySelector("[slot='label']");
       label.addEventListener("click", () => {});
