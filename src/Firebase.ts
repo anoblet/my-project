@@ -3,6 +3,7 @@ import { _console } from "./Debug";
 /**
  * Utility function to import Firebase libraries asynchronously.
  * Functions will only be loaded when needed.
+ * getDocument, getCollection may assume that it should return an inital value. Considering it's promise this i not hard to do.
  * @param  packages Array of strings that correspond to firebase package names
  * @return object - An instance of Firebase with all of the packages loaded
  */
