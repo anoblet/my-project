@@ -4,7 +4,7 @@ import Style from "./Style";
 import Template from "./Template";
 
 /**
- * Icon
+ * Tabs
  */
 @customElement("component-tabs")
 export class Tabs extends LitElement {
