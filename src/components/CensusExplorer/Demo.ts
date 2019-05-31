@@ -12,6 +12,21 @@ import MaterialColor from "random-material-color";
 
 import "../ChartJS/Component";
 
+const getStructure = async () => {
+  const result: any = await fetch("https://api.census.gov/data/").then(function(
+    response
+  ) {
+    return response.json();
+  });
+  const unsortedArray = [];
+  result.dataset.map((data: any) => {
+    const vintage = data["c_vintage"];
+    if (vintage && !unsortedArray.includes(vintage))
+      unsortedArray.push(vintage);
+  });
+  return unsortedArray.sort((a, b) => a - b);
+};
+
 @customElement("census-explorer-demo")
 export class Demo extends BeforeRender(LitElement) {
   public static styles = [
@@ -41,8 +56,8 @@ export class Demo extends BeforeRender(LitElement) {
   @property() public values: string = "B00001_001E";
 
   public async beforeRender() {
+    const structure = await getStructure();
     this.vintages = await getVintages();
-    return;
   }
 
   public render() {
