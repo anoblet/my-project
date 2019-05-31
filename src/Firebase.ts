@@ -72,6 +72,11 @@ export const getCollection = async ({
     const collection = _firebase.firestore().collection(path);
     if (orderBy) collection.orderBy(orderBy);
 
+    // We map documents in a collection no matter the watch status
+    const result = new Promise((resolve, reject) => {
+      return true;
+    });
+
     // Watch is enabled, let's use a callback
     if (watch)
       collection.onSnapshot((querySnapshot: any) => {
