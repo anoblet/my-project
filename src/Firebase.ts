@@ -71,6 +71,7 @@ export const getCollection = async ({
   return run(["firestore"]).then((_firebase: any) => {
     const collection = _firebase.firestore().collection(path);
     if (orderBy) collection.orderBy(orderBy);
+
     // Watch is enabled, let's use a callback
     if (watch)
       collection.onSnapshot((querySnapshot: any) => {
@@ -80,7 +81,7 @@ export const getCollection = async ({
           data.id = doc.id;
           result.push(data);
         });
-        
+
         // Fires callback
         if (callback) callback(result);
       });
@@ -101,7 +102,7 @@ export const getCollection = async ({
   });
 };
 
-const mapSnapshotToArray = (snapshot) => {
+const mapSnapshotToArray = snapshot => {
   const result: any = [];
   snapshot.forEach((doc: any) => {
     const data = doc.data();
@@ -109,7 +110,7 @@ const mapSnapshotToArray = (snapshot) => {
     result.push(data);
   });
   return result;
-}
+};
 
 /**
  * Update or create a document;
