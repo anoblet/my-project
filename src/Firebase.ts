@@ -51,7 +51,6 @@ export const getUser = async () => {
 };
 
 /**
- * Ugly refactor
  * Returns either an array of documents, or fires a callback depending on whether or not watch is true
  * @return Array | Void
  *
@@ -72,29 +71,41 @@ export const getCollection = async ({
   return run(["firestore"]).then((_firebase: any) => {
     const collection = _firebase.firestore().collection(path);
     if (orderBy) collection.orderBy(orderBy);
-    if (callback)
+    // Watch is enabled, let's use a callback
+    if (watch)
       collection.onSnapshot((querySnapshot: any) => {
-        const result = mapSnapshotToArray(querySnapshot);
+        const result: any = [];
+        querySnapshot.forEach((doc: any) => {
+          const data = doc.data();
+          data.id = doc.id;
+          result.push(data);
+        });
         if (callback) callback(result);
       });
+    // Watch is diabled, let's return an array of objects
     else
-      return new Promise((resolve, reject) => {
-        collection.get().then((querySnapshot: any) => {
-          return mapSnapshotToArray(querySnapshot);
+      return collection.get().then((querySnapshot: any) => {
+        // mapSnapshot to array
+        const result: any = [];
+        querySnapshot.forEach((doc: any) => {
+          const data = doc.data();
+          data.id = doc.id;
+          result.push(data);
         });
+        return result;
       });
   });
 };
 
-const mapSnapshotToArray = snapshot => {
+const mapSnapshotToArray = (snapshot) => {
   const result: any = [];
-  snapshot.map((doc: any) => {
+  snapshot.forEach((doc: any) => {
     const data = doc.data();
     data.id = doc.id;
     result.push(data);
   });
   return result;
-};
+}
 
 /**
  * Update or create a document
