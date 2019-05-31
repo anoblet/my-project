@@ -30,4 +30,8 @@ export default css`
   #content-grid {
     flex: 1;
   }
+
+  #columns {
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  }
 `;

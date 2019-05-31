@@ -5,7 +5,7 @@ export default function() {
     <grid-component id="content-grid">
       <card-component title="Components">
         <div slot="content">
-          <grid-component columns="2">
+          <grid-component id="columns">
             ${this.components.map(
               (component: any) => html`
                 <a href="/components/${component.tag}">
