@@ -51,6 +51,7 @@ export const getUser = async () => {
 };
 
 /**
+ * Ugly refactor
  * Returns either an array of documents, or fires a callback depending on whether or not watch is true
  * @return Array | Void
  *
@@ -77,8 +78,10 @@ export const getCollection = async ({
         if (callback) callback(result);
       });
     else
-      return collection.get().then((querySnapshot: any) => {
-        return mapSnapshotToArray(querySnapshot);
+      return new Promise((resolve, reject) => {
+        collection.get().then((querySnapshot: any) => {
+          return mapSnapshotToArray(querySnapshot);
+        });
       });
   });
 };
