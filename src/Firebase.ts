@@ -80,6 +80,8 @@ export const getCollection = async ({
           data.id = doc.id;
           result.push(data);
         });
+        
+        // Fires callback
         if (callback) callback(result);
       });
     // Watch is diabled, let's return an array of objects
@@ -92,6 +94,8 @@ export const getCollection = async ({
           data.id = doc.id;
           result.push(data);
         });
+
+        // Returns result
         return result;
       });
   });
