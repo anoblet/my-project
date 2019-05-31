@@ -85,15 +85,19 @@ export const getCollection = async ({
     // Watch is diabled, let's return an array of objects
     else
       return collection.get().then((querySnapshot: any) => {
-        const result: any = [];
-        querySnapshot.forEach((doc: any) => {
-          const data = doc.data();
-          data.id = doc.id;
-          result.push(data);
-        });
-        return result;
+        return mapSnapshotToArray(querySnapshot);
       });
   });
+};
+
+const mapSnapshotToArray = snapshot => {
+  const result: any = [];
+  snapshot.map((doc: any) => {
+    const data = doc.data();
+    data.id = doc.id;
+    result.push(data);
+  });
+  return result;
 };
 
 /**
