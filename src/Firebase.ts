@@ -118,7 +118,7 @@ export const updateDocument = async ({ data, path }: any) => {
  * Returns a promise/document, or calls a callback depending on the watch property
  **/
 export const getDocument = async ({ callback = false, path }: any) => {
-  return run(["firestore"]).then((_firebase: any) => {
+  return await run(["firestore"]).then((_firebase: any) => {
     const document = _firebase.firestore().doc(path);
     const result = document.get().then((doc: any) => {
       return doc.data();
