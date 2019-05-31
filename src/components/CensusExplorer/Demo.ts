@@ -55,7 +55,9 @@ export class Demo extends BeforeRender(LitElement) {
             <select name="vintage" @change=${this.handleChange}>
               ${this.vintages.map(
                 vintage => html`
-                  <option value=${vintage}>${vintage}</option>
+                  <option value=${vintage} ?selected=${vintage == this.vintage}
+                    >${vintage}</option
+                  >
                 `
               )}
             </select>
