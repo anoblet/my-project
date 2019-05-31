@@ -62,48 +62,20 @@ export const getUser = async () => {
  * Multi-use callback
  * getCollection({callback: (collection)=> console.log(collection), path: "posts", orderBy: "date", watch: true})
  **/
-export const getCollection = async ({
-  path,
-  callback,
-  watch,
-  orderBy
-}: any) => {
+export const getCollection = async ({ path, callback, orderBy }: any) => {
   return run(["firestore"]).then((_firebase: any) => {
     const collection = _firebase.firestore().collection(path);
     if (orderBy) collection.orderBy(orderBy);
-
-    // We map documents in a collection no matter the watch status
-    const result = new Promise((resolve, reject) => {
-      return true;
+    const data = collection.get().then((querySnapshot: any) => {
+      return mapSnapshotToArray(querySnapshot);
     });
-
-    // Watch is enabled, let's use a callback
-    if (watch)
+    if (callback) {
       collection.onSnapshot((querySnapshot: any) => {
-        const result: any = [];
-        querySnapshot.forEach((doc: any) => {
-          const data = doc.data();
-          data.id = doc.id;
-          result.push(data);
-        });
-
-        // Fires callback
-        if (callback) callback(result);
+        const result = mapSnapshotToArray(querySnapshot);
+        callback(result);
       });
-    // Watch is diabled, let's return an array of objects
-    else
-      return collection.get().then((querySnapshot: any) => {
-        // mapSnapshot to array
-        const result: any = [];
-        querySnapshot.forEach((doc: any) => {
-          const data = doc.data();
-          data.id = doc.id;
-          result.push(data);
-        });
-
-        // Returns result
-        return result;
-      });
+    }
+    return data;
   });
 };
 
