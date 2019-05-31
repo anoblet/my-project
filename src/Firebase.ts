@@ -108,7 +108,8 @@ const mapSnapshotToArray = (snapshot) => {
 }
 
 /**
- * Update or create a document
+ * Update or create a document;
+
  *
  * Example:
  * updateDocument({ path: "posts/<postId>", { title: "Sample title" } })
