@@ -1,3 +1,5 @@
+ Blanket permissions act responsible
+
  - Poll
    - [X] Create
      - [X] Option
