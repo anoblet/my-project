@@ -46,4 +46,8 @@ export default css`
   .field input {
     text-align: center;
   }
+
+  card-component::part(title) {
+    display: flex;
+  }
 `;
