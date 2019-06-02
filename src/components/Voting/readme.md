@@ -1,4 +1,4 @@
- Blanket permissions act responsible
+ Blanket permissions be responsible
 
  - Poll
    - [X] Create
