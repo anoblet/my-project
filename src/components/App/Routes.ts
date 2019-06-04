@@ -102,7 +102,7 @@ export const routes = [
   },
   {
     path: "/poll/:pollId?",
-    component: "view-poll",
+    component: "poll-view",
     src: () =>
       import(/* webpackChunkName: "PollView" */ "../Voting/View")
   } as Route
