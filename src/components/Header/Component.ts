@@ -6,9 +6,8 @@ import Template from "./Template";
 @customElement("header-component")
 export class HeaderComponent extends LitElement {
   public static styles = Style;
-  public template = Template;
   public render() {
-    return this.template.bind(this)();
+    return Template.bind(this)();
   }
 
   public firstUpdated() {
