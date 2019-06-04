@@ -26,8 +26,7 @@ import { addDefaultReducers, getAppSettings } from "./Utility";
 export class App extends BeforeRender(LitElement) {
   public static properties = Properties;
   public static styles = [GlobalStyle, Style];
-  public template = Template;
-  public render = this.template.bind(this);
+  public render = Template.bind(this);
 
   @property({ reflect: true, attribute: "drawer-opened", type: Boolean })
   public drawerOpened = false;
