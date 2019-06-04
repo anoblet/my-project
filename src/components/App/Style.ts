@@ -155,4 +155,8 @@ export default css`
     overflow-x: hidden;
     overflow-y: auto;
   }
+
+  header-component a:hover {
+    text-decoration: none;
+  }
 `;
