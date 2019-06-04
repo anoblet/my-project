@@ -12,7 +12,6 @@ import Template from "./Template";
  * Voting UI Component
  *
  * @todo this should just be a ui component
- * @todo getCollection and getDocument should always return a promise with data regardless of whether or not it should fire a callback
  */
 @customElement("voting-component")
 export class Component extends BeforeRender(LitElement) {
