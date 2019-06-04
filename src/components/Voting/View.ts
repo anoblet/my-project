@@ -50,7 +50,7 @@ const Style = css`
   }
 `;
 
-@customElement("view-poll")
+@customElement("poll-view")
 export class Component extends BeforeRender(LitElement) {
   public static styles = Style;
   public render = Template.bind(this);
