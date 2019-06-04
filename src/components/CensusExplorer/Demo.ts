@@ -55,9 +55,14 @@ export class Demo extends LitElement {
   @property() public type: string = "bar";
   @property() public values: string = "B00001_001E";
 
-  public async beforeRender() {
+  public async getInitialData() {
     const structure = await getStructure();
-    this.vintages = await getVintages();
+    // this.vintages = await getVintages();
+  }
+
+  connectedCallback() {
+    super.connectedCallback();
+    this.getInitialData();
   }
 
   public render() {
@@ -68,13 +73,17 @@ export class Demo extends LitElement {
           <div class="field">
             <label>Vintage</label>
             <select name="vintage" @change=${this.handleChange}>
-              ${this.vintages.map(
-                vintage => html`
-                  <option value=${vintage} ?selected=${vintage == this.vintage}
-                    >${vintage}</option
-                  >
-                `
-              )}
+              ${this.vintages
+                ? this.vintages.map(
+                    vintage => html`
+                      <option
+                        value=${vintage}
+                        ?selected=${vintage == this.vintage}
+                        >${vintage}</option
+                      >
+                    `
+                  )
+                : ""}
             </select>
           </div>
           <div class="field">
