@@ -28,7 +28,7 @@ export default css`
   .item:not(#home) {
     padding: 0.75em;
     margin: 0.5em;
-    opacity: 0.5;
+    opacity: 0.75;
   }
 
   .item:not(#home):hover {
