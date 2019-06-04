@@ -56,7 +56,7 @@ export class Demo extends LitElement {
   @property() public values: string = "B00001_001E";
 
   public async getInitialData() {
-    const structure = await getStructure();
+    // const structure = await getStructure();
     // this.vintages = await getVintages();
   }
 
