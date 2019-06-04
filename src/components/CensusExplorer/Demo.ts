@@ -55,6 +55,10 @@ export class Demo extends LitElement {
   @property() public type: string = "bar";
   @property() public values: string = "B00001_001E";
 
+  /**
+   * This should grab the default chart
+   * @return [description]
+   */
   public async getInitialData() {
     // const structure = await getStructure();
     // this.vintages = await getVintages();
