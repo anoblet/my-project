@@ -37,6 +37,6 @@ export const config = {
   globalSettings: false
 };
 
-export class Config {
+export class Application {
   title: "Andrew Noblet";
 }
