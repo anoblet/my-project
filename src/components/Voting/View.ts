@@ -89,7 +89,6 @@ export class Component extends BeforeRender(LitElement) {
    * @param  index The option index
    */
   public async registerVote(index: number) {
-    console.log(this.data.result.total);
     if (await this._didVote()) return;
     this.data.result[index] = this.data.result[index] || 0;
     this.data.result[index]++;
@@ -99,15 +98,5 @@ export class Component extends BeforeRender(LitElement) {
       data: this.data,
       path: `polls/${this.pollId}`
     });
-  }
-
-  /**
-   * Get total number of votes
-   * @return number;
-   */
-  public getTotal() {
-    let count = 0;
-    Object.keys(this.data.result).map(key => (count += this.data.result[key]));
-    return count;
   }
 }
