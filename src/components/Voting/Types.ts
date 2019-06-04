@@ -5,10 +5,10 @@ export class Poll {
   result: {
     total: number;
   };
-  votedIps: string[]
+  votedIps: string[];
 }
 
 export class Option {
-  label: string,
-  value: number
+  label: string = "";
+  value: number = 0;
 }

@@ -7,13 +7,6 @@ import { BeforeRender } from "../../mixins/BeforeRender";
 const Template = function() {
   return html`
     <grid-component>
-      <div>
-        ${this.didVote
-          ? html`
-              You have already voted
-            `
-          : ""}
-      </div>
       <h2>${this.data.title}</h2>
       <grid-component id="options">
         ${this.data.options.map(
