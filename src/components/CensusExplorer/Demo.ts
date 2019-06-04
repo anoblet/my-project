@@ -28,7 +28,7 @@ const getStructure = async () => {
 };
 
 @customElement("census-explorer-demo")
-export class Demo extends BeforeRender(LitElement) {
+export class Demo extends LitElement {
   public static styles = [
     GlobalStyle,
     css`
