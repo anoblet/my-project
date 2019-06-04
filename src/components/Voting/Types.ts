@@ -8,7 +8,7 @@ export class Poll {
   votedIps: string[]
 }
 
-export interface Option {
+export class Option {
   label: string,
   value: number
 }
