@@ -9,13 +9,13 @@ import { populationByState } from "../CitySDK/CitySDK";
 
 @customElement("chart-js")
 export class ChartJS extends LitElement {
+  public static styles = [GlobalStyle, Style];
+  public render = Template.bind(this);
+
+  @property() public type = "bar";
   public data: any;
   public chart: Chart;
-  public static styles = [GlobalStyle, Style];
-  public template = Template;
-  @property() public type = "bar";
 
-  public render = this.template.bind(this);
 
   public firstUpdated() {
     this.createChart();
