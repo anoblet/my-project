@@ -101,9 +101,14 @@ export class Demo extends BeforeRender(LitElement) {
             <label>Program</label>
             <select name="vintage" @change=${this.handleChange}>
               ${until(
-                getPrograms(this.vintage).then(programs => {
-                  console.log(programs);
-                })
+                getPrograms(this.vintage).then(programs =>
+                  programs.map(
+                    program =>
+                      html`
+                        <option>${program}</option>
+                      `
+                  )
+                )
               )}
             </select>
           </div>
