@@ -27,29 +27,28 @@ const getStructure = async () => {
   return unsortedArray.sort((a, b) => a - b);
 };
 
+const Style = css`
+  :host {
+    flex: 1;
+  }
+
+  ::part(content-container) {
+    overflow-x: hidden;
+  }
+
+  .field {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  #options {
+    margin-bottom: 1em;
+  }
+`;
+
 @customElement("census-explorer-demo")
-export class Demo extends LitElement {
-  public static styles = [
-    GlobalStyle,
-    css`
-      :host {
-        flex: 1;
-      }
-
-      ::part(content-container) {
-        overflow-x: hidden;
-      }
-
-      .field {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-      }
-
-      #options {
-        margin-bottom: 1em;
-      }
-    `
-  ];
+export class Demo extends BeforeRender(LitElement) {
+  public static styles = [GlobalStyle, Style];
   @property() public vintage: string = "2017";
   @property() public vintages: any;
   @property() public type: string = "bar";
@@ -61,12 +60,20 @@ export class Demo extends LitElement {
    */
   public async getInitialData() {
     // const structure = await getStructure();
-    // this.vintages = await getVintages();
+    this.vintages = await getVintages();
+    // const programs = await getPrograms();
+    // console.log(programs);
   }
 
   connectedCallback() {
     super.connectedCallback();
-    this.getInitialData();
+    // this.getInitialData();
+    console.log("2");
+  }
+
+  public async beforeRender() {
+    console.log("1");
+    await this.getInitialData();
   }
 
   public render() {
@@ -93,7 +100,11 @@ export class Demo extends LitElement {
           <div class="field">
             <label>Program</label>
             <select name="vintage" @change=${this.handleChange}>
-              ${until(getPrograms(this.vintage), html``)}
+              ${until(
+                getPrograms(this.vintage).then(programs => {
+                  console.log(programs);
+                })
+              )}
             </select>
           </div>
           <div class="field">

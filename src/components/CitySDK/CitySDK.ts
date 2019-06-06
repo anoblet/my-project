@@ -96,10 +96,10 @@ export const getPrograms = async (vintage: string) => {
   ).then(function(response) {
     return response.json();
   });
-  console.log(result);
   const unsortedArray = [];
   result.dataset.map((data: any) => {
-    return;
+    const title = data["title"];
+    if (title && !unsortedArray.includes(title)) unsortedArray.push(title);
   });
   return unsortedArray.sort((a, b) => a - b);
 };
