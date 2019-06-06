@@ -2,7 +2,7 @@ import "./Component";
 
 import { LitElement, css, customElement, html } from "lit-element";
 
-@customElement("clock-demo")
+@customElement("component-almanac-demo")
 export class Demo extends LitElement {
   public static styles = [css``];
 
