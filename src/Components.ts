@@ -104,12 +104,12 @@ export const components = [
       import(/* webpackChunkName: "Pomodoro" */ "./components/Pomodoro/Component"),
     tag: "pomodoro-component"
   },
-  {
-    label: "ColorPicker",
-    src: () =>
-      import(/* webpackChunkName: "ColorPicker" */ "./components/ColorPicker/Component"),
-    tag: "color-picker"
-  },
+  // {
+  //   label: "ColorPicker (Broken)",
+  //   src: () =>
+  //     import(/* webpackChunkName: "ColorPicker" */ "./components/ColorPicker/Component"),
+  //   tag: "color-picker"
+  // },
   {
     label: "Ratio",
     src: () =>
