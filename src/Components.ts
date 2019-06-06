@@ -139,5 +139,11 @@ export const components = [
     src: () =>
       import(/* webpackChunkName: "ClapDemo" */ "./components/Clap/Demo"),
     tag: "component-clap-demo"
+  },
+  {
+    label: "Almanac",
+    src: () =>
+      import(/* webpackChunkName: "AlmanacDemo" */ "./components/Almanac/Demo"),
+    tag: "component-almanac-demo"
   }
 ];
