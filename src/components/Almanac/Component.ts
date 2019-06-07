@@ -3,9 +3,7 @@ import { LitElement, customElement, property, html } from "lit-element";
 import Style from "./Style";
 import Template from "./Template";
 
-const definitionDocument = {
-  ""
-}
+const definitionDocument = {};
 
 /**
  * Almanac class
@@ -22,18 +20,14 @@ export class Almanac extends LitElement {
   public x = 0;
   public y = 0;
 
-
   public async loadDocument(categoryID, topicId) {
     // Definition document
-    "Home" ; {
-      path: "/",
-      title: "Home"
-      src: () => import("./index")
-    },
-    "Home" ; {
-      title: "Home"
-      src: () => import("./index")
-    }
+    const routes = {
+      Home: {
+        path: "/",
+        title: "Home"
+      }
+    };
   }
 
   // Handlers
