@@ -21,8 +21,22 @@ export class Almanac extends LitElement {
 
   // Handlers
   public swap(direction) {
-    switch (direction) {
-    }
+    const currentDocument = () => {
+      switch (direction) {
+        case "up": {
+          return this.loadDocument(this.x, this.y - 1);
+        }
+        case "right": {
+          return this.loadDocument(this.x, this.y - 1);
+        }
+        case "down": {
+          return this.loadDocument(this.x, this.y - 1);
+        }
+        case "left": {
+          return this.loadDocument(this.x, this.y - 1);
+        }
+      }
+    };
   }
 
   public up() {
