@@ -3,6 +3,10 @@ import { LitElement, customElement, property, html } from "lit-element";
 import Style from "./Style";
 import Template from "./Template";
 
+const definitionDocument = {
+  ""
+}
+
 /**
  * Almanac class
  * Instead of having a single hereditary source, categories could be navigated horizontally while topics could be navigated vertically.
@@ -18,7 +22,19 @@ export class Almanac extends LitElement {
   public x = 0;
   public y = 0;
 
-  public async loadDocument(categoryID, topicId) {}
+
+  public async loadDocument(categoryID, topicId) {
+    // Definition document
+    "Home" ; {
+      path: "/",
+      title: "Home"
+      src: () => import("./index")
+    },
+    "Home" ; {
+      title: "Home"
+      src: () => import("./index")
+    }
+  }
 
   // Handlers
   public swap(direction) {
