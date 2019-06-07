@@ -36,19 +36,19 @@ export class Almanac extends LitElement {
     const currentDocument = () => {
       switch (direction) {
         case "up": {
-          spread = { x: this.x, y: this.y - 1 };
+          this.y = this.y - 1;
         }
         case "right": {
-          spread = { x: this.x + 1, y: this.y };
+          this.x = this.x + 1;
         }
         case "down": {
-          spread = { x: this.x, y: this.y + 1 };
+          this.y = this.y + 1;
         }
         case "left": {
-          spread = { x: this.x - 1, y: this.y };
+          this.x = this.x - 1;
         }
       }
-      return this.loadDocument(spread.x, spread.y);
+      return this.loadDocument(this.x, this.y);
     };
   }
 }
