@@ -20,6 +20,11 @@ export class Almanac extends LitElement {
   public async loadDocument(categoryID, topicId) {}
 
   // Handlers
+  public swap(direction) {
+    switch (direction) {
+    }
+  }
+
   public up() {
     return this.loadDocument(this.x, this.y - 1);
   }
