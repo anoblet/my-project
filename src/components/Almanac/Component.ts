@@ -5,7 +5,8 @@ import Template from "./Template";
 
 /**
  * Almanac class
- * @todo lazy-load documents one degree in any direction
+ * Position could defined with an x,y value indication category, topic
+ * @todo lazy-load documents one degree in any direction, re-run after position change
  */
 @customElement("component-almanac")
 export class Almanac extends LitElement {
