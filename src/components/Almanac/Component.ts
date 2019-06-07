@@ -5,7 +5,7 @@ import Template from "./Template";
 
 /**
  * Almanac class
- * Position could defined with an x,y value indicating category, topic
+ * Position could be defined with an x,y value indicating category, topic
  * @todo lazy-load documents one degree in any direction, re-run after position change
  */
 @customElement("component-almanac")
