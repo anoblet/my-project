@@ -3,8 +3,38 @@ import { LitElement, customElement, property, html } from "lit-element";
 import Style from "./Style";
 import Template from "./Template";
 
+/**
+ * Almanac class
+ * @todo lazy-load documents one degree in any direction
+ */
 @customElement("component-almanac")
 export class Almanac extends LitElement {
   public static styles = Style;
   public render = Template.bind(this);
+
+  public async loadDocument() {}
+
+  public up() {
+    return html`
+      Up
+    `;
+  }
+
+  public right() {
+    return html`
+      Right
+    `;
+  }
+
+  public down() {
+    return html`
+      Down
+    `;
+  }
+
+  public left() {
+    return html`
+      Left
+    `;
+  }
 }
