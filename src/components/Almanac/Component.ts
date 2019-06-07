@@ -5,6 +5,7 @@ import Template from "./Template";
 
 /**
  * Almanac class
+ * Instead of having a single hereditary source, categories could be navigated horizontally while topics could be navigated vertically.
  * Position could be defined with an x,y value indicating category, topic
  * Horizontal navitation would reset y
  * @todo lazy-load documents one degree in any direction, re-run after position change
@@ -39,21 +40,5 @@ export class Almanac extends LitElement {
       }
       return this.loadDocument(spread.x, spread.y);
     };
-  }
-
-  public up() {
-    return this.loadDocument(this.x, this.y - 1);
-  }
-
-  public right() {
-    return this.loadDocument(this.x + 1, 0);
-  }
-
-  public down() {
-    return this.loadDocument(this.x, this.y + 1);
-  }
-
-  public left() {
-    return this.loadDocument(this.x - 1, 0);
   }
 }
