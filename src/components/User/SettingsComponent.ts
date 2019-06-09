@@ -20,7 +20,7 @@ const properties = {
   voice: {
     type: Boolean,
     description: "Voice",
-    label: "Voice"
+    label: "Voice (disabled)"
   },
   rightClick: {
     description: "Enable the right-click of the mouse to toggle the main menu",
