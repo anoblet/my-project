@@ -8,6 +8,8 @@ const style = html`
 `;
 
 export class FirebaseDocument extends Mixin(LitElement, [FirebaseMixin]) {
+  @property() public document;
+  
   public firstUpdated() {
     this.watchDocumentNew({
       path: this.path,
