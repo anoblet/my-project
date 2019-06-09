@@ -24,7 +24,7 @@ const properties = {
   },
   rightClick: {
     description: "Enable the right-click of the mouse to toggle the main menu",
-    label: "Right click",
+    label: "Right click (disabled)",
     type: Boolean
   }
 };
