@@ -11,8 +11,7 @@ export class CardComponent extends LitElement {
   @query("#title") public _title: Element;
 
   public static styles = [GlobalStyle, Style];
-  public template = Template;
-  public render = this.template.bind(this);
+  public render = Template.bind(this);
 
   public firstUpdated(changedProperties: any) {
     super.firstUpdated(changedProperties);
