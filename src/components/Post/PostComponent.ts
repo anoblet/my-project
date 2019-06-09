@@ -19,6 +19,8 @@ export class PostComponent extends TemplateMixin(LitElement) {
   @property({ type: Boolean, reflect: true, attribute: "hidden" })
   @property()
   public taskPending = true;
+  @property()
+  public editable;
 
   public async beforeRender() {
     if (this.id)
