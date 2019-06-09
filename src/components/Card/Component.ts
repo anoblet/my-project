@@ -6,12 +6,12 @@ import Template from "./Template";
 
 @customElement("card-component")
 export class CardComponent extends LitElement {
+  public static styles = [GlobalStyle, Style];
+  public render = Template.bind(this);
+
   @property({ type: Boolean, reflect: true }) public collapsed: boolean = false;
   @property({ type: Boolean }) public collapsible: boolean = false;
   @query("#title") public _title: Element;
-
-  public static styles = [GlobalStyle, Style];
-  public render = Template.bind(this);
 
   public firstUpdated(changedProperties: any) {
     super.firstUpdated(changedProperties);
