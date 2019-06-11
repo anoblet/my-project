@@ -23,5 +23,5 @@ if (config.analytics) {
   });
 }
 // Firebase performance
-// voice
-import("src/Voice");
+// Voice
+import("./Voice");
