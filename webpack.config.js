@@ -43,7 +43,8 @@ module.exports = {
     ]
   },
   resolve: {
-    extensions: [".js", ".ts"]
+    extensions: [".js", ".ts"],
+    modules: ['vendor']
   },
   devServer: {
     // https: true,
