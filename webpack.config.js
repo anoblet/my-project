@@ -44,7 +44,7 @@ module.exports = {
   },
   resolve: {
     extensions: [".js", ".ts"],
-    modules: ['vendor']
+    modules: ['vendor', "node_modules"]
   },
   devServer: {
     // https: true,
