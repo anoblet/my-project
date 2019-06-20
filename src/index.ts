@@ -25,4 +25,4 @@ if (config.analytics) {
 // Firebase performance
 // Voice
 import("./Voice");
-import("./workers/Client");
+// import("./workers/Client");
