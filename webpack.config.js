@@ -21,7 +21,8 @@ module.exports = {
     path: path.resolve(__dirname, "dist"),
     publicPath: "/",
     filename: "js/[name].bundle.js",
-    chunkFilename: "js/[name].bundle.js"
+    chunkFilename: "js/[name].bundle.js",
+    globalObject: 'self'
   },
   module: {
     rules: [

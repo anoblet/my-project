@@ -23,7 +23,7 @@ export interface State {
 }
 
 // Sets up a Chrome extension for time travel debugging.
-const compose = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || origCompose;
+const compose = self.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || origCompose;
 
 export const store: Store<State> & LazyStore = createStore(
   (state: any) => state,

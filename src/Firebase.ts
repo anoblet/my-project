@@ -18,7 +18,7 @@ export const run = async (packages: any) => {
     );
   if (packages.includes("performance"))
     imports.push(
-      import(/* webpackChunkName: "Firebase" */ "firebase/performance")
+      // import(/* webpackChunkName: "Firebase" */ "firebase/performance")
     );
   return Promise.all(imports).then(([_firebase]) => _firebase);
 };
@@ -134,6 +134,7 @@ export const getDocument = async ({ callback = false, path }: any) => {
  * @return Promise
  **/
 export const init = async (config: any) => {
+  console.log(config);
   return run(["performance"]).then((_firebase: any) => {
     if (_firebase.apps.length === 0) _firebase.initializeApp(config);
     return _firebase;

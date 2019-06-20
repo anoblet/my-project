@@ -6,7 +6,7 @@ import Template from "./Template";
 import Properties from "./Properties";
 import { config } from "../../../config";
 import { database } from "../../Database";
-import { firebase } from "../../Firebase";
+import firebase from "workerize-loader!../../Firebase";
 import { debug, log } from "../../Debug";
 import { installOfflineWatcher } from "pwa-helpers/network.js";
 import { installRouter } from "pwa-helpers/router.js";
@@ -56,9 +56,10 @@ export class App extends BeforeRender(LitElement) {
   }
 
   public async beforeRender() {
-    const _firebase = await firebase.init(config.firebase);
-    // await firebase.init(config.firebase);
-    this.performance = _firebase.performance();
+    const temp: any = firebase;
+    const _firebase = temp();
+    await _firebase.init(config.firebase);
+    // this.performance = _firebase.performance();
     if (config.globalSettings) {
       log("Getting app level settings");
       await getAppSettings((document: any) => {
