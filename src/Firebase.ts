@@ -13,10 +13,10 @@ export const run = async (packages: any) => {
 
   const imports: any = [];
   if (packages.includes("auth"))
-    imports.push(import(/* webpackChunkName: "Firebase" */ "firebase/auth"));
+    // imports.push(import(/* webpackChunkName: "Firebase" */ "firebase/auth"));
   if (packages.includes("firestore"))
     imports.push(
-      import(/* webpackChunkName: "FirebaseFirestore" */ "firebase/firestore")
+      // import(/* webpackChunkName: "FirebaseFirestore" */ "firebase/firestore")
     );
   if (packages.includes("performance"))
     imports.push(

@@ -12,8 +12,8 @@ import "./components/Breadcrumb/Component";
 import "./components/Voice/Component";
 import "./components/Button/Component";
 // Firebase
-import "@firebase/app";
-import "@firebase/auth";
+// import "@firebase/app";
+// import "@firebase/auth";
 // Google analytics
 if (config.analytics) {
   import("ga-lite").then((module: any) => {
