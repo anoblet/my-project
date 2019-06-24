@@ -6,7 +6,7 @@ import Template from "./Template";
 import Properties from "./Properties";
 import { config } from "../../../config";
 import { database } from "../../Database";
-import firebase from "workerize-loader!../../Firebase";
+// import firebase from "workerize-loader!../../Firebase";
 import { debug, log } from "../../Debug";
 import { installOfflineWatcher } from "pwa-helpers/network.js";
 import { installRouter } from "pwa-helpers/router.js";
@@ -21,6 +21,10 @@ import { user } from "../../User";
 import { BeforeRender } from "../../mixins/BeforeRender";
 // import { performance } from "../../Performance";
 import { addDefaultReducers, getAppSettings } from "./Utility";
+
+const firebaseSW = require("workerize-loader!../../workers/firebase");
+const firebase = firebaseSW();
+console.log(firebase);
 
 @customElement("app-component")
 export class App extends BeforeRender(LitElement) {
@@ -56,10 +60,7 @@ export class App extends BeforeRender(LitElement) {
   }
 
   public async beforeRender() {
-    const _firebase: any = firebase;
-    const instance = _firebase();
-    await instance.init(config.firebase);
-    return;
+    await firebase.init(config.firebase);
     // this.performance = _firebase.performance();
     if (config.globalSettings) {
       log("Getting app level settings");
@@ -73,7 +74,7 @@ export class App extends BeforeRender(LitElement) {
       log("Finished gettings app settings");
     }
     debug.log("Getting user level settings");
-    await database.getUser().then(async (_user: any) => {
+    await firebase.getUser().then(async (_user: any) => {
       if (_user) {
         log("User logged in");
         const userData = user.extract(_user);
