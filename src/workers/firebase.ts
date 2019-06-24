@@ -1,13 +1,13 @@
 import * as firebase from "firebase/app";
 import "firebase/auth";
-import "firebase/performance";
+// import "firebase/performance";
 
 export const init = async (config: any) => {
   firebase.initializeApp(config);
 };
 
 /**
- * Gets user
+ * Get user
  */
 export const getUser = async () => {
   return await new Promise((resolve: any) => {
