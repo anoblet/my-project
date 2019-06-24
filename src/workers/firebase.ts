@@ -1,5 +1,6 @@
 import * as firebase from "firebase/app";
 import "firebase/auth";
+import "firebase/performance";
 
 export const init = async (config: any) => {
   firebase.initializeApp(config);
