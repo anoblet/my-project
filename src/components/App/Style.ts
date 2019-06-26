@@ -160,7 +160,8 @@ export default css`
     text-decoration: none;
   }
 
-  button-component-2::part(button) {
+  button-component::part(button) {
     padding: 1em;
+    font-size: 1em;
   }
 `;

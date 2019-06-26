@@ -10,7 +10,7 @@ import "./components/Grid/Component";
 import "./components/Loading/Component";
 import "./components/Breadcrumb/Component";
 import "./components/Voice/Component";
-import "./components/Button/Component";
+// import "./components/Button/Component";
 import "@anoblet/button-component";
 // Firebase
 // import "@firebase/app";
