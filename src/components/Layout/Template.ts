@@ -94,7 +94,7 @@ export const header = function() {
                 ${false ? primaryColorSelect : html``}
               </div>
               <a href="/user/signin"
-                ><button-component-2>Sign in</button-component-2></a
+                ><button-component>Sign in</button-component></a
               >
             </grid-component>
           </div>
