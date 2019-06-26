@@ -159,4 +159,8 @@ export default css`
   header-component a:hover {
     text-decoration: none;
   }
+
+  button-component-2::part(button) {
+    padding: 1em;
+  }
 `;
