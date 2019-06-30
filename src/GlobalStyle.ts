@@ -160,6 +160,7 @@ export default css`
   }
 
   button-component::part(button) {
+    color: var(--button-color);
     padding: 1em;
   }
 `;
