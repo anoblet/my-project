@@ -158,6 +158,10 @@ export default css`
   .icon {
     cursor: pointer;
   }
+
+  button-component::part(button) {
+    padding: 1em;
+  }
 `;
 
 export const absolute = css`

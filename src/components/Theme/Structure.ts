@@ -70,5 +70,11 @@ export const themeStructure = [
     property: "h3Color",
     varName: "--h3-color",
     type: "color"
+  },
+  {
+    label: "Button color",
+    property: "buttonColor",
+    varName: "--button-color",
+    type: "color"
   }
 ];
