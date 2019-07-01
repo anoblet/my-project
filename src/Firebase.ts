@@ -8,23 +8,19 @@ import { _console } from "./Debug";
  * @return object - An instance of Firebase with all of the packages loaded
  */
 export const run = async (packages: any) => {
-  const firebase = await import(/* webpackChunkName: "Firebase" */ "firebase/app");
-  return firebase;
-
   const imports: any = [];
+  imports.push(import(/* webpackChunkName: "Firebase" */ "firebase/app"));
   if (packages.includes("auth"))
-    // imports.push(import(/* webpackChunkName: "Firebase" */ "firebase/auth"));
+    imports.push(import(/* webpackChunkName: "Firebase" */ "firebase/auth"));
   if (packages.includes("firestore"))
     imports.push(
-      // import(/* webpackChunkName: "FirebaseFirestore" */ "firebase/firestore")
+      import(/* webpackChunkName: "FirebaseFirestore" */ "firebase/firestore")
     );
   if (packages.includes("performance"))
     imports.push(
-      // import(/* webpackChunkName: "Firebase" */ "firebase/performance")
+      import(/* webpackChunkName: "Firebase" */ "firebase/performance")
     );
-    await Promise.all(imports);
-    return firebase;
-  // return Promise.all(imports).then(([_firebase]) => _firebase);
+  return Promise.all(imports).then(([_firebase]) => _firebase);
 };
 
 /**
@@ -138,9 +134,9 @@ export const getDocument = async ({ callback = false, path }: any) => {
  * @return Promise
  **/
 export const init = async (config: any) => {
-  const instance = await run([]);
-  await instance.initializeApp(config);
-  return;
+  // const instance = await run([]);
+  // await instance.initializeApp(config);
+  // return;
   return await run(["performance"]).then(async (_firebase: any) => {
     if (_firebase.apps.length === 0) await _firebase.initializeApp(config);
     return _firebase;
