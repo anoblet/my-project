@@ -9,16 +9,17 @@ export default function() {
       target="_blank"
       class="item"
       @click="${this._toggleDrawer}"
+      aria-label="Source"
     >
       ${code}
     </a>
-    <a id="home" href="/" class="item" @click="${this._toggleDrawer}">
+    <a id="home" href="/" class="item" @click="${this._toggleDrawer}" aria-label="Home">
       ${home}
     </a>
     <a
       href="mailto: andrewbnoblet@gmail.com"
       class="item"
-      @click="${this._toggleDrawer}"
+      @click="${this._toggleDrawer}" aria-label="Email"
     >
       ${mail_outline}
     </a>
