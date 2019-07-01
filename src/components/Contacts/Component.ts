@@ -6,21 +6,14 @@ import Template from "./Template";
 
 import { database as db } from "../../Database";
 import { user } from "../../User";
+import { BeforeRender } from "../../mixins/BeforeRender";
 
 @customElement("contacts-component")
-export class Contacts extends LitElement {
-  @property() public data = { log: [] };
-
+export class Contacts extends BeforeRender(LitElement) {
   public static styles = [GlobalStyle, Style];
+  public render = Template.bind(this)();
 
-  public render() {
-    return Template.bind(this)();
-  }
-
-  constructor() {
-    super();
-    this.beforeRender();
-  }
+  @property() public data = { log: [] };
 
   public async beforeRender() {
     const _user = user.get().uid;
@@ -33,28 +26,27 @@ export class Contacts extends LitElement {
   }
 
   public in() {
-    const item = {
+    this.add({
       type: "In",
       time: new Date().getTime()
-    };
-    this.add(item);
+    });
   }
 
   public out() {
-    const item = {
+    this.add({
       type: "Out",
       time: new Date().getTime()
-    };
-    this.add(item);
+    });
   }
 
   public add(data: { type: string; time: number }) {
     const _data = { log: [...this.data.log, data] };
     const _user = user.get().uid;
-    if (!_user) this.data = _data;
-    db.update({
-      path: `users/${_user}/contacts/timesheet`,
-      data: _data
-    });
+    if (_user)
+      db.update({
+        path: `users/${_user}/contacts/timesheet`,
+        data: _data
+      });
+    else this.data = _data;
   }
 }
