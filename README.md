@@ -53,5 +53,5 @@ npm i && npm run dev
 Browserstack for cross-browser testing:
 
 <a href="https://browserstack.com/">
-  <img src="https://raw.githubusercontent.com/anoblet/my-project/master/src/assets/Browserstack-logo.svg?sanitize=true" label="Browserstack" width="196px">
+  <img src="https://raw.githubusercontent.com/anoblet/my-project/master/src/assets/Browserstack-logo.svg?sanitize=true" label="Browserstack" width="196px" alt="Browserstack">
 </a>
