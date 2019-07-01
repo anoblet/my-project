@@ -54,25 +54,25 @@ export default function() {
         <grid-component style="grid-template-columns: repeat(2, 1fr)">
           ${filterByMode(2)
             ? html`
-                <button-component
+                <button-component outlined
                   @click="${this.handsOff}"
                   label="Hands off!"
                   style="grid-column: -1/1"
                 ></button-component>
               `
             : ""}
-          <button-component
+          <button-component outlined
             @click="${this.next}"
             label="Start"
             style="grid-column: -1/1"
           ></button-component>
           ${this.showNavigation
             ? html`
-                <button-component
+                <button-component outlined
                   @click="${this.previous}"
                   label="Previous"
                 ></button-component>
-                <button-component
+                <button-component outlined
                   @click="${this.next}"
                   label="Next"
                 ></button-component>
@@ -80,7 +80,7 @@ export default function() {
             : ""}
           ${this.showRecord
             ? html`
-                <button-component
+                <button-component outlined
                   @click="${this.record}"
                   label="Record answer"
                   style="grid-column: -1/1"
@@ -89,7 +89,7 @@ export default function() {
             : ""}
           ${false
             ? html`
-                <button-component
+                <button-component outlined
                   @click="${this.generateReport}"
                   label="Generate report"
                   style="grid-column: -1/1"
