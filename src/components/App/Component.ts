@@ -6,7 +6,7 @@ import Template from "./Template";
 import Properties from "./Properties";
 import { config } from "../../../config";
 import { database } from "../../Database";
-// import firebase from "workerize-loader!../../Firebase";
+import firebase from "../../Firebase";
 import { debug, log } from "../../Debug";
 import { installOfflineWatcher } from "pwa-helpers/network.js";
 import { installRouter } from "pwa-helpers/router.js";
@@ -22,9 +22,8 @@ import { BeforeRender } from "../../mixins/BeforeRender";
 // import { performance } from "../../Performance";
 import { addDefaultReducers, getAppSettings } from "./Utility";
 
-const firebaseSW = require("workerize-loader!../../workers/firebase");
-const firebase = firebaseSW();
-console.log(firebase);
+// const firebaseSW = require("workerize-loader!../../workers/firebase");
+// const firebase = firebaseSW();
 
 @customElement("app-component")
 export class App extends BeforeRender(LitElement) {
