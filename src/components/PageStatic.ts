@@ -40,7 +40,7 @@ const Style = css`
   }
 `;
 
-const version = () => 3;
+const version = () => 2;
 
 @customElement("page-static")
 export class PageStatic extends LitElement {
@@ -48,7 +48,11 @@ export class PageStatic extends LitElement {
 
   public render() {
     return html`
-      ${unsafeHTML(readme)}
+      ${version() === 4
+        ? html`
+            ${unsafeHTML(readme)}
+          `
+        : ""}
       ${version() === 2
         ? html`
             <grid-component style="grid-template-columns: repeat(3, 1fr)">
