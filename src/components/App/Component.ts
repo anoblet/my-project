@@ -3,7 +3,6 @@ import { LitElement, customElement, property } from "lit-element";
 import GlobalStyle from "../../GlobalStyle";
 import Style from "./Style";
 import Template from "./Template";
-import Properties from "./Properties";
 import { config } from "../../../config";
 import firebase from "../../Firebase";
 import { debug, log } from "../../Debug";
@@ -22,7 +21,6 @@ import { addDefaultReducers, getAppSettings } from "./Utility";
 
 @customElement("app-component")
 export class App extends BeforeRender(LitElement) {
-  public static properties = Properties;
   public static styles = [GlobalStyle, Style];
   public render = Template.bind(this);
 
@@ -89,7 +87,6 @@ export class App extends BeforeRender(LitElement) {
       log("User not logged in");
     }
     log("Finished getting user");
-
     document.querySelector("#loading").removeAttribute("enabled");
   }
 
