@@ -1,7 +1,7 @@
 import { addReducer } from "../../State";
 import { database } from "../../Database";
 import { store } from "../../Store";
-import { debug, log } from "../../Debug";
+import { log } from "../../Debug";
 
 export const getAppSettings = async (callback: any) => {
   log("Getting app level settings");

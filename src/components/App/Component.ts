@@ -25,7 +25,7 @@ export class App extends BeforeRender(LitElement) {
   public render = Template.bind(this);
 
   @property({ reflect: true, attribute: "drawer-opened", type: Boolean })
-  public drawerOpened = false;
+  public drawerOpened: boolean = false;
   @property() public mediaSize: string;
 
   // Lifecycle
@@ -41,7 +41,7 @@ export class App extends BeforeRender(LitElement) {
         store
       });
     }
-    this.media();
+    this.initMediaSize();
   }
 
   public connectedCallback() {
@@ -99,7 +99,10 @@ export class App extends BeforeRender(LitElement) {
     });
   }
 
-  public media() {
+  /**
+   * Set an observer for the client media size
+   */
+  public initMediaSize() {
     media.subscribe((mediaSize: string) => {
       if (mediaSize === "mobile") this.drawerOpened = false;
       if (mediaSize === "desktop") this.drawerOpened = true;
@@ -113,16 +116,16 @@ export class App extends BeforeRender(LitElement) {
   }
 
   public async registerRouter() {
-    router.setRoutes(routes);
-    router.setPortal(this.shadowRoot.querySelector("#portal"));
     installRouter((location: any) => {
       router.routeChanged({
         location,
         routes,
         portal: this.shadowRoot.querySelector("#portal")
       });
-      const scrollTarget = this.shadowRoot.querySelector("#content");
+      // Reset scroll position
+      const scrollTarget = this.shadowRoot.querySelector("#portal");
       scrollTarget.scrollTo(0, 0);
+      // Update store
       state.set({
         type: "app",
         data: { activeRoute: location.pathname },
@@ -132,6 +135,10 @@ export class App extends BeforeRender(LitElement) {
   }
 
   // Handlers
+  public _openDrawer() {
+    this.drawerOpened = true;
+  }
+
   public _closeDrawer() {
     this.drawerOpened = false;
   }
