@@ -5,7 +5,6 @@ import Style from "./Style";
 import Template from "./Template";
 import Properties from "./Properties";
 import { config } from "../../../config";
-import { database } from "../../Database";
 import firebase from "../../Firebase";
 import { debug, log } from "../../Debug";
 import { installOfflineWatcher } from "pwa-helpers/network.js";
@@ -19,11 +18,7 @@ import { theme } from "../../Theme";
 import { toast } from "../Toast/Toast";
 import { user } from "../../User";
 import { BeforeRender } from "../../mixins/BeforeRender";
-// import { performance } from "../../Performance";
 import { addDefaultReducers, getAppSettings } from "./Utility";
-
-// const firebaseSW = require("workerize-loader!../../workers/firebase");
-// const firebase = firebaseSW();
 
 @customElement("app-component")
 export class App extends BeforeRender(LitElement) {
@@ -34,7 +29,6 @@ export class App extends BeforeRender(LitElement) {
   @property({ reflect: true, attribute: "drawer-opened", type: Boolean })
   public drawerOpened = false;
   @property() public mediaSize: string;
-  private performance: any;
 
   // Lifecycle
   constructor() {
@@ -59,9 +53,8 @@ export class App extends BeforeRender(LitElement) {
   }
 
   public async beforeRender() {
-    await firebase.init(config.firebase);
-    // await firebase.performance();
-    // this.performance = _firebase.performance();
+    const _firebase = await firebase.init(config.firebase);
+    _firebase.performance();
     if (config.globalSettings) {
       log("Getting app level settings");
       await getAppSettings((document: any) => {
