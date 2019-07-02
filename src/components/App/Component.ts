@@ -56,7 +56,6 @@ export class App extends BeforeRender(LitElement) {
     const _firebase = await firebase.init(config.firebase);
     _firebase.performance();
     if (config.globalSettings) {
-      log("Getting app level settings");
       await getAppSettings((document: any) => {
         state.set({ data: { settings: document }, store, type: "app" });
         if (!config.staticTheme) {
@@ -64,33 +63,31 @@ export class App extends BeforeRender(LitElement) {
           theme.set(_theme, this);
         }
       });
-      log("Finished gettings app settings");
     }
     debug.log("Getting user level settings");
-    await firebase.getUser().then(async (_user: any) => {
-      if (_user) {
-        log("User logged in");
-        const userData = user.extract(_user);
-        state.set({ data: userData, store, type: "user" });
-        log("Getting user settings");
-        await user.getUserSettings((document: any) => {
-          state.set({ data: { settings: document }, store, type: "user" });
+    const _user = await firebase.getUser();
+    if (_user) {
+      log("User logged in");
+      const userData = user.extract(_user);
+      state.set({ data: userData, store, type: "user" });
+      log("Getting user settings");
+      await user.getUserSettings((document: any) => {
+        state.set({ data: { settings: document }, store, type: "user" });
+      });
+      log("Finished getting user settings");
+      log("Getting user theme");
+      await user.getUserTheme((document: any) => {
+        theme.set(theme.convert(document), this);
+        state.set({
+          type: "app",
+          data: { settings: { theme: document } },
+          store
         });
-        log("Finished getting user settings");
-        log("Getting user theme");
-        await user.getUserTheme((document: any) => {
-          theme.set(theme.convert(document), this);
-          state.set({
-            type: "app",
-            data: { settings: { theme: document } },
-            store
-          });
-        });
-        log("Finished getting user theme");
-      } else {
-        log("User not logged in");
-      }
-    });
+      });
+      log("Finished getting user theme");
+    } else {
+      log("User not logged in");
+    }
     log("Finished getting user");
 
     document.querySelector("#loading").removeAttribute("enabled");

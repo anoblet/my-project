@@ -1,9 +1,11 @@
 import { addReducer } from "../../State";
 import { database } from "../../Database";
 import { store } from "../../Store";
+import { debug, log } from "../../Debug";
 
-export const getAppSettings = (callback: any) => {
-  return new Promise((resolve: any, reject: any) =>
+export const getAppSettings = async (callback: any) => {
+  log("Getting app level settings");
+  const result = await new Promise((resolve: any, reject: any) =>
     database.getDocument({
       callback: (document: any) => {
         document
@@ -14,6 +16,8 @@ export const getAppSettings = (callback: any) => {
       watch: true
     })
   );
+  log("Finished getting app level settings");
+  return result;
 };
 
 export const addDefaultReducers = () => {
