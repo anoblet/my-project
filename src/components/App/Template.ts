@@ -7,6 +7,11 @@ const getSettings = () => {
   return state.settings;
 };
 
+/**
+ * Template function should render sub-templates
+ * Indicative by a sub-template directory
+ * A helper function would need to wrap the "auto" templates
+ */
 export default function() {
   const settings = getSettings();
   return html`
