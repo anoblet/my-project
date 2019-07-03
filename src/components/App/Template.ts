@@ -11,6 +11,8 @@ const getSettings = () => {
  * Template function should render sub-templates
  * Indicative by a sub-template directory
  * A helper function would need to wrap the "auto" templates
+ * Drawer needs to be separated into a factory with a boolean
+ * App doesn't need to know about drawer-container in layout
  */
 export default function() {
   const settings = getSettings();
@@ -30,8 +32,8 @@ export default function() {
                   <breadcrumb-component></breadcrumb-component
                 ></card-component>
               `
-            : html``
-          : html``}
+            : ""
+          : ""}
         <div id="portal"></div>
         ${settings.displayLog
           ? html`
