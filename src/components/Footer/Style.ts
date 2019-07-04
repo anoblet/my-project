@@ -19,7 +19,7 @@ export default css`
 
   .item {
     padding: 1em;
-    background: var(--primary-color);
+    background: var(--text-color);
     color: var(--background-color);
     border-radius: 50%;
     margin: 1em;
