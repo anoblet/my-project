@@ -15,7 +15,7 @@ const Style = css`
     overflow-x: hidden;
   }
 
-  #item-grid {
+  #grid {
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   }
 
@@ -127,7 +127,7 @@ export class PageStatic extends LitElement {
         : ""}
       ${version() === 2
         ? html`
-            <grid-component id="item-grid">
+            <grid-component id="grid">
               <div class="grid-item">
                 <a href="/readme">
                   <ratio-component>
