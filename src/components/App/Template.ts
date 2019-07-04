@@ -25,17 +25,15 @@ export default function() {
         >${navigation()}</drawer-component
       >
       <grid-component id="content">
-        ${settings
-          ? settings.breadcrumbs
-            ? html`
-                <card-component>
-                  <breadcrumb-component></breadcrumb-component
-                ></card-component>
-              `
-            : ""
+        ${settings.breadcrumbs
+          ? html`
+              <card-component>
+                <breadcrumb-component></breadcrumb-component
+              ></card-component>
+            `
           : ""}
         <div id="portal"></div>
-        ${settings.displayLog
+        ${settings && settings.displayLog
           ? html`
               <card-component
                 ><h3 slot="title">Log</h3>
