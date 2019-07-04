@@ -5,6 +5,7 @@ import { LitElement, css, customElement, html } from "lit-element";
 import GlobalStyle from "../GlobalStyle";
 import { create, notes, show_chart } from "../Icons";
 import { unsafeHTML } from "lit-html/directives/unsafe-html";
+import "./Ratio/Component";
 
 const readme = require("../../README.md");
 
@@ -18,6 +19,9 @@ const Style = css`
     display: flex;
     flex: 1;
     justify-content: center;
+    border: 1px solid var(--border-color);
+    padding: 1em;
+    border-radius: 0.25em;
   }
 
   .material-icons {
@@ -28,11 +32,10 @@ const Style = css`
 
   .label {
     display: block;
-    padding: var(--padding);
     text-align: center;
   }
 
-  .grid-item > a:hover !important {
+  .grid-item a:hover {
     text-decoration: none;
   }
 
@@ -46,16 +49,27 @@ const Style = css`
 
   .icon {
     display: flex;
+    flex: 1;
     justify-content: center;
+    align-items: center;
     color: var(--h3-color);
+    padding: var(--padding);
   }
 
   svg {
     fill: currentColor;
+    width: 25%;
+    height: 25%;
   }
 
   .item {
+    display: flex;
     flex: 1;
+    flex-direction: column;
+  }
+
+  h1 {
+    margin: 0;
   }
 `;
 
@@ -111,34 +125,40 @@ export class PageStatic extends LitElement {
         ? html`
             <grid-component style="grid-template-columns: repeat(3, 1fr)">
               <div class="grid-item">
-                <div class="item">
-                  <span class="label"
-                    ><h1><a href="/readme">Readme</a></h1></span
-                  >
-                  <span class="icon">
-                    ${notes}
-                  </span>
-                </div>
+                <a href="/readme">
+                  <ratio-component>
+                    <div class="item">
+                      <span class="label"><h1>Readme</h1></span>
+                      <span class="icon">
+                        ${notes}
+                      </span>
+                    </div>
+                  </ratio-component>
+                </a>
               </div>
               <div class="grid-item">
-                <div class="item">
-                  <span class="label"
-                    ><h1><a href="/blog">Blog</a></h1></span
-                  >
-                  <span class="icon">
-                    ${create}
-                  </span>
-                </div>
+                <a href="/blog">
+                  <ratio-component>
+                    <div class="item">
+                      <span class="label"><h1>Blog</h1></span>
+                      <span class="icon">
+                        ${create}
+                      </span>
+                    </div></ratio-component
+                  ></a
+                >
               </div>
               <div class="grid-item">
-                <div class="item">
-                  <span class="label"
-                    ><h1><a href="/Performance">Performance</a></h1></span
-                  >
-                  <span class="icon">
-                    ${show_chart}
-                  </span>
-                </div>
+                <a href="/Performance">
+                  <ratio-component>
+                    <div class="item">
+                      <span class="label"><h1>Performance</h1></span>
+                      <span class="icon">
+                        ${show_chart}
+                      </span>
+                    </div></ratio-component
+                  ></a
+                >
               </div>
             </grid-component>
           `
