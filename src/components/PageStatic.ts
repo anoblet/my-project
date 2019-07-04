@@ -29,6 +29,7 @@ const Style = css`
   .label {
     display: block;
     padding: var(--padding);
+    text-align: center;
   }
 
   .grid-item > a:hover !important {
@@ -51,6 +52,10 @@ const Style = css`
 
   svg {
     fill: currentColor;
+  }
+
+  .item {
+    flex: 1;
   }
 `;
 
