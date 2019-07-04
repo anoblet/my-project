@@ -48,41 +48,6 @@ export class PageStatic extends LitElement {
 
   public render() {
     return html`
-      ${version() === 4
-        ? html`
-            ${unsafeHTML(readme)}
-          `
-        : ""}
-      ${version() === 2
-        ? html`
-            <grid-component style="grid-template-columns: repeat(3, 1fr)">
-              <div class="grid-item">
-                <div class="item">
-                  <span class="label"
-                    ><h1><a href="/readme">Readme</a></h1></span
-                  >
-                  <i class="material-icons">notes</i>
-                </div>
-              </div>
-              <div class="grid-item">
-                <div class="item">
-                  <span class="label"
-                    ><h1><a href="/blog">Blog</a></h1></span
-                  >
-                  <i class="material-icons">create</i>
-                </div>
-              </div>
-              <div class="grid-item">
-                <div class="item">
-                  <span class="label"
-                    ><h1><a href="/Performance">Performance</a></h1></span
-                  >
-                  <i class="material-icons">show_chart</i>
-                </div>
-              </div>
-            </grid-component>
-          `
-        : ""}
       ${version() === 1
         ? html`
             <grid-component>
@@ -121,6 +86,41 @@ export class PageStatic extends LitElement {
                 <patreon-component></patreon-component>
               </card-component>
             </grid-component>
+          `
+        : ""}
+      ${version() === 2
+        ? html`
+            <grid-component style="grid-template-columns: repeat(3, 1fr)">
+              <div class="grid-item">
+                <div class="item">
+                  <span class="label"
+                    ><h1><a href="/readme">Readme</a></h1></span
+                  >
+                  <i class="material-icons">notes</i>
+                </div>
+              </div>
+              <div class="grid-item">
+                <div class="item">
+                  <span class="label"
+                    ><h1><a href="/blog">Blog</a></h1></span
+                  >
+                  <i class="material-icons">create</i>
+                </div>
+              </div>
+              <div class="grid-item">
+                <div class="item">
+                  <span class="label"
+                    ><h1><a href="/Performance">Performance</a></h1></span
+                  >
+                  <i class="material-icons">show_chart</i>
+                </div>
+              </div>
+            </grid-component>
+          `
+        : ""}
+      ${version() === 4
+        ? html`
+            ${unsafeHTML(readme)}
           `
         : ""}
     `;
