@@ -46,6 +46,11 @@ const Style = css`
   .icon {
     display: flex;
     justify-content: center;
+    color: var(--h3-color);
+  }
+
+  svg {
+    fill: currentColor;
   }
 `;
 
