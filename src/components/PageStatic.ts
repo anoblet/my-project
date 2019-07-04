@@ -100,7 +100,7 @@ export class PageStatic extends LitElement {
                   <span class="label"
                     ><h1><a href="/readme">Readme</a></h1></span
                   >
-                  <i class="material-icons">notes</i>
+                  ${notes}
                 </div>
               </div>
               <div class="grid-item">
