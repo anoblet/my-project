@@ -1,7 +1,11 @@
-import { LitElement, css, customElement, html } from "lit-element";
-import { unsafeHTML } from "lit-html/directives/unsafe-html";
-import GlobalStyle from "../GlobalStyle";
 import "./PatreonComponent";
+
+import { LitElement, css, customElement, html } from "lit-element";
+
+import GlobalStyle from "../GlobalStyle";
+import { notes } from "../Icons";
+import { unsafeHTML } from "lit-html/directives/unsafe-html";
+
 const readme = require("../../README.md");
 
 const Style = css`
