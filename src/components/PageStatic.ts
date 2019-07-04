@@ -15,6 +15,10 @@ const Style = css`
     overflow-x: hidden;
   }
 
+  #item-grid {
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  }
+
   grid-component > .grid-item {
     display: flex;
     flex: 1;
@@ -123,7 +127,7 @@ export class PageStatic extends LitElement {
         : ""}
       ${version() === 2
         ? html`
-            <grid-component style="grid-template-columns: repeat(3, 1fr)">
+            <grid-component id="item-grid">
               <div class="grid-item">
                 <a href="/readme">
                   <ratio-component>
