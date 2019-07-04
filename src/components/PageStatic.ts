@@ -3,7 +3,7 @@ import "./PatreonComponent";
 import { LitElement, css, customElement, html } from "lit-element";
 
 import GlobalStyle from "../GlobalStyle";
-import { notes } from "../Icons";
+import { create, notes, show_chart } from "../Icons";
 import { unsafeHTML } from "lit-html/directives/unsafe-html";
 
 const readme = require("../../README.md");
@@ -41,6 +41,11 @@ const Style = css`
 
   pre {
     overflow-x: auto;
+  }
+
+  .icon {
+    display: flex;
+    justify-content: center;
   }
 `;
 
@@ -100,7 +105,9 @@ export class PageStatic extends LitElement {
                   <span class="label"
                     ><h1><a href="/readme">Readme</a></h1></span
                   >
-                  ${notes}
+                  <span class="icon">
+                    ${notes}
+                  </span>
                 </div>
               </div>
               <div class="grid-item">
@@ -108,7 +115,9 @@ export class PageStatic extends LitElement {
                   <span class="label"
                     ><h1><a href="/blog">Blog</a></h1></span
                   >
-                  <i class="material-icons">create</i>
+                  <span class="icon">
+                    ${create}
+                  </span>
                 </div>
               </div>
               <div class="grid-item">
@@ -116,7 +125,9 @@ export class PageStatic extends LitElement {
                   <span class="label"
                     ><h1><a href="/Performance">Performance</a></h1></span
                   >
-                  <i class="material-icons">show_chart</i>
+                  <span class="icon">
+                    ${show_chart}
+                  </span>
                 </div>
               </div>
             </grid-component>
