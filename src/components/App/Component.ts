@@ -103,9 +103,10 @@ export class App extends BeforeRender(LitElement) {
    * Set an observer for the client media size
    */
   public initMediaSize() {
+    this.drawerOpened = false;
     media.subscribe((mediaSize: string) => {
-      if (mediaSize === "mobile") this.drawerOpened = false;
-      if (mediaSize === "desktop") this.drawerOpened = true;
+      // if (mediaSize === "mobile") this.drawerOpened = false;
+      // if (mediaSize === "desktop") this.drawerOpened = true;
       this.mediaSize = mediaSize;
     });
   }

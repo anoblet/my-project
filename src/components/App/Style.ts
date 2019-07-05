@@ -57,8 +57,12 @@ export default css`
     height: 100%;
   }
 
-  #drawer[hidden] {
+  #drawer {
     display: none;
+  }
+
+  #drawer[opened="true"] {
+    display: flex;
   }
 
   :host([drawer-opened]) #drawer-container:not([media-size="mobile"]) {
