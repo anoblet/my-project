@@ -32,3 +32,5 @@ export const store: Store<State> & LazyStore = createStore(
     applyMiddleware(thunk)
   )
 );
+
+export default store;

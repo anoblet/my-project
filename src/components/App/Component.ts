@@ -15,7 +15,7 @@ import { installRouter } from "pwa-helpers/router.js";
 import { media } from "../../Media";
 import { router } from "../../Router";
 import { routes } from "./Routes";
-import { store } from "../../Store";
+import Store from "../../Store";
 import { toast } from "../Toast/Toast";
 // import "@anoblet/drawer-component";
 
@@ -38,7 +38,7 @@ export class App extends BeforeRender(LitElement) {
       State.set({
         type: "app",
         data: { settings: { theme: config.theme } },
-        store
+        Store
       });
     }
     this.initMediaSize();
@@ -54,7 +54,7 @@ export class App extends BeforeRender(LitElement) {
 
   public firstUpdated() {
     Debug.log("First updated");
-    store.subscribe(() => this.requestUpdate());
+    Store.subscribe(() => this.requestUpdate());
     this.registerRouter();
     installOfflineWatcher((offline: boolean) => {
       if (offline) toast("Offline");
@@ -86,11 +86,11 @@ export class App extends BeforeRender(LitElement) {
       // Reset scroll position
       const scrollTarget = this.shadowRoot.querySelector("#portal");
       scrollTarget.scrollTo(0, 0);
-      // Update store
+      // Update Store
       State.set({
         type: "app",
         data: { activeRoute: location.pathname },
-        store
+        Store
       });
     });
   }
