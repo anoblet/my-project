@@ -20,10 +20,10 @@ export const beforeRender = async function() {
     });
   }
   Debug.log("Getting User level settings");
-  const _User = await Firebase.getUser();
-  if (_User) {
+  const user = await Firebase.getUser();
+  if (user) {
     Debug.log("User logged in");
-    const UserData = User.extract(_User);
+    const UserData = User.extract(user);
     State.set({ data: UserData, store, type: "User" });
     Debug.log("Getting User settings");
     await User.getUserSettings((document: any) => {
