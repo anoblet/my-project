@@ -17,6 +17,7 @@ import { router } from "../../Router";
 import { routes } from "./Routes";
 import { store } from "../../Store";
 import { toast } from "../Toast/Toast";
+import "@anoblet/drawer-component";
 
 @customElement("app-component")
 export class App extends BeforeRender(LitElement) {
