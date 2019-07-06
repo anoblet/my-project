@@ -4,8 +4,7 @@ import GlobalStyle from "../../GlobalStyle";
 import Style from "./Style";
 import Template from "./Template";
 import { config } from "../../../config";
-import firebase from "../../Firebase";
-import { debug, log } from "../../Debug";
+import { log } from "../../Debug";
 import { installOfflineWatcher } from "pwa-helpers/network.js";
 import { installRouter } from "pwa-helpers/router.js";
 import { media } from "../../Media";
@@ -15,9 +14,9 @@ import { state } from "../../State";
 import { store } from "../../Store";
 import { theme } from "../../Theme";
 import { toast } from "../Toast/Toast";
-import { user } from "../../User";
 import { BeforeRender } from "../../mixins/BeforeRender";
-import { addDefaultReducers, getAppSettings } from "./Utility";
+import { addDefaultReducers } from "./Utility";
+import { beforeRender } from "./BeforeRender";
 
 @customElement("app-component")
 export class App extends BeforeRender(LitElement) {
@@ -50,45 +49,7 @@ export class App extends BeforeRender(LitElement) {
     this.registerlisteners();
   }
 
-  public async beforeRender() {
-    const _firebase = await firebase.init(config.firebase);
-    _firebase.performance();
-    if (config.globalSettings) {
-      await getAppSettings((document: any) => {
-        state.set({ data: { settings: document }, store, type: "app" });
-        if (!config.staticTheme) {
-          const _theme = theme.convert(document.defaultTheme);
-          theme.set(_theme, this);
-        }
-      });
-    }
-    debug.log("Getting user level settings");
-    const _user = await firebase.getUser();
-    if (_user) {
-      log("User logged in");
-      const userData = user.extract(_user);
-      state.set({ data: userData, store, type: "user" });
-      log("Getting user settings");
-      await user.getUserSettings((document: any) => {
-        state.set({ data: { settings: document }, store, type: "user" });
-      });
-      log("Finished getting user settings");
-      log("Getting user theme");
-      await user.getUserTheme((document: any) => {
-        theme.set(theme.convert(document), this);
-        state.set({
-          type: "app",
-          data: { settings: { theme: document } },
-          store
-        });
-      });
-      log("Finished getting user theme");
-    } else {
-      log("User not logged in");
-    }
-    log("Finished getting user");
-    document.querySelector("#loading").removeAttribute("enabled");
-  }
+  public beforeRender = beforeRender.bind(this);
 
   public firstUpdated() {
     log("First updated");
