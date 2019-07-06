@@ -4,10 +4,10 @@ import { getAppSettings } from "./Utility";
 import { state } from "../../State";
 import Theme from "../../Theme";
 import { store } from "../../Store";
-import { debug, log } from "../../Debug";
+import Debug from "../../Debug";
 import { user } from "../../User";
 
-export const beforeRender =  async function() {
+export const beforeRender = async function() {
   Firebase.init(config.firebase);
   // firebase.performance();
   if (config.globalSettings) {
@@ -19,18 +19,18 @@ export const beforeRender =  async function() {
       }
     });
   }
-  debug.log("Getting user level settings");
+  Debug.log("Getting user level settings");
   const _user = await Firebase.getUser();
   if (_user) {
-    log("User logged in");
+    Debug.log("User logged in");
     const userData = user.extract(_user);
     state.set({ data: userData, store, type: "user" });
-    log("Getting user settings");
+    Debug.log("Getting user settings");
     await user.getUserSettings((document: any) => {
       state.set({ data: { settings: document }, store, type: "user" });
     });
-    log("Finished getting user settings");
-    log("Getting user Theme");
+    Debug.log("Finished getting user settings");
+    Debug.log("Getting user Theme");
     await user.getUserTheme((document: any) => {
       Theme.set(Theme.convert(document), this);
       state.set({
@@ -39,10 +39,10 @@ export const beforeRender =  async function() {
         store
       });
     });
-    log("Finished getting user Theme");
+    Debug.log("Finished getting user Theme");
   } else {
-    log("User not logged in");
+    Debug.log("User not logged in");
   }
-  log("Finished getting user");
+  Debug.log("Finished getting user");
   document.querySelector("#loading").removeAttribute("enabled");
-}
+};
