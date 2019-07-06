@@ -139,3 +139,5 @@ export const user = {
   isAdmin,
   reset: resetState
 };
+
+export default user;

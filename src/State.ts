@@ -43,3 +43,5 @@ export const state = {
 };
 
 export const State = state;
+
+export default state;
