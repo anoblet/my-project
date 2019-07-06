@@ -8,8 +8,8 @@ import { debug, log } from "../../Debug";
 import { user } from "../../User";
 
 export const beforeRender =  async function() {
-  const firebase = await Firebase.init(config.firebase);
-  firebase.performance();
+  Firebase.init(config.firebase);
+  // firebase.performance();
   if (config.globalSettings) {
     await getAppSettings((document: any) => {
       state.set({ data: { settings: document }, store, type: "app" });
