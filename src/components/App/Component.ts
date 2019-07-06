@@ -3,6 +3,7 @@ import { LitElement, customElement, property } from "lit-element";
 import { BeforeRender } from "../../mixins/BeforeRender";
 import Debug from "../../Debug";
 import GlobalStyle from "../../GlobalStyle";
+import State from "../../State";
 import Style from "./Style";
 import Template from "./Template";
 import Theme from "../../Theme";
@@ -14,7 +15,6 @@ import { installRouter } from "pwa-helpers/router.js";
 import { media } from "../../Media";
 import { router } from "../../Router";
 import { routes } from "./Routes";
-import { state } from "../../State";
 import { store } from "../../Store";
 import { toast } from "../Toast/Toast";
 
@@ -34,7 +34,7 @@ export class App extends BeforeRender(LitElement) {
     addDefaultReducers();
     if (config.theme) {
       Theme.set(Theme.convert(config.theme), document.body);
-      state.set({
+      State.set({
         type: "app",
         data: { settings: { theme: config.theme } },
         store
@@ -86,7 +86,7 @@ export class App extends BeforeRender(LitElement) {
       const scrollTarget = this.shadowRoot.querySelector("#portal");
       scrollTarget.scrollTo(0, 0);
       // Update store
-      state.set({
+      State.set({
         type: "app",
         data: { activeRoute: location.pathname },
         store
