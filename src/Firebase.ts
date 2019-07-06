@@ -187,3 +187,5 @@ export const firebase = {
 };
 
 export default firebase;
+
+export const Firebase = firebase;

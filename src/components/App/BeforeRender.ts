@@ -1,4 +1,4 @@
-import firebase from "../../Firebase";
+import Firebase from "../../Firebase";
 import { config } from "../../../config";
 import { getAppSettings } from "./Utility";
 import { state } from "../../State";
@@ -8,8 +8,8 @@ import { debug, log } from "../../Debug";
 import { user } from "../../User";
 
 export const beforeRender =  async function() {
-  const _firebase = await firebase.init(config.firebase);
-  _firebase.performance();
+  const firebase = await Firebase.init(config.firebase);
+  firebase.performance();
   if (config.globalSettings) {
     await getAppSettings((document: any) => {
       state.set({ data: { settings: document }, store, type: "app" });
@@ -20,7 +20,7 @@ export const beforeRender =  async function() {
     });
   }
   debug.log("Getting user level settings");
-  const _user = await firebase.getUser();
+  const _user = await Firebase.getUser();
   if (_user) {
     log("User logged in");
     const userData = user.extract(_user);
