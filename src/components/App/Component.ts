@@ -1,10 +1,14 @@
 import { LitElement, customElement, property } from "lit-element";
 
+import { BeforeRender } from "../../mixins/BeforeRender";
+import Debug from "../../Debug";
 import GlobalStyle from "../../GlobalStyle";
 import Style from "./Style";
 import Template from "./Template";
+import Theme from "../../Theme";
+import { addDefaultReducers } from "./Utility";
+import { beforeRender } from "./BeforeRender";
 import { config } from "../../../config";
-import { log } from "../../Debug";
 import { installOfflineWatcher } from "pwa-helpers/network.js";
 import { installRouter } from "pwa-helpers/router.js";
 import { media } from "../../Media";
@@ -12,11 +16,7 @@ import { router } from "../../Router";
 import { routes } from "./Routes";
 import { state } from "../../State";
 import { store } from "../../Store";
-import { theme } from "../../Theme";
 import { toast } from "../Toast/Toast";
-import { BeforeRender } from "../../mixins/BeforeRender";
-import { addDefaultReducers } from "./Utility";
-import { beforeRender } from "./BeforeRender";
 
 @customElement("app-component")
 export class App extends BeforeRender(LitElement) {
@@ -30,10 +30,10 @@ export class App extends BeforeRender(LitElement) {
   // Lifecycle
   constructor() {
     super();
-    log("Constructor");
+    Debug.log("Constructor");
     addDefaultReducers();
     if (config.theme) {
-      theme.set(theme.convert(config.theme), document.body);
+      Theme.set(Theme.convert(config.theme), document.body);
       state.set({
         type: "app",
         data: { settings: { theme: config.theme } },
@@ -52,7 +52,7 @@ export class App extends BeforeRender(LitElement) {
   public beforeRender = beforeRender.bind(this);
 
   public firstUpdated() {
-    log("First updated");
+    Debug.log("First updated");
     store.subscribe(() => this.requestUpdate());
     this.registerRouter();
     installOfflineWatcher((offline: boolean) => {
@@ -66,8 +66,6 @@ export class App extends BeforeRender(LitElement) {
   public initMediaSize() {
     this.drawerOpened = false;
     media.subscribe((mediaSize: string) => {
-      // if (mediaSize === "mobile") this.drawerOpened = false;
-      // if (mediaSize === "desktop") this.drawerOpened = true;
       this.mediaSize = mediaSize;
     });
   }
