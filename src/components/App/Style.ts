@@ -35,7 +35,7 @@ export default css`
     box-shadow: var(--box-shadow);
   }
 
-  #drawer[media-size="mobile"] {
+  #drawer-container[media-size="mobile"] #drawer {
     position: absolute;
     background: var(--background-color);
     height: 100%;
