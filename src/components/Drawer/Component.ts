@@ -20,8 +20,6 @@ export class Drawer extends LitElement {
   constructor() {
     super();
     media.subscribe((mediaSize: string) => {
-      if (mediaSize === "mobile") this.hidden = true;
-      if (mediaSize === "desktop") this.hidden = false;
       this.mediaSize = mediaSize;
     });
     // Update on state change
