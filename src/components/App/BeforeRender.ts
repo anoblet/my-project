@@ -2,7 +2,7 @@ import Firebase from "../../Firebase";
 import { config } from "../../../config";
 import { getAppSettings } from "./Utility";
 import { state } from "../../State";
-import { theme } from "../../Theme";
+import Theme from "../../Theme";
 import { store } from "../../Store";
 import { debug, log } from "../../Debug";
 import { user } from "../../User";
@@ -14,8 +14,8 @@ export const beforeRender =  async function() {
     await getAppSettings((document: any) => {
       state.set({ data: { settings: document }, store, type: "app" });
       if (!config.staticTheme) {
-        const _theme = theme.convert(document.defaultTheme);
-        theme.set(_theme, this);
+        const theme = Theme.convert(document.defaultTheme);
+        Theme.set(theme, this);
       }
     });
   }
@@ -30,16 +30,16 @@ export const beforeRender =  async function() {
       state.set({ data: { settings: document }, store, type: "user" });
     });
     log("Finished getting user settings");
-    log("Getting user theme");
+    log("Getting user Theme");
     await user.getUserTheme((document: any) => {
-      theme.set(theme.convert(document), this);
+      Theme.set(Theme.convert(document), this);
       state.set({
         type: "app",
-        data: { settings: { theme: document } },
+        data: { settings: { Theme: document } },
         store
       });
     });
-    log("Finished getting user theme");
+    log("Finished getting user Theme");
   } else {
     log("User not logged in");
   }

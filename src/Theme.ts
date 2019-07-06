@@ -43,3 +43,5 @@ export const theme = {
   convert,
   set
 };
+
+export default theme;
