@@ -8,7 +8,6 @@ import Store from "../../Store";
 import Style from "./Style";
 import Template from "./Template";
 import Theme from "../../Theme";
-import { addDefaultReducers } from "./Utility";
 import { beforeRender } from "./BeforeRender";
 import { config } from "../../../config";
 import { installOfflineWatcher } from "pwa-helpers/network.js";
@@ -17,6 +16,8 @@ import { media } from "../../Media";
 import { router } from "../../Router";
 import { routes } from "./Routes";
 import { toast } from "../Toast/Toast";
+import { addReducer } from "../../State";
+import { store } from "../../Store";
 
 // import "@anoblet/drawer-component";
 
@@ -33,8 +34,10 @@ export class App extends BeforeRenderMixin(LitElement) {
   constructor() {
     super();
     Debug.log("Constructor");
-    
-    addDefaultReducers();
+
+    addReducer({ type: "app", store });
+    addReducer({ type: "user", store });
+    addReducer({ type: "settings", store });
 
     if (config.theme) {
       Theme.set(Theme.convert(config.theme), document.body);
