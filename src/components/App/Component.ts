@@ -72,7 +72,6 @@ export class App extends BeforeRenderMixin(LitElement) {
    * Set an observer for the client media size
    */
   public initMediaSize() {
-    this.drawerOpened = false;
     media.subscribe((mediaSize: string) => {
       this.mediaSize = mediaSize;
     });
@@ -115,11 +114,11 @@ export class App extends BeforeRenderMixin(LitElement) {
     const drawer: any = this.renderRoot.querySelector("drawer-component");
     if (drawer) drawer.toggle();
     this.drawerOpened = !this.drawerOpened;
-    window.dispatchEvent(
-      new CustomEvent("drawer-toggled", {
-        composed: true
-      })
-    );
+    // window.dispatchEvent(
+    //   new CustomEvent("drawer-toggled", {
+    //     composed: true
+    //   })
+    // );
   }
 
   public _toggleProfile() {
