@@ -26,3 +26,5 @@ export function BeforeRender<BaseType extends Constructor<LitElement>>(
 
   return MixinClass;
 }
+
+export default BeforeRender;
