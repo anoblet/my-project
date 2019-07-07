@@ -33,7 +33,9 @@ export class App extends BeforeRenderMixin(LitElement) {
   constructor() {
     super();
     Debug.log("Constructor");
+    
     addDefaultReducers();
+
     if (config.theme) {
       Theme.set(Theme.convert(config.theme), document.body);
       State.set({
@@ -42,6 +44,7 @@ export class App extends BeforeRenderMixin(LitElement) {
         Store
       });
     }
+
     this.initMediaSize();
   }
 
