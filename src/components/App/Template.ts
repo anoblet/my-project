@@ -21,7 +21,7 @@ export default function() {
       ${header.bind(this)()}
     </header-component>
     <drawer-component
-      ><div slot="aside">Test</div>
+      ><div slot="drawer">Test</div>
       <div slot="main">Test</div></drawer-component
     >
     <grid-component id="drawer-container" media-size="${this.mediaSize}">
