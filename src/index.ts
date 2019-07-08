@@ -3,7 +3,7 @@ import "./components/App/Component";
 import "./components/Header/Component";
 import "./components/Footer/Component";
 import "./components/PageStatic";
-import "./components/Drawer/Component";
+// import "./components/Drawer/Component";
 import "./components/ProfileMenu/ProfileMenu";
 import "./components/Card/Component";
 import "./components/Grid/Component";

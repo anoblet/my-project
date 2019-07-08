@@ -20,6 +20,10 @@ export default function() {
     <header-component>
       ${header.bind(this)()}
     </header-component>
+    <drawer-component
+      ><div slot="aside">Test</div>
+      <div slot="main">Test</div></drawer-component
+    >
     <grid-component id="drawer-container" media-size="${this.mediaSize}">
       <drawer-component id="drawer" opened=${this.drawerOpened}
         >${navigation()}</drawer-component
