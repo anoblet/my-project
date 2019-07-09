@@ -21,34 +21,9 @@ export default function() {
       ${header.bind(this)()}
     </header-component>
     <drawer-component
-      ><div slot="drawer">Test</div>
-      <div slot="main">Test</div></drawer-component
-    >
-    <grid-component id="drawer-container" media-size="${this.mediaSize}">
-      <drawer-component id="drawer" opened=${this.drawerOpened}
-        >${navigation()}</drawer-component
-      >
-      <grid-component id="content">
-        ${settings.breadcrumbs
-          ? html`
-              <card-component>
-                <breadcrumb-component></breadcrumb-component
-              ></card-component>
-            `
-          : ""}
-        <div id="portal"></div>
-        ${settings && settings.displayLog
-          ? html`
-              <card-component
-                ><h3 slot="title">Log</h3>
-                <div slot="content">
-                  <log-component></log-component></div
-              ></card-component>
-            `
-          : ""}
-      </grid-component>
-      <profile-menu id="profile-menu"></profile-menu>
-    </grid-component>
+      ><div slot="drawer">${navigation()}</div>
+      <div slot="main"><div id="portal"></div></div
+    ></drawer-component>
     <footer-component id="bottom"></footer-component>
   `;
 }
