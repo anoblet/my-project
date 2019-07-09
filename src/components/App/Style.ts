@@ -57,10 +57,6 @@ export default css`
     height: 100%;
   }
 
-  #drawer {
-    display: none;
-  }
-
   #drawer[opened="true"] {
     display: flex;
   }
