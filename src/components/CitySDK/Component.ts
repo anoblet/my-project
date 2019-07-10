@@ -14,7 +14,6 @@ export class CitySDK extends LitElement {
   @property() public predicates: {};
   @property() public statsKey: string;
   public template = Template;
-
   public static styles = [GlobalStyle, Style];
 
   public render() {
