@@ -28,7 +28,7 @@ export default function() {
                 ${false ? primaryColorSelect : html``}
               </div>
               <a href="/user/signin"
-                ><button-component>Sign in</button-component></a
+                ><button-component>Sign in (broken)</button-component></a
               >
             </grid-component>
           </div>
