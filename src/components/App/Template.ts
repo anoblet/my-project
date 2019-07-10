@@ -1,7 +1,8 @@
 import { html } from "lit-element";
 import { store } from "../../Store";
 import { header } from "../Layout/Template";
-import Drawer from "./Templates/Drawer";
+import drawer from "./  t;
+emplates/Drawer";
 
 const getSettings = () => {
   const state = store.getState();
@@ -21,7 +22,7 @@ export default function() {
       ${header.bind(this)()}
     </header-component>
     <drawer-component
-      ><div id="drawer" slot="drawer">${Drawer()}</div>
+      ><div id="drawer" slot="drawer">${drawer()}</div>
       <div slot="main"><div id="portal"></div></div
     ></drawer-component>
     <footer-component id="bottom"></footer-component>
