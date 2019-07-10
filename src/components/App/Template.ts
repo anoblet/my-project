@@ -1,7 +1,7 @@
 import { html } from "lit-element";
 import { store } from "../../Store";
 import { header } from "../Layout/Template";
-import drawer from "./templates/Drawer";
+import Drawer from "./Templates/Drawer";
 
 const getSettings = () => {
   const state = store.getState();
