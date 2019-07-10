@@ -2,6 +2,9 @@ import { html } from "lit-element";
 import { renderForm } from "../Form/Form";
 import { properties } from "./Properties";
 
+/*
+  this[property] = value
+ */
 export default function() {
   return html`
     ${renderForm({
