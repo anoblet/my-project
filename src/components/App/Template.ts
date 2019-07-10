@@ -1,13 +1,8 @@
 import { html } from "lit-element";
 import { store } from "../../Store";
 import { header } from "../Layout/Template";
-import drawer from "./  t;
-emplates/Drawer";
+import drawer from "./templates/Drawer";
 
-const getSettings = () => {
-  const state = store.getState();
-  return state.settings;
-};
 
 /**
  * Template function should render sub-templates
