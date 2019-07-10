@@ -21,7 +21,7 @@ export default function() {
       ${header.bind(this)()}
     </header-component>
     <drawer-component
-      ><div id="drawer" slot="drawer">${drawer()}</div>
+      ><div id="drawer" slot="drawer">${Drawer()}</div>
       <div slot="main"><div id="portal"></div></div
     ></drawer-component>
     <footer-component id="bottom"></footer-component>
