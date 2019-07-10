@@ -1,17 +1,12 @@
 import { html } from "lit-element";
 import { config } from "../../../config";
 import { isSignedIn } from "../../User";
-import { store } from "../../Store";
 import { primaryColorSelect } from "../Theme/PrimaryColorSelect";
 import { menu } from "../../assets/menu";
 
 export default function() {
   return html``;
 }
-
-const drawer = function() {
-  return html``;
-};
 
 const links = [
   {
@@ -61,7 +56,9 @@ export const navigation = function() {
                     <a href=${href}>${label}</a>
                   `
                 : html`
-                    <a href=${href} rel="noreferrer" target="_blank">${label}</a>
+                    <a href=${href} rel="noreferrer" target="_blank"
+                      >${label}</a
+                    >
                   `}
             </li>
           `
