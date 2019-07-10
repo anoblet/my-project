@@ -13,10 +13,7 @@ export class CitySDK extends LitElement {
   @property() public geoResolution: string;
   @property() public predicates: {};
   @property() public statsKey: string;
-  public template = Template;
-  public static styles = [GlobalStyle, Style];
 
-  public render() {
-    return this.template.bind(this)();
-  }
+  public static styles = [GlobalStyle, Style];
+  public render = Template.bind(this)();
 }
