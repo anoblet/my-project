@@ -26,7 +26,7 @@ export const beforeRender = async function() {
   if (user) {
     Debug.log("User logged in");
     const UserData = User.extract(user);
-    State.set({ data: UserData, store, type: "User" });
+    State.set({ data: UserData, store, type: "user" });
     Debug.log("Getting User settings");
     await User.getUserSettings((document: any) => {
       State.set({ data: { settings: document }, store, type: "User" });
