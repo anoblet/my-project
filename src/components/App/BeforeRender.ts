@@ -21,6 +21,7 @@ export const beforeRender = async function() {
   }
   Debug.log("Getting User level settings");
   const user = await Firebase.getUser();
+  console.log(user);
   if (user) {
     Debug.log("User logged in");
     const UserData = User.extract(user);
@@ -31,6 +32,8 @@ export const beforeRender = async function() {
     });
     Debug.log("Finished getting User settings");
     Debug.log("Getting User Theme");
+    console.log(1);
+    const theme = User.getTheme();
     await User.getUserTheme((document: any) => {
       Theme.set(Theme.convert(document), this);
       State.set({
