@@ -1,5 +1,5 @@
 import { html } from "lit-element";
-import { header } from "../Layout/Template";
+import header from "./templates/Header";
 import drawer from "./templates/Drawer";
 
 export default function() {
