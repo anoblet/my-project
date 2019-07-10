@@ -98,6 +98,22 @@ export const getUserTheme = (callback: any) => {
   });
 };
 
+/**
+ * Just an async to get a theme document
+ * @return [description]
+ */
+export const getTheme = async (uid: string) => {
+  return await new Promise((resolve, reject) => {
+    return getDocument({
+      path: `users/${uid}/settings/theme`,
+      callback: (document: any) => {
+        resolve(document ? document.currentTheme : false);
+      },
+      watch: true
+    });
+  });
+};
+
 export const getUserSettings = (callback: any) => {
   const _user = store.getState().user;
   return new Promise((resolve: any) =>
@@ -126,14 +142,17 @@ export const get = () => {
 };
 
 export const getIp = async () => {
-  return fetch("https://api.ipify.org?format=json").then((response) => {
-    return response.json();
-  }).then(data => data.ip);
-}
+  return fetch("https://api.ipify.org?format=json")
+    .then(response => {
+      return response.json();
+    })
+    .then(data => data.ip);
+};
 
 export const user = {
   extract,
   get,
+  getTheme,
   getUserSettings,
   getUserTheme,
   isAdmin,

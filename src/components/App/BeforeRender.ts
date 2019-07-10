@@ -20,8 +20,9 @@ export const beforeRender = async function() {
     });
   }
   Debug.log("Getting User level settings");
-  const user = await Firebase.getUser();
+  const user: any = await Firebase.getUser();
   console.log(user);
+  console.log(user.uid);
   if (user) {
     Debug.log("User logged in");
     const UserData = User.extract(user);
@@ -32,8 +33,8 @@ export const beforeRender = async function() {
     });
     Debug.log("Finished getting User settings");
     Debug.log("Getting User Theme");
-    console.log(1);
-    const theme = User.getTheme();
+    // const theme = await User.getTheme(user.uid);
+    // console.log(theme);
     await User.getUserTheme((document: any) => {
       Theme.set(Theme.convert(document), this);
       State.set({
