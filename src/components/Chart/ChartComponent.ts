@@ -4,6 +4,10 @@ import { store } from "../../Store";
 
 // import GlobalStyle from "../../GlobalStyle";
 import { GoogleCharts } from "google-charts";
+
+/**
+ * @todo fix layout issues
+ */
 @customElement("chart-component")
 export class ChartComponent extends LitElement {
   @property() public data: any;
