@@ -11,18 +11,15 @@ export const beforeRender = async function() {
   Firebase.init(config.firebase);
   // firebase.performance();
   if (config.globalSettings) {
-    await getAppSettings((document: any) => {
-      State.set({ data: { settings: document }, store, type: "app" });
-      if (!config.staticTheme) {
-        const theme = Theme.convert(document.defaultTheme);
-        Theme.set(theme, this);
-      }
-    });
+    const settings:any = await getAppSettings(false);
+    State.set({ data: { settings }, store, type: "app" });
+    if (!config.staticTheme) {
+      const theme = Theme.convert(settings.defaultTheme);
+      Theme.set(theme, this);
+    }
   }
   Debug.log("Getting User level settings");
   const user: any = await Firebase.getUser();
-  console.log(user);
-  console.log(user.uid);
   if (user) {
     Debug.log("User logged in");
     const UserData = User.extract(user);
@@ -33,8 +30,6 @@ export const beforeRender = async function() {
     });
     Debug.log("Finished getting User settings");
     Debug.log("Getting User Theme");
-    // const theme = await User.getTheme(user.uid);
-    // console.log(theme);
     await User.getUserTheme((document: any) => {
       Theme.set(Theme.convert(document), this);
       State.set({

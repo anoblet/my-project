@@ -9,13 +9,14 @@ export const getAppSettings = async (callback: any) => {
     database.getDocument({
       callback: (document: any) => {
         document
-          ? resolve(callback(document))
+          ? resolve(document)
           : reject(new Error("Could not retrieve settings"));
       },
       path: "app/settings",
       watch: true
     })
   );
+
   log("Finished getting app level settings");
   return result;
 };
