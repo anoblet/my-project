@@ -9,8 +9,11 @@ export default function() {
     </header-component>
     <drawer-component
       ><div id="drawer" slot="drawer">${drawer()}</div>
-      <div id="portal" slot="main"></div
-    ></drawer-component>
+      <div slot="main">
+        <profile-menu id="profile-menu"></profile-menu>
+        <div id="portal"></div>
+      </div>
+    </drawer-component>
     <footer-component id="bottom"></footer-component>
   `;
 }
