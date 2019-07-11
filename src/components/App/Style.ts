@@ -33,6 +33,11 @@ export default css`
 
   #drawer {
     box-shadow: var(--box-shadow);
+    padding: 0 0 0 2em;
+  }
+
+  #drawer li {
+    padding: 0.5em 0;
   }
 
   #drawer-container[media-size="mobile"] #drawer {
