@@ -45,6 +45,7 @@ export class ChartComponent extends LitElement {
   public static styles = [
     css`
       :host {
+        display:flex;
         flex: 1;
       }
     `
