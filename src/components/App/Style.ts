@@ -33,7 +33,7 @@ export default css`
 
   #drawer {
     box-shadow: var(--box-shadow);
-    padding: 0 0 0 2em;
+    padding: 0 2em;
   }
 
   #drawer li {
