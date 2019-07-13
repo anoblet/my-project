@@ -150,7 +150,7 @@ export default css`
 
   #portal {
     contain: initial;
-    overflow-x: hidden;
+    overflow: hidden;
     padding-left: 1em;
     padding-right: 1em;
   }
