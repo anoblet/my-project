@@ -11,7 +11,7 @@ import { BeforeRender } from "../../mixins/BeforeRender";
 @customElement("contacts-component")
 export class Contacts extends BeforeRender(LitElement) {
   public static styles = [GlobalStyle, Style];
-  public render = Template.bind(this)();
+  public render = Template.bind(this);
 
   @property() public data = { log: [] };
 
