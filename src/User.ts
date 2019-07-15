@@ -116,15 +116,22 @@ export const getTheme = async (uid: string) => {
 
 export const getUserSettings = (callback: any) => {
   const _user = store.getState().user;
-  return new Promise((resolve: any) =>
+  return new Promise((resolve: any) => {
     getDocument({
       path: `users/${_user.uid}/settings/default`,
       callback: (document: any) => {
-        document ? resolve(callback(document)) : resolve(false);
+        document ? resolve(document) : resolve(false);
       },
       watch: true
-    })
-  );
+    });
+    // getDocument({
+    //   path: `users/${_user.uid}/settings/default`,
+    //   callback: (document: any) => {
+    //     document ? resolve(callback(document)) : resolve(false);
+    //   },
+    //   watch: true
+    // })
+  });
 };
 
 export const extract = (_user: any) => {
