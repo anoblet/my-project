@@ -114,7 +114,7 @@ export const getTheme = async (uid: string) => {
   });
 };
 
-export const getUserSettings = (callback: any) => {
+export const getUserSettings = () => {
   const _user = store.getState().user;
   return new Promise((resolve: any) => {
     getDocument({
