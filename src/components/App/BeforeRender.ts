@@ -29,13 +29,12 @@ export const beforeRender = async function() {
     State.set({ data: { settings }, store, type: "User" });
     Debug.log("Finished getting User settings");
     Debug.log("Getting User Theme");
-    await User.getUserTheme((document: any) => {
-      Theme.set(Theme.convert(document), this);
-      State.set({
-        type: "app",
-        data: { settings: { Theme: document } },
-        store
-      });
+    const theme = await User.getUserTheme(false);
+    Theme.set(Theme.convert(theme), this);
+    State.set({
+      type: "app",
+      data: { settings: { Theme: theme } },
+      store
     });
     Debug.log("Finished getting User Theme");
   } else {
