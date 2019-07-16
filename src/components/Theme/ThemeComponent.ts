@@ -12,9 +12,11 @@ import { themeStructure } from "./Structure";
 import { toggleDark } from "./ToggleDark";
 import { toggleShadow } from "./ToggleShadow";
 import { isSignedIn } from "../../User";
+import Theme from "../../Theme";
 
 export const setTheme = (_theme: any) => {
   const state = store.getState();
+  Theme.set(Theme.convert(_theme), document.querySelector("app-component"));
   return updateDocument({
     path: `users/${state.user.uid}/settings/theme`,
     data: { currentTheme: _theme }
