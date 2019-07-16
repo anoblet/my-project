@@ -85,13 +85,19 @@ export const getUser = () => {
   }
 };
 
-export const getUserTheme = (callback: any) => {
+export const getUserTheme = (callback?: any) => {
   const _user = store.getState().user;
   return new Promise((resolve: any) => {
     return getDocument({
       path: `users/${_user.uid}/settings/theme`,
       callback: (document: any) => {
-        resolve(document ? callback(document.currentTheme) : false);
+        resolve(
+          document
+            ? callback
+              ? callback(document.currentTheme)
+              : document.currentTheme
+            : false
+        );
       },
       watch: true
     });
