@@ -3,13 +3,15 @@ import { database } from "../../Database";
 import { store } from "../../Store";
 import { log } from "../../Debug";
 
-export const getAppSettings = async (callback: any) => {
+export const getAppSettings = async (callback?: any) => {
   log("Getting app level settings");
   const result = await new Promise((resolve: any, reject: any) =>
     database.getDocument({
       callback: (document: any) => {
         document
-          ? resolve(document)
+          ? callback
+            ? callback(document)
+            : resolve(document)
           : reject(new Error("Could not retrieve settings"));
       },
       path: "app/settings",
