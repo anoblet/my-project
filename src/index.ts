@@ -22,7 +22,5 @@ if (config.analytics) {
     galite("send", "pageview");
   });
 }
-// Firebase performance
 // Voice
 import("./Voice");
-// import("./workers/Client");
