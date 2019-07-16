@@ -3,7 +3,7 @@ import { config } from "../../../config";
 import { getAppSettings } from "./Utility";
 import State from "../../State";
 import Theme from "../../Theme";
-import { store } from "../../Store";
+import Store from "../../Store";
 import Debug from "../../Debug";
 import User from "../../User";
 
@@ -12,7 +12,7 @@ export const beforeRender = async function() {
   // firebase.performance();
   if (config.globalSettings) {
     const settings: any = await getAppSettings(false);
-    State.set({ data: { settings }, store, type: "app" });
+    State.set({ data: { settings }, store: Store, type: "app" });
     if (!config.staticTheme) {
       const theme = Theme.convert(settings.defaultTheme);
       Theme.set(theme, this);
@@ -23,10 +23,10 @@ export const beforeRender = async function() {
   if (user) {
     Debug.log("User logged in");
     const UserData = User.extract(user);
-    State.set({ data: UserData, store, type: "user" });
+    State.set({ data: UserData, store: Store, type: "user" });
     Debug.log("Getting User settings");
     const settings = await User.getUserSettings();
-    State.set({ data: { settings }, store, type: "User" });
+    State.set({ data: { settings }, store: Store, type: "User" });
     Debug.log("Finished getting User settings");
     Debug.log("Getting User Theme");
     const theme = await User.getUserTheme(false);
@@ -34,7 +34,7 @@ export const beforeRender = async function() {
     State.set({
       type: "app",
       data: { settings: { Theme: theme } },
-      store
+      store: Store
     });
     Debug.log("Finished getting User Theme");
   } else {
