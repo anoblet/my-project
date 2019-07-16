@@ -22,8 +22,8 @@ export const beforeRender = async function() {
   const user: any = await Firebase.getUser();
   if (user) {
     Debug.log("User logged in");
-    const UserData = User.extract(user);
-    State.set({ data: UserData, store: Store, type: "user" });
+    const userData = User.extract(user);
+    State.set({ data: userData, store: Store, type: "user" });
     Debug.log("Getting User settings");
     const settings = await User.getUserSettings();
     State.set({ data: { settings }, store: Store, type: "User" });
