@@ -32,6 +32,6 @@ export default css`
   }
 
   .item:not(#home):hover {
-    opacity: 1;
+    /* opacity: 1; */
   }
 `;
