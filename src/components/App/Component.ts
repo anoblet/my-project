@@ -19,8 +19,6 @@ import { toast } from "../Toast/Toast";
 import { addReducer } from "../../State";
 import { store } from "../../Store";
 
-import "@anoblet/drawer-component";
-
 @customElement("app-component")
 export class App extends BeforeRenderMixin(LitElement) {
   public static styles = [GlobalStyle, Style];
