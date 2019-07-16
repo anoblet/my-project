@@ -14,7 +14,7 @@ export const toast = (
   element.content = message;
   const container = document
     .querySelector("app-component")
-    .shadowRoot.querySelector("#content");
+    .shadowRoot.querySelector("#portal");
   container.appendChild(element);
   setTimeout(() => element.parentNode.removeChild(element), config.timeout);
 };
