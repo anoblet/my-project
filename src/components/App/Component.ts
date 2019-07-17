@@ -13,7 +13,6 @@ import Theme from "../../Theme";
 import { beforeRender } from "./BeforeRender";
 import { config } from "../../../config";
 import { installOfflineWatcher } from "pwa-helpers/network.js";
-import { installRouter } from "pwa-helpers/router.js";
 import { routes } from "./Routes";
 import { store } from "../../Store";
 import { toast } from "../Toast/Toast";
@@ -80,7 +79,7 @@ export class App extends BeforeRenderMixin(LitElement) {
   }
 
   public async registerRouter() {
-    installRouter((location: any) => {
+    Router.install((location: any) => {
       Router.routeChanged({
         location,
         routes,

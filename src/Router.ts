@@ -1,4 +1,5 @@
 import pathToRegexp from "path-to-regexp";
+import { installRouter } from "pwa-helpers/router.js";
 
 /*
 export const routes = [
@@ -113,7 +114,10 @@ export const routeChanged = async ({ location, portal, routes }: any) => {
 
 export const handleNavigation = routeChanged;
 
+const install = installRouter;
+
 export const router = {
+  install,
   routeChanged,
   setPortal,
   setRoutes
