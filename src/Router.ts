@@ -118,3 +118,5 @@ export const router = {
   setPortal,
   setRoutes
 };
+
+export default router;
