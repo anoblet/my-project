@@ -12,7 +12,7 @@ import { beforeRender } from "./BeforeRender";
 import { config } from "../../../config";
 import { installOfflineWatcher } from "pwa-helpers/network.js";
 import { installRouter } from "pwa-helpers/router.js";
-import { media } from "../../Media";
+import Media from "../../Media";
 import { router } from "../../Router";
 import { routes } from "./Routes";
 import { toast } from "../Toast/Toast";
@@ -70,7 +70,7 @@ export class App extends BeforeRenderMixin(LitElement) {
    * Set an observer for the client media size
    */
   public initMediaSize() {
-    media.subscribe((mediaSize: string) => {
+    Media.subscribe((mediaSize: string) => {
       this.mediaSize = mediaSize;
     });
   }
