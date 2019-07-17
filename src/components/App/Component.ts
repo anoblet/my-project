@@ -10,7 +10,6 @@ import Store from "../../Store";
 import Style from "./Style";
 import Template from "./Template";
 import Theme from "../../Theme";
-import { addReducer } from "../../State";
 import { beforeRender } from "./BeforeRender";
 import { config } from "../../../config";
 import { installOfflineWatcher } from "pwa-helpers/network.js";
@@ -33,9 +32,9 @@ export class App extends BeforeRenderMixin(LitElement) {
     super();
     Debug.log("Constructor");
 
-    addReducer({ type: "app", store });
-    addReducer({ type: "user", store });
-    addReducer({ type: "settings", store });
+    State.addReducer({ type: "app", store });
+    State.addReducer({ type: "user", store });
+    State.addReducer({ type: "settings", store });
 
     if (config.theme) {
       Theme.set(Theme.convert(config.theme), document.body);
