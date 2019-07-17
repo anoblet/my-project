@@ -3,21 +3,21 @@ import { LitElement, customElement, property } from "lit-element";
 import BeforeRenderMixin from "../../mixins/BeforeRender";
 import Debug from "../../Debug";
 import GlobalStyle from "../../GlobalStyle";
+import Media from "../../Media";
+import Router from "../../Router";
 import State from "../../State";
 import Store from "../../Store";
 import Style from "./Style";
 import Template from "./Template";
 import Theme from "../../Theme";
+import { addReducer } from "../../State";
 import { beforeRender } from "./BeforeRender";
 import { config } from "../../../config";
 import { installOfflineWatcher } from "pwa-helpers/network.js";
 import { installRouter } from "pwa-helpers/router.js";
-import Media from "../../Media";
-import Router from "../../Router";
 import { routes } from "./Routes";
-import { toast } from "../Toast/Toast";
-import { addReducer } from "../../State";
 import { store } from "../../Store";
+import { toast } from "../Toast/Toast";
 
 @customElement("app-component")
 export class App extends BeforeRenderMixin(LitElement) {
