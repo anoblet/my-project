@@ -13,7 +13,7 @@ import { config } from "../../../config";
 import { installOfflineWatcher } from "pwa-helpers/network.js";
 import { installRouter } from "pwa-helpers/router.js";
 import Media from "../../Media";
-import { router } from "../../Router";
+import Router from "../../Router";
 import { routes } from "./Routes";
 import { toast } from "../Toast/Toast";
 import { addReducer } from "../../State";
@@ -82,7 +82,7 @@ export class App extends BeforeRenderMixin(LitElement) {
 
   public async registerRouter() {
     installRouter((location: any) => {
-      router.routeChanged({
+      Router.routeChanged({
         location,
         routes,
         portal: this.shadowRoot.querySelector("#portal")
