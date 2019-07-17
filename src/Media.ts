@@ -19,3 +19,5 @@ const subscribe = (callback: any) => {
 export const media = {
   subscribe
 };
+
+export default media;
