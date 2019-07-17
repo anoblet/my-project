@@ -16,6 +16,7 @@ import "@anoblet/drawer-component";
 // Firebase
 import "@firebase/app";
 import "@firebase/auth";
+
 // Google analytics
 if (config.analytics) {
   import("ga-lite").then((module: any) => {
@@ -24,5 +25,6 @@ if (config.analytics) {
     galite("send", "pageview");
   });
 }
+
 // Voice
 import("./Voice");
