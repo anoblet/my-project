@@ -5,6 +5,7 @@ import { setDefaultTheme } from "./Theme";
 import { setState, state } from "./State";
 import { store } from "./Store";
 import { toast } from "./components/Toast/Toast";
+import Theme from "./Theme";
 
 /**
  * Check if a user is an admin
@@ -85,9 +86,9 @@ export const getUser = () => {
   }
 };
 
-export const getUserTheme = (callback?: any) => {
+export const getUserTheme = async (callback?: any) => {
   const _user = store.getState().user;
-  return new Promise((resolve: any) => {
+  const document = new Promise((resolve: any) => {
     return getDocument({
       path: `users/${_user.uid}/settings/theme`,
       callback: (document: any) => {
@@ -102,6 +103,7 @@ export const getUserTheme = (callback?: any) => {
       watch: true
     });
   });
+  Theme.set(Theme.convert(theme), this);
 };
 
 /**
