@@ -103,7 +103,7 @@ export const getUserTheme = async (callback?: any) => {
       watch: true
     });
   });
-  Theme.set(Theme.convert(theme), this);
+  return Theme.convert(document);
 };
 
 /**
