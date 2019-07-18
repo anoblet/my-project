@@ -14,7 +14,6 @@ import { beforeRender } from "./BeforeRender";
 import { config } from "../../../config";
 import { installOfflineWatcher } from "pwa-helpers/network.js";
 import { routes } from "./Routes";
-import { store } from "../../Store";
 import { toast } from "../Toast/Toast";
 
 @customElement("app-component")
@@ -31,9 +30,9 @@ export class App extends BeforeRenderMixin(LitElement) {
     super();
     Debug.log("Constructor");
 
-    State.addReducer({ type: "app", store });
-    State.addReducer({ type: "user", store });
-    State.addReducer({ type: "settings", store });
+    State.addReducer({ type: "app", Store });
+    State.addReducer({ type: "user", Store });
+    State.addReducer({ type: "settings", Store });
 
     if (config.theme) {
       Theme.set(Theme.convert(config.theme), document.body);
