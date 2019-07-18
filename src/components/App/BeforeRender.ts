@@ -33,7 +33,7 @@ export const beforeRender = async function() {
     Theme.set(Theme.convert(theme), this);
     State.set({
       type: "app",
-      data: { settings: { Theme: theme } },
+      data: { settings: { theme } },
       store: Store
     });
     Debug.log("Finished getting User Theme");
