@@ -79,7 +79,7 @@ export const getCollection = async ({ path, callback, orderBy }: any) => {
   });
 };
 
-const mapSnapshotToArray = snapshot => {
+const mapSnapshotToArray = (snapshot: any) => {
   const result: any = [];
   snapshot.forEach((doc: any) => {
     const data = doc.data();
