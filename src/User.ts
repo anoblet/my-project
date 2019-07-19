@@ -111,7 +111,7 @@ export const getUserTheme = async (callback?: any) => {
  * @return [description]
  */
 export const getTheme = async (uid: string) => {
-  return await new Promise((resolve, reject) => {
+  return await new Promise((resolve) => {
     return getDocument({
       path: `users/${uid}/settings/theme`,
       callback: (document: any) => {
