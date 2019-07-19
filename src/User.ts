@@ -88,7 +88,7 @@ export const getUser = () => {
 
 export const getUserTheme = async (callback?: any) => {
   const _user = store.getState().user;
-  const document = await new Promise((resolve: any) => {
+  const theme = await new Promise((resolve: any) => {
     return getDocument({
       path: `users/${_user.uid}/settings/theme`,
       callback: (document: any) => {
@@ -103,7 +103,7 @@ export const getUserTheme = async (callback?: any) => {
       watch: true
     });
   });
-  return Theme.convert(document);
+  return Theme.convert(theme);
 };
 
 /**
@@ -111,7 +111,7 @@ export const getUserTheme = async (callback?: any) => {
  * @return [description]
  */
 export const getTheme = async (uid: string) => {
-  return await new Promise((resolve) => {
+  return await new Promise(resolve => {
     return getDocument({
       path: `users/${uid}/settings/theme`,
       callback: (document: any) => {
