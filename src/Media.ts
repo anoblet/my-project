@@ -3,8 +3,8 @@ const subscribers: any = [];
 
 const observer = window.matchMedia("(max-width: 500px)");
 
-const mediaChanged = (_media: any) => {
-  mediaSize = _media.matches ? "mobile" : "desktop";
+const mediaChanged = (mediaQueryList: any) => {
+  mediaSize = mediaQueryList.matches ? "mobile" : "desktop";
   subscribers.map((callback: any) => callback(mediaSize));
 };
 
