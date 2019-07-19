@@ -38,5 +38,5 @@ export const config = {
 };
 
 export class Application {
-  title: "Andrew Noblet";
+  public title: "Andrew Noblet";
 }
