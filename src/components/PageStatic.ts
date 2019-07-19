@@ -39,6 +39,10 @@ const Style = css`
     text-align: center;
   }
 
+  .grid-item a {
+    flex: 1;
+  }
+
   .grid-item a:hover {
     text-decoration: none;
   }
