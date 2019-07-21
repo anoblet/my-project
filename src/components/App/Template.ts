@@ -1,6 +1,7 @@
 import { html } from "lit-element";
 import header from "./templates/Header";
 import drawer from "./templates/Drawer";
+import footer from "./templates/Footer";
 
 export default function() {
   return html`
@@ -14,6 +15,8 @@ export default function() {
         <div id="portal"></div>
       </div>
     </drawer-component>
-    <footer-component id="bottom"></footer-component>
+    <div id="footer">
+      ${footer()}
+    </div>
   `;
 }
