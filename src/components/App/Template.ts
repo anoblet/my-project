@@ -8,7 +8,7 @@ export default function() {
     <header-component>
       ${header.bind(this)()}
     </header-component>
-    <drawer-component onScroll=${this.onScroll}
+    <drawer-component
       ><div id="drawer" slot="drawer">${drawer()}</div>
       <div slot="main">
         <profile-menu id="profile-menu"></profile-menu>
