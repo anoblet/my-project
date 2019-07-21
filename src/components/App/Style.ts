@@ -177,10 +177,10 @@ export default css`
   #footer {
     background: var(--text-color);
     color: var(--primary-color);
-    padding: 1rem;
   }
 
   #footer tabs-component > * {
     text-align: center;
+    padding: 1rem;
   }
 `;
