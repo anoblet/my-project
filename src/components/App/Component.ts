@@ -61,6 +61,23 @@ export class App extends BeforeRenderMixin(LitElement) {
     installOfflineWatcher((offline: boolean) => {
       if (offline) toast("Offline");
     });
+    const drawerComponent: LitElement = this.shadowRoot.querySelector(
+      "drawer-component"
+    );
+    drawerComponent.updateComplete.then(() => {
+      const main = drawerComponent.shadowRoot.querySelector("main");
+      let prevPosition = main.scrollTop;
+      main.onscroll = () => {
+        const currentPosition = main.scrollTop;
+        const footer: LitElement = this.shadowRoot.querySelector("#footer");
+        if (prevPosition > currentPosition) {
+          footer.style.display = "block";
+        } else {
+          footer.style.display = "none";
+        }
+        prevPosition = currentPosition;
+      };
+    });
   }
 
   /**
