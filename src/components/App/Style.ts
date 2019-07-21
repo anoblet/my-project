@@ -169,4 +169,18 @@ export default css`
     padding: 1em;
     font-size: 1em;
   }
+
+  drawer-component {
+    flex: 1;
+  }
+
+  #footer {
+    background: var(--text-color);
+    color: var(--primary-color);
+    padding: 1rem;
+  }
+
+  #footer tabs-component > * {
+    text-align: center;
+  }
 `;
