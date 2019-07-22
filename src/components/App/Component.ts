@@ -151,3 +151,5 @@ export class App extends BeforeRenderMixin(LitElement) {
     menu.close();
   }
 }
+
+const observeScroll = (target, callback) => {};
