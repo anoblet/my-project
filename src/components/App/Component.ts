@@ -72,10 +72,8 @@ export class App extends BeforeRenderMixin(LitElement) {
         const footer: LitElement = this.shadowRoot.querySelector("#footer");
         if (prevPosition > currentPosition) {
           footer.removeAttribute("hidden");
-          footer.style.display = "block";
         } else {
           footer.setAttribute("hidden", "");
-          footer.style.display = "none";
         }
         prevPosition = currentPosition;
       };
