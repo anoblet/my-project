@@ -66,8 +66,14 @@ export class App extends BeforeRenderMixin(LitElement) {
     );
     drawerComponent.updateComplete.then(() => {
       const main = drawerComponent.shadowRoot.querySelector("main");
+      let prevWidth = main.clientWidth;
       let prevPosition = main.scrollTop;
       main.onscroll = () => {
+        const width = main.clientWidth;
+        if (width !== prevWidth) {
+          prevWidth = width;
+          return;
+        }
         const currentPosition = main.scrollTop;
         const footer: LitElement = this.shadowRoot.querySelector("#footer");
         if (prevPosition > currentPosition) {
