@@ -177,6 +177,6 @@ const observeScroll = ({ target, callback }) => {
   };
 
   const result = "Up";
-  // Return callback or a promise
+  // Support callback or a promise
   return callback ? callback(result) : result;
 };
