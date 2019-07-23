@@ -75,9 +75,7 @@ export class App extends BeforeRenderMixin(LitElement) {
     });
     drawerComponent.updateComplete.then(() => {
       const main = drawerComponent.shadowRoot.querySelector("main");
-      observeScroll(main, () => {
-
-      });
+      observeScroll(main, () => {});
       return;
       let prevWidth = main.clientWidth;
       let prevPosition = main.scrollTop;
@@ -165,9 +163,20 @@ export class App extends BeforeRenderMixin(LitElement) {
   }
 }
 
-const observeScroll = (target, callback) => {
+const observeScroll = ({ target, callback }) => {
   let prevWidth = target.clientWidth;
-  let prevPosition = target.scrollTop;
-  let ticking = false;
-  callback();
+  let prevTop = target.scrollTop;
+
+  // Handler
+  target.onscroll = async () => {
+    // Let's debounce here
+    let ticking = false;
+    if (!ticking) {
+      window.requestAnimationFrame(() => {});
+    }
+  };
+
+  const result = "Up";
+  // Return callback or a promise
+  return callback ? callback(result) : result;
 };
