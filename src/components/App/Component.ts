@@ -65,7 +65,20 @@ export class App extends BeforeRenderMixin(LitElement) {
       "drawer-component"
     );
     drawerComponent.updateComplete.then(() => {
+      console.log("hi");
+      observeScroll(
+        drawerComponent.shadowRoot.querySelector("main"),
+        (direction: string) => {
+          console.log("direction", direction);
+        }
+      );
+    });
+    drawerComponent.updateComplete.then(() => {
       const main = drawerComponent.shadowRoot.querySelector("main");
+      observeScroll(main, () => {
+
+      });
+      return;
       let prevWidth = main.clientWidth;
       let prevPosition = main.scrollTop;
       let ticking = false;
@@ -152,4 +165,9 @@ export class App extends BeforeRenderMixin(LitElement) {
   }
 }
 
-const observeScroll = (target, callback) => {};
+const observeScroll = (target, callback) => {
+  let prevWidth = target.clientWidth;
+  let prevPosition = target.scrollTop;
+  let ticking = false;
+  callback();
+};
