@@ -66,31 +66,15 @@ export class App extends BeforeRenderMixin(LitElement) {
     );
     drawerComponent.updateComplete.then(() => {
       const main = drawerComponent.shadowRoot.querySelector("main");
-      observeScroll({ target: main, callback: (direction: string) => {} });
-      let prevWidth = main.clientWidth;
-      let prevPosition = main.scrollTop;
-      let ticking = false;
-      main.onscroll = () => {
-        const width = main.clientWidth;
-        if (width !== prevWidth) {
-          prevWidth = width;
-          return;
+      const footer: LitElement = this.shadowRoot.querySelector("#footer");
+
+      observeScroll({
+        target: main,
+        callback: (direction: string) => {
+          if (direction === "up") footer.removeAttribute("hidden");
+          if (direction === "down") footer.setAttribute("hidden", "");
         }
-        if (!ticking) {
-          window.requestAnimationFrame(() => {
-            const currentPosition = main.scrollTop;
-            const footer: LitElement = this.shadowRoot.querySelector("#footer");
-            if (prevPosition >= currentPosition) {
-              footer.removeAttribute("hidden");
-            } else {
-              footer.setAttribute("hidden", "");
-            }
-            prevPosition = currentPosition;
-            ticking = false;
-          });
-          ticking = true;
-        }
-      };
+      });
     });
   }
 
@@ -156,18 +140,30 @@ export class App extends BeforeRenderMixin(LitElement) {
 const observeScroll = ({ target, callback }) => {
   let prevWidth = target.clientWidth;
   let prevTop = target.scrollTop;
+  let ticking = false;
+  let result: string;
 
   // Handler
   target.onscroll = async () => {
-    // Let's debounce here
-    let ticking = false;
+    const width = target.clientWidth;
+    if (width !== prevWidth) {
+      prevWidth = width;
+      return;
+    }
+    // Debounce
     if (!ticking) {
-      window.requestAnimationFrame(() => {});
+      window.requestAnimationFrame(() => {
+        const currentPosition = target.scrollTop;
+        if (prevTop >= currentPosition) {
+          result = "up";
+        } else {
+          result = "down";
+        }
+        callback(result);
+        prevTop = currentPosition;
+        ticking = false;
+      });
+      ticking = true;
     }
   };
-
-  const result = "Up";
-
-  // Support callback or async
-  return callback ? callback(result) : result;
 };
