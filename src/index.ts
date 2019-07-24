@@ -5,7 +5,6 @@ import "./components/Footer/Component";
 import "./components/PageStatic";
 import "./components/ProfileMenu/ProfileMenu";
 import "./components/Card/Component";
-import "./components/Grid/Component";
 import "./components/Loading/Component";
 import "./components/Breadcrumb/Component";
 import "./components/Voice/Component";
