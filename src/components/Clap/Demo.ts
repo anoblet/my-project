@@ -1,4 +1,4 @@
-import "./Component";
+import "@anoblet/clap-component";
 import GlobalStyle from "../../GlobalStyle";
 
 import { LitElement, css, customElement, html } from "lit-element";
