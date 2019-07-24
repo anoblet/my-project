@@ -21,7 +21,7 @@ export class Demo extends BeforeRender(LitElement) {
 
   public render() {
     return html`
-      <component-clap></component-clap>
+      <clap-component></clap-component>
     `;
   }
 }
