@@ -19,6 +19,5 @@ class Readme extends LitElement {
     return html`
       ${unsafeHTML(this.html)}
     `;
-    // return getReadme(this.path);
   }
 }
