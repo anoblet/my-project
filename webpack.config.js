@@ -22,7 +22,7 @@ module.exports = {
     publicPath: "/",
     filename: "js/[name].bundle.js",
     chunkFilename: "js/[name].bundle.js",
-    globalObject: 'self'
+    globalObject: "self"
   },
   module: {
     rules: [
@@ -45,7 +45,10 @@ module.exports = {
   },
   resolve: {
     extensions: [".js", ".ts"],
-    modules: ['vendor', "node_modules"]
+    modules: ["vendor", "node_modules"],
+    alias: {
+      "lit-element": path.resolve("./node_modules/lit-element")
+    }
   },
   devServer: {
     // https: true,
@@ -156,4 +159,12 @@ module.exports = {
       xmlhttprequest: "{XMLHttpRequest:XMLHttpRequest}"
     }
   ]
+};
+
+module.exports = {
+  resolve: {
+    alias: {
+      "lit-element": path.resolve("./node_modules/lit-element")
+    }
+  }
 };

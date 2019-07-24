@@ -1,4 +1,4 @@
-import "@anoblet/clap-component";
+import(/* webpackChunkName: "ClapComponent" */ "@anoblet/clap-component");
 // import { LitElement, css, customElement, property } from "lit-element";
 //
 // import Template from "./Template";
