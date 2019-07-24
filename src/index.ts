@@ -11,6 +11,7 @@ import "./components/Voice/Component";
 
 import "@anoblet/button-component";
 import "@anoblet/drawer-component";
+import "@anoblet/grid-component";
 
 // Firebase
 import "@firebase/app";
