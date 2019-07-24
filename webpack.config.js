@@ -160,11 +160,3 @@ module.exports = {
     }
   ]
 };
-
-module.exports = {
-  resolve: {
-    alias: {
-      "lit-element": path.resolve("./node_modules/lit-element")
-    }
-  }
-};
