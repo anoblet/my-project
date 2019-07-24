@@ -5,7 +5,7 @@ import { LitElement, css, customElement, html } from "lit-element";
 
 import { BeforeRender } from "../../mixins/BeforeRender";
 
-@customElement("component-clap-demo")
+@customElement("clap-component-demo")
 export class Demo extends BeforeRender(LitElement) {
   public static styles = [
     GlobalStyle,
