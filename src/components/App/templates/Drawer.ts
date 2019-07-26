@@ -1,4 +1,5 @@
 import { html } from "lit-element";
+import "@anoblet/external-link";
 
 const links = [
   {
@@ -48,9 +49,7 @@ export default function() {
                     <a href=${href}>${label}</a>
                   `
                 : html`
-                    <a href=${href} rel="noreferrer" target="_blank"
-                      >${label}</a
-                    >
+                    <external-link href=${href} label=${label}></external-link>
                   `}
             </li>
           `
