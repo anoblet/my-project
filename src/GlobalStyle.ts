@@ -10,10 +10,15 @@ export default css`
     display: none;
   }
 
-  a, external-link::part(a) {
+  a,
+  external-link::part(link) {
     color: var(--link-color);
     /* font-weight: 550; */
     text-decoration: none;
+  }
+
+  external-link::part(icon) {
+    color: var(--text-color);
   }
 
   a:hover {
