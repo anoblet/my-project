@@ -153,6 +153,8 @@ export default css`
     overflow: hidden;
     padding-left: 1em;
     padding-right: 1em;
+    display: flex;
+    flex: 1;
   }
 
   #content {
@@ -182,5 +184,10 @@ export default css`
   #footer tabs-component > * {
     text-align: center;
     padding: 1rem;
+  }
+
+  [slot="main"] {
+    display: flex;
+    flex: 1;
   }
 `;
