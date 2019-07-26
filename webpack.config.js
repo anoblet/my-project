@@ -47,7 +47,8 @@ module.exports = {
     extensions: [".js", ".ts"],
     modules: ["vendor", "node_modules"],
     alias: {
-      "lit-element": path.resolve("./node_modules/lit-element")
+      "lit-element": path.resolve("./node_modules/lit-element"),
+      "lit-html": path.resolve("./node_modules/lit-html")
     }
   },
   devServer: {
