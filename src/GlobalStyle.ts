@@ -10,7 +10,7 @@ export default css`
     display: none;
   }
 
-  a {
+  a, external-link::part(a) {
     color: var(--link-color);
     /* font-weight: 550; */
     text-decoration: none;
