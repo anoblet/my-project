@@ -8,7 +8,6 @@ import muuri from "muuri";
 import("../muuri/component");
 
 const beforeRender = async () => {
-  await import("../Grid/Component");
 };
 
 export interface DashboardComponent {
