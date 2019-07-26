@@ -21,7 +21,8 @@ export default css`
     color: var(--text-color);
   }
 
-  a:hover {
+  a:hover,
+  external-link::part(link):hover {
     text-decoration: underline;
   }
 
