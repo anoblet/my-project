@@ -1,6 +1,7 @@
 import { LitElement, customElement, html, property } from "lit-element";
 
 import GlobalStyle from "../../GlobalStyle";
+import Template from "./Template";
 import { mdToHtml } from "../../../packages/Showdown/Showdown";
 import { unsafeHTML } from "lit-html/directives/unsafe-html";
 
@@ -18,9 +19,5 @@ class Readme extends LitElement {
     this.html = mdToHtml(data);
   }
 
-  public render() {
-    return html`
-      ${unsafeHTML(this.html)}
-    `;
-  }
+  public render = Template.bind(this);
 }
