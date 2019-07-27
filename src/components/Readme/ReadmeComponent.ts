@@ -5,7 +5,7 @@ import Template from "./Template";
 import { applyStyle } from "../../Utility";
 
 @customElement("readme-component")
-class Readme extends LitElement {
+export class ReadmeComponent extends LitElement {
   public static styles = [GlobalStyle];
   @property() public path: string =
     "https://raw.githubusercontent.com/anoblet/my-project/master/README.md";
