@@ -12,13 +12,6 @@ class Readme extends LitElement {
     "https://raw.githubusercontent.com/anoblet/my-project/master/README.md";
   @property() public html: string;
 
-  public async beforeRender() {
-    const data = await fetch(this.path).then((response: any) =>
-      response.text()
-    );
-    this.html = mdToHtml(data);
-  }
-
   public render = Template.bind(this);
 
   firstUpdated() {
