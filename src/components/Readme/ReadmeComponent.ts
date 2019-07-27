@@ -20,4 +20,10 @@ class Readme extends LitElement {
   }
 
   public render = Template.bind(this);
+
+  firstUpdated() {
+    const node: any = this.renderRoot.querySelector("markdown-component")
+      .shadowRoot;
+    node.adoptedStyleSheets = [GlobalStyle._styleSheet];
+  }
 }
