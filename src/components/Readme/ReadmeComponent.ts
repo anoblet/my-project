@@ -2,8 +2,7 @@ import { LitElement, customElement, html, property } from "lit-element";
 
 import GlobalStyle from "../../GlobalStyle";
 import Template from "./Template";
-import { mdToHtml } from "../../../packages/Showdown/Showdown";
-import { unsafeHTML } from "lit-html/directives/unsafe-html";
+import { applyStyle } from "../../Utility";
 
 @customElement("readme-component")
 class Readme extends LitElement {
@@ -15,8 +14,7 @@ class Readme extends LitElement {
   public render = Template.bind(this);
 
   firstUpdated() {
-    const node: any = this.renderRoot.querySelector("markdown-component")
-      .shadowRoot;
-    node.adoptedStyleSheets = [GlobalStyle._styleSheet];
+    const markdown: any = this.renderRoot.querySelector("markdown-component")
+    applyStyle(markdown, GlobalStyle);
   }
 }
