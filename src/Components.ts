@@ -137,8 +137,8 @@ export const components = [
   {
     label: "Clap",
     src: () =>
-      import(/* webpackChunkName: "ClapDemo" */ "./components/Clap/Demo"),
-    tag: "clap-component-demo"
+      import(/* webpackChunkName: "ClapDemo" */ "@anoblet/clap-component"),
+    tag: "clap-component"
   },
   {
     label: "Almanac",
