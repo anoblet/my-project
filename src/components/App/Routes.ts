@@ -1,5 +1,6 @@
 import { Route } from "../../Router";
 import { html } from "lit-element";
+import GlobalStyle from "../../GlobalStyle";
 
 export const routes = [
   {
@@ -88,6 +89,7 @@ export const routes = [
     template: html`
       <markdown-component
         src="https://raw.githubusercontent.com/anoblet/my-project/master/README.md"
+        .inheritedStyles=${GlobalStyle}
       ></markdown-component>
     `
   } as Route,
