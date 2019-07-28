@@ -91,8 +91,14 @@ export const routeChanged = async ({ location, portal, routes }: any) => {
   // Check if the portal exists
   if (!portal) throw new Error("Could not find portal");
   // End check if the portal exists
+  // Remove children
+  while (portal.firstChild) {
+    portal.removeChild(portal.firstChild);
+  }
   if (matchedRoute.template) {
-    render(matchedRoute.template, portal);
+    const container = document.createElement("div");
+    render(matchedRoute.template, container);
+    portal.appendChild(container);
   } else {
     const element =
       registry[location.pathname] ||
@@ -104,10 +110,6 @@ export const routeChanged = async ({ location, portal, routes }: any) => {
     });
     // End map properties
     const loading = document.createElement("loading-component");
-    // Remove children
-    while (portal.firstChild) {
-      portal.removeChild(portal.firstChild);
-    }
     portal.appendChild(loading);
     if (!registry[matchedRoute.component])
       if (element.beforeRender) await element.beforeRender();
