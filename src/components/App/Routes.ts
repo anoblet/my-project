@@ -1,4 +1,5 @@
 import { Route } from "../../Router";
+import { html } from "lit-element";
 
 export const routes = [
   {
@@ -25,7 +26,9 @@ export const routes = [
     path: "/components/:component?",
     component: "page-components",
     src: () =>
-      import(/* webpackChunkName: "PageComponents" */ "../PageComponents/Component")
+      import(
+        /* webpackChunkName: "PageComponents" */ "../PageComponents/Component"
+      )
   } as Route,
   {
     path: "/post/read/:id?",
@@ -37,7 +40,9 @@ export const routes = [
     path: "/post/list",
     component: "post-grid-component",
     src: () =>
-      import(/* webpackChunkName: "PostGridComponent" */ "../Post/PostGridComponent"),
+      import(
+        /* webpackChunkName: "PostGridComponent" */ "../Post/PostGridComponent"
+      ),
     voice: "posts"
   } as Route,
   {
@@ -56,7 +61,9 @@ export const routes = [
     path: "/user-settings",
     component: "settings-component",
     src: () =>
-      import(/* webpackChunkName: "SettingsComponent" */ "../User/SettingsComponent"),
+      import(
+        /* webpackChunkName: "SettingsComponent" */ "../User/SettingsComponent"
+      ),
     voice: "settings"
   } as Route,
   {
@@ -75,7 +82,12 @@ export const routes = [
     path: "/readme",
     component: "readme-component",
     src: () =>
-      import(/* webpackChunkName: "ReadmeComponent" */ "../Readme/ReadmeComponent")
+      import(
+        /* webpackChunkName: "ReadmeComponent" */ "../Readme/ReadmeComponent"
+      ),
+    template: html`
+      test
+    `
   } as Route,
   {
     path: "/sitemap",
@@ -103,7 +115,6 @@ export const routes = [
   {
     path: "/poll/:pollId?",
     component: "poll-view",
-    src: () =>
-      import(/* webpackChunkName: "PollView" */ "../Voting/View")
+    src: () => import(/* webpackChunkName: "PollView" */ "../Voting/View")
   } as Route
 ];
