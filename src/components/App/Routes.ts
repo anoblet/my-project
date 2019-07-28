@@ -86,7 +86,9 @@ export const routes = [
         /* webpackChunkName: "ReadmeComponent" */ "../Readme/ReadmeComponent"
       ),
     template: html`
-      test
+      <markdown-component
+        src="https://raw.githubusercontent.com/anoblet/my-project/master/README.md"
+      ></markdown-component>
     `
   } as Route,
   {
