@@ -1,5 +1,6 @@
 import pathToRegexp from "path-to-regexp";
 import { installRouter } from "pwa-helpers/router.js";
+import { render } from "lit-html";
 
 /*
 export const routes = [
@@ -90,26 +91,30 @@ export const routeChanged = async ({ location, portal, routes }: any) => {
   // Check if the portal exists
   if (!portal) throw new Error("Could not find portal");
   // End check if the portal exists
-  const element =
-    registry[location.pathname] ||
-    document.createElement(matchedRoute.component);
-  registry[location.pathname] = element;
-  // Map properties
-  matchedRoute.keys.map((key: any) => {
-    element[key.name] = matchedRoute.data[key.name];
-  });
-  // End map properties
-  const loading = document.createElement("loading-component");
-  // Remove children
-  while (portal.firstChild) {
-    portal.removeChild(portal.firstChild);
+  if (matchedRoute.template) {
+    render(matchedRoute.template, portal);
+  } else {
+    const element =
+      registry[location.pathname] ||
+      document.createElement(matchedRoute.component);
+    registry[location.pathname] = element;
+    // Map properties
+    matchedRoute.keys.map((key: any) => {
+      element[key.name] = matchedRoute.data[key.name];
+    });
+    // End map properties
+    const loading = document.createElement("loading-component");
+    // Remove children
+    while (portal.firstChild) {
+      portal.removeChild(portal.firstChild);
+    }
+    portal.appendChild(loading);
+    if (!registry[matchedRoute.component])
+      if (element.beforeRender) await element.beforeRender();
+    portal.removeChild(loading);
+    portal.appendChild(element);
+    // End replace children
   }
-  portal.appendChild(loading);
-  if (!registry[matchedRoute.component])
-    if (element.beforeRender) await element.beforeRender();
-  portal.removeChild(loading);
-  portal.appendChild(element);
-  // End replace children
 };
 
 export const handleNavigation = routeChanged;
