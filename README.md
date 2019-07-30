@@ -48,7 +48,7 @@ npm i && npm run dev
 
 <a href="https://polymer.slack.com/messages/general/" rel="noreferrer" target="_blank">Polymer Slack</a>, <a href="https://open-wc.org/" rel="noreferrer" target="_blank">Open-WC</a>
 
-@justin @open-wc @bennyp @dakMoR @lars @westbrook @john @captaincodeman
+@justin @open-wc @bennyp @dakMoR @lars @westbrook @john @captaincodeman @sorvell @ruphin
 
 Browserstack for cross-browser testing:
 
