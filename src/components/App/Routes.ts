@@ -84,14 +84,8 @@ export const routes = [
     component: "readme-component",
     src: () =>
       import(
-        /* webpackChunkName: "ReadmeComponent" */ "../Readme/ReadmeComponent"
-      ),
-    template: html`
-      <markdown-component
-        src="https://raw.githubusercontent.com/anoblet/my-project/master/README.md"
-        .inheritedStyles=${GlobalStyle}
-      ></markdown-component>
-    `
+        /* webpackChunkName: "ReadmeComponent" */ "../ReadmeComponent"
+      )
   } as Route,
   {
     path: "/sitemap",
