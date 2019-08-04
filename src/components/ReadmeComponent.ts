@@ -7,7 +7,7 @@ import { applyStyle } from "@anoblet/utility/dist/utility";
 
 @customElement("readme-component")
 export class ReadmeComponent extends LitElement {
-  @query("#markdown") public markdown: Element;
+  @query("markdown-component") public markdown: Element;
 
   firstUpdated() {
     applyStyle(this.markdown, GlobalStyle);
@@ -15,9 +15,8 @@ export class ReadmeComponent extends LitElement {
 
   public render() {
     return html`
-      <markdown-component id="markdown"
+      <markdown-component
         src="https://raw.githubusercontent.com/anoblet/my-project/master/README.md"
-        .inheritedStyles=${GlobalStyle}
       ></markdown-component>
     `;
   }
