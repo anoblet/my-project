@@ -17,7 +17,7 @@ export class Lights extends BeforeRender(LitElement) {
 
   public async beforeRender() {
     const lights = await getLights({
-      ip: "192.168.43.221",
+      ip: "192.168.43.237",
       user: "mWHCs99pkPAniHe0lsSG8ES7qG1xDF8qDQw0h0dN",
       id: 4
     });

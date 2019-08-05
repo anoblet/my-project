@@ -24,7 +24,7 @@ export class Component extends BeforeRender(LitElement) {
 
   public async refreshState() {
     const _status = await status({
-      ip: "192.168.43.221",
+      ip: "192.168.43.237",
       user: "mWHCs99pkPAniHe0lsSG8ES7qG1xDF8qDQw0h0dN",
       id: this.lightId
     });
