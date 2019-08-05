@@ -189,6 +189,11 @@ export default css`
 
   [slot="main"] {
     display: flex;
+    flex-direction: column;
     flex: 1;
+  }
+
+  breadcrumb-component {
+    padding: 1rem 1.5rem;
   }
 `;
