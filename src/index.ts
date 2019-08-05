@@ -7,7 +7,6 @@ import "./components/ProfileMenu/ProfileMenu";
 import "./components/Card/Component";
 import "./components/Loading/Component";
 import "./components/Breadcrumb/Component";
-import "./components/Voice/Component";
 
 import "@anoblet/button-component";
 import "@anoblet/drawer-component";
@@ -28,3 +27,4 @@ if (config.analytics) {
 
 // Voice
 // import("./Voice");
+// import "./components/Voice/Component";
