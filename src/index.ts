@@ -27,4 +27,4 @@ if (config.analytics) {
 }
 
 // Voice
-import("./Voice");
+// import("./Voice");
