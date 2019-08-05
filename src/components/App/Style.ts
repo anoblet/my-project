@@ -36,7 +36,8 @@ export default css`
     padding: 0 2em;
   }
 
-  #drawer li {
+  #drawer a, #drawer external-link::part(link) {
+    display: block;
     padding: 0.5em 0;
   }
 
