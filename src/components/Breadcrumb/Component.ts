@@ -35,6 +35,21 @@ export class BreadcrumbComponent extends LitElement {
     const parts = route.split("/");
     parts.shift();
     let href = "";
+    let myArray = [];
+html`
+  ${myArray.map(item => {
+    switch (item.captionSize) {
+      case "h1":
+        return html`
+          <h1></h1>
+        `;
+      case "h2":
+        return html`
+          <h2></h2>
+        `;
+    }
+  })}
+`;
     return html`
       ${parts.map((part: string) => {
         if (part) href += `/${part}`;
