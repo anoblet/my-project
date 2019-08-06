@@ -4,7 +4,8 @@ import "./components/Header/Component";
 import "./components/Footer/Component";
 import "./components/PageStatic";
 import "./components/ProfileMenu/ProfileMenu";
-import "./components/Card/Component";
+// import "./components/Card/Component";
+import "@anoblet/card-component";
 import "./components/Loading/Component";
 import "./components/Breadcrumb/Component";
 
