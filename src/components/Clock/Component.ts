@@ -5,16 +5,13 @@ import Template from "./Template";
 
 @customElement("clock-component")
 export class Clock extends LitElement {
-  @property() public time: any;
-
   public static styles = [Style];
+  public render = Template.bind(this)();
+
+  @property() public time: any;
 
   public firstUpdated() {
     this.start();
-  }
-
-  public render() {
-    return Template.bind(this)();
   }
 
   public start() {
@@ -45,5 +42,7 @@ export const setTime = () => {
   m = m < 10 ? "0" + m : m;
   s = s < 10 ? "0" + s : s;
 
-  return html`${h}:${m}:${s} ${session}`;
+  return html`
+    ${h}:${m}:${s} ${session}
+  `;
 };
