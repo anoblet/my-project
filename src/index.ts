@@ -4,14 +4,13 @@ import "./components/Header/Component";
 import "./components/Footer/Component";
 import "./components/PageStatic";
 import "./components/ProfileMenu/ProfileMenu";
-// import "./components/Card/Component";
-import "@anoblet/card-component";
 import "./components/Loading/Component";
 import "./components/Breadcrumb/Component";
 
 import "@anoblet/button-component";
 import "@anoblet/drawer-component";
 import "@anoblet/grid-component";
+import "@anoblet/card-component";
 
 // Firebase
 import "@firebase/app";
