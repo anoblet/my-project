@@ -61,13 +61,17 @@ export class App extends BeforeRenderMixin(LitElement) {
     installOfflineWatcher((offline: boolean) => {
       if (offline) toast("Offline");
     });
+    this.registerScrollListeners();
+  }
+
+  public registerScrollListeners() {
     const drawerComponent: LitElement = this.shadowRoot.querySelector(
       "drawer-component"
     );
     drawerComponent.updateComplete.then(() => {
       const main = drawerComponent.shadowRoot.querySelector("main");
       const footer: LitElement = this.shadowRoot.querySelector("#footer");
-
+      
       observeScroll({
         target: main,
         callback: (direction: string) => {
