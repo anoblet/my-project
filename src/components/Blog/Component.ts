@@ -1,5 +1,10 @@
 import { LitElement, customElement, property } from "lit-element";
-import { BeforeRender } from "@anoblet/mixins";
+
+/**
+ * @todo typings need to be exported correctly for consumation as mixins
+ *
+ */
+import { BeforeRender } from "../../mixins/BeforeRender";
 
 import GlobalStyle from "../../GlobalStyle";
 import Style from "./Style";
@@ -7,9 +12,9 @@ import Template from "./Template";
 import { getCollection } from "../../Firebase";
 
 @customElement("blog-component")
-export class Blog extends LitElement {
+export class Blog extends BeforeRender(LitElement) {
   public static styles = [GlobalStyle, Style];
-  public render = Template.bind(this)();
+  public render = Template.bind(this);
 
   @property() public posts: any = [];
 
