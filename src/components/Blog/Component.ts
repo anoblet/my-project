@@ -1,4 +1,5 @@
 import { LitElement, customElement, property } from "lit-element";
+import { BeforeRender } from "@anoblet/mixins";
 
 import GlobalStyle from "../../GlobalStyle";
 import Style from "./Style";
