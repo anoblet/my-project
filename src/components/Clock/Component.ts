@@ -6,7 +6,7 @@ import Template from "./Template";
 @customElement("clock-component")
 export class Clock extends LitElement {
   public static styles = [Style];
-  public render = Template.bind(this)();
+  public render = Template.bind(this);
 
   @property() public time: any;
 
