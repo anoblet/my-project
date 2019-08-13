@@ -196,4 +196,9 @@ export default css`
   breadcrumb-component {
     padding: 1rem 1.5rem;
   }
+
+  #made_with {
+    padding: 1rem;
+    text-align: center;
+  }
 `;

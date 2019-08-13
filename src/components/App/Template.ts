@@ -2,6 +2,7 @@ import { html } from "lit-element";
 import header from "./templates/Header";
 import drawer from "./templates/Drawer";
 import footer from "./templates/Footer";
+import made_with from "../../templates/MadeWith";
 import "../Breadcrumb/Component";
 
 export default function() {
@@ -15,6 +16,7 @@ export default function() {
       <breadcrumb-component></breadcrumb-component>
         <profile-menu id="profile-menu"></profile-menu>
         <div id="portal"></div>
+        <span id="made_with">${made_with()}</span>
       </div>
     </drawer-component>
     <div id="footer">
