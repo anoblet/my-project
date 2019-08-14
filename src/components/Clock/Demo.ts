@@ -11,6 +11,10 @@ export class Demo extends LitElement {
       :host {
         display: flex;
         flex: 1;
+        position: relative;
+      }
+
+      #absolute {
         ${absolute}
       }
     `
@@ -18,7 +22,9 @@ export class Demo extends LitElement {
 
   public render() {
     return html`
-      <clock-component></clock-component>
+      <div id="absolute">
+        <clock-component></clock-component>
+      </div>
     `;
   }
 }
