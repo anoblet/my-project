@@ -8,6 +8,7 @@ export default css`
   .grid {
     position: relative;
     transition: opacity 0.8s linear 1s;
+    overflow: hidden;
   }
 
   .images-loaded .grid {
