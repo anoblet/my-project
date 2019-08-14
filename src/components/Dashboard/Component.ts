@@ -24,7 +24,7 @@ export interface DashboardComponent {
 export class Dashboard extends BeforeRender(LitElement) {
   public static styles = [Style];
   public render = Template.bind(this);
-  
+
   @property() public itemArray: any;
 
   public beforeRender = beforeRender;
@@ -38,7 +38,7 @@ export class Dashboard extends BeforeRender(LitElement) {
       layoutOnResize: 250
     });
     window.addEventListener("drawer-toggled", function() {
-      setTimeout(() => grid.refreshItems().layout(), 0);
+      setTimeout(() => grid.layout(), 0);
     });
   }
 }
