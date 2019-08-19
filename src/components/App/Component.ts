@@ -4,7 +4,7 @@ import BeforeRenderMixin from "../../mixins/BeforeRender";
 import Debug from "../../Debug";
 import GlobalStyle from "../../GlobalStyle";
 import Media from "../../Media";
-import Router from "../../Router";
+import Router from "@anoblet/router";
 import State from "../../State";
 import Store from "../../Store";
 import Style from "./Style";
@@ -71,7 +71,7 @@ export class App extends BeforeRenderMixin(LitElement) {
     drawerComponent.updateComplete.then(() => {
       const main = drawerComponent.shadowRoot.querySelector("main");
       const footer: LitElement = this.shadowRoot.querySelector("#footer");
-      
+
       observeScroll({
         target: main,
         callback: (direction: string) => {

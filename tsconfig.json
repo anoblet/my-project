@@ -11,5 +11,5 @@
     "allowJs": true,
     "alwaysStrict": true
   },
-  "exclude": ["**/*.test.ts", "coverage", "node_modules"]
+  "exclude": ["**/*.test.ts", "coverage"]
 }
