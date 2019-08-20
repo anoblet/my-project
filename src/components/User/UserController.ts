@@ -15,10 +15,7 @@ export interface UserController {
   [key: string]: any; // Add index signature
 }
 
-export class UserController extends Mixin(connect(store)(LitElement), [
-  FirebaseMixin,
-  StateMixin
-]) {
+export class UserController extends LitElement {
   @property({ type: String }) public action: string = "index";
   @property({ type: Object }) public data: any;
   @property({ type: String }) public tail: any;
@@ -29,9 +26,9 @@ export class UserController extends Mixin(connect(store)(LitElement), [
     this.setStore(store);
   }
 
-  public firstUpdated() {
+  public firstUpdated(_changedProperties) {
     if (super.firstUpdated) {
-      super.firstUpdated();
+      super.firstUpdated(_changedProperties);
     }
 
     if (this.action === "index") {
