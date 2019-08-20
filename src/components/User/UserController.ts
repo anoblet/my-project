@@ -26,7 +26,9 @@ export class UserController extends LitElement {
     this.setStore(store);
   }
 
-  public firstUpdated(_changedProperties) {
+  public firstUpdated(
+    _changedProperties: Map<string | number | symbol, unknown>
+  ) {
     if (super.firstUpdated) {
       super.firstUpdated(_changedProperties);
     }
