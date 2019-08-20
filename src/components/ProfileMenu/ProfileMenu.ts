@@ -7,9 +7,7 @@ import { StateMixin } from "../../../packages/StateMixin";
 import GlobalStyle from "../../GlobalStyle";
 import Style from "./Style";
 
-export class ProfileMenu extends Mixin(connect(store)(LitElement), [
-  StateMixin
-]) {
+export class ProfileMenu extends LitElement {
   @property({ type: Boolean, reflect: true })
   public hidden: boolean = true;
   public handler: any;

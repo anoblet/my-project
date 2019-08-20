@@ -1,19 +1,18 @@
+import "@anoblet/pell-component";
+
 import { LitElement, html, property } from "lit-element";
 import { addDocument, getDocument, updateDocument } from "../../Firebase";
 
-import { TemplateMixin } from "../../../packages/TemplateMixin";
 import GlobalStyle from "../../GlobalStyle";
-import { renderForm } from "../PropertyEditor/PropertyEditor";
 import Style from "./PostStyle";
+import { renderForm } from "../PropertyEditor/PropertyEditor";
 import { toast } from "../Toast/Toast";
-
-import("../../../packages/PellComponent/PellComponent");
 
 export interface PostComponent {
   [key: string]: any; // Add index signature
 }
 
-export class PostComponent extends TemplateMixin(LitElement) {
+export class PostComponent extends LitElement {
   @property({ type: String }) public content: string;
   @property({ type: Boolean }) public create: boolean;
   @property({ type: Boolean, reflect: true, attribute: "hidden" })
