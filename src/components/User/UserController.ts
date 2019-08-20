@@ -67,7 +67,7 @@ export class UserController extends LitElement {
         type: "text"
       }
     ];
-    import("../CollectionGrid/CollectionGrid");
+    // import("../CollectionGrid/CollectionGrid");
     const userId = this.state.user.uid;
     let route: string;
     this.getUser().then((user: any) => {
