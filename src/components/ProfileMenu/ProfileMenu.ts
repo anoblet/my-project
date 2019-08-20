@@ -1,11 +1,9 @@
 import { LitElement, property } from "lit-element";
-import { connect } from "pwa-helpers/connect-mixin.js";
-import { Mixin } from "../../../packages/Mixin";
-import { store } from "../../Store";
-import template from "./ProfileMenuTemplate";
-import { StateMixin } from "../../../packages/StateMixin";
+
 import GlobalStyle from "../../GlobalStyle";
+import State from "../../State";
 import Style from "./Style";
+import template from "./ProfileMenuTemplate";
 
 export class ProfileMenu extends LitElement {
   @property({ type: Boolean, reflect: true })
@@ -43,7 +41,7 @@ export class ProfileMenu extends LitElement {
   }
 
   public render() {
-    return template.bind(this)(this.state);
+    return template.bind(this)(State.get());
   }
 }
 
