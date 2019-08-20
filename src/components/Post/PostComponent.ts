@@ -42,12 +42,15 @@ export class PostComponent extends LitElement {
     const constructor: any = this.constructor;
     const properties = constructor.properties;
     Object.keys(properties).map((key: any) => {
+      const element: any = this.shadowRoot.querySelector(
+        `[name=${key}]`
+      );
       if (properties[key].type === Number)
         data[key] = parseInt(
-          this.shadowRoot.querySelector(`[name=${key}]`).value,
+          element.value,
           10
         );
-      else data[key] = this.shadowRoot.querySelector(`[name=${key}]`).value;
+      else data[key] = element.value;
     });
 
     if (this.create)
