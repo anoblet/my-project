@@ -1,7 +1,7 @@
 import { css, html, LitElement, property } from "lit-element";
 import template from "./WebSpeechTemplate";
 
-import { letters } from "../../../packages/letters-array/letter-array";
+import { letters } from "@anoblet/letter-array";
 
 declare global {
   interface Window {
