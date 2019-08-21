@@ -14,8 +14,8 @@ export class RatioComponent extends LitElement {
 
   public connectedCallback() {
     super.connectedCallback();
-    
-    // Fire observer
+
+    // Register observer
     this.observeResize();
   }
 
