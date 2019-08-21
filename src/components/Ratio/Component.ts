@@ -18,7 +18,7 @@ export class RatioComponent extends LitElement {
     this.observeResize();
   }
 
-  // Update on property change
+  // Fire event on property change
   public updated(changedProperties) {
     if (changedProperties.has("ratio")) this.onResize(this.width);
   }
