@@ -1,6 +1,6 @@
 import { LitElement, customElement, property } from "lit-element";
 
-import BeforeRenderMixin from "../../mixins/BeforeRender";
+import { BeforeRender } from "../../mixins/BeforeRender";
 import Debug from "../../Debug";
 import GlobalStyle from "../../GlobalStyle";
 import Media from "../../Media";
@@ -17,7 +17,7 @@ import { routes } from "./Routes";
 import { toast } from "../Toast/Toast";
 
 @customElement("app-component")
-export class App extends BeforeRenderMixin(LitElement) {
+export class AppComponent extends BeforeRender(LitElement) {
   public static styles = [GlobalStyle, Style];
   public render = Template.bind(this);
 
