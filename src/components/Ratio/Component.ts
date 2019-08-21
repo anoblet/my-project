@@ -17,10 +17,12 @@ export class RatioComponent extends LitElement {
     this.observeResize();
   }
 
+  // Update on property change
   public updated(changedProperties) {
     if (changedProperties.has("ratio")) this.onResize(this.width);
   }
 
+  // Helper
   public observeResize() {
     const resizeObserver = new ResizeObserver((entries: any) => {
       for (const entry of entries) {
@@ -31,6 +33,7 @@ export class RatioComponent extends LitElement {
     resizeObserver.observe(this);
   }
 
+  // Event
   public onResize(width: number) {
     const height = width * this.ratio;
     this.style.setProperty("height", height + "px");
