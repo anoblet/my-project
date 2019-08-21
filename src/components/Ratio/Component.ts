@@ -7,8 +7,7 @@ import Template from "./Template";
 @customElement("ratio-component")
 export class RatioComponent extends LitElement {
   public static styles = Style;
-  public template = Template;
-  public render = this.template.bind(this);
+  public render = Template.bind(this);
 
   @property() public ratio: number = 1;
   @property() public width: number = 1;
