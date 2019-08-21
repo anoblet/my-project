@@ -10,7 +10,7 @@ export class RatioComponent extends LitElement {
   public render = Template.bind(this);
 
   @property() public ratio: number = 1;
-  @property() public width: number = 1;
+  @property() public width: number = 0;
 
   public connectedCallback() {
     super.connectedCallback();
