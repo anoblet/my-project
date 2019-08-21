@@ -22,7 +22,7 @@ export class RatioComponent extends LitElement {
     if (changedProperties.has("ratio")) this.onResize(this.width);
   }
 
-  // Helper
+  // Mixin
   public observeResize() {
     const resizeObserver = new ResizeObserver((entries: any) => {
       for (const entry of entries) {
