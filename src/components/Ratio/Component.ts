@@ -14,7 +14,7 @@ export class RatioComponent extends LitElement {
 
   public connectedCallback() {
     super.connectedCallback();
-    // Fire mixin
+    // Fire observer
     this.observeResize();
   }
 
@@ -23,7 +23,7 @@ export class RatioComponent extends LitElement {
     if (changedProperties.has("ratio")) this.onResize(this.width);
   }
 
-  // Mixin
+  // Observer
   public observeResize() {
     const resizeObserver = new ResizeObserver((entries: any) => {
       for (const entry of entries) {
