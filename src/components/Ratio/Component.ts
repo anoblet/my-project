@@ -14,6 +14,8 @@ export class RatioComponent extends LitElement {
 
   public connectedCallback() {
     super.connectedCallback();
+    
+    // Fire mixin
     this.observeResize();
   }
 
