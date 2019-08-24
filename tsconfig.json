@@ -6,10 +6,14 @@
     "moduleResolution": "node",
     "noImplicitAny": false,
     "noUnusedLocals": false,
-    "target": "es2015",
     "experimentalDecorators": true,
     "allowJs": true,
-    "alwaysStrict": true
+    "target": "es2017",
+    "lib": ["es2017", "dom"],
+    "baseUrl": ".",
+    "paths": {
+      "lit-element": ["node_modules/lit-element"]
+    }
   },
   "exclude": ["**/*.test.ts", "coverage"]
 }
