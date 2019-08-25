@@ -4,7 +4,7 @@ import { LitElement, customElement, property } from "lit-element";
  * @todo typings need to be exported correctly for consumation as mixins
  *
  */
-import { BeforeRender } from "../../mixins/BeforeRender";
+import { BeforeRender } from "@anoblet/mixins";
 
 import GlobalStyle from "../../GlobalStyle";
 import Style from "./Style";
