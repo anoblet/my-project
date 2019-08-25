@@ -4,7 +4,7 @@ import { LitElement, css, customElement } from "lit-element";
 import { renderForm } from "../PropertyEditor/PropertyEditor";
 import { store } from "../../Store";
 import { toast } from "../Toast/Toast";
-import { BeforeRender } from "../../mixins/BeforeRender";
+import { BeforeRender } from "@anoblet/mixins";
 
 const properties = {
   username: {
