@@ -2,7 +2,7 @@ import { LitElement, css, customElement, html, property } from "lit-element";
 import Firebase from "../../Firebase";
 import { getIp } from "../../User";
 import { Poll } from "./Types";
-import { BeforeRender } from "../../mixins/BeforeRender";
+import { BeforeRender } from "@anoblet/mixins";
 
 const Template = function() {
   return html`
