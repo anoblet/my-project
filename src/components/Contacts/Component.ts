@@ -6,7 +6,7 @@ import Template from "./Template";
 
 import { database as db } from "../../Database";
 import { user } from "../../User";
-import { BeforeRender } from "../../mixins/BeforeRender";
+import { BeforeRender } from "@anoblet/mixins";
 
 @customElement("contacts-component")
 export class Contacts extends BeforeRender(LitElement) {
