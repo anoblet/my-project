@@ -1,6 +1,6 @@
 import { LitElement, customElement, property } from "lit-element";
 
-import { BeforeRender } from "../../mixins/BeforeRender";
+import { BeforeRender } from "@anoblet/mixins";
 import Style from "./Style";
 import Template from "./Template";
 import muuri from "muuri";
