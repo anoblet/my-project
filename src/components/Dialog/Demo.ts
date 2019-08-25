@@ -2,7 +2,8 @@ import "./Component";
 
 import { LitElement, css, customElement, html } from "lit-element";
 
-import { BeforeRender } from "../../mixins/BeforeRender";
+import { BeforeRender } from "@anoblet/mixins";
+
 import GlobalStyle from "../../GlobalStyle";
 
 @customElement("dialog-component-demo")
