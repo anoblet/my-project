@@ -1,7 +1,7 @@
 import { LitElement, css, customElement, html } from "lit-element";
 import { until } from "lit-html/directives/until";
 
-import { BeforeRender } from "../../mixins/BeforeRender";
+import { BeforeRender } from "@anoblet/mixins";
 import { bridge } from "./Bridge";
 
 import("./Auth");

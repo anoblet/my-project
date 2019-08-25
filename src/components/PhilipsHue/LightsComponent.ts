@@ -1,6 +1,6 @@
 import { customElement, html, LitElement, property } from "lit-element";
 import { getLights } from "./PhilipsHue";
-import { BeforeRender } from "../../mixins/BeforeRender";
+import { BeforeRender } from "@anoblet/mixins";
 
 import("./LightComponent");
 
