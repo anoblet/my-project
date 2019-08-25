@@ -3,7 +3,7 @@ import GlobalStyle from "../../GlobalStyle";
 
 import { LitElement, css, customElement, html } from "lit-element";
 
-import { BeforeRender } from "../../mixins/BeforeRender";
+import { BeforeRender } from "@anoblet/mixins";
 
 @customElement("voting-component-demo")
 export class Demo extends BeforeRender(LitElement) {

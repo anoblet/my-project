@@ -1,5 +1,5 @@
 import { LitElement, customElement, html, property } from "lit-element";
-import { BeforeRender } from "../../mixins/BeforeRender";
+import { BeforeRender } from "@anoblet/mixins";
 
 @customElement("philips-hue-auth")
 export class Auth extends BeforeRender(LitElement) {
