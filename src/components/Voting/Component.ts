@@ -1,6 +1,6 @@
 import { LitElement, customElement, property } from "lit-element";
 
-import { BeforeRender } from "../../mixins/BeforeRender";
+import { BeforeRender } from "@anoblet/mixins";
 import { Dialog } from "../Dialog/Component";
 import Firebase from "../../Firebase";
 import GlobalStyle from "../../GlobalStyle";
