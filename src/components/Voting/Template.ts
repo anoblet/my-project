@@ -2,7 +2,7 @@ import "../Dialog/Component";
 
 import { delete_outline } from "../../Icons";
 import { html } from "lit-element";
-const readme = require("./readme.md");
+// const readme = require("./readme.md");
 import { unsafeHTML } from "lit-html/directives/unsafe-html";
 import { Poll } from "./Types";
 import "./Create";
@@ -25,7 +25,9 @@ export default function() {
                 html`
                   <grid-component class="item">
                     <a href="/poll/${poll.id}">${poll.title}</a>
-                    <span @click=${() => this.deletePoll(index)}>${delete_outline}</span>
+                    <span @click=${() => this.deletePoll(index)}
+                      >${delete_outline}</span
+                    >
                   </grid-component>
                 `
             )}</grid-component
@@ -33,7 +35,7 @@ export default function() {
         </grid-component>
       </card-component>
       <card-component title="Readme">
-        ${unsafeHTML(readme)}
+        ${unsafeHTML(false /*readme*/)}
       </card-component>
     </grid-component>
     <dialog-component id="create-dialog" fixed
