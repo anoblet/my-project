@@ -1,6 +1,6 @@
 import { LitElement, html, property } from "lit-element";
 
-import { navigate } from "../../Router";
+import { navigate } from "@anoblet/router";
 import { signOut } from "../../User";
 import { store } from "../../Store";
 import { until } from "lit-html/directives/until";

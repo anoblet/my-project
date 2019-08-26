@@ -5,7 +5,7 @@ import { LitElement, css, html, property } from "lit-element";
 import { deleteDocument, getCollection } from "../../Firebase";
 
 import { debug } from "../../Debug";
-import { navigate } from "../../Router";
+import { navigate } from "@anoblet/router";
 import { store } from "../../Store";
 import { toast } from "../Toast/Toast";
 

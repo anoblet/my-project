@@ -1,4 +1,4 @@
-import { Route } from "../../Router";
+import { Route } from "@anoblet/router";
 import { html } from "lit-element";
 import GlobalStyle from "../../GlobalStyle";
 

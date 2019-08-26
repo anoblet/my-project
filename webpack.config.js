@@ -27,17 +27,6 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.md$/,
-        use: [
-          {
-            loader: "html-loader"
-          },
-          {
-            loader: "markdown-loader"
-          }
-        ]
-      },
-      {
         test: /\.tsx?$/,
         use: "ts-loader"
       }
@@ -138,11 +127,6 @@ module.exports = {
       {
         from: "src/assets/*",
         to: "./",
-        flatten: true
-      },
-      {
-        from: "node_modules/material-design-icons/iconfont/*",
-        to: "./font",
         flatten: true
       },
       {
