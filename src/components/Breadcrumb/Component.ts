@@ -36,25 +36,28 @@ export class BreadcrumbComponent extends LitElement {
     parts.shift();
     let href = "";
     let myArray = [];
-html`
-  ${myArray.map(item => {
-    switch (item.captionSize) {
-      case "h1":
-        return html`
-          <h1></h1>
-        `;
-      case "h2":
-        return html`
-          <h2></h2>
-        `;
-    }
-  })}
-`;
+    html`
+      ${myArray.map(item => {
+        switch (item.captionSize) {
+          case "h1":
+            return html`
+              <h1></h1>
+            `;
+          case "h2":
+            return html`
+              <h2></h2>
+            `;
+        }
+      })}
+    `;
     return html`
       ${parts.map((part: string) => {
         if (part) href += `/${part}`;
         return html`
-          <a class="primary" href="${href}">${part}</a> /
+          <a class="primary" href="${href}" aria-label="${part ? part : "Home"}"
+            >${part}</a
+          >
+          /
         `;
       })}
     `;
