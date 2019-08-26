@@ -7,7 +7,7 @@ import { create, notes, show_chart } from "../Icons";
 import { unsafeHTML } from "lit-html/directives/unsafe-html";
 import "./Ratio/Component";
 
-const readme = require("../../README.md");
+// const readme = require("../../README.md");
 
 const Style = css`
   :host {
@@ -173,7 +173,7 @@ export class PageStatic extends LitElement {
         : ""}
       ${version() === 4
         ? html`
-            ${unsafeHTML(readme)}
+            ${unsafeHTML(false/*readme*/)}
           `
         : ""}
     `;
