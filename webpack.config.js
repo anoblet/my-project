@@ -13,8 +13,9 @@ const Visualizer = require("webpack-visualizer-plugin");
 const PreloadWebpackPlugin = require("preload-webpack-plugin");
 const { UnusedFilesWebpackPlugin } = require("unused-files-webpack-plugin");
 const TerserPlugin = require("terser-webpack-plugin");
+const markdown = require("./webpack/markdown.js");
 
-module.exports = {
+const config = {
   mode: "production",
   entry: "./src/index",
   output: {
@@ -145,3 +146,5 @@ module.exports = {
     }
   ]
 };
+
+module.exports = merge(config, markdown);
