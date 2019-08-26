@@ -35,7 +35,7 @@ export default function() {
         </grid-component>
       </card-component>
       <card-component title="Readme">
-        ${unsafeHTML(false /*readme*/)}
+        ${false ? unsafeHTML(false /*readme*/) : ""}
       </card-component>
     </grid-component>
     <dialog-component id="create-dialog" fixed
