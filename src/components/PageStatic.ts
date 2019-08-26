@@ -173,7 +173,7 @@ export class PageStatic extends LitElement {
         : ""}
       ${version() === 4
         ? html`
-            ${unsafeHTML(false/*readme*/)}
+            ${unsafeHTML(false /*readme*/)}
           `
         : ""}
     `;
