@@ -57,7 +57,7 @@ export const detectClickOutside = (target, callback) =>
   document.addEventListener("click", (evt) => {
     let targetElement: any = evt.target; // clicked element
     do {
-      if (targetElement == target) return;
+      if (targetElement === target) return;
       targetElement = targetElement.parentNode;
     } while (targetElement);
     callback();
