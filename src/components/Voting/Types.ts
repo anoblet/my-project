@@ -1,14 +1,14 @@
 export class Poll {
-  id: string;
-  title: string = "";
-  options: string[] = [];
-  result: {
+  public id: string;
+  public title: string = "";
+  public options: string[] = [];
+  public result: {
     total: number;
   };
-  votedIps: string[];
+  public votedIps: string[];
 }
 
 export class Option {
-  label: string = "";
-  value: number = 0;
+  public label: string = "";
+  public value: number = 0;
 }

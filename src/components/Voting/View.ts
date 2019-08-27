@@ -55,12 +55,12 @@ export class Component extends BeforeRender(LitElement) {
   public static styles = Style;
   public render = Template.bind(this);
 
-  @property() data: Poll;
-  @property() pollId: string;
-  @property() didVote: boolean = false;
-  @property() ip: string;
+  @property() public data: Poll;
+  @property() public pollId: string;
+  @property() public didVote: boolean = false;
+  @property() public ip: string;
 
-  async beforeRender() {
+  public async beforeRender() {
     this.data = await Firebase.getDocument({
       path: `polls/${this.pollId}`
     });
@@ -80,7 +80,7 @@ export class Component extends BeforeRender(LitElement) {
    * Check if the user voted already based on ip
    * @return boolean
    */
-  async _didVote() {
+  public async _didVote() {
     return this.data.votedIps.includes(this.ip);
   }
 

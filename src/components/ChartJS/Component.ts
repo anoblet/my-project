@@ -16,7 +16,6 @@ export class ChartJS extends LitElement {
   public data: any;
   public chart: Chart;
 
-
   public firstUpdated() {
     this.createChart();
     this.observeResize();

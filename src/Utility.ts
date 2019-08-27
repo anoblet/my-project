@@ -32,12 +32,12 @@ export const randomColor = () => {
   return color;
 };
 
-export const printContent = div => {
+export const printContent = (div) => {
   console.log(div);
   const html =
     "<html><head>" +
     "" +
-    '</head><body style="background:#ffffff;">' +
+    "</head><body style=\"background:#ffffff;\">" +
     div.innerHTML +
     "</body></html>";
 
@@ -54,7 +54,7 @@ export const printContent = div => {
 };
 
 export const detectClickOutside = (target, callback) =>
-  document.addEventListener("click", evt => {
+  document.addEventListener("click", (evt) => {
     let targetElement: any = evt.target; // clicked element
     do {
       if (targetElement == target) return;

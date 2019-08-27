@@ -1,4 +1,4 @@
 export class Document {
-  title: "";
-  section: "";
+  public title: "";
+  public section: "";
 }

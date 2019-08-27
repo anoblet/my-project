@@ -20,7 +20,7 @@ export class Component extends BeforeRender(LitElement) {
 
   @property({ type: Array }) public polls = [];
 
-  async beforeRender() {
+  public async beforeRender() {
     // Satisfies polls on initial view
     this.polls = await Firebase.getCollection({
       path: "/polls"

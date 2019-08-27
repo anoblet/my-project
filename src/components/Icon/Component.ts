@@ -11,5 +11,5 @@ export class Component extends LitElement {
   public static styles = [Style];
   public render = Template.bind(this);
 
-  @property({ type: String }) icon: string = "home";
+  @property({ type: String }) public icon: string = "home";
 }

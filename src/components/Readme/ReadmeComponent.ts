@@ -13,8 +13,8 @@ export class ReadmeComponent extends LitElement {
 
   public render = Template.bind(this);
 
-  firstUpdated() {
-    const markdown: any = this.renderRoot.querySelector("markdown-component")
+  public firstUpdated() {
+    const markdown: any = this.renderRoot.querySelector("markdown-component");
     applyStyle(markdown, GlobalStyle);
   }
 }

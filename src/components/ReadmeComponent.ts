@@ -7,7 +7,7 @@ import { applyStyle } from "@anoblet/utility/dist/utility";
 
 @customElement("readme-component")
 export class ReadmeComponent extends LitElement {
-  firstUpdated() {
+  public firstUpdated() {
     applyStyle(
       this.shadowRoot.querySelector("markdown-component"),
       GlobalStyle

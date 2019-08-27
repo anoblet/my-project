@@ -65,7 +65,7 @@ export class Demo extends BeforeRender(LitElement) {
     // console.log(programs);
   }
 
-  connectedCallback() {
+  public connectedCallback() {
     super.connectedCallback();
     // this.getInitialData();
     console.log("2");
@@ -86,7 +86,7 @@ export class Demo extends BeforeRender(LitElement) {
             <select name="vintage" @change=${this.handleChange}>
               ${this.vintages
                 ? this.vintages.map(
-                    vintage => html`
+                    (vintage) => html`
                       <option
                         value=${vintage}
                         ?selected=${vintage == this.vintage}
@@ -101,9 +101,9 @@ export class Demo extends BeforeRender(LitElement) {
             <label>Program</label>
             <select name="vintage" @change=${this.handleChange}>
               ${until(
-                getPrograms(this.vintage).then(programs =>
+                getPrograms(this.vintage).then((programs) =>
                   programs.map(
-                    program =>
+                    (program) =>
                       html`
                         <option>${program}</option>
                       `

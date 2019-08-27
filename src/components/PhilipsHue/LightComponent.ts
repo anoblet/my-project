@@ -50,7 +50,7 @@ export class Component extends BeforeRender(LitElement) {
     this.refreshState();
   }
 
-  construcor() {
+  public construcor() {
     this.light = new Light();
     this.light.ip = "192.168.43.221";
     this.light.id = "mWHCs99pkPAniHe0lsSG8ES7qG1xDF8qDQw0h0dN";
