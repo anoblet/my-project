@@ -1,11 +1,11 @@
-export class Poll {
-  public id: string;
-  public title: string = "";
-  public options: string[] = [];
-  public result: {
+export interface Poll {
+  id: string;
+  title: string;
+  options: string[];
+  result: {
     total: number;
   };
-  public votedIps: string[];
+  votedIps: string[];
 }
 
 export class Option {
