@@ -89,7 +89,7 @@ export class Demo extends BeforeRender(LitElement) {
                     (vintage) => html`
                       <option
                         value=${vintage}
-                        ?selected=${vintage == this.vintage}
+                        ?selected=${vintage === this.vintage}
                         >${vintage}</option
                       >
                     `
