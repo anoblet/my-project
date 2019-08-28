@@ -6,12 +6,18 @@ export class Light {
   public ip: any;
   public user: any;
 
-  public status() {}
+  public status() {
+    return;
+  }
 
-  public state() {}
+  public state() {
+    return;
+  }
 
   // Events
-  public off() {}
+  public off() {
+    return;
+  }
 
   public async on() {
     const url = `http://${this.ip}/api/${this.user}/lights/${this.id}/state`;
