@@ -32,7 +32,7 @@ export class Almanac extends LitElement {
 
   // Handlers
   public swap(direction) {
-    let spread;
+    const spread;
     const currentDocument = () => {
       switch (direction) {
         case "up": {
