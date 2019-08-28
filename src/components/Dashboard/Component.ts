@@ -7,7 +7,9 @@ import muuri from "muuri";
 
 import("../muuri/component");
 
-const beforeRender = async () => {};
+const beforeRender = async () => {
+  return;
+};
 
 export interface DashboardComponent {
   src: string;
