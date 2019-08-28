@@ -7,7 +7,11 @@ const definitionDocument = {};
 
 /**
  * Almanac class
- * Instead of having a single hereditary source, categories could be navigated horizontally while topics could be navigated vertically.
+ *
+ * Instead of having a single hereditary source,
+ * categories could be navigated horizontally
+ * while topics could be navigated vertically.
+ *
  * Position could be defined with an x,y value indicating category, topic
  * Horizontal navitation would reset y
  * @todo lazy-load documents one degree in any direction, re-run after position change
