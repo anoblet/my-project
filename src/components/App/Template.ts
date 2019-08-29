@@ -10,10 +10,10 @@ export default function() {
     <header-component>
       ${header.bind(this)()}
     </header-component>
-    <drawer-component
+    <drawer-component ?absolute=${this.mediaSize === "mobile"}
       ><div id="drawer" slot="drawer">${drawer()}</div>
       <div slot="main">
-      <breadcrumb-component></breadcrumb-component>
+        <breadcrumb-component></breadcrumb-component>
         <profile-menu id="profile-menu"></profile-menu>
         <div id="portal"></div>
         <span id="made_with">${made_with()}</span>
