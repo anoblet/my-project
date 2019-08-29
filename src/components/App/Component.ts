@@ -24,7 +24,7 @@ export class AppComponent extends BeforeRender(LitElement) {
 
   @property({ reflect: true, attribute: "drawer-opened", type: Boolean })
   public drawerOpened: boolean = false;
-  @property() public mediaSize: string;
+  @property({ type: String, reflect: true }) public mediaSize: string;
 
   // Lifecycle
   constructor() {
