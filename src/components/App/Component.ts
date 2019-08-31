@@ -25,6 +25,7 @@ export class AppComponent extends BeforeRender(LitElement) {
   @property({ reflect: true, attribute: "drawer-opened", type: Boolean })
   public drawerOpened: boolean = false;
   @property({ type: String, reflect: true }) public mediaSize: string;
+  @property({ type: String, reflect: true }) public activeRoute: string;
 
   // Lifecycle
   constructor() {
@@ -45,6 +46,10 @@ export class AppComponent extends BeforeRender(LitElement) {
     }
 
     this.initMediaSize();
+    Store.subscribe(() => {
+      this.syncActiveRoute();
+    });
+    this.syncActiveRoute();
   }
 
   public connectedCallback() {
@@ -63,6 +68,11 @@ export class AppComponent extends BeforeRender(LitElement) {
       if (offline) toast("Offline");
     });
     this.registerScrollListeners();
+  }
+
+  public syncActiveRoute() {
+    const state = Store.getState();
+    this.activeRoute = state.app.activeRoute;
   }
 
   public registerScrollListeners() {
