@@ -197,6 +197,11 @@ export default css`
     padding: 1rem 1.5rem;
   }
 
+  breadcrumb-component::part(link) {
+    color: var(--link-color);
+    text-decoration: none;
+  }
+
   #made_with {
     padding: 1rem;
     text-align: center;
