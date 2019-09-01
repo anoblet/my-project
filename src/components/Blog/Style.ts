@@ -17,7 +17,9 @@ export default css`
   }
 
   card-component::part(card) {
-    border: 1px solid rgba(255,255,255, 0.5);
+    border-size: var(--border-size);
+    border-style: solid;
+    border-color: var(--border-color);
     border-radius: 0.5rem;
   }
 `;
