@@ -5,7 +5,10 @@ export default function() {
   return html`
     <card-component title="Contacts">
       <grid-component>
-        <card-component>Monitor eye-contacts (RGP or rigid gas permeable lens) usage</card-component>
+        <card-component
+          >Monitor eye-contacts (RGP or rigid gas permeable lens)
+          usage</card-component
+        >
         <card-component>
           <grid-component id="buttons">
             <button-component label="In" @click=${this.in}></button-component>
@@ -14,16 +17,14 @@ export default function() {
         </card-component>
         <card-component>
           <grid-component id="log">
-            ${this.data &&
-              this.data.log &&
-              this.data.log.map(
-                (entry: any) => html`
-                  <div>
-                    ${entry.type}
-                  </div>
-                  <div>${new Date(entry.time).toLocaleString()}</div>
-                `
-              )}
+            ${this.data.log.map(
+              (entry: any) => html`
+                <div>
+                  ${entry.type}
+                </div>
+                <div>${new Date(entry.time).toLocaleString()}</div>
+              `
+            )}
           </grid-component>
           <!-- <button-component
             label="Print"
