@@ -36,7 +36,8 @@ export default css`
     padding: 0 2em;
   }
 
-  #drawer a, #drawer external-link::part(link) {
+  #drawer a,
+  #drawer external-link::part(link) {
     display: block;
     padding: 0.5em 0;
   }
@@ -192,6 +193,11 @@ export default css`
     display: flex;
     flex-direction: column;
     flex: 1;
+    /* border-top: 1px solid; */
+  }
+
+  drawer-component[opened] div[slot="main"] {
+    /* border-left: 1px solid; */
   }
 
   breadcrumb-component {
