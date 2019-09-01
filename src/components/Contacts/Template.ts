@@ -23,6 +23,7 @@ export default function() {
                   ${item.type}
                 </div>
                 <div>${new Date(item.time).toLocaleString()}</div>
+                <div><button-component>X</button-component></div>
               `
             )}
           </grid-component>
