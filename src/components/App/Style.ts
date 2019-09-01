@@ -193,6 +193,9 @@ export default css`
     display: flex;
     flex-direction: column;
     flex: 1;
+  }
+
+  [slot="main"] {
     /* border-top: 1px solid; */
   }
 
