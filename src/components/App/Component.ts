@@ -104,7 +104,7 @@ export class AppComponent extends BeforeRender(LitElement) {
 
   public registerlisteners() {
     this.addEventListener("close-drawer", this._closeDrawer);
-    this.addEventListener("drawer-toggled", this._toggleDrawer);
+    // this.addEventListener("drawer-toggled", this._toggleDrawer);
   }
 
   public async registerRouter() {
