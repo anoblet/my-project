@@ -13,4 +13,8 @@ export default css`
   h3 {
     margin-block-start: 0;
   }
+
+  card-component::part(card) {
+    padding-bottom: 0;
+  }
 `;
