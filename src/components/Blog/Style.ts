@@ -9,4 +9,8 @@ export default css`
   [slot="title"] a {
     color: inherit;
   }
+
+  h3 {
+    margin-block-start: 0;
+  }
 `;
