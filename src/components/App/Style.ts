@@ -156,6 +156,7 @@ export default css`
     padding-right: 1em;
     display: flex;
     flex: 1;
+    position: relative;
   }
 
   #content {
