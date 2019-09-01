@@ -9,9 +9,9 @@ export default function() {
             if (post.archived) return;
             return html`
               <card-component>
-                <h3 slot="title">
+                <h4 slot="title">
                   <a href="/post/read/${post.id}">${post.title}</a>
-                </h3>
+                </h4>
                 <div slot="body">${unsafeHTML(post.body)}</div>
               </card-component>
             `;
