@@ -17,7 +17,7 @@ export default css`
   }
 
   card-component::part(card) {
-    border-size: var(--border-size);
+    border-width: var(--border-size);
     border-style: solid;
     border-color: var(--border-color);
     border-radius: 0.5rem;
