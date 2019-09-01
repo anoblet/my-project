@@ -18,11 +18,11 @@ export default function() {
         <card-component>
           <grid-component id="log">
             ${this.data.log.map(
-              (entry: any) => html`
+              (item: any) => html`
                 <div>
-                  ${entry.type}
+                  ${item.type}
                 </div>
-                <div>${new Date(entry.time).toLocaleString()}</div>
+                <div>${new Date(item.time).toLocaleString()}</div>
               `
             )}
           </grid-component>
