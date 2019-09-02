@@ -11,7 +11,7 @@ export default css`
   }
 
   #log {
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: max-content auto max-content;
   }
 
   #log > div {

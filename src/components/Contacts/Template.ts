@@ -1,5 +1,6 @@
 import { html } from "lit-element";
 import { printContent } from "../../Utility";
+import { close } from "@anoblet/material-icons";
 
 export default function() {
   return html`
@@ -23,7 +24,7 @@ export default function() {
                   ${item.type}
                 </div>
                 <div>${new Date(item.time).toLocaleString()}</div>
-                <div><button-component>X</button-component></div>
+                <div><button-component>${close}</button-component></div>
               `
             )}
           </grid-component>
