@@ -5,7 +5,7 @@ import Database from "../../Database";
 import GlobalStyle from "../../GlobalStyle";
 import Style from "./Style";
 import Template from "./Template";
-import { user } from "../../User";
+import User from "../../User";
 
 // @todo Data is held in a single document with an array underneath should this be moved into a collection?
 
@@ -17,7 +17,7 @@ export class Contacts extends BeforeRender(LitElement) {
   @property() public data = { log: [] };
 
   public async beforeRender() {
-    const _user = user.get().uid;
+    const _user = User.get().uid;
     if (_user)
       Database.getDocument({
         path: `users/${_user}/contacts/timesheet`,
@@ -42,7 +42,7 @@ export class Contacts extends BeforeRender(LitElement) {
 
   public add(data: { type: string; time: number }) {
     const _data = { log: [...this.data.log, data] };
-    const _user = user.get().uid;
+    const _user = User.get().uid;
     if (_user)
       Database.update({
         path: `users/${_user}/contacts/timesheet`,
@@ -54,7 +54,7 @@ export class Contacts extends BeforeRender(LitElement) {
   public deleteItem(index: number) {
     const data = this.data.log;
     data.splice(index, 1);
-    const _user = user.get().uid;
+    const _user = User.get().uid;
     if (_user)
       Database.update({
         path: `users/${_user}/contacts/timesheet`,
