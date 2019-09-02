@@ -109,6 +109,13 @@ export class AppComponent extends BeforeRender(LitElement) {
 
   public async registerRouter() {
     Router.install((location: any) => {
+      this.dispatchEvent(
+        new CustomEvent("location-changed", {
+          detail: {
+            location
+          }
+        })
+      );
       Router.routeChanged({
         location,
         routes,
