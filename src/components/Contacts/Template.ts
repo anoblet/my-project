@@ -23,7 +23,9 @@ export default function() {
                 <div>
                   ${item.type}
                 </div>
-                <div>${new Date(item.time).toLocaleString()}</div>
+                <div class="center">
+                  ${new Date(item.time).toLocaleString()}
+                </div>
                 <div><button-component>${close}</button-component></div>
               `
             )}

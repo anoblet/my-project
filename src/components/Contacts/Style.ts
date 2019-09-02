@@ -11,11 +11,15 @@ export default css`
   }
 
   #log {
-    grid-template-columns: max-content auto max-content;
+    grid-template-columns: auto auto max-content;
   }
 
   #log > div {
     display: flex;
     align-items: center;
+  }
+
+  .center {
+    /* justify-content: center; */
   }
 `;
