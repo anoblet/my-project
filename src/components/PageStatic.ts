@@ -3,7 +3,7 @@ import "./PatreonComponent";
 import { LitElement, css, customElement, html } from "lit-element";
 
 import GlobalStyle from "../GlobalStyle";
-import { create, notes, show_chart } from "../Icons";
+import { create, extension, notes, show_chart } from "@anoblet/material-icons";
 import { unsafeHTML } from "lit-html/directives/unsafe-html";
 import "./Ratio/Component";
 
@@ -132,6 +132,18 @@ export class PageStatic extends LitElement {
       ${version() === 2
         ? html`
             <grid-component id="grid">
+              <div class="grid-item">
+                <a href="/components">
+                  <ratio-component>
+                    <div class="item">
+                      <span class="label"><h1>Components</h1></span>
+                      <span class="icon">
+                        ${extension}
+                      </span>
+                    </div>
+                  </ratio-component>
+                </a>
+              </div>
               <div class="grid-item">
                 <a href="/readme">
                   <ratio-component>
