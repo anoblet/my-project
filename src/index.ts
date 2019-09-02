@@ -18,13 +18,13 @@ import "@firebase/app";
 import "@firebase/auth";
 
 // Google analytics
-if (config.analytics) {
-  import("ga-lite").then((module: any) => {
-    const galite = module.default;
-    galite("create", "UA-63899225-2", "auto");
-    galite("send", "pageview");
-  });
-}
+// if (config.analytics) {
+//   import("ga-lite").then((module: any) => {
+//     const galite = module.default;
+//     galite("create", "UA-63899225-2", "auto");
+//     galite("send", "pageview");
+//   });
+// }
 
 // Voice
 // import("./Voice");
