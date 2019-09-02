@@ -12,6 +12,7 @@ import "@anoblet/drawer-component";
 import "@anoblet/grid-component";
 import "@anoblet/card-component";
 import "@anoblet/breadcrumb-component";
+import "@anoblet/google-analytics";
 
 // Firebase
 import "@firebase/app";
