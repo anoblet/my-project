@@ -7,6 +7,8 @@ import Style from "./Style";
 import Template from "./Template";
 import { user } from "../../User";
 
+// @todo Data is held in a single document with an array underneath should this be moved into a collection?
+
 @customElement("contacts-component")
 export class Contacts extends BeforeRender(LitElement) {
   public static styles = [GlobalStyle, Style];
