@@ -19,14 +19,18 @@ export default function() {
         <card-component>
           <grid-component id="log">
             ${this.data.log.map(
-              (item: any) => html`
+              (item: any, index: number) => html`
                 <div>
                   ${item.type}
                 </div>
                 <div class="center">
                   ${new Date(item.time).toLocaleString()}
                 </div>
-                <div><button-component>${close}</button-component></div>
+                <div>
+                  <button-component @click=${() => this.deleteItem(index)}
+                    >${close}</button-component
+                  >
+                </div>
               `
             )}
           </grid-component>

@@ -1,12 +1,11 @@
 import { LitElement, customElement, property } from "lit-element";
 
+import { BeforeRender } from "@anoblet/mixins";
+import Database from "../../Database";
 import GlobalStyle from "../../GlobalStyle";
 import Style from "./Style";
 import Template from "./Template";
-
-import { database as db } from "../../Database";
 import { user } from "../../User";
-import { BeforeRender } from "@anoblet/mixins";
 
 @customElement("contacts-component")
 export class Contacts extends BeforeRender(LitElement) {
@@ -18,7 +17,7 @@ export class Contacts extends BeforeRender(LitElement) {
   public async beforeRender() {
     const _user = user.get().uid;
     if (_user)
-      db.getDocument({
+      Database.getDocument({
         path: `users/${_user}/contacts/timesheet`,
         callback: (document: any) => (this.data = document),
         watch: true
@@ -43,10 +42,22 @@ export class Contacts extends BeforeRender(LitElement) {
     const _data = { log: [...this.data.log, data] };
     const _user = user.get().uid;
     if (_user)
-      db.update({
+      Database.update({
         path: `users/${_user}/contacts/timesheet`,
         data: _data
       });
     else this.data = _data;
+  }
+
+  public deleteItem(index: number) {
+    const data = this.data.log;
+    data.splice(index, 1);
+    const _user = user.get().uid;
+    if (_user)
+      Database.update({
+        path: `users/${_user}/contacts/timesheet`,
+        data: { log: data }
+      });
+    else this.data = { log: data };
   }
 }
