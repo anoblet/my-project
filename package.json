@@ -16,6 +16,7 @@
   "author": "Andrew Noblet",
   "license": "ISC",
   "dependencies": {
+    "@anoblet/mixins": "git+https://github.com/anoblet/mixins.git",
     "@simonwep/pickr": "^0.4.11",
     "@webcomponents/webcomponentsjs": "^2.2.10",
     "annyang": "^2.6.1",
