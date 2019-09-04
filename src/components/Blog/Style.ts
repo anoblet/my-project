@@ -16,6 +16,10 @@ export default css`
     color: var(--secondary-color);
   }
 
+  grid-component {
+    grid-gap: 0;
+  }
+
   card-component::part(card) {
     border-width: var(--border-size);
     border-style: solid;
