@@ -2,7 +2,7 @@ import { LitElement, customElement, html, property } from "lit-element";
 
 import GlobalStyle from "../GlobalStyle";
 import { setTheme } from "../Theme";
-import { BeforeRender } from "../mixins/BeforeRender";
+import { BeforeRender } from "@anoblet/mixins";
 
 @customElement("color-picker")
 export class ColorPicker extends BeforeRender(LitElement) {
