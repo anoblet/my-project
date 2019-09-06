@@ -216,4 +216,10 @@ export default css`
     padding: 1rem;
     text-align: center;
   }
+
+  breadcrumb-component {
+    border: 1px solid;
+    margin: 1rem;
+    border-radius: .25rem;
+  }
 `;
