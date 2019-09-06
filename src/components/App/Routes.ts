@@ -1,12 +1,13 @@
 import { Route } from "@anoblet/router";
-import { html } from "lit-element";
-import GlobalStyle from "../../GlobalStyle";
 
 export const routes = [
   {
     name: "Home",
     path: "/",
     component: "page-static",
+    // template: import(
+    //   /* webpackChunkName: "Home" */ "../../templates/Home"
+    // ).then(module => module.default),
     voice: "home"
   } as Route,
   {
@@ -83,9 +84,7 @@ export const routes = [
     path: "/readme",
     component: "readme-component",
     src: () =>
-      import(
-        /* webpackChunkName: "ReadmeComponent" */ "../ReadmeComponent"
-      )
+      import(/* webpackChunkName: "ReadmeComponent" */ "../ReadmeComponent")
   } as Route,
   {
     path: "/sitemap",

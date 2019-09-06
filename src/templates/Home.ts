@@ -1,4 +1,4 @@
-import "./Ratio/Component";
+import "../components/Ratio/Component";
 
 import { create, extension, notes, show_chart } from "@anoblet/material-icons";
 
