@@ -68,6 +68,11 @@ export class AppComponent extends BeforeRender(LitElement) {
       if (offline) toast("Offline");
     });
     this.registerScrollListeners();
+    const drawer: any = this.shadowRoot.querySelector("drawer-component");
+    const links = Array.from(
+      this.shadowRoot.querySelectorAll("drawer-component a")
+    );
+    links.map(link => link.addEventListener("click", this._toggleDrawer.bind(this)));
   }
 
   public syncActiveRoute() {
@@ -154,7 +159,8 @@ export class AppComponent extends BeforeRender(LitElement) {
 
   public closeMenus() {
     this.drawerOpened = false;
-    const menu: any = this.renderRoot.querySelector("#profile-menu");
+    console.log(this);
+    const menu: any = this.shadowRoot.querySelector("#profile-menu");
     menu.close();
   }
 }
