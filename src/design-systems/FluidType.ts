@@ -2,7 +2,7 @@ import { css } from "lit-element";
 
 export default css`
   /* https://andy-bell.design/wrote/custom-property-controlled-fluid-type-sizing/ */
-  .fluid-type {
+* {
     --fluid-type-min-size: 1;
     --fluid-type-max-size: 2;
     --fluid-type-min-screen: 20;
