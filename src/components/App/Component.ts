@@ -68,7 +68,6 @@ export class AppComponent extends BeforeRender(LitElement) {
       if (offline) toast("Offline");
     });
     this.registerScrollListeners();
-    const drawer: any = this.shadowRoot.querySelector("drawer-component");
     const links = Array.from(
       this.shadowRoot.querySelectorAll("drawer-component a")
     );
