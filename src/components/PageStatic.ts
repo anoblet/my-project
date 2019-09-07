@@ -25,7 +25,7 @@ const Style = css`
     justify-content: center;
     border: 1px solid var(--border-color);
     padding: 1em;
-    border-radius: 0.25em;
+    border-radius: var(--border-radius);
   }
 
   .material-icons {
