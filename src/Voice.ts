@@ -1,4 +1,4 @@
-import { navigate } from "./Router";
+import { navigate } from "@anoblet/router";
 import { routes } from "./components/App/Routes";
 
 import annyang from "annyang";

@@ -1,5 +1,5 @@
 import { getUser as _getUser, getDocument } from "./Firebase";
-import { navigate } from "./Router";
+import { navigate } from "@anoblet/router";
 import { run } from "./Firebase";
 import { setDefaultTheme } from "./Theme";
 import { setState, state } from "./State";
@@ -111,7 +111,7 @@ export const getUserTheme = async (callback?: any) => {
  * @return [description]
  */
 export const getTheme = async (uid: string) => {
-  return await new Promise((resolve) => {
+  return await new Promise(resolve => {
     return getDocument({
       path: `users/${uid}/settings/theme`,
       callback: (document: any) => {
@@ -158,10 +158,10 @@ export const get = () => {
 
 export const getIp = async () => {
   return fetch("https://api.ipify.org?format=json")
-    .then((response) => {
+    .then(response => {
       return response.json();
     })
-    .then((data) => data.ip);
+    .then(data => data.ip);
 };
 
 export const user = {
