@@ -167,6 +167,11 @@ export default css`
     color: var(--button-color);
     padding: 1em;
   }
+
+  card-component {
+    border-width: var(--border-width);
+    border-style: solid;
+  }
 `;
 
 export const absolute = css`
