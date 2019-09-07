@@ -147,8 +147,6 @@ export default css`
     color: var(--link-color);
   }
 
-  ${FluidType}
-
   pre {
     margin: 0;
   }
