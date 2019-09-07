@@ -218,8 +218,9 @@ export default css`
   }
 
   breadcrumb-component {
-    border: 1px solid;
+    border-width: var(--border-width);
+    border-style: solid;
     margin: 1rem;
-    border-radius: .25rem;
+    border-radius: 0.25rem;
   }
 `;
