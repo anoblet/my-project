@@ -76,5 +76,11 @@ export const themeStructure = [
     property: "buttonColor",
     varName: "--button-color",
     type: "color"
+  },
+  {
+    label: "Border width",
+    property: "borderWidth",
+    varName: "--border-width",
+    type: "size"
   }
 ];
