@@ -20,10 +20,10 @@ export default css`
     /* grid-gap: 0; */
   }
 
-  card-component::part(card) {
+  /* card-component::part(card) {
     border-width: var(--border-size);
     border-style: solid;
     border-color: var(--border-color);
     border-radius: 0.5rem;
-  }
+  } */
 `;
