@@ -82,5 +82,11 @@ export const themeStructure = [
     property: "borderWidth",
     varName: "--border-width",
     type: "size"
+  },
+  {
+    label: "Border radius",
+    property: "borderRadius",
+    varName: "--border-radius",
+    type: "size"
   }
 ];
