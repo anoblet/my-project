@@ -17,7 +17,7 @@ export default css`
   }
 
   grid-component {
-    grid-gap: 0;
+    /* grid-gap: 0; */
   }
 
   card-component::part(card) {
