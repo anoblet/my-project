@@ -27,10 +27,10 @@ const links = [
     href: "/contact",
     label: "Contact"
   },
-  {
-    href: "/about",
-    label: "About"
-  },
+  // {
+  //   href: "/about",
+  //   label: "About"
+  // },
   {
     href: "/issue",
     label: "Report an issue"
