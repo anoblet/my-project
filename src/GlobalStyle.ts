@@ -171,6 +171,7 @@ export default css`
   card-component {
     border-width: var(--border-width);
     border-style: solid;
+    border-radius: var(--border-radius);
   }
 `;
 
