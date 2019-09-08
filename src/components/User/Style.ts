@@ -35,5 +35,6 @@ export default css`
   }
 
   card-component {
+    flex: initial;
   }
 `;
