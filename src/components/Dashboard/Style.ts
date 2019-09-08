@@ -78,4 +78,8 @@ export default css`
     width: 400px;
     height: 195px;
   }
+
+  card-component::part(card) {
+    grid-template-rows: max-content auto max-content;
+  }
 `;
