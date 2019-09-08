@@ -1,4 +1,4 @@
-import { LitElement, customElement, property } from "lit-element";
+import { LitElement, customElement, property, query } from "lit-element";
 
 // import { BeforeRender } from "../../mixins/BeforeRender";
 import { BeforeRender } from "@anoblet/mixins";
@@ -26,6 +26,8 @@ export class AppComponent extends BeforeRender(LitElement) {
   public drawerOpened: boolean = false;
   @property({ type: String, reflect: true }) public mediaSize: string;
   @property({ type: String, reflect: true }) public activeRoute: string;
+
+  @query("drawer-component") drawer;
 
   // Lifecycle
   constructor() {
@@ -73,7 +75,9 @@ export class AppComponent extends BeforeRender(LitElement) {
     const links = Array.from(
       this.shadowRoot.querySelectorAll("drawer-component a")
     );
-    links.map(link => link.addEventListener("click", this._toggleDrawer.bind(this)));
+    links.map(link =>
+      link.addEventListener("click", this._toggleDrawer.bind(this))
+    );
   }
 
   public syncActiveRoute() {
@@ -150,8 +154,7 @@ export class AppComponent extends BeforeRender(LitElement) {
   }
 
   public _toggleDrawer() {
-    const drawer: any = this.renderRoot.querySelector("drawer-component");
-    if (drawer) drawer.toggle();
+    this.drawer.toggle();
   }
 
   public _toggleProfile() {
@@ -161,7 +164,6 @@ export class AppComponent extends BeforeRender(LitElement) {
 
   public closeMenus() {
     this.drawerOpened = false;
-    console.log(this);
     const menu: any = this.shadowRoot.querySelector("#profile-menu");
     menu.close();
   }
