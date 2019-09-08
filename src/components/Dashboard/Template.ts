@@ -14,11 +14,11 @@ export default function() {
       <div class="item">
         <div class="item-content tall">
           <card-component>
-            <div slot="content" style="">
+            <div slot="body" style="">
               <clock-component></clock-component>
             </div>
           </card-component>
-        </div>
+        </div> 
       </div>
       <div class="item">
         <div class="item-content wide">

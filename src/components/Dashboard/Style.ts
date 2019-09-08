@@ -51,9 +51,17 @@ export default css`
     flex: 1;
   }
 
+  card-component [slot="body"] {
+    flex: 1;
+  }
+
   card-component {
     border: 1px solid var(--border-color);
     /* background: var(--background-color); */
+  }
+
+  clock-component {
+    display: flex;
   }
 
   .tall,
