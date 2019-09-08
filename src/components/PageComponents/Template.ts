@@ -7,8 +7,10 @@ export default function() {
         (component: any) => html`
           <a href="/components/${component.tag}">
             <card-component>
-              <div class="center">
-                ${component.label}
+              <div slot="body">
+                <div class="center">
+                  ${component.label}
+                </div>
               </div>
             </card-component></a
           >
