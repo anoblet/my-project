@@ -4,7 +4,7 @@ import { getPeriod } from "./Component";
 
 export const currentTemperature = (coordinates: any) => {
   return html`
-    <card-component style="display: flex; flex: 1;">
+    <card-component style="flex: 1;">
       <div slot="title">Temperature</div>
       <div
         slot="content"

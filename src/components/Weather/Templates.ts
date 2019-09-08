@@ -7,7 +7,7 @@ export const currentTemperature = (coordinates: any) => {
     <card-component style="display: flex; flex: 1;">
       <div slot="title">Temperature</div>
       <div
-        slot="content"
+        slot="body"
         style="display: flex; align-items: center; justify-content: center;"
       >
         ${until(
@@ -28,7 +28,7 @@ export const shortForecast = (coordinates: any) => {
     <card-component style="display: flex; flex: 1;">
       <div slot="title">Short forecast</div>
       <div
-        slot="content"
+        slot="body"
         style="display: flex; align-items: center; justify-content: center;"
       >
         ${until(
@@ -49,7 +49,7 @@ export const detailedForecast = (coordinates: any) => {
     <card-component style="display: flex; flex: 1;">
       <div slot="title">Detailed forecast</div>
       <div
-        slot="content"
+        slot="body"
         style="display: flex; align-items: center; justify-content: center;"
       >
         ${until(
@@ -70,7 +70,7 @@ export const windDirection = (coordinates: any) => {
     <card-component style="display: flex; flex: 1;">
       <div slot="title">Wind direction</div>
       <div
-        slot="content"
+        slot="body"
         style="display: flex; align-items: center; justify-content: center;"
       >
         ${until(
@@ -91,7 +91,7 @@ export const windSpeed = (coordinates: any) => {
     <card-component style="display: flex; flex: 1;">
       <div slot="title">Wind speed</div>
       <div
-        slot="content"
+        slot="body"
         style="display: flex; align-items: center; justify-content: center;"
       >
         ${until(
