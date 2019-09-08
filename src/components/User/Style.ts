@@ -33,4 +33,7 @@ export default css`
   [slot="content"] {
     justify-content: center;
   }
+
+  card-component {
+  }
 `;

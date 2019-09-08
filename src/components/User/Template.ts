@@ -5,8 +5,8 @@ import { getForm } from "./Component";
 
 export default function() {
   return html`
-    <card-component grow>
-      <div slot="content">
+    <card-component>
+      <div slot="body">
         ${false && isSignedIn()
           ? html`
               <button-component>
