@@ -50,4 +50,8 @@ export default css`
   card-component::part(title) {
     display: flex;
   }
+
+  chart-component {
+    display: none;
+  }
 `;
