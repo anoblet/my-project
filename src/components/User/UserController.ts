@@ -1,4 +1,4 @@
-import { LitElement, html, property } from "lit-element";
+import { LitElement, css, html, property } from "lit-element";
 
 import { navigate } from "@anoblet/router";
 import { signOut } from "../../User";
@@ -12,6 +12,11 @@ export interface UserController {
 }
 
 export class UserController extends LitElement {
+  static styles = css`
+    :host {
+      display: flex;
+    }
+  `;
   @property({ type: String }) public action: string = "index";
   @property({ type: Object }) public data: any;
   @property({ type: String }) public tail: any;
