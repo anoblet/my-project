@@ -4,7 +4,7 @@ import { getPeriod } from "./Component";
 
 export const currentTemperature = (coordinates: any) => {
   return html`
-    <card-component style="display: flex; flex: 1;">
+    <card-component >
       <div slot="title">Temperature</div>
       <div
         slot="body"
@@ -25,7 +25,7 @@ export const currentTemperature = (coordinates: any) => {
 
 export const shortForecast = (coordinates: any) => {
   return html`
-    <card-component style="display: flex; flex: 1;">
+    <card-component >
       <div slot="title">Short forecast</div>
       <div
         slot="body"
@@ -46,7 +46,7 @@ export const shortForecast = (coordinates: any) => {
 
 export const detailedForecast = (coordinates: any) => {
   return html`
-    <card-component style="display: flex; flex: 1;">
+    <card-component >
       <div slot="title">Detailed forecast</div>
       <div
         slot="body"
@@ -67,7 +67,7 @@ export const detailedForecast = (coordinates: any) => {
 
 export const windDirection = (coordinates: any) => {
   return html`
-    <card-component style="display: flex; flex: 1;">
+    <card-component >
       <div slot="title">Wind direction</div>
       <div
         slot="body"
@@ -88,7 +88,7 @@ export const windDirection = (coordinates: any) => {
 
 export const windSpeed = (coordinates: any) => {
   return html`
-    <card-component style="display: flex; flex: 1;">
+    <card-component >
       <div slot="title">Wind speed</div>
       <div
         slot="body"
