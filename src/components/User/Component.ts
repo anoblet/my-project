@@ -2,12 +2,13 @@ import { LitElement, customElement } from "lit-element";
 
 import Template from "./Template";
 import Style from "./Style";
+import GlobalStyle from "../../GlobalStyle";
 import { config } from "../../../config";
 import FirebaseUIStyle from "./FirebaseUIStyle";
 
 @customElement("user-component")
 export class UserComponent extends LitElement {
-  public static styles = [FirebaseUIStyle, Style];
+  public static styles = [GlobalStyle, FirebaseUIStyle, Style];
   public template = Template;
   public render = this.template.bind(this);
 }
