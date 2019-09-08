@@ -14,11 +14,14 @@ export default function() {
       <div class="item">
         <div class="item-content tall">
           <card-component>
-            <div slot="body" style="">
+            <div
+              slot="body"
+              style="display: flex; align-items: center; justify-content: center;"
+            >
               <clock-component></clock-component>
             </div>
           </card-component>
-        </div> 
+        </div>
       </div>
       <div class="item">
         <div class="item-content wide">
