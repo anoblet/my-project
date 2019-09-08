@@ -4,6 +4,8 @@ export default css`
   :host {
     display: flex;
     flex: 1;
+    justify-content: center;
+    align-items: center;
   }
 
   .firebaseui-container {
