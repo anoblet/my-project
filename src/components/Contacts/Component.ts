@@ -15,12 +15,12 @@ export class Contacts extends BeforeRender(LitElement) {
   public render = Template.bind(this);
 
   @property() public data = { log: [] };
+  @property() public user = User.get().uid;
 
   public async beforeRender() {
-    const _user = User.get().uid;
-    if (_user)
+    if (this.user)
       Database.getDocument({
-        path: `users/${_user}/contacts/timesheet`,
+        path: `users/${this.user}/contacts/timesheet`,
         callback: (document: any) => (this.data = document),
         watch: true
       });
@@ -42,10 +42,9 @@ export class Contacts extends BeforeRender(LitElement) {
 
   public add(data: { type: string; time: number }) {
     const _data = { log: [...this.data.log, data] };
-    const _user = User.get().uid;
-    if (_user)
+    if (this.user)
       Database.update({
-        path: `users/${_user}/contacts/timesheet`,
+        path: `users/${this.user}/contacts/timesheet`,
         data: _data
       });
     else this.data = _data;
@@ -54,10 +53,9 @@ export class Contacts extends BeforeRender(LitElement) {
   public deleteItem(index: number) {
     const data = this.data.log;
     data.splice(index, 1);
-    const _user = User.get().uid;
-    if (_user)
+    if (this.user)
       Database.update({
-        path: `users/${_user}/contacts/timesheet`,
+        path: `users/${this.user}/contacts/timesheet`,
         data: { log: data }
       });
     else this.data = { log: data };
