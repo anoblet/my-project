@@ -1,6 +1,6 @@
 import { LitElement, customElement, property, query } from "lit-element";
 
-// import { BeforeRender } from "../../mixins/BeforeRender";
+// import BeforeRender from "../../mixins/BeforeRender";
 import { BeforeRender } from "@anoblet/mixins";
 import Debug from "../../Debug";
 import GlobalStyle from "../../GlobalStyle";
