@@ -12,6 +12,7 @@ export default css`
     background: var(--background-color);
     color: var(--text-color);
     font-family: Roboto, sans-serif;
+    --border-color: #808080;
   }
 
   :host([dark]) {
