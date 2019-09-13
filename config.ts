@@ -10,7 +10,7 @@ export const config = {
   },
   staticTheme: true,
   theme: {
-    backgroundColor: "#313131",
+    backgroundColor: "#000000",
     borderColor: "#dbdbdb",
     borderRadius: ".25em",
     borderSize: "1px",
@@ -22,7 +22,7 @@ export const config = {
     linkColor: "#ff0080",
     padding: "1em",
     primaryColor: "#ff0080",
-    secondaryColor: "#00ffff",
+    secondaryColor: "#313131",
     textColor: "#dfdfdf"
   },
   globalSettings: false,
