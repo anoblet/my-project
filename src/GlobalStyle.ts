@@ -168,11 +168,19 @@ export default css`
     padding: 1em;
   }
 
+  header-component {
+    background: var(--secondary-color);
+  }
+
   card-component {
     border-width: var(--border-width);
     border-style: solid;
     border-color: var(--border-color);
     border-radius: var(--border-radius);
+  }
+
+  drawer-component::part(aside) {
+    background: var(--secondary-color);
   }
 `;
 
