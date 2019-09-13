@@ -1,4 +1,4 @@
-import { config } from "../../../config";
+import { secrets } from "../../../secrets";
 
 interface IssueRequest {
   data: { title: string; body: string };
@@ -6,8 +6,8 @@ interface IssueRequest {
 
 // github
 const repo = "my-project";
-const username = config.github.username;
-const password = config.github.password;
+const username = secrets.github.username;
+const password = secrets.github.password;
 
 /**
  * Submit the issue to the endpoint
