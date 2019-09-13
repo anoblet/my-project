@@ -1,13 +1,13 @@
 import { firebase } from "./Firebase";
 // Opinion
-import { config } from "../config";
+import { secrets } from "../secrets";
 
 /**
  * Assume performance returns the performance object no matter the state of the app
  * @return firebase.performance
  */
 const _performance = async () => {
-  const _instance = await firebase.init(config.firebase);
+  const _instance = await firebase.init(secrets.firebase);
   return _instance.performance();
 };
 
