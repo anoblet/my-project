@@ -223,5 +223,6 @@ export default css`
     border-style: solid;
     margin: 1rem;
     border-radius: 0.25rem;
+    border-color: var(--border-color);
   }
 `;
