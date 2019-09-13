@@ -12,6 +12,7 @@ export default css`
     background: var(--background-color);
     color: var(--text-color);
     font-family: Roboto, sans-serif;
+    --border-color: var(--secondary-color);
   }
 
   :host([dark]) {
@@ -180,7 +181,7 @@ export default css`
   }
 
   #footer {
-    --background-color: #313131;
+    background: var(--secondary-color);
     color: var(--primary-color);
   }
 
