@@ -8,7 +8,7 @@ export default css`
 
   #actions {
     display: grid;
-    grid-template-columns: repeat(2, max-content);
+    grid-template-columns: repeat(auto-fit, minmax(0, max-content));
     grid-gap: 1em;
     justify-content: flex-end;
   }
