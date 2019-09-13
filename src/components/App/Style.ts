@@ -180,7 +180,7 @@ export default css`
   }
 
   #footer {
-    background: var(--text-color);
+    --background-color: #313131;
     color: var(--primary-color);
   }
 
