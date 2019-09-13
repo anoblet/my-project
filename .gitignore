@@ -1,7 +1,7 @@
 .firebase
-config.ts
 coverage
 dist
 node_modules
+secrets.ts
 stats.json
 tslint.log
