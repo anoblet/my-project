@@ -12,7 +12,7 @@ const Visualizer = require("webpack-visualizer-plugin");
 const PreloadWebpackPlugin = require("preload-webpack-plugin");
 const { UnusedFilesWebpackPlugin } = require("unused-files-webpack-plugin");
 const TerserPlugin = require("terser-webpack-plugin");
-const markdown = require("./webpack/markdown.js");
+const markdown = require("./webpack/modules/markdown.js");
 const htmlWebpackPlugin = require("./webpack/html-webpack-plugin.js");
 
 const config = {
