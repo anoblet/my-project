@@ -5,12 +5,12 @@ const WebpackPwaManifest = require("webpack-pwa-manifest");
 const CopyWebpackPlugin = require("copy-webpack-plugin");
 const RobotstxtPlugin = require("robotstxt-webpack-plugin");
 const CleanWebpackPlugin = require("clean-webpack-plugin");
-const HtmlLoader = require("html-loader");
 const Visualizer = require("webpack-visualizer-plugin");
 const { UnusedFilesWebpackPlugin } = require("unused-files-webpack-plugin");
 const TerserPlugin = require("terser-webpack-plugin");
 const markdown = require("./webpack-config/module/markdown.js");
 const htmlWebpackPlugin = require("./webpack-config/plugins/html-webpack-plugin.js");
+const plugins = require("./webpack-config/plugins.js");
 
 const config = {
   mode: "production",
@@ -124,4 +124,4 @@ const config = {
   ]
 };
 
-module.exports = merge(config, htmlWebpackPlugin, markdown);
+module.exports = merge(config, plugins, markdown);
