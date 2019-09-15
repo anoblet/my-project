@@ -91,6 +91,9 @@ export class AppComponent extends BeforeRender(LitElement) {
     );
     drawerComponent.updateComplete.then(() => {
       const main = drawerComponent.shadowRoot.querySelector("main");
+      const header: LitElement = this.shadowRoot.querySelector(
+        "header-component"
+      );
       const footer: LitElement = this.shadowRoot.querySelector("#footer");
 
       observeScroll({
@@ -98,6 +101,8 @@ export class AppComponent extends BeforeRender(LitElement) {
         callback: (direction: string) => {
           if (direction === "up") footer.removeAttribute("hidden");
           if (direction === "down") footer.setAttribute("hidden", "");
+          if (direction === "up") header.removeAttribute("hidden");
+          if (direction === "down") header.setAttribute("hidden", "");
         }
       });
     });

@@ -183,6 +183,10 @@ export default css`
   drawer-component::part(aside) {
     background: var(--secondary-color);
   }
+
+  [hidden] {
+    display: none;
+  }
 `;
 
 export const absolute = css`
