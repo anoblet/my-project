@@ -6,6 +6,8 @@ import { setState } from "../../State";
 import { convert, setTheme } from "../../Theme";
 import { isSignedIn } from "../../User";
 
+import "@anoblet/color-picker";
+
 const updateField = (field: string, value: string) => {
   const state = store.getState();
   const theme = state.app.settings.theme;
@@ -45,6 +47,7 @@ const renderField = (
           value="${theme[field.property]}"
           @input="${(e: any) => updateField(field.property, e.target.value)}"
         />
+        <color-picker></color-picker>
       `
     : ""}
   ${field.type === "size"
