@@ -170,6 +170,7 @@ export default css`
 
   header-component {
     background: var(--secondary-color);
+    padding: 0 0.5rem; 
   }
 
   card-component {
