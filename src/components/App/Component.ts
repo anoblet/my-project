@@ -111,9 +111,6 @@ export class AppComponent extends BeforeRender(LitElement) {
         }
       });
     });
-    this.drawer.main.addEventListener("mousewheel", () => {
-      console.log("hi");
-    });
   }
 
   /**
