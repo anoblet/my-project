@@ -28,6 +28,7 @@ export class AppComponent extends BeforeRender(LitElement) {
   @property({ type: String, reflect: true }) public activeRoute: string;
 
   @query("drawer-component") drawer;
+  @query("#portal") portal;
 
   // Lifecycle
   constructor() {
@@ -105,6 +106,9 @@ export class AppComponent extends BeforeRender(LitElement) {
           if (direction === "down") header.setAttribute("hidden", "");
         }
       });
+    });
+    this.drawer.main.addEventListener("onmousewheel", () => {
+      console.log("hi");
     });
   }
 
