@@ -100,14 +100,18 @@ export class AppComponent extends BeforeRender(LitElement) {
       observeScroll({
         target: main,
         callback: (direction: string) => {
-          if (direction === "up") footer.removeAttribute("hidden");
-          if (direction === "down") footer.setAttribute("hidden", "");
-          if (direction === "up") header.removeAttribute("hidden");
-          if (direction === "down") header.setAttribute("hidden", "");
+          if (direction === "up") {
+            header.removeAttribute("hidden");
+            footer.removeAttribute("hidden");
+          }
+          if (direction === "down") {
+            header.setAttribute("hidden", "");
+            footer.setAttribute("hidden", "");
+          }
         }
       });
     });
-    this.drawer.main.addEventListener("onmousewheel", () => {
+    this.drawer.main.addEventListener("mousewheel", () => {
       console.log("hi");
     });
   }
