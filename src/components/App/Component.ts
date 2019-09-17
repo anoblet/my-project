@@ -1,9 +1,9 @@
 import { LitElement, customElement, property, query } from "lit-element";
 
 import { BeforeRender } from "@anoblet/mixins";
-import Performance from "../../Performance";
 import GlobalStyle from "../../GlobalStyle";
 import Media from "../../Media";
+import Performance from "../../Performance";
 import Router from "@anoblet/router";
 import State from "../../State";
 import Store from "../../Store";
@@ -15,6 +15,14 @@ import { config } from "../../../config";
 import { installOfflineWatcher } from "pwa-helpers/network.js";
 import { routes } from "./Routes";
 import { toast } from "../Toast/Toast";
+
+
+
+
+
+
+
+
 
 @customElement("app-component")
 export class AppComponent extends BeforeRender(LitElement) {
