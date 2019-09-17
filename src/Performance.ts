@@ -1,6 +1,7 @@
 import { firebase } from "./Firebase";
 // Opinion
 import { secrets } from "../secrets";
+import Debug from "./Debug";
 
 /**
  * Assume performance returns the performance object no matter the state of the app
@@ -33,3 +34,11 @@ const start = (label: string) => {
 const stop = () => {
   return;
 };
+
+const log = Debug.log;
+
+export const performance = {
+  log
+};
+
+export default performance;

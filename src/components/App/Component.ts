@@ -1,7 +1,7 @@
 import { LitElement, customElement, property, query } from "lit-element";
 
 import { BeforeRender } from "@anoblet/mixins";
-import Debug from "../../Debug";
+import Performance from "../../Performance";
 import GlobalStyle from "../../GlobalStyle";
 import Media from "../../Media";
 import Router from "@anoblet/router";
@@ -26,13 +26,13 @@ export class AppComponent extends BeforeRender(LitElement) {
   @property({ type: String, reflect: true }) public mediaSize: string;
   @property({ type: String, reflect: true }) public activeRoute: string;
 
-  @query("drawer-component") drawer: { toggle: () => void; };
+  @query("drawer-component") drawer: { toggle: () => void };
   @query("#portal") portal: HTMLElement;
 
   // Lifecycle
   constructor() {
     super();
-    Debug.log("Constructor");
+    Performance.log("Constructor");
 
     State.addReducer({ type: "app", Store });
     State.addReducer({ type: "user", Store });
@@ -63,7 +63,7 @@ export class AppComponent extends BeforeRender(LitElement) {
   public beforeRender = beforeRender.bind(this);
 
   public firstUpdated() {
-    Debug.log("First updated");
+    Performance.log("First updated");
     Store.subscribe(() => this.requestUpdate());
     this.registerRouter();
     installOfflineWatcher((offline: boolean) => {
