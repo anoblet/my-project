@@ -26,7 +26,7 @@ export class AppComponent extends BeforeRender(LitElement) {
   @property({ type: String, reflect: true }) public mediaSize: string;
   @property({ type: String, reflect: true }) public activeRoute: string;
 
-  @query("drawer-component") drawer: { toggle: () => void };
+  @query("drawer-component") drawer;
   @query("#portal") portal: HTMLElement;
 
   // Lifecycle
@@ -64,7 +64,7 @@ export class AppComponent extends BeforeRender(LitElement) {
 
   public firstUpdated() {
     Performance.log("First updated");
-    Store.subscribe(() => this.requestUpdate());
+    // Store.subscribe(() => this.requestUpdate());
     this.registerRouter();
     installOfflineWatcher((offline: boolean) => {
       if (offline) toast("Offline");
@@ -72,12 +72,12 @@ export class AppComponent extends BeforeRender(LitElement) {
     this.registerScrollListeners();
 
     // Close drawer on link click
-    const links = Array.from(
-      this.shadowRoot.querySelectorAll("drawer-component a")
-    );
-    links.map(link =>
-      link.addEventListener("click", this._toggleDrawer.bind(this))
-    );
+    // const links = Array.from(
+    //   this.shadowRoot.querySelectorAll("drawer-component a")
+    // );
+    // links.map(link =>
+    //   link.addEventListener("click", this._toggleDrawer.bind(this))
+    // );
   }
 
   public syncActiveRoute() {
@@ -149,7 +149,8 @@ export class AppComponent extends BeforeRender(LitElement) {
         data: { activeRoute: location.pathname },
         Store
       });
-      this._closeDrawer();
+      this.drawer.close();
+      // this._closeDrawer();
     });
   }
 
