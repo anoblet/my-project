@@ -1,3 +1,4 @@
+import "./PatreonComponent";
 import "./Ratio/Component";
 
 import { LitElement, css, customElement, html } from "lit-element";
@@ -8,6 +9,7 @@ import GlobalStyle from "../GlobalStyle";
 const Style = css`
   :host {
     flex: 1;
+    overflow-x: hidden;
   }
 
   #grid {
@@ -20,7 +22,7 @@ const Style = css`
     justify-content: center;
     border: 1px solid var(--border-color);
     padding: 1em;
-    border-radius: 0.25em;
+    border-radius: var(--border-radius);
   }
 
   .material-icons {
@@ -76,7 +78,7 @@ const Style = css`
   }
 `;
 
-@customElement("page-static")
+@customElement("page-home")
 export class PageHome extends LitElement {
   public static styles = [GlobalStyle, Style];
 

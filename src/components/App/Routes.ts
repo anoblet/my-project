@@ -4,10 +4,7 @@ export const routes = [
   {
     name: "Home",
     path: "/",
-    component: "page-static",
-    // template: import(
-    //   /* webpackChunkName: "Home" */ "../../templates/Home"
-    // ).then(module => module.default),
+    component: "page-home",
     voice: "home"
   } as Route,
   {
