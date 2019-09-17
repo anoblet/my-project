@@ -26,8 +26,8 @@ export class AppComponent extends BeforeRender(LitElement) {
   @property({ type: String, reflect: true }) public mediaSize: string;
   @property({ type: String, reflect: true }) public activeRoute: string;
 
-  @query("drawer-component") drawer;
-  @query("#portal") portal;
+  @query("drawer-component") drawer: { toggle: () => void; };
+  @query("#portal") portal: HTMLElement;
 
   // Lifecycle
   constructor() {
