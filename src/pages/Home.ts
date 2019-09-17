@@ -1,5 +1,5 @@
-import "./PatreonComponent";
-import "./Ratio/Component";
+import "../components/PatreonComponent";
+import "../components/Ratio/Component";
 
 import { LitElement, css, customElement, html } from "lit-element";
 import { create, extension, notes, show_chart } from "@anoblet/material-icons";
