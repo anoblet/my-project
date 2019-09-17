@@ -34,7 +34,7 @@ export default css`
 
   #drawer {
     box-shadow: var(--box-shadow);
-    padding: 0 2em;
+    padding: 2rem 2rem;
   }
 
   #drawer a,
