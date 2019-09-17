@@ -16,14 +16,6 @@ import { installOfflineWatcher } from "pwa-helpers/network.js";
 import { routes } from "./Routes";
 import { toast } from "../Toast/Toast";
 
-
-
-
-
-
-
-
-
 @customElement("app-component")
 export class AppComponent extends BeforeRender(LitElement) {
   public static styles = [GlobalStyle, Style];
