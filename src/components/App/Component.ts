@@ -100,11 +100,11 @@ export class AppComponent extends BeforeRender(LitElement) {
         target: main,
         callback: (direction: string) => {
           if (direction === "up") {
-            header.removeAttribute("hidden");
+            // header.removeAttribute("hidden");
             footer.removeAttribute("hidden");
           }
           if (direction === "down") {
-            header.setAttribute("hidden", "");
+            // header.setAttribute("hidden", "");
             footer.setAttribute("hidden", "");
           }
         }
