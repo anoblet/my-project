@@ -2,7 +2,7 @@ import { config } from "../config";
 import "./components/App/Component";
 import "./components/Header/Component";
 import "./components/Footer/Component";
-import "./pages/home";
+import "./pages/home/component";
 import "./components/ProfileMenu/ProfileMenu";
 import "./components/Loading/Component";
 // import "./components/Breadcrumb/Component";
