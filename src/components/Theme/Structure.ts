@@ -66,6 +66,12 @@ export const themeStructure = [
     type: "size"
   },
   {
+    label: "H1 color",
+    property: "h1Color",
+    varName: "--h1-color",
+    type: "color"
+  },
+  {
     label: "H3 color",
     property: "h3Color",
     varName: "--h3-color",
