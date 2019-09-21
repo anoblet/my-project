@@ -18,6 +18,7 @@ export const config = {
     buttonColor: "#ff0080",
     cardInnerPadding: "1em",
     gridGap: "1em",
+    h1Color: "#81D4FA",
     h3Color: "#E91E63",
     linkColor: "#81D4FA",
     padding: "1em",
