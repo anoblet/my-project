@@ -16,6 +16,7 @@
   "author": "Andrew Noblet",
   "license": "ISC",
   "dependencies": {
+    "@adobe/lit-mobx": "0.0.2",
     "@anoblet/mixins": "git+https://github.com/anoblet/mixins.git",
     "@anoblet/router": "git+https://github.com/anoblet/router.git",
     "@simonwep/pickr": "^0.4.11",
@@ -34,6 +35,7 @@
     "markdown-loader": "^5.0.0",
     "marked": "^0.7.0",
     "material-design-icons": "^3.0.1",
+    "mobx": "^5.13.0",
     "muuri": "^0.7.1",
     "object-path": "^0.11.4",
     "path-to-regexp": "^2.4.0",
