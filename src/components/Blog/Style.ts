@@ -10,10 +10,11 @@ export default css`
     color: inherit;
   }
 
-  h3, h4 {
+  h3,
+  h4 {
     margin-block-start: 0;
     margin-block-end: 0;
-    color: var(--h3-color);
+    color: #81d4fa;
   }
 
   grid-component {
