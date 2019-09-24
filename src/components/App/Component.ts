@@ -3,6 +3,7 @@ import { LitElement, customElement, property, query } from "lit-element";
 import { BeforeRender } from "@anoblet/mixins";
 import GlobalStyle from "../../GlobalStyle";
 import Media from "../../Media";
+import { MobxReactionUpdate } from "@adobe/lit-mobx";
 import Performance from "../../Performance";
 import Router from "@anoblet/router";
 import State from "../../State";
@@ -10,6 +11,7 @@ import Store from "../../Store";
 import Style from "./Style";
 import Template from "./Template";
 import Theme from "../../Theme";
+import { URL } from "../../models/url";
 import { beforeRender } from "./BeforeRender";
 import { config } from "../../../config";
 import { installOfflineWatcher } from "pwa-helpers/network.js";
@@ -17,9 +19,11 @@ import { routes } from "./Routes";
 import { toast } from "../Toast/Toast";
 
 @customElement("app-component")
-export class AppComponent extends BeforeRender(LitElement) {
+export class AppComponent extends BeforeRender(MobxReactionUpdate(LitElement)) {
   public static styles = [GlobalStyle, Style];
   public render = Template.bind(this);
+
+  private url = new URL();
 
   @property({ reflect: true, attribute: "drawer-opened", type: Boolean })
   public drawerOpened: boolean = false;
@@ -140,7 +144,7 @@ export class AppComponent extends BeforeRender(LitElement) {
         routes,
         portal: this.shadowRoot.querySelector("#portal")
       });
-      
+
       // Reset scroll position
       const scrollTarget = this.shadowRoot.querySelector("#portal");
       scrollTarget.scrollTo(0, 0);
@@ -151,6 +155,9 @@ export class AppComponent extends BeforeRender(LitElement) {
         data: { activeRoute: location.pathname },
         Store
       });
+
+      // MobX
+      this.url.setPath(location.pathname);
 
       this.drawer.close();
       // this._closeDrawer();
