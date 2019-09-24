@@ -140,15 +140,18 @@ export class AppComponent extends BeforeRender(LitElement) {
         routes,
         portal: this.shadowRoot.querySelector("#portal")
       });
+      
       // Reset scroll position
       const scrollTarget = this.shadowRoot.querySelector("#portal");
       scrollTarget.scrollTo(0, 0);
+
       // Update Store
       State.set({
         type: "app",
         data: { activeRoute: location.pathname },
         Store
       });
+
       this.drawer.close();
       // this._closeDrawer();
     });
