@@ -53,7 +53,7 @@ export const components = [
   {
     label: "Weather",
     src: () =>
-      import(/* webpackChunkName: "Weather" */ "./components/Weather/Component"),
+      import(/* webpackChunkName: "Weather" */ "@anoblet/weather-component"),
     tag: "weather-component"
   },
   {
