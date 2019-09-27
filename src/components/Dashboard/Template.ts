@@ -1,7 +1,5 @@
 import "../Clock/Component";
 
-import { detailedForecast, windSpeed } from "../Weather/Templates";
-
 import { Forecast } from "@anoblet/weather";
 import { html } from "lit-element";
 import { until } from "lit-html/directives/until";
