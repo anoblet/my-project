@@ -73,7 +73,7 @@ export default function() {
           <card-component>
             <span slot="title">Detailed forecast</span>
             <div class="centered" slot="body">
-              ${until(getCondition("detailedForecast"))}
+              ${until(period.then(period => period.detailedForecast))}
             </div>
           </card-component>
         </div>
