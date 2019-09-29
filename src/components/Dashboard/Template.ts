@@ -6,6 +6,9 @@ import { until } from "lit-html/directives/until";
 
 const period = new Forecast("40.7666688", "-73.961472").getPeriod(0);
 
+const getCondition = (condition: string) =>
+  period.then(period => period[condition]);
+
 export default function() {
   return html`
     <div class="grid">
@@ -29,7 +32,7 @@ export default function() {
           <card-component>
             <span slot="title">Temperature</span>
             <div class="centered" slot="body">
-              ${until(period.then(period => period.temperature))}
+              ${until(getCondition("temperature"))}
             </div>
           </card-component>
         </div>
@@ -40,7 +43,7 @@ export default function() {
           <card-component>
             <span slot="title">Short forecast</span>
             <div class="centered" slot="body">
-              ${until(period.then(period => period.shortForecast))}
+              ${until(getCondition("shortForecast"))}
             </div>
           </card-component>
         </div>
@@ -55,7 +58,7 @@ export default function() {
           <card-component>
             <span slot="title">Wind direction</span>
             <div class="centered" slot="body">
-              ${until(period.then(period => period.windDirection))}
+              ${until(getCondition("windDirection"))}
             </div>
           </card-component>
         </div>
@@ -70,7 +73,7 @@ export default function() {
           <card-component>
             <span slot="title">Detailed forecast</span>
             <div class="centered" slot="body">
-              ${until(period.then(period => period.detailedForecast))}
+              ${until(getCondition("detailedForecast"))}
             </div>
           </card-component>
         </div>
