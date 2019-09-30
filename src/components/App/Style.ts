@@ -225,4 +225,8 @@ export default css`
     border-radius: 0.25rem;
     border-color: var(--border-color);
   }
+
+  button-component::part(button) {
+    color: #fff;
+  }
 `;
