@@ -90,7 +90,17 @@ const config = {
       background_color: "#000000",
       crossorigin: "use-credentials", //can be null, use-credentials or anonymous
       theme_color: "#000000",
-      inject: true
+      icons: [
+        {
+          src: path.resolve("src/assets/icon.png"),
+          sizes: [96, 128, 192, 256, 384, 512] // multiple sizes
+        },
+        {
+          src: path.resolve("src/assets/large-icon.png"),
+          size: "1024x1024" // you can also use the specifications pattern
+        }
+      ],
+      start_url: "/"
     }),
     new WorkboxPlugin.GenerateSW({
       clientsClaim: true,
