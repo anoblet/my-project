@@ -1,6 +1,6 @@
 import { firebase } from "./Firebase";
 // Opinion
-import { secrets } from "../secrets";
+import { secret } from "../etc/secret";
 import Debug from "./Debug";
 
 /**
@@ -8,7 +8,7 @@ import Debug from "./Debug";
  * @return firebase.performance
  */
 const _performance = async () => {
-  const _instance = await firebase.init(secrets.firebase);
+  const _instance = await firebase.init(secret.firebase);
   return _instance.performance();
 };
 
