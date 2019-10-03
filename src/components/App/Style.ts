@@ -65,14 +65,6 @@ export default css`
     height: 100%;
   }
 
-  #drawer[opened="true"] {
-    display: flex;
-  }
-
-  :host([drawer-opened]) #drawer-container:not([media-size="mobile"]) {
-    grid-template-columns: minmax(min-content, auto) 4fr;
-  }
-
   #container {
     flex: 1;
     grid-template-rows: min-content 1fr min-content;
