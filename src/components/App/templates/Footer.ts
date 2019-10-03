@@ -1,6 +1,6 @@
 import "@anoblet/tabs-component";
 
-import { code, home, mail_outline } from "../../../Icons";
+import { code, home, mail_outline } from "@anoblet/material-icons";
 
 import { html } from "lit-element";
 

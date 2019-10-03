@@ -1,5 +1,5 @@
 import { html } from "lit-element";
-import { close } from "../../Icons";
+import { close } from "@anoblet/material-icons";
 
 export default function() {
   return html`

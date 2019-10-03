@@ -1,6 +1,6 @@
 import "../Dialog/Component";
 
-import { delete_outline } from "../../Icons";
+import { delete_outline } from "@anoblet/material-icons";
 import { html } from "lit-element";
 // const readme = require("./readme.md");
 import { unsafeHTML } from "lit-html/directives/unsafe-html";
