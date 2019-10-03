@@ -1,11 +1,11 @@
 import { LitElement, customElement } from "lit-element";
 
-import GlobalStyle from "../../GlobalStyle";
-import Style from "./style";
-import Template from "./template";
+import globalStyle from "../../GlobalStyle";
+import style from "./style";
+import template from "./template";
 
 @customElement("page-home")
 export class PageHome extends LitElement {
-  public static styles = [GlobalStyle, Style];
-  public render = Template.bind(this);
+  public static styles = [globalStyle, style];
+  public render = template.bind(this);
 }
