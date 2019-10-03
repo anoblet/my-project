@@ -1,7 +1,7 @@
 import { config } from "../../../../config";
 import { html } from "lit-element";
 import { isSignedIn } from "../../../User";
-import { menu } from "../../../assets/menu";
+import { menu } from "@anoblet/material-icons";
 import { primaryColorSelect } from "../../Theme/PrimaryColorSelect";
 
 export default function() {
