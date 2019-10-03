@@ -13,7 +13,7 @@ import Template from "./Template";
 import Theme from "../../Theme";
 import { URL } from "../../models/url";
 import { beforeRender } from "./BeforeRender";
-import { config } from "../../../config";
+import { config } from "../../../etc/config";
 import { installOfflineWatcher } from "pwa-helpers/network.js";
 import { routes } from "./Routes";
 import { toast } from "../Toast/Toast";

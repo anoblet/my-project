@@ -1,5 +1,5 @@
 import Firebase from "../../Firebase";
-import { config } from "../../../config";
+import { config } from "../../../etc/config";
 import { secret } from "../../../etc/secret";
 import { getAppSettings } from "./Utility";
 import State from "../../State";

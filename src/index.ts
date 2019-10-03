@@ -1,4 +1,4 @@
-import { config } from "../config";
+import { config } from "../etc/config";
 import "./components/App/Component";
 import "./components/Header/Component";
 import "./components/Footer/Component";

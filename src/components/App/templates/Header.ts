@@ -1,4 +1,4 @@
-import { config } from "../../../../config";
+import { config } from "../../../../etc/config";
 import { html } from "lit-element";
 import { isSignedIn } from "../../../User";
 import { menu } from "@anoblet/material-icons";
