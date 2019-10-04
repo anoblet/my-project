@@ -1,18 +1,19 @@
-import { config } from "../etc/config";
+// Import first-load components
 import "./components/App/Component";
 import "./components/Header/Component";
 import "./components/Footer/Component";
 import "./pages/home/component";
 import "./components/ProfileMenu/ProfileMenu";
 import "./components/Loading/Component";
-// import "./components/Breadcrumb/Component";
-
 import "@anoblet/button-component";
 import "@anoblet/drawer-component";
 import "@anoblet/grid-component";
 import "@anoblet/card-component";
 import "@anoblet/breadcrumb-component";
 import "@anoblet/google-analytics";
+// import "./components/Breadcrumb/Component";
+
+import { config } from "../etc/config";
 
 // Firebase
 // import "firebase/app";
