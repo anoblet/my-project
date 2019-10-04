@@ -3,6 +3,7 @@ import { html } from "lit-element";
 import { isSignedIn } from "../../../User";
 import { menu } from "@anoblet/material-icons";
 import { primaryColorSelect } from "../../Theme/PrimaryColorSelect";
+import "@anoblet/circle-button";
 
 export default function() {
   return html`
@@ -12,14 +13,10 @@ export default function() {
     <span id="title"><a href="/">${config.site.title}</a></span>
     ${isSignedIn()
       ? html`
-          <span
-            class="circle"
+          <circle-button
             id="userProfile"
-            mini
-            label="Account"
             @click="${() => this._toggleProfile()}"
-          >
-          </span>
+          ></circle-button>
         `
       : html`
           <div id="right">
