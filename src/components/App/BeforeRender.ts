@@ -1,12 +1,12 @@
-import Firebase from "../../Firebase";
-import { config } from "../../../etc/config";
-import { secret } from "../../../etc/secret";
-import { getAppSettings } from "./Utility";
-import State from "../../State";
-import Theme from "../../Theme";
-import Store from "../../Store";
 import Debug from "../../Debug";
+import Firebase from "../../Firebase";
+import State from "../../State";
+import Store from "../../Store";
+import Theme from "../../Theme";
 import User from "../../User";
+import { config } from "../../../etc/config";
+import { getAppSettings } from "./Utility";
+import { secret } from "../../../etc/secret";
 
 export const beforeRender = async function() {
   Firebase.init(secret.firebase);
