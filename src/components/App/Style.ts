@@ -28,6 +28,14 @@ export default css`
     --debug-border: 1px solid var(--border-color);
   }
 
+  #header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5em;
+    box-shadow: var(--box-shadow);
+  }
+
   app-drawer-absolute {
     min-width: 50%;
   }
@@ -138,13 +146,13 @@ export default css`
     fill: currentColor;
   }
 
+  #userProfile {
+    margin: 1rem;
+  }
+
   #menu:hover,
   #userProfile {
     cursor: pointer;
-  }
-
-  #userProfile {
-    margin: 1rem;
   }
 
   #portal {

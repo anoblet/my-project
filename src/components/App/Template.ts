@@ -6,9 +6,9 @@ import made_with from "../../templates/MadeWith";
 
 export default function() {
   return html`
-    <header-component id="header">
+    <div id="header">
       ${header.bind(this)()}
-    </header-component>
+    </div>
     <drawer-component ?absolute=${this.mediaSize === "mobile"}
       ><div id="drawer" slot="drawer">${drawer()}</div>
       <div slot="main">

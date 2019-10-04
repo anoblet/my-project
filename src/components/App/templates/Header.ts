@@ -30,6 +30,6 @@ export default function() {
             </grid-component>
           </div>
         `}
-    <div slot="choose-theme">1</div>
+    <!-- <div slot="choose-theme">1</div> -->
   `;
 }

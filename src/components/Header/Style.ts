@@ -1,20 +1,20 @@
 import { css } from "lit-element";
 
 export default css`
-  :host {
+  /* :host {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 0.5em;
     box-shadow: var(--box-shadow);
-  }
+  } */
 
-  ::slotted(#title) {
+  /* ::slotted(#title) {
     position: absolute;
     left: 25%;
     right: 25%;
     text-align: center;
-  }
+  } */
 
   ::slotted(.circle) {
     display: flex;

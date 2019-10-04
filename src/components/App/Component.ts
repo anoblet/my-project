@@ -82,6 +82,13 @@ export class AppComponent extends BeforeRender(MobxReactionUpdate(LitElement)) {
     // links.map(link =>
     //   link.addEventListener("click", this._toggleDrawer.bind(this))
     // );
+
+    // Set user profile image
+    const state = Store.getState();
+    const user = state.user;
+    const button: any = this.shadowRoot.querySelector("#userProfile");
+    button.style.background = `url('${user.photo}')`;
+    button.style.backgroundSize = "contain";
   }
 
   public syncActiveRoute() {
