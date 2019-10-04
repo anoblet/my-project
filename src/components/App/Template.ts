@@ -6,13 +6,15 @@ import made_with from "../../templates/MadeWith";
 
 export default function() {
   return html`
-    <header-component>
+    <header-component id="header">
       ${header.bind(this)()}
     </header-component>
     <drawer-component ?absolute=${this.mediaSize === "mobile"}
       ><div id="drawer" slot="drawer">${drawer()}</div>
       <div slot="main">
-        <breadcrumb-component .activeRoute=${this.activeRoute}></breadcrumb-component>
+        <breadcrumb-component
+          .activeRoute=${this.activeRoute}
+        ></breadcrumb-component>
         <profile-menu id="profile-menu"></profile-menu>
         <div id="portal"></div>
         <span id="made_with">${made_with()}</span>
