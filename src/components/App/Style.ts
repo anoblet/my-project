@@ -143,6 +143,10 @@ export default css`
     cursor: pointer;
   }
 
+  #userProfile {
+    margin: 1rem;
+  }
+
   #portal {
     contain: initial;
     overflow: hidden;
