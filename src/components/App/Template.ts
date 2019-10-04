@@ -3,7 +3,6 @@ import header from "./templates/Header";
 import drawer from "./templates/Drawer";
 import footer from "./templates/Footer";
 import made_with from "../../templates/MadeWith";
-// import "../Breadcrumb/Component";
 
 export default function() {
   return html`
