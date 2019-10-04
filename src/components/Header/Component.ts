@@ -7,7 +7,7 @@ import template from "./Template";
 @customElement("header-component")
 export class HeaderComponent extends LitElement {
   public static styles = style;
-  public render = template.bind(this)();
+  public render = template.bind(this);
 
   public firstUpdated() {
     const state = store.getState();
