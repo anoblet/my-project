@@ -1,14 +1,13 @@
 import { LitElement, customElement } from "lit-element";
-import Style from "./Style";
+
 import { store } from "../../Store";
-import Template from "./Template";
+import style from "./Style";
+import template from "./Template";
 
 @customElement("header-component")
 export class HeaderComponent extends LitElement {
-  public static styles = Style;
-  public render() {
-    return Template.bind(this)();
-  }
+  public static styles = style;
+  public render = template.bind(this)();
 
   public firstUpdated() {
     const state = store.getState();
