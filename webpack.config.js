@@ -27,6 +27,10 @@ const config = {
       {
         test: /\.tsx?$/,
         use: "ts-loader"
+      },
+      {
+        test: /\.css$/i,
+        use: ["to-string-loader", "css-loader"]
       }
     ]
   },
