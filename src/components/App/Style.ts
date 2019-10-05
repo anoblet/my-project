@@ -29,11 +29,19 @@ export default css`
   }
 
   #header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    background: var(--secondary-color);
     padding: 0.5em;
     box-shadow: var(--box-shadow);
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    align-items: center;
+    /* display: flex; */
+    /* justify-content: space-between; */
+    /* align-items: center; */
+  }
+
+  #title {
+    text-align: center;
   }
 
   app-drawer-absolute {
