@@ -19,14 +19,6 @@ import { toast } from "../Toast/Toast";
 
 let Style = require("./style.css");
 
-
-
-
-
-
-
-
-
 @customElement("app-component")
 export class AppComponent extends BeforeRender(MobxReactionUpdate(LitElement)) {
   public static styles = [GlobalStyle, Style];
