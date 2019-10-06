@@ -8,7 +8,7 @@ import Performance from "../../Performance";
 import Router from "@anoblet/router";
 import State from "../../State";
 import Store from "../../Store";
-import Style from "./Style";
+import Style from "./style.css";
 import Template from "./Template";
 import Theme from "../../Theme";
 import { URL } from "../../models/url";
