@@ -19,7 +19,6 @@ import { toast } from "../Toast/Toast";
 
 // Let's assume CSS modules are a thing in the future
 const styleImport = require("./style.css");
-console.log(styleImport);
 const Style = css`
   ${unsafeCSS(styleImport)}
 `;
