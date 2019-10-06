@@ -1,15 +1,15 @@
 import { LitElement, customElement, property } from "lit-element";
 
-/**
- * @todo typings need to be exported correctly for consumation as mixins
- *
- */
 import { BeforeRender } from "@anoblet/mixins";
-
 import GlobalStyle from "../../GlobalStyle";
 import Style from "./Style";
 import Template from "./Template";
 import { getCollection } from "../../Firebase";
+
+/**
+ * @todo typings need to be exported correctly for consumation as mixins
+ *
+ */
 
 @customElement("blog-component")
 export class Blog extends BeforeRender(LitElement) {
