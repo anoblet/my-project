@@ -27,7 +27,7 @@
 
 #header {
   background: var(--secondary-color);
-  padding: 0.5em;
+  padding: 0 0.5em;
   box-shadow: var(--box-shadow);
   display: grid;
   grid-template-columns: repeat(3, 1fr);
