@@ -181,7 +181,7 @@ export class AppComponent extends BeforeRender(MobxReactionUpdate(LitElement)) {
       });
 
       // MobX
-      this.url.setPath(location.pathname);
+      this.location.setPathname(location.pathname);
 
       // Close drawer on route change
       this.drawer.close();
