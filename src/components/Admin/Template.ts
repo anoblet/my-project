@@ -1,5 +1,5 @@
 import { html } from "lit-element";
-import { assignTheme } from "./AssignThemeTemplate";
+import { assignTheme } from "./templates/AssignThemeTemplate";
 
 export default function() {
   return html`
