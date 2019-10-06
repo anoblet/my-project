@@ -5,10 +5,6 @@ export default css`
     flex: 1;
   }
 
-  [slot="title"] a {
-    /* color: inherit; */
-  }
-
   h3,
   h4 {
     margin-block-start: 0;
