@@ -245,5 +245,5 @@ button-component::part(button) {
 
 #right {
   display: flex;
-  justify-content: right;
+  justify-content: flex-end;
 }
