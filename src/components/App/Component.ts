@@ -19,7 +19,9 @@ import { toast } from "../Toast/Toast";
 
 // Let's assume CSS modules are a thing in the future
 const styleImport = require("./style.css");
-const Style = css`${styleImport}`
+const Style = css`
+  ${styleImport}
+`;
 @customElement("app-component")
 export class AppComponent extends BeforeRender(MobxReactionUpdate(LitElement)) {
   public static styles = [GlobalStyle, Style];
