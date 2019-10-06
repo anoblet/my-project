@@ -26,13 +26,13 @@ import { toast } from "../Toast/Toast";
 
 // Let's assume CSS modules are a thing in the future
 const styleImport = require("./style.css");
-const Style = css`
+const style = css`
   ${unsafeCSS(styleImport)}
 `;
 
 @customElement("app-component")
 export class AppComponent extends BeforeRender(MobxReactionUpdate(LitElement)) {
-  public static styles = [GlobalStyle, Style];
+  public static styles = [GlobalStyle, style];
   public render = Template.bind(this);
 
   @property({ reflect: true, attribute: "drawer-opened", type: Boolean })
