@@ -20,7 +20,6 @@ export default function() {
             ></circle-button>
           `
         : html`
-            <div id="right">
               <grid-component style="grid-template-columns: repeat(2, 1fr)">
                 <div style="display: flex; align-items: center;">
                   ${false ? primaryColorSelect : html``}
@@ -29,7 +28,6 @@ export default function() {
                   ><button-component>Sign in</button-component></a
                 >
               </grid-component>
-            </div>
           `}
     </div>
     <!-- <div slot="choose-theme">1</div> -->
