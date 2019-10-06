@@ -18,7 +18,7 @@ export const routes = [
     path: "/contact",
     component: "contact-component",
     src: () =>
-      import(/* webpackChunkName: "PageContact" */ "../Contact/Contact"),
+      import(/* webpackChunkName: "PageContact" */ "../Contact/Component"),
     voice: "contact"
   } as Route,
   {
