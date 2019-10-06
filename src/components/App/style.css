@@ -242,3 +242,8 @@ button-component::part(button) {
 .text-right {
   text-align: right;
 }
+
+#right {
+  display: flex;
+  justify-content: right;
+}
