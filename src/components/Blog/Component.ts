@@ -8,7 +8,6 @@ import { getCollection } from "../../Firebase";
 
 /**
  * @todo typings need to be exported correctly for consumation as mixins
- *
  */
 
 @customElement("blog-component")
