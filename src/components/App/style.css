@@ -32,9 +32,6 @@
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   align-items: center;
-  /* display: flex; */
-  /* justify-content: space-between; */
-  /* align-items: center; */
 }
 
 #title {
