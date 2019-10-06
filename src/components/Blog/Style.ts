@@ -16,15 +16,4 @@ export default css`
     margin-block-end: 0;
     color: #81d4fa;
   }
-
-  grid-component {
-    /* grid-gap: 0; */
-  }
-
-  /* card-component::part(card) {
-    border-width: var(--border-size);
-    border-style: solid;
-    border-color: var(--border-color);
-    border-radius: 0.5rem;
-  } */
 `;
