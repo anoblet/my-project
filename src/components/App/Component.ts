@@ -18,7 +18,6 @@ import State from "../../State";
 import Store from "../../Store";
 import Template from "./Template";
 import Theme from "../../Theme";
-import { URL } from "../../models/url";
 import { beforeRender } from "./BeforeRender";
 import { config } from "../../../etc/config";
 import { installOfflineWatcher } from "pwa-helpers/network.js";
