@@ -13,7 +13,7 @@ export default function() {
       ><div id="drawer" slot="drawer">${drawer()}</div>
       <div slot="main">
         <breadcrumb-component
-          .activeRoute=${this.activeRoute}
+          .activeRoute=${this.location.pathname}
         ></breadcrumb-component>
         <profile-menu id="profile-menu"></profile-menu>
         <div id="portal"></div>
