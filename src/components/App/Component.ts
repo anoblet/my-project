@@ -9,6 +9,7 @@ import {
 
 import { BeforeRender } from "@anoblet/mixins";
 import GlobalStyle from "../../GlobalStyle";
+import { Location } from "../../models/location";
 import Media from "../../Media";
 import { MobxReactionUpdate } from "@adobe/lit-mobx";
 import Performance from "../../Performance";
@@ -18,12 +19,20 @@ import Store from "../../Store";
 import Template from "./Template";
 import Theme from "../../Theme";
 import { URL } from "../../models/url";
-import { Location } from "../../models/location";
 import { beforeRender } from "./BeforeRender";
 import { config } from "../../../etc/config";
 import { installOfflineWatcher } from "pwa-helpers/network.js";
 import { routes } from "./Routes";
 import { toast } from "../Toast/Toast";
+
+
+
+
+
+
+
+
+
 
 // Let's assume CSS modules are a thing in the future
 const styleImport = require("./style.css");
