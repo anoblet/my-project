@@ -22,6 +22,7 @@ const styleImport = require("./style.css");
 const Style = css`
   ${styleImport}
 `;
+
 @customElement("app-component")
 export class AppComponent extends BeforeRender(MobxReactionUpdate(LitElement)) {
   public static styles = [GlobalStyle, Style];
