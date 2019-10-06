@@ -28,6 +28,7 @@ export class AppComponent extends BeforeRender(MobxReactionUpdate(LitElement)) {
   public static styles = [GlobalStyle, Style];
   public render = Template.bind(this);
 
+  // Reactive model for storing location
   private url = new URL();
 
   @property({ reflect: true, attribute: "drawer-opened", type: Boolean })
