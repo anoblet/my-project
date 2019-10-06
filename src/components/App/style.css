@@ -238,3 +238,7 @@ breadcrumb-component {
 button-component::part(button) {
   color: #fff;
 }
+
+.text-right {
+  text-align: right;
+}
