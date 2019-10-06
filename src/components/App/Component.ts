@@ -45,6 +45,7 @@ export class AppComponent extends BeforeRender(MobxReactionUpdate(LitElement)) {
 
   // Reactive model for location
   private url = new URL();
+  private location = new Location();
 
   // Lifecycle
   constructor() {
