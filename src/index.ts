@@ -11,7 +11,7 @@ import "@anoblet/card-component";
 import "@anoblet/breadcrumb-component";
 import "@anoblet/google-analytics";
 
-import { config } from "../etc/config";
+// import { config } from "../etc/config";
 
 // Firebase
 // import "firebase/app";
