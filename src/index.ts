@@ -10,7 +10,6 @@ import "@anoblet/grid-component";
 import "@anoblet/card-component";
 import "@anoblet/breadcrumb-component";
 import "@anoblet/google-analytics";
-// import "./components/Breadcrumb/Component";
 
 import { config } from "../etc/config";
 
