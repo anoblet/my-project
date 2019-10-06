@@ -6,7 +6,7 @@ export default css`
   }
 
   [slot="title"] a {
-    color: inherit;
+    /* color: inherit; */
   }
 
   h3,
