@@ -11,7 +11,7 @@ export default function() {
       ${menu}
     </span>
     <span id="title"><a href="/">${config.site.title}</a></span>
-    <div class="text-right">
+    <div id="right">
       ${isSignedIn()
         ? html`
             <circle-button
