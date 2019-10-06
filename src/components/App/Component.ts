@@ -1,4 +1,4 @@
-import { LitElement, css, customElement, property, query } from "lit-element";
+import { LitElement, css, customElement, property, query, unsafeCSS } from "lit-element";
 
 import { BeforeRender } from "@anoblet/mixins";
 import GlobalStyle from "../../GlobalStyle";
@@ -21,7 +21,7 @@ import { toast } from "../Toast/Toast";
 const styleImport = require("./style.css");
 console.log(styleImport);
 const Style = css`
-  ${styleImport}
+  ${unsafeCSS(styleImport)}
 `;
 
 @customElement("app-component")
