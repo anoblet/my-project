@@ -1,7 +1,7 @@
-import { getCollection, updateDocument } from "../../Firebase";
+import { getCollection, updateDocument } from "../../../Firebase";
 
 import { html } from "lit-element";
-import { toast } from "../Toast/Toast";
+import { toast } from "../../Toast/Toast";
 import { until } from "lit-html/directives/until";
 
 const getThemes = () => {
