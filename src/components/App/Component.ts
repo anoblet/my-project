@@ -44,7 +44,6 @@ export class AppComponent extends BeforeRender(MobxReactionUpdate(LitElement)) {
   @query("#portal") portal: HTMLElement;
 
   // Reactive model for location
-  private url = new URL();
   private location = new Location();
 
   // Lifecycle
