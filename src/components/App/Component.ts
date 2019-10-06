@@ -25,15 +25,6 @@ import { installOfflineWatcher } from "pwa-helpers/network.js";
 import { routes } from "./Routes";
 import { toast } from "../Toast/Toast";
 
-
-
-
-
-
-
-
-
-
 // Let's assume CSS modules are a thing in the future
 const styleImport = require("./style.css");
 const Style = css`
