@@ -1,6 +1,5 @@
 // Import first-load components
 import "./components/App/Component";
-import "./components/Header/Component";
 import "./pages/home/component";
 import "./components/ProfileMenu/ProfileMenu";
 import "./components/Loading/Component";
