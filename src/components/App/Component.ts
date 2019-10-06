@@ -8,7 +8,6 @@ import Performance from "../../Performance";
 import Router from "@anoblet/router";
 import State from "../../State";
 import Store from "../../Store";
-let Style = require("./style.css");
 import Template from "./Template";
 import Theme from "../../Theme";
 import { URL } from "../../models/url";
@@ -17,6 +16,16 @@ import { config } from "../../../etc/config";
 import { installOfflineWatcher } from "pwa-helpers/network.js";
 import { routes } from "./Routes";
 import { toast } from "../Toast/Toast";
+
+let Style = require("./style.css");
+
+
+
+
+
+
+
+
 
 @customElement("app-component")
 export class AppComponent extends BeforeRender(MobxReactionUpdate(LitElement)) {
