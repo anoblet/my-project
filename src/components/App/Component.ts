@@ -9,7 +9,6 @@ import Router from "@anoblet/router";
 import State from "../../State";
 import Store from "../../Store";
 let Style = require("./style.css");
-import Style from "./style.css";
 import Template from "./Template";
 import Theme from "../../Theme";
 import { URL } from "../../models/url";
