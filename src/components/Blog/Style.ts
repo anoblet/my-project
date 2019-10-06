@@ -9,6 +9,6 @@ export default css`
   h4 {
     margin-block-start: 0;
     margin-block-end: 0;
-    color: #81d4fa;
+    /* color: #81d4fa; */
   }
 `;
