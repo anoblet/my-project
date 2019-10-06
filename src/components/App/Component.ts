@@ -1,4 +1,11 @@
-import { LitElement, css, customElement, property, query, unsafeCSS } from "lit-element";
+import {
+  LitElement,
+  css,
+  customElement,
+  property,
+  query,
+  unsafeCSS
+} from "lit-element";
 
 import { BeforeRender } from "@anoblet/mixins";
 import GlobalStyle from "../../GlobalStyle";
@@ -28,9 +35,6 @@ export class AppComponent extends BeforeRender(MobxReactionUpdate(LitElement)) {
   public static styles = [GlobalStyle, Style];
   public render = Template.bind(this);
 
-  // Reactive model for location
-  private url = new URL();
-
   @property({ reflect: true, attribute: "drawer-opened", type: Boolean })
   public drawerOpened: boolean = false;
   @property({ type: String, reflect: true }) public mediaSize: string;
@@ -38,6 +42,9 @@ export class AppComponent extends BeforeRender(MobxReactionUpdate(LitElement)) {
 
   @query("drawer-component") drawer;
   @query("#portal") portal: HTMLElement;
+
+  // Reactive model for location
+  private url = new URL();
 
   // Lifecycle
   constructor() {
