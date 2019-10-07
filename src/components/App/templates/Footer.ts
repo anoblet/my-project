@@ -8,11 +8,11 @@ export default function() {
   return html`
     <tabs-component
       ><a href="https://github.com/anoblet/my-project" aria-label="Code"
-        ><div>${code}</div></a
+        >${code}</a
       >
       <a href="/" aria-label="Home">${home}</a>
       <a href="mailto:andrewbnoblet@gmail.com" aria-label="Contact"
-        ><div>${mail_outline}</div></a
+        >${mail_outline}</a
       ></tabs-component
     >
   `;
