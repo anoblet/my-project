@@ -10,7 +10,7 @@ export default function() {
       ><a href="https://github.com/anoblet/my-project" aria-label="Code"
         ><div>${code}</div></a
       >
-      <a href="/" aria-label="Home"><div>${home}</div></a>
+      <a href="/" aria-label="Home">${home}</a>
       <a href="mailto:andrewbnoblet@gmail.com" aria-label="Contact"
         ><div>${mail_outline}</div></a
       ></tabs-component
