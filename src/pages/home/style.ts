@@ -55,7 +55,6 @@ export default css`
   }
 
   svg {
-    fill: currentColor;
     width: 25%;
     height: 25%;
   }
