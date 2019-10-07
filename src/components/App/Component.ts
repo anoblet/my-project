@@ -74,7 +74,7 @@ export class AppComponent extends BeforeRender(MobxReactionUpdate(LitElement)) {
   public connectedCallback() {
     super.connectedCallback();
     // Register drawer listeners
-    this.registerlisteners();
+    // this.registerlisteners();
   }
 
   public beforeRender = beforeRender.bind(this);
