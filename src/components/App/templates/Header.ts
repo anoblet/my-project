@@ -7,9 +7,11 @@ import "@anoblet/circle-button";
 
 export default function() {
   return html`
-    <span id="menu" @click="${this._toggleDrawer}">
-      ${menu}
-    </span>
+    <div id="left">
+      <span id="menu" @click="${this._toggleDrawer}">
+        ${menu}
+      </span>
+    </div>
     <span id="title"><a href="/">${config.site.title}</a></span>
     <div id="right">
       ${isSignedIn()
