@@ -252,7 +252,3 @@ button-component::part(button) {
   display: flex;
   justify-content: flex-end;
 }
-
-#right a {
-  text-decoration: none;
-}
