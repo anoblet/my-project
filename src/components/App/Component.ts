@@ -144,7 +144,7 @@ export class AppComponent extends BeforeRender(MobxReactionUpdate(LitElement)) {
   }
 
   public registerlisteners() {
-    this.addEventListener("close-drawer", this._closeDrawer);
+    // this.addEventListener("close-drawer", this._closeDrawer);
     // this.addEventListener("drawer-toggled", this._toggleDrawer);
   }
 
