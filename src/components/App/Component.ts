@@ -36,8 +36,8 @@ export class AppComponent extends BeforeRender(MobxReactionUpdate(LitElement)) {
   public static styles = [GlobalStyle, style];
   public render = Template.bind(this);
 
-  @property({ reflect: true, attribute: "drawer-opened", type: Boolean })
-  public drawerOpened: boolean = false;
+  // @property({ reflect: true, attribute: "drawer-opened", type: Boolean })
+  // public drawerOpened: boolean = false;
   @property({ type: String, reflect: true }) public mediaSize: string;
   @property({ type: String, reflect: true }) public activeRoute: string;
 
