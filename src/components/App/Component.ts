@@ -89,14 +89,6 @@ export class AppComponent extends BeforeRender(MobxReactionUpdate(LitElement)) {
     });
     this.registerScrollListeners();
 
-    // Close drawer on link click
-    // const links = Array.from(
-    //   this.shadowRoot.querySelectorAll("drawer-component a")
-    // );
-    // links.map(link =>
-    //   link.addEventListener("click", this._toggleDrawer.bind(this))
-    // );
-
     // Set user profile image
     const state = Store.getState();
     const user = state.user;
