@@ -23,6 +23,7 @@ import { config } from "../../../etc/config";
 import { installOfflineWatcher } from "pwa-helpers/network.js";
 import { routes } from "./Routes";
 import { toast } from "../Toast/Toast";
+import { DrawerComponent } from "@anoblet/drawer-component"
 
 // Let's assume CSS modules are a thing in the future
 const styleImport = require("./style.css");
