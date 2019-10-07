@@ -194,7 +194,7 @@ drawer-component {
 
 #footer tabs-component > * {
   text-align: center;
-  padding: 1rem;
+  padding: 1em;
 }
 
 [slot="main"] {
