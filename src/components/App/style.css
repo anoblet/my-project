@@ -146,6 +146,7 @@ breadcrumb-component a {
   cursor: pointer;
   padding: 1em;
   fill: currentColor;
+  display: flex;
 }
 
 #userProfile {
