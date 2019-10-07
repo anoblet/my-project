@@ -10,8 +10,8 @@ grid-component > .grid-item {
   display: flex;
   flex: 1;
   justify-content: center;
-  border: 1px solid var(--border-color);
   padding: 1em;
+  border: 1px solid var(--border-color);
   border-radius: var(--border-radius);
 }
 
@@ -35,7 +35,7 @@ grid-component > .grid-item {
 }
 
 li {
-  padding: 0.5em 0px;
+  padding: 0.5em 0;
 }
 
 pre {
@@ -44,11 +44,11 @@ pre {
 
 .icon {
   display: flex;
+  align-items: center;
   flex: 1;
   justify-content: center;
-  align-items: center;
-  color: var(--h3-color);
   padding: var(--padding);
+  color: var(--h3-color);
 }
 
 svg {
