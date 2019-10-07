@@ -1,8 +1,8 @@
 import { LitElement, css, customElement, property, unsafeCSS } from "lit-element";
 
 import { BeforeRender } from "@anoblet/mixins";
-import GlobalStyle from "../../GlobalStyle";
-import Template from "./Template";
+import globalStyle from "../../GlobalStyle";
+import template from "./Template";
 import { getCollection } from "../../Firebase";
 
 const styleImport = require("./style.css");
@@ -12,8 +12,8 @@ const style = css`
 
 @customElement("blog-component")
 export class Blog extends BeforeRender(LitElement) {
-  public static styles = [GlobalStyle, style];
-  public render = Template.bind(this);
+  public static styles = [globalStyle, style];
+  public render = template.bind(this);
 
   @property() public posts: any = [];
 
