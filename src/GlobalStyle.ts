@@ -2,6 +2,10 @@ import { css } from "lit-element";
 import FluidType from "./design-systems/FluidType";
 
 export default css`
+  * {
+    box-sizing: border-box;
+  }
+
   :host {
     contain: content;
   }
