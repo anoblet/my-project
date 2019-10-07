@@ -201,7 +201,7 @@ export class AppComponent extends BeforeRender(MobxReactionUpdate(LitElement)) {
   }
 
   public closeMenus() {
-    this.drawerOpened = false;
+    // this.drawerOpened = false;
     const menu: any = this.shadowRoot.querySelector("#profile-menu");
     menu.close();
   }
