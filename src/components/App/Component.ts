@@ -65,10 +65,10 @@ export class AppComponent extends BeforeRender(MobxReactionUpdate(LitElement)) {
     }
 
     this.initMediaSize();
-    // Store.subscribe(() => {
-    //   this.syncActiveRoute();
-    // });
-    // this.syncActiveRoute();
+    Store.subscribe(() => {
+      this.syncActiveRoute();
+    });
+    this.syncActiveRoute();
   }
 
   public connectedCallback() {
