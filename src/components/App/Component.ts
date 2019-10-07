@@ -83,11 +83,13 @@ export class AppComponent extends BeforeRender(MobxReactionUpdate(LitElement)) {
 
   public firstUpdated() {
     Performance.log("First updated");
+    
     this.registerRouter();
+
     installOfflineWatcher((offline: boolean) => {
       if (offline) toast("Offline");
     });
-    
+
     this.registerScrollListeners();
 
     // Set user profile image
