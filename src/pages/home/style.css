@@ -1,6 +1,4 @@
-import { css } from "lit-element";
 
-export default css`
   :host {
     flex: 1;
   }
@@ -68,4 +66,3 @@ export default css`
   h1 {
     margin: 0;
   }
-`;
