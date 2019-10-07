@@ -41,7 +41,7 @@ export class AppComponent extends BeforeRender(MobxReactionUpdate(LitElement)) {
   @property({ type: String, reflect: true }) public mediaSize: string;
   @property({ type: String, reflect: true }) public activeRoute: string;
 
-  @query("drawer-component") drawer;
+  @query("drawer-component") drawer: DrawerComponent;
   @query("#portal") portal: HTMLElement;
 
   // Reactive model for location
