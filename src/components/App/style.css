@@ -194,7 +194,7 @@ drawer-component {
 
 #footer tabs-component > * {
   text-align: center;
-  padding: 1em;
+  padding: 1rem;
   display: flex;
   justify-content: center;
 }
