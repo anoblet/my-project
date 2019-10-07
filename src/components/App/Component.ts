@@ -87,6 +87,7 @@ export class AppComponent extends BeforeRender(MobxReactionUpdate(LitElement)) {
     installOfflineWatcher((offline: boolean) => {
       if (offline) toast("Offline");
     });
+    
     this.registerScrollListeners();
 
     // Set user profile image
