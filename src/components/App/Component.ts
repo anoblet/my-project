@@ -182,15 +182,6 @@ export class AppComponent extends BeforeRender(MobxReactionUpdate(LitElement)) {
     });
   }
 
-  // Handlers
-  // public _openDrawer() {
-  //   this.drawerOpened = true;
-  // }
-  //
-  // public _closeDrawer() {
-  //   this.drawerOpened = false;
-  // }
-
   public _toggleDrawer() {
     this.drawer.toggle();
   }
