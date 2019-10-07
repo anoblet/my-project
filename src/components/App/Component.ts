@@ -55,6 +55,7 @@ export class AppComponent extends BeforeRender(MobxReactionUpdate(LitElement)) {
     State.addReducer({ type: "user", Store });
     State.addReducer({ type: "settings", Store });
 
+    // Get static theme
     if (config.theme) {
       Theme.set(Theme.convert(config.theme), document.body);
       State.set({
