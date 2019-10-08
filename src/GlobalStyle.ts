@@ -1,5 +1,5 @@
 import { css } from "lit-element";
-import FluidType from "./design-systems/FluidType";
+// import FluidType from "./design-systems/FluidType";
 
 export default css`
   * {
