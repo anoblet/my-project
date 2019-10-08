@@ -25,10 +25,6 @@ const config = {
   module: {
     rules: [
       {
-        test: /\.tsx?$/,
-        use: "ts-loader"
-      },
-      {
         test: /\.(html)$/,
         use: {
           loader: "html-loader"
@@ -37,6 +33,10 @@ const config = {
       {
         test: /\.css$/i,
         use: ["to-string-loader", "css-loader"]
+      },
+      {
+        test: /\.tsx?$/,
+        use: "ts-loader"
       }
     ]
   },
