@@ -191,6 +191,12 @@ export default css`
   [hidden] {
     display: none;
   }
+
+  h3,
+  h4 {
+    margin-block-start: 0;
+    margin-block-end: 0;
+  }
 `;
 
 export const absolute = css`
