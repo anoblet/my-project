@@ -22,10 +22,7 @@ export class ReadmeComponent extends LitElement {
   @query("markdown-component") markdown;
 
   public firstUpdated() {
-    applyStyle(
-      this.markdown,
-      GlobalStyle
-    );
+    applyStyle(this.markdown, GlobalStyle);
     applyStyle(this.markdown, style);
   }
 
