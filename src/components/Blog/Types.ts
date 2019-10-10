@@ -3,4 +3,5 @@ export interface post {
   archived: boolean;
   title: string;
   body: string;
+  author: string
 }
