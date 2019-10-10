@@ -81,7 +81,7 @@ export const routes = [
     path: "/readme",
     component: "readme-component",
     src: () =>
-      import(/* webpackChunkName: "ReadmeComponent" */ "../ReadmeComponent")
+      import(/* webpackChunkName: "ReadmeComponent" */ "../Readme/Component")
   } as Route,
   {
     path: "/sitemap",
