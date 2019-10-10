@@ -17,10 +17,7 @@ export class ReadmeComponent extends LitElement {
       this.shadowRoot.querySelector("markdown-component"),
       GlobalStyle
     );
-    applyStyle(
-      this.shadowRoot.querySelector("markdown-component"),
-      style
-    );
+    applyStyle(this.shadowRoot.querySelector("markdown-component"), style);
   }
 
   public render() {
