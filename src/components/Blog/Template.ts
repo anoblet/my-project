@@ -1,11 +1,12 @@
 import { html } from "lit-element";
+import { post } from "./Types";
 import { unsafeHTML } from "lit-html/directives/unsafe-html";
 
 export default function() {
   return html`
     <grid-component>
       ${this.posts
-        ? this.posts.map((post: any) => {
+        ? this.posts.map((post: post) => {
             if (post.archived) return;
             return html`
               <card-component>
