@@ -1,5 +1,3 @@
-import "../components/Ratio/Component";
-
 import { create, extension, notes, show_chart } from "@anoblet/material-icons";
 
 import { html } from "lit-element";

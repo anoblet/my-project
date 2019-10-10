@@ -1,5 +1,5 @@
-import "../../components/Ratio/Component";
 import "@anoblet/grid-component";
+import "@anoblet/ratio-component";
 
 import { create, extension, notes, show_chart } from "@anoblet/material-icons";
 

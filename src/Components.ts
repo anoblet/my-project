@@ -110,12 +110,12 @@ export const components = [
   //     import(/* webpackChunkName: "ColorPicker" */ "./components/ColorPicker/Component"),
   //   tag: "color-picker"
   // },
-  {
-    label: "Ratio",
-    src: () =>
-      import(/* webpackChunkName: "RatioDemo" */ "./components/Ratio/Demo"),
-    tag: "ratio-demo"
-  },
+  // {
+  //   label: "Ratio",
+  //   src: () =>
+  //     import(/* webpackChunkName: "RatioDemo" */ "./components/Ratio/Demo"),
+  //   tag: "ratio-demo"
+  // },
   {
     label: "Census Explorer",
     src: () =>
