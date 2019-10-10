@@ -1,6 +1,13 @@
 import "@anoblet/markdown-component";
 
-import { LitElement, css, customElement, html, unsafeCSS } from "lit-element";
+import {
+  LitElement,
+  css,
+  customElement,
+  html,
+  query,
+  unsafeCSS
+} from "lit-element";
 
 import GlobalStyle from "../../GlobalStyle";
 import { applyStyle } from "@anoblet/utility";
@@ -12,12 +19,14 @@ const style = css`
 
 @customElement("readme-component")
 export class ReadmeComponent extends LitElement {
+  @query("markdown-component") markdown;
+
   public firstUpdated() {
     applyStyle(
-      this.shadowRoot.querySelector("markdown-component"),
+      this.markdown,
       GlobalStyle
     );
-    applyStyle(this.shadowRoot.querySelector("markdown-component"), style);
+    applyStyle(this.markdown, style);
   }
 
   public render() {
