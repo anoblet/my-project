@@ -1,7 +1,6 @@
 import { html } from "lit-element";
 import { post } from "./Types";
 import postTemplate from "./templates/post";
-import { unsafeHTML } from "lit-html/directives/unsafe-html";
 
 export default function() {
   return html`
