@@ -7,7 +7,7 @@ import {
 } from "lit-element";
 
 import { BeforeRender } from "@anoblet/mixins";
-import { getCollection } from "../../Firebase";
+import { Firebase } from "../../FirebaseInstance";
 import globalStyle from "../../GlobalStyle";
 import { post } from "./Types";
 import template from "./Template";
@@ -25,8 +25,7 @@ export class Blog extends BeforeRender(LitElement) {
   @property() public posts: post[];
 
   public async beforeRender() {
-    this.posts = await getCollection({
-      path: "posts",
+    this.posts = await Firebase.getCollection("posts",{
       orderBy: "sortOrder",
       where: {
         property: "featured",
