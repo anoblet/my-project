@@ -193,6 +193,10 @@ drawer-component {
   color: var(--primary-color);
 }
 
+#footer a:hover {
+  background: rgba(254, 254, 254, 0.25);
+}
+
 #footer tabs-component > * {
   text-align: center;
   padding: 1rem;
