@@ -1,7 +1,7 @@
 import { LitElement, customElement, html, property } from "lit-element";
 
 import { generateSitemap } from "./Sitemap";
-import { routes } from "../App/Routes";
+import { routes } from "../../Routes";
 import GlobalStyle from "../../GlobalStyle";
 import Style from "./Style";
 
