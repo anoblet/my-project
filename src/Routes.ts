@@ -11,14 +11,18 @@ export const routes = [
     path: "/admin",
     component: "admin-component",
     src: () =>
-      import(/* webpackChunkName: "AdminComponent" */ "./components/Admin/Component"),
+      import(
+        /* webpackChunkName: "AdminComponent" */ "./components/Admin/Component"
+      ),
     voice: "admin"
   } as Route,
   {
     path: "/contact",
     component: "contact-component",
     src: () =>
-      import(/* webpackChunkName: "PageContact" */ "./components/Contact/Component"),
+      import(
+        /* webpackChunkName: "PageContact" */ "./components/Contact/Component"
+      ),
     voice: "contact"
   } as Route,
   {
@@ -33,7 +37,9 @@ export const routes = [
     path: "/post/read/:id?",
     component: "post-component",
     src: () =>
-      import(/* webpackChunkName: "PostComponent" */ "./components/Post/PostComponent")
+      import(
+        /* webpackChunkName: "PostComponent" */ "./components/Post/PostComponent"
+      )
   } as Route,
   {
     path: "/post/list",
@@ -48,13 +54,17 @@ export const routes = [
     path: "/post/create",
     component: "post-component",
     src: () =>
-      import(/* webpackChunkName: "PostComponent" */ "./components/Post/PostComponent")
+      import(
+        /* webpackChunkName: "PostComponent" */ "./components/Post/PostComponent"
+      )
   } as Route,
   {
     path: "/user/:action?",
     component: "user-controller",
     src: () =>
-      import(/* webpackChunkName: "UserController" */ "./components/User/UserController")
+      import(
+        /* webpackChunkName: "UserController" */ "./components/User/UserController"
+      )
   } as Route,
   {
     path: "/user-settings",
@@ -69,46 +79,66 @@ export const routes = [
     path: "/user-theme",
     component: "theme-component",
     src: () =>
-      import(/* webpackChunkName: "ThemeComponent" */ "./components/Theme/ThemeComponent")
+      import(
+        /* webpackChunkName: "ThemeComponent" */ "./components/Theme/ThemeComponent"
+      )
   } as Route,
   {
     path: "/issue",
     component: "issue-component",
     src: () =>
-      import(/* webpackChunkName: "IssueComponent" */ "./components/Issue/Component")
+      import(
+        /* webpackChunkName: "IssueComponent" */ "./components/Issue/Component"
+      )
   } as Route,
   {
     path: "/readme",
     component: "readme-component",
     src: () =>
-      import(/* webpackChunkName: "ReadmeComponent" */ "./components/Readme/Component")
+      import(
+        /* webpackChunkName: "ReadmeComponent" */ "./components/Readme/Component"
+      )
   } as Route,
   {
     path: "/sitemap",
     component: "sitemap-component",
     src: () =>
-      import(/* webpackChunkName: "SitemapComponent" */ "./components/Sitemap/Component")
+      import(
+        /* webpackChunkName: "SitemapComponent" */ "./components/Sitemap/Component"
+      )
   } as Route,
   {
     path: "/blog",
     component: "blog-component",
     src: () =>
-      import(/* webpackChunkName: "BlogComponent" */ "./components/Blog/Component")
+      import(
+        /* webpackChunkName: "BlogComponent" */ "./components/Blog/Component"
+      )
   } as Route,
   {
     path: "/performance",
     component: "log-component",
     src: () =>
-      import(/* webpackChunkName: "LogComponent" */ "./components/Log/LogComponent")
+      import(
+        /* webpackChunkName: "LogComponent" */ "./components/Log/LogComponent"
+      )
   },
   {
     path: "/components/demo-component",
     component: "demo-component",
-    src: () => import(/* webpackChunkName: "ChartJS" */ "./components/ChartJS/Demo")
+    src: () =>
+      import(/* webpackChunkName: "ChartJS" */ "./components/ChartJS/Demo")
   },
   {
     path: "/poll/:pollId?",
     component: "poll-view",
-    src: () => import(/* webpackChunkName: "PollView" */ "./components/Voting/View")
+    src: () =>
+      import(/* webpackChunkName: "PollView" */ "./components/Voting/View")
+  } as Route,
+  {
+    path: "/tutor",
+    component: "page-tutor",
+    src: () =>
+      import(/* webpackChunkName: "PageTutor" */ "./pages/tutor/component")
   } as Route
 ];
