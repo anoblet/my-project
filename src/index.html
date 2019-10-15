@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <!-- Pre-connect to resources -->
+    <!-- Pre-connect-->
     <link rel="preconnect" href="https://www.googleapis.com" />
     <link rel="preconnect" href="https://firestore.googleapis.com" />
     <link rel="preconnect" href="https://www.google-analytics.com/" />
+    <link rel="preconnect" href="https://www.googletagmanager.com/" />
     <!-- End pre-connect -->
     <style>
       *,
@@ -121,9 +122,13 @@
       href="/js/webcomponentsjs/webcomponents-loader.js"
       as="script"
     />
+    <link rel="manifest" href="/manifest.json" />
   </head>
   <body>
-    <google-analytics property-id="UA-63899225-2" single-page></google-analytics>
+    <google-analytics
+      property-id="UA-63899225-2"
+      single-page
+    ></google-analytics>
     <noscript>Please enable javascript</noscript>
     <div id="loading">
       <div class="loader"></div>

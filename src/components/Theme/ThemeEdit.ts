@@ -47,7 +47,7 @@ const renderField = (
           value="${theme[field.property]}"
           @input="${(e: any) => updateField(field.property, e.target.value)}"
         />
-        <color-picker></color-picker>
+        <!-- <color-picker></color-picker> -->
       `
     : ""}
   ${field.type === "size"

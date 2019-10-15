@@ -1,37 +1,49 @@
-import { LitElement, customElement, property, query } from "lit-element";
+import {
+  LitElement,
+  css,
+  customElement,
+  property,
+  query,
+  unsafeCSS
+} from "lit-element";
 
 import { BeforeRender } from "@anoblet/mixins";
+import { DrawerComponent } from "@anoblet/drawer-component";
 import GlobalStyle from "../../GlobalStyle";
+import { Location } from "../../models/location";
 import Media from "../../Media";
 import { MobxReactionUpdate } from "@adobe/lit-mobx";
 import Performance from "../../Performance";
 import Router from "@anoblet/router";
 import State from "../../State";
 import Store from "../../Store";
-import Style from "./Style";
 import Template from "./Template";
 import Theme from "../../Theme";
-import { URL } from "../../models/url";
 import { beforeRender } from "./BeforeRender";
-import { config } from "../../../config";
+import { config } from "../../../etc/config";
 import { installOfflineWatcher } from "pwa-helpers/network.js";
-import { routes } from "./Routes";
+import { routes } from "../../Routes";
 import { toast } from "../Toast/Toast";
+
+// Let's assume CSS modules are a thing in the future
+const styleImport = require("./style.css");
+const style = css`
+  ${unsafeCSS(styleImport)}
+`;
 
 @customElement("app-component")
 export class AppComponent extends BeforeRender(MobxReactionUpdate(LitElement)) {
-  public static styles = [GlobalStyle, Style];
+  public static styles = [GlobalStyle, style];
   public render = Template.bind(this);
 
-  private url = new URL();
-
-  @property({ reflect: true, attribute: "drawer-opened", type: Boolean })
-  public drawerOpened: boolean = false;
   @property({ type: String, reflect: true }) public mediaSize: string;
   @property({ type: String, reflect: true }) public activeRoute: string;
 
-  @query("drawer-component") drawer;
+  @query("drawer-component") drawer: DrawerComponent;
   @query("#portal") portal: HTMLElement;
+
+  // Reactive model for location
+  private location = new Location();
 
   // Lifecycle
   constructor() {
@@ -42,6 +54,7 @@ export class AppComponent extends BeforeRender(MobxReactionUpdate(LitElement)) {
     State.addReducer({ type: "user", Store });
     State.addReducer({ type: "settings", Store });
 
+    // Get static theme
     if (config.theme) {
       Theme.set(Theme.convert(config.theme), document.body);
       State.set({
@@ -52,36 +65,33 @@ export class AppComponent extends BeforeRender(MobxReactionUpdate(LitElement)) {
     }
 
     this.initMediaSize();
-    Store.subscribe(() => {
-      this.syncActiveRoute();
-    });
-    this.syncActiveRoute();
-  }
-
-  public connectedCallback() {
-    super.connectedCallback();
-    // Register drawer listeners
-    this.registerlisteners();
+    // Store.subscribe(() => {
+    //   this.syncActiveRoute();
+    // });
+    // this.syncActiveRoute();
   }
 
   public beforeRender = beforeRender.bind(this);
 
   public firstUpdated() {
     Performance.log("First updated");
-    // Store.subscribe(() => this.requestUpdate());
+
     this.registerRouter();
+
     installOfflineWatcher((offline: boolean) => {
       if (offline) toast("Offline");
     });
+
     this.registerScrollListeners();
 
-    // Close drawer on link click
-    // const links = Array.from(
-    //   this.shadowRoot.querySelectorAll("drawer-component a")
-    // );
-    // links.map(link =>
-    //   link.addEventListener("click", this._toggleDrawer.bind(this))
-    // );
+    // Set user profile image
+    const state = Store.getState();
+    const user = state.user;
+    const button: any = this.shadowRoot.querySelector("#userProfile");
+    if (button) {
+      button.style.background = `url('${user.photo}')`;
+      button.style.backgroundSize = "contain";
+    }
   }
 
   public syncActiveRoute() {
@@ -126,7 +136,7 @@ export class AppComponent extends BeforeRender(MobxReactionUpdate(LitElement)) {
   }
 
   public registerlisteners() {
-    this.addEventListener("close-drawer", this._closeDrawer);
+    // this.addEventListener("close-drawer", this._closeDrawer);
     // this.addEventListener("drawer-toggled", this._toggleDrawer);
   }
 
@@ -157,20 +167,11 @@ export class AppComponent extends BeforeRender(MobxReactionUpdate(LitElement)) {
       });
 
       // MobX
-      this.url.setPath(location.pathname);
+      this.location.setPathname(location.pathname);
 
+      // Close drawer on route change
       this.drawer.close();
-      // this._closeDrawer();
     });
-  }
-
-  // Handlers
-  public _openDrawer() {
-    this.drawerOpened = true;
-  }
-
-  public _closeDrawer() {
-    this.drawerOpened = false;
   }
 
   public _toggleDrawer() {
@@ -183,7 +184,6 @@ export class AppComponent extends BeforeRender(MobxReactionUpdate(LitElement)) {
   }
 
   public closeMenus() {
-    this.drawerOpened = false;
     const menu: any = this.shadowRoot.querySelector("#profile-menu");
     menu.close();
   }

@@ -3,7 +3,7 @@ import { LitElement, customElement } from "lit-element";
 import Template from "./Template";
 import Style from "./Style";
 import GlobalStyle from "../../GlobalStyle";
-import { config } from "../../../config";
+import { config } from "../../../etc/config";
 import FirebaseUIStyle from "./FirebaseUIStyle";
 
 @customElement("user-component")

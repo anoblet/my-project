@@ -1,7 +1,7 @@
 import { LitElement, css, customElement, html, property } from "lit-element";
 
 import Firebase from "../../Firebase";
-import { delete_outline } from "../../Icons";
+import { delete_outline } from "@anoblet/material-icons";
 
 const Template = function() {
   return html`

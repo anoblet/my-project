@@ -82,4 +82,11 @@ export default css`
   card-component::part(card) {
     grid-template-rows: max-content auto max-content;
   }
+
+  .centered {
+    display: flex;
+    flex: 1;
+    justify-content: center;
+    align-items: center;
+  }
 `;

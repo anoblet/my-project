@@ -1,15 +1,13 @@
-import Firebase from "../../Firebase";
-import { config } from "../../../config";
-import { secrets } from "../../../secrets";
-import { getAppSettings } from "./Utility";
-import State from "../../State";
-import Theme from "../../Theme";
-import Store from "../../Store";
 import Debug from "../../Debug";
+import { Firebase } from "../../FirebaseInstance";
+import State from "../../State";
+import Store from "../../Store";
+import Theme from "../../Theme";
 import User from "../../User";
+import { config } from "../../../etc/config";
+import { getAppSettings } from "./Utility";
 
 export const beforeRender = async function() {
-  Firebase.init(secrets.firebase);
   // firebase.performance();
   if (config.globalSettings) {
     const settings: any = await getAppSettings(false);

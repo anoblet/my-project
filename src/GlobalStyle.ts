@@ -1,7 +1,11 @@
 import { css } from "lit-element";
-import FluidType from "./design-systems/FluidType";
+// import FluidType from "./design-systems/FluidType";
 
 export default css`
+  * {
+    box-sizing: border-box;
+  }
+
   :host {
     contain: content;
   }
@@ -186,6 +190,12 @@ export default css`
 
   [hidden] {
     display: none;
+  }
+
+  h3,
+  h4 {
+    margin-block-start: 0;
+    margin-block-end: 0;
   }
 `;
 

@@ -8,8 +8,8 @@ const style = css`
   ${unsafeCSS(styleImport)}
 `;
 
-@customElement("page-home")
-export class PageHome extends LitElement {
+@customElement("page-tutor")
+export class PageTutor extends LitElement {
   public static styles = [globalStyle, style];
   public render = template.bind(this);
 }
