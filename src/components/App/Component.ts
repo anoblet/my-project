@@ -71,12 +71,6 @@ export class AppComponent extends BeforeRender(MobxReactionUpdate(LitElement)) {
     // this.syncActiveRoute();
   }
 
-  public connectedCallback() {
-    super.connectedCallback();
-    // Register drawer listeners
-    // this.registerlisteners();
-  }
-
   public beforeRender = beforeRender.bind(this);
 
   public firstUpdated() {
