@@ -13,8 +13,8 @@ import "@anoblet/google-analytics";
 // import { config } from "../etc/config";
 
 // Firebase
-// import "firebase/app";
-// import "firebase/auth";
+import "firebase/app";
+import "firebase/auth";
 
 // Google analytics
 // if (config.analytics) {
