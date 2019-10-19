@@ -10,7 +10,7 @@ export default function() {
       ${header.bind(this)()}
     </div>
     <drawer-component ?absolute=${this.mediaSize === "mobile"}
-      ><div id="drawer" slot="drawer">${drawer()}</div>
+      ><div id="drawer" slot="aside">${drawer()}</div>
       <div slot="main">
         <breadcrumb-component
           .activeRoute=${this.location.pathname}
