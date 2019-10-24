@@ -57,7 +57,8 @@ export default css`
 
   card-component {
     border: 1px solid var(--border-color);
-    /* background: var(--background-color); */
+    flex: 1;
+    grid-template-rows: max-content auto;
   }
 
   clock-component {
