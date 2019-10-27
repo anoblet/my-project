@@ -182,6 +182,8 @@ export default css`
     border-style: solid;
     border-color: var(--border-color);
     border-radius: var(--border-radius);
+    padding: 1rem;
+    grid-gap: 1rem;
   }
 
   drawer-component::part(aside) {
