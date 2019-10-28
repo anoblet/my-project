@@ -1,18 +1,21 @@
-import { LitElement, css, customElement, property, unsafeCSS } from "lit-element";
+import {
+  LitElement,
+  css,
+  customElement,
+  property,
+  query,
+  unsafeCSS
+} from "lit-element";
 
 import { BeforeRender } from "@anoblet/mixins";
+import { ResizeObserver } from "resize-observer";
 import Template from "./Template";
+import { debounce } from "debounce";
 import muuri from "muuri";
-
-import("../muuri/component");
 
 const beforeRender = async () => {
   return;
 };
-
-export interface DashboardComponent {
-  src: string;
-}
 
 const styleImport = require("./style.css");
 const style = css`
@@ -33,18 +36,19 @@ export class Dashboard extends BeforeRender(LitElement) {
 
   @property() public itemArray: any;
 
+  @query(".grid") public grid: any;
+
   public beforeRender = beforeRender;
 
   public firstUpdated() {
-    const grid = new muuri(this.shadowRoot.querySelector(".grid"), {
+    const grid = new muuri(this.grid, {
       dragEnabled: true,
       layout: {
         fillGaps: true
       },
-      layoutOnResize: 250
+      layoutOnResize: false
     });
-    window.addEventListener("drawer-toggled", function() {
-      setTimeout(() => grid.layout(), 0);
-    });
+    const ro = new ResizeObserver(debounce(grid.layout.bind(grid), 100));
+    ro.observe(this.grid);
   }
 }
