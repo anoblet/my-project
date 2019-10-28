@@ -7,10 +7,7 @@ import GlobalStyle from "../../GlobalStyle";
 import Style from "./PostStyle";
 import { renderForm } from "../PropertyEditor/PropertyEditor";
 import { toast } from "../Toast/Toast";
-
-export interface PostComponent {
-  [key: string]: any; // Add index signature
-}
+import { Firebase } from "../../FirebaseInstance";
 
 export class PostComponent extends LitElement {
   @property({ type: String }) public content: string;
@@ -23,14 +20,16 @@ export class PostComponent extends LitElement {
 
   public async beforeRender() {
     if (this.id)
-      return await getDocument({
-        path: `posts/${this.id}`
-      }).then((document: any) => {
-        if (document) {
-          Object.keys(document).map((key: any) => (this[key] = document[key]));
-          this.taskPending = false;
+      return await Firebase.getDocument(`posts/${this.id}`, {}).then(
+        (document: any) => {
+          if (document) {
+            Object.keys(document).map(
+              (key: any) => (this[key] = document[key])
+            );
+            this.taskPending = false;
+          }
         }
-      });
+      );
     else {
       this.taskPending = false;
     }
@@ -42,23 +41,18 @@ export class PostComponent extends LitElement {
     const constructor: any = this.constructor;
     const properties = constructor.properties;
     Object.keys(properties).map((key: any) => {
-      const element: any = this.shadowRoot.querySelector(
-        `[name=${key}]`
-      );
+      const element: any = this.shadowRoot.querySelector(`[name=${key}]`);
       if (properties[key].type === Number)
-        data[key] = parseInt(
-          element.value,
-          10
-        );
+        data[key] = parseInt(element.value, 10);
       else data[key] = element.value;
     });
 
     if (this.create)
-      addDocument({ path: "posts", data })
+      Firebase.addDocument("posts", data)
         .then(() => toast("Document added"))
         .catch(() => toast("Error: Document not added"));
     else
-      updateDocument({ path: `posts/${this.id}`, data })
+      Firebase.updateDocument(`posts/${this.id}`, data)
         .then(() => {
           this.editable = !this.editable;
         })
