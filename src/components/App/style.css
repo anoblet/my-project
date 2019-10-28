@@ -252,3 +252,7 @@ button-component::part(button) {
   display: flex;
   justify-content: flex-end;
 }
+
+[slot="main"] {
+  min-height: 100%;
+}
