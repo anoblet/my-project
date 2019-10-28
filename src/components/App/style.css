@@ -253,6 +253,6 @@ button-component::part(button) {
   justify-content: flex-end;
 }
 
-[slot="main"] {
+drawer-component [slot="main"] {
   min-height: 100%;
 }
