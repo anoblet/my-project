@@ -59,6 +59,7 @@ export default css`
     border: 1px solid var(--border-color);
     flex: 1;
     grid-template-rows: max-content auto;
+    padding: 1rem;
   }
 
   clock-component {
