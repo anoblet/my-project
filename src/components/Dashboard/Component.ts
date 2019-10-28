@@ -1,7 +1,6 @@
-import { LitElement, customElement, property } from "lit-element";
+import { LitElement, css, customElement, property, unsafeCSS } from "lit-element";
 
 import { BeforeRender } from "@anoblet/mixins";
-import Style from "./Style";
 import Template from "./Template";
 import muuri from "muuri";
 
@@ -15,6 +14,11 @@ export interface DashboardComponent {
   src: string;
 }
 
+const styleImport = require("./style.css");
+const style = css`
+  ${unsafeCSS(styleImport)}
+`;
+
 /**
  * Chromecast idle screen replacement
  *
@@ -24,7 +28,7 @@ export interface DashboardComponent {
 
 @customElement("dashboard-component")
 export class Dashboard extends BeforeRender(LitElement) {
-  public static styles = [Style];
+  public static styles = [style];
   public render = Template.bind(this);
 
   @property() public itemArray: any;
