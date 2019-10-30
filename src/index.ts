@@ -10,6 +10,9 @@ import "@anoblet/card-component";
 import "@anoblet/breadcrumb-component";
 import "@anoblet/google-analytics";
 
+import { secret } from "../etc/secret";
+import Firebase from "./Firebase";
+Firebase.init(secret.firebase);
 // import { config } from "../etc/config";
 
 // Firebase
