@@ -32,7 +32,7 @@
     "jsoneditor": "^5.34.0",
     "lit-element": "^2.2.1",
     "markdown-loader": "^5.0.0",
-    "marked": "^0.7.0",
+    "marked": "^4.0.10",
     "material-design-icons": "^3.0.1",
     "mobx": "^5.13.0",
     "muuri": "^0.7.1",
