@@ -54,7 +54,7 @@
     "babel-preset-env": "^1.7.0",
     "clean-webpack-plugin": "^0.1.19",
     "copy-webpack-plugin": "^4.6.0",
-    "css-loader": "^1.0.1",
+    "css-loader": "^6.7.3",
     "ga-lite": "^2.0.5",
     "google-charts": "^2.0.0",
     "gulp": "^4.0.0",
